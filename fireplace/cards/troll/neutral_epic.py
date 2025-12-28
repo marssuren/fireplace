@@ -6,7 +6,8 @@ from ..utils import *
 
 
 class TRL_405:
-    """Untamed Beastmaster"""
+    """Untamed Beastmaster / 狂野兽王
+    每当你抽到一张野兽牌时，使其获得+2/+2。"""
 
     # Whenever you draw a Beast, give it +2/+2.
     events = Draw(CONTROLLER, BEAST).on(Buff(Draw.TARGET, "TRL_405e"))
@@ -16,14 +17,16 @@ TRL_405e = buff(+2, +2)
 
 
 class TRL_516:
-    """Gurubashi Offering"""
+    """Gurubashi Offering / 古拉巴什供品
+    在你的回合开始时，消灭本随从，并获得 8点护甲值。"""
 
     # At the start of your turn, destroy this and gain 8_Armor.
     events = OWN_TURN_BEGIN.on(Destroy(SELF), GainArmor(FRIENDLY_HERO, 8))
 
 
 class TRL_527:
-    """Drakkari Trickster"""
+    """Drakkari Trickster / 达卡莱幻术师
+    战吼：使每个玩家各随机获得一张对方牌库中的卡牌的复制。"""
 
     # [x]<b>Battlecry:</b> Give each player a copy of a random card from their opponent's
     # deck.
@@ -34,7 +37,8 @@ class TRL_527:
 
 
 class TRL_528:
-    """Linecracker"""
+    """Linecracker / 阵线破坏者
+    超杀：本随从的攻击力翻倍。"""
 
     # <b>Overkill:</b> Double this minion's Attack.
     overkill = Buff(SELF, "TRL_528e")
@@ -45,7 +49,8 @@ class TRL_528e:
 
 
 class TRL_530:
-    """Masked Contender"""
+    """Masked Contender / 蒙面选手
+    战吼： 如果你控制一个奥秘，则从你的牌库中施放一个奥秘。"""
 
     # <b>Battlecry:</b> If you control a_<b>Secret</b>, play a <b>Secret</b> from_your
     # deck.
@@ -53,7 +58,8 @@ class TRL_530:
 
 
 class TRL_532:
-    """Mosh'Ogg Announcer"""
+    """Mosh'Ogg Announcer / 莫什奥格播报员
+    攻击本随从的敌人有50%几率攻击其他角色。"""
 
     # [x]Enemies attacking this have a 50% chance to attack someone else.
     events = Attack(ENEMY_CHARACTERS, SELF).on(
@@ -62,14 +68,16 @@ class TRL_532:
 
 
 class TRL_533:
-    """Ice Cream Peddler"""
+    """Ice Cream Peddler / 冰淇淋小贩
+    战吼：如果你控制一个被冻结的随从，便获得8点护甲值。"""
 
     # <b>Battlecry:</b> If you control a_<b>Frozen</b> minion, gain 8_Armor.
     play = Find(FRIENDLY_MINIONS + FROZEN) & GainArmor(FRIENDLY_HERO, 8)
 
 
 class TRL_535:
-    """Snapjaw Shellfighter"""
+    """Snapjaw Shellfighter / 钳嘴龟盾卫
+    每当相邻的随从受到伤害，改为由本随从承担。"""
 
     # [x]Whenever an adjacent minion takes damage, this _minion takes it instead.
     events = Predamage(SELF_ADJACENT).on(
@@ -78,7 +86,8 @@ class TRL_535:
 
 
 class TRL_569:
-    """Crowd Roaster"""
+    """Crowd Roaster / 看台喷火龙
+    战吼： 如果你的手牌中有龙牌，则对一个敌方随从造成7点伤害。"""
 
     # [x]<b>Battlecry:</b> If you're holding a Dragon, deal 7 damage to an enemy minion.
     requirements = {

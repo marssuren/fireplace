@@ -6,7 +6,8 @@ from ..utils import *
 
 
 class LOOT_357:
-    """Marin the Fox"""
+    """Marin the Fox / “老狐狸”马林
+    战吼：为你的对手召唤一个0/8的宝箱。（打破宝箱可以获得惊人的战利品！）"""
 
     # <b>Battlecry:</b> Summon a 0/8 Treasure Chest for your opponent. <i>(Break it for
     # awesome loot!)</i>
@@ -51,7 +52,8 @@ class LOOT_998k:
 
 
 class LOOT_516:
-    """Zola the Gorgon"""
+    """Zola the Gorgon / 蛇发女妖佐拉
+    战吼：选择一个友方随从。将它的金色复制置入你的手牌。"""
 
     # <b>Battlecry:</b> Choose a friendly minion. Add a Golden copy of it to your hand.
     requirements = {
@@ -63,14 +65,16 @@ class LOOT_516:
 
 
 class LOOT_521:
-    """Master Oakheart"""
+    """Master Oakheart / 欧克哈特大师
+    战吼： 招募攻击力为1，2，3的随从各一个。"""
 
     # <b>Battlecry:</b> <b>Recruit</b> a 1, 2, and 3-Attack minion.
     play = Recruit(COST == 1), Recruit(COST == 2), Recruit(COST == 3)
 
 
 class LOOT_526:
-    """The Darkness"""
+    """The Darkness / 黑暗之主
+    起始休眠状态。 战吼：将三张蜡烛牌洗入对手的牌库。抽到三张蜡烛牌后唤醒本随从。"""
 
     # [x]Starts dormant. <b>Battlecry:</b> Shuffle 3 Candles into the enemy deck. When
     # drawn, this awakens.
@@ -86,7 +90,8 @@ class LOOT_526t:
 
 
 class LOOT_541:
-    """King Togwaggle"""
+    """King Togwaggle / 托瓦格尔国王
+    战吼：与你的对手交换牌库。你的对手获得一张“赎金”法术牌，可以将牌库交换回来。"""
 
     # [x]<b>Battlecry:</b> Swap decks with your opponent. Give them a Ransom spell to swap
     # back.

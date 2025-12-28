@@ -6,7 +6,8 @@ from ..utils import *
 
 
 class LOOT_410:
-    """Duskbreaker"""
+    """Duskbreaker / 破晓之龙
+    战吼： 如果你的手牌中有龙牌，则对所有其他随从造成3点伤害。"""
 
     # <b>Battlecry:</b> If you're holding a Dragon, deal 3 damage to all other minions.
     requirements = {
@@ -17,7 +18,8 @@ class LOOT_410:
 
 
 class LOOT_528:
-    """Twilight Acolyte"""
+    """Twilight Acolyte / 暮光侍僧
+    战吼：如果你的手牌中有龙牌，则将本随从的攻击力与另一个随从交换。"""
 
     # <b>Battlecry:</b> If you're holding a Dragon, swap this minion's Attack with another
     # minion's.
@@ -33,14 +35,16 @@ class LOOT_528e:
 
 
 class LOOT_534:
-    """Gilded Gargoyle"""
+    """Gilded Gargoyle / 镀金的石像鬼
+    亡语：将一张幸运币置入你的手牌。"""
 
     # <b>Deathrattle:</b> Add a Coin to your hand.
     deathrattle = Give(CONTROLLER, THE_COIN)
 
 
 class LOOT_538:
-    """Temporus"""
+    """Temporus / 坦普卢斯
+    战吼：在本回合结束后，你的对手连续行动两个回合。然后你行动两个回合。"""
 
     # <b>Battlecry:</b> Your opponent takes two turns. Then you take two turns.
     def play(self):
@@ -55,7 +59,8 @@ class LOOT_538:
 
 
 class LOOT_008:
-    """Psychic Scream"""
+    """Psychic Scream / 心灵尖啸
+    将所有随从洗入你对手的牌库。"""
 
     # Shuffle all minions into your opponent's deck.
     requirements = {
@@ -66,7 +71,8 @@ class LOOT_008:
 
 
 class LOOT_187:
-    """Twilight's Call"""
+    """Twilight's Call / 暮光召唤
+    召唤两个在本局对战中死亡，并具有亡语的友方随从的1/1复制。"""
 
     # Summon 1/1 copies of 2 friendly <b>Deathrattle</b> minions that died this game.
     requirements = {
@@ -86,7 +92,8 @@ class LOOT_187e:
 
 
 class LOOT_278:
-    """Unidentified Elixir"""
+    """Unidentified Elixir / 未鉴定的药剂
+    使一个随从获得+2/+2。在你手牌中时获得额外效果。"""
 
     # Give a minion +2/+2. Gains a bonus effect in_your hand.
     requirements = {
@@ -179,14 +186,16 @@ class LOOT_278t4e:
 
 
 class LOOT_353:
-    """Psionic Probe"""
+    """Psionic Probe / 灵能窥探
+    复制你对手的牌库中的一张法术牌，并将其置入你的 手牌。"""
 
     # Copy a spell in your opponent's deck and add it to your hand.
     play = Give(CONTROLLER, Copy(RANDOM(ENEMY_DECK + SPELL)))
 
 
 class LOOT_507:
-    """Lesser Diamond Spellstone"""
+    """Lesser Diamond Spellstone / 小型法术钻石
+    复活两个不同的友方随从。@（施放四个法术后升级。）"""
 
     # Resurrect 2 different friendly minions. @<i>(Cast 4 spells to upgrade.)</i>
     play = Summon(CONTROLLER, Copy(RANDOM(DeDuplicate(FRIENDLY + KILLED + MINION)) * 2))
@@ -221,7 +230,8 @@ class LOOT_507t2:
 
 
 class LOOT_209:
-    """Dragon Soul"""
+    """Dragon Soul / 巨龙之魂
+    你在一回合中施放三个法术后，召唤一条5/5的龙。"""
 
     # After you cast 3 spells in a turn, summon a 5/5 Dragon.
     progress_total = 3

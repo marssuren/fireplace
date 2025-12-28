@@ -6,7 +6,8 @@ from ..utils import *
 
 
 class GIL_142:
-    """Chameleos"""
+    """Chameleos / 变色龙卡米洛斯
+    如果这张牌在你的手牌中，每个回合都会变成你对手手牌中的一张牌。"""
 
     # Each turn this is in your hand, transform it into a card your opponent is holding.
     class Hand:
@@ -35,28 +36,32 @@ class GIL_142e:
 
 
 class GIL_156:
-    """Quartz Elemental"""
+    """Quartz Elemental / 石英元素
+    受伤时无法攻击。"""
 
     # Can't attack while damaged.
     update = Find(DAMAGED + SELF) & Refresh(SELF, {GameTag.CANT_ATTACK: True})
 
 
 class GIL_190:
-    """Nightscale Matriarch"""
+    """Nightscale Matriarch / 夜鳞龙后
+    每当一个友方随从获得治疗时，召唤一条3/3的雏龙。"""
 
     # Whenever a friendly minion is healed, summon a 3/3_Whelp.
     events = Heal(FRIENDLY_MINIONS).on(Summon(CONTROLLER, "GIL_190t"))
 
 
 class GIL_805:
-    """Coffin Crasher"""
+    """Coffin Crasher / 破棺者
+    亡语：从你的手牌中召唤一个亡语随从。"""
 
     # <b>Deathrattle:</b> Summon a <b>Deathrattle</b> minion from your hand.
     deathrattle = Summon(CONTROLLER, RANDOM(FRIENDLY_HAND + DEATHRATTLE))
 
 
 class GIL_835:
-    """Squashling"""
+    """Squashling / 南瓜宝宝
+    回响，战吼：恢复#2点生命值。"""
 
     # [x]<b>Echo</b> <b>Battlecry:</b> Restore 2 Health.
     requirements = {
@@ -66,7 +71,8 @@ class GIL_835:
 
 
 class GIL_837:
-    """Glitter Moth"""
+    """Glitter Moth / 闪光飞蛾
+    战吼： 如果你的牌库中只有法力值消耗为奇数的牌，使你所有其他随从的生命值翻倍。"""
 
     # <b>Battlecry:</b> If your deck has only odd-Cost cards, double the Health of your
     # other minions.
@@ -82,7 +88,8 @@ class GIL_837e:
 
 
 class GIL_840:
-    """Lady in White"""
+    """Lady in White / 白衣幽魂
+    战吼：对你牌库中的所有随从施放“心灵之火”（使其攻击力等同于生命值）。"""
 
     # [x]<b>Battlecry:</b> Cast 'Inner Fire' _on every minion in your deck_ <i>(set Attack
     # equal to Health).</i>
@@ -94,7 +101,8 @@ class GIL_840:
 
 
 class GIL_134:
-    """Holy Water"""
+    """Holy Water / 圣水
+    对一个随从造成$4点伤害。如果消灭该随从，将一张该随从的复制置入你的手牌。"""
 
     # Deal $4 damage to a minion. If that kills it, add a copy of it to your_hand.
     requirements = {
@@ -105,7 +113,8 @@ class GIL_134:
 
 
 class GIL_661:
-    """Divine Hymn"""
+    """Divine Hymn / 神圣赞美诗
+    为所有友方角色恢复#6点 生命值。"""
 
     # Restore #6 Health to all friendly characters.
     requirements = {
@@ -116,7 +125,8 @@ class GIL_661:
 
 
 class GIL_813:
-    """Vivid Nightmare"""
+    """Vivid Nightmare / 鲜活梦魇
+    选择一个友方随从，召唤一个该随从的复制，且剩余生命值为1点。"""
 
     # [x]Choose a friendly minion. Summon a copy of it with 1 Health remaining.
     requirements = {

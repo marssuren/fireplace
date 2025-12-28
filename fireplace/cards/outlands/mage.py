@@ -6,7 +6,8 @@ from ..utils import *
 
 
 class BT_004:
-    """Imprisoned Observer"""
+    """Imprisoned Observer / 被禁锢的眼魔
+    休眠2回合。唤醒时，对所有敌方随从造成2点伤害。"""
 
     # <b>Dormant</b> for 2 turns. When this awakens, deal 2 damage to all enemy
     # minions.
@@ -16,21 +17,24 @@ class BT_004:
 
 
 class BT_014:
-    """Starscryer"""
+    """Starscryer / 星占师
+    亡语：抽一张法术牌。"""
 
     # <b>Deathrattle:</b> Draw a spell.
     deathrattle = ForceDraw(RANDOM(FRIENDLY_DECK + SPELL))
 
 
 class BT_022:
-    """Apexis Smuggler"""
+    """Apexis Smuggler / 埃匹希斯走私犯
+    在你使用一张奥秘牌后，发现一张 法术牌。"""
 
     # After you play a <b>Secret</b>, <b>Discover</b> a spell.
     events = Play(CONTROLLER, SECRET).after(DISCOVER(RandomSpell()))
 
 
 class BT_028:
-    """Astromancer Solarian"""
+    """Astromancer Solarian / 星术师索兰莉安
+    法术伤害+1 亡语：将“终极索兰莉安”洗入你的牌库。"""
 
     # [x]<b>Spell Damage +1</b> <b>Deathrattle:</b> Shuffle 'Solarian Prime'
     # into your deck.
@@ -50,7 +54,8 @@ class BT_028t:
 
 
 class BT_002:
-    """Incanter's Flow"""
+    """Incanter's Flow / 咒术洪流
+    使你牌库中所有法术牌的法力值消耗减少（1）点。"""
 
     # Reduce the Cost of spells in your deck by_(1).
     play = Buff(FRIENDLY_DECK + SPELL, "BT_002e")
@@ -62,7 +67,8 @@ class BT_002e:
 
 
 class BT_003:
-    """Netherwind Portal"""
+    """Netherwind Portal / 虚空之风传送门
+    奥秘：在你的对手施放一个法术后，随机召唤一个法力值消耗为（4）的随从。"""
 
     # <b>Secret:</b> After your opponent casts a spell, summon a random 4-Cost
     # minion.
@@ -72,7 +78,8 @@ class BT_003:
 
 
 class BT_006:
-    """Evocation"""
+    """Evocation / 唤醒
+    用随机法师法术牌填满你的手牌。这些牌为临时牌。"""
 
     # Fill your hand with random Mage spells. At the end of your turn, discard
     # them.
@@ -89,7 +96,8 @@ class BT_006e:
 
 
 class BT_021:
-    """Font of Power"""
+    """Font of Power / 能量之泉
+    发现一张法师随从牌。如果你的牌库中没有随从牌，改为保留全部三张牌。"""
 
     # <b>Discover</b> a Mage minion. If your deck has no minions, keep all 3.
     powered_up = -Find(FRIENDLY_DECK + MINION)
@@ -99,7 +107,8 @@ class BT_021:
 
 
 class BT_072:
-    """Deep Freeze"""
+    """Deep Freeze / 深度冻结
+    冻结一个敌人。召唤两个3/6的水元素。"""
 
     # <b>Freeze</b> an enemy. Summon two 3/6 Water Elementals.
     requirements = {
@@ -110,7 +119,8 @@ class BT_072:
 
 
 class BT_291:
-    """Apexis Blast"""
+    """Apexis Blast / 埃匹希斯冲击
+    造成$5点伤害。如果你的牌库中没有随从牌，随机召唤一个法力值消耗为（5）的随从。"""
 
     # Deal $5 damage. If your deck has no minions, summon a random 5-Cost
     # minion.

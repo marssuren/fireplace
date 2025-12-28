@@ -6,7 +6,8 @@ from ..utils import *
 
 
 class UNG_022:
-    """Mirage Caller"""
+    """Mirage Caller / 幻象制造者
+    战吼：选择一个随从，召唤一个它的1/1复制。"""
 
     requirements = {
         PlayReq.REQ_FRIENDLY_TARGET: 0,
@@ -22,19 +23,22 @@ class UNG_022e:
 
 
 class UNG_032:
-    """Crystalline Oracle"""
+    """Crystalline Oracle / 结晶预言者
+    亡语：复制你对手的牌库中的一张牌，并将其置入你的手牌。"""
 
     deathrattle = Give(CONTROLLER, Copy(RANDOM(ENEMY_DECK)))
 
 
 class UNG_034:
-    """Radiant Elemental"""
+    """Radiant Elemental / 光照元素
+    你的法术的法力值消耗减少（1）点（但不能少于1点）。"""
 
     update = Refresh(FRIENDLY_HAND + SPELL, {GameTag.COST: -1})
 
 
 class UNG_035:
-    """Curious Glimmerroot"""
+    """Curious Glimmerroot / 好奇的萤根草
+    战吼：检视三张卡牌。猜中来自你对手套牌中的卡牌，则获取该牌的一张复制。"""
 
     class GlimmerrootAction(TargetedAction):
         def do(self, source, player):
@@ -96,7 +100,8 @@ class UNG_035:
 
 
 class UNG_037:
-    """Tortollan Shellraiser"""
+    """Tortollan Shellraiser / 始祖龟执盾者
+    嘲讽，亡语：随机使一个友方随从获得+1/+1。"""
 
     deathrattle = Buff(RANDOM(FRIENDLY_MINIONS), "UNG_037e")
 
@@ -105,7 +110,8 @@ UNG_037e = buff(+1, +1)
 
 
 class UNG_963:
-    """Lyra the Sunshard"""
+    """Lyra the Sunshard / “太阳裂片”莱拉
+    每当你施放一个法术，随机将一张牧师法术牌置入你的手牌。"""
 
     events = Play(CONTROLLER, SPELL).after(
         Give(CONTROLLER, RandomSpell(card_class=CardClass.PRIEST))
@@ -117,7 +123,8 @@ class UNG_963:
 
 
 class UNG_029:
-    """Shadow Visions"""
+    """Shadow Visions / 暗影视界
+    从你的牌库中发现一张法术牌的复制。"""
 
     play = GenericChoice(
         CONTROLLER, Copy(RANDOM(DeDuplicate(FRIENDLY_DECK + SPELL)) * 3)
@@ -125,14 +132,16 @@ class UNG_029:
 
 
 class UNG_030:
-    """Binding Heal"""
+    """Binding Heal / 联结治疗
+    为你的英雄和一个随从恢复#5点生命值。"""
 
     requirements = {PlayReq.REQ_MINION_TARGET: 0, PlayReq.REQ_TARGET_TO_PLAY: 0}
     play = Heal(FRIENDLY_HERO, 5), Heal(TARGET, 5)
 
 
 class UNG_854:
-    """Free From Amber"""
+    """Free From Amber / 琥口脱险
+    发现一张法力值消耗大于或等于（8）点的随从牌，并召唤该随从。"""
 
     requirements = {
         PlayReq.REQ_FRIENDLY_TARGET: 0,
@@ -145,7 +154,8 @@ class UNG_854:
 
 
 class UNG_940:
-    """Awaken the Makers"""
+    """Awaken the Makers / 唤醒造物者
+    任务：召唤6个亡语随从。奖励：希望守护者阿玛拉。"""
 
     progress_total = 7
     quest = Summon(CONTROLLER, DEATHRATTLE).after(AddProgress(SELF, Summon.CARD))

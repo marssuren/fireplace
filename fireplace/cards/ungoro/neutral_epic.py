@@ -6,31 +6,36 @@ from ..utils import *
 
 
 class UNG_085:
-    """Emerald Hive Queen"""
+    """Emerald Hive Queen / 翡翠蜂后
+    你的随从的法力值消耗增加（2）点。"""
 
     update = Refresh(FRIENDLY_HAND + MINION, {GameTag.COST: +2})
 
 
 class UNG_087:
-    """Bittertide Hydra"""
+    """Bittertide Hydra / 苦潮多头蛇
+    每当本随从受到伤害，对你的英雄造成 3点伤害。"""
 
     events = Damage(SELF).on(Hit(FRIENDLY_HERO, 3))
 
 
 class UNG_088:
-    """Tortollan Primalist"""
+    """Tortollan Primalist / 始祖龟预言者
+    战吼： 发现一张法术牌，并向随机目标施放。"""
 
     play = Discover(CONTROLLER, RandomSpell()).then(CastSpell(Discover.CARD))
 
 
 class UNG_089:
-    """Gentle Megasaur"""
+    """Gentle Megasaur / 温顺的巨壳龙
+    战吼：进化你所有的鱼人。"""
 
     play = Adapt(FRIENDLY_MINIONS + MURLOC)
 
 
 class UNG_099:
-    """Charged Devilsaur"""
+    """Charged Devilsaur / 狂奔的魔暴龙
+    冲锋，战吼：在本回合中无法攻击英雄。"""
 
     play = Buff(SELF, "UNG_099e")
 
@@ -46,7 +51,8 @@ class UNG_099e:
 
 
 class UNG_113:
-    """Bright-Eyed Scout"""
+    """Bright-Eyed Scout / 热情的探险家
+    战吼：抽一张牌，使其法力值消耗变为（5）点。"""
 
     play = Draw(CONTROLLER).then(Buff(Draw.CARD, "UNG_113e"))
 
@@ -57,7 +63,8 @@ class UNG_113e:
 
 
 class UNG_847:
-    """Blazecaller"""
+    """Blazecaller / 火焰使者
+    战吼：如果你在上个回合使用过元素牌，则造成5点伤害。"""
 
     requirements = {
         PlayReq.REQ_NONSELF_TARGET: 0,
@@ -67,13 +74,15 @@ class UNG_847:
 
 
 class UNG_848:
-    """Primordial Drake"""
+    """Primordial Drake / 始生幼龙
+    嘲讽，战吼： 对所有其他随从造成2点伤害。"""
 
     play = Hit(ALL_MINIONS, 2)
 
 
 class UNG_946:
-    """Gluttonous Ooze"""
+    """Gluttonous Ooze / 贪食软泥怪
+    战吼：摧毁对手的武器，并获得等同于其攻击力的护甲值。"""
 
     requirements = {
         PlayReq.REQ_FRIENDLY_TARGET: 0,

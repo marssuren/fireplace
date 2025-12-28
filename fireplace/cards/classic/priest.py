@@ -6,13 +6,15 @@ from ..utils import *
 
 
 class CS2_235:
-    """Northshire Cleric"""
+    """Northshire Cleric / 北郡牧师
+    每当一个随从获得治疗时，抽一张牌。"""
 
     events = Heal(ALL_MINIONS).on(Draw(CONTROLLER))
 
 
 class EX1_091:
-    """Cabal Shadow Priest"""
+    """Cabal Shadow Priest / 秘教暗影祭司
+    战吼：夺取一个攻击力小于或等于2的敌方随从的控制权。"""
 
     requirements = {
         PlayReq.REQ_ENEMY_TARGET: 0,
@@ -24,19 +26,22 @@ class EX1_091:
 
 
 class EX1_335:
-    """Lightspawn"""
+    """Lightspawn / 光耀之子
+    本随从的攻击力始终等同于其生命值。"""
 
     update = Refresh(SELF, {GameTag.ATK: lambda self, i: self.health}, priority=100)
 
 
 class EX1_341:
-    """Lightwell"""
+    """Lightwell / 光明之泉
+    在你的回合开始时，随机为一个受伤的 友方角色恢复#3点生命值。"""
 
     events = OWN_TURN_BEGIN.on(Heal(RANDOM(FRIENDLY + DAMAGED_CHARACTERS), 3))
 
 
 class EX1_350:
-    """Prophet Velen"""
+    """Prophet Velen / 先知维伦
+    使你的法术和英雄技能的伤害和治疗效果翻倍。"""
 
     update = Refresh(
         CONTROLLER,
@@ -49,7 +54,8 @@ class EX1_350:
 
 
 class EX1_591:
-    """Auchenai Soulpriest"""
+    """Auchenai Soulpriest / 奥金尼灵魂祭司
+    你的恢复生命值的牌和技能改为造成等量的伤害。"""
 
     update = Refresh(
         CONTROLLER,
@@ -60,7 +66,8 @@ class EX1_591:
 
 
 class EX1_623:
-    """Temple Enforcer"""
+    """Temple Enforcer / 圣殿执行者
+    战吼：使一个友方随从获得+3生命值。"""
 
     requirements = {
         PlayReq.REQ_FRIENDLY_TARGET: 0,
@@ -74,7 +81,8 @@ EX1_623e = buff(health=3)
 
 
 class EX1_193:
-    """Psychic Conjurer"""
+    """Psychic Conjurer / 心灵咒术师
+    战吼：复制你对手的牌库中的一张牌，并将其置入你的手牌。"""
 
     # <b>Battlecry:</b> Copy a card in your opponent’s deck and add it to your
     # hand.
@@ -82,7 +90,8 @@ class EX1_193:
 
 
 class EX1_195:
-    """Kul Tiran Chaplain"""
+    """Kul Tiran Chaplain / 库尔提拉斯教士
+    战吼：使一个友方随从获得+2生命值。"""
 
     # <b>Battlecry:</b> Give a friendly minion +2 Health.
     requirements = {
@@ -97,7 +106,8 @@ EX1_195e = buff(health=2)
 
 
 class EX1_196:
-    """Scarlet Subjugator"""
+    """Scarlet Subjugator / 血色征服者
+    战吼：直到你的下个回合，使一个敌方随从获得-2攻击力。"""
 
     # <b>Battlecry:</b> Give an enemy minion -2 Attack until your_next turn.
     requirements = {
@@ -114,7 +124,8 @@ class EX1_196e:
 
 
 class EX1_198:
-    """Natalie Seline"""
+    """Natalie Seline / 娜塔莉·塞林
+    战吼：消灭一个随从并获得其生命值。"""
 
     # <b>Battlecry:</b> Destroy a minion and gain its Health.
     requirements = {
@@ -129,7 +140,8 @@ class EX1_198:
 
 
 class CS2_004:
-    """Power Word: Shield"""
+    """Power Word: Shield / 真言术：盾
+    使一个随从获得+2生命值。 抽一张牌。"""
 
     requirements = {PlayReq.REQ_MINION_TARGET: 0, PlayReq.REQ_TARGET_TO_PLAY: 0}
     play = Buff(TARGET, "CS2_004e")
@@ -139,13 +151,15 @@ CS2_004e = buff(health=2)
 
 
 class CS1_112:
-    """Holy Nova"""
+    """Holy Nova / 神圣新星
+    对所有敌方随从造成$2点伤害，为所有友方角色恢复#2点 生命值。"""
 
     play = Hit(ENEMY_MINIONS, 2), Heal(FRIENDLY_CHARACTERS, 2)
 
 
 class CS1_113:
-    """Mind Control"""
+    """Mind Control / 精神控制
+    夺取一个敌方随从的控制权。"""
 
     requirements = {
         PlayReq.REQ_ENEMY_TARGET: 0,
@@ -157,7 +171,8 @@ class CS1_113:
 
 
 class CS1_129:
-    """Inner Fire"""
+    """Inner Fire / 心灵之火
+    使一个随从的攻击力等同于其生命值。"""
 
     requirements = {PlayReq.REQ_MINION_TARGET: 0, PlayReq.REQ_TARGET_TO_PLAY: 0}
     play = Buff(TARGET, "CS1_129e")
@@ -171,7 +186,8 @@ class CS1_129e:
 
 
 class CS1_130:
-    """Holy Smite"""
+    """Holy Smite / 神圣惩击
+    对一个随从造成$3点伤害。"""
 
     requirements = {
         PlayReq.REQ_MINION_TARGET: 0,
@@ -181,13 +197,15 @@ class CS1_130:
 
 
 class CS2_003:
-    """Mind Vision"""
+    """Mind Vision / 心灵视界
+    随机复制对手手牌中的一张牌，将其置入你的手牌。"""
 
     play = Give(CONTROLLER, Copy(RANDOM(ENEMY_HAND)))
 
 
 class CS2_234:
-    """Shadow Word: Pain"""
+    """Shadow Word: Pain / 暗言术：痛
+    消灭一个攻击力小于或等于3的随从。"""
 
     requirements = {
         PlayReq.REQ_MINION_TARGET: 0,
@@ -198,27 +216,31 @@ class CS2_234:
 
 
 class CS2_236:
-    """Divine Spirit"""
+    """Divine Spirit / 神圣之灵
+    使一个随从的生命值翻倍。"""
 
     requirements = {PlayReq.REQ_MINION_TARGET: 0, PlayReq.REQ_TARGET_TO_PLAY: 0}
     play = Buff(TARGET, "CS2_236e", max_health=CURRENT_HEALTH(TARGET))
 
 
 class DS1_233:
-    """Mind Blast"""
+    """Mind Blast / 心灵震爆
+    对敌方英雄造成$5点伤害。"""
 
     play = Hit(ENEMY_HERO, 5)
 
 
 class EX1_332:
-    """Silence"""
+    """Silence / 沉默
+    沉默一个随从。"""
 
     requirements = {PlayReq.REQ_MINION_TARGET: 0, PlayReq.REQ_TARGET_TO_PLAY: 0}
     play = Silence(TARGET)
 
 
 class EX1_334:
-    """Shadow Madness"""
+    """Shadow Madness / 暗影狂乱
+    直到回合结束，获得一个攻击力小于或等于3的敌方随从的控制权。"""
 
     requirements = {
         PlayReq.REQ_ENEMY_TARGET: 0,
@@ -239,13 +261,15 @@ class EX1_334e:
 
 
 class EX1_339:
-    """Thoughtsteal"""
+    """Thoughtsteal / 思维窃取
+    复制你对手的牌库中的两张牌，并将其置入你的手牌。"""
 
     play = Give(CONTROLLER, Copy(RANDOM(ENEMY_DECK) * 2))
 
 
 class EX1_345:
-    """Mindgames"""
+    """Mindgames / 控心术
+    随机将你对手的牌库中的一张随从牌的复制置入战场。"""
 
     requirements = {PlayReq.REQ_NUM_MINION_SLOTS: 1}
     play = Find(ENEMY_DECK + MINION) & Summon(
@@ -254,13 +278,15 @@ class EX1_345:
 
 
 class EX1_621:
-    """Circle of Healing"""
+    """Circle of Healing / 治疗之环
+    为所有随从恢复#4点生命值。"""
 
     play = Heal(ALL_MINIONS, 4)
 
 
 class EX1_622:
-    """Shadow Word: Death"""
+    """Shadow Word: Death / 暗言术：灭
+    消灭一个攻击力大于或等于5的随从。"""
 
     requirements = {
         PlayReq.REQ_MINION_TARGET: 0,
@@ -271,14 +297,16 @@ class EX1_622:
 
 
 class EX1_624:
-    """Holy Fire"""
+    """Holy Fire / 神圣之火
+    造成$5点伤害。为你的英雄恢复#5点生命值。"""
 
     requirements = {PlayReq.REQ_TARGET_TO_PLAY: 0}
     play = Hit(TARGET, 5), Heal(FRIENDLY_HERO, 5)
 
 
 class EX1_625:
-    """Shadowform"""
+    """Shadowform / 暗影形态
+    你的英雄技能变为“造成2点伤害”。"""
 
     play = Switch(
         FRIENDLY_HERO_POWER,
@@ -307,20 +335,23 @@ class EX1_625t2:
 
 
 class EX1_626:
-    """Mass Dispel"""
+    """Mass Dispel / 群体驱散
+    沉默所有敌方随从，抽一张牌。"""
 
     play = Silence(ENEMY_MINIONS), Draw(CONTROLLER)
 
 
 class EX1_192:
-    """Radiance"""
+    """Radiance / 圣光闪耀
+    为你的英雄恢复#5点生命值。"""
 
     # Restore #5 Health to your hero.
     play = Heal(FRIENDLY_HERO, 5)
 
 
 class EX1_194:
-    """Power Infusion"""
+    """Power Infusion / 能量灌注
+    使一个随从获得+2/+6。"""
 
     # Give a minion +2/+6.
     requirements = {PlayReq.REQ_MINION_TARGET: 0, PlayReq.REQ_TARGET_TO_PLAY: 0}
@@ -331,7 +362,8 @@ EX1_194e = buff(+2, +2)
 
 
 class EX1_197:
-    """Shadow Word: Ruin"""
+    """Shadow Word: Ruin / 暗言术：毁
+    消灭所有攻击力大于或等于5的随从。"""
 
     # Destroy all minions with 5 or more Attack.
     play = Destroy(ALL_MINIONS + (ATK >= 5))

@@ -6,7 +6,8 @@ from ..utils import *
 
 
 class BT_009:
-    """Imprisoned Sungill"""
+    """Imprisoned Sungill / 被禁锢的阳鳃鱼人
+    休眠2回合。唤醒时，召唤两个1/1的 鱼人。"""
 
     # <b>Dormant</b> for 2 turns. When this awakens, summon two 1/1 Murlocs.
     tags = {GameTag.DORMANT: True}
@@ -15,7 +16,8 @@ class BT_009:
 
 
 class BT_019:
-    """Murgur Murgurgle"""
+    """Murgur Murgurgle / 莫戈尔·莫戈尔格
+    圣盾 亡语：将“终极莫戈尔格”洗入你的牌库。"""
 
     # [x]<b>Divine Shield</b> <b>Deathrattle:</b> Shuffle 'Murgurgle Prime'
     # into your deck.
@@ -31,7 +33,8 @@ class BT_019t:
 
 
 class BT_020:
-    """Aldor Attendant"""
+    """Aldor Attendant / 奥尔多侍从
+    战吼：在本局对战中，你的圣契的法力值消耗减少（1）点。"""
 
     # <b>Battlecry:</b> Reduce the Cost_of your Librams by_(1) this game.
     play = Buff(CONTROLLER, "BT_020e")
@@ -42,7 +45,8 @@ class BT_020e:
 
 
 class BT_026:
-    """Aldor Truthseeker"""
+    """Aldor Truthseeker / 奥尔多真理追寻者
+    嘲讽，战吼： 在本局对战中，你的圣契的法力值消耗减少（2）点。"""
 
     # <b>Taunt</b>. <b>Battlecry:</b> Reduce the Cost of your Librams by (2)
     # this game.
@@ -54,7 +58,8 @@ class BT_026e:
 
 
 class BT_334:
-    """Lady Liadrin"""
+    """Lady Liadrin / 女伯爵莉亚德琳
+    战吼：将你在本局对战中施放在友方角色上的所有法术的复制置入你的手牌。"""
 
     # [x]<b>Battlecry:</b> Add a copy of each spell you cast on friendly
     # characters this game to your hand.
@@ -68,7 +73,8 @@ class BT_334:
 
 
 class BT_011:
-    """Libram of Justice"""
+    """Libram of Justice / 正义圣契
+    装备一把1/4的武器。将所有敌方随从的生命值变为1。"""
 
     # Equip a 1/4 weapon. Change the Health of all enemy minions to 1.
     play = Summon(CONTROLLER, "BT_011t"), Buff(ENEMY_MINIONS, "BT_011e")
@@ -79,7 +85,8 @@ class BT_011e:
 
 
 class BT_024:
-    """Libram of Hope"""
+    """Libram of Hope / 希望圣契
+    恢复8点生命值。召唤一个8/8并具有嘲讽和圣盾的 守卫。"""
 
     # Restore 8 Health. Summon an 8/8 Guardian with <b>Taunt</b> and_<b>Divine
     # Shield</b>.
@@ -88,7 +95,8 @@ class BT_024:
 
 
 class BT_025:
-    """Libram of Wisdom"""
+    """Libram of Wisdom / 智慧圣契
+    使一个随从获得+1/+1，以及“亡语：将一张‘智慧圣契’法术牌置入你的手牌。”"""
 
     # [x]Give a minion +1/+1 and "<b>Deathrattle:</b> Add a 'Libram of Wisdom'
     # spell to your hand."
@@ -105,7 +113,8 @@ class BT_025e:
 
 
 class BT_292:
-    """Hand of A'dal"""
+    """Hand of A'dal / 阿达尔之手
+    使一个随从获得+2/+1。 抽一张牌。"""
 
     # Give a minion +2/+2. Draw a card.
     requirements = {PlayReq.REQ_MINION_TARGET: 0, PlayReq.REQ_TARGET_TO_PLAY: 0}
@@ -120,7 +129,8 @@ BT_292e = buff(+2, +2)
 
 
 class BT_018:
-    """Underlight Angling Rod"""
+    """Underlight Angling Rod / 幽光鱼竿
+    在你的英雄攻击后，随机将一张鱼人牌置入你的手牌。"""
 
     # After your Hero attacks, add a random Murloc to your hand.
     events = Attack(FRIENDLY_HERO).after(Give(CONTROLLER, RandomMurloc()))

@@ -6,28 +6,32 @@ from ..utils import *
 
 
 class LOOT_041:
-    """Kobold Barbarian"""
+    """Kobold Barbarian / 狗头人蛮兵
+    在你的回合开始时，随机攻击一名敌人。"""
 
     # At the start of your turn, attack a random enemy.
     events = OWN_TURN_BEGIN.on(Attack(SELF, RANDOM_ENEMY_CHARACTER))
 
 
 class LOOT_365:
-    """Gemstudded Golem"""
+    """Gemstudded Golem / 宝石魔像
+    嘲讽 除非你的护甲值大于或等于5点，否则无法进行攻击。"""
 
     # <b>Taunt</b> Can only attack if you have 5 or more Armor.
     update = (ARMOR(FRIENDLY_HAND) >= 5) | Refresh(SELF, {GameTag.CANT_ATTACK: True})
 
 
 class LOOT_367:
-    """Drywhisker Armorer"""
+    """Drywhisker Armorer / 枯须铸甲师
+    战吼： 每有一个敌方随从，便获得2点护甲值。"""
 
     # <b>Battlecry:</b> For each enemy minion, gain 2 Armor.
     play = GainArmor(FRIENDLY_HERO, Count(ENEMY_MINIONS) * 2)
 
 
 class LOOT_519:
-    """Geosculptor Yip"""
+    """Geosculptor Yip / 地塑师伊普
+    在你的回合结束时，随机召唤一个法力值消耗等同于你的护甲值（最高不超过10点）的随从。"""
 
     # At the end of your turn, summon a random minion with_Cost_equal_to_your Armor <i>(up
     # to 10)</i>.
@@ -41,7 +45,8 @@ class LOOT_519:
 
 
 class LOOT_203:
-    """Lesser Mithril Spellstone"""
+    """Lesser Mithril Spellstone / 小型法术秘银石
+    召唤一个5/5的秘银魔像。 （装备一把武器后升级。）"""
 
     # Summon one 5/5 Mithril Golem. <i>(Equip a weapon to upgrade.)</i>
     play = Summon(CONTROLLER, "LOOT_203t4")
@@ -68,7 +73,8 @@ class LOOT_203t3:
 
 
 class LOOT_285:
-    """Unidentified Shield"""
+    """Unidentified Shield / 未鉴定的盾牌
+    获得5点护甲值。在你手牌中时获得额外效果。"""
 
     # Gain 5 Armor. Gains a bonus effect in_your hand.
     entourage = ["LOOT_285t", "LOOT_285t2", "LOOT_285t3", "LOOT_285t4"]
@@ -108,7 +114,8 @@ class LOOT_285t4:
 
 
 class LOOT_364:
-    """Reckless Flurry"""
+    """Reckless Flurry / 鲁莽风暴
+    消耗你所有的护甲值。对所有随从造成等同于所消耗护甲值数量的伤害。"""
 
     # Spend all your Armor. Deal that much damage to all minions.
     play = GainArmor(FRIENDLY_HERO, -ARMOR(FRIENDLY_HERO)).then(
@@ -117,7 +124,8 @@ class LOOT_364:
 
 
 class LOOT_370:
-    """Gather Your Party"""
+    """Gather Your Party / 寻求组队
+    招募一个随从。"""
 
     # <b>Recruit</b> a minion.
     requirements = {
@@ -131,7 +139,8 @@ class LOOT_370:
 
 
 class LOOT_044:
-    """Bladed Gauntlet"""
+    """Bladed Gauntlet / 铁刃护手
+    攻击力等同于你的 护甲值。无法攻击英雄。"""
 
     # Has Attack equal to your Armor. Can't attack heroes.
     update = (
@@ -145,7 +154,8 @@ class LOOT_044:
 
 
 class LOOT_380:
-    """Woecleaver"""
+    """Woecleaver / 灾厄斩杀者
+    在你的英雄攻击后，招募一个 随从。"""
 
     # After your hero attacks, <b>Recruit</b> a minion.
     events = Attack(FRIENDLY_HERO).after(RECRUIT)

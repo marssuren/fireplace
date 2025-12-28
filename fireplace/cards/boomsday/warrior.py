@@ -6,28 +6,32 @@ from ..utils import *
 
 
 class BOT_059:
-    """Eternium Rover"""
+    """Eternium Rover / 恒金巡游者
+    每当本随从受到伤害，获得2点护甲值。"""
 
     # Whenever this minion takes damage, gain 2_Armor.
     events = Damage(SELF).on(GainArmor(FRIENDLY_HERO, 2))
 
 
 class BOT_104:
-    """Dyn-o-matic"""
+    """Dyn-o-matic / 掷弹机器人
+    战吼：造成5点伤害，随机分配到所有非机械随从身上。"""
 
     # <b>Battlecry:</b> Deal 5 damage randomly split among all minions_except_Mechs.
     play = Hit(RANDOM(ALL_MINIONS - MECH), 1) * 5
 
 
 class BOT_218:
-    """Security Rover"""
+    """Security Rover / 安保巡游者
+    每当本随从受到伤害，召唤一个2/3并具有嘲讽的机械。"""
 
     # [x]Whenever this minion takes damage, summon a 2/3 Mech with <b>Taunt</b>.
     events = Damage(SELF).on(Summon(CONTROLLER, "BOT_218t"))
 
 
 class BOT_237:
-    """Beryllium Nullifier"""
+    """Beryllium Nullifier / 铍金毁灭者
+    磁力。扰魔"""
 
     # <b>Magnetic</b> Can't be targeted by spells or Hero Powers.
     magnetic = MAGNETIC("BOT_237e")
@@ -41,14 +45,16 @@ BOT_237e = buff(cant_be_targeted_by_spells=True, cant_be_targeted_by_hero_powers
 
 
 class BOT_042:
-    """Weapons Project"""
+    """Weapons Project / 武器计划
+    每个玩家装备一把2/3的武器，并获得6点护甲值。"""
 
     # Each player equips a 2/3 Weapon and gains 6 Armor.
     play = Summon(ALL_PLAYERS, "BOT_042t"), GainArmor(IN_PLAY + HERO, 6)
 
 
 class BOT_067:
-    """Rocket Boots"""
+    """Rocket Boots / 火箭靴
+    使一个随从获得突袭。抽 一张牌。"""
 
     # Give a minion <b>Rush</b>. Draw a card.
     requirements = {
@@ -63,7 +69,8 @@ BOT_067e = buff(rush=True)
 
 
 class BOT_069:
-    """The Boomship"""
+    """The Boomship / 砰砰飞艇
+    随机从你的手牌中召唤三个随从，并使其获得突袭。"""
 
     # Summon 3 random minions from your hand. Give them <b>Rush</b>.
     requirements = {
@@ -78,7 +85,8 @@ BOT_069e = buff(rush=True)
 
 
 class BOT_299:
-    """Omega Assembly"""
+    """Omega Assembly / 欧米茄装配
+    发现一张机械牌。如果你有十个法力水晶，改为保留全部三张牌。"""
 
     # [x]<b>Discover</b> a Mech. If you have 10 Mana Crystals, keep all 3 cards.
     powered_up = AT_MAX_MANA(CONTROLLER)
@@ -90,7 +98,8 @@ class BOT_299:
 
 
 class BOT_406:
-    """Supercollider"""
+    """Supercollider / 超级对撞器
+    在你攻击一个随从后，迫使其攻击相邻的一个 随从。"""
 
     # [x]After you attack a minion, force it to attack one of its neighbors.
     events = Attack(FRIENDLY_HERO, MINION).after(
@@ -104,7 +113,8 @@ class BOT_406:
 
 
 class BOT_238:
-    """Dr. Boom, Mad Genius"""
+    """Dr. Boom, Mad Genius / “科学狂人”砰砰博士
+    战吼：在本局对战的剩余时间内，你的所有机械拥有 突袭。"""
 
     # <b>Battlecry:</b> For the rest of the game, your Mechs have <b>Rush</b>.
     entourage = [

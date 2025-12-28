@@ -6,7 +6,8 @@ from ..utils import *
 
 
 class ICC_314:
-    """The Lich King"""
+    """The Lich King / 巫妖王
+    嘲讽 在你的回合结束时，随机将一张巫妖王牌置入你的手牌。"""
 
     entourage = LICH_KING_CARDS
     events = OWN_TURN_END.on(Give(CONTROLLER, RandomEntourage()))
@@ -88,7 +89,8 @@ class ICC_314t8:
 
 
 class ICC_851:
-    """Prince Keleseth"""
+    """Prince Keleseth / 凯雷塞斯王子
+    战吼：如果你的牌库里没有法力值消耗为（2）的牌，则使你牌库里所有随从牌获得+1/+1。"""
 
     play = Find(FRIENDLY_DECK + (COST == 2)) | Buff(FRIENDLY_DECK + MINION, "ICC_851e")
 
@@ -97,7 +99,8 @@ ICC_851e = buff(+1, +1)
 
 
 class ICC_852:
-    """Prince Taldaram"""
+    """Prince Taldaram / 塔达拉姆王子
+    战吼：如果你的牌库里没有法力值消耗为（3）的牌，则变形成为一个随从的3/3的复制。"""
 
     requirements = {
         PlayReq.REQ_MINION_TARGET: 0,
@@ -112,13 +115,15 @@ class ICC_852e:
 
 
 class ICC_853:
-    """Prince Valanar"""
+    """Prince Valanar / 瓦拉纳王子
+    战吼：如果你的牌库里没有法力值消耗为（4）的牌，则获得吸血和嘲讽。"""
 
     play = Find(FRIENDLY_DECK + (COST == 2)) | (Taunt(SELF), GiveLifesteal(SELF))
 
 
 class ICC_854:
-    """Arfus"""
+    """Arfus / 阿尔福斯
+    亡语：随机将一张巫妖王牌置入你的 手牌。"""
 
     entourage = LICH_KING_CARDS
     deathrattle = Give(CONTROLLER, RandomEntourage())

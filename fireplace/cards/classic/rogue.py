@@ -6,20 +6,23 @@ from ..utils import *
 
 
 class EX1_131:
-    """Defias Ringleader"""
+    """Defias Ringleader / 迪菲亚头目
+    连击：召唤一个2/1的迪菲亚强盗。"""
 
     combo = Summon(CONTROLLER, "EX1_131t")
 
 
 class EX1_134:
-    """SI:7 Agent"""
+    """SI:7 Agent / 军情七处特工
+    连击：造成3点伤害。"""
 
     requirements = {PlayReq.REQ_TARGET_FOR_COMBO: 0}
     combo = Hit(TARGET, 2)
 
 
 class EX1_613:
-    """Edwin VanCleef"""
+    """Edwin VanCleef / 艾德温·范克里夫
+    连击：在本回合中，你每使用一张其他牌，便获得+2/+2。"""
 
     combo = Buff(SELF, "EX1_613e") * NUM_CARDS_PLAYED_THIS_TURN
 
@@ -28,14 +31,16 @@ EX1_613e = buff(+2, +2)
 
 
 class NEW1_005:
-    """Kidnapper"""
+    """Kidnapper / 劫持者
+    连击：将一个随从移回其拥有者的手牌。"""
 
     requirements = {PlayReq.REQ_MINION_TARGET: 0, PlayReq.REQ_TARGET_FOR_COMBO: 0}
     combo = Bounce(TARGET)
 
 
 class NEW1_014:
-    """Master of Disguise"""
+    """Master of Disguise / 伪装大师
+    战吼：直到你的下个回合，使一个友方随从获得潜行。"""
 
     requirements = {
         PlayReq.REQ_FRIENDLY_TARGET: 0,
@@ -58,7 +63,8 @@ class NEW1_014e:
 
 
 class CS2_072:
-    """Backstab"""
+    """Backstab / 背刺
+    对一个未受伤的随从造成$2点 伤害。"""
 
     requirements = {
         PlayReq.REQ_MINION_TARGET: 0,
@@ -69,7 +75,8 @@ class CS2_072:
 
 
 class CS2_073:
-    """Cold Blood"""
+    """Cold Blood / 冷血
+    使一个随从获得+2攻击力；连击：改为获得+4攻击力。"""
 
     requirements = {PlayReq.REQ_MINION_TARGET: 0, PlayReq.REQ_TARGET_TO_PLAY: 0}
     play = Buff(TARGET, "CS2_073e")
@@ -81,7 +88,8 @@ CS2_073e2 = buff(atk=4)
 
 
 class CS2_074:
-    """Deadly Poison"""
+    """Deadly Poison / 致命药膏
+    使你的武器获得+2攻击力。"""
 
     requirements = {PlayReq.REQ_WEAPON_EQUIPPED: 0}
     play = Buff(FRIENDLY_WEAPON, "CS2_074e")
@@ -91,13 +99,15 @@ CS2_074e = buff(atk=2)
 
 
 class CS2_075:
-    """Sinister Strike"""
+    """Sinister Strike / 影袭
+    对敌方英雄造成$3点伤害。"""
 
     play = Hit(ENEMY_HERO, 3)
 
 
 class CS2_076:
-    """Assassinate"""
+    """Assassinate / 刺杀
+    消灭一个敌方随从。"""
 
     requirements = {
         PlayReq.REQ_ENEMY_TARGET: 0,
@@ -108,20 +118,23 @@ class CS2_076:
 
 
 class CS2_077:
-    """Sprint"""
+    """Sprint / 疾跑
+    抽四张牌。"""
 
     play = Draw(CONTROLLER) * 4
 
 
 class CS2_233:
-    """Blade Flurry"""
+    """Blade Flurry / 剑刃乱舞
+    摧毁你的武器，对所有敌方随从 造成等同于其攻击力的伤害。"""
 
     requirements = {PlayReq.REQ_WEAPON_EQUIPPED: 0}
     play = Hit(ENEMY_MINIONS, ATK(FRIENDLY_WEAPON)), Destroy(FRIENDLY_WEAPON)
 
 
 class EX1_124:
-    """Eviscerate"""
+    """Eviscerate / 刺骨
+    造成$2点伤害；连击：改为造成$4点伤害。"""
 
     requirements = {PlayReq.REQ_TARGET_TO_PLAY: 0}
     play = Hit(TARGET, 2)
@@ -129,7 +142,8 @@ class EX1_124:
 
 
 class EX1_126:
-    """Betrayal"""
+    """Betrayal / 背叛
+    使一个敌方随从对其相邻的随从 造成等同于其攻击力的伤害。"""
 
     requirements = {
         PlayReq.REQ_ENEMY_TARGET: 0,
@@ -140,7 +154,8 @@ class EX1_126:
 
 
 class EX1_128:
-    """Conceal"""
+    """Conceal / 隐藏
+    直到你的下个回合，使所有友方随从获得潜行。"""
 
     play = (
         Buff(FRIENDLY_MINIONS - STEALTH, "EX1_128e"),
@@ -153,20 +168,23 @@ class EX1_128e:
 
 
 class EX1_129:
-    """Fan of Knives"""
+    """Fan of Knives / 刀扇
+    对所有敌方随从造成$1点伤害，抽一张牌。"""
 
     play = Hit(ENEMY_MINIONS, 1), Draw(CONTROLLER)
 
 
 class EX1_137:
-    """Headcrack"""
+    """Headcrack / 裂颅之击
+    对敌方英雄造成$2点伤害；连击：在下个回合将其移回你的手牌。"""
 
     play = Hit(ENEMY_HERO, 2)
     combo = (play, TURN_END.on(Give(CONTROLLER, "EX1_137")))
 
 
 class EX1_144:
-    """Shadowstep"""
+    """Shadowstep / 暗影步
+    将一个友方随从移回你的手牌，它的法力值消耗减少 （2）点。"""
 
     requirements = {
         PlayReq.REQ_FRIENDLY_TARGET: 0,
@@ -187,7 +205,8 @@ class EX1_144e:
 
 
 class EX1_145:
-    """Preparation"""
+    """Preparation / 伺机待发
+    在本回合中，你所施放的下一个法术的法力值消耗减少（2）点。"""
 
     play = Buff(CONTROLLER, "EX1_145o")
 
@@ -198,14 +217,16 @@ class EX1_145o:
 
 
 class EX1_278:
-    """Shiv"""
+    """Shiv / 毒刃
+    造成$1点伤害，抽一张牌。"""
 
     requirements = {PlayReq.REQ_TARGET_TO_PLAY: 0}
     play = Hit(TARGET, 1), Draw(CONTROLLER)
 
 
 class EX1_581:
-    """Sap"""
+    """Sap / 闷棍
+    将一个敌方随从移回你对手的 手牌。"""
 
     requirements = {
         PlayReq.REQ_ENEMY_TARGET: 0,
@@ -216,7 +237,8 @@ class EX1_581:
 
 
 class NEW1_004:
-    """Vanish"""
+    """Vanish / 消失
+    将所有随从移回其拥有者的 手牌。"""
 
     play = Bounce(ALL_MINIONS)
 
@@ -226,7 +248,8 @@ class NEW1_004:
 
 
 class EX1_133:
-    """Perdition's Blade"""
+    """Perdition's Blade / 毁灭之刃
+    战吼：造成1点伤害。连击：改为造成2点伤害。"""
 
     requirements = {PlayReq.REQ_TARGET_IF_AVAILABLE: 0}
     play = Hit(TARGET, 1)
@@ -234,14 +257,16 @@ class EX1_133:
 
 
 class EX1_182:
-    """Pilfer"""
+    """Pilfer / 窃取
+    随机将一张另一职业的卡牌置入你的手牌。"""
 
     # Add a random card from another class to_your hand.</i>.
     play = Give(CONTROLLER, RandomCollectible(card_class=ANOTHER_CLASS))
 
 
 class EX1_191:
-    """Plaguebringer"""
+    """Plaguebringer / 瘟疫使者
+    战吼：使一个友方随从获得剧毒。"""
 
     # <b>Battlecry:</b> Give a friendly minion <b>Poisonous</b>.
     requirements = {

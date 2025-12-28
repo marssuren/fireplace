@@ -6,14 +6,16 @@ from ..utils import *
 
 
 class DAL_354:
-    """Acornbearer"""
+    """Acornbearer / 橡果人
+    亡语：将两张1/1的“松鼠”置入你的手牌。"""
 
     # <b>Deathrattle:</b> Add two 1/1 Squirrels to your hand.
     deathrattle = Give(CONTROLLER, "DAL_354t") * 2
 
 
 class DAL_355:
-    """Lifeweaver"""
+    """Lifeweaver / 织命者
+    每当有角色获得你的治疗时，随机将一张德鲁伊法术牌置入你的手牌。"""
 
     # Whenever you restore Health, add a random Druid spell to your hand.
     events = Heal(source=FRIENDLY).on(
@@ -22,7 +24,8 @@ class DAL_355:
 
 
 class DAL_357:
-    """Lucentbark"""
+    """Lucentbark / 卢森巴克
+    嘲讽。亡语：进入休眠状态。累计恢复5点生命值可唤醒本随从。"""
 
     # <b>Taunt</b> <b>Deathrattle:</b> Go dormant. Restore 5 Health to awaken this minion.
     deathrattle = Find(FRIENDLY_MINIONS + SELF) & (Morph(SELF, "DAL_357t")) | (
@@ -38,7 +41,8 @@ class DAL_357t:
 
 
 class DAL_732:
-    """Keeper Stalladris"""
+    """Keeper Stalladris / 守护者斯塔拉蒂斯
+    在你施放了一个抉择法术后，将每个选项的复制置入你的手牌。"""
 
     # After you cast a <b>Choose One</b> spell, add copies of both choices_to_your_hand.
     events = Play(CONTROLLER, CHOOSE_ONE + SPELL).after(
@@ -59,7 +63,8 @@ class DAL_799(ThresholdUtils):
 
 
 class DAL_256:
-    """The Forest's Aid"""
+    """The Forest's Aid / 森林的援助
+    双生法术 召唤五个2/2的 树人。"""
 
     # <b>Twinspell</b> Summon five 2/2 Treants.
     requirements = {
@@ -73,7 +78,8 @@ class DAL_256ts(DAL_256):
 
 
 class DAL_350:
-    """Crystal Power"""
+    """Crystal Power / 水晶之力
+    抉择：对一个随从造成$2点伤害；或者恢复#5点生命值。"""
 
     # <b>Choose One -</b> Deal $2 damage to a minion; or_Restore #5 Health.
     requirements = {
@@ -99,7 +105,8 @@ class DAL_350b:
 
 
 class DAL_351:
-    """Blessing of the Ancients"""
+    """Blessing of the Ancients / 远古祝福
+    双生法术 使你的所有随从获得+1/+1。"""
 
     # <b>Twinspell</b> Give your minions +1/+1.
     requirements = {
@@ -116,7 +123,8 @@ DAL_351e = buff(+1, +1)
 
 
 class DAL_352:
-    """Crystalsong Portal"""
+    """Crystalsong Portal / 晶歌传送门
+    发现一张德鲁伊随从牌。如果你的手牌中没有随从牌，改为保留全部三张牌。"""
 
     # <b>Discover</b> a Druid minion. If your hand has no minions, keep all 3.
     powered_up = -Find(FRIENDLY_HAND + MINION)
@@ -126,7 +134,8 @@ class DAL_352:
 
 
 class DAL_733:
-    """Dreamway Guardians"""
+    """Dreamway Guardians / 守卫梦境之路
+    召唤两个1/2并具有吸血的 树妖。"""
 
     # Summon two 1/2 Dryads with <b>Lifesteal</b>.
     requirements = {

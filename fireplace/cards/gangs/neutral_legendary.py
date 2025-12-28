@@ -6,13 +6,15 @@ from ..utils import *
 
 
 class CFM_341:
-    """Sergeant Sally"""
+    """Sergeant Sally / 女警萨莉
+    亡语：对所有敌方随从造成等同于本随从攻击力的伤害。"""
 
     deathrattle = Hit(ALL_MINIONS, ATK(SELF))
 
 
 class CFM_344:
-    """Finja, the Flying Star"""
+    """Finja, the Flying Star / 飞火流星·芬杰
+    潜行 每当本随从攻击并消灭一个随从，便从你的牌库中召唤两个鱼人。"""
 
     events = Attack(SELF, ALL_MINIONS).after(
         Dead(ALL_MINIONS + Attack.DEFENDER) & (Recruit(MURLOC) * 2)
@@ -20,7 +22,8 @@ class CFM_344:
 
 
 class CFM_621:
-    """Kazakus"""
+    """Kazakus / 卡扎库斯
+    战吼：如果你的牌库里没有相同的牌，则为你创建一个自定义 法术。"""
 
     class KazakusAction(MultipleChoice):
         PLAYER = ActionArg()
@@ -116,14 +119,16 @@ class CFM_621:
 
 
 class CFM_637:
-    """Patches the Pirate"""
+    """Patches the Pirate / 海盗帕奇斯
+    在你使用一张海盗牌后，从你的牌库中召唤本随从。"""
 
     class Deck:
         events = Play(CONTROLLER, PIRATE).after(Summon(CONTROLLER, SELF))
 
 
 class CFM_670:
-    """Mayor Noggenfogger"""
+    """Mayor Noggenfogger / 诺格弗格市长
+    所有角色都会随机选择目标。"""
 
     update = (Refresh(PLAYER, {GameTag.ALL_TARGETS_RANDOM: True}),)
     events = Attack(MINION).on(
@@ -136,7 +141,8 @@ class CFM_670:
 
 
 class CFM_672:
-    """Madam Goya"""
+    """Madam Goya / 郭雅夫人
+    战吼：选择一个友方随从，召唤你牌库中的它的所有复制。"""
 
     requirements = {
         PlayReq.REQ_FRIENDLY_TARGET: 0,
@@ -148,7 +154,8 @@ class CFM_672:
 
 
 class CFM_685:
-    """Don Han'Cho"""
+    """Don Han'Cho / 唐·汉古
+    战吼：随机使你手牌中的一张随从牌获得+5/+5。"""
 
     play = Buff(RANDOM(FRIENDLY_HAND + MINION), "CFM_685e")
 
@@ -157,7 +164,8 @@ CFM_685e = buff(+5, +5)
 
 
 class CFM_806:
-    """Wrathion"""
+    """Wrathion / 拉希奥
+    嘲讽，战吼：抽若干数量的牌，直到你抽到一张非龙牌。"""
 
     play = Draw(CONTROLLER).then(
         Find(Draw.CARD + DRAGON) & (FULL_HAND | ExtraBattlecry(SELF, None))
@@ -165,13 +173,15 @@ class CFM_806:
 
 
 class CFM_807:
-    """Auctionmaster Beardo"""
+    """Auctionmaster Beardo / 大富翁比尔杜
+    在你施放一个法术后，复原你的 英雄技能。"""
 
     events = OWN_SPELL_PLAY.after(RefreshHeroPower(FRIENDLY_HERO_POWER))
 
 
 class CFM_808:
-    """Genzo, the Shark"""
+    """Genzo, the Shark / “鲨鱼”加佐
+    每当本随从攻击时，双方玩家抽若干数量的牌，直到拥有三张手牌。"""
 
     events = Attack(SELF).on(DrawUntil(PLAYER, 3))
 

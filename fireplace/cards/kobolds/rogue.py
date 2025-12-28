@@ -6,7 +6,8 @@ from ..utils import *
 
 
 class LOOT_026:
-    """Fal'dorei Strider"""
+    """Fal'dorei Strider / 法多雷突袭者
+    战吼： 将三张伏击牌洗入你的牌库。 当抽到伏击牌时，召唤一只4/4的蜘蛛。"""
 
     # [x]<b>Battlecry:</b> Shuffle 3 Ambushes into your deck. When drawn, summon a 4/4
     # Spider.
@@ -22,14 +23,16 @@ class LOOT_026e:
 
 
 class LOOT_033:
-    """Cavern Shinyfinder"""
+    """Cavern Shinyfinder / 洞穴探宝者
+    战吼：从你的牌库中抽一张武器牌。"""
 
     # <b>Battlecry:</b> Draw a weapon from your deck.
     play = ForceDraw(RANDOM(FRIENDLY_DECK + WEAPON))
 
 
 class LOOT_165:
-    """Sonya Shadowdancer"""
+    """Sonya Shadowdancer / 影舞者索尼娅
+    在一个友方随从死亡后，将它的1/1复制置入你的手牌，其法力值消耗变为（1）点。"""
 
     # After a friendly minion dies, add a 1/1 copy of it to your hand. It costs (1).
     events = Death(FRIENDLY + MINION).on(
@@ -43,7 +46,8 @@ class LOOT_165e:
 
 
 class LOOT_211:
-    """Elven Minstrel"""
+    """Elven Minstrel / 精灵咏唱者
+    连击：从你的牌库中抽两张随从牌。"""
 
     # <b>Combo:</b> Draw 2 minions from your deck.
     requirements = {
@@ -54,7 +58,8 @@ class LOOT_211:
 
 
 class LOOT_412:
-    """Kobold Illusionist"""
+    """Kobold Illusionist / 狗头人幻术师
+    亡语：从你的手牌中召唤一个随从的 1/1复制。"""
 
     # <b>Deathrattle:</b> Summon a 1/1 copy of a minion from your hand.
     deathrattle = Summon(CONTROLLER, RANDOM(FRIENDLY_HAND + MINION)).then(
@@ -72,7 +77,8 @@ class LOOT_412e:
 
 
 class LOOT_204:
-    """Cheat Death"""
+    """Cheat Death / 诈死
+    奥秘：当一个友方随从死亡时，将其移回你的手牌，它的法力值消耗减少（2）点。"""
 
     # <b>Secret:</b> When a friendly minion dies, return it to your hand. It costs (2)
     # less.
@@ -87,7 +93,8 @@ class LOOT_204e:
 
 
 class LOOT_210:
-    """Sudden Betrayal"""
+    """Sudden Betrayal / 叛变
+    奥秘：当一个随从攻击你的英雄时，改为该随从攻击与其相邻的一个随从。"""
 
     # <b>Secret:</b> When a minion attacks your hero, instead it attacks one of_its
     # neighbors.
@@ -98,7 +105,8 @@ class LOOT_210:
 
 
 class LOOT_214:
-    """Evasion"""
+    """Evasion / 闪避
+    奥秘：你的英雄在受到伤害后，在本回合中免疫。"""
 
     # <b>Secret:</b> After your hero takes damage, become <b>Immune</b> this turn.
     secret = Damage(FRIENDLY_HERO).on(Buff(FRIENDLY_HERO, "LOOT_214e"))
@@ -108,7 +116,8 @@ LOOT_214e = buff(immune=True)
 
 
 class LOOT_503:
-    """Lesser Onyx Spellstone"""
+    """Lesser Onyx Spellstone / 小型法术黑曜石
+    随机消灭一个敌方随从。@（使用三张亡语牌后升级。）"""
 
     # Destroy 1 random enemy minion. @<i>(Play 3 <b>Deathrattle</b> cards to upgrade.)</i>
     requirements = {
@@ -152,7 +161,8 @@ class LOOT_503t2:
 
 
 class LOOT_542:
-    """Kingsbane"""
+    """Kingsbane / 弑君
+    始终保留所有附加效果。亡语：将这把武器洗入你的牌库。"""
 
     # [x]<b>Deathrattle:</b> Shuffle this into your deck. It keeps any enchantments.
     tags = {enums.KEEP_BUFF: True}

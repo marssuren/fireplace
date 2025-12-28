@@ -6,28 +6,32 @@ from ..utils import *
 
 
 class ULD_186:
-    """Pharaoh Cat"""
+    """Pharaoh Cat / 法老御猫
+    战吼： 随机将一张复生随从牌置入你的手牌。"""
 
     # <b>Battlecry:</b> Add a random <b>Reborn</b> minion to your_hand.
     play = Give(CONTROLLER, RandomMinion(reborn=True))
 
 
 class ULD_231:
-    """Whirlkick Master"""
+    """Whirlkick Master / 连环腿大师
+    每当你使用一张连击牌时，随机将一张连击牌置入你的手牌。"""
 
     # Whenever you play a <b>Combo</b> card, add a random <b>Combo</b> card to your hand.
     events = Play(CONTROLLER, COMBO).on(Give(CONTROLLER, RandomCollectible(combo=True)))
 
 
 class ULD_280:
-    """Sahket Sapper"""
+    """Sahket Sapper / 沙赫柯特工兵
+    亡语：随机将一个敌方随从移回对手的 手牌。"""
 
     # <b>Deathrattle:</b> Return a _random enemy minion to_ your_opponent's_hand.
     deathrattle = Bounce(RANDOM_ENEMY_MINION)
 
 
 class ULD_288:
-    """Anka, the Buried"""
+    """Anka, the Buried / 被埋葬的安卡
+    战吼：使你手牌中所有具有亡语的随从牌变为1/1，且法力值消耗为（1）点。"""
 
     # <b>Battlecry:</b> Change each <b>Deathrattle</b> minion in your hand into a 1/1 that
     # costs (1).
@@ -40,7 +44,8 @@ class ULD_288e:
 
 
 class ULD_327:
-    """Bazaar Mugger"""
+    """Bazaar Mugger / 集市恶痞
+    突袭 战吼：随机将一张另一职业的随从牌置入你的手牌。"""
 
     # <b>Rush</b> <b>Battlecry:</b> Add a random minion from another class to your hand.
     play = Give(CONTROLLER, RandomMinion(card_class=ANOTHER_CLASS))
@@ -51,7 +56,8 @@ class ULD_327:
 
 
 class ULD_286:
-    """Shadow of Death"""
+    """Shadow of Death / 死亡之影
+    选择一个随从。将三张“阴影”牌洗入你的牌库，当抽到“阴影”时，召唤该随从的一个复制。"""
 
     # Choose a minion. Shuffle 3 'Shadows' into your deck that summon a copy when drawn.
     requirements = {
@@ -67,7 +73,8 @@ class ULD_286t:
 
 
 class ULD_326:
-    """Bazaar Burglary"""
+    """Bazaar Burglary / 劫掠集市
+    任务：将4张其他职业的卡牌置入你的手牌。 奖励：远古刀锋。"""
 
     # [x]<b>Quest:</b> Add 4 cards from other classes to your hand. <b>Reward: </b>Ancient
     # Blades.
@@ -88,14 +95,16 @@ class ULD_326t:
 
 
 class ULD_328:
-    """Clever Disguise"""
+    """Clever Disguise / 聪明的伪装
+    随机将另一职业的两张法术牌置入你的手牌。"""
 
     # Add 2 random spells from another class to_your hand.
     play = Give(CONTROLLER, RandomSpell(card_class=ANOTHER_CLASS))
 
 
 class ULD_715:
-    """Plague of Madness"""
+    """Plague of Madness / 疯狂之灾祸
+    每个玩家装备一把2/2并具有剧毒的刀。"""
 
     # Each player equips a 2/2 Knife with <b>Poisonous</b>.
     play = Summon(ALL_PLAYERS, "ULD_715t")
@@ -106,7 +115,8 @@ class ULD_715:
 
 
 class ULD_285:
-    """Hooked Scimitar"""
+    """Hooked Scimitar / 钩镰弯刀
+    连击：获得+2攻击力。"""
 
     # [x]<b>Combo:</b> Gain +2 Attack.
     combo = Buff(SELF, "ULD_285e")

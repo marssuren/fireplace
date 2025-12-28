@@ -6,7 +6,8 @@ from ..utils import *
 
 
 class TRL_223:
-    """Spirit of the Raptor"""
+    """Spirit of the Raptor / 迅猛龙之灵
+    潜行一回合。在你的英雄攻击并消灭一个随从后，抽一张牌。"""
 
     # [x]<b>Stealth</b> for 1 turn. After your hero attacks and __kills a minion, draw a
     # card.__
@@ -19,14 +20,16 @@ class TRL_223:
 
 
 class TRL_232:
-    """Ironhide Direhorn"""
+    """Ironhide Direhorn / 铁皮恐角龙
+    超杀：召唤一个5/5的铁皮小恐龙。"""
 
     # <b>Overkill:</b> Summon a 5/5_Ironhide Runt.
     overkill = Summon(CONTROLLER, "TRL_232t")
 
 
 class TRL_240:
-    """Savage Striker"""
+    """Savage Striker / 野蛮先锋
+    战吼：对一个敌方随从造成等同于你的英雄攻击力的伤害。"""
 
     # <b>Battlecry:</b> Deal damage to an enemy minion equal to your hero's Attack.
     requirements = {
@@ -38,7 +41,8 @@ class TRL_240:
 
 
 class TRL_241:
-    """Gonk, the Raptor"""
+    """Gonk, the Raptor / 贡克，迅猛龙之神
+    在你的英雄攻击并消灭一个随从后，便可再次攻击。"""
 
     # After your hero attacks and_kills a minion, it may_attack again.
     events = Attack(FRIENDLY_HERO, ALL_MINIONS).after(
@@ -47,14 +51,16 @@ class TRL_241:
 
 
 class TRL_341:
-    """Treespeaker"""
+    """Treespeaker / 树语者
+    战吼： 将你的所有树人变形成为5/5的古树。"""
 
     # <b>Battlecry:</b> Transform your Treants into 5/5 Ancients.
     play = Morph(FRIENDLY_MINIONS + TREANT, "TRL_341t")
 
 
 class TRL_343:
-    """Wardruid Loti"""
+    """Wardruid Loti / 战争德鲁伊罗缇
+    抉择：变形成为罗缇的四种恐龙形态之一。"""
 
     # <b>Choose One - </b>Transform into one of Loti's four dinosaur forms.
     choose = ("TRL_343at2", "TRL_343bt2", "TRL_343ct2", "TRL_343dt2")
@@ -82,7 +88,8 @@ class TRL_343dt2:
 
 
 class TRL_243:
-    """Pounce"""
+    """Pounce / 飞扑
+    在本回合中，使你的英雄获得+2攻击力。"""
 
     # Give your hero +2_Attack this turn.
     play = Buff(FRIENDLY_HERO, "TRL_243e")
@@ -92,7 +99,8 @@ TRL_243e = buff(atk=2)
 
 
 class TRL_244:
-    """Predatory Instincts"""
+    """Predatory Instincts / 掠食本能
+    从你的牌库中抽一张野兽牌。将其生命值翻倍。"""
 
     # [x]Draw a Beast from your deck. Double its Health.
     play = ForceDraw(RANDOM(FRIENDLY_DECK + BEAST)).then(
@@ -101,7 +109,8 @@ class TRL_244:
 
 
 class TRL_254:
-    """Mark of the Loa"""
+    """Mark of the Loa / 神灵印记
+    抉择： 使一个随从获得+2/+4和嘲讽；或者召唤两个3/2的迅猛龙。"""
 
     # <b>Choose One</b> - Give a minion +2/+4 and <b>Taunt</b>; or Summon two 3/2 Raptors.
     requirements = {
@@ -135,7 +144,8 @@ class TRL_254b:
 
 
 class TRL_255:
-    """Stampeding Roar"""
+    """Stampeding Roar / 狂奔怒吼
+    随机从你的手牌中召唤一个野兽，并使其获得突袭。"""
 
     # Summon a random Beast from your hand and give it <b>Rush</b>.
     requirements = {

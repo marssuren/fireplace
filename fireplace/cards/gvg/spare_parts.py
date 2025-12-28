@@ -6,7 +6,8 @@ from ..utils import *
 
 
 class PART_001:
-    """Armor Plating"""
+    """Armor Plating / 重型护甲
+    使一个随从获得+1生命值。"""
 
     requirements = {PlayReq.REQ_MINION_TARGET: 0, PlayReq.REQ_TARGET_TO_PLAY: 0}
     play = Buff(TARGET, "PART_001e")
@@ -17,7 +18,8 @@ PART_001e = buff(health=1)
 
 
 class PART_002:
-    """Time Rewinder"""
+    """Time Rewinder / 时间回溯装置
+    将一个友方随从移回你的手牌。"""
 
     requirements = {
         PlayReq.REQ_FRIENDLY_TARGET: 0,
@@ -29,7 +31,8 @@ class PART_002:
 
 
 class PART_003:
-    """Rusty Horn"""
+    """Rusty Horn / 生锈的号角
+    使一个随从获得嘲讽。"""
 
     requirements = {PlayReq.REQ_MINION_TARGET: 0, PlayReq.REQ_TARGET_TO_PLAY: 0}
     play = Taunt(TARGET)
@@ -37,7 +40,8 @@ class PART_003:
 
 
 class PART_004:
-    """Finicky Cloakfield"""
+    """Finicky Cloakfield / 隐秘力场
+    直到你的下个回合，使一个友方随从获得潜行。"""
 
     requirements = {
         PlayReq.REQ_FRIENDLY_TARGET: 0,
@@ -53,7 +57,8 @@ class PART_004e:
 
 
 class PART_005:
-    """Emergency Coolant"""
+    """Emergency Coolant / 紧急冷冻剂
+    冻结一个随从。"""
 
     requirements = {PlayReq.REQ_MINION_TARGET: 0, PlayReq.REQ_TARGET_TO_PLAY: 0}
     play = Freeze(TARGET)
@@ -61,7 +66,8 @@ class PART_005:
 
 
 class PART_006:
-    """Reversing Switch"""
+    """Reversing Switch / 形体改造仪
+    使一个随从的攻击力和生命值 互换。"""
 
     requirements = {PlayReq.REQ_MINION_TARGET: 0, PlayReq.REQ_TARGET_TO_PLAY: 0}
     play = Buff(TARGET, "PART_006a")
@@ -72,7 +78,8 @@ PART_006a = AttackHealthSwapBuff()
 
 
 class PART_007:
-    """Whirling Blades"""
+    """Whirling Blades / 旋风之刃
+    使一个随从获得+1攻击力。"""
 
     requirements = {PlayReq.REQ_MINION_TARGET: 0, PlayReq.REQ_TARGET_TO_PLAY: 0}
     play = Buff(TARGET, "PART_007e")

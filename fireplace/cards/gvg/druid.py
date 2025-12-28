@@ -6,7 +6,8 @@ from ..utils import *
 
 
 class GVG_030:
-    """Anodized Robo Cub"""
+    """Anodized Robo Cub / 电镀机械熊仔
+    嘲讽，抉择： +1攻击力；或者+1生命值。"""
 
     choose = ("GVG_030a", "GVG_030b")
     play = ChooseBoth(CONTROLLER) & (Buff(SELF, "GVG_030ae"), Buff(SELF, "GVG_030be"))
@@ -27,7 +28,8 @@ GVG_030be = buff(health=1)
 
 
 class GVG_032:
-    """Grove Tender"""
+    """Grove Tender / 林地树妖
+    抉择：使每个玩家获得一个法力水晶；或每个玩家抽一张牌。"""
 
     choose = ("GVG_032a", "GVG_032b")
     play = ChooseBoth(CONTROLLER) & ((GainMana(ALL_PLAYERS, 1), Draw(ALL_PLAYERS)))
@@ -42,19 +44,22 @@ class GVG_032b:
 
 
 class GVG_034:
-    """Mech-Bear-Cat"""
+    """Mech-Bear-Cat / 机械熊豹
+    每当本随从受到伤害，将一张零件牌置入你的手牌。"""
 
     events = SELF_DAMAGE.on(Give(CONTROLLER, RandomSparePart()))
 
 
 class GVG_035:
-    """Malorne"""
+    """Malorne / 玛洛恩
+    亡语：进入休眠状态。在2只友方野兽死亡后复活。"""
 
     deathrattle = Shuffle(CONTROLLER, SELF)
 
 
 class GVG_080:
-    """Druid of the Fang"""
+    """Druid of the Fang / 毒牙德鲁伊
+    战吼：如果你控制任何野兽，将本随从变形成为7/7。"""
 
     powered_up = Find(FRIENDLY_MINIONS + BEAST)
     play = powered_up & Morph(SELF, "GVG_080t")
@@ -65,7 +70,8 @@ class GVG_080:
 
 
 class GVG_031:
-    """Recycle"""
+    """Recycle / 回收
+    将一个敌方随从洗入你对手的 牌库。"""
 
     requirements = {
         PlayReq.REQ_ENEMY_TARGET: 0,
@@ -76,13 +82,15 @@ class GVG_031:
 
 
 class GVG_033:
-    """Tree of Life"""
+    """Tree of Life / 生命之树
+    为所有角色恢复所有生命值。"""
 
     play = FullHeal(ALL_CHARACTERS)
 
 
 class GVG_041:
-    """Dark Wispers"""
+    """Dark Wispers / 黑暗私语
+    抉择： 召唤5个小精灵；或者使一个随从获得+5/+5和嘲讽。"""
 
     requirements = {PlayReq.REQ_MINION_TARGET: 0, PlayReq.REQ_TARGET_IF_AVAILABLE: 0}
     choose = ("GVG_041a", "GVG_041b")

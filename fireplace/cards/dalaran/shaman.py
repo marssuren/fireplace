@@ -6,7 +6,8 @@ from ..utils import *
 
 
 class DAL_049:
-    """Underbelly Angler"""
+    """Underbelly Angler / 下水道渔人
+    在你使用一张鱼人牌后，随机将一张鱼人牌置入你的手牌。"""
 
     # After you play a Murloc, add a random Murloc to your hand.
     events = Play(CONTROLLER, MURLOC).after(
@@ -15,7 +16,8 @@ class DAL_049:
 
 
 class DAL_052:
-    """Muckmorpher"""
+    """Muckmorpher / 泥沼变形怪
+    战吼：变形成为你的牌库中一个其他随从的4/4复制。"""
 
     # [x]<b>Battlecry:</b> Transform into a 4/4 copy of a different minion in your deck.
     play = Find(FRIENDLY_DECK + MINION - ID("DAL_052")) & (
@@ -31,7 +33,8 @@ class DAL_052e:
 
 
 class DAL_431:
-    """Swampqueen Hagatha"""
+    """Swampqueen Hagatha / 沼泽女王哈加莎
+    战吼： 将一个5/5的恐魔置入你的手牌，并教会它两个萨满祭司法术。"""
 
     # [x]<b>Battlecry:</b> Add a 5/5 Horror to your hand. Teach it two Shaman spells.
     class SwampqueenHagathaAction(MultipleChoice):
@@ -97,14 +100,16 @@ class DAL_431:
 
 
 class DAL_433:
-    """Sludge Slurper"""
+    """Sludge Slurper / 淤泥吞食者
+    战吼：将一张跟班牌置入你的手牌。 过载：（1）"""
 
     # <b>Battlecry:</b> Add a <b>Lackey</b> to your hand. <b>Overload:</b> (1)
     play = Give(CONTROLLER, RandomLackey())
 
 
 class DAL_726:
-    """Scargil"""
+    """Scargil / 斯卡基尔
+    你的鱼人法力值消耗为（1）点。"""
 
     # Your Murlocs cost (1).
     update = Refresh(FRIENDLY_HAND + MURLOC, {GameTag.COST: SET(1)})
@@ -122,7 +127,8 @@ class DAL_009(SchemeUtils):
 
 
 class DAL_071:
-    """Mutate"""
+    """Mutate / 突变
+    将一个友方随从随机变形成为一个法力值消耗增加（1）点的随从。"""
 
     # Transform a friendly minion into a random one that costs (1) more.
     requirements = {
@@ -134,7 +140,8 @@ class DAL_071:
 
 
 class DAL_432:
-    """Witch's Brew"""
+    """Witch's Brew / 女巫杂酿
+    恢复#4点生命值。在本回合可以重复使用。"""
 
     # Restore #4 Health. Repeatable this turn.
     requirements = {
@@ -147,7 +154,8 @@ class DAL_432:
 
 
 class DAL_710:
-    """Soul of the Murloc"""
+    """Soul of the Murloc / 鱼人之魂
+    使你的所有随从获得“亡语：召唤一个1/1的鱼人。”"""
 
     # Give your minions "<b>Deathrattle:</b> Summon a 1/1 Murloc."
     play = Buff(FRIENDLY_MINIONS, "DAL_710e")

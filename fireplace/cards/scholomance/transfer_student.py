@@ -39,7 +39,8 @@ TRANSFER_STUDENT_EFFECT = Switch(
 
 
 class SCH_199:
-    """Transfer Student"""
+    """Transfer Student / 转校生
+    根据你当前的 对战面板，拥有不同的效果。"""
 
     # This has different effects based on which game board you're on.
     class Hand:

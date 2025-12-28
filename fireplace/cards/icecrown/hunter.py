@@ -7,13 +7,15 @@ from ..utils import *
 
 
 class ICC_021:
-    """Exploding Bloatbat"""
+    """Exploding Bloatbat / 自爆肿胀蝠
+    亡语：对所有敌方随从造成2点伤害。"""
 
     deathrattle = Hit(ENEMY_MINIONS, 2)
 
 
 class ICC_204:
-    """Professor Putricide"""
+    """Professor Putricide / 普崔塞德教授
+    在你使用一个奥秘后，随机将一个猎人的奥秘置入战场。"""
 
     events = Play(CONTROLLER, SECRET).after(
         Summon(
@@ -26,13 +28,15 @@ class ICC_204:
 
 
 class ICC_243:
-    """Corpse Widow"""
+    """Corpse Widow / 巨型尸蛛
+    你的亡语牌的法力值消耗减少（2）点。"""
 
     update = Refresh(FRIENDLY_HAND + DEATHRATTLE, {GameTag.COST: -2})
 
 
 class ICC_415:
-    """Stitched Tracker"""
+    """Stitched Tracker / 缝合追踪者
+    战吼： 从你的牌库中发现一张随从牌的复制。"""
 
     play = GenericChoice(
         CONTROLLER, Copy(RANDOM(DeDuplicate(FRIENDLY_DECK + MINION)) * 3)
@@ -40,7 +44,8 @@ class ICC_415:
 
 
 class ICC_825:
-    """Abominable Bowman"""
+    """Abominable Bowman / 憎恶弓箭手
+    亡语：随机召唤一个在本局对战中死亡的友方野兽。"""
 
     deathrattle = Summon(CONTROLLER, Copy(FRIENDLY + KILLED + BEAST))
 
@@ -50,7 +55,8 @@ class ICC_825:
 
 
 class ICC_049:
-    """Toxic Arrow"""
+    """Toxic Arrow / 剧毒箭矢
+    对一个随从造成$2点伤害，如果它依然存活，则使其获得剧毒。"""
 
     requirements = {
         PlayReq.REQ_MINION_TARGET: 0,
@@ -60,7 +66,8 @@ class ICC_049:
 
 
 class ICC_052:
-    """Play Dead"""
+    """Play Dead / 装死
+    触发一个友方随从的亡语。"""
 
     requirements = {
         PlayReq.REQ_FRIENDLY_TARGET: 0,
@@ -72,7 +79,8 @@ class ICC_052:
 
 
 class ICC_200:
-    """Venomstrike Trap"""
+    """Venomstrike Trap / 眼镜蛇陷阱
+    奥秘：当你的随从受到攻击时，召唤一条2/3并具有剧毒的眼镜蛇。"""
 
     secret = Attack(None, FRIENDLY_MINIONS).on(
         FULL_BOARD | (Reveal(SELF), Summon(CONTROLLER, "EX1_170"))
@@ -84,7 +92,8 @@ class ICC_200:
 
 
 class ICC_828:
-    """Deathstalker Rexxar"""
+    """Deathstalker Rexxar / 死亡猎手雷克萨
+    战吼： 对所有敌方随从造成2点伤害。"""
 
     play = Hit(ENEMY_MINIONS, 2)
 

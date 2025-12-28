@@ -6,14 +6,16 @@ from ..utils import *
 
 
 class ULD_133:
-    """Crystal Merchant"""
+    """Crystal Merchant / 水晶商人
+    在你的回合结束时，如果你有未使用的法力水晶，抽一张牌。"""
 
     # If you have any unspent Mana at the end of your turn, draw a card.
     events = OWN_TURN_END.on((MANA(CONTROLLER) > 0) & Draw(CONTROLLER))
 
 
 class ULD_137:
-    """Garden Gnome"""
+    """Garden Gnome / 园艺侏儒
+    战吼：如果你的手牌中有法力值消耗大于或等于（5）点的法术牌，便召唤两个2/2的树人。"""
 
     # [x]<b>Battlecry:</b> If you're holding a spell that costs (5) or more, summon two 2/2
     # Treants.
@@ -22,7 +24,8 @@ class ULD_137:
 
 
 class ULD_138:
-    """Anubisath Defender"""
+    """Anubisath Defender / 阿努比萨斯防御者
+    嘲讽 在本回合中，如果你施放过法力值消耗大于或等于（5）的法术，则这张牌的法力值消耗为（0）点。"""
 
     # <b>Taunt</b>. Costs (0) if you've cast a spell that costs (5) or more this turn.
     class Hand:
@@ -30,7 +33,8 @@ class ULD_138:
 
 
 class ULD_139:
-    """Elise the Enlightened"""
+    """Elise the Enlightened / 启迪者伊莉斯
+    战吼：如果你的牌库里没有相同的牌，则复制你的手牌。"""
 
     # <b>Battlecry:</b> If your deck has no duplicates, duplicate your hand.
     powered_up = -FindDuplicates(FRIENDLY_DECK)
@@ -38,7 +42,8 @@ class ULD_139:
 
 
 class ULD_292:
-    """Oasis Surger"""
+    """Oasis Surger / 绿洲涌动者
+    突袭 抉择：获得+2/+2；或者召唤一个本随从的复制。"""
 
     # <b>Rush</b> <b>Choose One -</b> Gain +2/+2; or Summon a copy of this minion.
     choose = ("ULD_292a", "ULD_292b")
@@ -64,7 +69,8 @@ class ULD_292b:
 
 
 class ULD_131:
-    """Untapped Potential"""
+    """Untapped Potential / 发掘潜力
+    任务：在有未使用的法力水晶的情况下结束4个回合。 奖励：奥斯里安之泪。"""
 
     # [x]<b>Quest:</b> End 4 turns with any unspent Mana. <b>Reward:</b> Ossirian Tear.
     progress_total = 4
@@ -81,7 +87,8 @@ class ULD_131p:
 
 
 class ULD_134:
-    """BEEEES!!!"""
+    """BEEEES!!! / 蜂群来袭
+    选择一个随从。召唤四只1/1的蜜蜂攻击该随从。"""
 
     # [x]Choose a minion. Summon four 1/1 Bees that attack it.
     requirements = {
@@ -96,7 +103,8 @@ class ULD_134:
 
 
 class ULD_135:
-    """Hidden Oasis"""
+    """Hidden Oasis / 隐秘绿洲
+    抉择：召唤一棵6/6并具有嘲讽的古树；或者恢复#12点生命值。"""
 
     # <b>Choose One</b> - Summon a 6/6 Ancient with <b>Taunt</b>; or Restore #12 Health.
     requirements = {
@@ -121,14 +129,16 @@ class ULD_135b:
 
 
 class ULD_136:
-    """Worthy Expedition"""
+    """Worthy Expedition / 不虚此行
+    发现一张抉择牌。"""
 
     # <b>Discover</b> a <b>Choose One</b> card.
     play = DISCOVER(RandomCollectible(choose_one=True, card_class=CardClass.DRUID))
 
 
 class ULD_273:
-    """Overflow"""
+    """Overflow / 溢流
+    为所有角色恢复#5点生命值。抽五张牌。"""
 
     # Restore #5 Health to all characters. Draw 5 cards.
     play = Heal(ALL_CHARACTERS, 5), Draw(CONTROLLER) * 5

@@ -6,7 +6,8 @@ from ..utils import *
 
 
 class DRG_089:
-    """Dragonqueen Alexstrasza"""
+    """Dragonqueen Alexstrasza / 红龙女王阿莱克丝塔萨
+    战吼：如果你的牌库里没有相同的牌，则随机将两张其他龙牌置入你的手牌，其法力值消耗为（0）点。"""
 
     # [x]<b>Battlecry:</b> If your deck has no duplicates, add 2 other random Dragons to
     # your hand. They cost (0).
@@ -24,14 +25,16 @@ class DRG_089e:
 
 
 class DRG_091:
-    """Shu'ma"""
+    """Shu'ma / 舒玛
+    在你的回合结束时，用1/1的触手填满你的面板。"""
 
     # At the end of your turn, fill your board with 1/1_Tentacles.
     events = OWN_TURN_END.on(SummonBothSides(CONTROLLER, "DRG_091t") * 7)
 
 
 class DRG_099:
-    """Kronx Dragonhoof"""
+    """Kronx Dragonhoof / 克罗斯·龙蹄
+    战吼：抽取迦拉克隆。如果你已经变为迦拉克隆，则释放一场 灾难。"""
 
     # [x]<b>Battlecry:</b> Draw Galakrond. If you're already Galakrond, unleash a
     # Devastation.
@@ -74,7 +77,8 @@ class DRG_099t4:
 
 
 class DRG_257:
-    """Frizz Kindleroost"""
+    """Frizz Kindleroost / 弗瑞兹·光巢
+    战吼：使你牌库中龙牌的法力值消耗减少（2）点。"""
 
     # <b>Battlecry:</b> Reduce the Cost of Dragons in your deck by_(2).
     play = Buff(FRIENDLY_DECK + DRAGON, "DRG_257e3")
@@ -86,7 +90,8 @@ class DRG_257e3:
 
 
 class DRG_402:
-    """Sathrovarr"""
+    """Sathrovarr / 萨索瓦尔
+    战吼：选择一个友方随从。将一个它的复制置入你的手牌，牌库以及战场。"""
 
     # <b>Battlecry:</b> Choose a friendly minion. Add a copy of it to_your hand, deck, and
     # battlefield.

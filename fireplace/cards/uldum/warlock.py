@@ -6,14 +6,16 @@ from ..utils import *
 
 
 class ULD_161:
-    """Neferset Thrasher"""
+    """Neferset Thrasher / 尼斐塞特鞭笞者
+    每当本随从攻击时，对你的英雄造成3点伤害。"""
 
     # Whenever this attacks, deal 3 damage to your_hero.
     events = Attack(SELF).on(Hit(FRIENDLY_HERO, 3))
 
 
 class ULD_162:
-    """EVIL Recruiter"""
+    """EVIL Recruiter / 怪盗征募官
+    战吼：消灭一个友方跟班，召唤一个5/5的恶魔。"""
 
     # <b>Battlecry:</b> Destroy a friendly <b>Lackey</b> to summon a 5/5 Demon.
     requirements = {
@@ -26,7 +28,8 @@ class ULD_162:
 
 
 class ULD_163:
-    """Expired Merchant"""
+    """Expired Merchant / 过期货物专卖商
+    战吼：弃掉你手牌中法力值消耗最高的牌。亡语：将弃掉的牌的两张复制置入你的手牌。"""
 
     # [x]<b>Battlecry:</b> Discard your highest Cost card. <b>Deathrattle:</b> Add 2 copies
     # of it to your hand.
@@ -41,7 +44,8 @@ class ULD_163e:
 
 
 class ULD_165:
-    """Riftcleaver"""
+    """Riftcleaver / 裂隙屠夫
+    战吼：消灭一个随从。你的英雄受到等同于该随从生命值的 伤害。"""
 
     # <b>Battlecry:</b> Destroy a minion. Your hero takes damage equal to its Health.
     requirements = {
@@ -52,7 +56,8 @@ class ULD_165:
 
 
 class ULD_167:
-    """Diseased Vulture"""
+    """Diseased Vulture / 染病的兀鹫
+    每当你的英雄在自己的回合受到伤害，随机召唤一个法力值消耗为（3）的随从。"""
 
     # After your hero takes damage on your turn, summon a random 3-Cost minion.
     events = Hit(FRIENDLY_HERO).on(
@@ -61,7 +66,8 @@ class ULD_167:
 
 
 class ULD_168:
-    """Dark Pharaoh Tekahn"""
+    """Dark Pharaoh Tekahn / 黑暗法老塔卡恒
+    战吼：在本局对战的剩余时间内，你的跟班变为4/4。"""
 
     # <b>Battlecry:</b> For the rest of the game, your <b>Lackeys</b> are 4/4.
     play = Buff(CONTROLLER, "ULD_168e")
@@ -83,7 +89,8 @@ class ULD_168e3:
 
 
 class ULD_140:
-    """Supreme Archaeology"""
+    """Supreme Archaeology / 最最伟大的考古学
+    任务：抽20张牌。 奖励：源生魔典。"""
 
     # <b>Quest:</b> Draw 20 cards. <b>Reward:</b> Tome of Origination.
     progress_total = 20
@@ -104,14 +111,16 @@ class ULD_140e:
 
 
 class ULD_160:
-    """Sinister Deal"""
+    """Sinister Deal / 邪恶交易
+    发现一张跟班牌。"""
 
     # <b>Discover</b> a <b>Lackey</b>.
     play = DISCOVER(RandomLackey())
 
 
 class ULD_324:
-    """Impbalming"""
+    """Impbalming / 小鬼油膏
+    消灭一个随从。将三张“游荡小鬼”洗入你的牌库。"""
 
     # Destroy a minion. Shuffle 3 Worthless Imps into your deck.
     requirements = {
@@ -122,7 +131,8 @@ class ULD_324:
 
 
 class ULD_717:
-    """Plague of Flames"""
+    """Plague of Flames / 火焰之灾祸
+    消灭你的所有随从。每消灭一个随从，便随机消灭一个敌方随从。"""
 
     # [x]Destroy all your minions. For each one, destroy a random enemy minion.
     def play(self):

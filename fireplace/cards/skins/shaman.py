@@ -17,7 +17,8 @@ class HERO_02bp:
 
 
 class NEW1_009:
-    """Healing Totem"""
+    """Healing Totem / 治疗图腾
+    在你的回合结束时，为所有友方随从恢复#1点生命值。"""
 
     events = OWN_TURN_END.on(Heal(FRIENDLY_MINIONS, 1))
 

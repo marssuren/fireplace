@@ -55,6 +55,45 @@ def get_language() -> str:
     return _current_language
 
 
+def translate_zone(zone) -> str:
+    """
+    Translate a Zone enum to localized name with zone number.
+
+    Args:
+        zone: Zone enum value
+
+    Returns:
+        Localized zone name with number, e.g., "战场(1)" or "PLAY(1)"
+    """
+    # Zone name mappings
+    zone_names = {
+        "en": {
+            1: "PLAY",
+            2: "DECK",
+            3: "HAND",
+            4: "GRAVEYARD",
+            5: "REMOVEDFROMGAME",
+            6: "SETASIDE",
+            7: "SECRET",
+        },
+        "zh_CN": {
+            1: "战场",
+            2: "牌库",
+            3: "手牌",
+            4: "墓地",
+            5: "移出游戏",
+            6: "卡牌池",
+            7: "奥秘",
+        }
+    }
+
+    zone_num = int(zone)
+    zone_map = zone_names.get(_current_language, zone_names["en"])
+    zone_name = zone_map.get(zone_num, str(zone))
+
+    return f"{zone_name}({zone_num})"
+
+
 def _(key: str, **kwargs) -> str:
     """
     Translate a message key to the current language.

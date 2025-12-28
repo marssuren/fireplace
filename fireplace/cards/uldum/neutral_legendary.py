@@ -6,14 +6,16 @@ from ..utils import *
 
 
 class ULD_177:
-    """Octosari"""
+    """Octosari / 八爪巨怪
+    亡语：抽八张牌。"""
 
     # <b>Deathrattle:</b> Draw 8 cards.
     deathrattle = Draw(CONTROLLER) * 8
 
 
 class ULD_178:
-    """Siamat"""
+    """Siamat / 希亚玛特
+    战吼：从突袭，嘲讽，圣盾或风怒中获得两种效果（由你选择）。"""
 
     # [x]<b>Battlecry:</b> Gain 2 of <b>Rush</b>, <b>Taunt</b>, <b>Divine Shield</b>, or
     # <b>Windfury</b> <i>(your choice).</i>
@@ -69,7 +71,8 @@ class ULD_178a4:
 
 
 class ULD_304:
-    """King Phaoris"""
+    """King Phaoris / 法奥瑞斯国王
+    战吼：你手牌中每有一张法术牌，便召唤一个法力值消耗与法术牌相同的随机随从。"""
 
     # [x]<b>Battlecry:</b> For each spell in your hand, summon a random minion of the same
     # Cost.

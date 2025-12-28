@@ -6,21 +6,24 @@ from ..utils import *
 
 
 class TRL_348:
-    """Springpaw"""
+    """Springpaw / 魔泉山猫
+    突袭，战吼：将一张1/1并具有突袭的山猫置入你的手牌。"""
 
     # [x]<b>Rush</b> <b>Battlecry:</b> Add a 1/1 Lynx with <b>Rush</b> to your hand.
     play = Give(CONTROLLER, "TRL_348t")
 
 
 class TRL_349:
-    """Bloodscalp Strategist"""
+    """Bloodscalp Strategist / 血顶战略家
+    战吼：如果你装备着武器，发现一张 法术牌。"""
 
     # <b>Battlecry:</b> If you have a weapon equipped, <b>Discover</b> a spell.
     play = Find(FRIENDLY_WEAPON) & DISCOVER(RandomSpell())
 
 
 class TRL_900:
-    """Halazzi, the Lynx"""
+    """Halazzi, the Lynx / 哈尔拉兹，山猫之神
+    战吼：用1/1并具有 突袭的山猫填满你的手牌。"""
 
     # <b>Battlecry:</b> Fill your hand with 1/1 Lynxes that have_<b>Rush</b>.
     play = Give(CONTROLLER, "TRL_348t") * (
@@ -29,7 +32,8 @@ class TRL_900:
 
 
 class TRL_901:
-    """Spirit of the Lynx"""
+    """Spirit of the Lynx / 山猫之灵
+    潜行一回合。每当你召唤一个野兽时，使其获得+1/+1。"""
 
     # [x]<b>Stealth</b> for 1 turn. Whenever you summon a Beast, give it +1/+1.
     events = (
@@ -46,7 +50,8 @@ TRL_901e = buff(+1, +1)
 
 
 class TRL_119:
-    """The Beast Within"""
+    """The Beast Within / 野兽之心
+    使一个友方野兽获得+1/+1，使其随机攻击一个敌方随从。"""
 
     # Give a friendly Beast +1/+1, then it attacks a random enemy minion.
     requirements = {
@@ -62,7 +67,8 @@ TRL_119e = buff(+1, +1)
 
 
 class TRL_339:
-    """Master's Call"""
+    """Master's Call / 主人的召唤
+    从你的牌库中发现一张随从牌。如果三张牌都是野兽，改为抽取全部三张牌。"""
 
     # <b>Discover</b> a minion in your deck. If all 3 are Beasts, draw them all.
     def play(self):
@@ -76,7 +82,8 @@ class TRL_339:
 
 
 class TRL_347:
-    """Baited Arrow"""
+    """Baited Arrow / 诱饵射击
+    造成$3点伤害。超杀：召唤一个5/5的魔暴龙。"""
 
     # Deal $3 damage. <b>Overkill:</b> Summon a 5/5 Devilsaur.
     requirements = {
@@ -87,7 +94,8 @@ class TRL_347:
 
 
 class TRL_566:
-    """Revenge of the Wild"""
+    """Revenge of the Wild / 荒野的复仇
+    召唤在 本回合中死亡的友方野兽。"""
 
     # Summon your Beasts that died this turn.
     requirements = {
@@ -102,7 +110,8 @@ class TRL_566:
 
 
 class TRL_111:
-    """Headhunter's Hatchet"""
+    """Headhunter's Hatchet / 猎头者之斧
+    战吼：如果你控制一个野兽，便获得+1耐久度。"""
 
     # [x]<b>Battlecry:</b> If you control a Beast, gain +1 Durability.
     play = Find(FRIENDLY_MINIONS + BEAST) & Buff(SELF, "TRL_111e1")
@@ -116,7 +125,8 @@ TRL_111e1 = buff(health=1)
 
 
 class TRL_065:
-    """Zul'jin"""
+    """Zul'jin / 祖尔金
+    战吼： 施放你在本局对战中使用过的所有法术（目标随机而定）。"""
 
     # [x]<b>Battlecry:</b> Cast all spells you've played this game <i>(targets chosen
     # randomly)</i>.

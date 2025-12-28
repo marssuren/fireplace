@@ -6,7 +6,8 @@ from ..utils import *
 
 
 class TRL_311:
-    """Arcanosaur"""
+    """Arcanosaur / 奥术暴龙
+    战吼：如果你在上个回合使用过元素牌，则对所有其他随从造成3点伤害。"""
 
     # <b>Battlecry:</b> If you played an_Elemental last turn, deal_3_damage_to_all other
     # minions.
@@ -15,7 +16,8 @@ class TRL_311:
 
 
 class TRL_315:
-    """Pyromaniac"""
+    """Pyromaniac / 火焰狂人
+    每当你的英雄技能消灭一个随从，抽 一张牌。"""
 
     # Whenever your Hero Power_kills a minion, draw a card.
     events = Activate(CONTROLLER, FRIENDLY_HERO_POWER).after(
@@ -39,7 +41,8 @@ class TRL_316t:
 
 
 class TRL_318:
-    """Hex Lord Malacrass"""
+    """Hex Lord Malacrass / 妖术领主玛拉卡斯
+    战吼：将你的起始手牌的复制置入手牌（不包括这张牌）。"""
 
     # <b>Battlecry</b>: Add a copy of your opening hand to your hand <i>(except this
     # card)</i>.
@@ -47,7 +50,8 @@ class TRL_318:
 
 
 class TRL_319:
-    """Spirit of the Dragonhawk"""
+    """Spirit of the Dragonhawk / 龙鹰之灵
+    潜行一回合。你的英雄技能会以选中的随从及其相邻随从作为 目标。"""
 
     # [x]<b>Stealth</b> for 1 turn. Your Hero Power also targets adjacent minions.
     events = OWN_TURN_BEGIN.on(Unstealth(SELF))
@@ -61,7 +65,8 @@ class TRL_319e:
 
 
 class TRL_390:
-    """Daring Fire-Eater"""
+    """Daring Fire-Eater / 大胆的吞火者
+    战吼：在本回合中，你的下一个英雄技能会额外造成2点伤害。"""
 
     # <b>Battlecry:</b> Your next Hero Power this turn deals 2_more damage.
     play = Buff(CONTROLLER, "TRL_390e")
@@ -77,7 +82,8 @@ class TRL_390e:
 
 
 class TRL_310:
-    """Elemental Evocation"""
+    """Elemental Evocation / 元素唤醒
+    在本回合中，你使用的下一张元素牌的法力值消耗减少（2）点。"""
 
     # The next Elemental you_play this turn costs (2) less.
     play = Buff(CONTROLLER, "TRL_310e")
@@ -89,7 +95,8 @@ class TRL_310e:
 
 
 class TRL_313:
-    """Scorch"""
+    """Scorch / 灼烧
+    对一个随从造成$4点伤害。如果你在上个回合使用过元素牌，则法力值消耗变为（1）点。"""
 
     # [x]Deal $4 damage to a minion. Costs (1) if you played an Elemental last turn.
     requirements = {
@@ -101,7 +108,8 @@ class TRL_313:
 
 
 class TRL_317:
-    """Blast Wave"""
+    """Blast Wave / 冲击波
+    对所有随从造成$2点伤害。超杀：随机将一张法师法术牌置入你的手牌。"""
 
     # Deal $2 damage to_all minions. <b>Overkill</b>: Add a random Mage spell to your hand.
     play = Hit(ALL_MINIONS, 2)
@@ -109,7 +117,8 @@ class TRL_317:
 
 
 class TRL_400:
-    """Splitting Image"""
+    """Splitting Image / 裂魂残像
+    奥秘：当你的随从受到攻击时，召唤一个该随从的复制。"""
 
     # <b>Secret:</b> When one of your minions is attacked, summon a copy of it.
     secret = Attack(None, FRIENDLY_MINIONS).on(

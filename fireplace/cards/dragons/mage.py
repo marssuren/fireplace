@@ -6,14 +6,16 @@ from ..utils import *
 
 
 class DRG_102:
-    """Azure Explorer"""
+    """Azure Explorer / 碧蓝龙探险者
+    法术伤害+2 战吼：发现一张 龙牌。"""
 
     # <b>Spell Damage +2</b> <b>Battlecry:</b> <b>Discover</b> a Dragon.
     play = DISCOVER(RandomDragon())
 
 
 class DRG_104:
-    """Chenvaala"""
+    """Chenvaala / 齐恩瓦拉
+    你在一回合中施放三个法术后，召唤一个5/5的元素。"""
 
     # After you cast three spells in a turn, summon a 5/5_Elemental.
     progress_total = 3
@@ -25,14 +27,16 @@ class DRG_104:
 
 
 class DRG_107:
-    """Violet Spellwing"""
+    """Violet Spellwing / 紫罗兰魔翼鸦
+    亡语：将一张“奥术飞弹”法术牌置入你的 手牌。"""
 
     # <b>Deathrattle:</b> Add an 'Arcane Missiles' spell to_your hand.
     deathrattle = Give(CONTROLLER, "EX1_277")
 
 
 class DRG_109:
-    """Mana Giant"""
+    """Mana Giant / 法力巨人
+    在本局对战中，你每使用一张你的套牌之外的卡牌，本牌的法力值消耗便 减少（1）点。"""
 
     # [x]Costs (1) less for each card you've played this game that didn't start in your
     # deck.
@@ -40,7 +44,8 @@ class DRG_109:
 
 
 class DRG_270:
-    """Malygos, Aspect of Magic"""
+    """Malygos, Aspect of Magic / 织法巨龙玛里苟斯
+    战吼： 如果你的手牌中有龙牌，便发现一张升级过的法师法术牌。"""
 
     # [x]<b>Battlecry:</b> If you're holding a Dragon, <b>Discover</b> an upgraded Mage
     # spell.
@@ -126,7 +131,8 @@ class DRG_270t11:
 
 
 class DRG_322:
-    """Dragoncaster"""
+    """Dragoncaster / 乘龙法师
+    战吼：如果你的手牌中有龙牌，在本回合中你所施放的下一个法术的法力值消耗为（0）点。"""
 
     # <b>Battlecry:</b> If you're holding a Dragon, your next spell this turn costs (0).
     powered_up = HOLDING_DRAGON
@@ -143,7 +149,8 @@ class DRG_322e:
 
 
 class DRG_106:
-    """Arcane Breath"""
+    """Arcane Breath / 奥术吐息
+    对一个随从造成$2点伤害。如果你的手牌中有龙牌，便发现一张法术牌。"""
 
     # Deal $2 damage to a minion. If you're holding a Dragon, <b>Discover</b> a spell.
     requirements = {PlayReq.REQ_MINION_TARGET: 0, PlayReq.REQ_TARGET_TO_PLAY: 0}
@@ -152,7 +159,8 @@ class DRG_106:
 
 
 class DRG_321:
-    """Rolling Fireball"""
+    """Rolling Fireball / 火球滚滚
+    对一个随从造成$8点伤害，超过其生命值的伤害将由左侧或右侧的随从承担。"""
 
     # Deal $8 damage to a minion. Any excess damage continues to the left or right.
     requirements = {PlayReq.REQ_MINION_TARGET: 0, PlayReq.REQ_TARGET_TO_PLAY: 0}
@@ -187,7 +195,8 @@ class DRG_321:
 
 
 class DRG_323:
-    """Learn Draconic"""
+    """Learn Draconic / 学习龙语
+    支线任务： 消耗8点法力值用于法术牌上。奖励：召唤一条6/6的龙。"""
 
     # [x]<b>Sidequest:</b> Spend 8 Mana on spells. <b>Reward:</b> Summon a 6/6 Dragon.
     progress_total = 8
@@ -198,7 +207,8 @@ class DRG_323:
 
 
 class DRG_324:
-    """Elemental Allies"""
+    """Elemental Allies / 元素盟军
+    支线任务： 连续两个回合使用元素牌。奖励：从你的牌库中抽三张法术牌。"""
 
     # [x]<b>Sidequest:</b> Play an Elemental 2 turns in a row. <b>Reward:</b> Draw 3 spells
     # from your deck.

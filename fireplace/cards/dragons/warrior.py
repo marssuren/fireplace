@@ -6,7 +6,8 @@ from ..utils import *
 
 
 class DRG_019:
-    """Scion of Ruin"""
+    """Scion of Ruin / 废墟之子
+    突袭 战吼：如果你已经祈求过两次，召唤本随从的两个复制。"""
 
     # <b>Rush</b>. <b>Battlecry:</b> If you've <b>Invoked</b> twice, summon 2_copies of
     # this.
@@ -14,28 +15,32 @@ class DRG_019:
 
 
 class DRG_020:
-    """EVIL Quartermaster"""
+    """EVIL Quartermaster / 怪盗军需官
+    战吼：将一张跟班牌置入你的手牌。获得3点护甲值。"""
 
     # <b>Battlecry:</b> Add a <b>Lackey</b> to your hand. Gain 3 Armor.
     play = Give(CONTROLLER, RandomLackey()), GainArmor(FRIENDLY_HERO, 3)
 
 
 class DRG_023:
-    """Skybarge"""
+    """Skybarge / 空中炮艇
+    在你召唤一个海盗后，随机对一个敌人造成2点伤害。"""
 
     # [x]After you summon a Pirate, deal 2 damage to a random enemy.
     events = Summon(CONTROLLER, PIRATE).after(Hit(RANDOM_ENEMY_CHARACTER, 2))
 
 
 class DRG_024:
-    """Sky Raider"""
+    """Sky Raider / 空中悍匪
+    战吼：随机将一张海盗牌置入你的手牌。"""
 
     # <b>Battlecry:</b> Add a random Pirate to your hand.
     play = Give(CONTROLLER, RandomMinion(race=Race.PIRATE))
 
 
 class DRG_026:
-    """Deathwing, Mad Aspect"""
+    """Deathwing, Mad Aspect / 疯狂巨龙死亡之翼
+    战吼：攻击所有其他随从。"""
 
     # <b>Battlecry:</b> Attack ALL other minions.
     def play(self):
@@ -52,7 +57,8 @@ class DRG_026:
 
 
 class DRG_022:
-    """Ramming Speed"""
+    """Ramming Speed / 横冲直撞
+    迫使一个随从攻击相邻的一个 随从。"""
 
     # Force a minion to attack one of its neighbors.
     requirements = {PlayReq.REQ_MINION_TARGET: 0, PlayReq.REQ_TARGET_TO_PLAY: 0}
@@ -60,14 +66,16 @@ class DRG_022:
 
 
 class DRG_249:
-    """Awaken!"""
+    """Awaken! / 祈求觉醒
+    祈求迦拉克隆。对所有随从造成$1点伤害。"""
 
     # <b>Invoke</b> Galakrond. Deal_$1 damage to all_minions.
     play = INVOKE, Hit(ALL_MINIONS, 1)
 
 
 class DRG_500:
-    """Molten Breath"""
+    """Molten Breath / 熔火吐息
+    对一个随从造成$5点伤害。如果你的手牌中有龙牌，便获得5点护甲值。"""
 
     # [x]Deal $5 damage to a minion. If you're holding a Dragon, gain 5 Armor.
     requirements = {PlayReq.REQ_MINION_TARGET: 0, PlayReq.REQ_TARGET_TO_PLAY: 0}
@@ -80,14 +88,16 @@ class DRG_500:
 
 
 class DRG_021:
-    """Ritual Chopper"""
+    """Ritual Chopper / 仪式斩斧
+    战吼： 祈求迦拉克隆。"""
 
     # <b>Battlecry:</b> <b>Invoke</b> Galakrond.
     play = INVOKE
 
 
 class DRG_025:
-    """Ancharrr"""
+    """Ancharrr / 海盗之锚
+    在你的英雄攻击后，从你的牌库中抽一张海盗牌。"""
 
     # After your hero attacks, draw a Pirate from your_deck.
     events = Attack(FRIENDLY_HERO).after(ForceDraw(RANDOM(FRIENDLY_DECK + PIRATE)))

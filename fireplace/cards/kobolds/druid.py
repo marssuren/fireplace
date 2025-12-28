@@ -6,35 +6,40 @@ from ..utils import *
 
 
 class LOOT_048:
-    """Ironwood Golem"""
+    """Ironwood Golem / 铁木魔像
+    嘲讽 除非你的护甲值大于或等于3点，否则无法进行攻击。"""
 
     # <b>Taunt</b> Can only attack if you have 3 or more Armor.
     update = (ARMOR(FRIENDLY_HAND) >= 3) | Refresh(SELF, {GameTag.CANT_ATTACK: True})
 
 
 class LOOT_056:
-    """Astral Tiger"""
+    """Astral Tiger / 星界猛虎
+    亡语： 将本随从的一张复制洗入你的牌库。"""
 
     # <b>Deathrattle:</b> Shuffle a copy of this minion into_your_deck.
     deathrattle = Shuffle(CONTROLLER, Copy(SELF))
 
 
 class LOOT_314:
-    """Grizzled Guardian"""
+    """Grizzled Guardian / 灰熊守护者
+    嘲讽，亡语：招募两个法力值消耗小于或等于（4）点的随从。"""
 
     # <b>Taunt</b> <b>Deathrattle:</b> <b>Recruit</b> 2_minions that cost (4)_or_less.
     deathrattle = Recruit(COST <= 4) * 2
 
 
 class LOOT_329:
-    """Ixlid, Fungal Lord"""
+    """Ixlid, Fungal Lord / 伊克斯里德，真菌之王
+    在你使用一张随从牌后，召唤一个它的复制。"""
 
     # After you play a minion, summon a copy of it.
     events = Play(CONTROLLER, MINION).after(Summon(CONTROLLER, ExactCopy(Play.CARD)))
 
 
 class LOOT_351:
-    """Greedy Sprite"""
+    """Greedy Sprite / 贪婪的林精
+    亡语：获得一个空的法力水晶。"""
 
     # <b>Deathrattle:</b> Gain an empty Mana Crystal.
     deathrattle = GainEmptyMana(CONTROLLER, 1)
@@ -45,7 +50,8 @@ class LOOT_351:
 
 
 class LOOT_047:
-    """Barkskin"""
+    """Barkskin / 树皮术
+    使一个随从 获得+3生命值。 获得3点护甲值。"""
 
     # Give a minion +3 Health. Gain 3 Armor.
     requirements = {
@@ -59,7 +65,8 @@ LOOT_047e = buff(health=3)
 
 
 class LOOT_051:
-    """Lesser Jasper Spellstone"""
+    """Lesser Jasper Spellstone / 小型法术玉石
+    对一个随从造成$2点伤害。@（获得3点护甲值后升级。）"""
 
     # Deal $2 damage to a minion. @<i>(Gain 3 Armor to upgrade.)</i>
     requirements = {
@@ -106,7 +113,8 @@ class LOOT_051t2:
 
 
 class LOOT_054:
-    """Branching Paths"""
+    """Branching Paths / 分岔路口
+    选择两次： 抽一张牌；使你的所有随从获得+1攻击力；或者获得6点护甲值。"""
 
     # [x]<b>Choose Twice -</b> Draw a card; Give your minions +1 Attack; Gain 6 Armor.
     play = Choice(CONTROLLER, ["LOOT_054b", "LOOT_054c", "LOOT_054d"]).then(
@@ -142,7 +150,8 @@ class LOOT_054d:
 
 
 class LOOT_309:
-    """Oaken Summons"""
+    """Oaken Summons / 橡树的召唤
+    获得6点护甲值。从你的牌库中召唤一个法力值消耗小于或等于（4）点的随从。"""
 
     # Gain 6 Armor. <b>Recruit</b> a minion that costs (4) or less.
     play = GainArmor(FRIENDLY_HERO, 6), Recruit(COST <= 4)
@@ -153,7 +162,8 @@ class LOOT_309:
 
 
 class LOOT_392:
-    """Twig of the World Tree"""
+    """Twig of the World Tree / 世界之树的嫩枝
+    亡语：复原你的法力水晶。"""
 
     # <b>Deathrattle:</b> Gain 10 Mana Crystals.
     deathrattle = GainMana(CONTROLLER, 10)

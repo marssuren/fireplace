@@ -2,7 +2,8 @@ from ..utils import *
 
 
 class GIL_000:
-    """Echo Enchant"""
+    """Echo Enchant / 回响附魔
+    回合结束时如果这张牌仍在手牌中，将其摧毁。"""
 
     events = REMOVED_IN_PLAY
 

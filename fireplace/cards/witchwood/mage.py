@@ -6,7 +6,8 @@ from ..utils import *
 
 
 class GIL_116:
-    """Arcane Keysmith"""
+    """Arcane Keysmith / 奥术锁匠
+    战吼： 发现一张奥秘牌，并将其置入战场。"""
 
     # <b>Battlecry:</b> <b>Discover</b> a <b>Secret</b>. Put it into the battlefield.
     play = WITH_SECRECTS & (
@@ -21,14 +22,16 @@ class GIL_116:
 
 
 class GIL_549:
-    """Toki, Time-Tinker"""
+    """Toki, Time-Tinker / 时光修补匠托奇
+    战吼：随机将一张来自过去的传说随从牌置入你的手牌。"""
 
     # [x]<b>Battlecry:</b> Add a random <b>Legendary</b> minion from the past to your hand.
     play = Give(CONTROLLER, RandomLegendaryMinion(is_standard=False))
 
 
 class GIL_640:
-    """Curio Collector"""
+    """Curio Collector / 古董收藏家
+    每当你抽一张牌时，便获得+1/+1。"""
 
     # Whenever you draw a card, gain +1/+1.
     events = Draw(CONTROLLER).after(Buff(Draw.CARD, "GIL_640e"))
@@ -38,7 +41,8 @@ GIL_640e = buff(+1, +1)
 
 
 class GIL_645:
-    """Bonfire Elemental"""
+    """Bonfire Elemental / 篝火元素
+    战吼：如果你在上个回合使用过元素牌，抽一张牌。"""
 
     # <b>Battlecry:</b> If you played an_Elemental last turn, draw a card.
     powered_up = ELEMENTAL_PLAYED_LAST_TURN
@@ -46,21 +50,24 @@ class GIL_645:
 
 
 class GIL_664:
-    """Vex Crow"""
+    """Vex Crow / 三眼乌鸦
+    每当你施放一个法术，随机召唤一个法力值消耗为（2）的 随从。"""
 
     # Whenever you cast a spell, summon a random 2-Cost minion.
     events = Play(CONTROLLER, SPELL).after(Summon(CONTROLLER, RandomMinion(cost=2)))
 
 
 class GIL_691:
-    """Archmage Arugal"""
+    """Archmage Arugal / 大法师阿鲁高
+    每当你抽到一张随从牌，将一张它的复制置入你的手牌。"""
 
     # Whenever you draw a minion, add a copy of it to_your hand.
     events = Draw(CONTROLLER, MINION).after(Give(CONTROLLER, ExactCopy(Draw.CARD)))
 
 
 class GIL_838:
-    """Black Cat"""
+    """Black Cat / 黑猫
+    法术伤害+1，战吼：如果你的牌库中只有法力值消耗为奇数的牌，抽一张牌。"""
 
     # <b>Spell Damage +1</b> <b>Battlecry:</b> If your deck has only odd-Cost cards, draw a
     # card.
@@ -73,21 +80,24 @@ class GIL_838:
 
 
 class GIL_147:
-    """Cinderstorm"""
+    """Cinderstorm / 燃烬风暴
+    造成$5点伤害，随机分配到所有敌人身上。"""
 
     # Deal $5 damage randomly split among all enemies.
     play = Hit(RANDOM_ENEMY_CHARACTER, 1) * SPELL_DAMAGE(5)
 
 
 class GIL_548:
-    """Book of Specters"""
+    """Book of Specters / 怨灵之书
+    抽三张牌。 弃掉抽到的所有法术牌。"""
 
     # Draw 3 cards. Discard any spells drawn.
     play = Draw(CONTROLLER).then(Find(Draw.CARD + SPELL) & Discard(Draw.CARD)) * 3
 
 
 class GIL_801:
-    """Snap Freeze"""
+    """Snap Freeze / 急速冷冻
+    冻结一个随从。如果该随从已被冻结，则将其消灭。"""
 
     # <b>Freeze</b> a minion. If it's already <b>Frozen</b>, destroy it.
     requirements = {

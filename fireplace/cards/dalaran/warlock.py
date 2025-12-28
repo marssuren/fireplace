@@ -6,14 +6,16 @@ from ..utils import *
 
 
 class DAL_185:
-    """Aranasi Broodmother"""
+    """Aranasi Broodmother / 阿兰纳丝蛛后
+    嘲讽 当你抽到该牌时，为你的英雄恢复#4点生命值。"""
 
     # [x]<b>Taunt</b> When you draw this, restore #4 Health to your hero.
     draw = Heal(FRIENDLY_HERO, 4)
 
 
 class DAL_422:
-    """Arch-Villain Rafaam"""
+    """Arch-Villain Rafaam / 至尊盗王拉法姆
+    嘲讽 战吼：将你的手牌和牌库里的卡牌替换为传说随从。"""
 
     # <b><b>Taunt</b> Battlecry:</b> Replace your hand and deck with <b>Legendary</b>
     # minions.
@@ -21,7 +23,8 @@ class DAL_422:
 
 
 class DAL_561:
-    """Jumbo Imp"""
+    """Jumbo Imp / 巨型小鬼
+    当本牌在你的手牌中时，每当一个友方恶魔死亡，法力值消耗便减少（1）点。"""
 
     # Costs (1) less whenever a friendly Demon dies while this is in your hand.
     class Hand:
@@ -34,7 +37,8 @@ class DAL_561e:
 
 
 class DAL_563:
-    """Eager Underling"""
+    """Eager Underling / 性急的杂兵
+    亡语：随机使两个友方随从获得+2/+2。"""
 
     # <b>Deathrattle:</b> Give two random friendly minions +2/+2.
     deathrattle = Buff(RANDOM_OTHER_FRIENDLY_MINION * 2, "DAL_563e")
@@ -44,7 +48,8 @@ DAL_563e = buff(+2, +2)
 
 
 class DAL_606:
-    """EVIL Genius"""
+    """EVIL Genius / 怪盗天才
+    战吼：消灭一个友方随从，随机将两张跟班牌置入你的手牌。"""
 
     # <b>Battlecry:</b> Destroy a friendly minion to add 2 random
     # <b>Lackeys</b>_to_your_hand.
@@ -57,7 +62,8 @@ class DAL_606:
 
 
 class DAL_607:
-    """Fel Lord Betrug"""
+    """Fel Lord Betrug / 邪能领主贝图格
+    每当你抽到一张随从牌，召唤一个它的复制。该复制具有突袭，并会在回合结束时死亡。"""
 
     # [x]Whenever you draw a minion, summon a copy with <b>Rush</b> that dies at end of
     # turn.
@@ -86,7 +92,8 @@ class DAL_007(SchemeUtils):
 
 
 class DAL_173:
-    """Darkest Hour"""
+    """Darkest Hour / 至暗时刻
+    消灭所有友方随从。每消灭一个随从，便随机从你的牌库中召唤一个随从。"""
 
     # Destroy all friendly minions. For each one, summon a random minion from your deck.
     play = Destroy(FRIENDLY_MINIONS).then(
@@ -95,7 +102,8 @@ class DAL_173:
 
 
 class DAL_602:
-    """Plot Twist"""
+    """Plot Twist / 情势反转
+    将你的手牌洗入牌库。抽取相同数量的牌。"""
 
     # Shuffle your hand into your deck. Draw that many cards.
     def play(self):
@@ -105,7 +113,8 @@ class DAL_602:
 
 
 class DAL_605:
-    """Impferno"""
+    """Impferno / 小鬼狱火
+    使你的恶魔获得+1攻击力。对所有敌方随从造成$1点 伤害。"""
 
     # Give your Demons +1 Attack. Deal $1 damage to all enemy minions.
     requirements = {

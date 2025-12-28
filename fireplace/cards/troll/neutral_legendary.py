@@ -6,7 +6,8 @@ from ..utils import *
 
 
 class TRL_096:
-    """Griftah"""
+    """Griftah / 格里伏塔
+    战吼：发现两张牌。随机交给你的对手其中一张。"""
 
     # [x]<b>Battlecry:</b> <b>Discover</b> two cards. Give one to your opponent at random.
     play = DISCOVER(RandomCollectible()).then(
@@ -34,7 +35,8 @@ class TRL_096:
 
 
 class TRL_537:
-    """Da Undatakah"""
+    """Da Undatakah / 送葬者安德提卡
+    战吼：获得在本局对战中三个死亡的友方随从的亡语。"""
 
     # [x]<b>Battlecry:</b> Gain the <b>Deathrattle</b> effects of 3 friendly minions that
     # died this game.
@@ -44,7 +46,8 @@ class TRL_537:
 
 
 class TRL_541:
-    """Hakkar, the Soulflayer"""
+    """Hakkar, the Soulflayer / 夺灵者哈卡
+    亡语：将一张“堕落之血”分别洗入每个玩家的牌库。"""
 
     # <b>Deathrattle:</b> Shuffle a Corrupted Blood into each player's deck.
     deathrattle = Shuffle(PLAYER, "TRL_541t")
@@ -60,14 +63,16 @@ class TRL_541t:
 
 
 class TRL_542:
-    """Oondasta"""
+    """Oondasta / 乌达斯塔
+    突袭 超杀：从你的手牌中召唤一个野兽。"""
 
     # <b>Rush</b> <b>Overkill:</b> Summon a Beast from your hand.
     overkill = Summon(CONTROLLER, RANDOM(FRIENDLY_HAND + BEAST))
 
 
 class TRL_564:
-    """Mojomaster Zihi"""
+    """Mojomaster Zihi / 魔精大师兹伊希
+    战吼： 将每个玩家的法力水晶重置为五个。"""
 
     # <b>Battlecry:</b> Set each player to 5 Mana Crystals.
     play = SetMana(PLAYER, 5)

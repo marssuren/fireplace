@@ -6,14 +6,16 @@ from ..utils import *
 
 
 class DRG_090:
-    """Murozond the Infinite"""
+    """Murozond the Infinite / 永恒巨龙姆诺兹多
+    战吼：使用你的对手上个回合使用的所有卡牌。"""
 
     # <b>Battlecry:</b> Play all cards your opponent played last_turn.
     play = Replay(Copy(CARDS_OPPONENT_PLAYED_LAST_TURN))
 
 
 class DRG_300:
-    """Fate Weaver"""
+    """Fate Weaver / 命运编织者
+    战吼：如果你已经祈求过两次，则使你的手牌法力值消耗减少（1）点。"""
 
     # [x]<b>Battlecry:</b> If you've <b>Invoked</b> twice, reduce the Cost of cards in your
     # hand by (1).
@@ -27,14 +29,16 @@ class DRG_300e:
 
 
 class DRG_303:
-    """Disciple of Galakrond"""
+    """Disciple of Galakrond / 迦拉克隆的信徒
+    战吼： 祈求迦拉克隆。"""
 
     # <b>Battlecry:</b> <b>Invoke</b> Galakrond.
     play = INVOKE
 
 
 class DRG_304:
-    """Chronobreaker"""
+    """Chronobreaker / 时空破坏者
+    亡语：如果你的手牌中有龙牌，则对所有敌方随从造成3点 伤害。"""
 
     # [x]<b>Deathrattle:</b> If you're holding a Dragon, deal 3 damage to all enemy
     # minions.
@@ -42,7 +46,8 @@ class DRG_304:
 
 
 class DRG_306:
-    """Envoy of Lazul"""
+    """Envoy of Lazul / 拉祖尔的信使
+    战吼：检视三张卡牌。猜中来自你对手手牌中的卡牌，则获取该牌的一张复制。"""
 
     # [x]<b>Battlecry:</b> Look at 3 cards. Guess which one is in your opponent's hand to
     # get a copy of it.
@@ -104,7 +109,8 @@ class DRG_306:
 
 
 class DRG_308:
-    """Mindflayer Kaahrj"""
+    """Mindflayer Kaahrj / 夺心者卡什
+    战吼：选择一个敌方随从。亡语：召唤一个所选随从的新的 复制。"""
 
     # <b>Battlecry:</b> Choose an enemy minion. <b>Deathrattle:</b> Summon a new copy of
     # it.
@@ -120,7 +126,8 @@ class DRG_308:
 
 
 class DRG_246:
-    """Time Rip"""
+    """Time Rip / 时空裂痕
+    消灭一个随从。祈求迦拉克隆。"""
 
     # Destroy a minion. <b>Invoke</b> Galakrond.
     requirements = {PlayReq.REQ_MINION_TARGET: 0, PlayReq.REQ_TARGET_TO_PLAY: 0}
@@ -128,14 +135,16 @@ class DRG_246:
 
 
 class DRG_301:
-    """Whispers of EVIL"""
+    """Whispers of EVIL / 怪盗低语
+    将一张跟班牌置入你的手牌。"""
 
     # Add a <b>Lackey</b> to your_hand.
     play = Give(CONTROLLER, RandomLackey())
 
 
 class DRG_302:
-    """Grave Rune"""
+    """Grave Rune / 墓地符文
+    使一个随从获得“亡语：召唤该随从的两个复制。”"""
 
     # Give a minion "<b>Deathrattle:</b> Summon 2 copies of this."
     requirements = {PlayReq.REQ_MINION_TARGET: 0, PlayReq.REQ_TARGET_TO_PLAY: 0}
@@ -148,7 +157,8 @@ class DRG_302e:
 
 
 class DRG_307:
-    """Breath of the Infinite"""
+    """Breath of the Infinite / 永恒吐息
+    对所有随从造成$2点伤害。如果你的手牌中有龙牌，则只对敌方随从造成伤害。"""
 
     # Deal $2 damage to all minions. If you're holding a Dragon, only damage enemies.
     powered_up = HOLDING_DRAGON
@@ -160,7 +170,8 @@ class DRG_307:
 
 
 class DRG_660:
-    """Galakrond, the Unspeakable"""
+    """Galakrond, the Unspeakable / 讳言巨龙迦拉克隆
+    战吼：随机消灭一个敌方随从。（@）"""
 
     # [x]<b>Battlecry:</b> Destroy 1 random enemy minion. <i>(@)</i>
     progress_total = 2

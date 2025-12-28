@@ -2,7 +2,8 @@ from ..utils import *
 
 
 class ULD_003:
-    """Zephrys the Great"""
+    """Zephrys the Great / 了不起的杰弗里斯
+    战吼：如果你的牌库里没有相同的牌，则可以许愿获取一张完美的卡牌。"""
 
     # <b>Battlecry:</b> If your deck has no duplicates, wish for the perfect card.
     powered_up = -FindDuplicates(FRIENDLY_DECK)

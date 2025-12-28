@@ -6,7 +6,8 @@ from ..utils import *
 
 
 class CFM_308:
-    """Kun the Forgotten King"""
+    """Kun the Forgotten King / 遗忘之王库恩
+    抉择：获得10点护甲值；或者复原你的法力水晶。"""
 
     choose = ("CFM_308a", "CFM_308b")
     play = ChooseBoth(CONTROLLER) & (
@@ -30,7 +31,8 @@ class CFM_343(JadeGolemUtils):
 
 
 class CFM_617:
-    """Celestial Dreamer"""
+    """Celestial Dreamer / 天神唤梦者
+    战吼：如果你控制一个攻击力大于或等于5的随从，便获得+2/+2。"""
 
     powered_up = Find(FRIENDLY_MINIONS - SELF + (ATK >= 5))
     play = powered_up & Buff(SELF, "CFM_617e")
@@ -40,7 +42,8 @@ CFM_617e = buff(+2, +2)
 
 
 class CFM_816:
-    """Virmen Sensei"""
+    """Virmen Sensei / 兔妖教头
+    战吼：使一个友方野兽获得+3/+3。"""
 
     requirements = {
         PlayReq.REQ_TARGET_IF_AVAILABLE: 0,
@@ -77,7 +80,8 @@ class CFM_602b:
 
 
 class CFM_614:
-    """Mark of the Lotus"""
+    """Mark of the Lotus / 玉莲印记
+    使你所有的随从获得+1/+1。"""
 
     play = Buff(FRIENDLY_MINIONS, "CFM_614e")
 
@@ -86,7 +90,8 @@ CFM_614e = buff(+1, +1)
 
 
 class CFM_616:
-    """Pilfered Power"""
+    """Pilfered Power / 妙手空空
+    每控制一个友方随从，便获得一个空的法力水晶。"""
 
     play = (Count(FRIENDLY_MINIONS) > 0) & (
         AT_MAX_MANA(CONTROLLER) & Give(CONTROLLER, "CS2_013t")
@@ -107,7 +112,8 @@ class CFM_713(JadeGolemUtils):
 
 
 class CFM_811:
-    """Lunar Visions"""
+    """Lunar Visions / 新月视界
+    抽两张牌，抽到的随从牌法力值消耗减少（2）点。"""
 
     play = (
         Draw(CONTROLLER).then(Find(Draw.CARD + MINION) & Buff(Draw.CARD, "CFM_811e"))

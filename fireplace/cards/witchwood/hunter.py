@@ -6,7 +6,8 @@ from ..utils import *
 
 
 class GIL_128:
-    """Emeriss"""
+    """Emeriss / 艾莫莉丝
+    战吼：使你手牌中所有随从牌的攻击力和生命值翻倍。"""
 
     # <b>Battlecry:</b> Double the Attack and Health of all minions in_your hand.
     play = Buff(FRIENDLY_HAND + MINION, "GIL_128e")
@@ -22,7 +23,8 @@ class GIL_128e:
 
 
 class GIL_200:
-    """Duskhaven Hunter"""
+    """Duskhaven Hunter / 暮湾镇猎手
+    潜行 如果这张牌在你的手牌中，每个回合使其攻击力和生命值互换。"""
 
     # [x]<b>Stealth</b> Each turn this is in your hand, swap its Attack and Health.
     class Hand:
@@ -47,21 +49,24 @@ class GIL_200e:
 
 
 class GIL_607:
-    """Toxmonger"""
+    """Toxmonger / 毒药贩子
+    每当你使用一张法力值消耗为（1）的随从牌，使其获得剧毒。"""
 
     # [x]Whenever you play a 1-Cost minion, give it <b>Poisonous</b>.
     events = Play(CONTROLLER, MINION + (COST == 1)).on(GivePoisonous(Play.CARD))
 
 
 class GIL_650:
-    """Houndmaster Shaw"""
+    """Houndmaster Shaw / 驯犬大师肖尔
+    你的其他随从拥有突袭。"""
 
     # Your other minions have <b>Rush</b>.
     update = Refresh(FRIENDLY_MINIONS - SELF, {GameTag.RUSH: True})
 
 
 class GIL_905:
-    """Carrion Drake"""
+    """Carrion Drake / 食腐幼龙
+    战吼：如果在本回合中有一个随从死亡，获得剧毒。"""
 
     # <b>Battlecry:</b> If a minion died this turn, gain <b>Poisonous</b>.
     play = Find(KILLED_THIS_TURN) & GivePoisonous(SELF)
@@ -72,7 +77,8 @@ class GIL_905:
 
 
 class GIL_518:
-    """Wing Blast"""
+    """Wing Blast / 飞翼冲击
+    对一个随从造成$4点伤害。如果在本回合中有一个随从死亡，该牌的法力值消耗为（1）点。"""
 
     # Deal $4 damage to a minion. If a minion died this turn, this costs (1).
     requirements = {
@@ -86,7 +92,8 @@ class GIL_518:
 
 
 class GIL_577:
-    """Rat Trap"""
+    """Rat Trap / 捕鼠陷阱
+    奥秘：当你的对手在一回合中使用三张牌后，召唤一只6/6的老鼠。"""
 
     # [x]<b>Secret:</b> After your opponent plays three cards in a turn, summon a 6/6 Rat.
     secret = Play(OPPONENT).after(
@@ -96,7 +103,8 @@ class GIL_577:
 
 
 class GIL_828:
-    """Dire Frenzy"""
+    """Dire Frenzy / 凶猛狂暴
+    使一个野兽获得+3/+3。将它的三张复制洗入你的牌库，且这些复制都具有+3/+3。"""
 
     # Give a Beast +3/+3. Shuffle 3 copies into your deck with +3/+3.
     requirements = {
