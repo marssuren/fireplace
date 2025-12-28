@@ -1,3 +1,4 @@
+from .i18n import _ as translate
 import uuid
 
 from hearthstone.enums import CardType

@@ -1,3 +1,4 @@
+from .i18n import _ as translate
 import re
 from itertools import chain
 from typing import TYPE_CHECKING
@@ -211,7 +212,7 @@ class BaseCard(BaseEntity):
             return
 
         if self.old_zone:
-            self.logger.debug("%r moves from %r to %r", self, self.old_zone, value)
+            self.logger.debug(translate("card_moves", card=self, old_zone=self.old_zone, new_zone=value))
 
         caches = {
             Zone.HAND: self.controller.hand,

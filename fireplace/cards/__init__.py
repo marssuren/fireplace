@@ -5,7 +5,7 @@ from hearthstone import cardxml
 from hearthstone.enums import CardSet, CardType, GameTag, Race, ZodiacYear
 
 from ..enums import BoardEnum
-from ..logging import log
+from ..logging import log, log_info
 from ..utils import CARD_SETS
 
 
@@ -185,7 +185,7 @@ class CardDB(dict[str, cardxml.CardXML]):
         return card
 
     def initialize(self, locale=default_language):
-        log.info("Initializing card database")
+        log_info("initializing_card_database")
         self.initialized = True
         dirname = os.path.dirname(__file__)
         filename = os.path.join(dirname, "CardDefs.xml")
@@ -197,7 +197,7 @@ class CardDB(dict[str, cardxml.CardXML]):
             self[id] = self.merge(id, card)
             self.dbf[card.dbf_id] = id
 
-        log.info("Merged %i cards", len(self))
+        log_info("merged_cards", count=len(self))
 
     def filter(self, **kwargs):
         """

@@ -1,3 +1,4 @@
+from .i18n import _ as translate
 from itertools import chain
 from typing import TYPE_CHECKING
 
@@ -182,7 +183,7 @@ class Player(Entity, TargetableByAuras):
     @max_mana.setter
     def max_mana(self, amount):
         self._max_mana = min(self.max_resources, max(0, amount))
-        self.log("%s is now at %i mana crystals", self, self._max_mana)
+        self.log(translate("player_mana_crystals", player=self, count=self._max_mana))
 
     @property
     def heropower_damage(self):
@@ -374,7 +375,7 @@ class Player(Entity, TargetableByAuras):
         return amount
 
     def shuffle_deck(self):
-        self.log("%r shuffles their deck", self)
+        self.log(translate("player_shuffles_deck", player=self))
         self.game.random.shuffle(self.deck)
 
     def draw(self, count=1):

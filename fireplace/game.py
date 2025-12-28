@@ -1,3 +1,4 @@
+from .i18n import _ as translate
 import time
 from random import Random
 from calendar import timegm
@@ -138,7 +139,7 @@ class BaseGame(Entity):
         if type != BlockType.PLAY:
             self._action_stack -= 1
         if not self._action_stack:
-            self.log("Empty stack, refreshing auras and processing deaths")
+            self.log(translate("empty_stack"))
             self.refresh_auras()
             self.process_deaths()
 
@@ -298,7 +299,7 @@ class BaseGame(Entity):
         self.tick += 1
 
     def setup(self):
-        self.log("Setting up game %r", self)
+        self.log(translate("setting_up_game", game=self))
         self.state = State.RUNNING
         self.step = Step.BEGIN_DRAW
         self.zone = Zone.PLAY
@@ -422,12 +423,12 @@ class CoinRules(BaseGame):
 
     def pick_first_player(self):
         winner = self.random.choice(self.players)
-        self.log("Tossing the coin... %s wins!", winner)
+        self.log(translate("tossing_coin", winner=winner))
         return winner, winner.opponent
 
     def begin_turn(self, player):
         if self.turn == 0:
-            self.log("%s gets The Coin (%s)", self.player2, THE_COIN)
+            self.log(translate("player_gets_coin", player=self.player2))
             self.player2.give(THE_COIN)
         super().begin_turn(player)
 
@@ -443,7 +444,7 @@ class MulliganRules(BaseGame):
 
         self.setup()
         self.next_step = Step.BEGIN_MULLIGAN
-        self.log("Entering mulligan phase")
+        self.log(translate("entering_mulligan"))
         self.step, self.next_step = self.next_step, Step.MAIN_READY
 
         for player in self.players:
