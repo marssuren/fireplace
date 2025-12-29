@@ -2317,3 +2317,78 @@ class Dormant(TargetedAction):
         target.dormant = True
         target.dormant_turns += amount
         source.game.manager.targeted_action(self, source, target, amount)
+
+
+class RotateMinions(GameAction):
+    """
+    Rotate all minions relative to the caster's perspective.
+    
+    Counterclockwise (False):
+    - Caster's minions: move right
+    - Opponent's minions: move left
+    
+    Clockwise (True):
+    - Caster's minions: move left
+    - Opponent's minions: move right
+    """
+    DIRECTION = ActionArg()
+    
+    def do(self, source, direction):
+        """
+        Example (counterclockwise):
+        Caster: [A][B][C]  Opponent: [D][E]
+        After: Caster: [D][A][B]  Opponent: [E][C]
+        """
+        caster = source.controller
+        opponent = source.controller.opponent
+        
+        caster_minions = list(caster.field)
+        opponent_minions = list(opponent.field)
+        
+        if not caster_minions and not opponent_minions:
+            return
+        
+        if not direction:  # Counterclockwise
+            new_caster = []
+            new_opponent = []
+            
+            if opponent_minions:
+                new_caster.append(opponent_minions[0])
+                new_opponent = opponent_minions[1:]
+            
+            new_caster.extend(caster_minions[:-1] if caster_minions else [])
+            
+            if caster_minions:
+                new_opponent.append(caster_minions[-1])
+                
+        else:  # Clockwise
+            new_caster = []
+            new_opponent = []
+            
+            if caster_minions:
+                new_caster = caster_minions[1:]
+            
+            if opponent_minions:
+                new_caster.append(opponent_minions[-1])
+                new_opponent = opponent_minions[:-1]
+            
+            if caster_minions:
+                new_opponent.insert(0, caster_minions[0])
+        
+        for minion in caster_minions + opponent_minions:
+            minion.zone = Zone.SETASIDE
+        
+        for i, minion in enumerate(new_caster):
+            minion.controller = caster
+            minion.zone = Zone.PLAY
+            minion._summon_index = i
+            minion.turns_in_play = 0
+        
+        for i, minion in enumerate(new_opponent):
+            minion.controller = opponent
+            minion.zone = Zone.PLAY
+            minion._summon_index = i
+            minion.turns_in_play = 0
+        
+        source.game.refresh_auras()
+        source.game.manager.game_action(self, source, direction)
