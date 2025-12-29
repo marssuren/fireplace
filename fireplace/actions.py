@@ -1150,6 +1150,18 @@ class Discard(TargetedAction):
             source.game.cheat_action(target, actions)
 
 
+class Setaside(TargetedAction):
+    """
+    Move card targets to the SETASIDE zone.
+    This is used for temporarily storing cards that will be retrieved later.
+    """
+
+    def do(self, source, target):
+        log_info("setting_aside", target=target)
+        target.zone = Zone.SETASIDE
+        source.game.manager.targeted_action(self, source, target)
+
+
 class Discover(TargetedAction):
     """
     Opens a generic choice for three random cards matching a filter.
