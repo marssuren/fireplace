@@ -732,6 +732,13 @@ DRAWN_THIS_TURN = FuncSelector(
     lambda entites, source: [e for e in entites if getattr(e, "drawn_this_turn", False)]
 )
 
+# Spellburst: Access the spell that triggered the Spellburst effect
+SPELLBURST_SPELL = FuncSelector(
+    lambda entities, source: [source.event_args.get('spell')]
+    if hasattr(source, 'event_args') and source.event_args and 'spell' in source.event_args
+    else []
+)
+
 
 def SAME_RACE(entity1, entity2):
     races1 = getattr(entity1, "races", [])

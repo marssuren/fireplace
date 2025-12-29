@@ -66,12 +66,20 @@ class SCH_283:
     # 战吼：在本回合中，如果你使用过你的英雄技能，抽一张牌
     play = Find(FRIENDLY_HERO_POWER + USED_THIS_TURN) & Draw(CONTROLLER)
 class SCH_708:
-    """Sneaky Delinquent
+    """Sneaky Delinquent / 少年惯偷
     Stealth. Deathrattle: Add a 3/1 Ghost with Stealth to your hand."""
 
     # 潜行（在CardDefs.xml中已定义）
     # 亡语：将一张3/1并具有潜行的鬼灵置入你的手牌
     deathrattle = Give(CONTROLLER, "SCH_708t")
+
+
+class SCH_708t:
+    """Spectral Delinquent / 幽灵惯偷
+    3/1 with Stealth"""
+    # Token: 3/1 潜行鬼灵（属性在CardDefs.xml中定义）
+    pass
+
 
 class SCH_160:
     """Wandmaker / 魔杖工匠
@@ -95,22 +103,30 @@ class SCH_143:
     # 圣盾（无需额外代码，CardDefs.xml中已定义）
     pass
 class SCH_707:
-    """Fishy Flyer
+    """Fishy Flyer / 鱼人飞骑
     Rush. Deathrattle: Add a 4/3 Ghost with Rush to your hand."""
 
     # 突袭（在CardDefs.xml中已定义）
     # 亡语：将一张4/3并具有突袭的鬼灵置入你的手牌
     deathrattle = Give(CONTROLLER, "SCH_707t")
 
+
+class SCH_707t:
+    """Spectral Flyer / 幽灵飞骑
+    4/3 with Rush"""
+    # Token: 4/3 突袭鬼灵（属性在CardDefs.xml中定义）
+    pass
+
+
 class SCH_313:
-    """Wretched Tutor
+    """Wretched Tutor / 失心辅导员
     Spellburst: Deal 2 damage to all other minions."""
 
     # 法术迸发：对所有其他随从造成2点伤害
     spellburst = Hit(ALL_MINIONS - SELF, 2)
 
 class SCH_605:
-    """Lake Thresher
+    """Lake Thresher / 止水湖蛇颈龙
     Also damages the minions next to whomever this attacks."""
 
     # 同时对攻击目标相邻的随从造成伤害
@@ -118,11 +134,19 @@ class SCH_605:
     events = Attack(SELF).after(Hit(ADJACENT(ATK_TARGET), ATK(SELF)))
 
 class SCH_710:
-    """Ogremancer
+    """Ogremancer / 食人魔巫术师
     Whenever your opponent casts a spell, summon a 2/2 Skeleton with Taunt."""
 
     # 每当你的对手施放一个法术，召唤一个2/2并具有嘲讽的骷髅
     events = Play(OPPONENT, SPELL).on(Summon(CONTROLLER, "SCH_710t"))
+
+
+class SCH_710t:
+    """Risen Skeleton / 复活的骷髅
+    2/2 with Taunt"""
+    # Token: 2/2 嘲讽骷髅（属性在CardDefs.xml中定义）
+    pass
+
 
 class SCH_245:
     """Steward of Scrolls / 卷轴管理者
@@ -138,22 +162,30 @@ class SCH_230:
     # 法术迸发：随机将两张你职业的法术牌置入你的手牌
     spellburst = Give(CONTROLLER, RandomSpell(card_class=FRIENDLY_CLASS) * 2)
 class SCH_709:
-    """Smug Senior
+    """Smug Senior / 傲慢的大四学长
     Taunt. Deathrattle: Add a 5/7 Ghost with Taunt to your hand."""
 
     # 嘲讽（在CardDefs.xml中已定义）
     # 亡语：将一张5/7并具有嘲讽的鬼灵置入你的手牌
     deathrattle = Give(CONTROLLER, "SCH_709t")
 
+
+class SCH_709t:
+    """Spectral Senior / 幽灵学长
+    5/7 with Taunt"""
+    # Token: 5/7 嘲讽鬼灵（属性在CardDefs.xml中定义）
+    pass
+
+
 class SCH_530:
-    """Sorcerous Substitute
+    """Sorcerous Substitute / 魔法替身
     Battlecry: If you have Spell Damage, summon a copy of this."""
 
     # 战吼：如果你拥有法术伤害，召唤一个本随从的复制
     play = Find(FRIENDLY_MINIONS + SPELLPOWER) & Summon(CONTROLLER, ExactCopy(SELF))
 
 class SCH_711:
-    """Plagued Protodrake
+    """Plagued Protodrake / 魔疫始祖幼龙
     Deathrattle: Summon a random 7-Cost minion."""
 
     # 亡语：召唤一个随机的法力值消耗为（7）的随从
@@ -164,7 +196,7 @@ class SCH_711:
 # Spells
 
 class SCH_270:
-    """Primordial Studies
+    """Primordial Studies / 原初研习
     Discover a Spell Damage minion. Your next one costs (1) less."""
 
     # 发现一个法术伤害随从。你的下一个法术伤害随从的法力值消耗减少（1）点
@@ -172,7 +204,7 @@ class SCH_270:
     play = Discover(CONTROLLER, RandomMinion(spellpower=True)), Buff(CONTROLLER, "SCH_270e")
 
 class SCH_623:
-    """Cutting Class
+    """Cutting Class / 逃课
     Draw 2 cards. Costs (1) less per Attack of your weapon."""
 
     # 抽两张牌。本牌的法力值消耗每有你的武器的攻击力点数便减少（1）点

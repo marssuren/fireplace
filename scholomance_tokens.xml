@@ -1,0 +1,84 @@
+	<Entity CardID="SCH_162t" ID="99999" version="2">
+		<Tag enumID="185" name="CARDNAME" type="LocString">
+			<enUS>Plagued Hatchling</enUS>
+			<zhCN>魔药龙崽</zhCN>
+		</Tag>
+		<Tag enumID="45" name="HEALTH" type="Int" value="1"/>
+		<Tag enumID="47" name="ATK" type="Int" value="1"/>
+		<Tag enumID="48" name="COST" type="Int" value="1"/>
+		<Tag enumID="183" name="CARD_SET" type="Int" value="1443"/>
+		<Tag enumID="199" name="CLASS" type="Int" value="12"/>
+		<Tag enumID="202" name="CARDTYPE" type="Int" value="4"/>
+	</Entity>
+
+	<Entity CardID="SCH_707t" ID="99999" version="2">
+		<Tag enumID="185" name="CARDNAME" type="LocString">
+			<enUS>Spectral Flyer</enUS>
+			<zhCN>鬼灵飞骑</zhCN>
+		</Tag>
+		<Tag enumID="184" name="CARDTEXT" type="LocString">
+			<enUS><b>Rush</b></enUS>
+			<zhCN><b>突袭</b></zhCN>
+		</Tag>
+		<Tag enumID="45" name="HEALTH" type="Int" value="3"/>
+		<Tag enumID="47" name="ATK" type="Int" value="4"/>
+		<Tag enumID="48" name="COST" type="Int" value="4"/>
+		<Tag enumID="183" name="CARD_SET" type="Int" value="1443"/>
+		<Tag enumID="199" name="CLASS" type="Int" value="12"/>
+		<Tag enumID="202" name="CARDTYPE" type="Int" value="4"/>
+		<Tag enumID="RUSH" name="RUSH" type="Int" value="1"/>
+	</Entity>
+
+	<Entity CardID="SCH_708t" ID="99999" version="2">
+		<Tag enumID="185" name="CARDNAME" type="LocString">
+			<enUS>Spectral Delinquent</enUS>
+			<zhCN>鬼灵惯偷</zhCN>
+		</Tag>
+		<Tag enumID="184" name="CARDTEXT" type="LocString">
+			<enUS><b>Stealth</b></enUS>
+			<zhCN><b>潜行</b></zhCN>
+		</Tag>
+		<Tag enumID="45" name="HEALTH" type="Int" value="1"/>
+		<Tag enumID="47" name="ATK" type="Int" value="3"/>
+		<Tag enumID="48" name="COST" type="Int" value="2"/>
+		<Tag enumID="183" name="CARD_SET" type="Int" value="1443"/>
+		<Tag enumID="199" name="CLASS" type="Int" value="12"/>
+		<Tag enumID="202" name="CARDTYPE" type="Int" value="4"/>
+		<Tag enumID="STEALTH" name="STEALTH" type="Int" value="1"/>
+	</Entity>
+
+	<Entity CardID="SCH_709t" ID="99999" version="2">
+		<Tag enumID="185" name="CARDNAME" type="LocString">
+			<enUS>Spectral Senior</enUS>
+			<zhCN>鬼灵学长</zhCN>
+		</Tag>
+		<Tag enumID="184" name="CARDTEXT" type="LocString">
+			<enUS><b>Taunt</b></enUS>
+			<zhCN><b>嘲讽</b></zhCN>
+		</Tag>
+		<Tag enumID="45" name="HEALTH" type="Int" value="7"/>
+		<Tag enumID="47" name="ATK" type="Int" value="5"/>
+		<Tag enumID="48" name="COST" type="Int" value="6"/>
+		<Tag enumID="183" name="CARD_SET" type="Int" value="1443"/>
+		<Tag enumID="199" name="CLASS" type="Int" value="12"/>
+		<Tag enumID="202" name="CARDTYPE" type="Int" value="4"/>
+		<Tag enumID="TAUNT" name="TAUNT" type="Int" value="1"/>
+	</Entity>
+
+	<Entity CardID="SCH_710t" ID="99999" version="2">
+		<Tag enumID="185" name="CARDNAME" type="LocString">
+			<enUS>Risen Skeleton</enUS>
+			<zhCN>复活的骷髅</zhCN>
+		</Tag>
+		<Tag enumID="184" name="CARDTEXT" type="LocString">
+			<enUS><b>Taunt</b></enUS>
+			<zhCN><b>嘲讽</b></zhCN>
+		</Tag>
+		<Tag enumID="45" name="HEALTH" type="Int" value="2"/>
+		<Tag enumID="47" name="ATK" type="Int" value="2"/>
+		<Tag enumID="48" name="COST" type="Int" value="2"/>
+		<Tag enumID="183" name="CARD_SET" type="Int" value="1443"/>
+		<Tag enumID="199" name="CLASS" type="Int" value="12"/>
+		<Tag enumID="202" name="CARDTYPE" type="Int" value="4"/>
+		<Tag enumID="TAUNT" name="TAUNT" type="Int" value="1"/>
+	</Entity>

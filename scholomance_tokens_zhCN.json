@@ -1,0 +1,99 @@
+[
+  {
+    "artist": "Anton Zemskov",
+    "attack": 1,
+    "cardClass": "NEUTRAL",
+    "cost": 1,
+    "dbfId": 59659,
+    "health": 1,
+    "id": "SCH_162t",
+    "name": "魔药龙崽",
+    "race": "DRAGON",
+    "races": [
+      "DRAGON"
+    ],
+    "set": "SCHOLOMANCE",
+    "type": "MINION"
+  },
+  {
+    "artist": "Jim Nelson",
+    "attack": 4,
+    "cardClass": "NEUTRAL",
+    "cost": 4,
+    "dbfId": 59912,
+    "health": 3,
+    "id": "SCH_707t",
+    "mechanics": [
+      "RUSH"
+    ],
+    "name": "鬼灵飞骑",
+    "race": "MURLOC",
+    "races": [
+      "UNDEAD",
+      "MURLOC"
+    ],
+    "set": "SCHOLOMANCE",
+    "text": "<b>突袭</b>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Arthur Bozonnet",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "cost": 2,
+    "dbfId": 59915,
+    "health": 1,
+    "id": "SCH_708t",
+    "mechanics": [
+      "STEALTH"
+    ],
+    "name": "鬼灵惯偷",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD"
+    ],
+    "set": "SCHOLOMANCE",
+    "text": "<b>潜行</b>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Jakub Kasper",
+    "attack": 5,
+    "cardClass": "NEUTRAL",
+    "cost": 6,
+    "dbfId": 59917,
+    "health": 7,
+    "id": "SCH_709t",
+    "mechanics": [
+      "TAUNT"
+    ],
+    "name": "鬼灵学长",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD"
+    ],
+    "set": "SCHOLOMANCE",
+    "text": "<b>嘲讽</b>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Ben Olson",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "cost": 2,
+    "dbfId": 59919,
+    "health": 2,
+    "id": "SCH_710t",
+    "mechanics": [
+      "TAUNT"
+    ],
+    "name": "复活的骷髅",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD"
+    ],
+    "set": "SCHOLOMANCE",
+    "text": "<b>嘲讽</b>",
+    "type": "MINION"
+  }
+]

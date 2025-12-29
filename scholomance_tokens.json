@@ -1,0 +1,99 @@
+[
+  {
+    "artist": "Anton Zemskov",
+    "attack": 1,
+    "cardClass": "NEUTRAL",
+    "cost": 1,
+    "dbfId": 59659,
+    "health": 1,
+    "id": "SCH_162t",
+    "name": "Plagued Hatchling",
+    "race": "DRAGON",
+    "races": [
+      "DRAGON"
+    ],
+    "set": "SCHOLOMANCE",
+    "type": "MINION"
+  },
+  {
+    "artist": "Jim Nelson",
+    "attack": 4,
+    "cardClass": "NEUTRAL",
+    "cost": 4,
+    "dbfId": 59912,
+    "health": 3,
+    "id": "SCH_707t",
+    "mechanics": [
+      "RUSH"
+    ],
+    "name": "Spectral Flyer",
+    "race": "MURLOC",
+    "races": [
+      "UNDEAD",
+      "MURLOC"
+    ],
+    "set": "SCHOLOMANCE",
+    "text": "<b>Rush</b>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Arthur Bozonnet",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "cost": 2,
+    "dbfId": 59915,
+    "health": 1,
+    "id": "SCH_708t",
+    "mechanics": [
+      "STEALTH"
+    ],
+    "name": "Spectral Delinquent",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD"
+    ],
+    "set": "SCHOLOMANCE",
+    "text": "<b>Stealth</b>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Jakub Kasper",
+    "attack": 5,
+    "cardClass": "NEUTRAL",
+    "cost": 6,
+    "dbfId": 59917,
+    "health": 7,
+    "id": "SCH_709t",
+    "mechanics": [
+      "TAUNT"
+    ],
+    "name": "Spectral Senior",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD"
+    ],
+    "set": "SCHOLOMANCE",
+    "text": "<b>Taunt</b>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Ben Olson",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "cost": 2,
+    "dbfId": 59919,
+    "health": 2,
+    "id": "SCH_710t",
+    "mechanics": [
+      "TAUNT"
+    ],
+    "name": "Risen Skeleton",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD"
+    ],
+    "set": "SCHOLOMANCE",
+    "text": "<b>Taunt</b>",
+    "type": "MINION"
+  }
+]

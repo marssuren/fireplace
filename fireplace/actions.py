@@ -1938,7 +1938,8 @@ class CastSpell(TargetedAction):
                 if entity.spellburst_active:
                     actions = entity.get_actions("spellburst")
                     if actions:
-                        source.game.trigger(entity, actions, event_args=None)
+                        # Pass the spell card as event_args so Spellburst effects can access it
+                        source.game.trigger(entity, actions, event_args={'spell': card})
                         entity.spellburst_active = False
 
 
