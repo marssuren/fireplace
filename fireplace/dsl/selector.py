@@ -742,6 +742,17 @@ SPELLBURST_SPELL = FuncSelector(
     else []
 )
 
+# Corrupt: Access the card that triggered the Corrupt effect
+# 腐蚀机制：访问触发腐蚀效果的卡牌
+# 当手牌中的腐蚀卡牌被触发时，可以通过此选择器获取触发它的那张卡牌
+# 例如：打出5费法术触发了手牌中3费腐蚀卡牌，CORRUPT_CARD 就是那张5费法术
+# 用法示例：corrupt = Buff(SELF, "XXX_e", atk=COST(CORRUPT_CARD))  # 根据触发卡牌的费用增加攻击力
+CORRUPT_CARD = FuncSelector(
+    lambda entities, source: [source.event_args.get('card')]
+    if hasattr(source, 'event_args') and source.event_args and 'card' in source.event_args
+    else []
+)
+
 
 def SAME_RACE(entity1, entity2):
     races1 = getattr(entity1, "races", [])

@@ -554,6 +554,23 @@ class Play(GameAction):
         card.turn_played = source.game.turn
         card.choose = None
 
+        # Trigger Corrupt effects
+        # 触发腐蚀效果
+        # When a card is played, all cards in hand with Corrupt and cost < played card cost
+        # will trigger their corrupt effect (upgrade)
+        # 当打出一张卡牌后，手牌中所有带有腐蚀属性且费用小于打出卡牌费用的卡牌会触发腐蚀效果（升级）
+        if card.cost > 0:  # Only trigger on cards with cost / 只在打出有费用的卡牌时触发
+            for hand_card in player.hand:
+                if not hand_card.ignore_scripts and hasattr(hand_card, 'corrupt_active'):
+                    if hand_card.corrupt_active and hand_card.cost < card.cost:
+                        actions = hand_card.get_actions("corrupt")
+                        if actions:
+                            # Pass the triggering card as event_args so Corrupt effects can access it
+                            # 将触发卡牌作为 event_args 传递，这样腐蚀效果可以访问触发卡牌的信息
+                            source.game.trigger(hand_card, actions, event_args={'card': card})
+                            hand_card.corrupt_active = False  # Corrupt only triggers once / 腐蚀效果只触发一次
+
+
 
 class Activate(GameAction):
     PLAYER = ActionArg()
@@ -1251,6 +1268,10 @@ class Draw(TargetedAction):
             card.zone = Zone.HAND
             card.turn_drawn = source.game.turn
             source.controller.cards_drawn_this_turn += 1
+            # Initialize Corrupt state for cards with corrupt when drawn to hand
+            # 当卡牌被抽到手牌时，初始化腐蚀状态（如果卡牌有腐蚀属性）
+            if hasattr(card, 'corrupt'):
+                card.corrupt_active = True
             source.game.manager.targeted_action(self, source, target, card)
             if source.game.step > Step.BEGIN_MULLIGAN:
                 # Proc the draw script, but only if we are past mulligan
@@ -1712,8 +1733,13 @@ class Summon(TargetedAction):
                             card._summon_index += cards.index(card)
                 card.zone = Zone.PLAY
                 # Initialize Spellburst state for minions with spellburst
+                # 为带有法术迸发的随从初始化法术迸发状态
                 if card.type == CardType.MINION and hasattr(card, 'spellburst'):
                     card.spellburst_active = True
+                # Initialize Corrupt state for cards with corrupt
+                # 为带有腐蚀属性的卡牌初始化腐蚀状态
+                if hasattr(card, 'corrupt'):
+                    card.corrupt_active = True
             if card.type == CardType.MINION and Race.TOTEM in card.races:
                 card.controller.times_totem_summoned_this_game += 1
             source.game.manager.targeted_action(self, source, target, card)
