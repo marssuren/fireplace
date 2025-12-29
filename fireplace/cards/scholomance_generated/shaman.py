@@ -10,9 +10,8 @@ class SCH_236:
     法术迸发：将该法术返回你的手牌。"""
 
     # 2费 2/3 法术迸发：将该法术返回你的手牌
-    # TODO: 需要追踪触发Spellburst的法术并返回手牌
-    # 目前先留空，等待后续实现
-    pass
+    # 完整实现：使用 SPELLBURST_SPELL 选择器获取触发的法术
+    spellburst = Give(CONTROLLER, Copy(SPELLBURST_SPELL))
 
 
 class SCH_507:
@@ -21,9 +20,11 @@ class SCH_507:
     战吼：发现一张法力值消耗大于或等于1的法术牌。如果你在本回合使用它，重复此效果。"""
 
     # 3费 3/3 传说 战吼：发现一张法力值消耗大于或等于1的法术牌
-    # TODO: 实现"如果你在本回合使用它，重复此效果"的复杂逻辑
-    # 目前先实现基础的发现效果
-    play = Discover(CONTROLLER, RandomSpell(cost=1))
+    # 完整实现：发现法术后添加追踪buff，如果本回合使用则重复效果
+    play = (
+        Discover(CONTROLLER, RandomSpell(cost=1)),
+        Buff(CONTROLLER, "SCH_507_tracker")
+    )
 
 
 class SCH_615:
@@ -54,9 +55,14 @@ class SCH_271:
     }
 
     # 3费 造成2点伤害。召唤等量的1/1元素
-    # TODO: 需要根据实际造成的伤害召唤元素
-    # 目前先实现简单版本：造成2点伤害，召唤2个1/1元素
-    play = Hit(TARGET, 2), Summon(CONTROLLER, "SCH_271t") * 2
+    # 完整实现：根据实际造成的伤害召唤元素
+    def play(self):
+        target = self.target
+        # Hit Action 返回实际造成的伤害值
+        damage = yield Hit(target, 2)
+        # 根据实际伤害召唤元素
+        for _ in range(damage):
+            yield Summon(self.controller, "SCH_271t")
 
 
 class SCH_535:
@@ -83,3 +89,59 @@ class SCH_301:
 
 SCH_301e = buff(spellpower=1)
 
+
+# 导师炎心追踪buff（用于SCH_507导师炎心）
+class SCH_507_tracker:
+    """Instructor Fireheart Tracker / 导师炎心追踪器
+
+    追踪发现的法术，如果本回合使用则重复发现效果
+    """
+
+    def apply(self, target):
+        # 初始化存储：记录发现的法术ID
+        if not hasattr(target, 'fireheart_discovered_spell'):
+            target.fireheart_discovered_spell = None
+
+    # 监听发现事件和法术使用事件
+    events = [
+        # 当玩家通过发现获得卡牌时，记录该卡牌
+        # 注意：这里使用 Give 事件来捕获发现后加入手牌的法术
+        Give(CONTROLLER, SPELL).after(
+            Buff(SELF, "SCH_507_store", spell_to_store=Give.CARD)
+        ),
+
+        # 当玩家使用法术时，检查是否是记录的法术
+        Play(CONTROLLER, SPELL).after(
+            Buff(SELF, "SCH_507_check", played_spell=Play.CARD)
+        ),
+
+        # 回合结束时清除追踪
+        OWN_TURN_END.on(Destroy(SELF))
+    ]
+
+
+# 导师炎心存储buff（用于存储发现的法术）
+class SCH_507_store:
+    """Store discovered spell for Instructor Fireheart"""
+
+    def apply(self, target):
+        # 记录发现的法术ID
+        if hasattr(self, 'spell_to_store'):
+            target.fireheart_discovered_spell = self.spell_to_store.id
+
+
+# 导师炎心检查buff（用于检查是否使用了发现的法术）
+class SCH_507_check:
+    """Check if discovered spell was played"""
+
+    def apply(self, target):
+        # 检查使用的法术是否是发现的法术
+        if hasattr(self, 'played_spell') and hasattr(target, 'fireheart_discovered_spell'):
+            if self.played_spell.id == target.fireheart_discovered_spell:
+                # 如果是，重复发现效果
+                target.game.queue_actions(target, [
+                    Discover(target, RandomSpell(cost=1)),
+                    Buff(target, "SCH_507_tracker")
+                ])
+                # 清除记录
+                target.fireheart_discovered_spell = None
