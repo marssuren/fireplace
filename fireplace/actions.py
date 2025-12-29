@@ -1699,6 +1699,9 @@ class Summon(TargetedAction):
                         if card._summon_index is not None:
                             card._summon_index += cards.index(card)
                 card.zone = Zone.PLAY
+                # Initialize Spellburst state for minions with spellburst
+                if card.type == CardType.MINION and hasattr(card, 'spellburst'):
+                    card.spellburst_active = True
             if card.type == CardType.MINION and Race.TOTEM in card.races:
                 card.controller.times_totem_summoned_this_game += 1
             source.game.manager.targeted_action(self, source, target, card)
@@ -1928,6 +1931,15 @@ class CastSpell(TargetedAction):
                 log_info("choosing_card", choice=choice)
                 player.opponent.choice.choose(choice)
             player.choice = old_choice
+
+        # Trigger Spellburst effects
+        for entity in player.live_entities:
+            if not entity.ignore_scripts and hasattr(entity, 'spellburst_active'):
+                if entity.spellburst_active:
+                    actions = entity.get_actions("spellburst")
+                    if actions:
+                        source.game.trigger(entity, actions, event_args=None)
+                        entity.spellburst_active = False
 
 
 class CastSpellTargetsEnemiesIfPossible(CastSpell):
