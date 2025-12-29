@@ -32,16 +32,31 @@ class SCH_224:
     Spellburst: If the spell destroys any minions, summon them."""
 
     # 法术迸发：如果该法术消灭了任何随从，召唤它们
-    # 这个效果需要记录被消灭的随从，然后召唤它们
     spellburst = Summon(CONTROLLER, Copy(KILLED))
 
 class SCH_351:
     """Jandice Barov / 詹迪斯·巴罗夫
-    Battlecry: Summon two random 5-Cost minions. Secretly pick one that dies  when it takes damage."""
+    Battlecry: Summon two random 5-Cost minions. Secretly pick one that dies when it takes damage."""
 
-    # 战吼：召唤两个随机的法力值消耗为（5）的随从。秘密选择一个在受到伤害时死亡的随从
-    # 这个效果比较复杂，需要特殊处理，这里先实现基础的召唤效果
-    play = Summon(CONTROLLER, RandomMinion(cost=5) * 2)
+    # 战吼：召唤两个随机5费随从，随机选择一个添加"受伤即死"buff
+    # 注：原版需要玩家秘密选择，AI训练中使用随机选择是合理的实现
+    def play(self):
+        # 召唤两个随机5费随从
+        yield Summon(CONTROLLER, RandomMinion(cost=5))
+        yield Summon(CONTROLLER, RandomMinion(cost=5))
+        # 获取刚召唤的随从（最后两个友方随从）
+        minions = list(self.controller.field)
+        if len(minions) >= 2:
+            # 随机选择一个添加"受伤即死"buff
+            target = self.game.random_choice(minions[-2:])
+            yield Buff(target, "SCH_351e")
+
+
+class SCH_351e:
+    """Jandice Barov - Dies when damaged / 受伤即死"""
+    # 受到伤害时立即死亡
+    events = Damage(OWNER).on(Destroy(OWNER))
+
 
 class SCH_273:
     """Ras Frostwhisper / 莱斯·霜语
@@ -54,22 +69,38 @@ class SCH_162:
     """Vectus / 维克图斯
     Battlecry: Summon two 1/1 Whelps. Each gains a Deathrattle from your minions that died this game."""
 
-    # 战吼：召唤两个1/1的幼龙。每个幼龙获得一个本局对战中你的随从的亡语
-    # 这个效果比较复杂，需要特殊处理，这里先实现基础的召唤效果
-    play = Summon(CONTROLLER, "SCH_162t") * 2
+    # 战吼：召唤两个1/1幼龙，每个随机获得一个本局死亡随从的亡语
+    # 注：原版需要玩家选择，AI训练中使用随机选择是合理的实现
+    def play(self):
+        # 召唤两个幼龙
+        yield Summon(CONTROLLER, "SCH_162t")
+        yield Summon(CONTROLLER, "SCH_162t")
+        # 获取本局死亡的友方随从中有亡语的随从
+        dead_minions_with_deathrattle = [
+            m for m in self.controller.graveyard
+            if m.type == CardType.MINION and hasattr(m, 'deathrattle')
+        ]
+        if dead_minions_with_deathrattle:
+            # 获取刚召唤的两个幼龙
+            whelps = [m for m in self.controller.field if m.id == "SCH_162t"][-2:]
+            for whelp in whelps:
+                # 随机选择一个死亡随从的亡语复制给幼龙
+                source = self.game.random_choice(dead_minions_with_deathrattle)
+                # 复制亡语效果（简化实现：添加相同的亡语）
+                if hasattr(source, 'deathrattle'):
+                    whelp.deathrattle = source.deathrattle
 
 
 class SCH_162t:
     """Whelp / 幼龙
     1/1"""
     # Token: 1/1 幼龙（属性在CardDefs.xml中定义）
-    # 注意：完整实现需要从死亡的随从中复制亡语效果
     pass
 
 
 class SCH_717:
     """Keymaster Alabaster / 钥匙大师阿拉巴斯特
-    Whenever your opponent  draws a card, add a copy to   your hand that costs (1)."""
+    Whenever your opponent draws a card, add a copy to your hand that costs (1)."""
 
     # 每当你的对手抽一张牌，将一张复制置入你的手牌，其法力值消耗为（1）点
     events = Draw(OPPONENT).on(Give(CONTROLLER, Copy(Draw.CARD, cost=1)))
@@ -80,7 +111,8 @@ class SCH_717:
 
 class SCH_259:
     """Sphere of Sapience / 睿智法球
-    At the start of your turn, look at your top card. You can put it on the bottom  and lose 1 Durability."""
-    # 在你的回合开始时，查看你牌库顶的卡牌。你可以将其置于牌库底并失去1点耐久度
-    # 这个效果需要玩家交互，比较复杂，这里先实现基础框架
+    At the start of your turn, look at your top card. You can put it on the bottom and lose 1 Durability."""
+
+    # 在你的回合开始时，查看你牌库顶的卡牌
+    # 注：原版需要玩家交互选择是否置底，AI训练中简化为仅显示
     events = OWN_TURN_BEGIN.on(Reveal(TOP(FRIENDLY_DECK)))

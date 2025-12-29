@@ -34,29 +34,21 @@ class SCH_355:
     """Shardshatter Mystic / 残片震爆秘术师
     Battlecry: Destroy a Soul Fragment in your deck to deal 3 damage to all other minions."""
 
-    def play(self):
-        # 摧毁一张你牌库中的灵魂残片，对所有其他随从造成3点伤害
-        soul_fragment = self.controller.deck.filter(id="GAME_005")
-        if soul_fragment:
-            soul_fragment[0].destroy()
-            yield Hit(ALL_MINIONS - SELF, 3)
+    # 战吼：摧毁一张你牌库中的灵魂残片，对所有其他随从造成3点伤害
+    # 使用条件效果：如果牌库中有灵魂残片，则移除一张并造成伤害
+    play = Find(FRIENDLY_DECK + ID("GAME_005")) & (
+        Destroy(RANDOM(FRIENDLY_DECK + ID("GAME_005"))),
+        Hit(ALL_MINIONS - SELF, 3)
+    )
 
 
 class SCH_603:
     """Star Student Stelina / 明星学员斯特里娜
     Outcast: Look at 3 cards in your opponent's hand. Shuffle one of them into their deck."""
 
-    def play(self):
-        if self.outcast:
-            # 检视对手的三张手牌，将其中一张洗入对手的牌库
-            opponent_hand = self.controller.opponent.hand
-            if opponent_hand:
-                # 随机选择最多3张手牌
-                cards_to_show = random.sample(opponent_hand, min(3, len(opponent_hand)))
-                if cards_to_show:
-                    # 随机选择一张洗入牌库
-                    card_to_shuffle = random.choice(cards_to_show)
-                    yield Shuffle(self.controller.opponent, card_to_shuffle)
+    # 流放：检视对手的三张手牌，将其中一张洗入对手的牌库
+    # 注：原版效果需要玩家手动选择，但在 AI 训练中随机选择是合理的实现
+    outcast = Shuffle(OPPONENT, RANDOM(ENEMY_HAND))
 
 
 class SCH_705:
@@ -92,12 +84,11 @@ class SCH_704:
     """Soulshard Lapidary / 铸魂宝石匠
     Battlecry: Destroy a Soul Fragment in your deck to give your hero +5 Attack this turn."""
 
-    def play(self):
-        # 摧毁一张你牌库中的灵魂残片，在本回合中使你的英雄获得+5攻击力
-        soul_fragment = self.controller.deck.filter(id="GAME_005")
-        if soul_fragment:
-            soul_fragment[0].destroy()
-            yield Buff(FRIENDLY_HERO, "SCH_704e")
+    # 战吼：摧毁一张你牌库中的灵魂残片，在本回合中使你的英雄获得+5攻击力
+    play = Find(FRIENDLY_DECK + ID("GAME_005")) & (
+        Destroy(RANDOM(FRIENDLY_DECK + ID("GAME_005"))),
+        Buff(FRIENDLY_HERO, "SCH_704e")
+    )
 
 
 class SCH_704e:

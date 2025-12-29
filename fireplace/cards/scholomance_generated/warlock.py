@@ -39,14 +39,11 @@ class SCH_517:
         PlayReq.REQ_TARGET_IF_AVAILABLE: 0,
     }
 
-    def play(self):
-        # 查找牌库中的灵魂残片
-        soul_fragment = self.controller.deck.filter(id="GAME_005")
-        if soul_fragment:
-            # 摧毁一张灵魂残片
-            soul_fragment[0].destroy()
-            # 造成3点伤害
-            yield Hit(TARGET, 3)
+    # 使用条件效果：如果牌库中有灵魂残片，则移除一张并造成伤害
+    play = Find(FRIENDLY_DECK + ID("GAME_005")) & (
+        Destroy(RANDOM(FRIENDLY_DECK + ID("GAME_005"))),
+        Hit(TARGET, 3)
+    )
 
 
 class SCH_343:
@@ -54,15 +51,11 @@ class SCH_343:
     Taunt. Battlecry: Destroy a Soul Fragment in your deck to gain +3/+3."""
 
     # 嘲讽（在CardDefs.xml中已定义）
-
-    def play(self):
-        # 查找牌库中的灵魂残片
-        soul_fragment = self.controller.deck.filter(id="GAME_005")
-        if soul_fragment:
-            # 摧毁一张灵魂残片
-            soul_fragment[0].destroy()
-            # 获得+3/+3
-            yield Buff(SELF, "SCH_343e")
+    # 战吼：摧毁一张你牌库中的灵魂残片，获得+3/+3
+    play = Find(FRIENDLY_DECK + ID("GAME_005")) & (
+        Destroy(RANDOM(FRIENDLY_DECK + ID("GAME_005"))),
+        Buff(SELF, "SCH_343e")
+    )
 
 
 SCH_343e = buff(atk=3, health=3)

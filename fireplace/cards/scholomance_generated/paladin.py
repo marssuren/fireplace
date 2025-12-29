@@ -48,13 +48,9 @@ class SCH_141:
     """High Abbess Alura / 高阶修士奥露拉
     Spellburst: Cast a spell from your deck (targets this if possible)."""
 
-    def spellburst(self):
-        # 从牌库中施放一张法术牌（尽可能以本随从为目标）
-        spells = self.controller.deck.filter(type=CardType.SPELL)
-        if spells:
-            spell = random.choice(spells)
-            # 尝试以本随从为目标施放法术
-            yield CastSpell(spell, SELF if spell.requires_target() else None)
+    # 法术迸发：从牌库中施放一张法术牌（尽可能以本随从为目标）
+    # 使用 CastSpellPreferSource 优先以自己为目标
+    spellburst = CastSpellPreferSource(RANDOM(FRIENDLY_DECK + SPELL))
 
 class SCH_139:
     """Devout Pupil / 虔诚的学徒
@@ -163,14 +159,10 @@ class SCH_533:
     """Commencement / 毕业仪式
     Summon a minion from your deck. Give it Taunt and Divine Shield."""
 
-    def play(self):
-        # 从牌库中召唤一个随从
-        minions = self.controller.deck.filter(type=CardType.MINION)
-        if minions:
-            minion = random.choice(minions)
-            yield Summon(CONTROLLER, minion)
-            # 使其获得嘲讽和圣盾
-            yield Buff(minion, "SCH_533e")
+    # 从牌库中召唤一个随从，使其获得嘲讽和圣盾
+    play = Summon(CONTROLLER, RANDOM(FRIENDLY_DECK + MINION)).then(
+        Buff(Summon.CARD, "SCH_533e")
+    )
 
 
 SCH_533e = buff(taunt=True, divine_shield=True)

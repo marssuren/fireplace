@@ -1966,6 +1966,21 @@ class CastSpellTargetsEnemiesIfPossible(CastSpell):
         return source.game.random.choice(card.targets)
 
 
+class CastSpellPreferSource(CastSpell):
+    """
+    Cast a spell, preferring to target the source minion if possible.
+    Used by High Abbess Alura (SCH_141).
+    """
+    def choose_target(self, source, card):
+        # If the source minion is a valid target, prefer it
+        if source in card.targets:
+            return source
+        # Otherwise, choose randomly from available targets
+        if card.targets:
+            return source.game.random.choice(card.targets)
+        return None
+
+
 class Evolve(TargetedAction):
     """
     Transform your minions into random minions that cost (\a amount) more
