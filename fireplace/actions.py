@@ -1780,6 +1780,54 @@ class Silence(TargetedAction):
         source.game.manager.targeted_action(self, source, target)
 
 
+class ForgeCard(TargetedAction):
+    """
+    Forge a card in hand, spending 2 mana to upgrade it.
+    锻造手牌中的卡牌，花费2点法力值来升级它。
+    """
+
+    TARGET = ActionArg()  # The card to forge
+
+    def do(self, source, target):
+        """
+        Execute the forge action on a card.
+        target: The card to be forged
+        """
+        if not hasattr(target, 'forge'):
+            log_info("card_has_no_forge", card=target)
+            return
+
+        if not getattr(target, 'forge_active', False):
+            log_info("forge_not_active", card=target)
+            return
+
+        if getattr(target, 'forged', False):
+            log_info("already_forged", card=target)
+            return
+
+        # Check if player has enough mana (2 mana cost)
+        if source.controller.mana < 2:
+            log_info("not_enough_mana_to_forge", card=target)
+            return
+
+        # Spend 2 mana
+        source.controller.used_mana += 2
+
+        # Mark as forged
+        target.forged = True
+        target.forge_active = False
+
+        log_info("forging_card", card=target)
+
+        # Trigger the forge effect
+        actions = target.data.scripts.get('forge', [])
+        if actions:
+            source.game.cheat_action(target, actions)
+
+        source.game.manager.targeted_action(self, source, target)
+        self.broadcast(source, EventListener.ON, target)
+
+
 class Summon(TargetedAction):
     """
     Make player targets summon \a id onto their field.
