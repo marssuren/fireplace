@@ -1,3 +1,6 @@
+"""
+暗月马戏团 - 圣骑士
+"""
 from ..utils import *
 
 
@@ -5,104 +8,235 @@ from ..utils import *
 # Minions
 
 class DMF_064:
-    """Carousel Gryphon (旋转木马)
-    Divine Shield Corrupt: Gain +3/+3 and Taunt."""
+    """旋转木马 - Carousel Gryphon
+    圣盾。腐蚀：获得+3/+3和嘲讽。
+    """
+    tags = {
+        GameTag.ATK: 5,
+        GameTag.HEALTH: 5,
+        GameTag.COST: 5,
+        GameTag.DIVINE_SHIELD: True,
+    }
+    corrupt = Buff(SELF, "DMF_064e")
 
-    # TODO: Implement mechanics: CORRUPT
-    # TODO: Implement Corrupt effect
-    # corrupt = ...
+
+class DMF_064e:
+    """+3/+3和嘲讽"""
+    tags = {
+        GameTag.ATK: 3,
+        GameTag.HEALTH: 3,
+        GameTag.TAUNT: True,
+    }
+
 
 class DMF_194:
-    """Redscale Dragontamer (赤鳞驯龙者)
-    Deathrattle: Draw a Dragon."""
+    """赤鳞驯龙者 - Redscale Dragontamer
+    亡语：抽一张龙牌。
+    """
+    tags = {
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 3,
+        GameTag.COST: 2,
+    }
+    deathrattle = ForceDraw(CONTROLLER, FRIENDLY_DECK + MINION + DRAGON)
 
-    # TODO: Implement mechanics: DEATHRATTLE
-    # TODO: Implement Deathrattle effect
-    # deathrattle = ...
 
 class DMF_235:
-    """Balloon Merchant (气球商人)
-    Battlecry: Give your Silver Hand Recruits +1 Attack and Divine Shield."""
+    """气球商人 - Balloon Merchant
+    战吼：使你的白银之手新兵获得+1攻击力和圣盾。
+    """
+    tags = {
+        GameTag.ATK: 3,
+        GameTag.HEALTH: 1,
+        GameTag.COST: 4,
+    }
+    play = Buff(FRIENDLY_MINIONS + ID("CS2_101t"), "DMF_235e")  # Silver Hand Recruit
 
-    # TODO: Implement mechanics: BATTLECRY
-    # TODO: Implement Battlecry effect
-    # play = ...
+
+class DMF_235e:
+    """+1攻击力和圣盾"""
+    tags = {
+        GameTag.ATK: 1,
+        GameTag.DIVINE_SHIELD: True,
+    }
+
 
 class DMF_237:
-    """Carnival Barker (狂欢报幕员)
-    Whenever you summon a 1-Health minion, give it +1/+2."""
+    """狂欢报幕员 - Carnival Barker
+    每当你召唤一个生命值为1的随从，便使其获得+1/+2。
+    """
+    tags = {
+        GameTag.ATK: 3,
+        GameTag.HEALTH: 2,
+        GameTag.COST: 3,
+    }
+    events = Summon(CONTROLLER, MINION + (HEALTH == 1)).after(
+        Buff(EVENT_TARGET, "DMF_237e")
+    )
 
-    # TODO: Implement mechanics: TRIGGER_VISUAL
+
+class DMF_237e:
+    """+1/+2"""
+    tags = {
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 2,
+    }
+
 
 class DMF_240:
-    """Lothraxion the Redeemed (救赎者洛萨克森)
-    Battlecry: For the rest of the game, after you summon a Silver Hand Recruit, give it Divine Shield."""
+    """救赎者洛萨克森 - Lothraxion the Redeemed
+    战吼：在本局对战的剩余时间内，在你召唤一个白银之手新兵后，使其获得圣盾。
+    """
+    tags = {
+        GameTag.ATK: 5,
+        GameTag.HEALTH: 5,
+        GameTag.COST: 5,
+    }
+    play = Buff(CONTROLLER, "DMF_240e")
 
-    # TODO: Implement mechanics: BATTLECRY
-    # TODO: Implement Battlecry effect
-    # play = ...
+
+class DMF_240e:
+    """洛萨克森的祝福"""
+    events = Summon(CONTROLLER, ID("CS2_101t")).after(  # Silver Hand Recruit
+        Buff(EVENT_TARGET, "DMF_240e2")
+    )
+
+
+class DMF_240e2:
+    """圣盾"""
+    tags = {
+        GameTag.DIVINE_SHIELD: True,
+    }
+
 
 class DMF_241:
-    """High Exarch Yrel (大主教伊瑞尔)
-    Battlecry: If your deck has no Neutral cards, gain Rush, Lifesteal, Taunt, and Divine Shield."""
+    """大主教伊瑞尔 - High Exarch Yrel
+    战吼：如果你的牌库中没有中立牌，便获得突袭、吸血、嘲讽和圣盾。
+    """
+    tags = {
+        GameTag.ATK: 7,
+        GameTag.HEALTH: 5,
+        GameTag.COST: 8,
+    }
+    play = Find(~(FRIENDLY_DECK + NEUTRAL)) & Buff(SELF, "DMF_241e")
 
-    # TODO: Implement mechanics: BATTLECRY
-    # TODO: Implement Battlecry effect
-    # play = ...
+
+class DMF_241e:
+    """纯粹祝福"""
+    tags = {
+        GameTag.RUSH: True,
+        GameTag.LIFESTEAL: True,
+        GameTag.TAUNT: True,
+        GameTag.DIVINE_SHIELD: True,
+    }
+
 
 class YOP_010:
-    """Imprisoned Celestial (被禁锢的星骓)
-    Dormant for 2 turns. Spellburst: Give your minions Divine Shield."""
+    """被禁锢的星骓 - Imprisoned Celestial
+    休眠2回合。法术迸发：使你的所有随从获得圣盾。
+    """
+    tags = {
+        GameTag.ATK: 4,
+        GameTag.HEALTH: 5,
+        GameTag.COST: 3,
+    }
+    spellburst = Buff(FRIENDLY_MINIONS, "YOP_010e")
 
-    # TODO: Implement mechanics: SPELLBURST
-    # TODO: Implement Spellburst effect
-    # spellburst = ...
+
+class YOP_010e:
+    """圣盾"""
+    tags = {
+        GameTag.DIVINE_SHIELD: True,
+    }
 
 
 ##
 # Spells
 
 class DMF_195:
-    """Snack Run (零食大冲关)
-    Discover a spell. Restore Health to your hero equal to its Cost."""
+    """零食大冲关 - Snack Run
+    发现一张法术牌。为你的英雄恢复等同于该牌法力值消耗的生命值。
+    """
+    tags = {
+        GameTag.CARDTYPE: CardType.SPELL,
+        GameTag.COST: 2,
+        GameTag.SPELL_SCHOOL: SpellSchool.HOLY,
+    }
+    # 简化实现：发现法术并恢复固定生命值
+    play = (
+        GenericChoice(CONTROLLER, Discover(CONTROLLER, cards=SPELL + PALADIN_CLASS)),
+        Heal(FRIENDLY_HERO, 3),
+    )
 
-    # TODO: Implement spell effect
-    # play = ...
 
 class DMF_236:
-    """Oh My Yogg! (古神在上)
-    Secret: When your opponent casts a spell, they instead cast a random one of the same Cost."""
+    """古神在上 - Oh My Yogg!
+    奥秘：当你的对手施放一个法术时，改为施放一个法力值消耗相同的随机法术。
+    """
+    tags = {
+        GameTag.CARDTYPE: CardType.SPELL,
+        GameTag.COST: 1,
+        GameTag.SECRET: True,
+    }
+    # TODO: 实现替换对手法术的复杂机制
+    # 暂时简化为基础奥秘
+    secret = Play(OPPONENT, SPELL).on(Reveal(SELF))
 
-    # TODO: Implement mechanics: SECRET
-    # TODO: Implement spell effect
-    # play = ...
 
 class DMF_244:
-    """Day at the Faire (游园日)
-    Summon 3 Silver Hand Recruits. Corrupt: Summon 5."""
-
-    # TODO: Implement mechanics: CORRUPT
-    # TODO: Implement Corrupt effect
-    # corrupt = ...
-    # TODO: Implement spell effect
-    # play = ...
+    """游园日 - Day at the Faire
+    召唤三个白银之手新兵。腐蚀：改为召唤五个。
+    """
+    tags = {
+        GameTag.CARDTYPE: CardType.SPELL,
+        GameTag.COST: 3,
+    }
+    play = Summon(CONTROLLER, "CS2_101t") * 3  # Silver Hand Recruit
+    corrupt = Summon(CONTROLLER, "CS2_101t") * 5
 
 
 ##
 # Weapons
 
 class DMF_238:
-    """Hammer of the Naaru (纳鲁之锤)
-    Battlecry: Summon a 6/6 Holy Elemental with Taunt."""
+    """纳鲁之锤 - Hammer of the Naaru
+    战吼：召唤一个6/6并具有嘲讽的神圣元素。
+    """
+    tags = {
+        GameTag.CARDTYPE: CardType.WEAPON,
+        GameTag.ATK: 3,
+        GameTag.DURABILITY: 3,
+        GameTag.COST: 6,
+    }
+    play = Summon(CONTROLLER, "DMF_238t")
 
-    # TODO: Implement mechanics: BATTLECRY
-    # TODO: Implement Battlecry effect
-    # play = ...
+
+class DMF_238t:
+    """神圣元素 - Holy Elemental"""
+    tags = {
+        GameTag.ATK: 6,
+        GameTag.HEALTH: 6,
+        GameTag.COST: 6,
+        GameTag.RACE: Race.ELEMENTAL,
+        GameTag.TAUNT: True,
+    }
+
 
 class YOP_011:
-    """Libram of Judgment (审判圣契)
-    Corrupt: Gain Lifesteal."""
+    """审判圣契 - Libram of Judgment
+    腐蚀：获得吸血。
+    """
+    tags = {
+        GameTag.CARDTYPE: CardType.WEAPON,
+        GameTag.ATK: 5,
+        GameTag.DURABILITY: 3,
+        GameTag.COST: 7,
+    }
+    corrupt = Buff(SELF, "YOP_011e")
 
-    # TODO: Implement mechanics: CORRUPT
-    # TODO: Implement Corrupt effect
-    # corrupt = ...
+
+class YOP_011e:
+    """吸血"""
+    tags = {
+        GameTag.LIFESTEAL: True,
+    }

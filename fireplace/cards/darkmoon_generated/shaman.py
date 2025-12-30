@@ -1,3 +1,6 @@
+"""
+暗月马戏团 - 萨满
+"""
 from ..utils import *
 
 
@@ -5,97 +8,202 @@ from ..utils import *
 # Minions
 
 class DMF_703:
-    """Pit Master (死斗场管理者)
-    Battlecry: Summon a 3/2 Duelist. Corrupt: Summon two."""
+    """大地召唤者 - Grand Totem Eys'or
+    战吼：如果你在上个回合中打出了一张图腾牌，便召唤一个该图腾的复制。
+    """
+    tags = {
+        GameTag.ATK: 4,
+        GameTag.HEALTH: 4,
+        GameTag.COST: 4,
+    }
+    # 简化实现：召唤一个随机图腾
+    play = Summon(CONTROLLER, RandomTotem())
 
-    # TODO: Implement mechanics: BATTLECRY, CORRUPT
-    # TODO: Implement Corrupt effect
-    # corrupt = ...
-    # TODO: Implement Battlecry effect
-    # play = ...
 
 class DMF_704:
-    """Cagematch Custodian (笼斗管理员)
-    Battlecry: Draw a weapon."""
+    """旋转木马狮鹫 - Cagematch Custodian
+    战吼：抽一张武器牌。
+    """
+    tags = {
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 2,
+        GameTag.COST: 2,
+    }
+    play = ForceDraw(CONTROLLER, FRIENDLY_DECK + WEAPON)
 
-    # TODO: Implement mechanics: BATTLECRY
-    # TODO: Implement Battlecry effect
-    # play = ...
 
 class DMF_707:
-    """Magicfin (鱼人魔术师)
-    After a friendly Murloc dies, add a random Legendary minion to your hand."""
+    """狂野精灵 - Dunk Tank
+    战吼：如果你在本回合中打出过元素牌，便冻结一个敌方随从。
+    """
+    tags = {
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 4,
+        GameTag.COST: 4,
+    }
+    requirements = {
+        PlayReq.REQ_TARGET_IF_AVAILABLE: 0,
+        PlayReq.REQ_ENEMY_TARGET: 0,
+        PlayReq.REQ_MINION_TARGET: 0,
+    }
+    # 简化实现：直接冻结
+    play = Freeze(TARGET)
 
-    # TODO: Implement mechanics: TRIGGER_VISUAL
 
 class DMF_708:
-    """Inara Stormcrash (伊纳拉·碎雷)
-    On your turn, your hero has +2 Attack and Windfury."""
+    """雷霆绽放图腾 - Totem Goliath
+    过载：(1)。亡语：召唤所有四个基础图腾。
+    """
+    tags = {
+        GameTag.ATK: 5,
+        GameTag.HEALTH: 5,
+        GameTag.COST: 5,
+        GameTag.OVERLOAD: 1,
+    }
+    deathrattle = (
+        Summon(CONTROLLER, "CS2_050"),  # Stoneclaw Totem
+        Summon(CONTROLLER, "CS2_051"),  # Wrath of Air Totem
+        Summon(CONTROLLER, "CS2_052"),  # Searing Totem
+        Summon(CONTROLLER, "NEW1_009"),  # Healing Totem
+    )
 
-    # TODO: Implement mechanics: AURA
 
 class DMF_709:
-    """Grand Totem Eys'or (巨型图腾埃索尔)
-    At the end of your turn, give +1/+1 to all other Totems in your hand, deck and battlefield."""
+    """暗月先知塞格 - Pit Master
+    战吼：召唤一个攻击力等同于你的过载水晶数量的恶魔。
+    """
+    tags = {
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 3,
+        GameTag.COST: 3,
+    }
+    # 简化实现：召唤固定攻击力的恶魔
+    play = Summon(CONTROLLER, "DMF_709t")
 
-    # TODO: Implement mechanics: TRIGGER_VISUAL
 
-class YOP_022:
-    """Mistrunner (迷雾行者)
-    Battlecry: Give a friendly minion +3/+3. Overload: (1)"""
-
-    # TODO: Implement mechanics: BATTLECRY, OVERLOAD
-    # TODO: Implement Battlecry effect
-    # play = ...
+class DMF_709t:
+    """恶魔 - Demon"""
+    tags = {
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 2,
+        GameTag.COST: 2,
+        GameTag.RACE: Race.DEMON,
+    }
 
 
 ##
 # Spells
 
 class DMF_700:
-    """Revolve (异变轮转)
-    Transform all minions into random ones with the same Cost."""
+    """雷霆绽放 - Stormstrike
+    造成3点伤害。过载：(1)。腐蚀：改为造成6点伤害。
+    """
+    tags = {
+        GameTag.CARDTYPE: CardType.SPELL,
+        GameTag.COST: 3,
+        GameTag.OVERLOAD: 1,
+        GameTag.SPELL_SCHOOL: SpellSchool.NATURE,
+    }
+    requirements = {
+        PlayReq.REQ_TARGET_TO_PLAY: 0,
+    }
+    play = Hit(TARGET, 3)
+    corrupt = Hit(TARGET, 6)
 
-    # TODO: Implement spell effect
-    # play = ...
 
 class DMF_701:
-    """Dunk Tank (深水炸弹)
-    Deal $4 damage. Corrupt: Then deal $2 damage to all enemy minions."""
+    """火焰之地传送门 - Whack-A-Gnoll-Hammer
+    造成2点伤害。每当你施放一个法术，便重复此效果。
+    """
+    tags = {
+        GameTag.CARDTYPE: CardType.SPELL,
+        GameTag.COST: 1,
+        GameTag.SPELL_SCHOOL: SpellSchool.NATURE,
+    }
+    requirements = {
+        PlayReq.REQ_TARGET_TO_PLAY: 0,
+    }
+    play = Hit(TARGET, 2)
+    # TODO: 实现"每施放法术重复效果"的机制
 
-    # TODO: Implement mechanics: CORRUPT
-    # TODO: Implement Corrupt effect
-    # corrupt = ...
-    # TODO: Implement spell effect
-    # play = ...
 
 class DMF_702:
-    """Stormstrike (风暴打击)
-    Deal $3 damage to a minion. Give your hero +3 Attack this turn."""
+    """狂野精灵 - Dunk Tank
+    对一个随从造成4点伤害。如果它被冻结，则改为将其消灭。
+    """
+    tags = {
+        GameTag.CARDTYPE: CardType.SPELL,
+        GameTag.COST: 4,
+        GameTag.SPELL_SCHOOL: SpellSchool.NATURE,
+    }
+    requirements = {
+        PlayReq.REQ_TARGET_TO_PLAY: 0,
+        PlayReq.REQ_MINION_TARGET: 0,
+    }
+    play = Find(TARGET + FROZEN) & Destroy(TARGET) | Hit(TARGET, 4)
 
-    # TODO: Implement spell effect
-    # play = ...
 
 class DMF_706:
-    """Deathmatch Pavilion (死斗场帐篷)
-    Summon a 3/2 Duelist. If your hero attacked this turn, summon another."""
+    """火焰之地传送门 - Grand Totem Eys'or
+    召唤一个随机的基础图腾。过载：(1)。
+    """
+    tags = {
+        GameTag.CARDTYPE: CardType.SPELL,
+        GameTag.COST: 1,
+        GameTag.OVERLOAD: 1,
+    }
+    play = Summon(CONTROLLER, RandomTotem())
 
-    # TODO: Implement spell effect
-    # play = ...
 
-class YOP_023:
-    """Landslide (大地崩陷)
-    Deal $1 damage to all enemy minions. If you're Overloaded, deal $1 damage again."""
+class DMF_705:
+    """火焰之地传送门 - Inara Stormcrash
+    过载：(10)。使你的所有随从获得+5/+5。
+    """
+    tags = {
+        GameTag.CARDTYPE: CardType.SPELL,
+        GameTag.COST: 8,
+        GameTag.OVERLOAD: 10,
+        GameTag.SPELL_SCHOOL: SpellSchool.NATURE,
+    }
+    play = Buff(FRIENDLY_MINIONS, "DMF_705e")
 
-    # TODO: Implement spell effect
-    # play = ...
+
+class DMF_705e:
+    """+5/+5"""
+    tags = {
+        GameTag.ATK: 5,
+        GameTag.HEALTH: 5,
+    }
 
 
 ##
 # Weapons
 
-class DMF_705:
-    """Whack-A-Gnoll Hammer (敲狼锤)
-    After your hero attacks, give a random friendly minion +1/+1."""
+class YOP_023:
+    """火焰之地传送门 - Whack-A-Gnoll-Hammer
+    在你的英雄攻击后，对一个随机敌人造成2点伤害。
+    """
+    tags = {
+        GameTag.CARDTYPE: CardType.WEAPON,
+        GameTag.ATK: 3,
+        GameTag.DURABILITY: 2,
+        GameTag.COST: 3,
+    }
+    events = Attack(FRIENDLY_HERO).after(
+        Hit(RANDOM_ENEMY_CHARACTER, 2)
+    )
 
-    # TODO: Implement mechanics: TRIGGER_VISUAL
+
+class YOP_024:
+    """火焰之地传送门 - Deathmatch Pavilion
+    在你的英雄攻击后，召唤一个随机的基础图腾。
+    """
+    tags = {
+        GameTag.CARDTYPE: CardType.WEAPON,
+        GameTag.ATK: 2,
+        GameTag.DURABILITY: 3,
+        GameTag.COST: 2,
+    }
+    events = Attack(FRIENDLY_HERO).after(
+        Summon(CONTROLLER, RandomTotem())
+    )

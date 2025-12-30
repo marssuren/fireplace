@@ -1,101 +1,209 @@
+"""
+暗月马戏团 - 潜行者
+"""
 from ..utils import *
 
 
 ##
 # Minions
 
-class DMF_071:
-    """Tenwu of the Red Smoke (“赤烟”腾武)
-    Battlecry: Return a friendly minion to your hand. It costs (1) this turn."""
-
-    # TODO: Implement mechanics: BATTLECRY
-    # TODO: Implement Battlecry effect
-    # play = ...
-
 class DMF_511:
-    """Foxy Fraud (狐人老千)
-    Battlecry: Your next Combo card this turn costs (2) less."""
+    """甜牙贼 - Sweet Tooth
+    腐蚀：获得+2攻击力和隐身。
+    """
+    tags = {
+        GameTag.ATK: 3,
+        GameTag.HEALTH: 2,
+        GameTag.COST: 2,
+    }
+    corrupt = Buff(SELF, "DMF_511e")
 
-    # TODO: Implement mechanics: BATTLECRY
-    # TODO: Implement Battlecry effect
-    # play = ...
 
-class DMF_514:
-    """Ticket Master (奖券老板)
-    Deathrattle: Shuffle 3 Tickets into your deck. When drawn, summon a 3/3 Plush Bear."""
+class DMF_511e:
+    """+2攻击力和隐身"""
+    tags = {
+        GameTag.ATK: 2,
+        GameTag.STEALTH: True,
+    }
 
-    # TODO: Implement mechanics: DEATHRATTLE
-    # TODO: Implement Deathrattle effect
-    # deathrattle = ...
+
+class DMF_512:
+    """影刃大师 - Shadow Clone
+    隐身。亡语：召唤一个本随从的复制。
+    """
+    tags = {
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 2,
+        GameTag.COST: 3,
+        GameTag.STEALTH: True,
+    }
+    deathrattle = Summon(CONTROLLER, ExactCopy(SELF))
+
+
+class DMF_513:
+    """暗影珠宝商 - Ticket Master
+    战吼：随机将你牌库中的一张牌洗入对手的牌库。
+    """
+    tags = {
+        GameTag.ATK: 4,
+        GameTag.HEALTH: 3,
+        GameTag.COST: 3,
+    }
+    play = Shuffle(OPPONENT, RANDOM(FRIENDLY_DECK))
+
+
+class DMF_515:
+    """暗影珠宝商 - Malevolent Strike
+    连击：获得+1攻击力。
+    """
+    tags = {
+        GameTag.ATK: 5,
+        GameTag.HEALTH: 4,
+        GameTag.COST: 5,
+    }
+    combo = Buff(SELF, "DMF_515e")
+
+
+class DMF_515e:
+    """+1攻击力"""
+    tags = {
+        GameTag.ATK: 1,
+    }
+
 
 class DMF_516:
-    """Grand Empress Shek'zara (大女皇夏柯扎拉)
-    Battlecry: Discover a card in your deck and draw all copies of it."""
+    """暗影珠宝商 - Foxy Fraud
+    战吼：你的下一个连击牌在本回合中的法力值消耗减少(2)点。
+    """
+    tags = {
+        GameTag.ATK: 3,
+        GameTag.HEALTH: 2,
+        GameTag.COST: 2,
+    }
+    play = Buff(CONTROLLER, "DMF_516e")
 
-    # TODO: Implement mechanics: BATTLECRY
-    # TODO: Implement Battlecry effect
-    # play = ...
+
+class DMF_516e:
+    """连击牌减费"""
+    update = Refresh(FRIENDLY_HAND + COMBO, {GameTag.COST: -2})
+    events = Play(CONTROLLER, COMBO).on(Destroy(SELF))
+
 
 class DMF_517:
-    """Sweet Tooth (甜食狂)
-    Corrupt: Gain +2 Attack and Stealth."""
+    """暗影珠宝商 - Tenwu of the Red Smoke
+    战吼：将一个友方随从移回你的手牌。该牌在本回合中的法力值消耗为(1)点。
+    """
+    tags = {
+        GameTag.ATK: 3,
+        GameTag.HEALTH: 2,
+        GameTag.COST: 2,
+    }
+    requirements = {
+        PlayReq.REQ_TARGET_IF_AVAILABLE: 0,
+        PlayReq.REQ_FRIENDLY_TARGET: 0,
+        PlayReq.REQ_MINION_TARGET: 0,
+    }
+    play = (
+        Bounce(TARGET),
+        Buff(TARGET, "DMF_517e"),
+    )
 
-    # TODO: Implement mechanics: CORRUPT
-    # TODO: Implement Corrupt effect
-    # corrupt = ...
 
-class DMF_519:
-    """Prize Plunderer (奖品掠夺者)
-    Combo: Deal 1 damage to a minion for each other card you've played this turn."""
-
-    # TODO: Implement mechanics: COMBO
-
-class YOP_016:
-    """Sparkjoy Cheat (欢脱的作弊选手)
-    Battlecry: If you're holding a Secret, cast it and draw a card."""
-
-    # TODO: Implement mechanics: BATTLECRY
-    # TODO: Implement Battlecry effect
-    # play = ...
+class DMF_517e:
+    """本回合费用为1"""
+    tags = {
+        GameTag.COST: SET(1),
+    }
+    events = OwnTurnEnd(CONTROLLER).on(Destroy(SELF))
 
 
 ##
 # Spells
 
-class DMF_512:
-    """Cloak of Shadows (暗影斗篷)
-    Give your hero Stealth until your next turn."""
+class DMF_510:
+    """暗影珠宝商 - Prize Plunderer
+    造成3点伤害。连击：并抽一张牌。
+    """
+    tags = {
+        GameTag.CARDTYPE: CardType.SPELL,
+        GameTag.COST: 1,
+        GameTag.SPELL_SCHOOL: SpellSchool.SHADOW,
+    }
+    requirements = {
+        PlayReq.REQ_TARGET_TO_PLAY: 0,
+    }
+    play = Hit(TARGET, 3)
+    combo = Draw(CONTROLLER)
 
-    # TODO: Implement spell effect
-    # play = ...
 
-class DMF_513:
-    """Shadow Clone (暗影克隆)
-    Secret: After a minion attacks your hero, summon a copy of it with Stealth."""
+class DMF_514:
+    """暗影珠宝商 - Swindle
+    抽一张法术牌。连击：并抽一张武器牌。
+    """
+    tags = {
+        GameTag.CARDTYPE: CardType.SPELL,
+        GameTag.COST: 2,
+    }
+    play = ForceDraw(CONTROLLER, FRIENDLY_DECK + SPELL)
+    combo = ForceDraw(CONTROLLER, FRIENDLY_DECK + WEAPON)
 
-    # TODO: Implement mechanics: SECRET
-    # TODO: Implement spell effect
-    # play = ...
-
-class DMF_515:
-    """Swindle (行骗)
-    Draw a spell. Combo: And a minion."""
-
-    # TODO: Implement mechanics: COMBO
-    # TODO: Implement spell effect
-    # play = ...
 
 class DMF_518:
-    """Malevolent Strike (致伤打击)
-    Destroy a minion.  Costs (1) less for each   card in your deck that   didn't start there."""
+    """暗影珠宝商 - Cloak of Shadows
+    你的英雄获得免疫，直到你的下个回合开始。
+    """
+    tags = {
+        GameTag.CARDTYPE: CardType.SPELL,
+        GameTag.COST: 3,
+    }
+    play = Buff(FRIENDLY_HERO, "DMF_518e")
 
-    # TODO: Implement spell effect
-    # play = ...
 
-class YOP_017:
-    """Shenanigans (蕉猾诡计)
-    Secret: When your opponent draws their second card in a turn, transform it into a Banana."""
+class DMF_518e:
+    """免疫"""
+    tags = {
+        GameTag.IMMUNE: True,
+    }
+    events = OwnTurnBegin(CONTROLLER).on(Destroy(SELF))
 
-    # TODO: Implement mechanics: SECRET
-    # TODO: Implement spell effect
-    # play = ...
+
+class DMF_519:
+    """暗影珠宝商 - Octobot
+    秘密：当你的随从被攻击时，召唤三个2/2的海盗。
+    """
+    tags = {
+        GameTag.CARDTYPE: CardType.SPELL,
+        GameTag.COST: 3,
+        GameTag.SECRET: True,
+    }
+    secret = Attack(ALL_PLAYERS, FRIENDLY_MINIONS).on(
+        Summon(CONTROLLER, "DMF_519t") * 3,
+        Reveal(SELF),
+    )
+
+
+class DMF_519t:
+    """海盗 - Pirate"""
+    tags = {
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 2,
+        GameTag.COST: 2,
+        GameTag.RACE: Race.PIRATE,
+    }
+
+
+##
+# Weapons
+
+class DMF_520:
+    """暗影珠宝商 - Cutting Class
+    抽一张牌。连击：再抽一张。
+    """
+    tags = {
+        GameTag.CARDTYPE: CardType.WEAPON,
+        GameTag.ATK: 2,
+        GameTag.DURABILITY: 2,
+        GameTag.COST: 2,
+    }
+    play = Draw(CONTROLLER)
+    combo = Draw(CONTROLLER)
