@@ -1,0 +1,3805 @@
+[
+  {
+    "artist": "Grafit",
+    "attack": 2,
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 106063,
+    "flavor": "So THAT'S how the Geist stole Winterveil!",
+    "health": 1,
+    "id": "MIS_006",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY",
+      "DISCOVER",
+      "GIGANTIFY"
+    ],
+    "name": "Toysnatching Geist",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD"
+    ],
+    "rarity": "COMMON",
+    "runeCost": {
+      "blood": 0,
+      "frost": 0,
+      "unholy": 1
+    },
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]<b>Gigantify</b>\n<b>Battlecry:</b> <b>Discover</b> an\nUndead. Reduce its Cost by\nthis minion's Attack.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Matt Dixon",
+    "attack": 5,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 106232,
+    "elite": true,
+    "flavor": "Dr. Boom is the greatest inventor in the Tri-Zone area!",
+    "health": 5,
+    "id": "MIS_025",
+    "isMiniSet": true,
+    "mechanics": [
+      "GIGANTIFY",
+      "MINIATURIZE",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "The Replicator-inator",
+    "race": "MECHANICAL",
+    "races": [
+      "MECHANICAL"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]<b>Miniaturize</b>, <b>Gigantify</b>\nAfter you play a minion with\nthe same Attack as this,\nsummon a copy of it.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Grafit",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 106673,
+    "elite": true,
+    "flavor": "Though Dorian may officially be working under Dr. Boom, we all know who's really pulling the strings...",
+    "hasDiamondSkin": true,
+    "health": 6,
+    "id": "MIS_026",
+    "isMiniSet": true,
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Puppetmaster Dorian",
+    "rarity": "LEGENDARY",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "After you draw a minion, get a 1/1 copy of it that costs (1).",
+    "type": "MINION"
+  },
+  {
+    "artist": "Guillaume Beauchêne",
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 104853,
+    "flavor": "WHY DO THEY NEVER RUN TO THE SIDE?????",
+    "id": "MIS_027",
+    "isMiniSet": true,
+    "mechanics": [
+      "ImmuneToSpellpower"
+    ],
+    "name": "Domino Effect",
+    "rarity": "RARE",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "Deal $2 damage to a minion. Repeat to the left or right, dealing 1 more damage each time.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Anton Zemskov",
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 105511,
+    "flavor": "<whispers> \"...and your father was a Murloc too.\"",
+    "id": "MIS_100",
+    "isMiniSet": true,
+    "name": "Helm of Humiliation",
+    "rarity": "RARE",
+    "runeCost": {
+      "blood": 2,
+      "frost": 0,
+      "unholy": 0
+    },
+    "set": "WHIZBANGS_WORKSHOP",
+    "spellSchool": "SHADOW",
+    "text": "Give a minion -5/-5. Give a minion in your hand +5/+5.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Guillaume Beauchêne",
+    "attack": 5,
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 105512,
+    "durability": 0,
+    "flavor": "No honey, we have Shadowmourne at home.",
+    "health": 1,
+    "id": "MIS_101",
+    "isMiniSet": true,
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Foamrender",
+    "rarity": "RARE",
+    "runeCost": {
+      "blood": 0,
+      "frost": 0,
+      "unholy": 1
+    },
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "Whenever your hero attacks, spend 3 <b>Corpses</b> to gain +1 Durability.",
+    "type": "WEAPON"
+  },
+  {
+    "artist": "L. Lullabi & K. Turovec",
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 105514,
+    "flavor": "Sorry, the Workshop has a strict 'no-takesies-backsies' policy.",
+    "id": "MIS_102",
+    "isMiniSet": true,
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "Return Policy",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "DEATHRATTLE"
+    ],
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "<b>Discover</b> a friendly <b>Deathrattle</b> card you've played this game.\nTrigger its <b>Deathrattle</b>.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Studio Hive",
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 105521,
+    "flavor": "Don't bother asking, \"Can we keep them?\" The answer is no.",
+    "id": "MIS_104",
+    "isMiniSet": true,
+    "name": "Wilderness Pack",
+    "rarity": "RARE",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "Add 5 random\nBeasts to your hand.\nThey are <b>Temporary</b>.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Jakub Kasper",
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 105564,
+    "flavor": "Used to contain Worgen Greaser until SOMEONE started buffing it.",
+    "id": "MIS_105",
+    "isMiniSet": true,
+    "mechanics": [
+      "SECRET"
+    ],
+    "name": "Bargain Bin",
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "<b>Secret:</b> After your opponent plays a minion, spell, or weapon, draw a card of the other 2 types.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "L. Lullabi & K. Turovec",
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 105573,
+    "flavor": "Bug Report: This card works perfectly.",
+    "id": "MIS_107",
+    "isMiniSet": true,
+    "mechanics": [
+      "ImmuneToSpellpower"
+    ],
+    "name": "Malfunction",
+    "rarity": "RARE",
+    "set": "WHIZBANGS_WORKSHOP",
+    "spellSchool": "ARCANE",
+    "text": "Deal $3 damage split among all enemy minions. If your deck has no minions, deal $3 more.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Kleston Marques",
+    "attack": 2,
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 108615,
+    "flavor": "Someone really put their heart into making this.",
+    "health": 4,
+    "id": "MIS_300",
+    "isMiniSet": true,
+    "mechanics": [
+      "ELUSIVE",
+      "GIGANTIFY",
+      "LIFESTEAL",
+      "TAUNT"
+    ],
+    "name": "Snuggle Teddy",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "<b>Gigantify</b>\n<b>Elusive</b>, <b>Lifesteal</b>, <b>Taunt</b>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Daniil Kudriavtsev",
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 108617,
+    "flavor": "You'd need to be pretty jacked to climb this.",
+    "id": "MIS_301",
+    "isMiniSet": true,
+    "name": "Overgrown Beanstalk",
+    "rarity": "RARE",
+    "set": "WHIZBANGS_WORKSHOP",
+    "spellSchool": "NATURE",
+    "text": "Summon a 2/2 Treant. Draw a card for each Treant you control.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "L. Lullabi & K. Turovec",
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 108619,
+    "flavor": "That's an ice deal!",
+    "id": "MIS_302",
+    "isMiniSet": true,
+    "name": "Buy One, Get One Freeze",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "FREEZE"
+    ],
+    "set": "WHIZBANGS_WORKSHOP",
+    "spellSchool": "FROST",
+    "text": "<b>Freeze</b> a minion. Summon a <b>Frozen</b>\ncopy of it.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Matt Dixon",
+    "attack": 2,
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 108620,
+    "flavor": "Darkmoon Magicians pull rabbits out of their hats, and wins out of their...\nhats.",
+    "health": 4,
+    "id": "MIS_303",
+    "mechanics": [
+      "ELUSIVE",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Darkmoon Magician",
+    "rarity": "RARE",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]<b>Elusive</b>\nAfter you cast a spell,\ncast a random spell that\ncosts (1) more.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Edgar Hidalgo",
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 108622,
+    "flavor": "Soon (TM).",
+    "id": "MIS_305",
+    "isMiniSet": true,
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "Delayed Product",
+    "rarity": "RARE",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "<b>Discover</b> and summon a minion that costs (8) or more. It goes <b>Dormant</b> for 2 turns.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Tanamaes Leejierasaes",
+    "attack": 10,
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 108624,
+    "flavor": "Are y'all gonna ask for THIS one to be orange too!?",
+    "health": 10,
+    "id": "MIS_306",
+    "isMiniSet": true,
+    "mechanics": [
+      "OVERLOAD",
+      "RUSH"
+    ],
+    "name": "Rocket Hopper",
+    "overload": 4,
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "<b>Rush</b>\n<b>Overload:</b> (4)",
+    "type": "MINION"
+  },
+  {
+    "artist": "Vladimir Kafanov",
+    "attack": 1,
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 108625,
+    "flavor": "Grows up to 8x its size! Just add water!",
+    "health": 1,
+    "id": "MIS_307",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY",
+      "GIGANTIFY"
+    ],
+    "name": "Murloc Growfin",
+    "race": "MURLOC",
+    "races": [
+      "MURLOC"
+    ],
+    "rarity": "RARE",
+    "referencedTags": [
+      "RUSH"
+    ],
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]<b>Gigantify</b>\n<b>Battlecry:</b> Summon a\nTinyfin with <b>Rush</b> and stats\nequal to this minion's.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Patrik Bjorkstrom",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 108980,
+    "flavor": "Explodineeeer... explodifaaaar... explode whereeeever you aaaaare...",
+    "health": 4,
+    "id": "MIS_308",
+    "isMiniSet": true,
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Explodineer",
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]At the end of your turn, shuffle\na Bomb into your opponent's\ndeck. When drawn, it explodes\nfor 5 damage.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Luca Zontini",
+    "attack": 6,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 109150,
+    "flavor": "I HOPE YOU STEP ON A 1-COST MINION!",
+    "health": 3,
+    "id": "MIS_314",
+    "isMiniSet": true,
+    "mechanics": [
+      "DEATHRATTLE",
+      "RUSH"
+    ],
+    "name": "Building-Block Golem",
+    "rarity": "RARE",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]<b>Rush</b>\n<b>Deathrattle:</b> Summon three\nrandom 1-Cost minions.",
+    "type": "MINION"
+  },
+  {
+    "artist": "L. Lullabi & K. Turovec",
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 105499,
+    "flavor": "Need closure on your Hardcore WoW character dying in Westfall? Step right up!",
+    "id": "MIS_700",
+    "isMiniSet": true,
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "Whack-A-Gnoll",
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "<b>Discover</b> a Paladin weapon from the past. Give it +1/+1.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Vlad Botos",
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 105500,
+    "flavor": "Ja, please don't freeze my minions. No stall, ja????",
+    "id": "MIS_701",
+    "isMiniSet": true,
+    "name": "Wave of Nostalgia",
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "spellSchool": "NATURE",
+    "text": "Transform ALL minions into random <b>Legendary</b> ones from the past.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Juan Calle",
+    "attack": 6,
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 105502,
+    "flavor": "FLAVOR TEXT!",
+    "health": 6,
+    "id": "MIS_703",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY",
+      "TAUNT"
+    ],
+    "name": "INFERNAL!",
+    "race": "DEMON",
+    "races": [
+      "DEMON"
+    ],
+    "rarity": "RARE",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]<b>Taunt</b>\n<b>Battlecry:</b> Set your hero's\nremaining Health to 15.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Studio Hive",
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 105505,
+    "flavor": "TAUNT. TAUNT. TAUNT. TAUNT. TAUNT.",
+    "id": "MIS_705",
+    "isMiniSet": true,
+    "name": "Standardized Pack",
+    "rarity": "RARE",
+    "referencedTags": [
+      "TAUNT"
+    ],
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "Add 5 random <b>Taunt</b> minions to your hand. They are <b>Temporary</b>.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Tanamaes Leejierasaes",
+    "attack": 3,
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 105516,
+    "flavor": "Worth its weight in Dust.",
+    "health": 2,
+    "id": "MIS_706",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY",
+      "DEATHRATTLE"
+    ],
+    "name": "Dust Bunny",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "RARE",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]<b>Battlecry and Deathrattle:</b>\nAdd a random piece of junk\nto your hand <i>(a Coin, Rock,\nBanana, or Knife)</i>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mooncolony",
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 105539,
+    "flavor": "Whenever you cast this, we make a new Nemsy portrait.",
+    "id": "MIS_707",
+    "isMiniSet": true,
+    "name": "Mass Production",
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "Draw 2 cards. Deal $3 damage to your hero. Shuffle 2 copies of this into your deck.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Studio Hive",
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 105552,
+    "flavor": "Twist it! Rip it! Play it!",
+    "id": "MIS_708",
+    "isMiniSet": true,
+    "name": "Twisted Pack",
+    "rarity": "RARE",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "Add 5 random cards from other\nclasses to your hand.\nThey are <b>Temporary</b>.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Vika Yarova",
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 105556,
+    "flavor": "Somewhere there's a Naaru missing a couple of shards.",
+    "id": "MIS_709",
+    "isMiniSet": true,
+    "mechanics": [
+      "LIFESTEAL"
+    ],
+    "name": "Holy Glowsticks",
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "spellSchool": "HOLY",
+    "text": "<b>Lifesteal</b>\nDeal $4 damage to a minion.\nCosts (1) if you've cast\na Holy spell this turn.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Melvin Chan",
+    "attack": 1,
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 105559,
+    "flavor": "The right hand of Queen Azshara is Lady Vashj. This is her left hand.",
+    "health": 2,
+    "id": "MIS_710",
+    "isMiniSet": true,
+    "name": "Sock Puppet Slitherspear",
+    "race": "NAGA",
+    "races": [
+      "NAGA"
+    ],
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "This minion's Attack is improved by your hero's.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Brian Despain",
+    "attack": 8,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 10,
+    "dbfId": 105570,
+    "flavor": "Remember: Always wear your helmet when strapped to a bajillion explosives.",
+    "health": 8,
+    "id": "MIS_711",
+    "isMiniSet": true,
+    "mechanics": [
+      "DEATHRATTLE",
+      "RUSH"
+    ],
+    "name": "Safety Expert",
+    "race": "MECHANICAL",
+    "races": [
+      "MECHANICAL"
+    ],
+    "rarity": "RARE",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "<b>Rush</b>. <b>Deathrattle:</b> Shuffle three Bombs into your opponent's deck.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Alex Horley Orlandelli",
+    "attack": 7,
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 105582,
+    "elite": true,
+    "flavor": "Dr. Boom was definitely a dinosaur kid.",
+    "health": 7,
+    "id": "MIS_712",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY",
+      "ELUSIVE",
+      "TAUNT"
+    ],
+    "name": "Toyrantus",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "<b>Taunt</b>, <b>Elusive</b>\n<b>Battlecry:</b> If you have\n10 Mana Crystals,\ngain +7/+7.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Stefan Bogdasarov",
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 105587,
+    "flavor": "Funhouse mirror on the wall,\nWho's the tallest gnome of all?",
+    "id": "MIS_714",
+    "isMiniSet": true,
+    "name": "Funhouse Mirror",
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "spellSchool": "SHADOW",
+    "text": "Summon a copy\nof an enemy minion.\nIt attacks the original.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Patrik Bjorkstrom",
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 102376,
+    "flavor": "\"Goodbye! Goodbye! Goodbye!\"",
+    "id": "MIS_902",
+    "isMiniSet": true,
+    "name": "Part Scrapper",
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "Lose up to 5 Armor.\nYour next Mech costs\nthat much less.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Mooncolony",
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 105142,
+    "flavor": "Beauty is in the eye of the scorpidholder.",
+    "id": "MIS_903",
+    "isMiniSet": true,
+    "mechanics": [
+      "COMBO"
+    ],
+    "name": "Dubious Purchase",
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "Draw 3 cards.\n<b>Combo:</b> Destroy a random enemy minion.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Nicola Saviori",
+    "attack": 3,
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 105257,
+    "flavor": "Don't get it wet or feed it after midnight.",
+    "health": 3,
+    "id": "MIS_911",
+    "isMiniSet": true,
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Gibbering Reject",
+    "race": "DEMON",
+    "races": [
+      "DEMON"
+    ],
+    "rarity": "RARE",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "After your hero attacks, summon another Gibbering Reject.",
+    "type": "MINION"
+  },
+  {
+    "artist": "L. Lullabi & K. Turovec",
+    "attack": 4,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 105260,
+    "elite": true,
+    "flavor": "We're fresh out of Toyrantus right now but lemme show you something we have that's just as good!",
+    "health": 4,
+    "id": "MIS_914",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Product 9",
+    "race": "BEAST",
+    "races": [
+      "MECHANICAL",
+      "BEAST"
+    ],
+    "rarity": "LEGENDARY",
+    "referencedTags": [
+      "SECRET"
+    ],
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "<b>Battlecry:</b> Recast every friendly <b>Secret</b> that triggered this game.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Konstantin Porubov",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 105262,
+    "flavor": "Wow... who could have guessed? Another rock user ruining the meta for everyone as usual.",
+    "health": 3,
+    "id": "MIS_916",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Pro Gamer",
+    "rarity": "EPIC",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]<b>Battlecry:</b> Challenge your\nopponent to a game of\nRock-Paper-Scissors! The\nwinner draws 2 cards.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Stefan Bogdasarov",
+    "attack": 3,
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 105281,
+    "flavor": "These bots are sent out with nearly drained batteries, for dramatic effect.",
+    "health": 3,
+    "id": "MIS_918",
+    "isMiniSet": true,
+    "mechanics": [
+      "GIGANTIFY"
+    ],
+    "name": "Flickering Lightbot",
+    "race": "MECHANICAL",
+    "races": [
+      "MECHANICAL"
+    ],
+    "rarity": "RARE",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]<b>Gigantify</b>\nCosts (1) less for each\nHoly spell you've cast\nthis game.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Vlad Botos",
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 105282,
+    "flavor": "AUDIENCE PARTICIPATION TIME!",
+    "health": 2,
+    "id": "MIS_919",
+    "isMiniSet": true,
+    "name": "Puppet Theatre",
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]Choose an enemy\nminion. Get a 1/1 copy\nof it that costs (1).",
+    "type": "LOCATION"
+  },
+  {
+    "artist": "Kevin Sidharta",
+    "attack": 0,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 102337,
+    "flavor": "Too cute to be contained!",
+    "health": 3,
+    "id": "TOY_000",
+    "mechanics": [
+      "TAUNT"
+    ],
+    "name": "Tar Slime",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "<b>Taunt</b>\nHas +2 Attack during your opponent's turn.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mauricio Herrera",
+    "attack": 1,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 102347,
+    "flavor": "\"How do you keep losing your keys!? They couldn't have just gotten up and walked away!\"",
+    "health": 1,
+    "id": "TOY_006",
+    "mechanics": [
+      "BATTLECRY",
+      "DISCOVER"
+    ],
+    "name": "Scarab Keychain",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "<b>Battlecry:</b> <b>Discover</b> a\n2-Cost card.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Konstantin Porubov",
+    "attack": 0,
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 102381,
+    "flavor": "Horrible call! BOOOOoo00oO0o0OO0oo0oO!",
+    "health": 3,
+    "id": "TOY_028",
+    "mechanics": [
+      "AURA",
+      "STEALTH"
+    ],
+    "name": "Spirit of the Team",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD"
+    ],
+    "rarity": "RARE",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "<b>Stealth</b> for 1 turn.\nYour hero has +2 Attack\non your turn.",
+    "type": "MINION"
+  },
+  {
+    "artist": "BOSi Studio",
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 102449,
+    "flavor": "There are 99 gnomes in this picture. Can YOU find them all?",
+    "id": "TOY_037",
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "Hidden Objects",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "SECRET"
+    ],
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "<b>Discover</b> a <b>Secret</b>.\nSet its Cost to (1).",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Zoltan Boros",
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 102463,
+    "flavor": "Now with expedited Overload!",
+    "id": "TOY_046",
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "Incredible Value",
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "spellSchool": "SHADOW",
+    "text": "<b>Discover</b> a 4-Cost minion. Set its Attack and Health to 7.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Anton Zemskov",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 102472,
+    "flavor": "\"Uncentered gem, fractured frame, folded corner... 10/10!\"",
+    "health": 4,
+    "id": "TOY_054",
+    "mechanics": [
+      "BATTLECRY",
+      "DISCOVER"
+    ],
+    "name": "Card Grader",
+    "race": "NAGA",
+    "races": [
+      "NAGA"
+    ],
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "<b>Battlecry:</b> If you've cast\na spell while holding this, <b>Discover</b> a card from your deck.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Todd Harris",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 102784,
+    "flavor": "\"You want a piece of me!? Will that be one scoop or two?\"",
+    "health": 3,
+    "id": "TOY_307",
+    "mechanics": [
+      "BATTLECRY",
+      "MINIATURIZE"
+    ],
+    "name": "Sweetened Snowflurry",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]<b>Miniaturize</b>\n<b>Battlecry:</b> Get 2 random\n<b>Temporary</b> Frost spells.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Ivan Fomin",
+    "attack": 4,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 102799,
+    "flavor": "She remembers Alterac Valley like it was 833 days ago.",
+    "health": 4,
+    "howToEarnGolden": "Earnable on the <i>Whizbang's Workshop</i> Reward Track.",
+    "id": "TOY_312",
+    "mechanics": [
+      "MINIATURIZE",
+      "RUSH",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Nostalgic Gnome",
+    "rarity": "RARE",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]<b>Miniaturize</b>\n<b>Rush</b>. After this minion deals\nexact lethal damage on your\nturn, draw a card.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mooncolony",
+    "attack": 0,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 0,
+    "dbfId": 102983,
+    "elite": true,
+    "flavor": "It only took us 2998 prototypes to figure out how to make the perfect card... by having YOU do it!",
+    "health": 0,
+    "hideCost": true,
+    "id": "TOY_330",
+    "name": "Zilliax Deluxe 3000",
+    "race": "MECHANICAL",
+    "races": [
+      "MECHANICAL"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "While building your deck,\ncustomize your very own\nZilliax Deluxe 3000!",
+    "type": "MINION"
+  },
+  {
+    "artist": "Sergey Tsvelykh",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 103327,
+    "flavor": "Nostalgic Initiate: \"Man I wish I could relive my college days...\"\nKel'thuzad: \"Say no more.\"",
+    "health": 3,
+    "howToEarnGolden": "Earnable on the <i>Whizbang's Workshop</i> Reward Track.",
+    "id": "TOY_340",
+    "mechanics": [
+      "MINIATURIZE",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Nostalgic Initiate",
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "<b>Miniaturize</b>\nThe first time you cast a spell, gain +2/+2.",
+    "type": "MINION"
+  },
+  {
+    "artist": "James Ryman",
+    "attack": 6,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 103333,
+    "flavor": "He used to be kind of corrupt, but now he performs purely for the fun of it.",
+    "health": 5,
+    "id": "TOY_341",
+    "mechanics": [
+      "BATTLECRY",
+      "MINIATURIZE"
+    ],
+    "name": "Nostalgic Clown",
+    "rarity": "EPIC",
+    "set": "WHIZBANGS_WORKSHOP",
+    "targetingArrowText": "Deal 4 damage.",
+    "text": "[x]<b>Miniaturize</b>\n<b>Battlecry:</b> If you've played a\nhigher Cost card while holding\nthis, deal 4 damage.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Alex Stone",
+    "attack": 3,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 103143,
+    "flavor": "Oh this is a present? Would you like that gift raptor not?",
+    "health": 2,
+    "id": "TOY_350",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Painted Canvasaur",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "RARE",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "<b>Battlecry:</b> Give each other friendly Beast a random <b>Bonus Effect</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Edgar Hidalgo",
+    "attack": 0,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 103144,
+    "flavor": "Which came first, the Mukla or the egg?",
+    "health": 3,
+    "id": "TOY_351",
+    "mechanics": [
+      "DEATHRATTLE",
+      "MINIATURIZE"
+    ],
+    "name": "Mystery Egg",
+    "rarity": "EPIC",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]<b>Miniaturize</b>\n<b>Deathrattle:</b> Get a copy of a\nrandom Beast in your deck.\nIt costs (3) less.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Vika Yarova",
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 103146,
+    "flavor": "We made fetch happen.",
+    "id": "TOY_352",
+    "name": "Fetch!",
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "Draw a minion. If it's a Beast, draw a spell.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Matt Dixon",
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 103153,
+    "flavor": "\"I'll name you Misha, you Huffer, and you can be the third one.\"",
+    "id": "TOY_353",
+    "name": "Patchwork Pals",
+    "rarity": "RARE",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "Get all 3 Animal Companions. They\ncost (1) less.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Vika Yarova",
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 103154,
+    "flavor": "This place has really gone to the dogs.",
+    "id": "TOY_354",
+    "name": "R.C. Rampage",
+    "rarity": "EPIC",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "Summon six 1/1 Hounds. Any that can't fit give the others +1/+1.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Juan Calle",
+    "attack": 3,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 103156,
+    "elite": true,
+    "flavor": "So THIS is who's been lowering the power level of all those Hearthstone cards in a foamly fashion.",
+    "health": 6,
+    "id": "TOY_355",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Hemet, Foam Marksman",
+    "rarity": "LEGENDARY",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "After a friendly Beast dies, get a random <b>Legendary</b> Beast from the past. It costs (2) less.",
+    "type": "MINION"
+  },
+  {
+    "artist": "L. Lullabi & K. Turovec",
+    "attack": 7,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 103162,
+    "faction": "ALLIANCE",
+    "flavor": "This toy WRECKS.",
+    "health": 7,
+    "id": "TOY_356",
+    "mechanics": [
+      "DEATHRATTLE",
+      "RUSH"
+    ],
+    "name": "Toyrannosaurus",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "<b>Rush</b>\n<b>Deathrattle:</b> Deal 7 damage to a random enemy.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Juan Calle",
+    "attack": 6,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 9,
+    "dbfId": 103166,
+    "elite": true,
+    "flavor": "He's so fluffy you're gonna DIE!",
+    "hasDiamondSkin": true,
+    "health": 6,
+    "id": "TOY_357",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "King Plush",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]<b>Battlecry:</b> If your opponent\nhas 15 or less health, return all\nother minions to their owner's\ndecks and gain <b>Charge</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Vika Yarova",
+    "attack": 1,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 103167,
+    "durability": 0,
+    "flavor": "For some reason, my dog keeps trying to eat this.",
+    "health": 3,
+    "id": "TOY_358",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Remote Control",
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "After your hero attacks, summon a 1/1 Hound.",
+    "type": "WEAPON"
+  },
+  {
+    "artist": "Mooncolony",
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 103186,
+    "flavor": "Yeah, I work out at the gym. The one with all the plushies and toys.",
+    "health": 2,
+    "id": "TOY_359",
+    "name": "Jungle Gym",
+    "rarity": "RARE",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]Deal 1 damage to a\nrandom enemy. Repeat\nfor each friendly Beast.",
+    "type": "LOCATION"
+  },
+  {
+    "artist": "L. Lullabi & K. Turovec",
+    "attack": 2,
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 103266,
+    "flavor": "You no take candle! Or second candle. You can take third candle though.",
+    "health": 3,
+    "id": "TOY_370",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Triplewick Trickster",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "<b>Battlecry:</b> Deal 2 damage to a random enemy,\nthree times.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Kevin Sidharta",
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 103269,
+    "flavor": "You thought the 9-piece puzzle would be easy, didn't you?",
+    "id": "TOY_371",
+    "name": "Manufacturing Error",
+    "rarity": "RARE",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "Draw 3 cards. If your deck has no minions, they cost (3) less.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Vladimir Kafanov",
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 103270,
+    "flavor": "POP! Goes the Old God!",
+    "id": "TOY_372",
+    "name": "Yogg in the Box",
+    "rarity": "EPIC",
+    "set": "WHIZBANGS_WORKSHOP",
+    "spellSchool": "SHADOW",
+    "text": "Cast 5 random spells. If your deck has no minions, the spells cast cost (5) or more.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Ramzy Kamen",
+    "attack": 5,
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 108515,
+    "elite": true,
+    "flavor": "Khadgar Khadgar in the ball, who is the smartest white-haired, tall, handsome mage of them all?",
+    "health": 5,
+    "id": "TOY_373",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Puzzlemaster Khadgar",
+    "rarity": "LEGENDARY",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]<b>Battlecry:</b> Equip a 0/6\nWisdomball that casts\nhelpful Mage spells!",
+    "type": "MINION"
+  },
+  {
+    "artist": "Anton Zemskov",
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 103347,
+    "flavor": "Ah, I see now! One of them is a picture of a Chillwind Yeti, and the other is a Blood Elf.",
+    "id": "TOY_374",
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "Spot the Difference",
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "<b>Discover</b> a 3-Cost minion to summon.\nIf your deck has no minions, repeat this.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Daniil Kudriavtsev",
+    "attack": 3,
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 103348,
+    "flavor": "How do you do, fellow Ice Elementals?",
+    "health": 4,
+    "id": "TOY_375",
+    "mechanics": [
+      "BATTLECRY",
+      "MINIATURIZE"
+    ],
+    "name": "Sleet Skater",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "RARE",
+    "referencedTags": [
+      "FREEZE"
+    ],
+    "set": "WHIZBANGS_WORKSHOP",
+    "targetingArrowText": "Freeze an enemy minion.",
+    "text": "<b>Miniaturize</b>\n<b>Battlecry:</b> <b>Freeze</b> an\nenemy minion. Gain Armor equal to its Attack.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Jakub Kasper",
+    "attack": 3,
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 103350,
+    "flavor": "They've amassed a largely aquatic body of work, painting lakes, rivers and self portraits.",
+    "health": 3,
+    "id": "TOY_376",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Watercolor Artist",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "EPIC",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "<b>Battlecry:</b> Draw a\nFrost spell. At the start\nof your turns, reduce\nits Cost by (1).",
+    "type": "MINION"
+  },
+  {
+    "artist": "L. Lullabi & K. Turovec",
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 103352,
+    "flavor": "Do not fear power... Fear those who SEW IT!",
+    "id": "TOY_377",
+    "name": "Frost Lich Cross-Stitch",
+    "rarity": "RARE",
+    "referencedTags": [
+      "FREEZE"
+    ],
+    "set": "WHIZBANGS_WORKSHOP",
+    "spellSchool": "FROST",
+    "text": "Deal $3 damage to a character. If it dies, summon a 3/6 Water Elemental that <b><b>Freeze</b>s</b>.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Alex Stone",
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 10,
+    "dbfId": 103354,
+    "elite": true,
+    "flavor": "Look closely in the ball and you'll see the expansion of space and time itself. Or their projections, anyway.",
+    "id": "TOY_378",
+    "name": "The Galactic Projection Orb",
+    "rarity": "LEGENDARY",
+    "set": "WHIZBANGS_WORKSHOP",
+    "spellSchool": "ARCANE",
+    "text": "Recast a random spell of each Cost you've cast this game <i>(targets enemies if possible)</i>.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Daniil Kudriavtsev",
+    "attack": 3,
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 103491,
+    "flavor": "I hope you didn't need all that purple clay.",
+    "health": 7,
+    "id": "TOY_380",
+    "mechanics": [
+      "DEATHRATTLE",
+      "MINIATURIZE",
+      "TAUNT"
+    ],
+    "name": "Clay Matriarch",
+    "race": "DRAGON",
+    "races": [
+      "DRAGON"
+    ],
+    "rarity": "RARE",
+    "referencedTags": [
+      "ELUSIVE"
+    ],
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]<b>Miniaturize</b>\n<b>Taunt</b>. <b>Deathrattle:</b> Summon\na 4/4 Whelp with <b>Elusive</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Hideaki Takamura",
+    "attack": 2,
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 103492,
+    "flavor": "Warcraft. StarCraft. And now, Papercraft!",
+    "health": 3,
+    "id": "TOY_381",
+    "mechanics": [
+      "AURA"
+    ],
+    "name": "Papercraft Angel",
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "Your Hero Power costs (0).",
+    "type": "MINION"
+  },
+  {
+    "artist": "Kleston Marques",
+    "attack": 3,
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 103493,
+    "flavor": "How about YOU try folding paper with only three fingers!?",
+    "health": 3,
+    "id": "TOY_382",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Careless Crafter",
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "<b>Deathrattle:</b> Get two\n0-Cost Bandages that restore 3 Health.",
+    "type": "MINION"
+  },
+  {
+    "artist": "James Ryman",
+    "attack": 5,
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 103494,
+    "elite": true,
+    "flavor": "The 10th anniversary edition of a classic bestseller!",
+    "health": 5,
+    "id": "TOY_383",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Raza the Resealed",
+    "rarity": "LEGENDARY",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]<b>Battlecry:</b> Shuffle copies of 5\nrandom friendly minions that\ndied this game into your\ndeck. They cost (0).",
+    "type": "MINION"
+  },
+  {
+    "artist": "Edgar Hidalgo",
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 108518,
+    "flavor": "I sure do love making my minions better!",
+    "id": "TOY_384",
+    "name": "Purifying Power",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "SILENCE"
+    ],
+    "set": "WHIZBANGS_WORKSHOP",
+    "spellSchool": "HOLY",
+    "text": "<b>Silence</b> all friendly minions, then give them +1/+2.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Forrest Imel",
+    "attack": 4,
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "collectionText": "[x]<b>Battlecry:</b> Once per game,\nif you've played 8 other\nDragons, take an extra turn.",
+    "cost": 5,
+    "dbfId": 103529,
+    "elite": true,
+    "flavor": "With how generous Whizbang's return policy is, Zarimi has never been busier.",
+    "health": 6,
+    "id": "TOY_385",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Timewinder Zarimi",
+    "race": "DRAGON",
+    "races": [
+      "DRAGON"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]<b>Battlecry:</b> Once per game,\nif you've played 8 other\nDragons, take an extra turn.@\n<i>({0} left!)</i>@\n<i>(Ready!)</i>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Caroline Gariba",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 103530,
+    "flavor": "Don't forget to poke fire-breathing holes in the box!",
+    "health": 1,
+    "id": "TOY_386",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Giftwrapped Whelp",
+    "race": "DRAGON",
+    "races": [
+      "DRAGON"
+    ],
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "<b>Battlecry:</b> If you're holding a Dragon, give it and this minion +1/+1.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Todd Harris",
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 103531,
+    "flavor": "Get it!?! It's because dragons have hides - commonly known as scales - and this is a model of a dragon on a smaller level, also known as a scale. IT'S THE SAME WORD!",
+    "id": "TOY_387",
+    "name": "Scale Replica",
+    "rarity": "RARE",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "Draw your lowest and highest Cost Dragon.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Matt Dixon",
+    "attack": 4,
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 103566,
+    "flavor": "Well it's either a dragon or a dinosaur - chalk it up to art style.",
+    "health": 3,
+    "id": "TOY_388",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Chalk Artist",
+    "rarity": "EPIC",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]<b>Battlecry:</b> Draw a minion.\nTransform it into a random\n <b>Legendary</b> one <i>(keeping its\n  original stats and Cost)</i>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Jakub Kasper",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 103509,
+    "flavor": "\"Sorry, we just sold our last Worgen Greaser figure.\"",
+    "health": 2,
+    "id": "TOY_390",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Clearance Promoter",
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "<b>Deathrattle:</b> Reduce the Cost of two spells in your hand by (1).",
+    "type": "MINION"
+  },
+  {
+    "artist": "Zoltan Boros",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 103520,
+    "flavor": "\"Pfffft…. You look RIDICULOUS! And I haven't even drawn the mustache yet!\"",
+    "health": 4,
+    "howToEarnGolden": "Earnable on the <i>Whizbang's Workshop</i> Reward Track.",
+    "id": "TOY_391",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Caricature Artist",
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "<b>Battlecry:</b> Draw a minion that costs (5) or more. Give it a funny mustache!",
+    "type": "MINION"
+  },
+  {
+    "artist": "Jason Kang",
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 103079,
+    "flavor": "Science rules.",
+    "id": "TOY_500",
+    "mechanics": [
+      "LIFESTEAL",
+      "OVERLOAD",
+      "ImmuneToSpellpower"
+    ],
+    "name": "Baking Soda Volcano",
+    "overload": 1,
+    "rarity": "RARE",
+    "set": "WHIZBANGS_WORKSHOP",
+    "spellSchool": "FIRE",
+    "text": "<b>Lifesteal</b>. Deal $10 damage randomly split among all minions.\n<b>Overload:</b> (1)",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Alex Horley Orlandelli",
+    "attack": 5,
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 103080,
+    "elite": true,
+    "flavor": "Beware the hinges that pinch, the scales that splinter!",
+    "health": 5,
+    "id": "TOY_501",
+    "mechanics": [
+      "BATTLECRY",
+      "MINIATURIZE"
+    ],
+    "name": "Shudderblock",
+    "rarity": "LEGENDARY",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]<b>Miniaturize</b>\n<b>Battlecry:</b> Your next <b>Battlecry</b>\ntriggers 3 times, but can't\n damage the enemy hero.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Brian Despain",
+    "attack": 3,
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 103119,
+    "flavor": "OMG, I FINALLY GOT A SHINING SENTINEL AFTER 3 PHASES AND 8192 RESETS!!!!!",
+    "health": 7,
+    "id": "TOY_503",
+    "mechanics": [
+      "BATTLECRY",
+      "ELUSIVE",
+      "TAUNT"
+    ],
+    "name": "Shining Sentinel",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "EPIC",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "<b>Taunt</b>, <b>Elusive</b>\n<b>Battlecry:</b> Summon a\ncopy of this.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Jakub Kasper",
+    "attack": 4,
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 103124,
+    "elite": true,
+    "flavor": "Soup's on!",
+    "health": 3,
+    "id": "TOY_504",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Hagatha the Fabled",
+    "rarity": "LEGENDARY",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]<b>Battlecry:</b> Draw 2 spells\nthat cost (5) or more.\nTransform them into Slimes\nthat cast the spells.",
+    "type": "MINION"
+  },
+  {
+    "artist": "BOSi Studio",
+    "attack": 2,
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 103164,
+    "flavor": "Try playing seven of these in one turn fast.",
+    "health": 3,
+    "id": "TOY_505",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Toy Boat",
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "After you summon a Pirate, draw a card.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Eva Widermann",
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 103330,
+    "flavor": "...There was a humble little squirrel on a quest to defeat an evil dragon. With the help of its earthen friend, it saved the murloc princess from danger. The end.",
+    "id": "TOY_506",
+    "name": "Once Upon a Time...",
+    "rarity": "EPIC",
+    "set": "WHIZBANGS_WORKSHOP",
+    "spellSchool": "NATURE",
+    "text": "Summon a random\n3-Cost Beast, Dragon,\nElemental, and Murloc.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "BOSi Studio",
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 103332,
+    "flavor": "Man, I wish fairy tales were <i>real</i>, Durg'tash the Sorcerer.",
+    "health": 2,
+    "id": "TOY_507",
+    "name": "Fairy Tale Forest",
+    "rarity": "RARE",
+    "referencedTags": [
+      "BATTLECRY"
+    ],
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]Draw a <b>Battlecry</b> minion.\nIt costs (1) less.",
+    "type": "LOCATION"
+  },
+  {
+    "artist": "Zoltan Boros",
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 103336,
+    "flavor": "What's up-book?",
+    "id": "TOY_508",
+    "name": "Pop-Up Book",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "TAUNT"
+    ],
+    "set": "WHIZBANGS_WORKSHOP",
+    "spellSchool": "NATURE",
+    "text": "Deal $2 damage. Summon two 0/1 Frogs with <b>Taunt</b>.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Jim Nelson",
+    "attack": 5,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 103340,
+    "flavor": "Sure to wind up your opponents.",
+    "health": 5,
+    "howToEarnGolden": "Earnable on the <i>Whizbang's Workshop</i> Reward Track.",
+    "id": "TOY_509",
+    "mechanics": [
+      "BATTLECRY",
+      "TRADEABLE"
+    ],
+    "name": "Wind-Up Musician",
+    "rarity": "RARE",
+    "set": "WHIZBANGS_WORKSHOP",
+    "targetingArrowText": "Deal @ damage.",
+    "text": "[x]<b>Tradeable</b>\n<b>Battlecry:</b> Deal 1 damage\nto all enemy minions.\n<i>(<b>Trade</b> to upgrade!)</i>",
+    "type": "MINION"
+  },
+  {
+    "artist": "AJ Nazzaro",
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 103341,
+    "flavor": "\"Woohoo! I'm so glad I dug up a pirate!\"",
+    "id": "TOY_510",
+    "name": "Dig for Treasure",
+    "rarity": "RARE",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "Draw a minion. If it's a Pirate, get a Coin.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Kevin Sidharta",
+    "attack": 5,
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 103343,
+    "elite": true,
+    "flavor": "\"Arr, this plunder be great for Cap'n Fourteeth's baby shower!\"",
+    "health": 5,
+    "id": "TOY_511",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Shoplifter Goldbeard",
+    "race": "PIRATE",
+    "races": [
+      "PIRATE"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]After you summon a\nPirate, summon a copy of\nit that attacks a random\nenemy, then dies.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Grafit",
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 103346,
+    "flavor": "For some strange reason, everyone that hangs out at the Crystal Cove has the same name...",
+    "health": 3,
+    "id": "TOY_512",
+    "name": "The Crystal Cove",
+    "rarity": "RARE",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]The next minion you\nsummon this turn has\nits stats set to 4/4.",
+    "type": "LOCATION"
+  },
+  {
+    "artist": "Konstantin Porubov",
+    "attack": 4,
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 103379,
+    "flavor": "This art HURT ME!!!",
+    "health": 4,
+    "id": "TOY_513",
+    "mechanics": [
+      "BATTLECRY",
+      "MINIATURIZE"
+    ],
+    "name": "Sand Art Elemental",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "COMMON",
+    "referencedTags": [
+      "WINDFURY"
+    ],
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]<b>Miniaturize</b>\n<b>Battlecry:</b> Give your hero\n+1 Attack and <b>Windfury</b>\nthis turn.",
+    "type": "MINION"
+  },
+  {
+    "artist": "BOSi Studio",
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 103433,
+    "flavor": "Available with Swiftthistle or Decafthistle.",
+    "id": "TOY_514",
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "Thistle Tea Set",
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "<b>Discover</b> a spell from another class. Get a copy of it.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Forrest Imel",
+    "attack": 3,
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 103434,
+    "elite": true,
+    "flavor": "Water you dancing to?",
+    "health": 3,
+    "id": "TOY_515",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Sonya Waterdancer",
+    "rarity": "LEGENDARY",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "After you play a 1-Cost minion, get a copy of it that costs (0).",
+    "type": "MINION"
+  },
+  {
+    "artist": "Ivan Fomin",
+    "attack": 3,
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 103488,
+    "flavor": "Thrift stores have the best buccaneers.",
+    "health": 2,
+    "id": "TOY_516",
+    "mechanics": [
+      "COMBO",
+      "RUSH"
+    ],
+    "name": "Bargain Bin Buccaneer",
+    "race": "PIRATE",
+    "races": [
+      "PIRATE"
+    ],
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "<b>Rush</b>\n<b>Combo:</b> Summon a\ncopy of this.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Caroline Gariba",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 103547,
+    "flavor": "Not everyone can become a great painter. But a great painter can come from anywhere.",
+    "health": 3,
+    "id": "TOY_517",
+    "mechanics": [
+      "BATTLECRY",
+      "POISONOUS"
+    ],
+    "name": "Plucky Paintfin",
+    "race": "MURLOC",
+    "races": [
+      "MURLOC"
+    ],
+    "rarity": "COMMON",
+    "referencedTags": [
+      "RUSH"
+    ],
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]<b>Poisonous</b>\n<b>Battlecry:</b> Draw a\n<b>Rush</b> minion.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Jason Kang",
+    "attack": 1,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 103548,
+    "flavor": "As the illiterate pirates always say: There is no 'I' in 'piracy'.",
+    "health": 2,
+    "id": "TOY_518",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Treasure Distributor",
+    "race": "PIRATE",
+    "races": [
+      "PIRATE"
+    ],
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "After you summon a Pirate, give it +1 Attack.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Kleston Marques",
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 9,
+    "dbfId": 104864,
+    "flavor": "Go where??",
+    "id": "TOY_519",
+    "name": "Everything Must Go!",
+    "rarity": "EPIC",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "Summon two random 4-Cost minions. Costs (1) less for each card you've drawn this turn.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "James Ryman",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 103549,
+    "flavor": "Nobody tell him, but he still has his Secrets set to the \"Try Me\" mode.",
+    "health": 2,
+    "id": "TOY_520",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Observer of Mysteries",
+    "race": "DEMON",
+    "races": [
+      "DEMON"
+    ],
+    "rarity": "RARE",
+    "referencedTags": [
+      "SECRET"
+    ],
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "<b>Battlecry:</b> Cast 2 random <b>Secrets</b>. At the start of your turn, destroy them.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Timur Shevtsov",
+    "attack": 4,
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 103603,
+    "flavor": "\"Really? A bunch of fake plastic gems AGAIN!?\"",
+    "health": 3,
+    "id": "TOY_521",
+    "mechanics": [
+      "BATTLECRY",
+      "MINIATURIZE"
+    ],
+    "name": "Sandbox Scoundrel",
+    "race": "PIRATE",
+    "races": [
+      "PIRATE"
+    ],
+    "rarity": "RARE",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]<b>Miniaturize</b>\n<b>Battlecry:</b> Your next card\nthis turn costs (2) less.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Studio Hive",
+    "attack": 3,
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 103627,
+    "durability": 0,
+    "flavor": "There's a teeny tiny pirate trapped in each of the water balloons. Free them!",
+    "health": 3,
+    "id": "TOY_522",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Watercannon",
+    "rarity": "EPIC",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "After your hero attacks, summon a 1/1 Pirate that attacks a random enemy.",
+    "type": "WEAPON"
+  },
+  {
+    "artist": "Arthur Bozonnet",
+    "attack": 3,
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 104852,
+    "elite": true,
+    "flavor": "\"Rocks fall, and everyone dies. Oopsies!\"",
+    "health": 6,
+    "id": "TOY_524",
+    "mechanics": [
+      "BATTLECRY",
+      "DEATHRATTLE"
+    ],
+    "name": "Game Master Nemsy",
+    "rarity": "LEGENDARY",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "<b>Battlecry:</b> Draw a Demon. <b>Deathrattle:</b> Swap places with it.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Jaemin Kim",
+    "attack": 5,
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 104860,
+    "flavor": "Was a regular Pawn but Fel in with the wrong toys.",
+    "health": 6,
+    "id": "TOY_526",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Malefic Rook",
+    "race": "DEMON",
+    "races": [
+      "DEMON"
+    ],
+    "rarity": "EPIC",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "<b>Battlecry:</b> Attack\nYOUR hero.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Arthur Gimaldinov",
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 104862,
+    "flavor": "Their group has been trying to schedule the next session since Kobolds and Catacombs came out.",
+    "id": "TOY_527",
+    "name": "Cursed Campaign",
+    "rarity": "EPIC",
+    "referencedTags": [
+      "DEATHRATTLE"
+    ],
+    "set": "WHIZBANGS_WORKSHOP",
+    "spellSchool": "SHADOW",
+    "text": "[x]Give a friendly minion\n\"<b>Deathrattle:</b> Summon two\ncopies of this minion that\nare <b>Dormant</b> for 2 turns.\"",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Ivan Fomin",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 104866,
+    "flavor": "One of the buttons makes you sound JUST like Ragnaros. BY FIRE BE HEARD!",
+    "health": 4,
+    "id": "TOY_528",
+    "mechanics": [
+      "AURA"
+    ],
+    "name": "Sing-Along Buddy",
+    "race": "MECHANICAL",
+    "races": [
+      "MECHANICAL"
+    ],
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "Your Hero Power\ntriggers twice.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Tanamaes Leejierasaes",
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 104938,
+    "elite": true,
+    "flavor": "Why don't the good guys ever get a wheel?",
+    "id": "TOY_529",
+    "name": "Wheel of DEATH!!!",
+    "rarity": "LEGENDARY",
+    "set": "WHIZBANGS_WORKSHOP",
+    "spellSchool": "SHADOW",
+    "text": "Destroy your deck.\nIn 5 turns, destroy\nthe enemy hero.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "L. Lullabi & K. Turovec",
+    "attack": 8,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 25,
+    "dbfId": 104976,
+    "flavor": "WARNING: NOT A PLAYHOUSE. DO NOT ATTEMPT TO CLIMB.",
+    "health": 8,
+    "howToEarnGolden": "Earnable after purchasing the <i>Whizbang's Workshop</i> Tavern Pass.",
+    "id": "TOY_530",
+    "name": "Playhouse Giant",
+    "race": "MECHANICAL",
+    "races": [
+      "MECHANICAL"
+    ],
+    "rarity": "EPIC",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "Costs (1) less for each card you've drawn this game.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Anzka Nguyen",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 104977,
+    "elite": true,
+    "flavor": "<i>Somebody</i> has to do the paperwork around here.",
+    "health": 3,
+    "howToEarn": "Earnable after collecting 30 <i>Whizbang's Workshop</i> cards.",
+    "howToEarnGolden": "Earnable after purchasing the <i>Whizbang's Workshop</i> Tavern Pass.",
+    "id": "TOY_531",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Li'Na, Shop Manager",
+    "rarity": "LEGENDARY",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]Whenever you cast a spell,\nfill your board with random\nminions of that Cost.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mauricio Herrera",
+    "attack": 6,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 10,
+    "dbfId": 103431,
+    "flavor": "I call it Mini-me.",
+    "health": 7,
+    "howToEarnGolden": "Earnable on the <i>Whizbang's Workshop</i> Reward Track.",
+    "id": "TOY_601",
+    "mechanics": [
+      "MINIATURIZE",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Factory Assemblybot",
+    "race": "MECHANICAL",
+    "races": [
+      "MECHANICAL"
+    ],
+    "rarity": "EPIC",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "<b>Miniaturize</b>\nAt the end of your turn, summon a 6/7 Bot that attacks a random enemy.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Patrik Bjorkstrom",
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 103439,
+    "flavor": "I said spill the TEA, not the acid!",
+    "id": "TOY_602",
+    "name": "Chemical Spill",
+    "rarity": "EPIC",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "Summon the highest Cost minion\nfrom your hand, then\ndeal $5 damage to it.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Alex Horley Orlandelli",
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 103440,
+    "flavor": "...and Check'em for any signs of life.",
+    "id": "TOY_603",
+    "name": "Wreck'em and Deck'em",
+    "rarity": "EPIC",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]Choose a friendly Mech.\nSummon a copy of it\nthat attacks a random\nenemy, then dies.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Studio Hive",
+    "attack": 3,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 103444,
+    "durability": 0,
+    "flavor": "Boom, the Inventor; Can he fix it?\nBoom, the Inventor; No he can't!",
+    "health": 2,
+    "id": "TOY_604",
+    "mechanics": [
+      "DEATHRATTLE",
+      "MINIATURIZE"
+    ],
+    "name": "Boom Wrench",
+    "rarity": "RARE",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]<b>Miniaturize</b>\n<b>Deathrattle:</b> Trigger the\n<b>Deathrattle</b> of a random\nfriendly Mech.",
+    "type": "WEAPON"
+  },
+  {
+    "artist": "Matt Dixon",
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 103441,
+    "flavor": "I assure you this card is quality.",
+    "id": "TOY_605",
+    "name": "Quality Assurance",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "TAUNT"
+    ],
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "Draw 2 <b>Taunt</b> minions.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Brian Despain",
+    "attack": 4,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 103442,
+    "flavor": "Don't worry, they're having a <i>blast</i>. MUAHAHAHAHAAAA!",
+    "health": 8,
+    "id": "TOY_606",
+    "mechanics": [
+      "DEATHRATTLE",
+      "TAUNT"
+    ],
+    "name": "Testing Dummy",
+    "race": "MECHANICAL",
+    "races": [
+      "MECHANICAL"
+    ],
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "<b>Taunt</b>\n<b>Deathrattle:</b> Deal 8 damage randomly split among all enemy minions.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Matt Dixon",
+    "attack": 7,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 103443,
+    "elite": true,
+    "flavor": "The best part of inventing stuff is blowing it up!",
+    "hasDiamondSkin": true,
+    "health": 7,
+    "id": "TOY_607",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Inventor Boom",
+    "rarity": "LEGENDARY",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]<b>Battlecry:</b> Resurrect two\ndifferent friendly Mechs that\ncost (5) or more. They attack\nrandom enemies.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Timur Shevtsov",
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 104507,
+    "flavor": "IT HAS BEEN [0] DAYS SINCE LAST ACCIDENT.",
+    "id": "TOY_640",
+    "mechanics": [
+      "OUTCAST",
+      "ImmuneToSpellpower"
+    ],
+    "name": "Workshop Mishap",
+    "rarity": "RARE",
+    "referencedTags": [
+      "LIFESTEAL"
+    ],
+    "set": "WHIZBANGS_WORKSHOP",
+    "spellSchool": "FEL",
+    "text": "Deal $5 damage to a minion. Excess damages both neighbors.\n<b>Outcast:</b> Gain <b>Lifesteal</b>.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Gabriel Lopes",
+    "attack": 3,
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 104510,
+    "durability": 0,
+    "flavor": "PENALTY - FEL BALL!",
+    "health": 2,
+    "id": "TOY_641",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Umpire's Grasp",
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "<b>Deathrattle:</b> Draw a Demon and reduce\nits Cost by (2).",
+    "type": "WEAPON"
+  },
+  {
+    "artist": "Max Grecke",
+    "attack": 3,
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 104511,
+    "flavor": "\"There's no hog in team... ANYMORE! I QUIT!\"",
+    "health": 3,
+    "id": "TOY_642",
+    "mechanics": [
+      "BATTLECRY",
+      "DEATHRATTLE",
+      "LIFESTEAL"
+    ],
+    "name": "Ball Hog",
+    "race": "QUILBOAR",
+    "races": [
+      "QUILBOAR"
+    ],
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]<b>Lifesteal</b>\n<b>Battlecry and Deathrattle:</b>\nDeal 2 damage to the\nlowest Health enemy.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Kevin Sidharta",
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 104514,
+    "flavor": "THREE Flame Imps?? C'mon, where's my pity timer?!",
+    "id": "TOY_643",
+    "mechanics": [
+      "DISCOVER",
+      "OUTCAST"
+    ],
+    "name": "Blind Box",
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "Get 2 random Demons. <b>Outcast:</b> <b>Discover</b> them instead.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Ramzy Kamen",
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 104515,
+    "flavor": "Finally, Demon Hunter has expanded its color palette to TWO colors!",
+    "id": "TOY_644",
+    "name": "Red Card",
+    "rarity": "EPIC",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "Make a minion go <b>Dormant</b> for 2 turns.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Konstantin Turovec",
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 104518,
+    "flavor": "For those seeking glory and power\nBe not swayed by Azari the Devourer\nThe opal grants victory to the weak\nBut leaves your soul barren and bleak",
+    "id": "TOY_645",
+    "name": "Lesser Opal Spellstone",
+    "rarity": "RARE",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "Draw 1 card.\n<i>(Attack with your hero\n2 times to upgrade.)</i>",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Melvin Chan",
+    "attack": 1,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 104519,
+    "flavor": "The most painful 1 damage of your life.",
+    "health": 3,
+    "id": "TOY_646",
+    "mechanics": [
+      "DEATHRATTLE",
+      "LIFESTEAL",
+      "TAUNT"
+    ],
+    "name": "Messmaker",
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "<b>Lifesteal</b>, <b>Taunt</b>\n<b>Deathrattle:</b> Deal 1 damage\nto all enemies.",
+    "type": "MINION"
+  },
+  {
+    "artist": "L. Lullabi & K. Turovec",
+    "attack": 12,
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 104521,
+    "elite": true,
+    "flavor": "Playing with this card can be penalized with up to a two-year suspension. Please wait until the card is officially released.",
+    "health": 12,
+    "id": "TOY_647",
+    "name": "Magtheridon, Unreleased",
+    "race": "DEMON",
+    "races": [
+      "MECHANICAL",
+      "DEMON"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]<b>Dormant</b> for 2 turns.\nWhile <b>Dormant</b>, deal 3\ndamage to all enemies at\nthe end of your turn.",
+    "type": "MINION"
+  },
+  {
+    "artist": "James Ryman",
+    "attack": 3,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 103448,
+    "flavor": "When a Lab Patron fails out of school, they become a Grim Patron.",
+    "health": 3,
+    "id": "TOY_651",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Lab Patron",
+    "rarity": "RARE",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]Whenever you gain Armor,\n summon another Lab Patron\n<i>(once per turn)</i>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Sergey Tsvelykh",
+    "attack": 6,
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 104652,
+    "flavor": "OMG THAT'S LITERALLY ME!",
+    "health": 5,
+    "id": "TOY_652",
+    "mechanics": [
+      "BATTLECRY",
+      "DISCOVER",
+      "MINIATURIZE"
+    ],
+    "name": "Window Shopper",
+    "race": "DEMON",
+    "races": [
+      "DEMON"
+    ],
+    "rarity": "EPIC",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]<b>Miniaturize</b>\n<b>Battlecry:</b> <b>Discover</b> a\nDemon. Set its stats and\nCost to this minion's.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Matt Dixon",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 105112,
+    "flavor": "\"HAHAhehehe. Hahaha he.\" -Me when I'm making toys",
+    "health": 1,
+    "howToEarnGolden": "Earnable on the <i>Whizbang's Workshop</i> Reward Track.",
+    "id": "TOY_670",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Giggling Toymaker",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "DIVINE_SHIELD",
+      "TAUNT"
+    ],
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "<b>Deathrattle:</b> Summon two 1/2 Mechs with <b>Taunt</b> and <b>Divine Shield</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Matt Dixon",
+    "attack": 4,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 104819,
+    "elite": true,
+    "flavor": "After his work at Boomsday Labs, he's taken what Dr. Boom taught him and applied it to the most important inventions of all - TOYS!!!",
+    "health": 5,
+    "id": "TOY_700",
+    "name": "Splendiferous Whizbang",
+    "rarity": "LEGENDARY",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]You start the game\nwith one of Whizbang's\nExperimental Decks!",
+    "type": "MINION"
+  },
+  {
+    "artist": "Ramzy Kamen",
+    "attack": 6,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 105522,
+    "elite": true,
+    "flavor": "You are what you paint! And Colifero is paint.",
+    "health": 5,
+    "howToEarn": "Earnable after opening a <i>Whizbang's Workshop</i> card pack.",
+    "howToEarnGolden": "Earnable after purchasing the <i>Whizbang's Workshop</i> Tavern Pass.",
+    "id": "TOY_703",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Colifero the Artist",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]<b>Battlecry:</b> Draw a minion.\nTransform all other friendly\nminions into copies of it.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Grace Liu",
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 109662,
+    "flavor": "No, Whizbang, you can't pass off a poorly made shelf as a cool Priest spell.",
+    "id": "TOY_714",
+    "name": "Fly Off the Shelves",
+    "rarity": "RARE",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "Deal $1 damage to all enemy minions. Repeat for each Dragon you're holding.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Matt Dixon",
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 105822,
+    "flavor": "HOW LOW! HOW LOW! HOW LOW!",
+    "id": "TOY_716",
+    "name": "Flash Sale",
+    "rarity": "EPIC",
+    "referencedTags": [
+      "DIVINE_SHIELD",
+      "TAUNT"
+    ],
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "Summon a 1/2 Mech with <b>Divine Shield</b> and <b>Taunt</b>. Give your minions +1/+2.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Grafit",
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 104575,
+    "flavor": "Lemme pull up your phial.",
+    "id": "TOY_800",
+    "name": "Sparkling Phial",
+    "rarity": "RARE",
+    "set": "WHIZBANGS_WORKSHOP",
+    "spellSchool": "ARCANE",
+    "text": "[x]Deal $2 damage.\nYour next card this turn\ncosts that much less.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Mooncolony",
+    "attack": 2,
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 104583,
+    "flavor": "Huh-huh-huh Hearthstone!",
+    "health": 4,
+    "id": "TOY_801",
+    "mechanics": [
+      "CHOOSE_ONE",
+      "MINIATURIZE"
+    ],
+    "name": "Chia Drake",
+    "race": "DRAGON",
+    "races": [
+      "DRAGON"
+    ],
+    "rarity": "RARE",
+    "referencedTags": [
+      "SPELLPOWER"
+    ],
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "<b>Miniaturize</b>\n<b>Choose One -</b> Gain\n<b>Spell Damage +1</b>; or\nDraw a spell.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Gabriel Lopes",
+    "attack": 2,
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 104594,
+    "flavor": "I am Wind-Up Sapling.",
+    "health": 1,
+    "id": "TOY_802",
+    "mechanics": [
+      "BATTLECRY",
+      "TRADEABLE"
+    ],
+    "name": "Wind-Up Sapling",
+    "rarity": "RARE",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]<b>Tradeable</b>\n<b>Battlecry:</b> Refresh 1\nMana Crystal.\n<i>(<b>Trade</b> to upgrade!)</i>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Konstantin Turovec",
+    "attack": 1,
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 104598,
+    "flavor": "The Jade Lotus just releases the same product every year but with an upgraded camera.",
+    "health": 1,
+    "id": "TOY_803",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Jade Display",
+    "rarity": "EPIC",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]<b>Deathrattle:</b> Your Jade\nDisplays have +1/+1 this\ngame. Shuffle 2 of them\ninto your deck.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mooncolony",
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 104615,
+    "flavor": "Is this a standup fight or another bug hunt?",
+    "id": "TOY_804",
+    "name": "Woodland Wonders",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "SPELLPOWER",
+      "TAUNT"
+    ],
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "Summon two 2/5 Beetles with <b>Taunt</b>.\nCosts (3) less if you have <b>Spell Damage</b>.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Mooncolony",
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 104617,
+    "flavor": "Come on, you know- I ensmallen, you ensmallen? He she me Ensmallen? Ensmallogy: the study of ensmallening?! IT'S FIRST GRADE.",
+    "id": "TOY_805",
+    "name": "Ensmallen",
+    "rarity": "EPIC",
+    "set": "WHIZBANGS_WORKSHOP",
+    "spellSchool": "NATURE",
+    "text": "Reduce the Cost and Attack of minions in your deck by (1).",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Grace Liu",
+    "attack": 5,
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 104618,
+    "elite": true,
+    "flavor": "It's a bird! It's a plane! It's 10 copies of Leeroy Jenkins!",
+    "health": 5,
+    "id": "TOY_806",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Sky Mother Aviana",
+    "rarity": "LEGENDARY",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]<b>Battlecry:</b> Shuffle\n10 random <b>Legendary</b>\nminions into your deck.\nThey cost (1).",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mooncolony",
+    "attack": 6,
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 104619,
+    "elite": true,
+    "flavor": "They said you sound like an owl.",
+    "hasDiamondSkin": true,
+    "health": 6,
+    "id": "TOY_807",
+    "name": "Owlonius",
+    "rarity": "LEGENDARY",
+    "referencedTags": [
+      "SPELLPOWER"
+    ],
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]<b>Spell Damage +1</b>\nYour spells get\ndouble bonus from\n<b>Spell Damage</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Kevin Sidharta",
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 103629,
+    "flavor": "She has at LEAST Craftsmanship +3.",
+    "id": "TOY_808",
+    "name": "Crafter's Aura",
+    "rarity": "RARE",
+    "set": "WHIZBANGS_WORKSHOP",
+    "spellSchool": "HOLY",
+    "text": "At the end of your turn, summon a random 6-Cost minion.\nLasts 3 turns.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Todd Harris",
+    "attack": 3,
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 103630,
+    "flavor": "It's certainly... creative.",
+    "health": 3,
+    "id": "TOY_809",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Cardboard Golem",
+    "rarity": "EPIC",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "<b>Battlecry:</b> Increase the duration of Auras in your hand, deck, and battlefield by 1.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Hideaki Takamura",
+    "attack": 2,
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 103632,
+    "durability": 0,
+    "flavor": "For when the Light hits the painting at a certain angle.",
+    "health": 3,
+    "id": "TOY_810",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Painter's Virtue",
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]After your hero attacks,\ngive minions in your\nhand +1/+1.",
+    "type": "WEAPON"
+  },
+  {
+    "artist": "Ursula Dorada",
+    "attack": 3,
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 103633,
+    "flavor": "The sheervalue of this card is undeniable.",
+    "health": 2,
+    "id": "TOY_811",
+    "mechanics": [
+      "DIVINE_SHIELD",
+      "LIFESTEAL",
+      "MINIATURIZE",
+      "RUSH"
+    ],
+    "name": "Tigress Plushy",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "<b>Miniaturize</b>\n<b>Rush</b>, <b>Lifesteal</b>,\n<b>Divine Shield</b>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Anzka Nguyen",
+    "attack": 4,
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 103634,
+    "elite": true,
+    "flavor": "\"Earthmother guide my paintbrush strokes, especially on the eyes.\"",
+    "health": 4,
+    "id": "TOY_812",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Pipsi Painthoof",
+    "rarity": "LEGENDARY",
+    "referencedTags": [
+      "DIVINE_SHIELD",
+      "RUSH",
+      "TAUNT"
+    ],
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]<b>Deathrattle:</b> Summon a\nrandom <b>Divine Shield</b>,\n<b>Rush</b>, and <b>Taunt</b> minion\nfrom your deck.",
+    "type": "MINION"
+  },
+  {
+    "artist": "James Ryman",
+    "attack": 3,
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 103635,
+    "elite": true,
+    "flavor": "Whizbang is now the sole proprietor of Un'Goro.",
+    "health": 7,
+    "id": "TOY_813",
+    "mechanics": [
+      "BATTLECRY",
+      "MINIATURIZE",
+      "TAUNT"
+    ],
+    "name": "Toy Captain Tarim",
+    "rarity": "LEGENDARY",
+    "set": "WHIZBANGS_WORKSHOP",
+    "targetingArrowText": "Set a minion's Attack and Health to this minion's.",
+    "text": "[x]<b>Miniaturize</b>\n<b>Taunt</b>. <b>Battlecry:</b> Set a\nminion's Attack and Health\nto this minion's.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Tanamaes Leejierasaes",
+    "attack": 0,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 103631,
+    "flavor": "Life is like a bucket of soldiers. You never know what bonus effects you're gonna get.",
+    "health": 2,
+    "id": "TOY_814",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Bucket of Soldiers",
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "<b>Deathrattle:</b> Summon five 1/1 Soldiers with random <b>Bonus Effects</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "AJ Nazzaro",
+    "attack": 4,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 103628,
+    "flavor": "He ALWAYS comes back.",
+    "health": 6,
+    "id": "TOY_820",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Forgotten Animatronic",
+    "race": "MECHANICAL",
+    "races": [
+      "MECHANICAL"
+    ],
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "At the end of your turn, destroy a minion with less Attack than this.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Taylor Smith",
+    "attack": 4,
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 104987,
+    "flavor": "The Lich King can't sleep without his stuffy.",
+    "health": 2,
+    "id": "TOY_821",
+    "mechanics": [
+      "RUSH",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Rambunctious Stuffy",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD",
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "referencedTags": [
+      "REBORN"
+    ],
+    "runeCost": {
+      "blood": 0,
+      "frost": 1,
+      "unholy": 0
+    },
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "<b>Rush</b>\nAfter you cast a Frost spell, gain <b>Reborn</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Brian Despain",
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 104632,
+    "flavor": "The slogan of their very exclusive sewing club is \"You can't stitch with us.\"",
+    "id": "TOY_822",
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "Silk Stitching",
+    "rarity": "EPIC",
+    "referencedTags": [
+      "DEATHRATTLE"
+    ],
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "Choose a friendly minion. <b>Discover</b> a spell that costs (4) or less for\nit to cast when it dies.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Anzka Nguyen",
+    "attack": 3,
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 104633,
+    "flavor": "Is this card any good? It would seam sew.",
+    "health": 3,
+    "id": "TOY_823",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Rainbow Seamstress",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD"
+    ],
+    "rarity": "EPIC",
+    "referencedTags": [
+      "LIFESTEAL",
+      "REBORN",
+      "RUSH"
+    ],
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]<b>Battlecry:</b> If your deck started\nwith a Blood, Frost, or Unholy\ncard, gain <b>Lifesteal</b>, <b>Reborn</b>,\nor <b>Rush</b> respectively.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Konstantin Porubov",
+    "attack": 2,
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 104634,
+    "flavor": "Still mad about not being let into the spiders' sewing club.",
+    "health": 4,
+    "id": "TOY_824",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Darkthorn Quilter",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD",
+      "QUILBOAR"
+    ],
+    "rarity": "COMMON",
+    "runeCost": {
+      "blood": 0,
+      "frost": 0,
+      "unholy": 1
+    },
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]At the end of your turn,\ndeal this minion's Attack\ndamage randomly split\n   among enemies.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Vladimir Kafanov",
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 105355,
+    "flavor": "A story concluded, the kobolds had fought\nYet here is a spellstone Azari forgot\nPawned off to shops, considered a trinket\nDark powers contained, none would think it",
+    "id": "TOY_825",
+    "name": "Lesser Spinel Spellstone",
+    "rarity": "RARE",
+    "runeCost": {
+      "blood": 1,
+      "frost": 0,
+      "unholy": 0
+    },
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "Give Undead in your hand +1/+1. <i>(Gain 5 <b>Corpses</b> to upgrade.)</i>",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Ryan Bowlin",
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 104635,
+    "flavor": "Mom, I frew up...",
+    "id": "TOY_826",
+    "name": "Threads of Despair",
+    "rarity": "RARE",
+    "referencedTags": [
+      "DEATHRATTLE"
+    ],
+    "runeCost": {
+      "blood": 1,
+      "frost": 0,
+      "unholy": 0
+    },
+    "set": "WHIZBANGS_WORKSHOP",
+    "spellSchool": "SHADOW",
+    "text": "Give all minions\n\"<b>Deathrattle:</b> Deal 1\ndamage to all minions.\"",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Max Grecke",
+    "attack": 3,
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 104636,
+    "flavor": "Spider Tank in shambles.",
+    "health": 2,
+    "id": "TOY_827",
+    "mechanics": [
+      "BATTLECRY",
+      "TAUNT"
+    ],
+    "name": "Shambling Zombietank",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD",
+      "MECHANICAL"
+    ],
+    "rarity": "COMMON",
+    "runeCost": {
+      "blood": 0,
+      "frost": 0,
+      "unholy": 1
+    },
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]<b>Taunt</b>\n<b>Battlecry:</b> Spend 5 <b>Corpses</b>\nto summon a copy of this.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Zoltan Boros",
+    "attack": 2,
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 104694,
+    "flavor": "\"I'm a real toy!\"",
+    "health": 6,
+    "id": "TOY_828",
+    "mechanics": [
+      "DEATHRATTLE",
+      "MINIATURIZE",
+      "TAUNT"
+    ],
+    "name": "Amateur Puppeteer",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD"
+    ],
+    "rarity": "RARE",
+    "runeCost": {
+      "blood": 1,
+      "frost": 0,
+      "unholy": 1
+    },
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]<b>Miniaturize</b>, <b>Taunt</b>\n<b>Deathrattle:</b> Give Undead\nin your hand +2/+2.",
+    "type": "MINION"
+  },
+  {
+    "armor": 5,
+    "artist": "Grafit",
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 104637,
+    "elite": true,
+    "flavor": "This flavor text, you would expect\nto rhyme and reference, to great effect!\nIt starts out strong, but as you can tell\nit doesn't end very good.",
+    "health": 30,
+    "heroPowerDbfId": 109196,
+    "id": "TOY_829",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "The Headless Horseman",
+    "rarity": "LEGENDARY",
+    "runeCost": {
+      "blood": 1,
+      "frost": 0,
+      "unholy": 1
+    },
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]<b>Battlecry:</b> Destroy the enemy\nminion with the most <i>Attack!</i>\nShuffle my Head into your\ndeck, you must get it <i>back!</i>",
+    "type": "HERO"
+  },
+  {
+    "artist": "Anton Zemskov",
+    "attack": 6,
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 104641,
+    "elite": true,
+    "flavor": "First, do some harm.",
+    "health": 4,
+    "id": "TOY_830",
+    "mechanics": [
+      "BATTLECRY",
+      "DEATHRATTLE",
+      "DISCOVER"
+    ],
+    "name": "Dr. Stitchensew",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]<b>Battlecry:</b> <b>Discover</b> a 5, 3, and\n1-Cost minion to stitch to this.\n<b>Deathrattle:</b> Summon\nthe 5-Cost minion.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mooncolony",
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 104596,
+    "flavor": "Build your own dollhouse in 3 easy steps!\n1. Build a castle.\n2. Miniaturize it.\n3. GLITTER!",
+    "health": 3,
+    "id": "TOY_850",
+    "name": "Magical Dollhouse",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "SPELLPOWER"
+    ],
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]Gain <b>Spell Damage +1</b>\nthis turn only.",
+    "type": "LOCATION"
+  },
+  {
+    "artist": "Patrik Bjorkstrom",
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 104665,
+    "flavor": "That's right, it goes in the toy chest.",
+    "id": "TOY_851",
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "Bottomless Toy Chest",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "SPELLPOWER"
+    ],
+    "set": "WHIZBANGS_WORKSHOP",
+    "spellSchool": "ARCANE",
+    "text": "<b>Discover</b> a card from your deck. If you have <b>Spell Damage</b>, copy it.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Slawomir Maniak",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 105100,
+    "flavor": "In the workshop, I go deeper.\nIn the mulligan, I'm a keeper.\nThis time, I'm even cheaper.\nYou guessed it right, I'm Corridor Sleeper.",
+    "health": 5,
+    "id": "TOY_866",
+    "name": "Corridor Sleeper",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "EPIC",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "Starts <b>Dormant</b>. After 7 minions die, awaken.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Zoltan Boros",
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 105473,
+    "flavor": "\"What are you going to wish for?\"\n\"I wish I had just a liiiiiiiittle more Attack and Health!\"\n\"...Really? You don't want, like, a million more?\"",
+    "id": "TOY_877",
+    "name": "Wish Upon a Star",
+    "rarity": "RARE",
+    "set": "WHIZBANGS_WORKSHOP",
+    "spellSchool": "ARCANE",
+    "text": "Give +2/+3 to all minions in your hand, deck, and battlefield.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "James Ryman",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 105481,
+    "flavor": "She's the winner of the Valeera Cosplay Contest! Second place was Valeera.",
+    "health": 4,
+    "id": "TOY_878",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Cosplay Contestant",
+    "race": "DRAENEI",
+    "races": [
+      "DRAENEI"
+    ],
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "After your opponent plays a minion, transform into a 3/4 copy of it.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Ursula Dorada",
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 105472,
+    "flavor": "I don't want to play with you anymore.",
+    "id": "TOY_879",
+    "name": "Repackage",
+    "rarity": "EPIC",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "Stuff all minions into a 2-Cost Box,\nthen shuffle it into the opponent's deck.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Kevin Sidharta",
+    "attack": 3,
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 104796,
+    "flavor": "Code 6404.5 clearly states that all Enforcers remain in their packaging until told by authorized personnel.",
+    "health": 5,
+    "id": "TOY_880",
+    "mechanics": [
+      "BATTLECRY",
+      "TRADEABLE"
+    ],
+    "name": "Wind-Up Enforcer",
+    "rarity": "RARE",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]<b>Tradeable</b>\n<b>Battlecry:</b> Summon 1\ncopy of this minion.\n<i>(<b>Trade</b> to upgrade!)</i>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Patrik Bjorkstrom",
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 104869,
+    "flavor": "Wow, this card is great value! Until you open it.",
+    "id": "TOY_881",
+    "name": "Fancy Packaging",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "DIVINE_SHIELD"
+    ],
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "Give a minion with <b>Divine Shield</b> +2/+3.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Zoltan Boros",
+    "attack": 2,
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 104870,
+    "flavor": "Many Draenei found new hobbies on the long journey from Argus.",
+    "health": 3,
+    "id": "TOY_882",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Trinket Artist",
+    "race": "DRAENEI",
+    "races": [
+      "DRAENEI"
+    ],
+    "rarity": "RARE",
+    "referencedTags": [
+      "DIVINE_SHIELD"
+    ],
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "<b>Battlecry:</b> Draw a <b>Divine Shield</b> minion\nand an Aura.",
+    "type": "MINION"
+  },
+  {
+    "artist": "L. Lullabi & K. Turovec",
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 10,
+    "dbfId": 105097,
+    "flavor": "\"Judge!\"",
+    "id": "TOY_883",
+    "name": "Table Flip",
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "spellSchool": "SHADOW",
+    "text": "Deal $3 damage to all enemy minions.\nCosts (1) less for each other card in your hand.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Max Grecke",
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 105098,
+    "flavor": "This claw machine is RIGGED! I keep getting demons that bite me!",
+    "id": "TOY_884",
+    "name": "Crane Game",
+    "rarity": "RARE",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "Summon copies of two Demons in your deck.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Kevin Sidharta",
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 106652,
+    "flavor": "2:29:55",
+    "id": "TOY_886",
+    "name": "Endgame",
+    "rarity": "RARE",
+    "set": "WHIZBANGS_WORKSHOP",
+    "spellSchool": "SHADOW",
+    "text": "Resurrect your last Demon that died.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Max Grecke",
+    "attack": 5,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 105489,
+    "flavor": "She works in a magical toy shop and they just gave her a regular mop? Make it make sense.",
+    "health": 5,
+    "id": "TOY_891",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Workshop Janitor",
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "<b>Battlecry:</b> If you control a location, draw 2 cards.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Jaemin Kim",
+    "attack": 4,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 105490,
+    "flavor": "NESTING GOLEEEEEEEEEEEEM!!!!!!! Eh… It just doesn't feel the same.",
+    "health": 3,
+    "id": "TOY_893",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Nesting Golem",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD"
+    ],
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "<b>Deathrattle:</b> Resummon this with -1/-1.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Ivo Campelo da Silva",
+    "attack": 1,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 105491,
+    "flavor": "For extra-realistic fly-snatching action, use tape!",
+    "health": 4,
+    "id": "TOY_894",
+    "mechanics": [
+      "BATTLECRY",
+      "RUSH"
+    ],
+    "name": "Origami Frog",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "targetingArrowText": "Swap Attack with another minion.",
+    "text": "[x]<b>Rush</b>\n<b>Battlecry:</b> Swap Attack\nwith another minion.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Ivo Campelo da Silva",
+    "attack": 4,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 105493,
+    "flavor": "I was born with 1-Health and paper skin.",
+    "health": 1,
+    "id": "TOY_895",
+    "mechanics": [
+      "BATTLECRY",
+      "TAUNT"
+    ],
+    "name": "Origami Crane",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "RARE",
+    "set": "WHIZBANGS_WORKSHOP",
+    "targetingArrowText": "Swap Health with another minion.",
+    "text": "[x]<b>Taunt</b>\n<b>Battlecry:</b> Swap Health\nwith another minion.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Ivo Campelo da Silva",
+    "attack": 1,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 105494,
+    "flavor": "The fire will give you a papercut, which CAN burn. Does that count?",
+    "health": 1,
+    "id": "TOY_896",
+    "mechanics": [
+      "BATTLECRY",
+      "DIVINE_SHIELD",
+      "LIFESTEAL"
+    ],
+    "name": "Origami Dragon",
+    "race": "DRAGON",
+    "races": [
+      "DRAGON"
+    ],
+    "rarity": "EPIC",
+    "set": "WHIZBANGS_WORKSHOP",
+    "targetingArrowText": "Swap stats with another minion.",
+    "text": "[x]<b>Divine Shield</b>, <b>Lifesteal</b>\n<b>Battlecry:</b> Swap stats\nwith another minion.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Angelica Alieva",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 105495,
+    "flavor": "If you cut one of its heads off, it'll grow back twice as cute!",
+    "health": 4,
+    "howToEarnGolden": "Earnable on the <i>Whizbang's Workshop</i> Reward Track.",
+    "id": "TOY_897",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Floppy Hydra",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "RARE",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]<b>Deathrattle:</b> Shuffle a copy\nof this into your deck with\npermanently doubled\nAttack and Health.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Konstantin Porubov",
+    "attack": 4,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 9,
+    "dbfId": 102405,
+    "elite": true,
+    "flavor": "\"NOBODY CALLS ME BOTFACE!!\" -Botface",
+    "health": 12,
+    "id": "TOY_906",
+    "mechanics": [
+      "TAUNT",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Botface",
+    "race": "MECHANICAL",
+    "races": [
+      "MECHANICAL"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]<b>Taunt</b>\nAfter this takes damage,\nget two random <b>Minis</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Max Grecke",
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 102407,
+    "flavor": "Remember, always be safe in the lab to mitigate injuries!\n*painfully snaps goggles onto face*",
+    "id": "TOY_907",
+    "name": "Safety Goggles",
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "Gain 6 Armor.\nCosts (0) if you don't\nhave any Armor.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Luca Zontini",
+    "attack": 5,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 102408,
+    "flavor": "The one job where a spark of creativity is unwanted.",
+    "health": 5,
+    "id": "TOY_908",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Fireworker",
+    "race": "MECHANICAL",
+    "races": [
+      "MECHANICAL"
+    ],
+    "rarity": "RARE",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "<b>Deathrattle:</b> Summon two 1/1 Boom Bots. <i>WARNING: Bots may explode.</i>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Arthur Bozonnet",
+    "attack": 4,
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 103169,
+    "elite": true,
+    "flavor": "She once bought a 1of1 Golden Skull of Gul'dan written entirely in Thalassian for 2,000,000 Gold.",
+    "health": 4,
+    "id": "TOY_913",
+    "mechanics": [
+      "BATTLECRY",
+      "DEATHRATTLE",
+      "OUTCAST"
+    ],
+    "name": "Ci'Cigi",
+    "rarity": "LEGENDARY",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]<b>Battlecry, Outcast, and\nDeathrattle:</b> Get a random\n  first-edition Demon Hunter  \ncard <i>(in mint condition)</i>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Sergey Tsvelykh",
+    "attack": 4,
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 104854,
+    "flavor": "Mind your head when you're around her.",
+    "health": 4,
+    "id": "TOY_914",
+    "mechanics": [
+      "DEATHRATTLE",
+      "TAUNT"
+    ],
+    "name": "Wretched Queen",
+    "race": "DEMON",
+    "races": [
+      "DEMON"
+    ],
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]<b>Taunt</b>\n<b>Deathrattle:</b> Summon two\n4/6 Knights with <b>Taunt</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Alex Stone",
+    "attack": 4,
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 104855,
+    "flavor": "\"And then I uh... I curse them with... uh... OH! I got it! They have to speak in rhymes or they turn into a crab!\"",
+    "health": 3,
+    "id": "TOY_915",
+    "mechanics": [
+      "BATTLECRY",
+      "MINIATURIZE"
+    ],
+    "name": "Tabletop Roleplayer",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "IMMUNE"
+    ],
+    "set": "WHIZBANGS_WORKSHOP",
+    "targetingArrowText": "Give a friendly Demon +2 Attack and Immune.",
+    "text": "[x]<b>Miniaturize</b>\n<b>Battlecry:</b> Give a friendly\nDemon +2 Attack and\n<b>Immune</b> this turn.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Anton Zemskov",
+    "attack": 3,
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 104858,
+    "flavor": "Never ask an artist how many pieces they've finished.",
+    "health": 3,
+    "id": "TOY_916",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Sketch Artist",
+    "rarity": "RARE",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "<b>Battlecry:</b> Draw a Shadow spell. Get a <b>Temporary</b> copy of it.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mooncolony",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 106092,
+    "flavor": "There's always room for one more game in the tavern!",
+    "health": 5,
+    "id": "TOY_943",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Rumble Enthusiast",
+    "rarity": "COMMON",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]After you play the left-\nor right-most card in your\nhand, deal 1 damage to\na random enemy.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Arthur Bozonnet",
+    "attack": 6,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 106697,
+    "elite": true,
+    "flavor": "Joymancy (noun): The practice of bringing joy to others through the use of magic. (see also: ethics)",
+    "hasDiamondSkin": true,
+    "health": 6,
+    "id": "TOY_960",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Joymancer Jepetto",
+    "rarity": "LEGENDARY",
+    "set": "WHIZBANGS_WORKSHOP",
+    "text": "[x]<b>Battlecry:</b> Get copies of\nevery 1-Attack or 1-Health\nminion you've played\nthis game.",
+    "type": "MINION"
+  }
+]

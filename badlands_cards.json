@@ -1,0 +1,3978 @@
+[
+  {
+    "artist": "Melvin Chan",
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 102149,
+    "flavor": "You couldn't handle one Snowflipper Penguin. So what hope do you have… against two?!",
+    "id": "DEEP_000",
+    "isMiniSet": true,
+    "mechanics": [
+      "SECRET"
+    ],
+    "name": "Summoning Ward",
+    "rarity": "RARE",
+    "set": "WILD_WEST",
+    "text": "[x]<b>Secret:</b> When your turn\nstarts, summon a copy of\nyour highest Cost minion.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "BOSi Studio",
+    "cardClass": "HUNTER",
+    "classes": [
+      "DEATHKNIGHT",
+      "HUNTER"
+    ],
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 102151,
+    "flavor": "Whoever put these fossils together must be really careless.",
+    "id": "DEEP_001",
+    "isMiniSet": true,
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "Mismatched Fossils",
+    "rarity": "RARE",
+    "set": "WILD_WEST",
+    "text": "<b>Discover</b> a Beast\nand an Undead.\nSwap their stats.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Daniil Kudriavtsev",
+    "cardClass": "MAGE",
+    "classes": [
+      "HUNTER",
+      "MAGE"
+    ],
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 102152,
+    "flavor": "Always Hiffar.",
+    "id": "DEEP_002",
+    "isMiniSet": true,
+    "name": "Elemental Companion",
+    "rarity": "RARE",
+    "set": "WILD_WEST",
+    "text": "Summon a random Elemental Companion.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Studio Hive",
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 102158,
+    "flavor": "I hope I don't jinx the outcome.",
+    "id": "DEEP_003",
+    "isMiniSet": true,
+    "name": "Shimmer Shot",
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "spellSchool": "ARCANE",
+    "text": "Deal $1 damage. Summon a random minion of that Cost.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Jaemin Kim",
+    "attack": 5,
+    "cardClass": "MAGE",
+    "classes": [
+      "HUNTER",
+      "MAGE"
+    ],
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 102160,
+    "flavor": "You got a fireplace? I've got a guy who shapes mantles.",
+    "health": 5,
+    "id": "DEEP_004",
+    "isMiniSet": true,
+    "name": "Mantle Shaper",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL",
+      "NAGA"
+    ],
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "text": "Costs (1) less for\neach spell you've cast while holding this.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Konstantin Porubov",
+    "attack": 4,
+    "cardClass": "HUNTER",
+    "classes": [
+      "DEATHKNIGHT",
+      "HUNTER"
+    ],
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 102161,
+    "flavor": "What is this? A Reven for Ants?!",
+    "health": 6,
+    "id": "DEEP_005",
+    "isMiniSet": true,
+    "mechanics": [
+      "DEATHRATTLE",
+      "TAUNT"
+    ],
+    "name": "Obsidian Revenant",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "text": "[x]<b>Taunt</b>\n<b>Deathrattle</b>: Summon two\nrandom <b>Deathrattle</b> minions\nthat cost (3) or less.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Alex Stone",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 102162,
+    "flavor": "\"I am the great Stone Drake - good morning!\"",
+    "health": 8,
+    "id": "DEEP_006",
+    "isMiniSet": true,
+    "mechanics": [
+      "DIVINE_SHIELD",
+      "ELUSIVE",
+      "LIFESTEAL",
+      "TAUNT"
+    ],
+    "name": "Stone Drake",
+    "race": "DRAGON",
+    "races": [
+      "ELEMENTAL",
+      "DRAGON"
+    ],
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "text": "<b>Divine Shield</b>, <b>Taunt</b>,\n<b>Lifesteal</b>, <b>Elusive</b>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Chris Hayes",
+    "attack": 2,
+    "cardClass": "PALADIN",
+    "classes": [
+      "PALADIN",
+      "SHAMAN"
+    ],
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 102163,
+    "elite": true,
+    "flavor": "And exactly how does Finley turn everyone into a murloc?",
+    "health": 3,
+    "id": "DEEP_007",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY",
+      "EXCAVATE"
+    ],
+    "name": "Sir Finley, the Intrepid",
+    "race": "MURLOC",
+    "races": [
+      "MURLOC"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "WILD_WEST",
+    "text": "[x]<b>Battlecry</b>: If you've <b>Excavated</b>\ntwice, transform all enemy\nminions into 1/1 Murlocs.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Ivo Campelo da Silva",
+    "attack": 0,
+    "cardClass": "SHAMAN",
+    "classes": [
+      "SHAMAN",
+      "WARRIOR"
+    ],
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 102172,
+    "flavor": "You put the Needlerock in to get the Bloodrock out.",
+    "health": 2,
+    "id": "DEEP_008",
+    "isMiniSet": true,
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Needlerock Totem",
+    "race": "TOTEM",
+    "races": [
+      "TOTEM"
+    ],
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "text": "At the end of your turn, gain 2 Armor and\ndraw a card.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Edward Frayna",
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 102173,
+    "flavor": "You only make this mistake once.",
+    "id": "DEEP_009",
+    "isMiniSet": true,
+    "mechanics": [
+      "EXCAVATE"
+    ],
+    "name": "Digging Straight Down",
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "spellSchool": "NATURE",
+    "text": "Deal $8 damage\nto a minion.\n<b>Excavate</b> a treasure.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "BOSi Studio",
+    "cardClass": "WARRIOR",
+    "classes": [
+      "SHAMAN",
+      "WARRIOR"
+    ],
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 102175,
+    "flavor": "They look shocked right now!",
+    "id": "DEEP_010",
+    "isMiniSet": true,
+    "name": "Aftershocks",
+    "rarity": "RARE",
+    "set": "WILD_WEST",
+    "spellSchool": "NATURE",
+    "text": "Deal $1 damage to all minions, three times. Costs (2) less if you cast a spell last turn.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Vlad Botos",
+    "cardClass": "WARRIOR",
+    "classes": [
+      "WARRIOR",
+      "DEMONHUNTER"
+    ],
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 102249,
+    "flavor": "A 100% ethically sourced fire elemental heart is very hard to come by. This one definitely wasn't.",
+    "id": "DEEP_011",
+    "isMiniSet": true,
+    "name": "Burning Heart",
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "spellSchool": "FIRE",
+    "text": "Deal $2 damage to a minion. If it survives, give your hero +3 Attack this turn.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Brian Despain",
+    "attack": 1,
+    "cardClass": "DEMONHUNTER",
+    "classes": [
+      "ROGUE",
+      "DEMONHUNTER"
+    ],
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 102250,
+    "flavor": "Sharing is caring - and they don't care.",
+    "health": 1,
+    "id": "DEEP_012",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY",
+      "DEATHRATTLE",
+      "RUSH"
+    ],
+    "name": "Shadestone Skulker",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "RARE",
+    "set": "WILD_WEST",
+    "text": "[x]<b>Rush</b>. <b>Battlecry:</b> Take your\n weapon and gain its stats. \n<b>Deathrattle:</b> Give it back.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Konstantin Porubov",
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 102252,
+    "flavor": "This will clear the board, I'm fisSURE of it!",
+    "id": "DEEP_013",
+    "isMiniSet": true,
+    "name": "Fel Fissure",
+    "rarity": "RARE",
+    "set": "WILD_WEST",
+    "spellSchool": "FEL",
+    "text": "Deal $2 damage to all minions. At the start of your next turn, deal $2 more damage to all minions.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Tanamaes Leejierasaes",
+    "attack": 1,
+    "cardClass": "ROGUE",
+    "classes": [
+      "ROGUE",
+      "DEMONHUNTER"
+    ],
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 102254,
+    "durability": 0,
+    "flavor": "QUICK! Pick which quick pick trick will stick in the thick of the wick! Lickety split!",
+    "health": 2,
+    "id": "DEEP_014",
+    "isMiniSet": true,
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Quick Pick",
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "text": "After your hero attacks, draw a card.",
+    "type": "WEAPON"
+  },
+  {
+    "artist": "Guillaume Beauchêne",
+    "attack": 3,
+    "cardClass": "DEATHKNIGHT",
+    "classes": [
+      "DEATHKNIGHT",
+      "PALADIN"
+    ],
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 104524,
+    "flavor": "It's creaky and it's rusty! It's spooky and it's dusty!",
+    "health": 1,
+    "id": "DEEP_015",
+    "isMiniSet": true,
+    "mechanics": [
+      "MAGNETIC",
+      "REBORN"
+    ],
+    "name": "Prosthetic Hand",
+    "race": "MECHANICAL",
+    "races": [
+      "MECHANICAL"
+    ],
+    "rarity": "RARE",
+    "set": "WILD_WEST",
+    "text": "<b>Magnetic</b>, <b>Reborn</b>\nCan <b>Magnetize</b> to\nMechs or Undead.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Studio Hive",
+    "attack": 3,
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 104523,
+    "durability": 0,
+    "flavor": "It's not just a weapon… it's a rock!",
+    "health": 3,
+    "id": "DEEP_016",
+    "isMiniSet": true,
+    "mechanics": [
+      "FREEZE",
+      "LIFESTEAL"
+    ],
+    "name": "Quartzite Crusher",
+    "rarity": "COMMON",
+    "runeCost": {
+      "blood": 1,
+      "frost": 1,
+      "unholy": 0
+    },
+    "set": "WILD_WEST",
+    "text": "<b>Lifesteal</b>. <b>Freeze</b> any character damaged by your hero.",
+    "type": "WEAPON"
+  },
+  {
+    "artist": "Angelica Alieva",
+    "cardClass": "DEATHKNIGHT",
+    "classes": [
+      "DEATHKNIGHT",
+      "PALADIN"
+    ],
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 102418,
+    "flavor": "They'll be fiiiiiiiiine.",
+    "id": "DEEP_017",
+    "isMiniSet": true,
+    "name": "Mining Casualties",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "DEATHRATTLE"
+    ],
+    "set": "WILD_WEST",
+    "text": "Summon two 1/1 Silver Hand Recruits with \"<b>Deathrattle:</b> Summon\na 1/1 Frail Ghoul\".",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Matt Dixon",
+    "cardClass": "PALADIN",
+    "classes": [
+      "PALADIN",
+      "SHAMAN"
+    ],
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 104526,
+    "flavor": "As Globb shroominated on his situation, toiling endlessly in the mushroom mines, he came to the startling realization. His boss wasn't a very fun guy.",
+    "id": "DEEP_018",
+    "isMiniSet": true,
+    "mechanics": [
+      "EXCAVATE"
+    ],
+    "name": "Shroomscavate",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "DIVINE_SHIELD"
+    ],
+    "set": "WILD_WEST",
+    "text": "Give a minion <b>Divine Shield</b>. <b>Excavate</b> a treasure.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Grace Liu",
+    "cardClass": "WARRIOR",
+    "classes": [
+      "WARRIOR",
+      "DEMONHUNTER"
+    ],
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 104530,
+    "flavor": "Idk. Looks pink to me.",
+    "health": 2,
+    "id": "DEEP_019",
+    "isMiniSet": true,
+    "name": "Crimson Expanse",
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "text": "[x]Choose a damaged\nminion. Summon a copy\nof it that goes <b>Dormant</b>\nfor one turn.",
+    "type": "LOCATION"
+  },
+  {
+    "artist": "Mooncolony",
+    "attack": 2,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 104528,
+    "elite": true,
+    "flavor": "This is a very on-brannd effect.",
+    "hasDiamondSkin": true,
+    "health": 4,
+    "id": "DEEP_020",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Deepminer Brann",
+    "rarity": "LEGENDARY",
+    "set": "WILD_WEST",
+    "text": "[x]<b>Battlecry:</b> If your deck started\nwith no duplicates, your\n<b>Battlecries</b> trigger twice for\nthe rest of the game.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Ramzy Kamen",
+    "cardClass": "PRIEST",
+    "classes": [
+      "PRIEST",
+      "ROGUE"
+    ],
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 104537,
+    "flavor": "Anduin will literally take your stuff and say it's a Shadow Word.",
+    "id": "DEEP_021",
+    "isMiniSet": true,
+    "name": "Shadow Word: Steal",
+    "rarity": "RARE",
+    "set": "WILD_WEST",
+    "spellSchool": "SHADOW",
+    "text": "Return an enemy minion to YOUR hand.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Brian Despain",
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 102421,
+    "flavor": "Worth its weight in rocks.",
+    "id": "DEEP_022",
+    "isMiniSet": true,
+    "name": "Fool's Gold",
+    "rarity": "RARE",
+    "set": "WILD_WEST",
+    "text": "Get a random Golden Pirate and Elemental from other classes.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Patrik Bjorkstrom",
+    "attack": 2,
+    "cardClass": "PRIEST",
+    "classes": [
+      "PRIEST",
+      "ROGUE"
+    ],
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 102422,
+    "flavor": "This will be a staple in Unicorn Priest.",
+    "health": 2,
+    "id": "DEEP_023",
+    "isMiniSet": true,
+    "mechanics": [
+      "STEALTH",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Hidden Gem",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "text": "<b>Stealth</b>\nAt the end of your turn, restore #2 Health to all friendly characters.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Grafit",
+    "attack": 4,
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 102424,
+    "flavor": "Believe it or not, this is Tram Conductor Gerry's Gyreworm. But is it pronounced Gerry's Gyreworm, Gerry's Gyreworm, Gerry's Gyreworm, or Gerry's Gyreworm?",
+    "health": 4,
+    "id": "DEEP_024",
+    "isMiniSet": true,
+    "mechanics": [
+      "FORGE",
+      "LIFESTEAL",
+      "QUICKDRAW"
+    ],
+    "name": "Glowstone Gyreworm",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "RARE",
+    "referencedTags": [
+      "BATTLECRY"
+    ],
+    "set": "WILD_WEST",
+    "targetingArrowText": "Deal 5 damage.",
+    "text": "[x]<b><b>Lifesteal</b>\nQuickdraw:</b> Deal 5 damage.\n<b>Forge:</b> Change <b>Quickdraw</b>\nto <b>Battlecry</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Vladimir Kafanov",
+    "cardClass": "PRIEST",
+    "classes": [
+      "DRUID",
+      "PRIEST"
+    ],
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 102423,
+    "flavor": "Get mad at your mirror once, see Shattered Reflections forever :(",
+    "id": "DEEP_025",
+    "isMiniSet": true,
+    "name": "Shattered Reflections",
+    "rarity": "RARE",
+    "set": "WILD_WEST",
+    "text": "[x]Choose a minion.\nAdd a copy to your hand,\ndeck, and battlefield.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Ursula Dorada",
+    "cardClass": "PRIEST",
+    "classes": [
+      "DRUID",
+      "PRIEST"
+    ],
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 102426,
+    "flavor": "Eaaaarrrrthhhhhh Pendaaaannnttttt Poweeerrrrrrrrrrr!!!!!!!!",
+    "id": "DEEP_026",
+    "isMiniSet": true,
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "Pendant of Earth",
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "spellSchool": "NATURE",
+    "text": "[x]<b>Discover</b> a minion\n from your deck. Restore\nHealth to your hero\nequal to its Cost.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Sergey Tsvelykh",
+    "attack": 6,
+    "cardClass": "DRUID",
+    "classes": [
+      "DRUID",
+      "WARLOCK"
+    ],
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 102427,
+    "flavor": "From the same people who brought you <b>Choose One</b>, and <b>Choose Twice</b>, comes the exciting prequel: <b>Choose NEITHER</b>!",
+    "health": 8,
+    "id": "DEEP_027",
+    "isMiniSet": true,
+    "mechanics": [
+      "CHOOSE_ONE",
+      "FORGE",
+      "TAUNT"
+    ],
+    "name": "Gloomstone Guardian",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "RARE",
+    "set": "WILD_WEST",
+    "text": "[x]<b>Taunt</b>. <b>Choose One -</b>\nDiscard 2 cards; or Destroy\none of your Mana Crystals.\n<b>Forge:</b> Do NEITHER.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Ramzy Kamen",
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 102432,
+    "flavor": "And if you can't fit any of the Elementals… do better.",
+    "id": "DEEP_028",
+    "isMiniSet": true,
+    "name": "Crystal Cluster",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "TAUNT"
+    ],
+    "set": "WILD_WEST",
+    "text": "Gain three empty Mana Crystals. Any that can't fit summon a 3/7 Elemental with <b>Taunt</b>.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Jakub Kasper",
+    "attack": 3,
+    "cardClass": "DRUID",
+    "classes": [
+      "DRUID",
+      "WARLOCK"
+    ],
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 102434,
+    "flavor": "Oh no! You're throwing valuable gems at me! Please stop!",
+    "health": 2,
+    "id": "DEEP_029",
+    "isMiniSet": true,
+    "name": "Trogg Gemtosser",
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "text": "<b>Finale:</b> Deal 1 damage to a random enemy for each of your Mana Crystals.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Konstantin Turovec",
+    "attack": 2,
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 102435,
+    "flavor": "Elementium, my dear Geode.",
+    "health": 1,
+    "id": "DEEP_030",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY",
+      "DEATHRATTLE"
+    ],
+    "name": "Elementium Geode",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "RARE",
+    "set": "WILD_WEST",
+    "text": "<b>Battlecry and Deathrattle:</b>\nDraw a card. Deal 2 damage to your hero.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Konstantin Turovec",
+    "cardClass": "WARLOCK",
+    "classes": [
+      "MAGE",
+      "WARLOCK"
+    ],
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 102443,
+    "flavor": "So THIS is who's been <b>Greening</b> everything!",
+    "id": "DEEP_031",
+    "isMiniSet": true,
+    "name": "Chaos Creation",
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "spellSchool": "FEL",
+    "text": "Deal $6 damage.\nSummon a random 6-Cost\nminion. Destroy the bottom\n6 cards of your deck.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Jakub Kasper",
+    "cardClass": "WARLOCK",
+    "classes": [
+      "MAGE",
+      "WARLOCK"
+    ],
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 102724,
+    "flavor": "An effective way to freeze someone's soul is to just freeze their body.",
+    "id": "DEEP_032",
+    "isMiniSet": true,
+    "mechanics": [
+      "FREEZE"
+    ],
+    "name": "Soulfreeze",
+    "rarity": "RARE",
+    "set": "WILD_WEST",
+    "spellSchool": "FROST",
+    "text": "<b>Freeze</b> a minion\nand its neighbors. Deal damage to your hero equal to the number <b>Frozen</b>.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Zoltan Boros",
+    "attack": 3,
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 102728,
+    "flavor": "He's not that bad if you don't die turn 4.",
+    "health": 4,
+    "id": "DEEP_033",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY",
+      "EXCAVATE"
+    ],
+    "name": "Fossilized Kaleidosaur",
+    "race": "BEAST",
+    "races": [
+      "UNDEAD",
+      "BEAST"
+    ],
+    "rarity": "RARE",
+    "set": "WILD_WEST",
+    "text": "<b>Battlecry:</b> Gain two\nrandom <b>Bonus Effects</b>.\n<b>Excavate</b> a treasure.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Vladimir Kafanov",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 102732,
+    "flavor": "The 2nd member of the VERY exclusive Is-Called-A-Spider-But-Isn't-A-Beast Club.",
+    "health": 2,
+    "id": "DEEP_034",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Shale Spider",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "RARE",
+    "set": "WILD_WEST",
+    "text": "<b>Battlecry:</b> If you played an Elemental last turn, draw a card.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Timur Shevtsov",
+    "attack": 4,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 102733,
+    "flavor": "This card smells of iride.",
+    "health": 3,
+    "id": "DEEP_035",
+    "isMiniSet": true,
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Iridescent Gyreworm",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "EPIC",
+    "set": "WILD_WEST",
+    "text": "<b>Deathrattle:</b> Give each\nof your minions a random <b>Bonus Effect</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mooncolony",
+    "attack": 7,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 104573,
+    "elite": true,
+    "flavor": "You thought we forgot about her, didn't you? *nervous laughter*",
+    "health": 5,
+    "id": "DEEP_036",
+    "isMiniSet": true,
+    "mechanics": [
+      "DEATHRATTLE",
+      "TAUNT"
+    ],
+    "name": "Therazane",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "WILD_WEST",
+    "text": "[x]<b>Taunt</b>\n <b>Deathrattle:</b> Double the\nstats of all Elementals in\nyour hand and deck.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Alex Horley Orlandelli",
+    "attack": 5,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 102741,
+    "elite": true,
+    "flavor": "Savior of the World Pillar, Maruut valiantly fought the Twilight's Hammer to aid Therazane against the Cataclysm.",
+    "health": 6,
+    "id": "DEEP_037",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY",
+      "DISCOVER"
+    ],
+    "name": "Maruut Stonebinder",
+    "rarity": "LEGENDARY",
+    "set": "WILD_WEST",
+    "text": "[x]<b>Battlecry:</b> If your deck started\nwith no duplicates, <b>Discover</b> an\nElemental to summon. Add\nthe others to your hand.",
+    "type": "MINION"
+  },
+  {
+    "artist": "John Loren",
+    "attack": 1,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 98762,
+    "flavor": "A mining kobold that costs 2, has very low health, and gives you resources… what is this, Warcraft Rumble?",
+    "health": 1,
+    "howToEarnGolden": "Earnable on the <i>Showdown in the Badlands</i> Reward Track.",
+    "id": "WW_001",
+    "mechanics": [
+      "BATTLECRY",
+      "EXCAVATE"
+    ],
+    "name": "Kobold Miner",
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "text": "<b>Battlecry:</b> <b>Excavate</b>\na treasure.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Grafit",
+    "attack": 6,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 98768,
+    "flavor": "We almost went with the name \"Giant Drill\", but then it would've HAD to be an 8/8.",
+    "health": 5,
+    "howToEarnGolden": "Earnable on the <i>Showdown in the Badlands</i> Reward Track.",
+    "id": "WW_002",
+    "mechanics": [
+      "BATTLECRY",
+      "EXCAVATE",
+      "RUSH"
+    ],
+    "name": "Burrow Buster",
+    "race": "MECHANICAL",
+    "races": [
+      "MECHANICAL"
+    ],
+    "rarity": "RARE",
+    "set": "WILD_WEST",
+    "text": "<b>Rush</b>\n<b>Battlecry:</b> <b>Excavate</b>\na treasure.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Vladimir Kafanov",
+    "attack": 0,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 98769,
+    "flavor": "Reno's desire to be a face known around the Badlands might have backfired a little bit.",
+    "health": 5,
+    "id": "WW_003",
+    "mechanics": [
+      "AURA"
+    ],
+    "name": "Bounty Board",
+    "rarity": "RARE",
+    "referencedTags": [
+      "EXCAVATE",
+      "QUICKDRAW",
+      "TRADEABLE"
+    ],
+    "set": "WILD_WEST",
+    "text": "Your <b>Excavate, Quickdraw</b>, <b>Tradeable</b>, and <b>Legendary</b> cards cost (1) less.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Caroline Gariba",
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 99129,
+    "flavor": "Did you know: Hitting the same target twice is only for skilled players. This has been a 'Dart Fact'!",
+    "id": "WW_006",
+    "name": "Dart Throw",
+    "rarity": "EPIC",
+    "set": "WILD_WEST",
+    "text": "[x]Throw two $2 damage\ndarts at random enemy\nminions. <i>(If both hit the\nsame minion, get a Coin!)</i>",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Caroline Gariba",
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 99221,
+    "flavor": "Remember to take the elementals out of the freezer before Mom gets home!",
+    "id": "WW_009",
+    "mechanics": [
+      "EXCAVATE"
+    ],
+    "name": "Cryopreservation",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "FREEZE"
+    ],
+    "set": "WILD_WEST",
+    "spellSchool": "FROST",
+    "text": "<b>Freeze</b> an enemy. <b>Excavate</b> a treasure.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Juan Calle",
+    "attack": 4,
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 99961,
+    "elite": true,
+    "flavor": "If anything can heal the Badlands, it is the power of frogs!",
+    "hasDiamondSkin": true,
+    "health": 5,
+    "id": "WW_010",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Doctor Holli'dae",
+    "rarity": "LEGENDARY",
+    "set": "WILD_WEST",
+    "text": "[x]<b>Battlecry:</b> If your deck started\nwith no duplicates, equip the\nStaff of the Nine Frogs.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Todd Harris",
+    "attack": 5,
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 100286,
+    "flavor": "Whoooooa, we're half way there\nWhooa-oh, -",
+    "health": 4,
+    "id": "WW_024",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Living Prairie",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "COMMON",
+    "referencedTags": [
+      "RUSH"
+    ],
+    "set": "WILD_WEST",
+    "text": "[x]<b>Battlecry:</b> If you played\nan Elemental last turn,\nsummon two 3/3\nCows with <b>Rush</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Guillaume Beauchêne",
+    "attack": 8,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 100234,
+    "flavor": "Either that giant isn't really giant, or that doorway is HUGE!",
+    "health": 8,
+    "howToEarnGolden": "Earnable on the <i>Showdown in the Badlands</i> Reward Track.",
+    "id": "WW_025",
+    "name": "Azerite Giant",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "EPIC",
+    "set": "WILD_WEST",
+    "text": "[x]Costs (1) less for each\nturn in a row you've\nplayed an Elemental.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Slawomir Maniak",
+    "attack": 7,
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 100288,
+    "elite": true,
+    "flavor": "We're not in Karazhan anymore, Reno.",
+    "health": 7,
+    "id": "WW_026",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Skarr, the Catastrophe",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "WILD_WEST",
+    "text": "[x]<b>Battlecry:</b> Deal 1 damage\nto all enemies <i>(improved by\neach turn in a row you've\n played an Elemental)</i>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Max Grecke",
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 100291,
+    "flavor": "Textbook big-sibling and little-sibling relationship.",
+    "id": "WW_027",
+    "name": "Trusty Companion",
+    "rarity": "EPIC",
+    "set": "WILD_WEST",
+    "text": "[x]Give a minion +2/+3.\nIf it has a minion type,\ndraw one of that type.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Arthur Bozonnet",
+    "attack": 3,
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 101269,
+    "flavor": "A bright green liquid that people say is bad for you... That's either hazardous waste OR a new popular brand of soft drink.",
+    "health": 2,
+    "id": "WW_041",
+    "mechanics": [
+      "BATTLECRY",
+      "DEATHRATTLE"
+    ],
+    "name": "Disposal Assistant",
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "text": "[x]<b>Battlecry and Deathrattle:</b>\nPut a Barrel of Sludge on\nthe bottom of your deck.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Sergey Tsvelykh",
+    "attack": 7,
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 101270,
+    "flavor": "Always follow the three Rs: REDUCE their world to ash, REUSE their bones as paperweights, and RECYCLE!",
+    "health": 7,
+    "id": "WW_042",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Waste Remover",
+    "race": "DEMON",
+    "races": [
+      "DEMON"
+    ],
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "text": "[x]At the end of your turn,\ndestroy the bottom 3\ncards of your deck.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Patrik Bjorkstrom",
+    "attack": 2,
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 101271,
+    "flavor": "Cruisin' for an oozin'.",
+    "health": 5,
+    "id": "WW_043",
+    "mechanics": [
+      "RUSH",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Sludge on Wheels",
+    "rarity": "RARE",
+    "set": "WILD_WEST",
+    "text": "[x]<b>Rush</b>. Whenever this takes\ndamage, get a Barrel of\nSludge and add one to the\nbottom of your deck.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Arthur Bozonnet",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 101272,
+    "flavor": "He looks at life through sludge-tinted glasses.",
+    "health": 1,
+    "howToEarnGolden": "Earnable on the <i>Showdown in the Badlands</i> Reward Track.",
+    "id": "WW_044",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Tram Mechanic",
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "text": "<b>Deathrattle:</b> Get a Barrel\nof Sludge. <i>TOXIC WASTE: Handle with care.</i>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Max Grecke",
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 101109,
+    "flavor": "An epic confrontation between the outlaws and the in-laws.",
+    "id": "WW_051",
+    "name": "Showdown!",
+    "rarity": "EPIC",
+    "referencedTags": [
+      "RUSH"
+    ],
+    "set": "WILD_WEST",
+    "text": "Both players summon three 3/3 Outlaws.\nGive yours <b>Rush</b>.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Edgar Hidalgo",
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 101110,
+    "flavor": "No, I asked for 'lightNING in a bottle'!",
+    "id": "WW_052",
+    "name": "Swarm of Lightbugs",
+    "rarity": "RARE",
+    "referencedTags": [
+      "LIFESTEAL"
+    ],
+    "set": "WILD_WEST",
+    "text": "Summon 10 1/1 Lightbugs with <b>Lifesteal</b>. Save any excess in\na 1-Cost Bottle.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Mooncolony",
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 101382,
+    "flavor": "How are they gunna steal the whole tram!?",
+    "id": "WW_053",
+    "name": "Tram Heist",
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "text": "Get a copy of each\ncard your opponent played last turn.",
+    "type": "SPELL"
+  },
+  {
+    "armor": 5,
+    "artist": "Mooncolony",
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 103471,
+    "elite": true,
+    "flavor": "With an uncertain past and a questionable future, Reno was lucky to find his home on the range.",
+    "health": 30,
+    "heroPowerDbfId": 103472,
+    "id": "WW_0700",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Reno, Lone Ranger",
+    "rarity": "LEGENDARY",
+    "set": "WILD_WEST",
+    "text": "[x]<b>Battlecry:</b> If your deck\nstarted with no duplicates,\nremove all enemy minions\nfrom the game.",
+    "type": "HERO"
+  },
+  {
+    "artist": "Arthur Bozonnet",
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 102061,
+    "flavor": "Made by frogs, for frogs, from frogs.",
+    "id": "WW_080",
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "Amphibious Elixir",
+    "rarity": "RARE",
+    "set": "WILD_WEST",
+    "spellSchool": "NATURE",
+    "text": "Restore #5 Health. <b>Discover</b> a spell.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Mooncolony",
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 102059,
+    "flavor": "Skarr's second-biggest hobby after laying waste to the Badlands is bowling.",
+    "id": "WW_090",
+    "name": "Giant Tumbleweed!!!",
+    "rarity": "RARE",
+    "set": "WILD_WEST",
+    "spellSchool": "NATURE",
+    "text": "Deal $6 damage to all minions. Summon a 6/6 Tumbleweed.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Brian Despain",
+    "attack": 2,
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 102144,
+    "elite": true,
+    "flavor": "All around the arid badlands\nThe Outlaws chased the Townsfolk\nGerry had a train full of sludge\nPOP! goes the sludge train",
+    "health": 6,
+    "id": "WW_091",
+    "mechanics": [
+      "AURA",
+      "BATTLECRY"
+    ],
+    "name": "Pop'gar the Putrid",
+    "rarity": "LEGENDARY",
+    "referencedTags": [
+      "LIFESTEAL"
+    ],
+    "set": "WILD_WEST",
+    "text": "Your Fel spells cost (2)\nless and have <b>Lifesteal</b>.\n<b>Battlecry:</b> Get two\nBarrels of Sludge.",
+    "type": "MINION"
+  },
+  {
+    "artist": "L. Lullabi & K. Turovec",
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 102148,
+    "flavor": "For fhe person who jusf cannof decide whaf card fo puf info a deck!",
+    "id": "WW_092",
+    "name": "Fracking",
+    "rarity": "RARE",
+    "set": "WILD_WEST",
+    "text": "[x]Look at the bottom\n3 cards of your deck.\nDraw one and destroy\nthe others.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "L. Lullabi & K. Turovec",
+    "attack": 1,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 98734,
+    "flavor": "I can respect that they're important for the ecosystem, as long as you keep them waaaaaaaaaaaaaaaaay over there.",
+    "health": 2,
+    "id": "WW_300",
+    "mechanics": [
+      "POISONOUS",
+      "STEALTH",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Trapdoor Spider",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "text": "[x]<b>Stealth</b>, <b>Poisonous</b>\nAfter your opponent plays\na minion, attack it.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Zoltan Boros",
+    "attack": 3,
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 99957,
+    "flavor": "They don't sweat, breathe or need lit candles... what more could you ask?",
+    "health": 3,
+    "id": "WW_322",
+    "mechanics": [
+      "BATTLECRY",
+      "EXCAVATE"
+    ],
+    "name": "Skeleton Crew",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD"
+    ],
+    "rarity": "RARE",
+    "runeCost": {
+      "blood": 0,
+      "frost": 1,
+      "unholy": 0
+    },
+    "set": "WILD_WEST",
+    "text": "[x]<b>Battlecry:</b> <b>Excavate</b> a\ntreasure. It costs (0).",
+    "type": "MINION"
+  },
+  {
+    "artist": "James Ryman",
+    "attack": 2,
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 99959,
+    "flavor": "It's a very well-organized pile, I'll give you that.",
+    "health": 1,
+    "id": "WW_324",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Pile of Bones",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD"
+    ],
+    "rarity": "RARE",
+    "referencedTags": [
+      "EXCAVATE"
+    ],
+    "runeCost": {
+      "blood": 0,
+      "frost": 1,
+      "unholy": 1
+    },
+    "set": "WILD_WEST",
+    "text": "<b>Deathrattle:</b> The next\ntime you <b>Excavate</b>,\nresummon this.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Tanamaes Leejierasaes",
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 100015,
+    "flavor": "JUST A LITTLE FURTHER LITTLE GUY, YOU CAN MAKE IT!!!",
+    "id": "WW_325",
+    "mechanics": [
+      "LIFESTEAL",
+      "QUICKDRAW"
+    ],
+    "name": "Dehydrate",
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "text": "<b>Lifesteal</b>. Deal $4 damage to a minion.\n<b>Quickdraw:</b> Costs (1).",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Max Grecke",
+    "attack": 4,
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 100016,
+    "flavor": "Where are you drivin',\nMinecart Cruiser?\nWhere is your bounty,\nfortune, and fame?",
+    "health": 5,
+    "id": "WW_326",
+    "mechanics": [
+      "BATTLECRY",
+      "OVERLOAD",
+      "RUSH"
+    ],
+    "name": "Minecart Cruiser",
+    "overload": 2,
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "RARE",
+    "set": "WILD_WEST",
+    "text": "[x]<b>Rush</b>, <b>Overload:</b> (2)\n<b>Battlecry:</b> If you played\nan Elemental last turn,\ndon't <b>Overload</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Daniil Kudriavtsev",
+    "attack": 2,
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 100019,
+    "flavor": "Best friend of Spinetail Drake.",
+    "health": 2,
+    "id": "WW_327",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Cactus Cutter",
+    "race": "MURLOC",
+    "races": [
+      "MURLOC"
+    ],
+    "rarity": "COMMON",
+    "referencedTags": [
+      "TAUNT"
+    ],
+    "set": "WILD_WEST",
+    "text": "<b>Battlecry:</b> Draw a spell. If you cast it this turn, gain +1/+2 and <b>Taunt</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Luca Zontini",
+    "attack": 3,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 100062,
+    "flavor": "Did you really need a whole giant mecha-suit just for one bundle of dynamite?",
+    "health": 4,
+    "id": "WW_329",
+    "mechanics": [
+      "BATTLECRY",
+      "TAUNT"
+    ],
+    "name": "Detonation Juggernaut",
+    "race": "MECHANICAL",
+    "races": [
+      "MECHANICAL"
+    ],
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "text": "<b>Taunt</b>. <b>Battlecry:</b> Give <b>Taunt</b> minions in your hand +2/+2.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Ivan Fomin",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 100101,
+    "flavor": "\"Hey! Hope you’re well. Have you ever wanted to be your own boss?\"",
+    "health": 2,
+    "id": "WW_331",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Miracle Salesman",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "TRADEABLE"
+    ],
+    "set": "WILD_WEST",
+    "text": "<b>Deathrattle:</b> Get a <b>Tradeable</b> Snake Oil.",
+    "type": "MINION"
+  },
+  {
+    "artist": "A.J. Nazzaro",
+    "attack": 4,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 100103,
+    "flavor": "This oil is absolutely essential to your gameplan.",
+    "health": 5,
+    "howToEarnGolden": "Earnable on the <i>Showdown in the Badlands</i> Reward Track.",
+    "id": "WW_332",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Snake Oil Seller",
+    "race": "NAGA",
+    "races": [
+      "NAGA"
+    ],
+    "rarity": "RARE",
+    "referencedTags": [
+      "TRADEABLE"
+    ],
+    "set": "WILD_WEST",
+    "text": "[x]<b>Deathrattle:</b> Shuffle 2\n<b>Tradeable</b> Snake Oils into\nyour opponent's deck.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Caroline Gariba",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 100113,
+    "flavor": "You know who to blame if your drinking water tastes a little fishy.",
+    "health": 3,
+    "howToEarnGolden": "Earnable after purchasing the <i>Showdown in the Badlands</i> Tavern Pass.",
+    "id": "WW_333",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Howdyfin",
+    "race": "MURLOC",
+    "races": [
+      "MURLOC"
+    ],
+    "rarity": "EPIC",
+    "set": "WILD_WEST",
+    "text": "[x]Whenever your hand has\nless than 3 cards in it,\nget a random Murloc.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Vlad Botos",
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 100114,
+    "flavor": "I am become death, destroyer of azerite.",
+    "id": "WW_334",
+    "mechanics": [
+      "EXCAVATE"
+    ],
+    "name": "Reinforced Plating",
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "text": "Gain 6 Armor.\n<b>Excavate</b> a treasure.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Vlad Botos",
+    "attack": 4,
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 100118,
+    "flavor": "Wait, but… Isn't he more of a 'holy kodoboy'?",
+    "health": 3,
+    "id": "WW_335",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Holy Cowboy",
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "text": "<b>Battlecry:</b> Your next Holy spell costs (2) less.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Ramzy Kamen",
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 100121,
+    "flavor": "Seven colors of the rainbow, one for each enemy minion.",
+    "id": "WW_336",
+    "name": "Prismatic Beam",
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "text": "[x]Deal $3 damage to all \nenemies. Costs (1) less\nfor each enemy minion.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Vika Yarova",
+    "attack": 3,
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 100124,
+    "elite": true,
+    "flavor": "That's the spirit! Of the Badlands.",
+    "health": 4,
+    "id": "WW_337",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Spirit of the Badlands",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD",
+      "BEAST"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "WILD_WEST",
+    "text": "[x]<b>Battlecry:</b> If your deck started\nwith no duplicates, get\n a <i>permanent</i>  Mirage.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Vlad Botos",
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 100195,
+    "flavor": "You're my favorite deput- oh. You died… Ok just kidding, THAT guy is my favorite deputy.",
+    "id": "WW_341",
+    "name": "Deputization Aura",
+    "rarity": "RARE",
+    "referencedTags": [
+      "LIFESTEAL"
+    ],
+    "set": "WILD_WEST",
+    "spellSchool": "HOLY",
+    "text": "Your left-most minion has +1 Attack and <b>Lifesteal</b>. Lasts 3 turns.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Forrest Imel",
+    "attack": 1,
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 100230,
+    "flavor": "Loves to lob law bombs from his law blog.",
+    "health": 5,
+    "id": "WW_342",
+    "mechanics": [
+      "BATTLECRY",
+      "LIFESTEAL",
+      "RUSH"
+    ],
+    "name": "Lawful Longarm",
+    "race": "DRAENEI",
+    "races": [
+      "DRAENEI"
+    ],
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "text": "[x]<b>Rush</b>, <b>Lifesteal</b>\n<b>Battlecry:</b> Gain +1 Attack for\neach card in your hand.",
+    "type": "MINION"
+  },
+  {
+    "artist": "A. Gimaldinov & J. Nelson",
+    "attack": 2,
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 100284,
+    "flavor": "I swear this minion had 3000 Attack at one point!",
+    "health": 1,
+    "id": "WW_344",
+    "mechanics": [
+      "DEATHRATTLE",
+      "DIVINE_SHIELD"
+    ],
+    "name": "Hi Ho Silverwing",
+    "race": "DRAGON",
+    "races": [
+      "DRAGON"
+    ],
+    "rarity": "RARE",
+    "set": "WILD_WEST",
+    "text": "<b>Divine Shield</b>\n<b>Deathrattle:</b> Draw a\nHoly spell.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mooncolony",
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 100285,
+    "elite": true,
+    "flavor": "Bandits... ASSEMBLE!",
+    "id": "WW_345",
+    "name": "The Badlands Bandits",
+    "rarity": "LEGENDARY",
+    "set": "WILD_WEST",
+    "text": "[x]Get eight 3/2 Bandits\nwith <b>Bonus Effects</b>. Any\nthat can't fit in your hand\nare summoned instead.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Max Grecke",
+    "attack": 2,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 100537,
+    "flavor": "Who's that minion?\n...\nIiiiit's Blast Tortoise!\n\"Blast tortoise.\"",
+    "health": 7,
+    "id": "WW_346",
+    "mechanics": [
+      "BATTLECRY",
+      "TAUNT"
+    ],
+    "name": "Blast Tortoise",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "RARE",
+    "set": "WILD_WEST",
+    "text": "[x]<b>Taunt</b>\n<b>Battlecry:</b> Deal damage to all\nenemy minions equal to this\nminion's Attack.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Studio Hive",
+    "attack": 4,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 100539,
+    "durability": 0,
+    "flavor": "You can pick your battles, and you can pick your axes, but you can't uh… pick your friends' battlepickaxes?",
+    "health": 1,
+    "id": "WW_347",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Battlepickaxe",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "TAUNT"
+    ],
+    "set": "WILD_WEST",
+    "text": "After you play a\n<b>Taunt</b> minion, gain +1 Durability.",
+    "type": "WEAPON"
+  },
+  {
+    "artist": "Matt Dixon",
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 100540,
+    "flavor": "\"Me should not have taken candle.\"",
+    "id": "WW_348",
+    "mechanics": [
+      "QUICKDRAW"
+    ],
+    "name": "Misfire",
+    "rarity": "EPIC",
+    "set": "WILD_WEST",
+    "text": "Deal $3, $2, and $1 damage to random minions. <b>Quickdraw:</b> Choose the targets.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "L. Lullabi & K. Turovec",
+    "attack": 4,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 100546,
+    "flavor": "Watch out watch out watch out - R.K.O. outta nowhere!",
+    "health": 4,
+    "id": "WW_349",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Badlands Brawler",
+    "rarity": "EPIC",
+    "referencedTags": [
+      "EXCAVATE"
+    ],
+    "set": "WILD_WEST",
+    "text": "<b>Battlecry:</b> Start a Brawl!\nIf you've <b>Excavated</b> twice,\nthis always wins.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Nicola Saviori",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 100553,
+    "flavor": "What once started as a small-time cat burglary gig has turned into a life of cattle rustling. What a shame.",
+    "health": 4,
+    "id": "WW_351",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Cattle Rustler",
+    "rarity": "EPIC",
+    "set": "WILD_WEST",
+    "text": "<b>Battlecry:</b> Draw a Beast.\nIt costs (3) less.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Vladimir Kafanov",
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 100595,
+    "flavor": "With a hat like that, I'd say their tailor did all of the sowing.",
+    "id": "WW_352",
+    "mechanics": [
+      "EXCAVATE"
+    ],
+    "name": "Reap What You Sow",
+    "rarity": "COMMON",
+    "runeCost": {
+      "blood": 0,
+      "frost": 1,
+      "unholy": 0
+    },
+    "set": "WILD_WEST",
+    "text": "Deal $3 damage. <b>Excavate</b> a treasure.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Mooncolony",
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 100611,
+    "flavor": "Technically, they're not Corpses YET.",
+    "id": "WW_354",
+    "name": "Fistful of Corpses",
+    "rarity": "COMMON",
+    "runeCost": {
+      "blood": 1,
+      "frost": 0,
+      "unholy": 1
+    },
+    "set": "WILD_WEST",
+    "text": "Deal damage to\na minion equal to\nyour <b>Corpses</b>.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Mauricio Herrera",
+    "attack": 7,
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 100616,
+    "flavor": "Dead or alive, you're pulling that plow.",
+    "health": 7,
+    "id": "WW_356",
+    "mechanics": [
+      "BATTLECRY",
+      "TAUNT"
+    ],
+    "name": "Harrowing Ox",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD",
+      "BEAST"
+    ],
+    "rarity": "EPIC",
+    "referencedTags": [
+      "EXCAVATE"
+    ],
+    "runeCost": {
+      "blood": 0,
+      "frost": 1,
+      "unholy": 0
+    },
+    "set": "WILD_WEST",
+    "text": "[x]<b>Taunt</b>\n<b>Battlecry:</b> If you've <b>Excavated</b>\ntwice, your next card this\nturn costs (7) less.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Jakub Kasper",
+    "attack": 2,
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 100619,
+    "elite": true,
+    "flavor": "Home is where the disfigured, rotten heart is.",
+    "health": 8,
+    "id": "WW_357",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Maw and Paw",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD"
+    ],
+    "rarity": "LEGENDARY",
+    "runeCost": {
+      "blood": 1,
+      "frost": 0,
+      "unholy": 1
+    },
+    "set": "WILD_WEST",
+    "text": "[x]At the end of your turn, gain\n5 <b>Corpses</b>. At the start of your\nturn, spend 5 <b>Corpses</b> to give\nyour hero +5 Health.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Arthur Bozonnet",
+    "attack": 4,
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 100627,
+    "flavor": "I know it's an Undead hand, but bending your pinky in that way can NOT be good for your joints.",
+    "health": 3,
+    "id": "WW_358",
+    "mechanics": [
+      "BATTLECRY",
+      "DISCOVER",
+      "QUICKDRAW"
+    ],
+    "name": "Farm Hand",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD"
+    ],
+    "rarity": "COMMON",
+    "runeCost": {
+      "blood": 0,
+      "frost": 0,
+      "unholy": 2
+    },
+    "set": "WILD_WEST",
+    "text": "<b>Battlecry:</b> <b>Discover</b> an Undead. <b>Quickdraw:</b>\nIt costs (2) less.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Anzka Nguyen",
+    "attack": 4,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 100641,
+    "elite": true,
+    "flavor": "Is that Sheriff Barrelbrim, owner of the Badlands Barrelbuilding?",
+    "health": 4,
+    "howToEarn": "Earnable after collecting 30 <i>Showdown in the Badlands</i> cards.",
+    "howToEarnGolden": "Earnable after purchasing the <i>Showdown in the Badlands</i> Tavern Pass.",
+    "id": "WW_359",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Sheriff Barrelbrim",
+    "rarity": "LEGENDARY",
+    "set": "WILD_WEST",
+    "text": "<b>Battlecry:</b> If you have\n20 or less Health, open\nthe Badlands Jail.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Jakub Kasper",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 101093,
+    "flavor": "How long can this go on? For 6 years at least!",
+    "health": 3,
+    "howToEarnGolden": "Earnable on the <i>Showdown in the Badlands</i> Reward Track.",
+    "id": "WW_360",
+    "mechanics": [
+      "BATTLECRY",
+      "QUICKDRAW",
+      "TAUNT"
+    ],
+    "name": "Azerite Chain Gang",
+    "rarity": "RARE",
+    "set": "WILD_WEST",
+    "text": "[x]<b>Taunt</b>\n<b>Battlecry and Quickdraw:</b>\nSummon a copy of this.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Matt Dixon",
+    "attack": 3,
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 101133,
+    "flavor": "With a smile like that and Coins in her hands, she's one greedy grinner.",
+    "health": 4,
+    "id": "WW_363",
+    "mechanics": [
+      "COMBO",
+      "QUICKDRAW"
+    ],
+    "name": "Bounty Wrangler",
+    "rarity": "RARE",
+    "set": "WILD_WEST",
+    "text": "<b>Quickdraw or Combo:</b>\nGet a Coin.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Ramzy Kamen",
+    "attack": 3,
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 101134,
+    "elite": true,
+    "flavor": "His deceptive manipulations have dug the Bloodrock Company into a hole they can't get out of.",
+    "hasDiamondSkin": true,
+    "health": 3,
+    "id": "WW_364",
+    "name": "Velarok Windblade",
+    "rarity": "LEGENDARY",
+    "set": "WILD_WEST",
+    "text": "[x]While this is in your hand,\nplay a card from another\nclass to reveal Velarok's\ntrue form!",
+    "type": "MINION"
+  },
+  {
+    "artist": "L. Lullabi & K. Turovec",
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 101142,
+    "flavor": "The official term for \"Because I said so!\".",
+    "id": "WW_365",
+    "mechanics": [
+      "QUICKDRAW",
+      "TRADEABLE"
+    ],
+    "name": "Lay Down the Law",
+    "rarity": "RARE",
+    "set": "WILD_WEST",
+    "spellSchool": "HOLY",
+    "text": "<b>Tradeable</b>\nSet a minion's Attack and Health to 1. <b>Quickdraw:</b> Then deal $1 damage to it.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Kevin Sidharta",
+    "attack": 4,
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 10,
+    "dbfId": 101162,
+    "flavor": "Even in the darkest of days, the sun never sets on the Badlands.",
+    "health": 6,
+    "id": "WW_366",
+    "mechanics": [
+      "DIVINE_SHIELD",
+      "TAUNT"
+    ],
+    "name": "Living Horizon",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "EPIC",
+    "set": "WILD_WEST",
+    "text": "[x]<b>Taunt</b>, <b>Divine Shield</b>\nCosts (1) less for each\nother card in your hand.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Matt Dixon",
+    "attack": 2,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 101264,
+    "flavor": "Welp, guess I'll die... again.",
+    "health": 2,
+    "id": "WW_367",
+    "mechanics": [
+      "DEATHRATTLE",
+      "TAUNT"
+    ],
+    "name": "Unlucky Powderman",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD"
+    ],
+    "rarity": "RARE",
+    "set": "WILD_WEST",
+    "text": "<b>Taunt</b>\n<b>Deathrattle:</b> Give <b>Taunt</b> minions in your hand and deck +1/+1.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Konstantin Porubov",
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 101265,
+    "flavor": "\"Dave, you're never gunna believe this! The plants ARE the zombies!\"",
+    "id": "WW_368",
+    "name": "Crop Rotation",
+    "rarity": "RARE",
+    "referencedTags": [
+      "RUSH"
+    ],
+    "runeCost": {
+      "blood": 0,
+      "frost": 0,
+      "unholy": 1
+    },
+    "set": "WILD_WEST",
+    "text": "Summon four 1/1 Undead with <b>Rush</b> that die at the end of turn.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "James Ryman",
+    "attack": 7,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 101367,
+    "elite": true,
+    "flavor": "Ever since the Bloodrock Company hired this guy, business has been booming!",
+    "health": 7,
+    "id": "WW_372",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Boomboss Tho'grun",
+    "rarity": "LEGENDARY",
+    "set": "WILD_WEST",
+    "text": "[x]<b>Battlecry:</b> Shuffle 3 T.N.T. into\nyour opponent's deck. When\ndrawn, blow up a card in their\nhand, deck, and board.",
+    "type": "MINION"
+  },
+  {
+    "artist": "James Ryman",
+    "attack": 6,
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 20,
+    "dbfId": 101375,
+    "elite": true,
+    "flavor": "Overseer of the Bloodrock Mine, Reska will work you to the bone. They'll then reanimate your bones and work THOSE bones to the bone.",
+    "health": 3,
+    "id": "WW_373",
+    "mechanics": [
+      "DEATHRATTLE",
+      "RUSH"
+    ],
+    "name": "Reska, the Pit Boss",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD"
+    ],
+    "rarity": "LEGENDARY",
+    "runeCost": {
+      "blood": 0,
+      "frost": 1,
+      "unholy": 1
+    },
+    "set": "WILD_WEST",
+    "text": "[x]<b>Rush</b>. Costs (1) less for each\nminion that died this game.\n<b>Deathrattle:</b> Take control of a\nrandom enemy minion.",
+    "type": "MINION"
+  },
+  {
+    "artist": "James Ryman",
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 101376,
+    "flavor": "It ain't much, but it's dishonest work.",
+    "id": "WW_374",
+    "name": "Corpse Farm",
+    "rarity": "EPIC",
+    "runeCost": {
+      "blood": 0,
+      "frost": 0,
+      "unholy": 1
+    },
+    "set": "WILD_WEST",
+    "text": "Spend up to 8 <b>Corpses</b> to summon a random minion of that Cost.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Alex Horley Orlandelli",
+    "attack": 16,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 101454,
+    "elite": true,
+    "flavor": "You delved too greedily and too deep. You know what they awoke in the darkness of the Badlands: Rush and Taunt.",
+    "health": 16,
+    "id": "WW_375",
+    "mechanics": [
+      "RUSH",
+      "TAUNT"
+    ],
+    "name": "Slagmaw the Slumbering",
+    "race": "BEAST",
+    "races": [
+      "ELEMENTAL",
+      "BEAST"
+    ],
+    "rarity": "LEGENDARY",
+    "referencedTags": [
+      "EXCAVATE"
+    ],
+    "set": "WILD_WEST",
+    "text": "<b>Rush</b>, <b>Taunt</b>\n<b>Dormant</b> for 6 turns.\n<i>(<b>Excavate</b> to awaken 2 turns sooner!)</i>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Adam Byrne",
+    "attack": 5,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 101461,
+    "flavor": "What doesn't kill ya makes you deader.",
+    "health": 1,
+    "id": "WW_376",
+    "mechanics": [
+      "POISONOUS"
+    ],
+    "name": "Cactus Rager",
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "text": "<b>Poisonous</b>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Grafit",
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 101462,
+    "flavor": "This is the hottest summer of your life <i>so far</i>.",
+    "id": "WW_377",
+    "mechanics": [
+      "QUICKDRAW"
+    ],
+    "name": "Heat Wave",
+    "rarity": "RARE",
+    "set": "WILD_WEST",
+    "spellSchool": "FIRE",
+    "text": "[x]Deal $2 damage\nto an enemy minion and\nits neighbors. <b>Quickdraw:</b>\nTo all enemies instead.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Konstantin Porubov",
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 101464,
+    "flavor": "Don't worry, it's green energy!",
+    "id": "WW_378",
+    "mechanics": [
+      "EXCAVATE"
+    ],
+    "name": "Smokestack",
+    "rarity": "EPIC",
+    "set": "WILD_WEST",
+    "spellSchool": "FEL",
+    "text": "Deal $1 damage to\na minion. If it dies, <b>Excavate</b> a treasure.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Nicola Saviori",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 101476,
+    "elite": true,
+    "flavor": "You'll never guess why they call him that.",
+    "hasDiamondSkin": true,
+    "health": 3,
+    "id": "WW_379",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Flint Firearm",
+    "rarity": "LEGENDARY",
+    "referencedTags": [
+      "QUICKDRAW"
+    ],
+    "set": "WILD_WEST",
+    "text": "[x]<b>Battlecry:</b> Get a random\n<b>Quickdraw</b> card. If you play\nit this turn, repeat this.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mooncolony",
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 101480,
+    "flavor": "Your Blast spells have +1 Attack.",
+    "id": "WW_380",
+    "mechanics": [
+      "EXCAVATE"
+    ],
+    "name": "Blast Charge",
+    "rarity": "RARE",
+    "set": "WILD_WEST",
+    "text": "Destroy a damaged enemy minion. <b>Excavate</b> a treasure.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Patrik Bjorkstrom",
+    "attack": 3,
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 101481,
+    "faction": "HORDE",
+    "flavor": "With how many cacti are all over the Badlands, this job has to be some sort of sick joke.",
+    "health": 7,
+    "id": "WW_381",
+    "mechanics": [
+      "BATTLECRY",
+      "OVERHEAL"
+    ],
+    "name": "Injured Hauler",
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "text": "[x]<b>Battlecry:</b> Deal 4 damage\nto this minion.\n<b>Overheal:</b> Deal 2 damage\nto all enemy minions.",
+    "type": "MINION"
+  },
+  {
+    "artist": "L. Lullabi & K. Turovec",
+    "attack": 4,
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 9,
+    "dbfId": 101482,
+    "flavor": "The hills are alive with the sound of YEEEEHAAAWWWW!",
+    "health": 16,
+    "id": "WW_382",
+    "mechanics": [
+      "LIFESTEAL",
+      "OVERLOAD",
+      "RUSH"
+    ],
+    "name": "Walking Mountain",
+    "overload": 2,
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "EPIC",
+    "set": "WILD_WEST",
+    "text": "<b>Rush</b>, <b>Lifesteal</b>,\n<b>Mega-Windfury</b>\n<b>Overload:</b> (2)",
+    "type": "MINION"
+  },
+  {
+    "artist": "James Ryman",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 101483,
+    "flavor": "He's here to tip the scales in our favor… and moisturize them too.",
+    "health": 2,
+    "id": "WW_383",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Dryscale Deputy",
+    "race": "NAGA",
+    "races": [
+      "NAGA"
+    ],
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "text": "<b>Battlecry:</b> The next\ntime you draw a spell,\nget a copy of it.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Ivan Fomin",
+    "attack": 2,
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 101955,
+    "flavor": "\"Oh no, you've got me confused. I'm Ben, the evil ent banker. I only work with evil trees!\"",
+    "health": 4,
+    "id": "WW_384",
+    "mechanics": [
+      "BATTLECRY",
+      "DISCOVER",
+      "QUICKDRAW"
+    ],
+    "name": "Benevolent Banker",
+    "rarity": "EPIC",
+    "set": "WILD_WEST",
+    "text": "<b>Battlecry:</b> <b>Discover</b> a\nspell from your deck.\n<b>Quickdraw:</b> Enemy\ndeck instead.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Eva Widermann",
+    "attack": 4,
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 101958,
+    "flavor": "Quick! Someone bring her a Manathirst card!",
+    "health": 6,
+    "id": "WW_387",
+    "mechanics": [
+      "TAUNT"
+    ],
+    "name": "Thirsty Drifter",
+    "rarity": "RARE",
+    "set": "WILD_WEST",
+    "text": "<b>Taunt</b>\nCosts (1) less for each\n1-Cost card you've played this game.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Jim Nelson",
+    "attack": 1,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 101966,
+    "flavor": "\"I don't know why everyone's got their overalls in a jumble with Azerite minin' when there's all this GOLD for the takin'!\"",
+    "health": 2,
+    "id": "WW_391",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Gold Panner",
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "text": "At the end of your turn, draw a card.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Arthur Gimaldinov",
+    "attack": 5,
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 101989,
+    "elite": true,
+    "flavor": "From the library to the field, she's proved herself to be a leading intellectual.",
+    "hasDiamondSkin": true,
+    "health": 5,
+    "id": "WW_392",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Elise, Badlands Savior",
+    "rarity": "LEGENDARY",
+    "set": "WILD_WEST",
+    "text": "[x]<b>Battlecry:</b> If your deck started\nwith no duplicates, summon\n5/5 copies of 4 random\nminions in your deck.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Vladimir Kafanov",
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 102051,
+    "flavor": "Don't throw shade, bottle it!",
+    "id": "WW_393",
+    "mechanics": [
+      "ImmuneToSpellpower"
+    ],
+    "name": "Invasive Shadeleaf",
+    "rarity": "RARE",
+    "set": "WILD_WEST",
+    "spellSchool": "SHADOW",
+    "text": "Deal $10 damage to an enemy minion.\nSave any excess in a\n1-Cost Bottle.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Anzka Nguyen",
+    "attack": 3,
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 102052,
+    "elite": true,
+    "flavor": "One time, I was trying to get Pip's attention to warn her that the dangerous outlaw Cheery Ollie, who also goes by just 'O', was headed her way. \"Pip! Pip! Cheery O!\", I shouted.",
+    "health": 3,
+    "id": "WW_394",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Pip the Potent",
+    "rarity": "LEGENDARY",
+    "set": "WILD_WEST",
+    "text": "<b>Battlecry:</b> Copy each\n1-Cost card in your hand.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Vika Yarova",
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 102054,
+    "flavor": "Issa bah oh auh woh ah!",
+    "id": "WW_395",
+    "name": "Holy Springwater",
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "spellSchool": "HOLY",
+    "text": "Restore #8 Health to a damaged character.\nSave any excess in a\n1-Cost Bottle.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Slawomir Maniak",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 102129,
+    "flavor": "We were told that \"Dag-Nabbin' Dang-Blastin' Rootin'-Tootin' High-Falutin' Elemental\" was too long.",
+    "health": 3,
+    "id": "WW_397",
+    "mechanics": [
+      "DEATHRATTLE",
+      "TAUNT"
+    ],
+    "name": "Dang-Blasted Elemental",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "text": "<b>Taunt</b>\n<b>Deathrattle:</b> Deal 2 damage\nto all minions except\nfriendly Elementals.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Jason Kang",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 102170,
+    "flavor": "This girl is such a boss.",
+    "health": 4,
+    "id": "WW_398",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Gaslight Gatekeeper",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD"
+    ],
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "text": "[x]<b>Battlecry:</b> Shuffle your\nhand into your deck, then\ndraw that many cards.",
+    "type": "MINION"
+  },
+  {
+    "artist": "James Ryman",
+    "attack": 4,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 102171,
+    "flavor": "\"My ultimate is rea- ah, errr, I mean, I have enough Mana.\"",
+    "health": 3,
+    "id": "WW_399",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "High Noon Duelist",
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "text": "<b>Deathrattle:</b> Both players DRAW! Destroy the card that costs less.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mooncolony",
+    "attack": 2,
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 100296,
+    "elite": true,
+    "flavor": "Hey, put ALL of your hands on the table!",
+    "health": 4,
+    "id": "WW_400",
+    "mechanics": [
+      "BATTLECRY",
+      "DISCOVER"
+    ],
+    "name": "Snake Eyes",
+    "race": "NAGA",
+    "races": [
+      "NAGA"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "WILD_WEST",
+    "text": "[x]<b>Battlecry:</b> Roll two dice,\nthen <b>Discover</b> two cards of\nthose Costs. <i>(Doubles get\nan extra <b>Discover</b>!)</i>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Alex Horley Orlandelli",
+    "attack": 4,
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 98652,
+    "elite": true,
+    "flavor": "\"I have given up (a single copy of) EVERYTHING! What have YOU sacrificed?\"",
+    "health": 6,
+    "id": "WW_401",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Gunslinger Kurtrus",
+    "rarity": "LEGENDARY",
+    "set": "WILD_WEST",
+    "text": "[x]<b>Battlecry:</b> If your deck started\nwith no duplicates, fire six\n2 damage shots at minions\nin the enemy's hand.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Zoltan Boros",
+    "attack": 1,
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "collectionText": "[x]After you cast a spell,\ndeal 2 damage to a random\nenemy and draw a Naga.\n<i>(Then switch!)</i>",
+    "cost": 3,
+    "dbfId": 100358,
+    "flavor": "\"Bullseye… I think.\"",
+    "health": 3,
+    "id": "WW_402",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Blindeye Sharpshooter",
+    "race": "NAGA",
+    "races": [
+      "NAGA"
+    ],
+    "rarity": "EPIC",
+    "set": "WILD_WEST",
+    "text": "[x]After you play a Naga,\ndeal 2 damage to a random\nenemy and draw a spell.\n<i>(Then switch!)</i>",
+    "type": "MINION"
+  },
+  {
+    "artist": "L. Lullabi & K. Turovec",
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 100359,
+    "flavor": "I was only trying to get it in your eyes, man. YOU didn't need to open your mouth like that!",
+    "id": "WW_403",
+    "mechanics": [
+      "QUICKDRAW"
+    ],
+    "name": "Pocket Sand",
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "text": "Deal $3 damage.\n<b>Quickdraw:</b> Your opponent's next card costs (1) more.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Mooncolony",
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 100361,
+    "flavor": "With their oasis polluted by the Bloodrock Mining Company, Snake Eyes has set aside her differences with the outlaws of the Badlands to put an end to Bloodrock's operation.",
+    "id": "WW_404",
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "Oasis Outlaws",
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "text": "<b>Discover</b> a Naga.\nIf you've played a Naga while holding this, reduce its Cost by (1).",
+    "type": "SPELL"
+  },
+  {
+    "artist": "James Ryman",
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 100362,
+    "flavor": "I thought Kurtrus was more of a fan of glaives.",
+    "id": "WW_405",
+    "mechanics": [
+      "ImmuneToSpellpower"
+    ],
+    "name": "Fan the Hammer",
+    "rarity": "RARE",
+    "set": "WILD_WEST",
+    "spellSchool": "FEL",
+    "text": "Deal $6 damage split among the lowest Health enemies.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Eva Widermann",
+    "attack": 6,
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 100363,
+    "flavor": "Three of these would make for an EPIC T-shirt.",
+    "health": 6,
+    "id": "WW_406",
+    "mechanics": [
+      "OUTCAST",
+      "RUSH"
+    ],
+    "name": "Midnight Wolf",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "text": "<b>Rush</b>\n<b>Outcast:</b> Summon a\ncopy of this.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Timur Shevtsov",
+    "attack": 3,
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 100365,
+    "flavor": "I'm green\nAnd I'm about to die\nDa ba dee da ba di",
+    "health": 2,
+    "id": "WW_407",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Parched Desperado",
+    "race": "NAGA",
+    "races": [
+      "NAGA"
+    ],
+    "rarity": "RARE",
+    "set": "WILD_WEST",
+    "text": "<b>Battlecry:</b> If you've cast a spell while holding this, give your hero +3 Attack this turn.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Kevin Sidharta",
+    "attack": 3,
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 100367,
+    "flavor": "Bartend-O-Bot! Make my Outcast card DO SOMETHING!",
+    "health": 1,
+    "id": "WW_408",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Bartend-O-Bot",
+    "race": "MECHANICAL",
+    "races": [
+      "MECHANICAL"
+    ],
+    "rarity": "EPIC",
+    "referencedTags": [
+      "OUTCAST"
+    ],
+    "set": "WILD_WEST",
+    "text": "<b>Battlecry:</b> Draw an <b>Outcast</b> card and slide it to the left side of your hand.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Zoltan Boros",
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 100369,
+    "flavor": "Wait! Before we duel, I gotta install these shaders.",
+    "id": "WW_409",
+    "name": "Load the Chamber",
+    "rarity": "RARE",
+    "set": "WILD_WEST",
+    "spellSchool": "FEL",
+    "text": "[x]Deal $2 damage.\nYour next Naga, Fel spell,\nand weapon cost (1) less.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Matt Dixon",
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 100935,
+    "flavor": "If you count the 'seven' in the name, there's actually four total 7s, not three. Huge oversight from the designers.",
+    "id": "WW_410",
+    "name": "Triple Sevens",
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "text": "Deal $7 damage to a minion. Draw 7 cards.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "James Ryman",
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 100936,
+    "flavor": "Dude, Velarok, give me a minute to play my turn, the rope's burning!",
+    "id": "WW_411",
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "Stick Up",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "QUICKDRAW"
+    ],
+    "set": "WILD_WEST",
+    "text": "[x]<b>Discover</b> a <b>Quickdraw</b>\ncard from another class.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Konstantin Turovec",
+    "attack": 1,
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 100937,
+    "durability": 0,
+    "flavor": "The 'mpany' is silent.",
+    "health": 3,
+    "id": "WW_412",
+    "mechanics": [
+      "DEATHRATTLE",
+      "EXCAVATE"
+    ],
+    "name": "Bloodrock Co. Shovel",
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "text": "<b>Deathrattle:</b> <b>Excavate</b>\na treasure.",
+    "type": "WEAPON"
+  },
+  {
+    "artist": "Vika Yarova",
+    "attack": 4,
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 100938,
+    "flavor": "One man's treasure is another man's statue to the face.",
+    "health": 3,
+    "id": "WW_413",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Antique Flinger",
+    "rarity": "RARE",
+    "referencedTags": [
+      "EXCAVATE"
+    ],
+    "set": "WILD_WEST",
+    "targetingArrowText": "Destroy an enemy minion.",
+    "text": "<b>Battlecry:</b> If you've <b>Excavated</b> twice, destroy an enemy minion.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Jason Kang",
+    "attack": 0,
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 100942,
+    "flavor": "Wishing upon a star? Pssshhh, that's so childish. Anyways, let me throw all my Coins into this well.",
+    "health": 7,
+    "id": "WW_415",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Wishing Well",
+    "rarity": "EPIC",
+    "set": "WILD_WEST",
+    "text": "[x]After you play a Coin, get\na random <b>Legendary</b> minion\nfrom another class and\nset its Cost to (1).",
+    "type": "MINION"
+  },
+  {
+    "artist": "Ivan Fomin",
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 100943,
+    "flavor": "I thiiink… It's under all three of 'em!",
+    "id": "WW_416",
+    "name": "Shell Game",
+    "rarity": "RARE",
+    "set": "WILD_WEST",
+    "text": "[x]Get a random Epic,\nRare, and Common card\nfrom other classes.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Matt Dixon",
+    "attack": 4,
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 100944,
+    "elite": true,
+    "flavor": "\"I HATE that nickname. Call me Drilliam!\"",
+    "health": 3,
+    "id": "WW_417",
+    "mechanics": [
+      "BATTLECRY",
+      "DEATHRATTLE",
+      "EXCAVATE",
+      "QUICKDRAW"
+    ],
+    "name": "Drilly the Kid",
+    "race": "MECHANICAL",
+    "races": [
+      "MECHANICAL"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "WILD_WEST",
+    "text": "<b>Battlecry, Quickdraw,\nand Deathrattle:</b>\n<b>Excavate</b> a treasure.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Matt Dixon",
+    "attack": 4,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 101549,
+    "flavor": "Why don't they just buy another hat?",
+    "health": 4,
+    "id": "WW_418",
+    "mechanics": [
+      "FORGETFUL",
+      "RUSH"
+    ],
+    "name": "Ogre-Gang Outlaw",
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "text": "<b>Rush</b>\n50% chance to attack\nthe wrong enemy.",
+    "type": "MINION"
+  },
+  {
+    "artist": "John Loren",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 101550,
+    "flavor": "Doesn't know his ride from his left.",
+    "health": 6,
+    "id": "WW_419",
+    "mechanics": [
+      "FORGETFUL",
+      "RUSH"
+    ],
+    "name": "Ogre-Gang Rider",
+    "rarity": "RARE",
+    "set": "WILD_WEST",
+    "text": "[x]<b>Rush</b>\n50% chance to give your\nhero +3 Attack this turn\ninstead of attacking.",
+    "type": "MINION"
+  },
+  {
+    "artist": "A.J. Nazzaro",
+    "attack": 5,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 101551,
+    "flavor": "100% chance to not play by the rules.",
+    "health": 4,
+    "id": "WW_420",
+    "mechanics": [
+      "FORGETFUL",
+      "RUSH"
+    ],
+    "name": "Ogre-Gang Ace",
+    "rarity": "EPIC",
+    "referencedTags": [
+      "DIVINE_SHIELD",
+      "LIFESTEAL"
+    ],
+    "set": "WILD_WEST",
+    "text": "[x]<b>Rush</b>\nWhenever this attacks, gain\n<b>Divine Shield</b>. <i>(50% chance to\n gain <b>Lifesteal</b> instead.)</i>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Alex Horley Orlandelli",
+    "attack": 6,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 101555,
+    "elite": true,
+    "flavor": "The good, the bad, and the ugly stats for the Cost.",
+    "health": 7,
+    "id": "WW_421",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Kingpin Pud",
+    "rarity": "LEGENDARY",
+    "referencedTags": [
+      "WINDFURY"
+    ],
+    "set": "WILD_WEST",
+    "text": "<b>Battlecry:</b> Resurrect\nyour Ogre-Gang. Give\nthem <b>Windfury</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mooncolony",
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 101849,
+    "flavor": "When the ground trembles near it, are those earthquakes or heartbeats?",
+    "id": "WW_422",
+    "mechanics": [
+      "SECRET"
+    ],
+    "name": "Azerite Vein",
+    "rarity": "EPIC",
+    "set": "WILD_WEST",
+    "text": "[x]<b>Secret:</b> When the enemy\nplays a card on the turn\nthat it entered their hand,\nget a copy that costs (0).",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Kleston Marques",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 101871,
+    "flavor": "Brewmaster Bru brought Barrelbrim bursting barrels of barely brewed barley brew. Barrelbrim bought Bru's barley brew, barring the barrels broken from the brazen brunch brawl.",
+    "health": 2,
+    "id": "WW_423",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Saloon Brewmaster",
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "targetingArrowText": "Return a friendly minion to hand and give it +2/+2.",
+    "text": "<b>Battlecry:</b> Return a friendly minion to your hand.\nGive it +2/+2.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Jaemin Kim",
+    "attack": 3,
+    "cardClass": "MAGE",
+    "collectible": true,
+    "collectionText": "[x]<b>Battlecry:</b> Summon a\ncopy of this for each turn\nin a row you've played\nan Elemental.",
+    "cost": 4,
+    "dbfId": 101873,
+    "flavor": "The drip on this elemental is straight fire!",
+    "health": 2,
+    "id": "WW_424",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Overflow Surger",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "text": "[x]<b>Battlecry:</b> Summon a\ncopy of this for each turn\nin a row you've played\nan Elemental.@ <i>(@)</i>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Kevin Sidharta",
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 101874,
+    "flavor": "See those dots up there? Those are called \"stars.\" Except for that one. That's called an \"airplane.\"",
+    "id": "WW_425",
+    "name": "Stargazing",
+    "rarity": "RARE",
+    "set": "WILD_WEST",
+    "spellSchool": "ARCANE",
+    "text": "Draw a different Arcane spell. If you play it this turn, it casts twice.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Luca Zontini",
+    "attack": 4,
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 101875,
+    "flavor": "\"So anyways, I started blastminin'!\"",
+    "health": 4,
+    "id": "WW_426",
+    "mechanics": [
+      "BATTLECRY",
+      "EXCAVATE"
+    ],
+    "name": "Blastmage Miner",
+    "rarity": "RARE",
+    "set": "WILD_WEST",
+    "text": "[x]<b>Battlecry: Excavate</b> a\ntreasure. For each card in\nyour hand, deal 1 damage\nto a random enemy.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mooncolony",
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 9,
+    "dbfId": 101876,
+    "flavor": "When the light is just right during Golden Hour, that is when you take out the selfie stick and start casting.",
+    "id": "WW_427",
+    "mechanics": [
+      "ImmuneToSpellpower"
+    ],
+    "name": "Sunset Volley",
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "spellSchool": "FIRE",
+    "text": "Deal $10 damage randomly split among\nall enemies. Summon a random 10-Cost minion.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "James Ryman",
+    "attack": 4,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 101877,
+    "flavor": "A perfect minion for those feeling sedimental about their past.",
+    "health": 3,
+    "id": "WW_428",
+    "mechanics": [
+      "BATTLECRY",
+      "DISCOVER"
+    ],
+    "name": "Eroded Sediment",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "text": "[x]<b>Battlecry:</b> If you played\nan Elemental last turn,\n<b>Discover</b> any Elemental\nfrom the past.",
+    "type": "MINION"
+  },
+  {
+    "artist": "L. Lullabi & K. Turovec",
+    "attack": 6,
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 101879,
+    "elite": true,
+    "flavor": "Cracking open an elemental with the boys.",
+    "health": 5,
+    "id": "WW_429",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Mes'Adune the Fractured",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "WILD_WEST",
+    "text": "<b>Battlecry:</b> Draw an Elemental. Split it\ninto two halves.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Forrest Imel",
+    "attack": 2,
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 101880,
+    "elite": true,
+    "flavor": "He's a big fan of Control Death Knight live streams.",
+    "health": 5,
+    "id": "WW_430",
+    "mechanics": [
+      "AURA"
+    ],
+    "name": "Tae'thelan Bloodwatcher",
+    "rarity": "LEGENDARY",
+    "set": "WILD_WEST",
+    "text": "[x]Cards that didn't start in\nyour deck cost (4) less\n<i>(but not less than 1)</i>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Tanamaes Leejierasaes",
+    "attack": 1,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 101881,
+    "flavor": "He used to be an ordinary snake until he slithered through a saloon during a brawl and walked out looking like this.",
+    "health": 5,
+    "id": "WW_431",
+    "mechanics": [
+      "DEATHRATTLE",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Gattlesnake",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "EPIC",
+    "set": "WILD_WEST",
+    "text": "[x]At the end of your turn,\n  load two bullets that deal 1  \ndamage each. <b>Deathrattle:</b>\n Fire at random enemies!",
+    "type": "MINION"
+  },
+  {
+    "artist": "Ursula Dorada",
+    "attack": 3,
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 101939,
+    "flavor": "What good is a researcher if they're just gunna keep it all a secret?",
+    "health": 5,
+    "id": "WW_432",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Reliquary Researcher",
+    "rarity": "EPIC",
+    "referencedTags": [
+      "EXCAVATE",
+      "SECRET"
+    ],
+    "set": "WILD_WEST",
+    "text": "[x]<b>Battlecry:</b> If you've\n<b>Excavated</b> twice, cast two\nrandom Mage <b>Secrets</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Angelica Alieva",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 101968,
+    "flavor": "Where did you come from? (Linedance Partner's Battlecry)\nWhere did you go? (Face)",
+    "health": 2,
+    "id": "WW_433",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Linedance Partner",
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "text": "<b>Battlecry:</b> If you're holding another 3-Cost card, summon a random 3-Cost minion.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Alex Stone",
+    "attack": 6,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 101969,
+    "flavor": "THIS is why you shouldn't look directly at the sun.",
+    "health": 6,
+    "howToEarnGolden": "Earnable on the <i>Showdown in the Badlands</i> Reward Track.",
+    "id": "WW_434",
+    "mechanics": [
+      "LIFESTEAL",
+      "QUICKDRAW",
+      "TRADEABLE"
+    ],
+    "name": "Sunspot Dragon",
+    "race": "DRAGON",
+    "races": [
+      "DRAGON"
+    ],
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "targetingArrowText": "Deal 6 damage.",
+    "text": "[x]<b>Tradeable</b>, <b>Lifesteal</b>\n<b>Quickdraw:</b> Deal 6 damage.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mauricio Herrera",
+    "attack": 1,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 101971,
+    "flavor": "Has a PhD in stomputational chemistry.",
+    "health": 3,
+    "id": "WW_435",
+    "mechanics": [
+      "AURA"
+    ],
+    "name": "Bunny Stomper",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "referencedTags": [
+      "RUSH"
+    ],
+    "set": "WILD_WEST",
+    "text": "Your Beasts have <b>Rush</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "L. Lullabi & K. Turovec",
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 103462,
+    "flavor": "If only there were thousands of hypotheticals to prepare me for this moment!",
+    "id": "WW_436",
+    "mechanics": [
+      "QUICKDRAW"
+    ],
+    "name": "Trolley Problem",
+    "rarity": "EPIC",
+    "referencedTags": [
+      "RUSH"
+    ],
+    "set": "WILD_WEST",
+    "text": "Discard your lowest Cost spell. Summon two 3/3 Tram Cars with <b>Rush</b>.\n<b>Quickdraw:</b> Don't discard.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Arthur Bozonnet",
+    "attack": 4,
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 103463,
+    "elite": true,
+    "flavor": "His name is pronounced like 'gif'.",
+    "health": 4,
+    "id": "WW_437",
+    "mechanics": [
+      "BATTLECRY",
+      "EXCAVATE"
+    ],
+    "name": "Tram Conductor Gerry",
+    "rarity": "LEGENDARY",
+    "referencedTags": [
+      "RUSH"
+    ],
+    "set": "WILD_WEST",
+    "text": "<b>Battlecry:</b> If you've\n<b>Excavated</b> twice, summon six 3/3 Tram Cars with <b>Rush</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "James Ryman",
+    "attack": 6,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 102902,
+    "elite": true,
+    "flavor": "You can lead a horse to water, but you can't stop it from electrocuting everything in the water.",
+    "health": 6,
+    "howToEarn": "Unlocked after completing Apprentice.",
+    "howToEarnGolden": "Earnable after purchasing the <i>Showdown in the Badlands</i> Tavern Pass.",
+    "id": "WW_440",
+    "mechanics": [
+      "DEATHRATTLE",
+      "TAUNT"
+    ],
+    "name": "Thunderbringer",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL",
+      "BEAST"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "WILD_WEST",
+    "text": "[x]<b>Taunt</b>\n<b>Deathrattle:</b> Summon an\nElemental and Beast from\nyour deck.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Grafit",
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 102903,
+    "flavor": "Remember Ultrasaur? This is him now. Feel old yet?",
+    "id": "WW_441",
+    "mechanics": [
+      "InvisibleDeathrattle"
+    ],
+    "name": "Furnace Fuel",
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "spellSchool": "FIRE",
+    "text": "When this is played,\ndiscarded, or destroyed,\ndraw 2 cards.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Juan Calle",
+    "attack": 4,
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 102904,
+    "flavor": "Also functions as the town dentist.",
+    "health": 5,
+    "id": "WW_442",
+    "mechanics": [
+      "DEATHRATTLE",
+      "EXCAVATE",
+      "TAUNT"
+    ],
+    "name": "Mo'arg Drillfist",
+    "race": "DEMON",
+    "races": [
+      "MECHANICAL",
+      "DEMON"
+    ],
+    "rarity": "RARE",
+    "set": "WILD_WEST",
+    "text": "<b>Taunt</b>\n <b>Deathrattle:</b> <b>Excavate</b>\na treasure.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Konstantin Porubov",
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 104999,
+    "flavor": "Keep your friends close, your enemies closer, and your shadows at gunpoint.",
+    "id": "WW_600",
+    "name": "Posse Possession",
+    "rarity": "EPIC",
+    "set": "WILD_WEST",
+    "spellSchool": "SHADOW",
+    "text": "Summon a 4/4 copy\nof a random minion in your opponent's hand.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Hideaki Takamura",
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 100171,
+    "flavor": "You're a sneaky lil snake, aren'tcha?",
+    "id": "WW_806",
+    "name": "Sneaky Snakes",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "STEALTH"
+    ],
+    "set": "WILD_WEST",
+    "text": "Summon two 1/1 Snakes with <b>Stealth</b>.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Dany Orizio",
+    "attack": 1,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 100191,
+    "flavor": "The bird brings the word (which happens to be bird).",
+    "health": 2,
+    "id": "WW_807",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Messenger Buzzard",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "text": "[x]<b>Deathrattle:</b> Draw a Beast.\nGive minions in your\nhand +1/+1.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Angelica Alieva",
+    "attack": 2,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 100172,
+    "flavor": "Skilled at exploring hidden temples.",
+    "health": 3,
+    "id": "WW_808",
+    "mechanics": [
+      "POISONOUS",
+      "QUICKDRAW",
+      "RUSH"
+    ],
+    "name": "Silver Serpent",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "referencedTags": [
+      "IMMUNE"
+    ],
+    "set": "WILD_WEST",
+    "text": "<b><b>Rush</b>, <b>Poisonous</b>\nQuickdraw:</b> Gain <b>Immune</b> this turn.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Vladimir Kafanov",
+    "attack": 3,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 100173,
+    "flavor": "The secret cow level has been unearthed.",
+    "health": 3,
+    "id": "WW_809",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Bovine Skeleton",
+    "race": "BEAST",
+    "races": [
+      "UNDEAD",
+      "BEAST"
+    ],
+    "rarity": "RARE",
+    "set": "WILD_WEST",
+    "text": "<b>Deathrattle:</b> If this has 4\nor more Attack, summon\na Bovine Skeleton.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mooncolony",
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 100174,
+    "flavor": "What mount? I don't see anything…",
+    "id": "WW_810",
+    "name": "Camouflage Mount",
+    "rarity": "RARE",
+    "referencedTags": [
+      "DEATHRATTLE"
+    ],
+    "set": "WILD_WEST",
+    "text": "Give a minion +3/+3 and a random <b>Bonus Effect</b>. When it dies, summon a Chameleon.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Anton Zemskov",
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 101950,
+    "flavor": "It actually only holds three quarters of a gallon, but that doesn't sound as good.",
+    "id": "WW_811",
+    "name": "Ten Gallon Hat",
+    "rarity": "RARE",
+    "referencedTags": [
+      "DEATHRATTLE"
+    ],
+    "set": "WILD_WEST",
+    "text": "[x]Draw a minion. Give it\n+1/+1 and \"<b>Deathrattle:</b>\nGet a Ten Gallon Hat.\"",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Arthur Gimaldinov",
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 100178,
+    "flavor": "And then they rode off into the sunset, not knowing they left their stove on.",
+    "id": "WW_812",
+    "name": "Saddle Up!",
+    "rarity": "EPIC",
+    "referencedTags": [
+      "DEATHRATTLE"
+    ],
+    "set": "WILD_WEST",
+    "text": "Give your minions \"<b>Deathrattle:</b> Summon a random Beast that costs (3) or less.\"",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Tanamaes Leejierasaes",
+    "attack": 2,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 101953,
+    "durability": 0,
+    "flavor": "Shoot for the stars! And if you miss, just don't hit me.",
+    "health": 3,
+    "id": "WW_813",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Starshooter",
+    "rarity": "EPIC",
+    "set": "WILD_WEST",
+    "text": "After your hero attacks, get an Arcane Shot.",
+    "type": "WEAPON"
+  },
+  {
+    "artist": "Daniil Kudriavtsev",
+    "attack": 2,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 100179,
+    "elite": true,
+    "flavor": "He's always smiling… Not by choice, but because it hurts to close his mouth.",
+    "health": 5,
+    "id": "WW_814",
+    "mechanics": [
+      "BATTLECRY",
+      "DEATHRATTLE"
+    ],
+    "name": "Spurfang",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "WILD_WEST",
+    "text": "[x]<b>Battlecry and Deathrattle:</b>\nSummon a random Beast\nwith Cost equal to this\nminion's Attack.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Zoltan Boros",
+    "attack": 3,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 100180,
+    "elite": true,
+    "flavor": "He might be lost, but he knows where you can find these hands.",
+    "health": 4,
+    "id": "WW_815",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Theldurin the Lost",
+    "rarity": "LEGENDARY",
+    "referencedTags": [
+      "IMMUNE"
+    ],
+    "set": "WILD_WEST",
+    "text": "[x]<b>Battlecry:</b> If your deck\nstarted with no duplicates,\ngain <b>Immune</b> this turn and\nattack all enemies.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Edgar Hidalgo",
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 101975,
+    "flavor": "This is one step above reaching for the skies.",
+    "id": "WW_816",
+    "name": "Take to the Skies",
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "text": "Draw two Dragons.\nGive them +1/+1.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Timur Shevtsov",
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 101976,
+    "flavor": "\"I am not Malfurion! I am CACTUS LORD!\"",
+    "id": "WW_818",
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "Cactus Construct",
+    "rarity": "RARE",
+    "set": "WILD_WEST",
+    "spellSchool": "NATURE",
+    "text": "<b>Discover</b> a 2-Cost minion. Summon a 1/2 copy of it.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Caroline Gariba",
+    "attack": 2,
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 101051,
+    "flavor": "Little Whelpy, you're the one\nYou make Mana lots of fun",
+    "health": 1,
+    "id": "WW_819",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Splish-Splash Whelp",
+    "race": "DRAGON",
+    "races": [
+      "DRAGON"
+    ],
+    "rarity": "RARE",
+    "set": "WILD_WEST",
+    "text": "<b>Battlecry:</b> If you're holding a Dragon, gain an empty Mana Crystal.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Kleston Marques",
+    "attack": 5,
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 101052,
+    "flavor": "Mortal enemy of Cactus Cutter.",
+    "health": 4,
+    "id": "WW_820",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Spinetail Drake",
+    "race": "DRAGON",
+    "races": [
+      "DRAGON"
+    ],
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "targetingArrowText": "Deal 5 damage to an enemy minion.",
+    "text": "<b>Battlecry:</b> If you're holding\na Dragon, deal 5 damage\nto an enemy minion.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Matt Dixon",
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 101369,
+    "flavor": "\"Once upon a time, there was a maaaagical toy shop, filled with wonder and Dragons!\"",
+    "id": "WW_821",
+    "mechanics": [
+      "CHOOSE_ONE"
+    ],
+    "name": "Dragon Tales",
+    "rarity": "EPIC",
+    "set": "WILD_WEST",
+    "text": "<b>Choose One -</b> Get two random Dragons that cost (5) or less; or Get two that cost more than (5).",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Alex Stone",
+    "attack": 3,
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 101053,
+    "flavor": "I have a Dragon, I have a Golem.\nUH! Dragon Golem!",
+    "health": 4,
+    "id": "WW_822",
+    "mechanics": [
+      "BATTLECRY",
+      "TAUNT"
+    ],
+    "name": "Dragon Golem",
+    "race": "DRAGON",
+    "races": [
+      "DRAGON"
+    ],
+    "rarity": "EPIC",
+    "set": "WILD_WEST",
+    "text": "[x]<b>Taunt</b>\n<b>Battlecry:</b> Summon a copy\nof this for each Dragon\nin your hand.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Tanamaes Leejierasaes",
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 101054,
+    "flavor": "Just doing our part as the Hearthstone development team in reminding you to drink more water!",
+    "id": "WW_823",
+    "mechanics": [
+      "QUICKDRAW"
+    ],
+    "name": "Rehydrate",
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "spellSchool": "NATURE",
+    "text": "Restore #7 Health. <b>Quickdraw:</b> Refresh\n2 Mana Crystals.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Patrik Bjorkstrom",
+    "attack": 8,
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 101055,
+    "elite": true,
+    "flavor": "Rheastrasza ascends above loyalty to just her dragonflight to serve all dragonkind. She believes all flights deserve a future and will give her life for the future dragon prince.",
+    "health": 8,
+    "id": "WW_824",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Rheastrasza",
+    "race": "DRAGON",
+    "races": [
+      "DRAGON"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "WILD_WEST",
+    "text": "[x]<b>Battlecry:</b> If your deck started\nwith no duplicates, summon\nthe Purified Dragon Nest.",
+    "type": "MINION"
+  },
+  {
+    "artist": "James Ryman",
+    "attack": 4,
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 9,
+    "dbfId": 101057,
+    "elite": true,
+    "flavor": "There is a dragon way down in Bloodrock\nThey call the Setting Sun",
+    "health": 12,
+    "id": "WW_825",
+    "mechanics": [
+      "LIFESTEAL",
+      "RUSH",
+      "TAUNT"
+    ],
+    "name": "Fye, the Setting Sun",
+    "race": "DRAGON",
+    "races": [
+      "DRAGON"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "WILD_WEST",
+    "text": "[x]<b>Rush</b>, <b>Lifesteal</b>, <b>Taunt</b>\nCosts (1) less for each\nDragon you've summoned\nthis game.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Edgar Hidalgo",
+    "attack": 3,
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 101978,
+    "flavor": "Not as sweet as the Dessert Nestmatron, but still just as refreshing!",
+    "health": 5,
+    "id": "WW_826",
+    "mechanics": [
+      "BATTLECRY",
+      "TAUNT"
+    ],
+    "name": "Desert Nestmatron",
+    "race": "DRAGON",
+    "races": [
+      "DRAGON"
+    ],
+    "rarity": "RARE",
+    "set": "WILD_WEST",
+    "text": "<b>Taunt</b>. <b>Battlecry:</b> If you're holding a Dragon, refresh 4 Mana Crystals.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Kleston Marques",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 102001,
+    "flavor": "\"Gosh darn it! How did these winged, airborne creatures manage to escape my knee-high, fenced enclosure AGAIN!?\"",
+    "health": 3,
+    "id": "WW_827",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Whelp Wrangler",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "TAUNT"
+    ],
+    "set": "WILD_WEST",
+    "text": "At the end of your turn, get a 1/2 Whelp with <b>Taunt</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Melvin Chan",
+    "attack": 1,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 98701,
+    "flavor": "Some people think this card is broken, but I think it's farrier than that.",
+    "health": 1,
+    "id": "WW_900",
+    "mechanics": [
+      "BATTLECRY",
+      "QUICKDRAW"
+    ],
+    "name": "Horseshoe Slinger",
+    "race": "MECHANICAL",
+    "races": [
+      "MECHANICAL"
+    ],
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "text": "<b>Battlecry:</b> Deal 2 damage to a random enemy minion.\n<b>Quickdraw:</b> And one of its neighbors.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Vika Yarova",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 98704,
+    "flavor": "\"Don't worry, we'll evenly split the bounty. Then I'll have two evenly sized piles of gold!\"",
+    "health": 3,
+    "id": "WW_901",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Greedy Partner",
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "text": "<b>Battlecry:</b> If you're holding another 2-Cost card,\nget a Coin.",
+    "type": "MINION"
+  },
+  {
+    "artist": "A. Gimaldinov & Mooncolony",
+    "attack": 4,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 98750,
+    "flavor": "Rowdy, partner!",
+    "health": 3,
+    "id": "WW_906",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Rowdy Partner",
+    "rarity": "COMMON",
+    "set": "WILD_WEST",
+    "targetingArrowText": "Deal 4 damage.",
+    "text": "<b>Battlecry:</b> If you're holding another 4-Cost card,\ndeal 4 damage.",
+    "type": "MINION"
+  }
+]

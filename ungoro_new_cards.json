@@ -1,0 +1,2870 @@
+[
+  {
+    "artist": "Arthur Bozonnet",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 41076,
+    "flavor": "Aww.  So cute.  Want to feed him another finger?",
+    "health": 2,
+    "id": "UNG_001",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Pterrordax Hatchling",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "referencedTags": [
+      "ADAPT"
+    ],
+    "set": "UNGORO",
+    "text": "<b><b>Battlecry:</b> Adapt</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Daren Bader",
+    "attack": 5,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 41120,
+    "flavor": "Always fun to say out loud \"VOL-CA-NO-SAUUUR!\"",
+    "health": 6,
+    "id": "UNG_002",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Volcanosaur",
+    "race": "BEAST",
+    "races": [
+      "ELEMENTAL",
+      "BEAST"
+    ],
+    "rarity": "RARE",
+    "referencedTags": [
+      "ADAPT"
+    ],
+    "set": "UNGORO",
+    "text": "<b>Battlecry:</b> <b>Adapt</b>, then <b>Adapt</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Andrew Hou",
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 41130,
+    "flavor": "Comes with fries and a drink.",
+    "id": "UNG_004",
+    "name": "Dinosize",
+    "rarity": "EPIC",
+    "set": "UNGORO",
+    "text": "Set a minion's stats to 7/14.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Peter Stapleton",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 41137,
+    "flavor": "Doesn't like to adapt unless others are watching. Some minions are such show-offs.",
+    "health": 2,
+    "id": "UNG_009",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Ravasaur Runt",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "referencedTags": [
+      "ADAPT"
+    ],
+    "set": "UNGORO",
+    "text": "<b>Battlecry:</b> If you control at least 2 other minions, <b>Adapt.</b>",
+    "type": "MINION"
+  },
+  {
+    "artist": "James Ryman",
+    "attack": 5,
+    "battlegroundsPremiumDbfId": 58413,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 41138,
+    "flavor": "Bet you can't eat just one murloc!",
+    "health": 8,
+    "id": "UNG_010",
+    "mechanics": [
+      "DEATHRATTLE",
+      "TAUNT"
+    ],
+    "name": "Sated Threshadon",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "set": "UNGORO",
+    "techLevel": 5,
+    "text": "<b>Taunt</b>\n<b>Deathrattle:</b> Summon three 1/1 Murlocs.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Matt Dixon",
+    "attack": 2,
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 41139,
+    "flavor": "Murloc hydrologists are pretty rare.  Most murloc undergrads pick computer science.",
+    "health": 2,
+    "id": "UNG_011",
+    "mechanics": [
+      "BATTLECRY",
+      "DISCOVER"
+    ],
+    "name": "Hydrologist",
+    "race": "MURLOC",
+    "races": [
+      "MURLOC"
+    ],
+    "rarity": "COMMON",
+    "referencedTags": [
+      "SECRET"
+    ],
+    "set": "UNGORO",
+    "text": "<b>Battlecry:</b> <b>Discover</b> and cast a <b>Secret</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mike Azevedo",
+    "attack": 3,
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 41145,
+    "elite": true,
+    "flavor": "Ironically, his favorite number is 4.",
+    "health": 7,
+    "id": "UNG_015",
+    "mechanics": [
+      "BATTLECRY",
+      "TAUNT"
+    ],
+    "name": "Sunkeeper Tarim",
+    "rarity": "LEGENDARY",
+    "set": "UNGORO",
+    "text": "<b>Taunt</b>\n<b>Battlecry:</b> Set all other minions' Attack and Health to 3.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Chris Seaman",
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 41151,
+    "flavor": "Oh, a wise geyser eh?",
+    "id": "UNG_018",
+    "name": "Flame Geyser",
+    "rarity": "COMMON",
+    "set": "UNGORO",
+    "spellSchool": "FIRE",
+    "text": "Deal $2 damage.\nAdd a 1/2 Elemental to your hand.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Evgeniy Dlinnov",
+    "attack": 3,
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 41152,
+    "faction": "HORDE",
+    "flavor": "Makes a mean puff pastry.",
+    "health": 1,
+    "id": "UNG_019",
+    "mechanics": [
+      "ELUSIVE"
+    ],
+    "name": "Air Elemental",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "COMMON",
+    "set": "UNGORO",
+    "text": "<b>Elusive</b>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Eva Widermann",
+    "attack": 2,
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 41153,
+    "flavor": "What did you draw? Shhhh… it’s a secret.",
+    "health": 3,
+    "id": "UNG_020",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Arcanologist",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "SECRET"
+    ],
+    "set": "UNGORO",
+    "text": "<b>Battlecry:</b> Draw a <b>Secret</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Jakub Kasper",
+    "attack": 5,
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 41154,
+    "flavor": "Explorers nicknamed him the Teapot Elemental.",
+    "health": 4,
+    "id": "UNG_021",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Steam Surger",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "RARE",
+    "set": "UNGORO",
+    "text": "[x]<b>Battlecry:</b> If you played\nan Elemental last turn,\nadd a 'Flame Geyser'\nto your hand.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Hideaki Takamura",
+    "attack": 2,
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 41155,
+    "flavor": "Mirage is actually the name of its long-lost cat.",
+    "health": 3,
+    "id": "UNG_022",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Mirage Caller",
+    "rarity": "RARE",
+    "set": "UNGORO",
+    "targetingArrowText": "Summon a 1/1 copy.",
+    "text": "<b>Battlecry:</b> Choose a minion. Summon a 1/1 copy of it.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Izzy Hoover",
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 41158,
+    "flavor": "Nice spell.  YOINK!",
+    "id": "UNG_024",
+    "mechanics": [
+      "SECRET"
+    ],
+    "name": "Mana Bind",
+    "rarity": "RARE",
+    "set": "UNGORO",
+    "spellSchool": "ARCANE",
+    "text": "<b>Secret:</b> When your opponent casts a spell, add a copy to your hand that costs (0).",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Gustav Schmidt",
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 41159,
+    "flavor": "Many young shaman summon a volcano as their first school project.",
+    "id": "UNG_025",
+    "mechanics": [
+      "OVERLOAD",
+      "ImmuneToSpellpower"
+    ],
+    "name": "Volcano",
+    "overload": 1,
+    "rarity": "RARE",
+    "set": "UNGORO",
+    "spellSchool": "FIRE",
+    "text": "Deal $15 damage randomly split among all minions.\n<b>Overload:</b> (1)",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Mike Sass",
+    "attack": 2,
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 41162,
+    "elite": true,
+    "flavor": "If you strike her down, she shall become more powerful than you can possibly… well, she'll become a 6/6 anyways.",
+    "health": 2,
+    "id": "UNG_027",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Pyros",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL",
+      "BEAST"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "UNGORO",
+    "text": "<b>Deathrattle:</b> Return this to your hand as a 6/6 that costs (4).",
+    "type": "MINION"
+  },
+  {
+    "artist": "Rafael Zanchetin",
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 41168,
+    "elite": true,
+    "flavor": "Although powerful, the incantation is simple. It’s just a jump to the left, and then a step to the right.",
+    "id": "UNG_028",
+    "mechanics": [
+      "QUEST"
+    ],
+    "name": "Open the Waygate",
+    "questReward": "UNG_028t",
+    "rarity": "LEGENDARY",
+    "set": "UNGORO",
+    "text": "[x]<b>Quest:</b> Cast 8 spells that\ndidn't start in your deck.\n<b>Reward:</b> Time Warp.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Nutchapol Thitinunthakorn",
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 41169,
+    "flavor": "This one’s a bird. And here’s a bunny!",
+    "id": "UNG_029",
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "Shadow Visions",
+    "rarity": "EPIC",
+    "set": "UNGORO",
+    "spellSchool": "SHADOW",
+    "text": "<b>Discover</b> a copy of a spell in your deck.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Tyler Walpole",
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 41170,
+    "flavor": "By accepting this healing, you agree to the following terms…",
+    "id": "UNG_030",
+    "name": "Binding Heal",
+    "rarity": "COMMON",
+    "set": "UNGORO",
+    "spellSchool": "HOLY",
+    "text": "Restore #5 Health to a minion and your hero.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Arthur Bozonnet",
+    "attack": 1,
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 41173,
+    "faction": "HORDE",
+    "flavor": "Being made of light has its disadvantages, but at least it's always looking on the bright side.",
+    "health": 2,
+    "id": "UNG_032",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Crystalline Oracle",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "RARE",
+    "set": "UNGORO",
+    "text": "[x]<b>Deathrattle:</b> Copy a card\nfrom your opponent's deck\n and add it to your hand.",
+    "type": "MINION"
+  },
+  {
+    "artist": "A. J. Nazzaro",
+    "attack": 2,
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 41176,
+    "flavor": "It's a literal lava lamp!",
+    "health": 3,
+    "id": "UNG_034",
+    "mechanics": [
+      "AURA"
+    ],
+    "name": "Radiant Elemental",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "COMMON",
+    "set": "UNGORO",
+    "text": "Your spells cost (1) less\n<i>(but not less than 1)</i>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Servando Lupini",
+    "attack": 3,
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 41177,
+    "flavor": "George promised to be good. But it's easy for little Glimmerroots to forget.",
+    "health": 4,
+    "id": "UNG_035",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Curious Glimmerroot",
+    "rarity": "EPIC",
+    "set": "UNGORO",
+    "text": "[x]<b>Battlecry:</b> Look at 3 cards.\nGuess which one started\nin your opponent's deck\nto get a copy of it.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Garrett Hanna",
+    "attack": 2,
+    "battlegroundsPremiumDbfId": 58374,
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 41180,
+    "flavor": "A hero... In a half-shell.",
+    "health": 5,
+    "id": "UNG_037",
+    "mechanics": [
+      "DEATHRATTLE",
+      "TAUNT"
+    ],
+    "name": "Tortollan Shellraiser",
+    "rarity": "COMMON",
+    "set": "UNGORO",
+    "techLevel": 3,
+    "text": "[x]<b>Taunt</b>\n<b>Deathrattle:</b> Give a random\n friendly minion +1/+1.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Slawomir Maniak",
+    "attack": 3,
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 41191,
+    "flavor": "For better results, feed your pterrordax low-fat, high-fiber minions.",
+    "health": 3,
+    "id": "UNG_047",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Ravenous Pterrordax",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "referencedTags": [
+      "ADAPT"
+    ],
+    "set": "UNGORO",
+    "targetingArrowText": "Destroy a friendly minion.",
+    "text": "<b>Battlecry:</b> Destroy a friendly minion to <b>Adapt</b> twice.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Jim Nelson",
+    "attack": 1,
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 41194,
+    "flavor": "Hi, Tar here. Long time lurking, first time taunting…",
+    "health": 7,
+    "id": "UNG_049",
+    "mechanics": [
+      "TAUNT"
+    ],
+    "name": "Tar Lurker",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "COMMON",
+    "set": "UNGORO",
+    "text": "<b>Taunt</b>\nHas +3 Attack during your opponent's turn.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Chanchai Luechaiwattanasopon",
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 41207,
+    "flavor": "The result of a fundamental misunderstanding of the phrase \"flower power\".",
+    "id": "UNG_057",
+    "name": "Razorpetal Volley",
+    "rarity": "COMMON",
+    "set": "UNGORO",
+    "spellSchool": "NATURE",
+    "text": "Add two Razorpetals to your hand that deal 2 damage.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Sojin Hwang",
+    "attack": 2,
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 41208,
+    "flavor": "The reason why there are no zombies in Un'goro.",
+    "health": 2,
+    "id": "UNG_058",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Razorpetal Lasher",
+    "rarity": "COMMON",
+    "set": "UNGORO",
+    "text": "[x]<b>Battlecry:</b> Add a\nRazorpetal to your hand\nthat deals 2 damage.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Zoltan Boros",
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 41212,
+    "flavor": "Jinx!",
+    "id": "UNG_060",
+    "name": "Mimic Pod",
+    "rarity": "RARE",
+    "set": "UNGORO",
+    "spellSchool": "NATURE",
+    "text": "Draw a card, then add a copy of it to your hand.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Konstantin Turovec",
+    "attack": 3,
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 41213,
+    "durability": 0,
+    "flavor": "You know you’re a Rogue when a sharp rock makes you go “Ooh!  Dagger!”",
+    "health": 3,
+    "id": "UNG_061",
+    "name": "Obsidian Shard",
+    "rarity": "RARE",
+    "set": "UNGORO",
+    "text": "Costs (1) less for each non-Rogue Class card added to your hand this game.",
+    "type": "WEAPON"
+  },
+  {
+    "artist": "Craig Elliott",
+    "attack": 1,
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 41216,
+    "flavor": "AKA Edwin VanLeaf.",
+    "health": 2,
+    "id": "UNG_063",
+    "mechanics": [
+      "COMBO"
+    ],
+    "name": "Biteweed",
+    "rarity": "EPIC",
+    "set": "UNGORO",
+    "text": "<b>Combo:</b> Gain +1/+1 for each other card you've played this turn.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Efrem Palacios",
+    "attack": 3,
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 41217,
+    "flavor": "'Cause slayers gonna slay, slay, slay, slay, slay.",
+    "health": 4,
+    "id": "UNG_064",
+    "mechanics": [
+      "COMBO"
+    ],
+    "name": "Vilespine Slayer",
+    "rarity": "EPIC",
+    "set": "UNGORO",
+    "targetingArrowText": "Destroy a minion.",
+    "text": "<b>Combo:</b> Destroy a minion.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Matt Dixon",
+    "attack": 6,
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 41218,
+    "elite": true,
+    "flavor": "A Tortollan gardener's worst nightmare.",
+    "health": 3,
+    "id": "UNG_065",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Sherazin, Corpse Flower",
+    "rarity": "LEGENDARY",
+    "set": "UNGORO",
+    "text": "<b>Deathrattle:</b> Go <b>Dormant</b>. Play 4 cards in a turn to revive this minion.",
+    "type": "MINION"
+  },
+  {
+    "artist": "James Ryman",
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 41222,
+    "elite": true,
+    "flavor": "Why can't it ever be The Taverns Below?",
+    "id": "UNG_067",
+    "mechanics": [
+      "QUEST"
+    ],
+    "name": "The Caverns Below",
+    "questReward": "UNG_067t1",
+    "rarity": "LEGENDARY",
+    "set": "UNGORO",
+    "text": "[x]<b>Quest:</b> Play four minions\nwith the same name.\n<b>Reward:</b> Crystal Core.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Mike Azevedo",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 41241,
+    "flavor": "He spends a lot of time keeping himself in stoneshape.",
+    "health": 6,
+    "id": "UNG_070",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Tol'vir Stoneshaper",
+    "rarity": "RARE",
+    "referencedTags": [
+      "DIVINE_SHIELD",
+      "TAUNT"
+    ],
+    "set": "UNGORO",
+    "text": "[x]<b>Battlecry:</b> If you played an\nElemental last turn, gain\n <b>Taunt</b> and <b>Divine Shield</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Chanchai Luechaiwattanasopon",
+    "attack": 6,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 9,
+    "dbfId": 41242,
+    "flavor": "Still salty about it not being the \"Year of the Mastodon.\"",
+    "health": 12,
+    "id": "UNG_071",
+    "mechanics": [
+      "TAUNT"
+    ],
+    "name": "Giant Mastodon",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "set": "UNGORO",
+    "text": "<b>Taunt</b>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mark Gibbons",
+    "attack": 1,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 41243,
+    "flavor": "Briefly tried stand-up comedy under the name \"Stonehill Offender\", but turtles are just too thin-skinned.",
+    "health": 5,
+    "id": "UNG_072",
+    "mechanics": [
+      "BATTLECRY",
+      "DISCOVER",
+      "TAUNT"
+    ],
+    "name": "Stonehill Defender",
+    "rarity": "RARE",
+    "set": "UNGORO",
+    "text": "<b>Taunt</b>\n<b>Battlecry:</b> <b>Discover</b> a <b>Taunt</b> minion.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Alex Horley Orlandelli",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 41245,
+    "flavor": "Loves crab meat. Fears crabs.",
+    "health": 3,
+    "id": "UNG_073",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Rockpool Hunter",
+    "race": "MURLOC",
+    "races": [
+      "MURLOC"
+    ],
+    "rarity": "COMMON",
+    "set": "UNGORO",
+    "targetingArrowText": "Give +1/+1.",
+    "text": "<b>Battlecry:</b> Give a friendly Murloc +1/+1.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Arthur Bozonnet",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 41247,
+    "flavor": "A youngster who is truly hungry for self-improvement.",
+    "health": 3,
+    "id": "UNG_075",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Vicious Fledgling",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "RARE",
+    "referencedTags": [
+      "ADAPT"
+    ],
+    "set": "UNGORO",
+    "text": "After this minion attacks a hero, <b>Adapt</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Anton Zemskov",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 41249,
+    "flavor": "Often misunderstood, it's just that he likes to use the eggs as pillows.",
+    "health": 1,
+    "id": "UNG_076",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Eggnapper",
+    "rarity": "COMMON",
+    "set": "UNGORO",
+    "text": "<b>Deathrattle:</b> Summon two 1/1 Raptors.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Jerry Mascho",
+    "attack": 2,
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 41252,
+    "flavor": "In the Tortollan tongue, Un’goro is known as the “Land of the Lost and Found.”",
+    "health": 2,
+    "id": "UNG_078",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Tortollan Forager",
+    "rarity": "COMMON",
+    "set": "UNGORO",
+    "text": "<b>Battlecry:</b> Add a random minion with 5 or more Attack to your hand.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Konstantin Turovec",
+    "attack": 8,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 41253,
+    "flavor": "Goes by the online handle \"KoolKrusher99.\"",
+    "health": 8,
+    "id": "UNG_079",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Frozen Crusher",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "RARE",
+    "referencedTags": [
+      "FREEZE"
+    ],
+    "set": "UNGORO",
+    "text": "After this minion attacks, <b>Freeze</b> it.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Hideaki Takamura",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 41257,
+    "flavor": "What? THUNDER LIZARD is adapting!",
+    "health": 3,
+    "id": "UNG_082",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Thunder Lizard",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "referencedTags": [
+      "ADAPT"
+    ],
+    "set": "UNGORO",
+    "text": "<b>Battlecry</b>: If you played an Elemental last turn, <b>Adapt</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Arthur Bozonnet",
+    "attack": 0,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 41259,
+    "flavor": "A key ingredient in all discerning Funnel Cake recipes.",
+    "health": 3,
+    "id": "UNG_083",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Devilsaur Egg",
+    "rarity": "RARE",
+    "set": "UNGORO",
+    "text": "<b>Deathrattle:</b> Summon a 5/5 Devilsaur.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Dan Scott",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 41260,
+    "flavor": "This is what happens when you use a volcano as a bird bath.",
+    "health": 4,
+    "id": "UNG_084",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Fire Plume Phoenix",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL",
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "set": "UNGORO",
+    "targetingArrowText": "Deal 3 damage.",
+    "text": "<b>Battlecry:</b> Deal 3 damage.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Rafael Zanchetin",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 41261,
+    "faction": "HORDE",
+    "flavor": "She rules the emerald hive at the end of the yellow brick trail.",
+    "health": 3,
+    "id": "UNG_085",
+    "mechanics": [
+      "AURA"
+    ],
+    "name": "Emerald Hive Queen",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "EPIC",
+    "set": "UNGORO",
+    "text": "Your minions cost (2) more.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Alex Horley Orlandelli",
+    "attack": 5,
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 41262,
+    "flavor": "Must be something it ate.",
+    "health": 3,
+    "id": "UNG_086",
+    "mechanics": [
+      "DEATHRATTLE",
+      "TAUNT"
+    ],
+    "name": "Giant Anaconda",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "EPIC",
+    "set": "UNGORO",
+    "text": "<b>Taunt</b>\n<b>Deathrattle:</b> Summon\na minion from your hand with 5 or more Attack.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mark Gibbons",
+    "attack": 8,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 41263,
+    "flavor": "It's actually only the middle head that's bitter. The others are sweet and spicy.",
+    "health": 8,
+    "id": "UNG_087",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Bittertide Hydra",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "EPIC",
+    "set": "UNGORO",
+    "text": "Whenever this minion takes damage, deal 3 damage to your hero.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Zoltan Boros",
+    "attack": 5,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 41264,
+    "flavor": "I see pizza in my future.",
+    "health": 5,
+    "id": "UNG_088",
+    "mechanics": [
+      "BATTLECRY",
+      "DISCOVER"
+    ],
+    "name": "Tortollan Primalist",
+    "rarity": "EPIC",
+    "set": "UNGORO",
+    "text": "<b>Battlecry:</b> <b>Discover</b> a spell and cast it with random targets.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Brian Despain",
+    "attack": 5,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 41265,
+    "flavor": "\"Low, low rents! Must enjoy a nomadic lifestyle. Quasi-sentient, bipedal, amphibious humanoids ONLY!\"",
+    "health": 4,
+    "id": "UNG_089",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Gentle Megasaur",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "EPIC",
+    "referencedTags": [
+      "ADAPT"
+    ],
+    "set": "UNGORO",
+    "text": "<b>Battlecry:</b> <b>Adapt</b> your Murlocs.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Luke Mancini",
+    "attack": 7,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 41286,
+    "flavor": "What happens when a dinosaur mixes soda and pop rocks.",
+    "health": 7,
+    "id": "UNG_099",
+    "mechanics": [
+      "BATTLECRY",
+      "CHARGE"
+    ],
+    "name": "Charged Devilsaur",
+    "race": "BEAST",
+    "races": [
+      "ELEMENTAL",
+      "BEAST"
+    ],
+    "rarity": "EPIC",
+    "set": "UNGORO",
+    "text": "<b>Charge</b>\n<b>Battlecry:</b> Can't attack heroes this turn.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Zoltan Boros",
+    "attack": 5,
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 40971,
+    "flavor": "Always sticking its neck into other people’s business.",
+    "health": 5,
+    "id": "UNG_100",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Verdant Longneck",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "referencedTags": [
+      "ADAPT"
+    ],
+    "set": "UNGORO",
+    "text": "<b>Battlecry:</b> <b>Adapt</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Matt Dixon",
+    "attack": 3,
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 40973,
+    "flavor": "Master of the Three Shell Monte.",
+    "health": 3,
+    "id": "UNG_101",
+    "mechanics": [
+      "CHOOSE_ONE"
+    ],
+    "name": "Shellshifter",
+    "rarity": "RARE",
+    "referencedTags": [
+      "STEALTH",
+      "TAUNT"
+    ],
+    "set": "UNGORO",
+    "text": "[x]<b>Choose One - </b>Transform\ninto a 5/3 with <b>Stealth</b>;\nor a 3/5 with <b>Taunt</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Grace Liu",
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 40991,
+    "flavor": "The most powerful mushrooms are commonly found in boxes marked with \"?\".",
+    "id": "UNG_103",
+    "name": "Evolving Spores",
+    "rarity": "RARE",
+    "referencedTags": [
+      "ADAPT"
+    ],
+    "set": "UNGORO",
+    "spellSchool": "NATURE",
+    "text": "<b>Adapt</b> your minions.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Mike Azevedo",
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 41081,
+    "flavor": "You can make your own Earthen Scales at home. Step 1: Roll around in the dirt. Step 2: Magic.",
+    "id": "UNG_108",
+    "name": "Earthen Scales",
+    "rarity": "RARE",
+    "set": "UNGORO",
+    "spellSchool": "NATURE",
+    "targetingArrowText": "Give +1/+1.",
+    "text": "Give a friendly minion +1/+1, then gain Armor equal to its Attack.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Trent Kaniuga",
+    "attack": 5,
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 41086,
+    "flavor": "And so the bartender says, “Why the long neck?”",
+    "health": 1,
+    "id": "UNG_109",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Elder Longneck",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "referencedTags": [
+      "ADAPT"
+    ],
+    "set": "UNGORO",
+    "text": "<b>Battlecry:</b> If you're holding a minion with 5 or more Attack, <b>Adapt</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Matt Gaser",
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 41094,
+    "flavor": "If you truly love your mana, set it free.",
+    "id": "UNG_111",
+    "name": "Living Mana",
+    "rarity": "EPIC",
+    "set": "UNGORO",
+    "spellSchool": "NATURE",
+    "text": "Transform your Mana Crystals into 2/2 Treants. Recover the mana when they die.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Trent Kaniuga",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 41096,
+    "flavor": "Also inordinately excited for cupcakes.",
+    "health": 4,
+    "id": "UNG_113",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Bright-Eyed Scout",
+    "rarity": "EPIC",
+    "set": "UNGORO",
+    "text": "<b>Battlecry:</b> Draw a card. Change its Cost to (5).",
+    "type": "MINION"
+  },
+  {
+    "artist": "Konstantin Turovec",
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 41099,
+    "elite": true,
+    "flavor": "Forming the Golakka Crater was the end of Barnabus' disastrous career as a dancer.",
+    "id": "UNG_116",
+    "mechanics": [
+      "QUEST"
+    ],
+    "name": "Jungle Giants",
+    "questReward": "UNG_116t",
+    "rarity": "LEGENDARY",
+    "set": "UNGORO",
+    "text": "[x]<b>Quest:</b> Summon\n4 minions with\n5 or more Attack.\n<b>Reward:</b> Barnabus.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Jakub Kasper",
+    "attack": 0,
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 41105,
+    "flavor": "Emits a sound only murlocs can hear, which is good because it’s REALLY annoying.",
+    "health": 3,
+    "id": "UNG_201",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Primalfin Totem",
+    "race": "TOTEM",
+    "races": [
+      "TOTEM"
+    ],
+    "rarity": "RARE",
+    "set": "UNGORO",
+    "text": "At the end of your turn, summon a 1/1 Murloc.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mike Azevedo",
+    "attack": 1,
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 41107,
+    "flavor": "Good for summoning elementals. Great for making s'mores.",
+    "health": 1,
+    "id": "UNG_202",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Fire Plume Harbinger",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "RARE",
+    "set": "UNGORO",
+    "text": "<b>Battlecry:</b> Reduce the Cost of Elementals in your hand by (1).",
+    "type": "MINION"
+  },
+  {
+    "artist": "Paul Mafayon",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 41111,
+    "flavor": "Ice, ice, baby!",
+    "health": 1,
+    "id": "UNG_205",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Glacial Shard",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "COMMON",
+    "referencedTags": [
+      "FREEZE"
+    ],
+    "set": "UNGORO",
+    "targetingArrowText": "Freeze an enemy.",
+    "text": "<b>Battlecry:</b> <b>Freeze</b> an enemy.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Rudy Siswanto",
+    "attack": 4,
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 41116,
+    "flavor": "He and his friends just want to rock out.",
+    "health": 4,
+    "id": "UNG_208",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Stone Sentinel",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "EPIC",
+    "referencedTags": [
+      "TAUNT"
+    ],
+    "set": "UNGORO",
+    "text": "<b>Battlecry:</b> If you played an Elemental last turn, summon two 2/3 Elementals with <b>Taunt</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "James Ryman",
+    "attack": 7,
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 41331,
+    "elite": true,
+    "flavor": "All that's missing is a little heart.",
+    "health": 7,
+    "id": "UNG_211",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Kalimos, Primal Lord",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "UNGORO",
+    "text": "[x]<b>Battlecry:</b> If you played an\nElemental last turn, cast an\nElemental Invocation.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Chris Seaman",
+    "attack": 2,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 41304,
+    "flavor": "Likes to scare his friends half to death.",
+    "health": 3,
+    "id": "UNG_800",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Terrorscale Stalker",
+    "rarity": "RARE",
+    "referencedTags": [
+      "DEATHRATTLE"
+    ],
+    "set": "UNGORO",
+    "targetingArrowText": "Trigger a Deathrattle.",
+    "text": "<b>Battlecry:</b> Trigger a friendly minion's <b>Deathrattle</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Paul Mafayon",
+    "attack": 4,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 41305,
+    "flavor": "Roc eggs are great in omelettes, sandwiches, and as bait to turn poachers into bird food.",
+    "health": 7,
+    "id": "UNG_801",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Nesting Roc",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "referencedTags": [
+      "TAUNT"
+    ],
+    "set": "UNGORO",
+    "text": "<b>Battlecry:</b> If you control at least 2 other minions, gain <b>Taunt</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Rafael Zanchetin",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 41309,
+    "flavor": "Not to be confused with clubbing enthusiast Emerald Raver.",
+    "health": 1,
+    "id": "UNG_803",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Emerald Reaver",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "set": "UNGORO",
+    "text": "<b>Battlecry:</b> Deal 1 damage to each hero.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Laurel Austin",
+    "attack": 7,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 10,
+    "dbfId": 41315,
+    "flavor": "Evolved the really long neck to spy on its neighbors.",
+    "health": 14,
+    "id": "UNG_806",
+    "name": "Ultrasaur",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "set": "UNGORO",
+    "type": "MINION"
+  },
+  {
+    "artist": "Peter Stapleton",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 41316,
+    "flavor": "Universally adored by both control decks and ninjas.",
+    "health": 3,
+    "id": "UNG_807",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Golakka Crawler",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "RARE",
+    "set": "UNGORO",
+    "targetingArrowText": "Destroy a Pirate.",
+    "text": "<b>Battlecry:</b> Destroy a Pirate and gain +1/+1.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Aaron Miller",
+    "attack": 1,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 41318,
+    "flavor": "Stubbornly pursuing its dream to become Azeroth's fastest animal!",
+    "health": 3,
+    "id": "UNG_808",
+    "mechanics": [
+      "POISONOUS",
+      "TAUNT"
+    ],
+    "name": "Stubborn Gastropod",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "set": "UNGORO",
+    "text": "<b>Taunt</b>\n  <b>Poisonous</b>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Evgeniy Dlinnov",
+    "attack": 1,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 41323,
+    "faction": "ALLIANCE",
+    "flavor": "Archnemeses: small children with glass jars.",
+    "health": 2,
+    "id": "UNG_809",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Fire Fly",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "COMMON",
+    "set": "UNGORO",
+    "text": "<b>Battlecry</b>: Add a 1/2 Elemental to your hand.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Jim Nelson",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 41324,
+    "flavor": "Level 40 Tortollan Paladins quest to tame a Stegodon.  There are no level 41 Tortollan Paladins.",
+    "health": 6,
+    "id": "UNG_810",
+    "mechanics": [
+      "TAUNT"
+    ],
+    "name": "Stegodon",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "set": "UNGORO",
+    "text": "<b>Taunt</b>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Alex Horley Orlandelli",
+    "attack": 8,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 41415,
+    "flavor": "It's gotten a bit long in the tooth.",
+    "health": 2,
+    "id": "UNG_812",
+    "mechanics": [
+      "STEALTH"
+    ],
+    "name": "Sabretooth Stalker",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "set": "UNGORO",
+    "text": "<b>Stealth</b>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Arthur Gimaldinov",
+    "attack": 4,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 41327,
+    "flavor": "Aspiring meteorologist!",
+    "health": 8,
+    "id": "UNG_813",
+    "mechanics": [
+      "WINDFURY"
+    ],
+    "name": "Stormwatcher",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "COMMON",
+    "set": "UNGORO",
+    "text": "<b>Windfury</b>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Luca Zontini",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 41328,
+    "flavor": "Float like a butterfly, sting like a giant wasp!",
+    "health": 2,
+    "id": "UNG_814",
+    "mechanics": [
+      "POISONOUS",
+      "STEALTH"
+    ],
+    "name": "Giant Wasp",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "set": "UNGORO",
+    "text": "<b>Stealth</b>\n <b>Poisonous</b>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Zoltan Boros",
+    "attack": 5,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 41410,
+    "flavor": "He's doing his best, but his mom thinks that if he had just applied himself in school Kalimos would be working for HIM.",
+    "health": 5,
+    "id": "UNG_816",
+    "mechanics": [
+      "BATTLECRY",
+      "DISCOVER"
+    ],
+    "name": "Servant of Kalimos",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "RARE",
+    "set": "UNGORO",
+    "text": "[x]<b>Battlecry:</b> If you played\nan Elemental last turn,\n <b>Discover</b> an Elemental.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Max Grecke",
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 41521,
+    "flavor": "Also good for removing pesky stains.",
+    "id": "UNG_817",
+    "mechanics": [
+      "LIFESTEAL"
+    ],
+    "name": "Tidal Surge",
+    "rarity": "COMMON",
+    "set": "UNGORO",
+    "spellSchool": "NATURE",
+    "text": "<b>Lifesteal</b>\nDeal $5 damage to a minion.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Nicola Saviori",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 41524,
+    "flavor": "Currently in an anger management class with Raging Worgen, Grommash Hellscream, and The Angry Chicken. It isn't helping.",
+    "health": 1,
+    "id": "UNG_818",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Volatile Elemental",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "COMMON",
+    "set": "UNGORO",
+    "text": "<b>Deathrattle:</b> Deal 3 damage to a random enemy minion.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mauricio Herrera",
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 41834,
+    "flavor": "Like Deadly Poison, but deadlier.",
+    "id": "UNG_823",
+    "name": "Envenom Weapon",
+    "rarity": "RARE",
+    "referencedTags": [
+      "POISONOUS"
+    ],
+    "set": "UNGORO",
+    "spellSchool": "NATURE",
+    "text": "Give your weapon <b>Poisonous</b>.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Konstantin Turovec",
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 41856,
+    "elite": true,
+    "flavor": "They asked, “And what must we give in return?” Gul’dan lowered his hood and answered: “Six… cards…”",
+    "id": "UNG_829",
+    "mechanics": [
+      "QUEST"
+    ],
+    "name": "Lakkari Sacrifice",
+    "questReward": "UNG_829t1",
+    "rarity": "LEGENDARY",
+    "set": "UNGORO",
+    "text": "[x]<b>Quest:</b> Discard 6 cards.\n<b>Reward:</b> Nether Portal.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Dany Orizio",
+    "attack": 5,
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 41869,
+    "flavor": "As that old saying goes: \"you don't get into dinomancing to make friends.\"",
+    "health": 5,
+    "id": "UNG_830",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Cruel Dinomancer",
+    "rarity": "RARE",
+    "set": "UNGORO",
+    "text": "[x]<b>Deathrattle:</b> Summon a\nrandom minion you\ndiscarded this game.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Zoltan Boros",
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 41871,
+    "flavor": "The most terrifying of Un’goro magics is both silent… AND deadly.",
+    "id": "UNG_831",
+    "name": "Corrupting Mist",
+    "rarity": "RARE",
+    "set": "UNGORO",
+    "spellSchool": "SHADOW",
+    "text": "Curse all minions. Destroy them at the start of your next turn.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Tyler Walpole",
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 41872,
+    "flavor": "Help save mana.  Donate blood today!",
+    "id": "UNG_832",
+    "name": "Bloodbloom",
+    "rarity": "EPIC",
+    "set": "UNGORO",
+    "spellSchool": "SHADOW",
+    "text": "The next spell you cast this turn costs Health instead of Mana.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Dave Allsop",
+    "attack": 3,
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 41873,
+    "flavor": "Guaranteed to track tar all over your carpet.",
+    "health": 8,
+    "id": "UNG_833",
+    "mechanics": [
+      "BATTLECRY",
+      "TAUNT"
+    ],
+    "name": "Lakkari Felhound",
+    "race": "DEMON",
+    "races": [
+      "DEMON"
+    ],
+    "rarity": "COMMON",
+    "set": "UNGORO",
+    "text": "<b>Taunt</b>\n<b>Battlecry:</b> Discard your two lowest-Cost cards.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Jaemin Kim",
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 41874,
+    "flavor": "True, they're only 1/1s, but they eat as much as most 4/4s!",
+    "id": "UNG_834",
+    "name": "Feeding Time",
+    "rarity": "RARE",
+    "referencedTags": [
+      "ADAPT"
+    ],
+    "set": "UNGORO",
+    "text": "Deal $3 damage to a minion. Summon three 1/1 Pterrordaxes and <b>Adapt</b> them.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Slawomir Maniak",
+    "attack": 2,
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 41875,
+    "flavor": "Ear to the ground, he carefully interpreted the chittering noises: “You wanna cast a spell? I wanna cast a spell!”",
+    "health": 2,
+    "id": "UNG_835",
+    "mechanics": [
+      "BATTLECRY",
+      "DISCOVER"
+    ],
+    "name": "Chittering Tunneler",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "EPIC",
+    "set": "UNGORO",
+    "text": "[x]<b>Battlecry:</b> <b>Discover</b> a spell.\nDeal damage to your hero\nequal to its Cost.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Anton Zemskov",
+    "attack": 2,
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 41876,
+    "elite": true,
+    "flavor": "A bit of a snob: still refuses to drive anything with automatic transmission.",
+    "health": 2,
+    "id": "UNG_836",
+    "mechanics": [
+      "InvisibleDeathrattle"
+    ],
+    "name": "Clutchmother Zavas",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "UNGORO",
+    "text": "Whenever you discard this, give it +2/+2 and return it to your hand.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Jim Nelson",
+    "attack": 1,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 41881,
+    "flavor": "Tar Lord, man... legendary monster? Aw, forget it.",
+    "health": 11,
+    "id": "UNG_838",
+    "mechanics": [
+      "TAUNT"
+    ],
+    "name": "Tar Lord",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "COMMON",
+    "set": "UNGORO",
+    "text": "<b>Taunt</b>\nHas +4 Attack during your opponent's turn.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Sam Nielson",
+    "attack": 6,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 41885,
+    "elite": true,
+    "flavor": "The goblin travel agency lost his luggage, but he's still having a great vacation!",
+    "health": 6,
+    "id": "UNG_840",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Hemet, Jungle Hunter",
+    "rarity": "LEGENDARY",
+    "set": "UNGORO",
+    "text": "<b>Battlecry:</b> Destroy all cards in your deck that cost (3) or less.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Jimmy Lo",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 41913,
+    "elite": true,
+    "flavor": "I am the Voraxx.  I speak for the weeds.",
+    "health": 4,
+    "id": "UNG_843",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "The Voraxx",
+    "rarity": "LEGENDARY",
+    "set": "UNGORO",
+    "text": "[x]After you cast a spell on\nthis minion, summon a\n1/1 Plant and cast\nanother copy on it.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Tooth",
+    "attack": 4,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 41925,
+    "faction": "ALLIANCE",
+    "flavor": "Loves goblins.  In a light cream sauce.",
+    "health": 8,
+    "id": "UNG_844",
+    "mechanics": [
+      "CANT_ATTACK"
+    ],
+    "name": "Humongous Razorleaf",
+    "rarity": "RARE",
+    "set": "UNGORO",
+    "text": "Can't attack.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Tyler West Studio",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 41926,
+    "flavor": "We wanted to name him \"Ingenious Elemental\", but he just wasn't that bright.",
+    "health": 3,
+    "id": "UNG_845",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Igneous Elemental",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "COMMON",
+    "set": "UNGORO",
+    "text": "<b>Deathrattle:</b> Add two 1/2 Flame Elementals to your hand.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Luca Zontini",
+    "attack": 2,
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 41927,
+    "flavor": "HATES being summoned for Kirin Tor party lighting.",
+    "health": 2,
+    "id": "UNG_846",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Shimmering Tempest",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "COMMON",
+    "set": "UNGORO",
+    "text": "<b>Battlecry:</b> Add a random Mage spell to your hand.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Dave Allsop",
+    "attack": 6,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 41928,
+    "flavor": "For when a flamecaller just won't do.",
+    "health": 6,
+    "id": "UNG_847",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Blazecaller",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "EPIC",
+    "set": "UNGORO",
+    "targetingArrowText": "Deal 5 damage.",
+    "text": "<b>Battlecry:</b> If you played an Elemental last turn, deal 5 damage.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mike Sass",
+    "attack": 4,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 41929,
+    "flavor": "Before he became a rap artist.",
+    "health": 8,
+    "id": "UNG_848",
+    "mechanics": [
+      "BATTLECRY",
+      "TAUNT"
+    ],
+    "name": "Primordial Drake",
+    "race": "DRAGON",
+    "races": [
+      "DRAGON"
+    ],
+    "rarity": "EPIC",
+    "set": "UNGORO",
+    "text": "[x]<b>Taunt</b>\n<b>Battlecry:</b> Deal 2 damage\nto all other minions.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Luke Mancini",
+    "attack": 5,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 41935,
+    "elite": true,
+    "flavor": "Reno taught her that blazing her own trail is a lot more fun than following someone else's map.",
+    "health": 5,
+    "id": "UNG_851",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Elise the Trailblazer",
+    "rarity": "LEGENDARY",
+    "set": "UNGORO",
+    "text": "[x]<b>Battlecry:</b> Shuffle a sealed\n<b>Un'Goro</b> pack into your deck.\nIf your deck has no\nduplicates, draw it.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Chris Rahn",
+    "attack": 14,
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 10,
+    "dbfId": 41954,
+    "elite": true,
+    "flavor": "Millennia of evolutionary pressures turned his species into the Faerie Dragons we know today.",
+    "health": 14,
+    "id": "UNG_852",
+    "mechanics": [
+      "ELUSIVE",
+      "TAUNT"
+    ],
+    "name": "Tyrantus",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "UNGORO",
+    "text": "<b>Taunt</b>\n<b>Elusive</b>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Anton Kagounkina",
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 42009,
+    "flavor": "Bingo! Minion DNA!",
+    "id": "UNG_854",
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "Free From Amber",
+    "rarity": "RARE",
+    "set": "UNGORO",
+    "text": "<b>Discover</b> a minion that costs (8) or more. Summon it.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Daria Tuzova",
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 42011,
+    "flavor": "It's the good kind of hallucination.",
+    "id": "UNG_856",
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "Spore Hallucination",
+    "rarity": "COMMON",
+    "set": "UNGORO",
+    "spellSchool": "NATURE",
+    "text": "<b>Discover</b> a card from your opponent's class.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Matt Dixon",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 41289,
+    "elite": true,
+    "flavor": "She sees the fate of anyone she meets, but it's always the same: dinosaur attack.",
+    "health": 4,
+    "id": "UNG_900",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Spiritsinger Umbra",
+    "rarity": "LEGENDARY",
+    "referencedTags": [
+      "DEATHRATTLE"
+    ],
+    "set": "UNGORO",
+    "text": "After you summon a minion, trigger its <b>Deathrattle</b> effect.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Tooth",
+    "attack": 8,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 41294,
+    "elite": true,
+    "flavor": "Between you and me, Ozruk is a bit obsessed with his body.",
+    "health": 8,
+    "id": "UNG_907",
+    "mechanics": [
+      "BATTLECRY",
+      "TAUNT"
+    ],
+    "name": "Ozruk",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "UNGORO",
+    "text": "[x]<b>Taunt</b>\n<b>Battlecry:</b> Gain +5 Health\nfor each Elemental you\nplayed last turn.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Slawomir Maniak",
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 41350,
+    "flavor": "Ooh.  I'll have a bite of this, and of this, and of this...",
+    "id": "UNG_910",
+    "name": "Grievous Bite",
+    "rarity": "COMMON",
+    "set": "UNGORO",
+    "text": "Deal $3 damage to a minion and $1 damage to adjacent ones.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "James Ryman",
+    "attack": 1,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 41353,
+    "flavor": "It’s not LITERALLY jeweled. The goblins were terribly disappointed.",
+    "health": 2,
+    "id": "UNG_912",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Jeweled Macaw",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "set": "UNGORO",
+    "text": "<b>Battlecry:</b> Add a random Beast to your hand.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mike Azevedo",
+    "attack": 3,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 41354,
+    "flavor": "Ferocious in combat… and even more terrifying in pet battles.",
+    "health": 4,
+    "id": "UNG_913",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Tol'vir Warden",
+    "rarity": "RARE",
+    "set": "UNGORO",
+    "text": "<b>Battlecry:</b> Draw two 1-Cost minions from your deck.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Jaemin Kim",
+    "attack": 2,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 41357,
+    "flavor": "They’re just baby teeth. Lots and lots of baby teeth.",
+    "health": 1,
+    "id": "UNG_914",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Raptor Hatchling",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "RARE",
+    "set": "UNGORO",
+    "text": "<b>Deathrattle:</b> Shuffle a 4/5 Raptor into your deck.",
+    "type": "MINION"
+  },
+  {
+    "artist": "L. Lullabi & K. Turovec",
+    "attack": 3,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 41358,
+    "flavor": "Wasn't clever enough to go AROUND the electric fence.",
+    "health": 2,
+    "id": "UNG_915",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Crackling Razormaw",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "referencedTags": [
+      "ADAPT"
+    ],
+    "set": "UNGORO",
+    "targetingArrowText": "Adapt a Beast.",
+    "text": "<b>Battlecry:</b> <b>Adapt</b> a friendly Beast.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Daren Bader",
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 0,
+    "dbfId": 41360,
+    "flavor": "Many hunters long for the pitter-patter of enormous feet.",
+    "id": "UNG_916",
+    "name": "Stampede",
+    "rarity": "EPIC",
+    "set": "UNGORO",
+    "text": "Each time you play a Beast this turn, add a random Beast to your hand.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Arthur Bozonnet",
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 41363,
+    "flavor": "Anyone can dinomance. Just put your lips together and RAAWWWAARGGGH.",
+    "id": "UNG_917",
+    "name": "Dinomancy",
+    "rarity": "EPIC",
+    "set": "UNGORO",
+    "text": "Replace your Hero Power with 'Give a Beast +3/+3.'",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Alex Horley Orlandelli",
+    "attack": 9,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 41366,
+    "elite": true,
+    "flavor": "Swamp King Dred, more like Swamp King Dead, amiright?",
+    "health": 9,
+    "id": "UNG_919",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Swamp King Dred",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "UNGORO",
+    "text": "After your opponent plays a minion, attack it.",
+    "type": "MINION"
+  },
+  {
+    "artist": "A. J. Nazzaro",
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 41368,
+    "elite": true,
+    "flavor": "Question: What's scarier, one giant angry dinosaur or 20 smaller vicious ones? Answer: AHHHHHHH THEY FOUND MEEEEEE",
+    "id": "UNG_920",
+    "mechanics": [
+      "QUEST"
+    ],
+    "name": "The Marsh Queen",
+    "questReward": "UNG_920t1",
+    "rarity": "LEGENDARY",
+    "set": "UNGORO",
+    "text": "[x]<b>Quest:</b> Play seven\n1-Cost minions.\n<b>Reward:</b> Queen Carnassa.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Jerry Mascho",
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 41400,
+    "flavor": "It turns out cards DO grow on trees!",
+    "id": "UNG_922",
+    "name": "Explore Un'Goro",
+    "rarity": "EPIC",
+    "referencedTags": [
+      "DISCOVER"
+    ],
+    "set": "UNGORO",
+    "text": "Replace your deck with copies of \"<b>Discover</b> a card.\"",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Phil Saunders",
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 41401,
+    "flavor": "Week 6. I remain covered head to toe with scales. They do not yet realize that I am not a dinosaur.",
+    "id": "UNG_923",
+    "name": "Iron Hide",
+    "rarity": "COMMON",
+    "set": "UNGORO",
+    "text": "Gain 5 Armor.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Luca Zontini",
+    "attack": 6,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 41404,
+    "flavor": "\"It's an herbivore.  How dangerous can it be?\"  - Famous last words",
+    "health": 6,
+    "id": "UNG_925",
+    "mechanics": [
+      "BATTLECRY",
+      "TAUNT"
+    ],
+    "name": "Ornery Direhorn",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "referencedTags": [
+      "ADAPT"
+    ],
+    "set": "UNGORO",
+    "text": "<b>Taunt</b>\n<b>Battlecry:</b> <b>Adapt</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Jomaro Kindred",
+    "attack": 2,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 41406,
+    "flavor": "The Draenei are seriously considering cancelling \"Bring Your Murderous Pet to Work Day.\"",
+    "health": 6,
+    "id": "UNG_926",
+    "mechanics": [
+      "BATTLECRY",
+      "TAUNT"
+    ],
+    "name": "Cornered Sentry",
+    "race": "DRAENEI",
+    "races": [
+      "DRAENEI"
+    ],
+    "rarity": "RARE",
+    "set": "UNGORO",
+    "text": "<b>Taunt</b>. <b>Battlecry:</b> Summon three 1/1 Raptors for your opponent.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Zoltan Boros",
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 41407,
+    "flavor": "Being hurt can make you another person.",
+    "id": "UNG_927",
+    "name": "Sudden Genesis",
+    "rarity": "EPIC",
+    "set": "UNGORO",
+    "spellSchool": "NATURE",
+    "text": "Summon copies of your damaged minions.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Jim Nelson",
+    "attack": 1,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 41418,
+    "flavor": "If you won't come to the tar pits, we'll bring them to you!",
+    "health": 5,
+    "id": "UNG_928",
+    "mechanics": [
+      "TAUNT"
+    ],
+    "name": "Tar Creeper",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "COMMON",
+    "set": "UNGORO",
+    "text": "<b>Taunt</b>\nHas +2 Attack during your opponent's turn.",
+    "type": "MINION"
+  },
+  {
+    "artist": "James Ryman",
+    "attack": 1,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 41420,
+    "durability": 0,
+    "flavor": "It’s a sword! It’s a knife! It’s a swizzle-stick!",
+    "health": 1,
+    "id": "UNG_929",
+    "name": "Molten Blade",
+    "rarity": "RARE",
+    "set": "UNGORO",
+    "text": "Transforms into a new weapon when in hand that changes each turn.",
+    "type": "WEAPON"
+  },
+  {
+    "artist": "James Ryman",
+    "attack": 9,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 41425,
+    "elite": true,
+    "flavor": "He's a terror at concerts.",
+    "health": 7,
+    "id": "UNG_933",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "King Mosh",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "UNGORO",
+    "text": "<b>Battlecry:</b> Destroy all damaged minions.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Nate Bowden",
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 41427,
+    "elite": true,
+    "flavor": "Why does an active volcano need to be defended? To save its ash.",
+    "id": "UNG_934",
+    "mechanics": [
+      "QUEST"
+    ],
+    "name": "Fire Plume's Heart",
+    "questReward": "UNG_934t1",
+    "rarity": "LEGENDARY",
+    "referencedTags": [
+      "TAUNT"
+    ],
+    "set": "UNGORO",
+    "text": "[x]<b>Quest:</b> Play\n7 <b>Taunt</b> minions.\n<b>Reward:</b> Sulfuras.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Dany Orizio",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 41478,
+    "flavor": "Lookout is a self-appointed title that's mostly an excuse to beat things up.",
+    "health": 2,
+    "id": "UNG_937",
+    "mechanics": [
+      "BATTLECRY",
+      "DISCOVER"
+    ],
+    "name": "Primalfin Lookout",
+    "race": "MURLOC",
+    "races": [
+      "MURLOC"
+    ],
+    "rarity": "COMMON",
+    "set": "UNGORO",
+    "text": "<b>Battlecry:</b> If you control another Murloc, <b>Discover</b> a Murloc.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Gustav Schmidt",
+    "attack": 2,
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 41479,
+    "flavor": "NONE SHALL PASS until at least an hour after eating.",
+    "health": 4,
+    "id": "UNG_938",
+    "mechanics": [
+      "BATTLECRY",
+      "TAUNT"
+    ],
+    "name": "Hot Spring Guardian",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "COMMON",
+    "set": "UNGORO",
+    "targetingArrowText": "Restore 3 Health.",
+    "text": "<b>Taunt</b>\n<b>Battlecry:</b> Restore #3 Health.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Konstantin Turovec",
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 41494,
+    "elite": true,
+    "flavor": "They keep hitting the Snooze button.",
+    "id": "UNG_940",
+    "mechanics": [
+      "QUEST"
+    ],
+    "name": "Awaken the Makers",
+    "questReward": "UNG_940t8",
+    "rarity": "LEGENDARY",
+    "referencedTags": [
+      "DEATHRATTLE"
+    ],
+    "set": "UNGORO",
+    "text": "<b>Quest:</b> Summon\n6 <b>Deathrattle</b> minions.<b>\nReward:</b> Amara, Warden of Hope.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Matthew O'Connor",
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 41496,
+    "flavor": "It's the Ancient Tol'vir symbol for \"Whoops!\"",
+    "id": "UNG_941",
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "Primordial Glyph",
+    "rarity": "EPIC",
+    "set": "UNGORO",
+    "spellSchool": "ARCANE",
+    "text": "<b>Discover</b> a spell. Reduce its Cost by (2).",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Steve Prescott",
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 41499,
+    "elite": true,
+    "flavor": "Form feet and legs!  Form arms and body!  Oh.  Sorry.  I was thinking about Mechafin.",
+    "id": "UNG_942",
+    "mechanics": [
+      "QUEST"
+    ],
+    "name": "Unite the Murlocs",
+    "questReward": "UNG_942t",
+    "rarity": "LEGENDARY",
+    "set": "UNGORO",
+    "text": "[x]<b>Quest:</b> Summon\n8 Murlocs.\n<b>Reward:</b> Megafin.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "A. J. Nazzaro",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 41683,
+    "flavor": "Three time winner of the Un'Goro weapon eating contest.",
+    "health": 3,
+    "id": "UNG_946",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Gluttonous Ooze",
+    "rarity": "EPIC",
+    "set": "UNGORO",
+    "text": "<b>Battlecry:</b> Destroy your opponent's weapon and gain Armor equal to its Attack.",
+    "type": "MINION"
+  },
+  {
+    "artist": "L. Lullabi & K. Turovec",
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 41690,
+    "flavor": "Dang, I'm looking pretty hot!",
+    "id": "UNG_948",
+    "name": "Molten Reflection",
+    "rarity": "RARE",
+    "set": "UNGORO",
+    "spellSchool": "FIRE",
+    "text": "Choose a friendly minion. Summon a copy of it.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Joe Wilson",
+    "attack": 4,
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 41859,
+    "durability": 0,
+    "flavor": "George and Karl!  Thank the Light we found you!",
+    "health": 3,
+    "id": "UNG_950",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Vinecleaver",
+    "rarity": "RARE",
+    "set": "UNGORO",
+    "text": "[x]After your hero attacks,\nsummon two 1/1 Silver\nHand Recruits.",
+    "type": "WEAPON"
+  },
+  {
+    "artist": "Jim Nelson",
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 41864,
+    "flavor": "What beats cavalry? Dinosaur cavalry.",
+    "id": "UNG_952",
+    "name": "Spikeridged Steed",
+    "rarity": "RARE",
+    "referencedTags": [
+      "DEATHRATTLE",
+      "TAUNT"
+    ],
+    "set": "UNGORO",
+    "text": "Give a minion +2/+6 and <b>Taunt</b>. When it dies, summon a Stegodon.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Matt Dixon",
+    "attack": 1,
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 41866,
+    "flavor": "Sure, he'll return your stuff.  OVER HIS DEAD BODY!",
+    "health": 3,
+    "id": "UNG_953",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Primalfin Champion",
+    "race": "MURLOC",
+    "races": [
+      "MURLOC"
+    ],
+    "rarity": "EPIC",
+    "set": "UNGORO",
+    "text": "[x]<b>Deathrattle:</b> Return any\nspells you cast on this\nminion to your hand.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Arthur Gimaldinov",
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 41868,
+    "elite": true,
+    "flavor": "“Impossible!” exclaimed the Silver Hand Recruit, his eyes filled with fear. Uther shook his head, turning the crystal until it caught the light: “Life finds a way.”",
+    "id": "UNG_954",
+    "mechanics": [
+      "QUEST"
+    ],
+    "name": "The Last Kaleidosaur",
+    "questReward": "UNG_954t1",
+    "rarity": "LEGENDARY",
+    "set": "UNGORO",
+    "text": "<b>Quest:</b> Cast 5 spells\non your minions.\n<b>Reward:</b> Galvadon.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Matt Gaser",
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 41878,
+    "flavor": "When you absolutely, positively have to kill all the dinosaurs.",
+    "id": "UNG_955",
+    "name": "Meteor",
+    "rarity": "EPIC",
+    "set": "UNGORO",
+    "spellSchool": "FIRE",
+    "text": "Deal $15 damage to a minion and $4 damage to adjacent ones.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Hideaki Takamura",
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 41879,
+    "flavor": "I guess you can say they’re… “soul survivors.”",
+    "id": "UNG_956",
+    "name": "Spirit Echo",
+    "rarity": "EPIC",
+    "referencedTags": [
+      "DEATHRATTLE"
+    ],
+    "set": "UNGORO",
+    "spellSchool": "NATURE",
+    "text": "Give your minions \"<b>Deathrattle:</b> Return  this to your hand.\"",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Peter Stapleton",
+    "attack": 4,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 41890,
+    "flavor": "His mom could beat up your mom.",
+    "health": 6,
+    "id": "UNG_957",
+    "mechanics": [
+      "DEATHRATTLE",
+      "TAUNT"
+    ],
+    "name": "Direhorn Hatchling",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "RARE",
+    "set": "UNGORO",
+    "text": "<b>Taunt</b>\n<b>Deathrattle:</b> Shuffle an 8/12 Direhorn with <b>Taunt</b> into your deck.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Zoltan Boros",
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 41912,
+    "faction": "ALLIANCE",
+    "flavor": "George and Karl were never heard from again.",
+    "id": "UNG_960",
+    "name": "Lost in the Jungle",
+    "rarity": "COMMON",
+    "set": "UNGORO",
+    "text": "Summon two 1/1 Silver Hand Recruits.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Hideaki Takamura",
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 0,
+    "dbfId": 41944,
+    "flavor": "Pray for salvation. If that fails, pray for extra horns or bigger teeth.",
+    "id": "UNG_961",
+    "name": "Adaptation",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "ADAPT"
+    ],
+    "set": "UNGORO",
+    "text": "<b>Adapt</b> a friendly minion.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Dan Scott",
+    "attack": 3,
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 41945,
+    "flavor": "“Come now, Johnston. I think those horns are quite fetching on you.”",
+    "health": 3,
+    "id": "UNG_962",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Lightfused Stegodon",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "RARE",
+    "referencedTags": [
+      "ADAPT"
+    ],
+    "set": "UNGORO",
+    "text": "<b>Battlecry:</b> <b>Adapt</b> your Silver Hand Recruits.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Phil Saunders",
+    "attack": 3,
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 42046,
+    "elite": true,
+    "flavor": "Arise, fair sun, and kill my envious foes. They don't have a legendary as beautiful as you.",
+    "health": 5,
+    "id": "UNG_963",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Lyra the Sunshard",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "UNGORO",
+    "text": "Whenever you cast a spell, add a random Priest spell to your hand.",
+    "type": "MINION"
+  }
+]

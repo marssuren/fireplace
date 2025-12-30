@@ -1,0 +1,4274 @@
+[
+  {
+    "artist": "Stefan Bogdasarov",
+    "attack": 4,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 110091,
+    "flavor": "I was just asking if that's what you wanted your Starship to look like, there's no need to get defensive.",
+    "health": 5,
+    "id": "GDB_100",
+    "mechanics": [
+      "DEATHRATTLE",
+      "STARSHIP_PIECE"
+    ],
+    "name": "Arkonite Defense Crystal",
+    "rarity": "RARE",
+    "referencedTags": [
+      "STARSHIP"
+    ],
+    "set": "SPACE",
+    "text": "<b>Deathrattle:</b> Gain 4 Armor. <b>Starship Piece</b>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Jaemin Kim",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 110108,
+    "flavor": "At the core of every Starship is a Naaru giving its own energy as a power source. At the core of every Draenei is their unbridled faith in the Naaru.",
+    "health": 2,
+    "id": "GDB_101",
+    "mechanics": [
+      "DIVINE_SHIELD",
+      "STARSHIP_PIECE"
+    ],
+    "name": "Dimensional Core",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "STARSHIP"
+    ],
+    "set": "SPACE",
+    "text": "<b>Divine Shield</b>\n<b>Starship Piece</b>",
+    "type": "MINION"
+  },
+  {
+    "artist": "James Ryman",
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 110110,
+    "flavor": "It's not plagiarism if you blow up the original ship with lasers.",
+    "id": "GDB_102",
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "Starship Schematic",
+    "rarity": "RARE",
+    "referencedTags": [
+      "STARSHIP"
+    ],
+    "set": "SPACE",
+    "text": "<b>Discover</b> a <b>Starship Piece</b> from another class. It costs (1) less.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Vlad Botos",
+    "attack": 1,
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 110111,
+    "flavor": "The Sha'tari are the reigning champions of interdimensional hide-and-go-seek.",
+    "health": 4,
+    "id": "GDB_103",
+    "mechanics": [
+      "AURA",
+      "STARSHIP_PIECE"
+    ],
+    "name": "Sha'tari Cloakfield",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "ELUSIVE",
+      "STARSHIP"
+    ],
+    "set": "SPACE",
+    "text": "<b>Elusive</b>. Your first spell each turn costs (1) less. <b>Starship Piece</b>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Kevin Sidharta",
+    "attack": 2,
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 110113,
+    "flavor": "The coolness factor of a fire decal is universal.",
+    "health": 4,
+    "id": "GDB_104",
+    "mechanics": [
+      "SPELLBURST",
+      "STARSHIP_PIECE"
+    ],
+    "name": "Felfire Thrusters",
+    "rarity": "RARE",
+    "referencedTags": [
+      "STARSHIP"
+    ],
+    "set": "SPACE",
+    "text": "[x]<b><b>Spellburst</b>:</b> Deal this\nminion's Attack damage to\n2 random enemy minions.\n<b>Starship Piece</b>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mauricio Herrera",
+    "attack": 2,
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 110115,
+    "flavor": "\"Enemy starboard! Wait… everything's starboard!!\"",
+    "health": 4,
+    "id": "GDB_105",
+    "mechanics": [
+      "RUSH",
+      "STARSHIP_PIECE",
+      "WINDFURY"
+    ],
+    "name": "Shattershard Turret",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "STARSHIP"
+    ],
+    "set": "SPACE",
+    "text": "<b>Rush</b>, <b>Windfury</b>\n<b>Starship Piece</b>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Gabriel Lopes",
+    "attack": 3,
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 110117,
+    "flavor": "Nearrrr, farrrr, whereeeeeeever you are",
+    "health": 2,
+    "id": "GDB_106",
+    "mechanics": [
+      "SPELLBURST",
+      "STARSHIP_PIECE"
+    ],
+    "name": "Guiding Figure",
+    "rarity": "EPIC",
+    "referencedTags": [
+      "DEATHRATTLE",
+      "STARSHIP"
+    ],
+    "set": "SPACE",
+    "text": "[x]<b><b>Spellburst</b>:</b> Trigger a random\nfriendly minion's <b>Deathrattle</b>.\n<b>Starship Piece</b>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Tanamaes Leejierasaes",
+    "attack": 2,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 110119,
+    "flavor": "Great at catching alien species. Not so much their plushies.",
+    "health": 6,
+    "id": "GDB_107",
+    "mechanics": [
+      "STARSHIP_PIECE",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Specimen Claw",
+    "rarity": "EPIC",
+    "referencedTags": [
+      "STARSHIP"
+    ],
+    "set": "SPACE",
+    "text": "After your opponent\nplays a minion, attack it.\n<b>Starship Piece</b>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mooncolony",
+    "attack": 3,
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 110233,
+    "flavor": "5/5 stars - my reaction.",
+    "health": 3,
+    "id": "GDB_108",
+    "mechanics": [
+      "STARSHIP_PIECE",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Starlight Reactor",
+    "rarity": "RARE",
+    "referencedTags": [
+      "STARSHIP"
+    ],
+    "set": "SPACE",
+    "text": "After you cast an Arcane spell, recast it <i>(targets chosen randomly)</i>.\n<b>Starship Piece</b>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Juan Calle",
+    "attack": 3,
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 110235,
+    "flavor": "It grew 3 sizes after trying to steal Winter Veil.",
+    "health": 2,
+    "id": "GDB_109",
+    "mechanics": [
+      "LIFESTEAL",
+      "STARSHIP_PIECE"
+    ],
+    "name": "Heart of the Legion",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "STARSHIP"
+    ],
+    "set": "SPACE",
+    "text": "<b>Lifesteal</b>\n<b>Starship Piece</b>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Vlad Botos",
+    "attack": 2,
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 110237,
+    "flavor": "Dirdra is a big believer in green energy.",
+    "health": 3,
+    "id": "GDB_110",
+    "mechanics": [
+      "STARSHIP_PIECE",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Felfused Battery",
+    "rarity": "RARE",
+    "referencedTags": [
+      "STARSHIP"
+    ],
+    "set": "SPACE",
+    "text": "After this attacks, give your other minions +1 Attack. <b>Starship Piece</b>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Luca Zontini",
+    "attack": 2,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 110239,
+    "flavor": "Do not tap the glass.",
+    "health": 2,
+    "id": "GDB_111",
+    "mechanics": [
+      "DEATHRATTLE",
+      "STARSHIP_PIECE"
+    ],
+    "name": "Biopod",
+    "rarity": "RARE",
+    "referencedTags": [
+      "STARSHIP"
+    ],
+    "set": "SPACE",
+    "text": "<b>Deathrattle:</b> Deal damage equal to this minion's Attack to a random enemy. <b>Starship Piece</b>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Jakub Kasper",
+    "attack": 2,
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 110878,
+    "flavor": "Ah yes, EVERY Starship needs a fragile obelisk full of dead people!",
+    "health": 2,
+    "id": "GDB_112",
+    "mechanics": [
+      "DEATHRATTLE",
+      "STARSHIP_PIECE"
+    ],
+    "name": "Soulbound Spire",
+    "rarity": "RARE",
+    "referencedTags": [
+      "STARSHIP"
+    ],
+    "set": "SPACE",
+    "text": "[x]<b>Deathrattle:</b> Summon a\nminion with Cost equal to this\nminion's Attack <i>(up to 10)</i>.\n<b>Starship Piece</b>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Alex Stone",
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 110880,
+    "flavor": "Open the pod bay doors, Maladaar.",
+    "id": "GDB_113",
+    "name": "Airlock Breach",
+    "rarity": "RARE",
+    "referencedTags": [
+      "TAUNT"
+    ],
+    "runeCost": {
+      "blood": 1,
+      "frost": 0,
+      "unholy": 1
+    },
+    "set": "SPACE",
+    "text": "[x]Summon a 5/5 Undead\nwith <b>Taunt</b> and give your\nhero +5 Health. Spend\n5 <b>Corpses</b> to do it again.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Matt Dixon",
+    "attack": 1,
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 110886,
+    "flavor": "Tor flud huth respa di blarry? Fleebletor glomdor!",
+    "health": 3,
+    "id": "GDB_116",
+    "mechanics": [
+      "OUTCAST",
+      "SPELLBURST"
+    ],
+    "name": "Eldritch Being",
+    "rarity": "EPIC",
+    "set": "SPACE",
+    "text": "<b>Outcast and <b>Spellburst</b>:</b> Shuffle your hand.",
+    "type": "MINION"
+  },
+  {
+    "artist": "L. Lullabi & R. Kamen",
+    "attack": 5,
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 110908,
+    "elite": true,
+    "flavor": "Under Velen's command, the Draenei avoid engaging with the enemy in fear of eradication. Under Dirdra's command, the Voronei fight the Legion head on in hopes of eradication.",
+    "health": 4,
+    "id": "GDB_117",
+    "mechanics": [
+      "BATTLECRY",
+      "DEATHRATTLE",
+      "RUSH"
+    ],
+    "name": "Dirdra, Rebel Captain",
+    "race": "DRAENEI",
+    "races": [
+      "DRAENEI"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "SPACE",
+    "text": "<b>Rush</b>. <b>Battlecry:</b> Shuffle all\n8 Crewmates into your deck. <b>Deathrattle:</b> Draw\ntwo Crewmates.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Studio Hive",
+    "attack": 5,
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 110923,
+    "elite": true,
+    "flavor": "We started his stats at 50,000,000,000/50,000,000,000 to be lore-accurate, but it was just a nudge too powerful.",
+    "health": 5,
+    "id": "GDB_118",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Xor'toth, Breaker of Stars",
+    "race": "DEMON",
+    "races": [
+      "DEMON"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "SPACE",
+    "text": "[x]<b>Battlecry:</b> Add two Stars\n   to both sides of your hand.   \nWhen they collide, deal 5\ndamage to all enemies.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Vika Yarova",
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 111075,
+    "flavor": "You installed a big flashing red button on the ship and expected me NOT to press it?",
+    "id": "GDB_119",
+    "name": "Emergency Meeting",
+    "rarity": "EPIC",
+    "set": "SPACE",
+    "text": "[x]Get two 4/4 Crewmates.\nPut a random Demon\nthat costs (3) or less\nbetween them.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "BOSi Studio",
+    "attack": 6,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 110326,
+    "elite": true,
+    "flavor": "Limitless potential! Boundless hope! Fourth rate space insurance.",
+    "health": 8,
+    "howToEarn": "Earnable after collecting 30 <i>The Great Dark Beyond</i> cards.",
+    "howToEarnGolden": "Earnable after purchasing the <i>Great Dark Beyond</i> Tavern Pass.",
+    "id": "GDB_120",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "The Exodar",
+    "rarity": "LEGENDARY",
+    "referencedTags": [
+      "STARSHIP"
+    ],
+    "set": "SPACE",
+    "text": "<b>Battlecry:</b> If you're building a <b>Starship</b>, launch it and choose a Protocol!",
+    "type": "MINION"
+  },
+  {
+    "artist": "Timur Shevtsov",
+    "attack": 2,
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 111133,
+    "flavor": "\"I am the harbinger of the end times! Soon, destruction will reign and chaos will ensue in the culmination of your demise: waking up 15 minutes before your alarm!\"",
+    "health": 3,
+    "id": "GDB_121",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Foreboding Flame",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "text": "[x]<b>Battlecry:</b> Demons that\ndidn't start in your deck\ncost (1) less this game.",
+    "type": "MINION"
+  },
+  {
+    "artist": "L. Lullabi & R. Kamen",
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 111139,
+    "flavor": "Archimonde INSISTS on calling it a stratagem instead of a strategy because it \"sounds cooler.\"",
+    "id": "GDB_122",
+    "name": "Infernal Stratagem",
+    "rarity": "RARE",
+    "set": "SPACE",
+    "spellSchool": "FEL",
+    "text": "[x]Give a minion +3/+3.\nIf it's a Demon, your\nnext one costs (2) less.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Stefan Bogdasarov",
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 111169,
+    "flavor": "Beam me up, Bessie!",
+    "id": "GDB_123",
+    "name": "Abduction Ray",
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "spellSchool": "SHADOW",
+    "text": "Get a random Demon. Reduce its Cost by (2). Repeatable this turn.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Timur Shevtsov",
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 111176,
+    "flavor": "What good is a sign from alien life if I CAN'T EVEN READ IT?!",
+    "id": "GDB_124",
+    "name": "Bad Omen",
+    "rarity": "RARE",
+    "referencedTags": [
+      "STARSHIP",
+      "TAUNT"
+    ],
+    "set": "SPACE",
+    "spellSchool": "FEL",
+    "text": "In 2 turns, summon two 6/6 Demons with <b>Taunt</b>.\nIf you're building a <b>Starship</b>, summon them now.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Melvin Chan",
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "collectionText": "<b>Tradeable</b>\nRestore all damage your hero has taken this turn.",
+    "cost": 0,
+    "dbfId": 111177,
+    "flavor": "HEARTHSTONE MENTIONED- oh, never mind.",
+    "id": "GDB_125",
+    "mechanics": [
+      "TRADEABLE",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Healthstone",
+    "rarity": "EPIC",
+    "set": "SPACE",
+    "spellSchool": "FEL",
+    "text": "<b>Tradeable</b>\nRestore all damage your hero has taken this turn.@\n<i>(@)</i>",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Grafit",
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 111178,
+    "flavor": "That's right! The square goes in the black hole.",
+    "id": "GDB_126",
+    "name": "Black Hole",
+    "rarity": "EPIC",
+    "set": "SPACE",
+    "spellSchool": "SHADOW",
+    "text": "Destroy all minions except Demons.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Kevin Sidharta",
+    "attack": 3,
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 111179,
+    "elite": true,
+    "flavor": "Velen had never seen a shooting star in real life, so when the opportunity arose…",
+    "health": 3,
+    "id": "GDB_127",
+    "mechanics": [
+      "SPELLBURST"
+    ],
+    "name": "K'ara, the Dark Star",
+    "rarity": "LEGENDARY",
+    "set": "SPACE",
+    "text": "[x]<b><b>Spellburst</b>:</b> Steal 2 Health\nfrom a random enemy.\n<i>(Shadow spells don't remove\nthis <b>Spellburst</b>.)</i>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Luca Zontini",
+    "attack": 7,
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 111301,
+    "elite": true,
+    "flavor": "Archimonde joined Sargeras in search of power, and in doing so became one of the strongest forces within the Burning Legion who laid waste to countless planets… but in the end he still lost to a wisp.",
+    "hasDiamondSkin": true,
+    "health": 7,
+    "id": "GDB_128",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Archimonde",
+    "race": "DEMON",
+    "races": [
+      "DEMON"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "SPACE",
+    "text": "[x]<b>Battlecry:</b> Summon every\nDemon you played this\ngame that didn't start\nin your deck.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Timur Shevtsov",
+    "attack": 4,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 111303,
+    "flavor": "You merely adopted the doom. I was maiden it.",
+    "health": 4,
+    "howToEarnGolden": "Earnable on the <i>Great Dark Beyond</i> Reward Track.",
+    "id": "GDB_129",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Doommaiden",
+    "race": "DEMON",
+    "races": [
+      "DEMON"
+    ],
+    "rarity": "EPIC",
+    "set": "SPACE",
+    "text": "[x]<b>Battlecry:</b> Draw a card from\nyour opponent's deck.\nIf you don't play it this\nturn, put it back.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Adam Byrne",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 111304,
+    "flavor": "For all you weld-heads out there, this flavor text is a deep cut.",
+    "health": 3,
+    "id": "GDB_130",
+    "mechanics": [
+      "BATTLECRY",
+      "TAUNT"
+    ],
+    "name": "Crystal Welder",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "STARSHIP"
+    ],
+    "set": "SPACE",
+    "text": "[x]<b>Taunt</b>\n<b>Battlecry:</b> If you're building\na <b>Starship</b>, gain +2/+2.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Tanamaes Leejierasaes",
+    "attack": 7,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 111306,
+    "elite": true,
+    "flavor": "For an exiled dude, he's pretty popular!",
+    "hasDiamondSkin": true,
+    "health": 7,
+    "id": "GDB_131",
+    "mechanics": [
+      "DEATHRATTLE",
+      "TAUNT"
+    ],
+    "name": "Velen, Leader of the Exiled",
+    "race": "DRAENEI",
+    "races": [
+      "DRAENEI"
+    ],
+    "rarity": "LEGENDARY",
+    "referencedTags": [
+      "BATTLECRY"
+    ],
+    "set": "SPACE",
+    "text": "[x]<b>Taunt</b>. <b>Deathrattle:</b> Trigger the\n<b>Battlecries</b> and <b>Deathrattles</b>\nof all other Draenei you\nplayed this game.",
+    "type": "MINION"
+  },
+  {
+    "artist": "L. Lullabi & I. Campelo da Silva",
+    "attack": 4,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 111330,
+    "flavor": "Ugh, for the love of... could they just send a Relenting Smileguard for once!?",
+    "health": 2,
+    "howToEarnGolden": "Earnable on the <i>Great Dark Beyond</i> Reward Track.",
+    "id": "GDB_132",
+    "mechanics": [
+      "BATTLECRY",
+      "DISCOVER"
+    ],
+    "name": "Relentless Wrathguard",
+    "race": "DEMON",
+    "races": [
+      "DEMON"
+    ],
+    "rarity": "RARE",
+    "set": "SPACE",
+    "targetingArrowText": "Deal 2 damage to an enemy minion.",
+    "text": "<b>Battlecry:</b> Deal 2 damage to an enemy minion. If it dies, <b>Discover</b> a Demon.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Allan Arello",
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 111344,
+    "flavor": "On average, this gets you around 3 cards. And none of them have Overload.",
+    "id": "GDB_133",
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "Pocket Dimension",
+    "rarity": "EPIC",
+    "set": "SPACE",
+    "spellSchool": "ARCANE",
+    "text": "<b>Discover</b> a spell.\nRepeat until you see one for the second time.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Vika Yarova",
+    "attack": 4,
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 111345,
+    "flavor": "Delivered in under 30 minutes, or your Arkwings are free!",
+    "health": 3,
+    "id": "GDB_134",
+    "mechanics": [
+      "SPELLBURST",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Arkwing Pilot",
+    "race": "DRAENEI",
+    "races": [
+      "DRAENEI"
+    ],
+    "rarity": "RARE",
+    "set": "SPACE",
+    "text": "At the end of your turn, deal 3 damage to a random enemy. <b><b>Spellburst</b>:</b> Summon an Arkwing Pilot.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mike Sass",
+    "attack": 4,
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 111346,
+    "flavor": "He always brags that he's at the top of the bell curve.",
+    "health": 6,
+    "id": "GDB_135",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Ingenious Artificer",
+    "race": "DRAENEI",
+    "races": [
+      "DRAENEI"
+    ],
+    "rarity": "RARE",
+    "set": "SPACE",
+    "text": "[x]  <b>Battlecry:</b> The next Draenei  \nyou play refreshes Mana\nCrystals equal to its Attack.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Grafit",
+    "attack": 5,
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 111893,
+    "elite": true,
+    "flavor": "Severely outmatched by the Burning Legion, the Draenei had no hopes of survival… That changed with the invention of arkonite crystals, giving Hataaru and his Artificers new ways to empower their people.",
+    "health": 5,
+    "id": "GDB_136",
+    "mechanics": [
+      "BATTLECRY",
+      "DISCOVER"
+    ],
+    "name": "Exarch Hataaru",
+    "race": "DRAENEI",
+    "races": [
+      "DRAENEI"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "SPACE",
+    "text": "<b>Battlecry:</b> <b>Discover</b> a spell and reduce its Cost by (1).\nIf you play it this turn, repeat this effect.",
+    "type": "MINION"
+  },
+  {
+    "artist": "James Ryman",
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 111644,
+    "flavor": "Ah, I get it! I should play this for 0 Mana.",
+    "id": "GDB_137",
+    "name": "Libram of Clarity",
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "spellSchool": "HOLY",
+    "text": "Draw 2 minions.\nIf this costs (0), give them +2/+1.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Jakub Kasper",
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 111647,
+    "flavor": "The sacred texts!!",
+    "id": "GDB_138",
+    "name": "Libram of Divinity",
+    "rarity": "EPIC",
+    "set": "SPACE",
+    "spellSchool": "HOLY",
+    "text": "Give a minion +3/+3. If this costs (0), return this to your hand\nat the end of your turn.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Ramzy Kamen",
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 111650,
+    "flavor": "They used to do leaps of faith until Maraad fell into the void.",
+    "id": "GDB_139",
+    "name": "Libram of Faith",
+    "rarity": "RARE",
+    "referencedTags": [
+      "DIVINE_SHIELD",
+      "RUSH"
+    ],
+    "set": "SPACE",
+    "spellSchool": "HOLY",
+    "text": "Summon three\n3/3 Draenei with <b>Divine Shield</b>. If this costs (0), give them <b>Rush</b>.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Ursula Dorada",
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 111651,
+    "flavor": "Horse girls rise up!",
+    "id": "GDB_140",
+    "name": "Celestial Aura",
+    "rarity": "EPIC",
+    "set": "SPACE",
+    "spellSchool": "HOLY",
+    "text": "While you have exactly 1 minion in play, its Attack and Health are 10. Lasts 3 turns.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "James Ryman",
+    "attack": 3,
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 111653,
+    "elite": true,
+    "flavor": "Yrel has a lot of overdue library books.",
+    "health": 3,
+    "id": "GDB_141",
+    "mechanics": [
+      "DEATHRATTLE",
+      "RUSH"
+    ],
+    "name": "Yrel, Beacon of Hope",
+    "race": "DRAENEI",
+    "races": [
+      "DRAENEI"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "SPACE",
+    "text": "[x]<b>Rush</b>\n<b>Deathrattle:</b> Get three\ndifferent Librams from\nan older timeline!",
+    "type": "MINION"
+  },
+  {
+    "artist": "James Ryman",
+    "attack": 10,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 125,
+    "dbfId": 111914,
+    "elite": true,
+    "flavor": "If you play this for its full Mana cost, you know what? You win. Good day sir!",
+    "health": 10,
+    "id": "GDB_142",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "The Ceaseless Expanse",
+    "rarity": "LEGENDARY",
+    "set": "SPACE",
+    "text": "[x]Costs (1) less for each time\na card was drawn, played, or\ndestroyed. <b>Battlecry:</b> Destroy\nall other minions.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Alex Stone",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 111915,
+    "elite": true,
+    "flavor": "Whatever you do, do not give him OR his ethereal parrot a magical lamp.",
+    "health": 3,
+    "howToEarn": "Earnable after opening a <i>Great Dark Beyond</i> card pack.",
+    "howToEarnGolden": "Earnable after purchasing the <i>Great Dark Beyond</i> Tavern Pass.",
+    "id": "GDB_143",
+    "mechanics": [
+      "SPELLBURST"
+    ],
+    "name": "Nexus-Prince Shaffar",
+    "rarity": "LEGENDARY",
+    "set": "SPACE",
+    "text": "[x]<b>Spellburst:</b> Give a minion\nin your hand +3/+3 and this\n<b>Spellburst</b> <i>(unless it already\nhas these effects).</i>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Ursula Dorada",
+    "attack": 9,
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 111918,
+    "elite": true,
+    "flavor": "\"What's a world soul?\"\n\"Only the most sophisticated form of life ever protected by Titans. AND it's spherical! SPHERICAL!\"",
+    "health": 9,
+    "id": "GDB_144",
+    "mechanics": [
+      "LIFESTEAL",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Lumia",
+    "rarity": "LEGENDARY",
+    "referencedTags": [
+      "IMMUNE"
+    ],
+    "set": "SPACE",
+    "text": "[x]<b>Lifesteal</b>\nAfter a hero takes damage,\nthey become <b>Immune</b> for\nthe rest of the turn.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mooncolony",
+    "attack": 7,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 112361,
+    "elite": true,
+    "flavor": "With complete control of the Burning Legion's forces, Kil'jaeden will stop at nothing until all of the traitorous Draenei have been squelched. *right clicks the enemy hero*",
+    "hasDiamondSkin": true,
+    "health": 7,
+    "id": "GDB_145",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Kil'jaeden",
+    "race": "DEMON",
+    "races": [
+      "DEMON"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "SPACE",
+    "text": "[x]<b>Battlecry:</b> Replace your deck\nwith an endless portal of\nDemons. Each turn, they gain\nan additional +2/+2.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Ian Ameling",
+    "attack": 3,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 110896,
+    "flavor": "\"And my Axe!\" \"And my Axe!\" \"And my Axe!\"",
+    "health": 5,
+    "id": "GDB_226",
+    "mechanics": [
+      "BATTLECRY",
+      "DEATHRATTLE",
+      "SPELLBURST"
+    ],
+    "name": "Hostile Invader",
+    "race": "DEMON",
+    "races": [
+      "DEMON"
+    ],
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "text": "<b>Battlecry, <b>Spellburst</b>, and Deathrattle:</b> Deal 2 damage to all other minions.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Brian Despain",
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 110899,
+    "flavor": "Companion card to Jettidaughter.",
+    "id": "GDB_227",
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "Jettison",
+    "rarity": "RARE",
+    "set": "SPACE",
+    "text": "<b>Discover</b> a spell.\nSpend 2 Armor to <b>Discover</b> another.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Edgar Hidalgo",
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 110902,
+    "flavor": "Akama loves a nice comfy log to captain on.",
+    "id": "GDB_228",
+    "name": "Captain's Log",
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "text": "Draw 2 cards.\nCosts (1) less for each Draenei you control.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Matt Dixon",
+    "attack": 3,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 110904,
+    "flavor": "Expialidocious Sergeant didn't quite fit.",
+    "health": 4,
+    "id": "GDB_229",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Expedition Sergeant",
+    "race": "DRAENEI",
+    "races": [
+      "DRAENEI"
+    ],
+    "rarity": "RARE",
+    "set": "SPACE",
+    "text": "[x] <b>Battlecry:</b> The next Draenei \nyou play immediately\nattacks a random enemy.",
+    "type": "MINION"
+  },
+  {
+    "artist": "L. Lullabi & T. Shevtsov",
+    "attack": 7,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 110910,
+    "flavor": "A good defense is a good offense which is a good defense which is a good offense which is a good defense which is a good offense which is a good defense which is a good offense which is a good defense which is a good offense which is a good defense which is a good offense which is a good defense which is a good offense which is a good defense which is a good offense!",
+    "health": 2,
+    "id": "GDB_230",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Stalwart Avenger",
+    "race": "DRAENEI",
+    "races": [
+      "DRAENEI"
+    ],
+    "rarity": "EPIC",
+    "referencedTags": [
+      "IMMUNE"
+    ],
+    "set": "SPACE",
+    "text": "<b>Immune</b> while attacking.\nAt the end of EACH turn, swap this minion's Attack and Health.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Gabriel Lopes",
+    "attack": 2,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 110911,
+    "durability": 0,
+    "flavor": "The only difference between a mace and a greatmace is... PRESENTATION!",
+    "health": 2,
+    "id": "GDB_231",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Crystalline Greatmace",
+    "rarity": "RARE",
+    "set": "SPACE",
+    "text": "After your hero attacks, give all Draenei in your hand +2 Attack.",
+    "type": "WEAPON"
+  },
+  {
+    "artist": "Gabriel Lopes",
+    "attack": 5,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 110914,
+    "flavor": "Strike and smash, until it is done.",
+    "health": 4,
+    "id": "GDB_232",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Unyielding Vindicator",
+    "race": "DRAENEI",
+    "races": [
+      "DRAENEI"
+    ],
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "text": "<b>Battlecry:</b> The next Draenei you play gives your hero its Attack for that turn.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Melvin Chan",
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 10,
+    "dbfId": 110917,
+    "flavor": "Hey, who let Magni Bronzebeard, who we all know is famous for his Magni Touch, land on this planet!?",
+    "id": "GDB_233",
+    "name": "Dwarf Planet",
+    "rarity": "EPIC",
+    "set": "SPACE",
+    "text": "Fill your board\nwith random 2-Cost minions that attack\nrandom enemies.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Felideus Bubastis",
+    "attack": 6,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 110921,
+    "elite": true,
+    "flavor": "Sorry for not explaining the Spores in the textbox. We just didn't have that mushroom.",
+    "health": 7,
+    "id": "GDB_234",
+    "name": "Spore Empress Moldara",
+    "rarity": "LEGENDARY",
+    "referencedTags": [
+      "START_OF_GAME_KEYWORD"
+    ],
+    "set": "SPACE",
+    "text": "<b>Start of Game:</b> Shuffle 7 Replicating Spores into your deck.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Alex Horley Orlandelli",
+    "attack": 3,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 110922,
+    "elite": true,
+    "flavor": "Akama fiercely led the Vindicators in the Draenei's quest to find a new home. If only he knew what would await him on the planet of Draenor…",
+    "health": 6,
+    "id": "GDB_235",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Exarch Akama",
+    "race": "DRAENEI",
+    "races": [
+      "DRAENEI"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "SPACE",
+    "text": "[x]After this attacks,\nall other friendly minions\ncan attack again <i>(except\nExarch Akama)</i>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Sergey Tsvelykh",
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 112045,
+    "flavor": "Close encounters of the cuddly kind.",
+    "id": "GDB_237",
+    "name": "Alien Encounters",
+    "rarity": "RARE",
+    "referencedTags": [
+      "DISCOVER",
+      "TAUNT"
+    ],
+    "set": "SPACE",
+    "text": "Summon two 2/4 Beasts with <b>Taunt</b>. Costs\n(1) less for each card you <b><b>Discover</b>ed</b> this game.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Patrik Bjorkstrom",
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 111896,
+    "flavor": "People who enjoy the heat will say this looks like perfect weather.",
+    "id": "GDB_301",
+    "name": "Supernova",
+    "rarity": "EPIC",
+    "set": "SPACE",
+    "spellSchool": "FIRE",
+    "text": "Fill your hand with random Fire spells. They cost (1).",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Patrik Bjorkstrom",
+    "attack": 3,
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 111897,
+    "flavor": "Much like the Draenei, this Elemental just wants a place to call home. Unlike the Draenei, it incinerates everything it touches.",
+    "health": 1,
+    "id": "GDB_302",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Blazing Accretion",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "RARE",
+    "set": "SPACE",
+    "text": "<b>Battlecry:</b> Destroy the top 3 cards of your deck. Any Fire spells or Elementals are drawn instead.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Daniil Kudriavtsev",
+    "attack": 3,
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 111899,
+    "flavor": "To infinity and... even further!",
+    "health": 4,
+    "id": "GDB_303",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Blasteroid",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "text": "<b>Battlecry:</b> Shuffle 5 random Fire spells into your deck. They cost (2) less.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Kevin Sidharta",
+    "attack": 7,
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 111938,
+    "elite": true,
+    "flavor": "BORN FROM THE HEAT DEATH OF COLLIDING SUPERNOVAS, SARUUN SEEKS TO INCINERATE ALL THAT WHICH REVOLVES AROUND THEM TO MERE ASHES AND STARDUST!!!!\nWhich is pretty neato!",
+    "hasDiamondSkin": true,
+    "health": 6,
+    "id": "GDB_304",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Saruun",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "SPACE",
+    "text": "[x]<b>Battlecry:</b> Give all\nElementals in your deck\n <b>Fire Spell Damage +1</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Kevin Sidharta",
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 111967,
+    "flavor": "Saruun is quite the dancer. Their pirouette is deadly.",
+    "id": "GDB_305",
+    "name": "Solar Flare",
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "spellSchool": "FIRE",
+    "text": "Deal $2 damage to all enemies. Costs (1) less for each Elemental you control.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "AJ Nazzaro",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 111972,
+    "flavor": "I see 2 spells in my future.",
+    "health": 3,
+    "id": "GDB_310",
+    "mechanics": [
+      "SPELLBURST",
+      "SPELLPOWER"
+    ],
+    "name": "Ethereal Oracle",
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "spellDamage": 1,
+    "text": "<b>Spell Damage +1</b>\n<b><b>Spellburst</b>:</b> Draw 2 spells.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Slawomir Maniak",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 111973,
+    "flavor": "*Gestures to empty room* \"...and here is my curated collection of space.\"",
+    "health": 4,
+    "id": "GDB_311",
+    "mechanics": [
+      "SPELLBURST"
+    ],
+    "name": "Deep Space Curator",
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "text": "<b><b>Spellburst</b>:</b> Get a random minion of the spell's Cost. Set its Cost to (0).",
+    "type": "MINION"
+  },
+  {
+    "artist": "Ian Ameling",
+    "attack": 5,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 111981,
+    "flavor": "After a while, the glowing purple stress ball became ineffective at containing his rage.",
+    "health": 6,
+    "howToEarnGolden": "Earnable on the <i>Great Dark Beyond</i> Reward Track.",
+    "id": "GDB_320",
+    "mechanics": [
+      "LIFESTEAL",
+      "TAUNT"
+    ],
+    "name": "Eredar Brute",
+    "race": "DEMON",
+    "races": [
+      "DEMON"
+    ],
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "text": "<b>Taunt</b>, <b>Lifesteal</b>\nCosts (1) less for each enemy minion.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Slawomir Maniak",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 111982,
+    "flavor": "Who knows how many amazing discoveries are out there!\n...\nNever mind, I'm going home.",
+    "health": 8,
+    "id": "GDB_321",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Mutating Lifeform",
+    "race": "ALL",
+    "races": [
+      "ALL"
+    ],
+    "rarity": "EPIC",
+    "set": "SPACE",
+    "text": "After this survives\ndamage, gain a random <b>Bonus Effect</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Eva Widermann",
+    "attack": 6,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 111991,
+    "flavor": "Oh no, I ran out of fused Mana!",
+    "health": 6,
+    "id": "GDB_322",
+    "mechanics": [
+      "RUSH",
+      "SPELLBURST"
+    ],
+    "name": "Lightfused Manasaber",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "referencedTags": [
+      "DIVINE_SHIELD"
+    ],
+    "set": "SPACE",
+    "text": "<b>Rush</b>\n<b><b>Spellburst</b>:</b> Gain\n<b>Divine Shield</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Jason Kang",
+    "attack": 5,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 112028,
+    "flavor": "The Burning Legion is host to many horrors, but a 3 Mana 5/1 is the worst of all!",
+    "health": 1,
+    "id": "GDB_330",
+    "mechanics": [
+      "LIFESTEAL",
+      "SPELLBURST"
+    ],
+    "name": "Ur'zul Rager",
+    "race": "DEMON",
+    "races": [
+      "DEMON"
+    ],
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "text": "<b>Lifesteal</b>\n <b><b>Spellburst</b>:</b> Attack a random enemy minion.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Max Grecke",
+    "attack": 8,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 112029,
+    "flavor": "Space rock.\n*pew*\nSpa ce ro ck.\n*pew*\nS p a c e r o c k .",
+    "health": 8,
+    "howToEarnGolden": "Earnable on the <i>Great Dark Beyond</i> Reward Track.",
+    "id": "GDB_331",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Splitting Spacerock",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "RARE",
+    "set": "SPACE",
+    "text": "<b>Deathrattle:</b> Summon two 4/4 Splitting Boulders.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Max Grecke",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 112049,
+    "flavor": "Exploring the avastness of space.",
+    "health": 1,
+    "id": "GDB_333",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Space Pirate",
+    "race": "PIRATE",
+    "races": [
+      "PIRATE"
+    ],
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "text": "<b>Deathrattle:</b> Your next weapon costs (1) less.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Ivan Fomin",
+    "attack": 4,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 112060,
+    "flavor": "He was a star before he even flew his first ship.",
+    "health": 5,
+    "id": "GDB_340",
+    "mechanics": [
+      "BATTLECRY",
+      "TRADEABLE"
+    ],
+    "name": "Star Vulpera",
+    "rarity": "EPIC",
+    "referencedTags": [
+      "STARSHIP"
+    ],
+    "set": "SPACE",
+    "targetingArrowText": "Destroy an enemy <b>Starship</b> or <b>Starship Piece</b>.",
+    "text": "[x]<b>Tradeable</b>\n <b>Battlecry:</b> Destroy an enemy \n<b>Starship</b> or <b>Starship Piece</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Zoltan Boros",
+    "attack": 8,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 112062,
+    "flavor": "Lots of cards get played around it, but it's the real star.",
+    "health": 8,
+    "id": "GDB_341",
+    "name": "Red Giant",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "EPIC",
+    "set": "SPACE",
+    "text": "Costs (1) less for each adjacent card played while in hand.",
+    "type": "MINION"
+  },
+  {
+    "artist": "James Ryman",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 112084,
+    "flavor": "I'm so confused... this is really a headscratcher... it doesn't make any sense... why does it cost 3 Mana?",
+    "health": 5,
+    "howToEarnGolden": "Earnable on the <i>Great Dark Beyond</i> Reward Track.",
+    "id": "GDB_343",
+    "mechanics": [
+      "RUSH",
+      "STEALTH",
+      "TAUNT"
+    ],
+    "name": "Perplexing Anomaly",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "RARE",
+    "set": "SPACE",
+    "text": "<b>Rush</b>, <b>Taunt</b>,\n<b>...<b>Stealth</b>?</b>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Matt Dixon",
+    "attack": 3,
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 110743,
+    "flavor": "There's only so many words that exist for rocks in space.",
+    "health": 6,
+    "id": "GDB_434",
+    "mechanics": [
+      "BATTLECRY",
+      "SPELLBURST"
+    ],
+    "name": "Bolide Behemoth",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "EPIC",
+    "set": "SPACE",
+    "text": "[x]<b>Battlecry:</b> Your Asteroids deal\n1 more damage this game.\n<b><b>Spellburst</b>:</b> Shuffle 3 of\nthem into your deck.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Matt Dixon",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 110744,
+    "flavor": "Perfect in EVOLVE Shaman!",
+    "health": 2,
+    "id": "GDB_435",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Moonstone Mauler",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "text": "[x]<b>Battlecry:</b> Shuffle 3\nAsteroids into your deck that\ndeal 2 damage to a random\nenemy when drawn.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Vika Yarova",
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 110835,
+    "flavor": "I can see your halo. HALO. Haaaalo.",
+    "id": "GDB_439",
+    "name": "Orbital Halo",
+    "rarity": "RARE",
+    "referencedTags": [
+      "DIVINE_SHIELD"
+    ],
+    "set": "SPACE",
+    "spellSchool": "HOLY",
+    "text": "Give a minion +1/+1 and <b>Divine Shield</b>. Costs (0) if you played an adjacent card this turn.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Matt Dixon",
+    "attack": 4,
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 110839,
+    "flavor": "We hired your elementary school math teacher to make this card.",
+    "health": 2,
+    "id": "GDB_440",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Mystified To'cha",
+    "rarity": "EPIC",
+    "set": "SPACE",
+    "text": "[x]<b>Battlecry:</b> If the combined\nHealth of both heroes is\nexactly 42, set your hero's\nHealth to 42.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mike Sass",
+    "attack": 2,
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 110840,
+    "flavor": "A Priest is nothing without their anchor. Wait, what?",
+    "health": 4,
+    "id": "GDB_441",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Anchorite",
+    "race": "DRAENEI",
+    "races": [
+      "DRAENEI"
+    ],
+    "rarity": "RARE",
+    "referencedTags": [
+      "OVERHEAL"
+    ],
+    "set": "SPACE",
+    "text": "Whenever another minion is <b>Overhealed</b>, give it that much extra Health.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Daniil Kudriavtsev",
+    "attack": 3,
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 110842,
+    "elite": true,
+    "flavor": "The Draenei's story of survival should instill hope in you that anything is possible!! As long as you have the aid of an interdimensional manifestation of holy energy.",
+    "health": 3,
+    "id": "GDB_442",
+    "mechanics": [
+      "SPELLBURST"
+    ],
+    "name": "K'ure, the Light Beyond",
+    "rarity": "LEGENDARY",
+    "set": "SPACE",
+    "text": "[x]<b><b>Spellburst</b>:</b> Summon a\nrandom 3-Cost minion.\n<i>(Holy spells don't remove\nthis <b>Spellburst</b>.)</i>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Jakub Kasper",
+    "attack": 5,
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 110852,
+    "flavor": "It might look like they're underwater, but they're cosmo-not!",
+    "health": 5,
+    "id": "GDB_443",
+    "mechanics": [
+      "BATTLECRY",
+      "DISCOVER"
+    ],
+    "name": "Cosmonaut",
+    "race": "DRAENEI",
+    "races": [
+      "DRAENEI"
+    ],
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "text": "<b>Battlecry:</b> <b>Discover</b> a spell from your deck. Reduce its Cost by (5).",
+    "type": "MINION"
+  },
+  {
+    "artist": "Edgar Hidalgo",
+    "attack": 3,
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 110865,
+    "flavor": "\"I'm a navigator, not a doctor!\"",
+    "health": 2,
+    "id": "GDB_444",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Planetary Navigator",
+    "race": "DRAENEI",
+    "races": [
+      "DRAENEI"
+    ],
+    "rarity": "RARE",
+    "referencedTags": [
+      "OVERLOAD"
+    ],
+    "set": "SPACE",
+    "text": "<b>Battlecry:</b> The next Draenei you play costs (2) less, but has <b>Overload:</b> (2).",
+    "type": "MINION"
+  },
+  {
+    "artist": "Zoltan Boros",
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 110872,
+    "flavor": "\"Sir, the possibility of successfully drawing all of your Asteroids in a row are approximately 3,720:1!\"\n\"Never tell me the odds!\"",
+    "id": "GDB_445",
+    "name": "Meteor Storm",
+    "rarity": "RARE",
+    "set": "SPACE",
+    "spellSchool": "NATURE",
+    "text": "Deal $5 damage\nto all minions.\nShuffle 5 Asteroids\ninto your deck.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Mooncolony",
+    "attack": 6,
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 110876,
+    "elite": true,
+    "flavor": "\"Someone help me! I'm stuck in a net!\"",
+    "health": 4,
+    "id": "GDB_447",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Farseer Nobundo",
+    "race": "DRAENEI",
+    "races": [
+      "DRAENEI"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "SPACE",
+    "text": "<b>Deathrattle:</b> Open the\nGalaxy's Lens. It absorbs the power of the next spell you cast.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Daniil Kudriavtsev",
+    "attack": 6,
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 110881,
+    "elite": true,
+    "flavor": "What?",
+    "hasDiamondSkin": true,
+    "health": 6,
+    "id": "GDB_448",
+    "mechanics": [
+      "AURA",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Murmur",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "LEGENDARY",
+    "referencedTags": [
+      "BATTLECRY"
+    ],
+    "set": "SPACE",
+    "text": "[x]Your first <b>Battlecry</b>\nminion each turn costs (1),\nbut immediately dies\nafter being played.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Anzka Nguyen",
+    "attack": 4,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 110947,
+    "flavor": "She's the ace of space.",
+    "health": 4,
+    "howToEarnGolden": "Earnable after purchasing the <i>Great Dark Beyond</i> Tavern Pass.",
+    "id": "GDB_450",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Ace Wayfinder",
+    "race": "DRAENEI",
+    "races": [
+      "DRAENEI"
+    ],
+    "rarity": "EPIC",
+    "set": "SPACE",
+    "text": "[x]<b>Battlecry:</b> Gain two\nrandom <b>Bonus Effects</b>.\nThe next Draenei you play\ngains them as well.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Ursula Dorada",
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 110968,
+    "flavor": "\"Our mission takes us to the planet of Celes, but I know not of its whereabouts.\"\n\"Captain, I saw Celes!\"",
+    "id": "GDB_451",
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "Triangulate",
+    "rarity": "RARE",
+    "set": "SPACE",
+    "text": "[x]<b>Discover</b> a different\nspell from your deck.\nShuffle 3 copies of it\ninto your deck.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Zoltan Boros",
+    "attack": 4,
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 110973,
+    "flavor": "One can never have too many shields.",
+    "health": 8,
+    "id": "GDB_452",
+    "mechanics": [
+      "DIVINE_SHIELD",
+      "LIFESTEAL",
+      "TAUNT"
+    ],
+    "name": "Shield of Askara",
+    "race": "DRAENEI",
+    "races": [
+      "DRAENEI"
+    ],
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "text": "<b>Taunt</b>\n<b>Divine Shield</b>\n<b>Lifesteal</b>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Anzka Nguyen",
+    "attack": 3,
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 111010,
+    "flavor": "In another universe, she's Genji's best friend.",
+    "health": 3,
+    "id": "GDB_454",
+    "mechanics": [
+      "DEATHRATTLE",
+      "SPELLBURST"
+    ],
+    "name": "Overzealous Healer",
+    "race": "DRAENEI",
+    "races": [
+      "DRAENEI"
+    ],
+    "rarity": "RARE",
+    "referencedTags": [
+      "SILENCE"
+    ],
+    "set": "SPACE",
+    "text": "<b>Deathrattle:</b> Restore #6 Health to the enemy hero. <b><b>Spellburst</b>:</b> <b>Silence</b> this minion.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mooncolony",
+    "attack": 4,
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 111020,
+    "elite": true,
+    "flavor": "That's Askara card!",
+    "hasDiamondSkin": true,
+    "health": 4,
+    "id": "GDB_455",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Askara",
+    "race": "DRAENEI",
+    "races": [
+      "DRAENEI"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "SPACE",
+    "text": "<b>Battlecry:</b> The next Draenei you play summons a copy of itself.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Matt Dixon",
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 111067,
+    "flavor": "XD so random",
+    "id": "GDB_456",
+    "name": "Spontaneous Combustion",
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "spellSchool": "FIRE",
+    "text": "Deal $4 damage to a random enemy. If you played an Elemental last turn, choose the target.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Ramzy Kamen",
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 111076,
+    "flavor": "Speed. I am speed.",
+    "id": "GDB_457",
+    "name": "Lightspeed",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "RUSH"
+    ],
+    "set": "SPACE",
+    "spellSchool": "HOLY",
+    "text": "Give a minion\n+1/+2 and <b>Rush</b>.\nRepeatable this turn.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Anzka Nguyen",
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 111300,
+    "flavor": "I could really use a wish right now.",
+    "id": "GDB_460",
+    "name": "Divine Star",
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "spellSchool": "HOLY",
+    "text": "Deal $3 damage\nto a minion. Give a random minion in your hand +3 Health.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Patrik Bjorkstrom",
+    "attack": 1,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 111305,
+    "flavor": "Draenei are so dedicated that they remain vigilant even in death.",
+    "health": 2,
+    "id": "GDB_461",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Astral Vigilant",
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "text": "<b>Battlecry:</b> Get a copy of the last Draenei you played.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Tanamaes Leejierasaes",
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 111310,
+    "flavor": "Picks up all the buzz in space.",
+    "id": "GDB_462",
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "Orbital Satellite",
+    "rarity": "RARE",
+    "set": "SPACE",
+    "text": "[x]<b>Discover</b> a Draenei.\nIf you played an\nadjacent card this turn,\n<b>Discover</b> another.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "L. Lullabi & I. Campelo da Silva",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 111313,
+    "flavor": "In space, no one can hear you talk about your troubles.",
+    "health": 1,
+    "id": "GDB_463",
+    "mechanics": [
+      "DIVINE_SHIELD",
+      "SPELLBURST"
+    ],
+    "name": "Troubled Mechanic",
+    "race": "DRAENEI",
+    "races": [
+      "DRAENEI"
+    ],
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "text": "[x]<b>Divine Shield</b>\n<b><b>Spellburst</b>:</b> Draw a Draenei.",
+    "type": "MINION"
+  },
+  {
+    "artist": "L. Lullabi & I. Campelo da Silva",
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 0,
+    "dbfId": 111424,
+    "flavor": "Did someone forget to pay the gravity bill?",
+    "id": "GDB_464",
+    "name": "Gravity Lapse",
+    "rarity": "EPIC",
+    "set": "SPACE",
+    "text": "Set EVERY minion's Attack and Health to the lower of the two.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Alex Stone",
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 111596,
+    "flavor": "\"We're not even close to Draenor, just do the trick! It'll be fiiiine!\"",
+    "id": "GDB_465",
+    "name": "Barrel Roll",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "STARSHIP"
+    ],
+    "set": "SPACE",
+    "text": "[x]Deal $5 damage to an\nundamaged character.\nCosts (1) if you're\nbuilding a <b>Starship</b>.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Kevin Sidharta",
+    "attack": 5,
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 111597,
+    "elite": true,
+    "flavor": "You ever wonder why some planets have two moons?",
+    "health": 4,
+    "id": "GDB_466",
+    "mechanics": [
+      "STARSHIP_PIECE",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "The Gravitational Displacer",
+    "rarity": "LEGENDARY",
+    "referencedTags": [
+      "STARSHIP"
+    ],
+    "set": "SPACE",
+    "text": "[x]<b>Starship Piece</b>\nWhen this is launched,\nsummon a copy of\nthe <b>Starship</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Vika Yarova",
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 111602,
+    "flavor": "No one is going to believe that quasars are a real thing, Durg'tash the Sorcerer.",
+    "id": "GDB_467",
+    "name": "Quasar",
+    "rarity": "EPIC",
+    "set": "SPACE",
+    "text": "Shuffle your hand into your deck.\nReduce the Cost of cards in your deck by (3).",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Edgar Hidalgo",
+    "attack": 8,
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 10,
+    "dbfId": 111678,
+    "flavor": "The alarm again!? Wake me up in 5 more eternities.",
+    "health": 7,
+    "id": "GDB_468",
+    "mechanics": [
+      "DEATHRATTLE",
+      "REBORN",
+      "TAUNT"
+    ],
+    "name": "Wakener of Souls",
+    "rarity": "RARE",
+    "runeCost": {
+      "blood": 0,
+      "frost": 0,
+      "unholy": 1
+    },
+    "set": "SPACE",
+    "text": "<b>Taunt</b>, <b>Reborn</b>\n<b>Deathrattle:</b> Resurrect\na different friendly <b>Deathrattle</b> minion.",
+    "type": "MINION"
+  },
+  {
+    "artist": "AJ Nazzaro",
+    "attack": 1,
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 111680,
+    "flavor": "He sees no evil. He hears no evil. Eh, he speaks a little evil.",
+    "health": 3,
+    "id": "GDB_469",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Auchenai Death-Speaker",
+    "race": "DRAENEI",
+    "races": [
+      "DRAENEI"
+    ],
+    "rarity": "EPIC",
+    "referencedTags": [
+      "REBORN"
+    ],
+    "runeCost": {
+      "blood": 0,
+      "frost": 0,
+      "unholy": 1
+    },
+    "set": "SPACE",
+    "text": "[x]After another friendly\nminion is <b>Reborn</b>,\nsummon a copy of it.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Grafit",
+    "attack": 5,
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 111682,
+    "elite": true,
+    "flavor": "The Auchenai order was founded to preserve the memory of Draenei that have passed. But why stop at remembrance when they can live once more?",
+    "hasDiamondSkin": true,
+    "health": 5,
+    "id": "GDB_470",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Exarch Maladaar",
+    "race": "DRAENEI",
+    "races": [
+      "DRAENEI"
+    ],
+    "rarity": "LEGENDARY",
+    "runeCost": {
+      "blood": 0,
+      "frost": 0,
+      "unholy": 1
+    },
+    "set": "SPACE",
+    "text": "<b>Battlecry:</b> The next card you play this turn costs <b>Corpses</b> instead of Mana.",
+    "type": "MINION"
+  },
+  {
+    "artist": "L. Lullabi & T. Shevtsov",
+    "attack": 2,
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 111906,
+    "flavor": "He has an eyepatch but isn't a Pirate. He's a Recruiter but doesn't Recruit. Smh my head.",
+    "health": 3,
+    "id": "GDB_471",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Voronei Recruiter",
+    "race": "DRAENEI",
+    "races": [
+      "DRAENEI"
+    ],
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "text": "[x]At the end of your turn,\nget a 4/4 Crewmate with\na random <b>Bonus Effect</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Nicola Saviori",
+    "attack": 3,
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 111925,
+    "elite": true,
+    "flavor": "Talgath betrayed his people by accepting Sargeras's promise of power. Talgath also saw Velen's refusal of that same power as a betrayal. I'm not convinced Talgath knows what that word means.",
+    "hasDiamondSkin": true,
+    "health": 3,
+    "id": "GDB_472",
+    "mechanics": [
+      "AURA",
+      "COMBO"
+    ],
+    "name": "Talgath",
+    "race": "DEMON",
+    "races": [
+      "DEMON"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "SPACE",
+    "text": "[x]Undamaged enemy minions\ntake double damage.\n<b>Combo:</b> Get a Backstab.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Sergey Tsvelykh",
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 111934,
+    "flavor": "Even though the red lenses blurred his vision and greatly inhibited his ability to make out color and detail, he looked cool as heck.",
+    "id": "GDB_473",
+    "name": "Headhunt",
+    "rarity": "RARE",
+    "set": "SPACE",
+    "text": "Deal $2 damage. Get a 4/4 Crewmate with a random <b>Bonus Effect</b>.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Stefan Bogdasarov",
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 111937,
+    "flavor": "WARNING: SLIPSPACE RUPTURE DETECTED!",
+    "id": "GDB_474",
+    "name": "Warp Drive",
+    "rarity": "RARE",
+    "referencedTags": [
+      "STARSHIP"
+    ],
+    "set": "SPACE",
+    "spellSchool": "FEL",
+    "text": "Draw 2 cards. If you're building a <b>Starship</b>, they cost (2) less.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Adam Byrne",
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 111969,
+    "flavor": "The blood moon orbits once again.",
+    "id": "GDB_475",
+    "name": "Orbital Moon",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "LIFESTEAL",
+      "REBORN",
+      "TAUNT"
+    ],
+    "runeCost": {
+      "blood": 2,
+      "frost": 0,
+      "unholy": 0
+    },
+    "set": "SPACE",
+    "text": "Give a minion <b>Taunt</b> and <b>Lifesteal</b>. If you played an adjacent card this turn, also give it <b>Reborn</b>.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Jakub Kasper",
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 111979,
+    "flavor": "He's already floating in the void of space. The shadow magic seems like overkill, idk.",
+    "id": "GDB_476",
+    "name": "Suffocate",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "STARSHIP"
+    ],
+    "set": "SPACE",
+    "spellSchool": "SHADOW",
+    "text": "Destroy a minion. If you're building a <b>Starship</b>, also destroy a random neighbor.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Max Grecke",
+    "attack": 8,
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 112048,
+    "elite": true,
+    "flavor": "It was a one-eyed, eight-handed, giant purple planet eater.",
+    "health": 8,
+    "id": "GDB_477",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "The 8 Hands From Beyond",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "LEGENDARY",
+    "runeCost": {
+      "blood": 2,
+      "frost": 0,
+      "unholy": 0
+    },
+    "set": "SPACE",
+    "text": "<b>Battlecry:</b> Destroy both players' decks EXCEPT\nthe 8 highest Cost cards in each.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Zoltan Boros",
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 112093,
+    "flavor": "Resistance is futile.",
+    "id": "GDB_478",
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "Assimilating Blight",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "DEATHRATTLE",
+      "REBORN"
+    ],
+    "runeCost": {
+      "blood": 1,
+      "frost": 0,
+      "unholy": 2
+    },
+    "set": "SPACE",
+    "text": "<b>Discover</b> a 3-Cost <b>Deathrattle</b> minion. Summon it with <b>Reborn</b>.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Sergey Tsvelykh",
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 9,
+    "dbfId": 114348,
+    "flavor": "Do-re-mi-fa-so-ne-bu-la!",
+    "id": "GDB_479",
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "Nebula",
+    "rarity": "EPIC",
+    "referencedTags": [
+      "ELUSIVE",
+      "TAUNT"
+    ],
+    "set": "SPACE",
+    "spellSchool": "ARCANE",
+    "text": "[x]<b>Discover</b> two 8-Cost\nminions to summon with\n<b>Taunt</b> and <b>Elusive</b>.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Patrik Bjorkstrom",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 110559,
+    "flavor": "Not all who wander are lost, but some most definitely are and could really use directions right about now.",
+    "health": 1,
+    "id": "GDB_720",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Starlight Wanderer",
+    "race": "DRAENEI",
+    "races": [
+      "DRAENEI"
+    ],
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "text": "<b>Battlecry:</b> The next Draenei you play gains +2/+1.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Juan Calle",
+    "attack": 4,
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 110562,
+    "flavor": "This card is way fairer than most.",
+    "health": 2,
+    "id": "GDB_721",
+    "mechanics": [
+      "BATTLECRY",
+      "DIVINE_SHIELD"
+    ],
+    "name": "Interstellar Wayfarer",
+    "race": "DRAENEI",
+    "races": [
+      "DRAENEI"
+    ],
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "text": "<b>Divine Shield</b>\n<b>Battlecry:</b> Reduce the\nCost of your Librams by (1) this game.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Matt Dixon",
+    "attack": 4,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 110564,
+    "flavor": "\"Wait… why do I have a Deathrattle?\"",
+    "health": 3,
+    "id": "GDB_722",
+    "mechanics": [
+      "BATTLECRY",
+      "DEATHRATTLE"
+    ],
+    "name": "Crimson Commander",
+    "race": "DRAENEI",
+    "races": [
+      "DRAENEI"
+    ],
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "text": "<b>Battlecry and Deathrattle:</b> Give all Draenei in your\nhand +1/+1.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Timur Shevtsov",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 110566,
+    "flavor": "Help me, Temporary Draenei. You're my only hope!",
+    "health": 2,
+    "id": "GDB_723",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Hologram Operator",
+    "race": "DRAENEI",
+    "races": [
+      "DRAENEI"
+    ],
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "text": "<b>Battlecry:</b> Get 3 random <b>Temporary</b> Draenei.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Sergey Tsvelykh",
+    "attack": 3,
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 110573,
+    "durability": 0,
+    "flavor": "The universe is infinite. Ever-expanding, its sheer size is something that even the ancestors of our ancestors can only dream of knowing. And even still, across every single pocket of the galaxy, every one thing is unique.\nSo, no, we've never made the same flavor-text twice, IDK what you're talking about.",
+    "health": 2,
+    "id": "GDB_726",
+    "mechanics": [
+      "BATTLECRY",
+      "DEATHRATTLE"
+    ],
+    "name": "Interstellar Starslicer",
+    "rarity": "RARE",
+    "set": "SPACE",
+    "text": "<b>Battlecry and Deathrattle:</b> Reduce the Cost of your Librams by (1)\nthis game.",
+    "type": "WEAPON"
+  },
+  {
+    "artist": "Ivo Campelo da Silva",
+    "attack": 2,
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 110610,
+    "flavor": "\"If only I could read Draenei!\"",
+    "health": 2,
+    "id": "GDB_728",
+    "mechanics": [
+      "BATTLECRY",
+      "SPELLBURST"
+    ],
+    "name": "Interstellar Researcher",
+    "race": "DRAENEI",
+    "races": [
+      "DRAENEI"
+    ],
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "text": "<b>Battlecry and <b>Spellburst</b>:</b> Draw a Libram.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Matt Dixon",
+    "attack": 0,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 110867,
+    "flavor": "I'll have mine starry-side up please.",
+    "health": 2,
+    "id": "GDB_840",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Extraterrestrial Egg",
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "text": "[x]<b>Deathrattle:</b> Summon a\n3/5 Beast that attacks the\nlowest Health enemy.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Sergey Tsvelykh",
+    "attack": 1,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 110869,
+    "flavor": "Always takes credit for other people's discoveries.",
+    "health": 2,
+    "id": "GDB_841",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Rangari Scout",
+    "race": "DRAENEI",
+    "races": [
+      "DRAENEI"
+    ],
+    "rarity": "COMMON",
+    "referencedTags": [
+      "DISCOVER"
+    ],
+    "set": "SPACE",
+    "text": "After you <b>Discover</b> a card, get a copy of it.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Zoltan Boros",
+    "attack": 12,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 110870,
+    "elite": true,
+    "flavor": "His diet consists of entire WORLDS! Because moons upset his tummy.",
+    "health": 12,
+    "id": "GDB_842",
+    "name": "Gorm the Worldeater",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "SPACE",
+    "text": "[x]<b>Dormant</b> for 5 turns. At the\nend of your turn, destroy the\n minion to the right of this to\n  awaken 1 turn sooner.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Drew Hill",
+    "attack": 2,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 111068,
+    "durability": 0,
+    "flavor": "Math is now cannon in the Warcraft universe.",
+    "health": 3,
+    "id": "GDB_843",
+    "mechanics": [
+      "SPELLBURST"
+    ],
+    "name": "Parallax Cannon",
+    "rarity": "EPIC",
+    "referencedTags": [
+      "DISCOVER",
+      "IMMUNE"
+    ],
+    "set": "SPACE",
+    "text": "[x]Has +2 Attack if you've\n<b><b>Discover</b>ed</b> this turn.\n<b><b>Spellburst</b>:</b> Your hero is\n<b>Immune</b> this turn.",
+    "type": "WEAPON"
+  },
+  {
+    "artist": "Sergey Tsvelykh",
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 111071,
+    "flavor": "The Rangari Scouts pride themselves on their highly accurate notes.",
+    "id": "GDB_844",
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "Detailed Notes",
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "text": "<b>Discover</b> a Beast that costs (5) or more. Reduce its Cost by (2).",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Ivan Fomin",
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 111073,
+    "flavor": "\"I say we take off and laser barrage the entire site from orbit - it's the only way to be sure.\"",
+    "id": "GDB_845",
+    "name": "Laser Barrage",
+    "rarity": "RARE",
+    "referencedTags": [
+      "STARSHIP"
+    ],
+    "set": "SPACE",
+    "text": "Deal $3 damage\nto a minion. If you're building a <b>Starship</b>, also damage its neighbors.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "James Ryman",
+    "attack": 3,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 111074,
+    "elite": true,
+    "flavor": "The Great Dark Beyond is vast, with each world containing unknown wonders and horrors alike. To distinguish between the two, Naielle leads the Rangari in surveying all planets the Draenei set foot on.",
+    "health": 4,
+    "id": "GDB_846",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Exarch Naielle",
+    "race": "DRAENEI",
+    "races": [
+      "DRAENEI"
+    ],
+    "rarity": "LEGENDARY",
+    "referencedTags": [
+      "DISCOVER"
+    ],
+    "set": "SPACE",
+    "text": "<b>Battlecry:</b> Replace your\nHero Power with Tracking\n<i>(<b>Discover</b> a card from your deck)</i>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Patrik Bjorkstrom",
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 110891,
+    "flavor": "Ok, Mom, in this ONE instance it IS a phase.",
+    "id": "GDB_851",
+    "mechanics": [
+      "CHOOSE_ONE"
+    ],
+    "name": "Astral Phaser",
+    "rarity": "RARE",
+    "set": "SPACE",
+    "spellSchool": "ARCANE",
+    "text": "<b>Choose One -</b> Deal $2 damage to two random enemy minions; or Make one <b>Dormant</b> for 2 turns.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Caroline Gariba",
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 110893,
+    "flavor": "And if it's a rkonite, revel in it.",
+    "id": "GDB_852",
+    "name": "Arkonite Revelation",
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "spellSchool": "ARCANE",
+    "text": "Draw a card. If it's a spell, it costs (1) less.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Nicola Saviori",
+    "attack": 6,
+    "cardClass": "DRUID",
+    "collectible": true,
+    "collectionText": "<b>Choose One -</b> {0}; or {1}.",
+    "cost": 5,
+    "dbfId": 110940,
+    "elite": true,
+    "flavor": "Uluu is such a tryhard, he's carrying an entire planet!",
+    "health": 5,
+    "id": "GDB_854",
+    "name": "Uluu, the Everdrifter",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "LEGENDARY",
+    "referencedTags": [
+      "CHOOSE_ONE"
+    ],
+    "set": "SPACE",
+    "text": "[x]Each turn this is in your\nhand, gain two random\n<b>Choose One</b> choices.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Jim Nelson",
+    "attack": 8,
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 111005,
+    "flavor": "Star gazing and star grazing aren't too different. Except for the part where you eat stars.",
+    "health": 8,
+    "id": "GDB_855",
+    "mechanics": [
+      "ELUSIVE",
+      "SPELLBURST",
+      "TAUNT"
+    ],
+    "name": "Star Grazer",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "RARE",
+    "set": "SPACE",
+    "text": "<b>Elusive, Taunt</b>\n<b>Spellburst:</b> Give your\nhero +8 Attack this turn and gain 8 Armor.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Jakub Kasper",
+    "attack": 3,
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 111009,
+    "elite": true,
+    "flavor": "The temptation of limitless knowledge led some Eredar to join the Burning Legion. In the Sha’tari Draenei, the study of everything lives on.",
+    "health": 3,
+    "id": "GDB_856",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Exarch Othaar",
+    "race": "DRAENEI",
+    "races": [
+      "DRAENEI"
+    ],
+    "rarity": "LEGENDARY",
+    "referencedTags": [
+      "STARSHIP"
+    ],
+    "set": "SPACE",
+    "text": "[x]<b>Battlecry:</b> If you're building\na <b>Starship</b>, get 3 different\nArcane spells and reduce\ntheir Costs by (2).",
+    "type": "MINION"
+  },
+  {
+    "artist": "Jakub Kasper",
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 111008,
+    "flavor": ".          *     |  .          .             *          .  \n        .        -O-           .          .          .      \n.             *   |       .         *        |       o     \n    .     *        .   o    .     .         -O-        .    \n    .            o      *         .       .   |   *        .\n           .              .        .      .            .",
+    "id": "GDB_857",
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "Final Frontier",
+    "rarity": "EPIC",
+    "set": "SPACE",
+    "spellSchool": "ARCANE",
+    "text": "<b>Discover</b> a 10-Cost minion from the past. Set its Cost to (1).",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Eva Widermann",
+    "attack": 4,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 111180,
+    "flavor": "You'll understand how to best make use of its effect once you connect the dots.",
+    "health": 7,
+    "howToEarnGolden": "Earnable on the <i>Great Dark Beyond</i> Reward Track.",
+    "id": "GDB_860",
+    "mechanics": [
+      "SPELLBURST"
+    ],
+    "name": "Starscale Constellar",
+    "race": "DRAGON",
+    "races": [
+      "DRAGON"
+    ],
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "text": "<b><b>Spellburst</b>:</b> Double this minion's Attack.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Matt Dixon",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 111181,
+    "flavor": "Would you say you're floating in a most peculiar way?",
+    "health": 3,
+    "id": "GDB_861",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Stranded Spaceman",
+    "race": "DRAENEI",
+    "races": [
+      "DRAENEI"
+    ],
+    "rarity": "COMMON",
+    "referencedTags": [
+      "RUSH"
+    ],
+    "set": "SPACE",
+    "text": "[x]<b>Battlecry:</b> The next\nDraenei you play gains\n+2 Health and <b>Rush</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Ivan Fomin",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 111182,
+    "flavor": "The will was very specific that in the event of the Crusader's death, you were to inherit these random spells. Very odd.",
+    "health": 9,
+    "id": "GDB_862",
+    "mechanics": [
+      "DEATHRATTLE",
+      "TAUNT"
+    ],
+    "name": "Galactic Crusader",
+    "race": "DRAENEI",
+    "races": [
+      "DRAENEI"
+    ],
+    "rarity": "RARE",
+    "set": "SPACE",
+    "text": "<b>Taunt</b>\n<b>Deathrattle:</b> Get two\nrandom Holy spells.\nThey cost (3) less.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Matt Dixon",
+    "attack": 6,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 111183,
+    "flavor": "Changing legend into fact, she will ride into history.",
+    "health": 4,
+    "id": "GDB_863",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Lunar Trailblazer",
+    "race": "DRAENEI",
+    "races": [
+      "DRAENEI"
+    ],
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "text": "[x]<b>Battlecry:</b> Set the Cost of a\nrandom spell in your hand\nto this minion's Cost.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Patrik Bjorkstrom",
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 111185,
+    "flavor": "Green squid thing phone home.",
+    "id": "GDB_864",
+    "mechanics": [
+      "OVERLOAD"
+    ],
+    "name": "First Contact",
+    "overload": 1,
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "text": "Summon two random 1-Cost minions. <b>Overload:</b> (1)",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Grafit",
+    "attack": 1,
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 111263,
+    "flavor": "\"And I'll do it again, too!\"",
+    "health": 3,
+    "id": "GDB_870",
+    "mechanics": [
+      "COMBO",
+      "SPELLBURST"
+    ],
+    "name": "Eredar Skulker",
+    "race": "DEMON",
+    "races": [
+      "DEMON"
+    ],
+    "rarity": "RARE",
+    "referencedTags": [
+      "STEALTH"
+    ],
+    "set": "SPACE",
+    "text": "[x]<b>Combo and <b>Spellburst</b>:</b>\nGain +2 Attack and <b>Stealth</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Daniil Kudriavtsev",
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 111292,
+    "flavor": "When you wish upon a star, your dreams will take you very far.\nWhen you wish upon a comet, your luck will make your opponent...",
+    "id": "GDB_873",
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "Lucky Comet",
+    "rarity": "EPIC",
+    "referencedTags": [
+      "COMBO"
+    ],
+    "set": "SPACE",
+    "text": "<b>Discover</b> a <b>Combo</b> minion. The next one\nyou play triggers its <b>Combo</b> twice.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Anzka Nguyen",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 111412,
+    "flavor": "Biologists spend a semester abroad. Astrobiologists spend a semester aboard.",
+    "health": 2,
+    "howToEarnGolden": "Earnable on the <i>Great Dark Beyond</i> Reward Track.",
+    "id": "GDB_874",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Astrobiologist",
+    "race": "DRAENEI",
+    "races": [
+      "DRAENEI"
+    ],
+    "rarity": "COMMON",
+    "referencedTags": [
+      "DISCOVER"
+    ],
+    "set": "SPACE",
+    "text": "<b>Battlecry:</b> At the start\nof your next turn,\n<b>Discover</b> a spell.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Brian Despain",
+    "attack": 2,
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 111338,
+    "flavor": "\"Space ROCKS!\"",
+    "health": 1,
+    "id": "GDB_875",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Spacerock Collector",
+    "race": "DRAENEI",
+    "races": [
+      "DRAENEI"
+    ],
+    "rarity": "COMMON",
+    "referencedTags": [
+      "COMBO"
+    ],
+    "set": "SPACE",
+    "text": "<b>Battlecry:</b> Your next <b>Combo</b> card costs (1) less.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Ivan Fomin",
+    "attack": 3,
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 111386,
+    "flavor": "Mi Starship es tu Starship.",
+    "health": 2,
+    "id": "GDB_876",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Scrounging Shipwright",
+    "race": "DRAENEI",
+    "races": [
+      "DRAENEI"
+    ],
+    "rarity": "COMMON",
+    "referencedTags": [
+      "STARSHIP"
+    ],
+    "set": "SPACE",
+    "text": "<b>Battlecry:</b> Get a random <b>Starship Piece</b> from another class.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Timur Shevtsov",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 111410,
+    "flavor": "You can only have two in your deck because we are <i>confident</i> that the Draenei will never run into any dire situations that would warrant any more!",
+    "health": 1,
+    "id": "GDB_877",
+    "mechanics": [
+      "DEATHRATTLE",
+      "RUSH"
+    ],
+    "name": "Escape Pod",
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "text": "[x]<b>Rush</b>\n <b>Deathrattle:</b> Give adjacent \nminions +1/+1 and <b>Rush</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Matt Dixon",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 111415,
+    "flavor": "\"That is highly illogigill, Captain.\"",
+    "health": 2,
+    "id": "GDB_878",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Braingill",
+    "race": "MURLOC",
+    "races": [
+      "MURLOC"
+    ],
+    "rarity": "COMMON",
+    "referencedTags": [
+      "DEATHRATTLE"
+    ],
+    "set": "SPACE",
+    "text": "<b>Battlecry:</b> Give your other Murlocs \"<b>Deathrattle:</b> Draw a card.\"",
+    "type": "MINION"
+  },
+  {
+    "artist": "Zoltan Boros",
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 111475,
+    "flavor": "Have you ever heard of the 5 Point Palm Exploding Heart Technique?",
+    "id": "GDB_881",
+    "name": "Pressure Points",
+    "rarity": "RARE",
+    "referencedTags": [
+      "COMBO"
+    ],
+    "set": "SPACE",
+    "spellSchool": "SHADOW",
+    "text": "Deal $3 damage to a minion. Reduce the Cost of <b>Combo</b> cards in your hand by (1).",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Tanamaes Leejierasaes",
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 114581,
+    "flavor": "Which one you ask? Uhh, all of them.",
+    "id": "GDB_882",
+    "name": "Cosmic Phenomenon",
+    "rarity": "EPIC",
+    "referencedTags": [
+      "TAUNT"
+    ],
+    "set": "SPACE",
+    "spellSchool": "ARCANE",
+    "text": "[x]Summon three 2/3\nElementals with <b>Taunt</b>.\nIf your board is full, give\nyour minions +1/+1.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Edgar Hidalgo",
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 114584,
+    "flavor": "HELP! HEEELP! MY OPPONENT PLAYED CARDS!",
+    "id": "GDB_883",
+    "name": "Distress Signal",
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "spellSchool": "ARCANE",
+    "text": "[x]Summon two random\n2-Cost minions.\nRefresh 2 Mana Crystals.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "L. Lullabi & R. Kamen",
+    "attack": 3,
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 113677,
+    "flavor": "You're gonna need more sunscreen. Good thing we stocked up last expansion.",
+    "health": 2,
+    "id": "GDB_901",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Ultraviolet Breaker",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "targetingArrowText": "Deal 3 damage to an enemy minion.",
+    "text": "[x]<b>Battlecry:</b> Deal 3 damage to\nan enemy minion. Shuffle 3\nAsteroids into your deck.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Kevin Sidharta",
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 114513,
+    "flavor": "Everybody get out of here! Except you. You can stay.",
+    "id": "GDB_902",
+    "name": "Infiltrate",
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "text": "Choose a minion.\nDeal $3 damage to all other minions.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "BOSi Studio",
+    "classes": [
+      "DEATHKNIGHT",
+      "HUNTER",
+      "WARLOCK",
+      "DEMONHUNTER"
+    ],
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 112799,
+    "flavor": "Looks more like a spawning hot tub to me, just based on the size.",
+    "health": 2,
+    "id": "SC_000",
+    "isMiniSet": true,
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Spawning Pool",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "RUSH"
+    ],
+    "set": "SPACE",
+    "text": "[x]Get a 1/1 Zergling.\n<b>Deathrattle:</b> Your Zerg\nminions have <b>Rush</b>\nthis turn.",
+    "type": "LOCATION"
+  },
+  {
+    "artist": "Felideus Bubastis",
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 112812,
+    "flavor": "Banelings, banelings, banelings OHHHH!",
+    "id": "SC_001",
+    "isMiniSet": true,
+    "name": "Baneling Barrage",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "DEATHRATTLE"
+    ],
+    "set": "SPACE",
+    "text": "[x]Get a 1/1 Baneling\nthat explodes. If you\ncontrol a Zerg minion,\nget another Baneling.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Juan Calle",
+    "attack": 4,
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 112830,
+    "flavor": "Even if you survive its neural parasite, you will never live it down.",
+    "health": 2,
+    "id": "SC_002",
+    "isMiniSet": true,
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Infestor",
+    "rarity": "RARE",
+    "set": "SPACE",
+    "text": "[x]<b>Deathrattle:</b> Your Zerg\nminions have +1 Attack for\nthe rest of the game.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Slawomir Maniak",
+    "attack": 2,
+    "classes": [
+      "DEATHKNIGHT",
+      "HUNTER",
+      "WARLOCK",
+      "DEMONHUNTER"
+    ],
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 112834,
+    "flavor": "Her favorite game is \"The Floor is Larva.\"",
+    "health": 5,
+    "id": "SC_003",
+    "isMiniSet": true,
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Hive Queen",
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "text": "[x]At the end of your turn, get\na Larva that transforms into\nrandom Zerg minions.",
+    "type": "MINION"
+  },
+  {
+    "armor": 5,
+    "artist": "James Ryman",
+    "classes": [
+      "DEATHKNIGHT",
+      "HUNTER",
+      "WARLOCK",
+      "DEMONHUNTER"
+    ],
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 112846,
+    "elite": true,
+    "flavor": "Betrayed by the terrans, she is determined to use the power of the zerg Swarm for her revenge.",
+    "health": 30,
+    "heroPowerDbfId": 112847,
+    "id": "SC_004",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Kerrigan, Queen of Blades",
+    "rarity": "LEGENDARY",
+    "set": "SPACE",
+    "text": "[x]<b>Battlecry:</b> Summon two\n2/5 Hive Queens. Deal 3\ndamage to all enemies.",
+    "type": "HERO"
+  },
+  {
+    "artist": "Luca Zontini",
+    "attack": 4,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 112859,
+    "flavor": "*tsst* *tsst* *tsst* *tsst* *tsst* *tsst*",
+    "health": 2,
+    "id": "SC_008",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Hydralisk",
+    "rarity": "RARE",
+    "set": "SPACE",
+    "text": "[x]<b>Battlecry:</b> Deal 2 damage\nto a random enemy.\nRepeat for each other Zerg\nminion you control.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Vlad Botos",
+    "attack": 2,
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 112862,
+    "flavor": "Never typed in chat. Subscribed for 40 months. The perfect viewer.",
+    "health": 6,
+    "id": "SC_009",
+    "isMiniSet": true,
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Lurker",
+    "rarity": "RARE",
+    "set": "SPACE",
+    "text": "[x]After a friendly minion\nattacks, deal 1 damage to a\nrandom enemy <i>(or 2 if your\nminion is a Zerg)</i>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Jaemin Kim",
+    "attack": 1,
+    "classes": [
+      "DEATHKNIGHT",
+      "HUNTER",
+      "WARLOCK",
+      "DEMONHUNTER"
+    ],
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 112867,
+    "flavor": "It's all fun and games until 8 of these show up at your door at the 2 minute mark.",
+    "health": 1,
+    "id": "SC_010",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Zergling",
+    "rarity": "RARE",
+    "set": "SPACE",
+    "text": "<b>Battlecry:</b> Summon a\n1/1 Zergling.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Felideus Bubastis",
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 112869,
+    "flavor": "\"If you spot one of these, back away or burn it to hell. Never fight on their turf.\"",
+    "id": "SC_011",
+    "isMiniSet": true,
+    "name": "Creep Tumor",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "RUSH"
+    ],
+    "set": "SPACE",
+    "text": "Your Zerg minions have +1 Attack and <b>Rush</b>. Lasts 3 turns.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Juan Calle",
+    "attack": 2,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 112872,
+    "flavor": "These still aren't as bad as the ones in my old apartment complex.",
+    "health": 2,
+    "id": "SC_012",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Roach",
+    "rarity": "RARE",
+    "set": "SPACE",
+    "text": "When you draw this, get a copy of it. <b>Battlecry:</b> If you control another Zerg minion, gain +1/+2.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Ivan Fomin",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 113249,
+    "elite": true,
+    "flavor": "<Mrrglglg, it's about time.>",
+    "hasDiamondSkin": true,
+    "health": 4,
+    "id": "SC_013",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Grunty",
+    "race": "MURLOC",
+    "races": [
+      "MURLOC"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "SPACE",
+    "targetingArrowText": "Shooting {0}. (@ |4(shot,shots) left!)",
+    "text": "[x]<b>Battlecry:</b> Summon four\nrandom Murlocs, then shoot\nthem at enemy minions.\n <i>(You pick the targets!)</i>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Gabor Szikszai",
+    "classes": [
+      "DEATHKNIGHT",
+      "HUNTER",
+      "WARLOCK",
+      "DEMONHUNTER"
+    ],
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 113576,
+    "flavor": "How did they fit an ultralisk in there!?",
+    "id": "SC_015",
+    "isMiniSet": true,
+    "name": "Nydus Worm",
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "text": "Draw two Zerg cards. They cost (1) less.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Alex Stone",
+    "attack": 5,
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 113663,
+    "flavor": "No viping!",
+    "health": 3,
+    "id": "SC_018",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Viper",
+    "rarity": "RARE",
+    "referencedTags": [
+      "REBORN"
+    ],
+    "set": "SPACE",
+    "text": "[x]<b>Battlecry:</b> Summon a minion\nfrom your opponent's hand.\nYour other Zerg minions gain\n<b>Reborn</b> and attack it.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mooncolony",
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 113664,
+    "flavor": "Don't let your ultralisk get stuck on a ramp.",
+    "health": 3,
+    "id": "SC_019",
+    "isMiniSet": true,
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Ultralisk Cavern",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "RUSH"
+    ],
+    "set": "SPACE",
+    "text": "[x]Deal 1 damage\nto all enemies.\n<b>Deathrattle:</b> Summon an\n8/8 Ultralisk with <b>Rush</b>.",
+    "type": "LOCATION"
+  },
+  {
+    "artist": "Jason Kang",
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 113667,
+    "flavor": "What are you looking at? This isn't a mukbang.",
+    "id": "SC_020",
+    "isMiniSet": true,
+    "mechanics": [
+      "ImmuneToSpellpower"
+    ],
+    "name": "Consume",
+    "rarity": "RARE",
+    "set": "SPACE",
+    "text": "[x]Remove 1 Durability\nfrom a friendly location\nto restore #8 Health to\nyour hero.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Jakub Kasper",
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 113671,
+    "flavor": "\"Survival of Swarm dependent on evolution, iteration. Trust process, trust sequences. Swarm will not fail.\" - Abathur",
+    "id": "SC_021",
+    "isMiniSet": true,
+    "name": "Evolution Chamber",
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "text": "Give your minions +1 Attack. Give your Zerg an extra +1/+1.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Juan Calle",
+    "attack": 5,
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 113672,
+    "flavor": "A flock of seagulls. A murder of crows. A ball of mutalisks.",
+    "health": 2,
+    "id": "SC_022",
+    "isMiniSet": true,
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Mutalisk",
+    "rarity": "RARE",
+    "set": "SPACE",
+    "text": "[x]Also damages minions next\nto whomever this attacks\n<i>(and the enemy hero if a\nneighbor is missing)</i>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Patrik Bjorkstrom",
+    "attack": 1,
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 113673,
+    "flavor": "Give him one second, he's rooting!\n...\nOk give him one more second he's almost done!",
+    "health": 6,
+    "id": "SC_023",
+    "isMiniSet": true,
+    "mechanics": [
+      "CANT_ATTACK",
+      "TAUNT"
+    ],
+    "name": "Spine Crawler",
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "text": "[x]<b>Taunt</b>. Can't attack.\nHas +3 Attack if you\ncontrol a location.",
+    "type": "MINION"
+  },
+  {
+    "armor": 5,
+    "artist": "Alex Horley Orlandelli",
+    "classes": [
+      "PALADIN",
+      "SHAMAN",
+      "WARRIOR"
+    ],
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 112815,
+    "elite": true,
+    "flavor": "He’s lost his faith, his friends, and his beloved, but he still believes that one day, he can make things right again.",
+    "health": 30,
+    "heroPowerDbfId": 112818,
+    "id": "SC_400",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Jim Raynor",
+    "rarity": "LEGENDARY",
+    "referencedTags": [
+      "STARSHIP"
+    ],
+    "set": "SPACE",
+    "text": "[x]<b>Battlecry:</b> Relaunch\nevery <b>Starship</b> that you\nlaunched this game.",
+    "type": "HERO"
+  },
+  {
+    "artist": "Brian Despain",
+    "attack": 1,
+    "classes": [
+      "PALADIN",
+      "SHAMAN",
+      "WARRIOR"
+    ],
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 112820,
+    "flavor": "They're called SCVs because they're Super Cool (Very).",
+    "health": 3,
+    "id": "SC_401",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "SCV",
+    "race": "MECHANICAL",
+    "races": [
+      "MECHANICAL"
+    ],
+    "rarity": "RARE",
+    "referencedTags": [
+      "STARSHIP"
+    ],
+    "set": "SPACE",
+    "text": "<b>Battlecry:</b> Your next <b>Starship</b> launch costs\n(2) less.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mooncolony",
+    "classes": [
+      "PALADIN",
+      "SHAMAN",
+      "WARRIOR"
+    ],
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 112856,
+    "flavor": "Make sure to arrive 3 light-years early for any intergalactic flights.",
+    "health": 2,
+    "id": "SC_403",
+    "isMiniSet": true,
+    "name": "Starport",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "STARSHIP"
+    ],
+    "set": "SPACE",
+    "text": "[x]Summon a 2/1\n<b>Starship Piece</b> with an\neffect when launched.",
+    "type": "LOCATION"
+  },
+  {
+    "artist": "Gabor Szikszai",
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 112858,
+    "flavor": "You just HAD to go with the cheap sheet metal didn't you?",
+    "id": "SC_404",
+    "isMiniSet": true,
+    "name": "Salvage the Bunker",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "STARSHIP",
+      "TAUNT"
+    ],
+    "set": "SPACE",
+    "text": "Summon two 2/2 Marines with <b>Taunt</b>.\nYour next <b>Starship</b>\nlaunch costs (2) less.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Mauricio Herrera",
+    "attack": 1,
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 112866,
+    "flavor": "If my calculations are correct, when this baby hits 88 miles per hour...",
+    "health": 1,
+    "id": "SC_405",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY",
+      "STARSHIP_PIECE",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Ultra-Capacitor",
+    "race": "MECHANICAL",
+    "races": [
+      "MECHANICAL"
+    ],
+    "rarity": "RARE",
+    "referencedTags": [
+      "STARSHIP"
+    ],
+    "set": "SPACE",
+    "text": "[x]<b>Starship Piece</b>\n<b>Battlecry:</b> Gain +1/+1 for\n  each other friendly minion.  \nAlso triggers on launch.",
+    "type": "MINION"
+  },
+  {
+    "artist": "BOSi Studio",
+    "attack": 3,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 112873,
+    "flavor": "Ya-may-to, Ya-mah-to",
+    "health": 3,
+    "id": "SC_406",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY",
+      "STARSHIP_PIECE"
+    ],
+    "name": "Yamato Cannon",
+    "race": "MECHANICAL",
+    "races": [
+      "MECHANICAL"
+    ],
+    "rarity": "RARE",
+    "referencedTags": [
+      "STARSHIP"
+    ],
+    "set": "SPACE",
+    "text": "[x]<b>Starship Piece</b>\n<b>Battlecry:</b> Destroy a random\nenemy minion. Also triggers\non launch.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Daniil Kudriavtsev",
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 112876,
+    "flavor": "Time to lock in. *ahem* I mean lock on.",
+    "id": "SC_407",
+    "isMiniSet": true,
+    "name": "Lock On",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "STARSHIP"
+    ],
+    "set": "SPACE",
+    "text": "Set a minion’s Health to 1. Your next <b>Starship</b>\nlaunch costs (2) less.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "AJ Nazzaro",
+    "attack": 6,
+    "classes": [
+      "PALADIN",
+      "SHAMAN",
+      "WARRIOR"
+    ],
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 112912,
+    "flavor": "Busters!",
+    "health": 2,
+    "id": "SC_408",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY",
+      "STEALTH"
+    ],
+    "name": "Ghost",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "STARSHIP"
+    ],
+    "set": "SPACE",
+    "text": "[x]<b>Stealth</b>. <b>Battlecry:</b> If you're\nbuilding a <b>Starship</b>, destroy\nthe lowest-Cost card in your\nopponent's hand.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Daniil Kudriavtsev",
+    "attack": 1,
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 113209,
+    "flavor": "Welcome to the Missile Pod, your one-stop shop for all things missile-related. Tune in each week for developments in the world of missiles.",
+    "health": 3,
+    "id": "SC_409",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY",
+      "STARSHIP_PIECE"
+    ],
+    "name": "Missile Pod",
+    "race": "MECHANICAL",
+    "races": [
+      "MECHANICAL"
+    ],
+    "rarity": "COMMON",
+    "referencedTags": [
+      "STARSHIP"
+    ],
+    "set": "SPACE",
+    "text": "[x]<b>Starship Piece</b>\n<b>Battlecry:</b> Deal 1 damage\nto all enemies. Also\ntriggers on launch.",
+    "type": "MINION"
+  },
+  {
+    "artist": "BOSi Studio",
+    "classes": [
+      "PALADIN",
+      "SHAMAN",
+      "WARRIOR"
+    ],
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 113211,
+    "flavor": "It's a bird! It's a plane! It's a burning command center slowly moving to the corner of the map!",
+    "id": "SC_410",
+    "isMiniSet": true,
+    "name": "Lift Off",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "STARSHIP"
+    ],
+    "set": "SPACE",
+    "text": "Draw 2 Terran cards. Summon a 2/1 <b>Starship Piece</b> with an effect when launched.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Zoltan Boros",
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 113212,
+    "flavor": "Zerg patients rated these a solid 7 on the pain chart.",
+    "id": "SC_411",
+    "isMiniSet": true,
+    "name": "Concussive Shells",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "STARSHIP"
+    ],
+    "set": "SPACE",
+    "text": "Deal $2 damage and gain 2 Armor.\nYour next <b>Starship</b>\nlaunch costs (2) less.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Mike Sass",
+    "attack": 4,
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 113855,
+    "flavor": "Let's upgrade to the non-flammable tires next time.",
+    "health": 4,
+    "id": "SC_412",
+    "isMiniSet": true,
+    "mechanics": [
+      "AURA"
+    ],
+    "name": "Hellion",
+    "race": "MECHANICAL",
+    "races": [
+      "MECHANICAL"
+    ],
+    "rarity": "RARE",
+    "referencedTags": [
+      "STARSHIP"
+    ],
+    "set": "SPACE",
+    "text": "[x]Your other minions\nhave +1 Attack.\n<i>(Transforms if you launched\na <b>Starship</b> this game.)</i>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Grafit",
+    "attack": 5,
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 113864,
+    "flavor": "Pretty decent as an off tank, but incredible as a main tank.",
+    "health": 5,
+    "id": "SC_413",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Siege Tank",
+    "race": "MECHANICAL",
+    "races": [
+      "MECHANICAL"
+    ],
+    "rarity": "RARE",
+    "referencedTags": [
+      "STARSHIP"
+    ],
+    "set": "SPACE",
+    "text": "[x]<b>Battlecry:</b> Deal 10 damage\nto a random enemy minion.\n<i>(Transforms if you launched\na <b>Starship</b> this game.)</i>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Grafit",
+    "attack": 8,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 113869,
+    "flavor": "\"I need your clothes, your boots and your chitinous exoskeleton.\"",
+    "health": 8,
+    "id": "SC_414",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Thor",
+    "race": "MECHANICAL",
+    "races": [
+      "MECHANICAL"
+    ],
+    "rarity": "RARE",
+    "referencedTags": [
+      "STARSHIP"
+    ],
+    "set": "SPACE",
+    "targetingArrowText": "Deal 5 damage.",
+    "text": "[x]<b>Battlecry:</b> Deal 5 damage.\n<i>(Transforms if you launched\na <b>Starship</b> this game.)</i>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Grafit",
+    "classes": [
+      "DRUID",
+      "MAGE",
+      "PRIEST",
+      "ROGUE"
+    ],
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 113163,
+    "flavor": "Just think of all the tempests I can make! ...Ah, who am I kidding? I'm just going to use this on probes.",
+    "id": "SC_750",
+    "isMiniSet": true,
+    "name": "Chrono Boost",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "CHARGE"
+    ],
+    "set": "SPACE",
+    "text": "Draw 2 Protoss cards. Summon a 3/4 Zealot with <b>Charge</b>.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "BOSi Studio",
+    "classes": [
+      "DRUID",
+      "MAGE",
+      "PRIEST",
+      "ROGUE"
+    ],
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 113164,
+    "flavor": "This is gonna be really meta-warping.",
+    "health": 3,
+    "id": "SC_751",
+    "isMiniSet": true,
+    "name": "Warp Gate",
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "text": "Your next Protoss minion costs (3) less.",
+    "type": "LOCATION"
+  },
+  {
+    "artist": "Timur Shevtsov",
+    "attack": 5,
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 113165,
+    "flavor": "*stab*\n*stab*\n*stab*\n\"Hey, where'd my SCVs go?\"",
+    "health": 3,
+    "id": "SC_752",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY",
+      "STEALTH",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Dark Templar",
+    "rarity": "RARE",
+    "set": "SPACE",
+    "targetingArrowText": "Destroy an enemy minion.",
+    "text": "[x]<b>Stealth</b>. <b>Battlecry:</b> Destroy\nan enemy minion.\n<i>Play another Templar to\nmerge into an Archon!</i>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mauricio Herrera",
+    "classes": [
+      "DRUID",
+      "MAGE",
+      "PRIEST",
+      "ROGUE"
+    ],
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 113168,
+    "flavor": "If this card were a minion, it would have <b>Rush</b>.",
+    "id": "SC_753",
+    "isMiniSet": true,
+    "name": "Photon Cannon",
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "text": "Deal $3 damage.\nIf this kills a minion, your Protoss minions cost (1) less this game.",
+    "type": "SPELL"
+  },
+  {
+    "armor": 5,
+    "artist": "Grafit",
+    "classes": [
+      "DRUID",
+      "MAGE",
+      "PRIEST",
+      "ROGUE"
+    ],
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 113171,
+    "elite": true,
+    "flavor": "Artanis will forge a new future for the protoss, even if it means destroying everything they ever knew.",
+    "health": 30,
+    "heroPowerDbfId": 113172,
+    "id": "SC_754",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Artanis",
+    "rarity": "LEGENDARY",
+    "referencedTags": [
+      "CHARGE"
+    ],
+    "set": "SPACE",
+    "text": "[x]<b>Battlecry:</b> Summon two\n3/4 Zealots with <b>Charge</b>.\nYour Protoss minions cost\n(2) less this game.",
+    "type": "HERO"
+  },
+  {
+    "artist": "Studio Hive",
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 0,
+    "dbfId": 113173,
+    "flavor": "You must... y'know...",
+    "id": "SC_755",
+    "isMiniSet": true,
+    "name": "Construct Pylons",
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "text": "Your next Protoss card this turn costs (2) less.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Kevin Sidharta",
+    "attack": 2,
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 12,
+    "dbfId": 113174,
+    "flavor": "Yeah, my teammates always call me this.",
+    "health": 14,
+    "id": "SC_756",
+    "isMiniSet": true,
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Carrier",
+    "race": "MECHANICAL",
+    "races": [
+      "MECHANICAL"
+    ],
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "text": "[x]At the end of your turn,\nsummon four 4/1\nInterceptors that attack\nrandom enemies.",
+    "type": "MINION"
+  },
+  {
+    "artist": "BOSi Studio",
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 113176,
+    "flavor": "\"Protoss? In our base? I think you're seeing things.\"",
+    "id": "SC_757",
+    "isMiniSet": true,
+    "name": "Hallucination",
+    "rarity": "RARE",
+    "set": "SPACE",
+    "text": "Summon a copy of a\nfriendly Protoss minion.\nIt takes double damage.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "James Ryman",
+    "attack": 9,
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 12,
+    "dbfId": 113177,
+    "flavor": "How's the weather up there?",
+    "health": 4,
+    "id": "SC_758",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Colossus",
+    "race": "MECHANICAL",
+    "races": [
+      "MECHANICAL"
+    ],
+    "rarity": "RARE",
+    "set": "SPACE",
+    "text": "[x]<b>Battlecry:</b> Deal 1 damage\nto all enemies, twice.\n<i>(Improved by Protoss spells\nyou cast this game!)</i>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Studio Hive",
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 113178,
+    "flavor": "Hey Artanis, can I use your charger?",
+    "id": "SC_759",
+    "isMiniSet": true,
+    "name": "Shield Battery",
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "text": "Gain 6 Armor.\nYour next Protoss spell costs (2) less.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Kevin Sidharta",
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 113181,
+    "flavor": "This thing can snipe minions three screens away!",
+    "id": "SC_760",
+    "isMiniSet": true,
+    "name": "Resonance Coil",
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "text": "Deal $5 damage to a minion. Get a random Protoss spell.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Ramzy Kamen",
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 113192,
+    "flavor": "Highly mobile. Solid range. Awful at staring contests.",
+    "id": "SC_761",
+    "isMiniSet": true,
+    "mechanics": [
+      "COMBO"
+    ],
+    "name": "Blink",
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "text": "[x]Draw a Protoss minion.\n<b>Combo:</b> It costs (2) less.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Mooncolony",
+    "attack": 10,
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 12,
+    "dbfId": 113203,
+    "flavor": "You talk to your mothership with that mouth!?",
+    "health": 10,
+    "id": "SC_762",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY",
+      "DEATHRATTLE",
+      "TAUNT"
+    ],
+    "name": "Mothership",
+    "race": "MECHANICAL",
+    "races": [
+      "MECHANICAL"
+    ],
+    "rarity": "EPIC",
+    "set": "SPACE",
+    "text": "[x]<b>Taunt</b>\n<b>Battlecry and Deathrattle:</b>\nGet two random\nProtoss minions.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Vlad Botos",
+    "attack": 5,
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 113735,
+    "flavor": "Hi Mortal, I'm Dad.",
+    "health": 8,
+    "id": "SC_763",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY",
+      "DIVINE_SHIELD",
+      "TAUNT"
+    ],
+    "name": "Immortal",
+    "race": "MECHANICAL",
+    "races": [
+      "MECHANICAL"
+    ],
+    "rarity": "RARE",
+    "set": "SPACE",
+    "text": "[x]<b>Taunt</b>, <b>Divine Shield</b>\n<b>Battlecry:</b> Spend 4 Mana to\ndouble this minion's stats.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Melvin Chan",
+    "attack": 2,
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 113738,
+    "flavor": "Need a dispenser here!",
+    "health": 2,
+    "id": "SC_764",
+    "isMiniSet": true,
+    "mechanics": [
+      "DEATHRATTLE",
+      "LIFESTEAL"
+    ],
+    "name": "Sentry",
+    "race": "MECHANICAL",
+    "races": [
+      "MECHANICAL"
+    ],
+    "rarity": "COMMON",
+    "set": "SPACE",
+    "text": "<b>Lifesteal</b>. <b>Deathrattle:</b>\nYour Protoss minions cost (1) less this game.",
+    "type": "MINION"
+  },
+  {
+    "artist": "James Ryman",
+    "attack": 3,
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 113739,
+    "flavor": "If this job doesn't work out, I can always fall back on being a Psionic Storm Chaser.",
+    "health": 5,
+    "id": "SC_765",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "High Templar",
+    "rarity": "RARE",
+    "set": "SPACE",
+    "text": "[x]<b>Battlecry:</b> Deal 2 damage\nto all enemies.\n<i>Play another Templar to\nmerge into an Archon!</i>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Drew Hill",
+    "attack": 3,
+    "classes": [
+      "DRUID",
+      "MAGE",
+      "PRIEST",
+      "ROGUE"
+    ],
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 113733,
+    "flavor": "Raymond just had this empty feeling.",
+    "health": 2,
+    "id": "SC_783",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY",
+      "DIVINE_SHIELD",
+      "RUSH"
+    ],
+    "name": "Void Ray",
+    "race": "MECHANICAL",
+    "races": [
+      "MECHANICAL"
+    ],
+    "rarity": "RARE",
+    "set": "SPACE",
+    "text": "<b>Rush</b>, <b>Divine Shield</b>\n<b>Battlecry:</b> If this costs (0), gain +2/+2.",
+    "type": "MINION"
+  }
+]

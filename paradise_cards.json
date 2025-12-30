@@ -1,0 +1,3815 @@
+[
+  {
+    "artist": "Anton Zemskov",
+    "attack": 4,
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "collectionText": "[x]<b>Battlecry:</b> Summon a\nrandom 5-Cost minion.\n   Repeat for each spell school   \n you've cast this game.",
+    "cost": 7,
+    "dbfId": 106303,
+    "flavor": "Look out Dancin' Deryl, he's coming for your job.",
+    "health": 4,
+    "id": "VAC_301",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Razzle-Dazzler",
+    "race": "NAGA",
+    "races": [
+      "NAGA"
+    ],
+    "rarity": "EPIC",
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Battlecry:</b> Summon a\nrandom 5-Cost minion.\n   Repeat for each spell school   \n you've cast this game.@ <i>(@)</i>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Eva Widermann",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "collectionText": "[x]<b>Battlecry:</b> If you've cast 3\nspells while holding this,\n<b>Discover</b> one of them.",
+    "cost": 2,
+    "dbfId": 106306,
+    "flavor": "\"Z-I-N A-S-H-A-R-Y!\"",
+    "health": 2,
+    "id": "VAC_304",
+    "mechanics": [
+      "BATTLECRY",
+      "DISCOVER"
+    ],
+    "name": "Tidepool Pupil",
+    "race": "NAGA",
+    "races": [
+      "NAGA"
+    ],
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Battlecry:</b> If you've cast 3\nspells while holding this,\n<b>Discover</b> one of them.@\n<i>({0} left!)</i>@\n<i>(Ready!)</i>",
+    "type": "MINION"
+  },
+  {
+    "artist": "AJ Nazzaro",
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 106307,
+    "flavor": "\"Yeah, Nature magic pays the bills, but my passion lies elsewhere.\"",
+    "id": "VAC_305",
+    "name": "Frosty Décor",
+    "rarity": "RARE",
+    "referencedTags": [
+      "DEATHRATTLE",
+      "TAUNT"
+    ],
+    "set": "ISLAND_VACATION",
+    "spellSchool": "FROST",
+    "text": "Summon two 2/4 Elementals with <b>Taunt</b> and \"<b>Deathrattle</b>: Gain\n4 Armor\".",
+    "type": "SPELL"
+  },
+  {
+    "artist": "James Ryman",
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 106310,
+    "flavor": "\"Sing along if you know the lyrics! -- WEEWOOWEEWOO!\"",
+    "id": "VAC_308",
+    "name": "Siren Song",
+    "rarity": "RARE",
+    "set": "ISLAND_VACATION",
+    "text": "Get two random spells from spell schools you haven't cast this game.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Alex Horley Orlandelli",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 106301,
+    "elite": true,
+    "flavor": "\"I had nothing to do with that eruption! I never even met Kezandius!\"",
+    "health": 10,
+    "id": "VAC_321",
+    "mechanics": [
+      "BATTLECRY",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Incindius",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "ISLAND_VACATION",
+    "text": "[x]At the end of your turn,\nupgrade your Eruptions.\n<b>Battlecry:</b> Shuffle 5 of\nthem into your deck.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Edgar Hidalgo",
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 106532,
+    "flavor": "Most celebrities nope out at this one.",
+    "id": "VAC_323",
+    "name": "Malted Magma",
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "spellSchool": "FIRE",
+    "text": "Deal $1 damage to\nall enemy minions.\n<i>(3 Drinks left!)</i>",
+    "type": "SPELL"
+  },
+  {
+    "artist": "L. Lullabi & K. Turovec",
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 106535,
+    "flavor": "On Wednesdays we wear pink!",
+    "id": "VAC_324",
+    "name": "Matching Outfits",
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "Transform a minion into a random one that costs (1) more, then\nsummon a copy of it.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Mike Sass",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 106529,
+    "flavor": "It's really hard to book an appointment, she always gives her clients the cold shoulder.",
+    "health": 3,
+    "id": "VAC_327",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Cryopractor",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "FREEZE"
+    ],
+    "set": "ISLAND_VACATION",
+    "targetingArrowText": "Give a minion +3/+3 and Freeze it.",
+    "text": "<b>Battlecry:</b> Give a minion +3/+3 and <b>Freeze</b> it.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Vika Yarova",
+    "attack": 3,
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 106534,
+    "flavor": "\"Who left these wet bracers on the ground?\"",
+    "health": 8,
+    "id": "VAC_328",
+    "mechanics": [
+      "TAUNT"
+    ],
+    "name": "Meltemental",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "COMMON",
+    "referencedTags": [
+      "FREEZE"
+    ],
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Taunt</b>\nThis is permanently <b>Frozen</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Zoltan Boros",
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 106536,
+    "flavor": "Unfortunately, they got 2nd place at the talent show with their synchronized swimming routine.",
+    "id": "VAC_329",
+    "name": "Natural Talent",
+    "rarity": "EPIC",
+    "set": "ISLAND_VACATION",
+    "spellSchool": "NATURE",
+    "text": "Get a random Naga and a random spell. They cost (2) less.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Vlad Botos",
+    "attack": 3,
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 107753,
+    "durability": 0,
+    "flavor": "Weirdly still works on Sand Coins.",
+    "health": 2,
+    "id": "VAC_330",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Metal Detector",
+    "rarity": "RARE",
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Deathrattle:</b> Get a Coin.",
+    "type": "WEAPON"
+  },
+  {
+    "artist": "Anzka Nguyen",
+    "attack": 3,
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 107757,
+    "flavor": "She shills shea sells down at the sea shtore.",
+    "health": 2,
+    "id": "VAC_332",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Sea Shill",
+    "race": "PIRATE",
+    "races": [
+      "PIRATE"
+    ],
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "<b>Battlecry:</b> The next card you play from another class costs (2) less.",
+    "type": "MINION"
+  },
+  {
+    "artist": "James Ryman",
+    "attack": 4,
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 107759,
+    "flavor": "more like coinniving coinman!1!! HAHAHAHH",
+    "health": 4,
+    "id": "VAC_333",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Conniving Conman",
+    "race": "PIRATE",
+    "races": [
+      "PIRATE"
+    ],
+    "rarity": "RARE",
+    "set": "ISLAND_VACATION",
+    "text": "<b>Battlecry:</b> Replay the\nlast card you played from another class.",
+    "type": "MINION"
+  },
+  {
+    "artist": "BOSi Studio",
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 107762,
+    "flavor": "In a hole in the ground there... was a tourist trap?",
+    "health": 4,
+    "howToEarnGolden": "Earnable on the <i>Perils in Paradise</i> Reward Track.",
+    "id": "VAC_334",
+    "name": "Knickknack Shack",
+    "rarity": "RARE",
+    "set": "ISLAND_VACATION",
+    "text": "[x]Draw a card. If you play\nit this turn, reopen this.",
+    "type": "LOCATION"
+  },
+  {
+    "artist": "Grafit",
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 107763,
+    "flavor": "Room service at a pirate hotel really cleans house.",
+    "id": "VAC_335",
+    "name": "Petty Theft",
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "Get two random\n1-Cost spells from other classes.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Alex Horley Orlandelli",
+    "attack": 6,
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 107764,
+    "elite": true,
+    "flavor": "Take a face, <i>leave</i> a face.",
+    "health": 5,
+    "id": "VAC_336",
+    "mechanics": [
+      "BATTLECRY",
+      "DISCOVER"
+    ],
+    "name": "Maestra, Mask Merchant",
+    "rarity": "LEGENDARY",
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Warlock Tourist</b>\n<b><b>Battlecry:</b> Discover</b> a\nHero card from the past\n<i>(from another class)</i>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Nicola Saviori",
+    "attack": 2,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 107766,
+    "flavor": "Hold up. Let her cook.",
+    "health": 4,
+    "id": "VAC_337",
+    "mechanics": [
+      "TAUNT",
+      "TRADEABLE"
+    ],
+    "name": "Line Cook",
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Tradeable</b>\n<b>Taunt</b>. When you draw this,\nget a copy of it.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Daniil Kudriavtsev",
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 107767,
+    "flavor": "Packs quite a punch.",
+    "id": "VAC_338",
+    "name": "Cup o' Muscle",
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "[x]Give a minion in\n  your hand +2/+1. \n<i>(3 Drinks left!)</i>",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Daniil Kudriavtsev",
+    "attack": 6,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 9,
+    "dbfId": 107769,
+    "flavor": "We were going to put some cheesy joke here, but we goudan't come up with anything.",
+    "health": 9,
+    "id": "VAC_339",
+    "mechanics": [
+      "TAUNT",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Muensterosity",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Taunt</b>. At the end of\nyour turn, summon an\nElemental with stats\n  equal to this minion's.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mooncolony",
+    "attack": 3,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 107770,
+    "elite": true,
+    "flavor": "Do tauren have four stomachs?",
+    "health": 3,
+    "id": "VAC_340",
+    "mechanics": [
+      "TAUNT",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Hamm, the Hungry",
+    "rarity": "LEGENDARY",
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Druid Tourist</b>\n<b>Taunt</b>. At the end of your turn,\neat a minion in the enemy's\ndeck to gain +2/+2.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Slawomir Maniak",
+    "attack": 3,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 107771,
+    "flavor": "ITS RAAWWWW!!!",
+    "health": 4,
+    "id": "VAC_341",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Undercooked Calamari",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "RARE",
+    "set": "ISLAND_VACATION",
+    "targetingArrowText": "Destroy an enemy minion with Attack less than or equal to this minion's.",
+    "text": "[x]<b>Battlecry:</b> Destroy an enemy\nminion with Attack less than\nor equal to this minion's.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Konstantin Porubov",
+    "attack": 2,
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 106497,
+    "flavor": "Alongside Eliza Goreblade and Peggy Brittlebone, the three Pirate Sisters terrorize the sea.",
+    "health": 2,
+    "id": "VAC_402",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Frostbitten Freebooter",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD",
+      "PIRATE"
+    ],
+    "rarity": "EPIC",
+    "referencedTags": [
+      "FREEZE"
+    ],
+    "runeCost": {
+      "blood": 0,
+      "frost": 1,
+      "unholy": 0
+    },
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b><b>Deathrattle:</b> Freeze</b> 3\nrandom enemies. Any\nthat were already <b>Frozen</b>\n   take 5 damage instead.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Konstantin Turovec",
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 106521,
+    "flavor": "Delectable tea, or deadly poison?",
+    "id": "VAC_404",
+    "name": "Nightshade Tea",
+    "rarity": "RARE",
+    "set": "ISLAND_VACATION",
+    "spellSchool": "SHADOW",
+    "text": "Deal $2 damage\nto a minion. Deal $2 damage to your hero.\n<i>(3 Drinks left!)</i>",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Grafit",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 106542,
+    "flavor": "Shouldn’t this be a Priest card?",
+    "health": 5,
+    "id": "VAC_406",
+    "mechanics": [
+      "DEATHRATTLE",
+      "TAUNT"
+    ],
+    "name": "Sleepy Resident",
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "<b>Taunt</b>\n<b>Deathrattle:</b> ALL other minions fall asleep.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Ramzy Kamen",
+    "attack": 3,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 106571,
+    "flavor": "Stop repeating yourself! Stop repeating yourself!",
+    "health": 3,
+    "id": "VAC_407",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Chatty Macaw",
+    "race": "BEAST",
+    "races": [
+      "BEAST",
+      "PIRATE"
+    ],
+    "rarity": "EPIC",
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Battlecry:</b> Repeat the last\nspell you cast at an enemy\n<i>(at a random enemy\nif possible)</i>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Adam Byrne",
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 106574,
+    "flavor": "A bird in the hand is worth two in the deck.",
+    "id": "VAC_408",
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "Birdwatching",
+    "rarity": "RARE",
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Discover</b> a minion\nfrom your deck. Give all\ncopies of it +2/+1\n<i>(wherever they are)</i>.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Mooncolony",
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 106576,
+    "flavor": "Did you know? It's very loud in a parrot sanctuary. This has been bird facts with Ranger Gilly.",
+    "health": 3,
+    "id": "VAC_409",
+    "name": "Parrot Sanctuary",
+    "rarity": "RARE",
+    "referencedTags": [
+      "BATTLECRY"
+    ],
+    "set": "ISLAND_VACATION",
+    "text": "[x]Your next <b>Battlecry</b>\nminion costs (1) less.\nAfter you play a <b>Battlecry</b>\nminion, reopen this.",
+    "type": "LOCATION"
+  },
+  {
+    "artist": "L. Lullabi & K. Turovec",
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 106585,
+    "flavor": "They were already mad and you had to call them 'foul'??",
+    "id": "VAC_410",
+    "name": "Furious Fowls",
+    "rarity": "RARE",
+    "referencedTags": [
+      "IMMUNE"
+    ],
+    "set": "ISLAND_VACATION",
+    "text": "Choose an enemy. Summon two 3/3 Birds with <b>Immune</b> while attacking to attack it.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Tanamaes Leejierasaes",
+    "attack": 3,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 106636,
+    "flavor": "Only its fish mother thinks it's a catch.",
+    "health": 3,
+    "id": "VAC_412",
+    "mechanics": [
+      "BATTLECRY",
+      "RUSH"
+    ],
+    "name": "Catch of the Day",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Rush</b>\n<b>Battlecry:</b> Summon a 2/1\nWorm for your opponent.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mooncolony",
+    "attack": 4,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 106638,
+    "elite": true,
+    "flavor": "Get you someone who looks at you the way Ranger Gilly looks at that Crocolisk.",
+    "health": 6,
+    "id": "VAC_413",
+    "mechanics": [
+      "DEATHRATTLE",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Ranger Gilly",
+    "rarity": "LEGENDARY",
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Warrior Tourist.</b> At the end of\nyour turn, get a 2/3 Crocolisk.\n<b>Deathrattle:</b> Give all minions\nin your hand +2/+3.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Matt Dixon",
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 106640,
+    "flavor": "This is what Greatfather Winter gives you when you've been REALLY naughty.",
+    "id": "VAC_414",
+    "name": "Hot Coals",
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "spellSchool": "FIRE",
+    "text": "[x]Deal $2 damage to all\nenemies. If your hero\ntook damage this turn,\ndeal $1 more.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Jakub Kasper",
+    "attack": 4,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 106671,
+    "elite": true,
+    "flavor": "He makes your last turn this turn. But if you play him next turn, your next turn is this turn. Doing both would make this turn last turn and next turn this turn. Which turn is this next turn last turn?",
+    "hasDiamondSkin": true,
+    "health": 5,
+    "id": "VAC_415",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Sasquawk",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "ISLAND_VACATION",
+    "text": "<b>Battlecry:</b> Repeat each card you played last turn.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Alex Stone",
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 106679,
+    "flavor": "There's a Crocolisk on my boot!",
+    "id": "VAC_416",
+    "mechanics": [
+      "AFFECTED_BY_SPELL_POWER",
+      "ImmuneToSpellpower"
+    ],
+    "name": "Death Roll",
+    "rarity": "EPIC",
+    "set": "ISLAND_VACATION",
+    "text": "[x]Destroy an enemy minion.\n Deal damage equal to its\nAttack randomly split\namong all enemies.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Juan Calle",
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 106705,
+    "flavor": "You'll come out a new person.",
+    "id": "VAC_417",
+    "name": "Sensory Deprivation",
+    "rarity": "EPIC",
+    "set": "ISLAND_VACATION",
+    "spellSchool": "SHADOW",
+    "text": "Summon a copy of an enemy minion. If you have 20 or less Health, destroy the original.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Max Grecke",
+    "attack": 5,
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 106708,
+    "flavor": "She's getting that \"falls off the bone\" tenderness.",
+    "health": 5,
+    "id": "VAC_418",
+    "mechanics": [
+      "TAUNT"
+    ],
+    "name": "Sauna Regular",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD"
+    ],
+    "rarity": "RARE",
+    "set": "ISLAND_VACATION",
+    "text": "<b>Taunt</b>\nCosts (1) less for each\ntime your hero has taken damage on your turn.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Jason Kang",
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 106709,
+    "flavor": "Bless you puncture!",
+    "id": "VAC_419",
+    "name": "Acupuncture",
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "spellSchool": "SHADOW",
+    "text": "[x]Deal $4 damage\nto both heroes.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Max Grecke",
+    "attack": 4,
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 106713,
+    "elite": true,
+    "faction": "ALLIANCE",
+    "flavor": "I predict... that you will be very happy with your reading!",
+    "health": 4,
+    "id": "VAC_420",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Narain Soothfancy",
+    "rarity": "LEGENDARY",
+    "set": "ISLAND_VACATION",
+    "text": "<b>Battlecry:</b> Get two Fortunes that are copies of the top card of your deck.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Vika Yarova",
+    "attack": 5,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 106720,
+    "faction": "ALLIANCE",
+    "flavor": "You snooze, you lose (track of a very large and hungry panther).",
+    "health": 8,
+    "id": "VAC_421",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Snoozin' Zookeeper",
+    "race": "DRAENEI",
+    "races": [
+      "DRAENEI"
+    ],
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Battlecry:</b> Summon an 8/8\nBeast for your opponent. It\nattacks all of their minions.",
+    "type": "MINION"
+  },
+  {
+    "artist": "James Ryman",
+    "attack": 4,
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 106724,
+    "flavor": "This twilight is too dark. And this twilight is too bright. But THIS twilight is juuuuuuuuust right!",
+    "health": 5,
+    "id": "VAC_423",
+    "mechanics": [
+      "BATTLECRY",
+      "TAUNT"
+    ],
+    "name": "Twilight Medium",
+    "rarity": "EPIC",
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Taunt</b>\n<b>Battlecry:</b> Set the Cost of the\ntop card of your deck to (1).",
+    "type": "MINION"
+  },
+  {
+    "artist": "James Ryman",
+    "attack": 2,
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 107187,
+    "elite": true,
+    "flavor": "Is this flavor text raylla the best we can do?",
+    "health": 6,
+    "id": "VAC_424",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Raylla, Sand Sculptor",
+    "race": "DRAENEI",
+    "races": [
+      "DRAENEI"
+    ],
+    "rarity": "LEGENDARY",
+    "referencedTags": [
+      "DIVINE_SHIELD"
+    ],
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Paladin Tourist</b>\nAfter you cast a spell, summon\na random 2-Cost minion and\ngive it <b>Divine Shield</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "BOSi Studio",
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 107719,
+    "flavor": "Originally named Horizony McHorizonface.",
+    "health": 5,
+    "id": "VAC_425",
+    "name": "Horizon's Edge",
+    "rarity": "RARE",
+    "set": "ISLAND_VACATION",
+    "text": "[x]Deal 3 damage\nrandomly split among all\nenemies. After a friendly\nminion dies, reopen this.",
+    "type": "LOCATION"
+  },
+  {
+    "artist": "Konstantin Porubov",
+    "attack": 4,
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 107720,
+    "elite": true,
+    "flavor": "Dead men tell no tales, but Undead Pirates are yappers.",
+    "hasDiamondSkin": true,
+    "health": 3,
+    "id": "VAC_426",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Eliza Goreblade",
+    "race": "PIRATE",
+    "races": [
+      "UNDEAD",
+      "PIRATE"
+    ],
+    "rarity": "LEGENDARY",
+    "runeCost": {
+      "blood": 1,
+      "frost": 1,
+      "unholy": 0
+    },
+    "set": "ISLAND_VACATION",
+    "text": "<b>Deathrattle:</b> For the rest of\nthe game, your minions\nhave +1 Attack.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Patrik Bjorkstrom",
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 107775,
+    "flavor": "Comes in three tasty flavors: Gross, Disgusting, and Chocolate!",
+    "id": "VAC_427",
+    "name": "Corpsicle",
+    "rarity": "COMMON",
+    "runeCost": {
+      "blood": 0,
+      "frost": 1,
+      "unholy": 0
+    },
+    "set": "ISLAND_VACATION",
+    "spellSchool": "FROST",
+    "text": "Deal $3 damage. Spend 3 <b>Corpses</b> to return this to your hand\nat the end of your turn.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Mooncolony",
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 107776,
+    "flavor": "Just go with the flow, bro! No mo' woe fo' yo'!",
+    "id": "VAC_428",
+    "name": "Go with the Flow",
+    "rarity": "EPIC",
+    "referencedTags": [
+      "FREEZE",
+      "SPELLPOWER"
+    ],
+    "set": "ISLAND_VACATION",
+    "text": "Choose a minion.\nIf it's an enemy, <b>Freeze</b> it. If it's friendly, give it <b>Spell Damage +1</b>.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Mike Sass",
+    "attack": 4,
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 107790,
+    "flavor": "\"Yeah dude, snowboarding is like, totally safe. I've only ever been injured once.\"",
+    "health": 4,
+    "id": "VAC_429",
+    "name": "Snow Shredder",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD"
+    ],
+    "rarity": "RARE",
+    "referencedTags": [
+      "FREEZE"
+    ],
+    "runeCost": {
+      "blood": 0,
+      "frost": 1,
+      "unholy": 0
+    },
+    "set": "ISLAND_VACATION",
+    "text": "Costs (1) if a character\nis <b>Frozen</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Zoltan Boros",
+    "attack": 4,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 107799,
+    "flavor": "I want YOU! To plunder from the innocent!",
+    "health": 1,
+    "id": "VAC_430",
+    "mechanics": [
+      "BATTLECRY",
+      "DISCOVER"
+    ],
+    "name": "Bloodsail Recruiter",
+    "race": "PIRATE",
+    "races": [
+      "PIRATE"
+    ],
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "<b>Battlecry:</b> <b>Discover</b> a Pirate.",
+    "type": "MINION"
+  },
+  {
+    "artist": "James Ryman",
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 107850,
+    "flavor": "Spacebar",
+    "id": "VAC_431",
+    "name": "Under the Sea",
+    "rarity": "RARE",
+    "set": "ISLAND_VACATION",
+    "text": "Draw a different spell. Summon a\nrandom minion of that\nspell's Cost.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "L. Lullabi & K. Turovec",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 107851,
+    "flavor": "\"This is my last resort!\"",
+    "health": 5,
+    "id": "VAC_432",
+    "mechanics": [
+      "BATTLECRY",
+      "DISCOVER"
+    ],
+    "name": "Resort Valet",
+    "race": "PIRATE",
+    "races": [
+      "PIRATE"
+    ],
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "<b>Battlecry:</b> <b>Discover</b> a\ncard from the newest expansion.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mauricio Herrera",
+    "attack": 3,
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 107878,
+    "flavor": "Welcome to Maroonland! Population: 2.",
+    "health": 4,
+    "id": "VAC_435",
+    "mechanics": [
+      "AURA"
+    ],
+    "name": "Marooned Archmage",
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "Your first spell each turn costs (2) less.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mauricio Herrera",
+    "attack": 1,
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 107920,
+    "flavor": "How much does a pirate pay for corn? A buck an ear arr arr arrr arrr!",
+    "health": 3,
+    "howToEarnGolden": "Earnable on the <i>Perils in Paradise</i> Reward Track.",
+    "id": "VAC_436",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Brittlebone Buccaneer",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD",
+      "PIRATE"
+    ],
+    "rarity": "RARE",
+    "referencedTags": [
+      "DEATHRATTLE",
+      "REBORN"
+    ],
+    "runeCost": {
+      "blood": 0,
+      "frost": 0,
+      "unholy": 1
+    },
+    "set": "ISLAND_VACATION",
+    "text": "Whenever you play a <b>Deathrattle</b> minion,\ngive it <b>Reborn</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Anton Zemskov",
+    "attack": 4,
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 107926,
+    "elite": true,
+    "flavor": "\"I'll give you an arm and a leg for your Flametongue Pin.\"",
+    "health": 4,
+    "id": "VAC_437",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Buttons",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "ISLAND_VACATION",
+    "text": "<b>Shaman Tourist</b>\n <b>Battlecry:</b> Draw a spell of each spell school.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Ryan Bowlin",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 107928,
+    "flavor": "I could've hired her or some Dodo.",
+    "health": 2,
+    "id": "VAC_438",
+    "mechanics": [
+      "BATTLECRY",
+      "DISCOVER"
+    ],
+    "name": "Travel Agent",
+    "race": "PIRATE",
+    "races": [
+      "PIRATE"
+    ],
+    "rarity": "RARE",
+    "set": "ISLAND_VACATION",
+    "text": "<b>Battlecry: Discover</b> a location from any class.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Luca Zontini",
+    "attack": 8,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 9,
+    "dbfId": 107929,
+    "flavor": "Everywhere's the shallow end when you're 88 feet tall.",
+    "health": 8,
+    "howToEarnGolden": "Earnable after purchasing the <i>Perils in Paradise</i> Tavern Pass.",
+    "id": "VAC_439",
+    "name": "Seaside Giant",
+    "rarity": "EPIC",
+    "set": "ISLAND_VACATION",
+    "text": "[x]Costs (1) less for\neach time you've used\na location this game.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Zoltan Boros",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 107931,
+    "flavor": "Anything to declare? \"yes... CHAMPION! Azeroth cries out...\"",
+    "health": 5,
+    "id": "VAC_440",
+    "mechanics": [
+      "AURA"
+    ],
+    "name": "Customs Enforcer",
+    "race": "PIRATE",
+    "races": [
+      "PIRATE"
+    ],
+    "rarity": "RARE",
+    "set": "ISLAND_VACATION",
+    "text": "[x]Enemy cards that\ndidn't start in their\ndeck cost (2) more.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Matt Dixon",
+    "attack": 6,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 107933,
+    "flavor": "I'm always getting my neighbor's mail. And my other neighbor. And my other neighbor. I'm stealing their packages.",
+    "health": 7,
+    "id": "VAC_441",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Package Dealer",
+    "rarity": "RARE",
+    "set": "ISLAND_VACATION",
+    "text": "After you draw a card, 50% chance to draw another.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Daniil Kudriavtsev",
+    "attack": 4,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 108328,
+    "flavor": "The elemental licked the oil and everybody laughed.",
+    "health": 4,
+    "id": "VAC_442",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Lamplighter",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "targetingArrowText": "Deal 4 damage.",
+    "text": "<b>Battlecry:</b> If you played\nan Elemental last turn, deal 4 damage.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Max Grecke",
+    "attack": 4,
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 108348,
+    "flavor": "Hi! Octopus expert here. This is NOT funny. Octopi only do this when they're extremely rad.",
+    "health": 4,
+    "id": "VAC_443",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Surfalopod",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "RARE",
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Battlecry:</b> The next\nspell you draw is\n<b>Cast When Drawn</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Max Grecke",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 108431,
+    "flavor": "\"Hey kids, what do you call an arrogant skydiving pirate? A condescending con descending!\"",
+    "health": 3,
+    "id": "VAC_444",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Overplanner",
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "<b>Battlecry:</b> Choose three\ncards from your deck to put on top in that order.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Timur Shevtsov",
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 108436,
+    "flavor": "\"Ohmygosh, did you hear what Jessicorpse said to Deathanny??\"",
+    "id": "VAC_445",
+    "name": "Ghouls' Night",
+    "rarity": "COMMON",
+    "runeCost": {
+      "blood": 0,
+      "frost": 0,
+      "unholy": 1
+    },
+    "set": "ISLAND_VACATION",
+    "text": "Summon five 1/1 Ghouls that attack random enemies.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Ramzy Kamen",
+    "attack": 0,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 108499,
+    "elite": true,
+    "flavor": "Talk to the hand 'cause the mouth is sippin'.",
+    "hasDiamondSkin": true,
+    "health": 5,
+    "id": "VAC_446",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "A. F. Kay",
+    "rarity": "LEGENDARY",
+    "set": "ISLAND_VACATION",
+    "text": "[x]At the end of your turn,\ngive all other friendly\nminions that didn't\nattack +2/+2.",
+    "type": "MINION"
+  },
+  {
+    "artist": "James Ryman",
+    "attack": 6,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 108612,
+    "flavor": "\"I uh... need to go walk my uh… fish.\"",
+    "health": 6,
+    "id": "VAC_447",
+    "name": "Dread Deserter",
+    "race": "PIRATE",
+    "races": [
+      "PIRATE"
+    ],
+    "rarity": "EPIC",
+    "referencedTags": [
+      "CHARGE"
+    ],
+    "set": "ISLAND_VACATION",
+    "text": "Has <b>Charge</b> if this didn't start in your deck.",
+    "type": "MINION"
+  },
+  {
+    "artist": "James Ryman",
+    "attack": 5,
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "collectionText": "While in your hand,\nplay two different spell\nschools to transform.",
+    "cost": 5,
+    "dbfId": 108964,
+    "elite": true,
+    "flavor": "Some Naga use their mastery over the elements to go on villainous conquests. Others put on a show!",
+    "health": 5,
+    "id": "VAC_449",
+    "name": "Carress, Cabaret Star",
+    "race": "NAGA",
+    "races": [
+      "NAGA"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "ISLAND_VACATION",
+    "text": "While in your hand,\nplay two different spell\nschools to transform.@\n<i>({0} left!)</i>@ <i>(Ready!)</i>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Brian Despain",
+    "attack": 2,
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 108965,
+    "elite": true,
+    "flavor": "Moisturized, unbothered, and in his cauldron.",
+    "health": 2,
+    "id": "VAC_450",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Carefree Cookie",
+    "race": "MURLOC",
+    "races": [
+      "MURLOC",
+      "PIRATE"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Demon Hunter Tourist</b>\nAfter a friendly minion dies,\nsummon a random minion\nthat costs (1) more.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Ramzy Kamen",
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 109260,
+    "flavor": "RIP to a fictional one.",
+    "id": "VAC_457",
+    "name": "Rest in Peace",
+    "rarity": "RARE",
+    "set": "ISLAND_VACATION",
+    "spellSchool": "SHADOW",
+    "text": "[x]Each player summons\ntheir highest Cost minion\nthat died this game.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "L. Lullabi & K. Turovec",
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 109324,
+    "flavor": "\"I'd like to speak with your admiral.\"",
+    "id": "VAC_460",
+    "mechanics": [
+      "COMBO"
+    ],
+    "name": "Oh, Manager!",
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "Deal $2 damage.\n<b>Combo:</b> Get a Coin.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Ivan Fomin",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 109334,
+    "flavor": "Make sure to tip to help him with his fin-ances.",
+    "health": 2,
+    "howToEarnGolden": "Earnable on the <i>Perils in Paradise</i> Reward Track.",
+    "id": "VAC_461",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Drink Server",
+    "race": "PIRATE",
+    "races": [
+      "MURLOC",
+      "PIRATE"
+    ],
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "<b>Deathrattle:</b> Get a\nrandom Drink spell.\n<i>(It has 3 uses!)</i>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Adam Byrne",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 109440,
+    "flavor": "So THAT'S who's making all those keys for my Arena runs.",
+    "health": 4,
+    "id": "VAC_463",
+    "mechanics": [
+      "AURA"
+    ],
+    "name": "Concierge",
+    "race": "PIRATE",
+    "races": [
+      "PIRATE"
+    ],
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "Your cards from another class cost (1) less.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mooncolony",
+    "attack": 4,
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 109463,
+    "elite": true,
+    "flavor": "How hard could it be to hunt treasure? It doesn't even run away when you shoot it!",
+    "health": 5,
+    "id": "VAC_464",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Treasure Hunter Eudora",
+    "race": "PIRATE",
+    "races": [
+      "PIRATE"
+    ],
+    "rarity": "LEGENDARY",
+    "referencedTags": [
+      "DISCOVER",
+      "SIDE_QUEST"
+    ],
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Battlecry:</b> Go on a <b>Sidequest</b>\nto <b>Discover</b> amazing loot!\nPlay 3 cards from other\nclasses to complete it.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Zoltan Boros",
+    "attack": 5,
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 105540,
+    "elite": true,
+    "flavor": "\"Aranna, I feel like you only came to this island so you could use the zipline.\"",
+    "health": 6,
+    "id": "VAC_501",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Aranna, Thrill Seeker",
+    "rarity": "LEGENDARY",
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Priest Tourist</b>\nDamage your hero takes\non your turn is redirected\nto a random enemy.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Grafit",
+    "attack": 4,
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 105543,
+    "elite": true,
+    "flavor": "Some people say your name can influence what career you go into. Summoner Darkmarrow is not one of those people.",
+    "health": 4,
+    "id": "VAC_503",
+    "mechanics": [
+      "AURA",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Summoner Darkmarrow",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD"
+    ],
+    "rarity": "LEGENDARY",
+    "referencedTags": [
+      "DEATHRATTLE"
+    ],
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Death Knight Tourist</b>\nYour <b>Deathrattles</b> trigger twice.\nAfter you play a <b>Deathrattle</b>\nminion, destroy it.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Gabriel Lopes",
+    "attack": 4,
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 105546,
+    "elite": true,
+    "flavor": "To your left is our award winning spa area! And to the right, THE PRISON OF YOGG-SARON!",
+    "health": 5,
+    "id": "VAC_506",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Cruise Captain Lora",
+    "race": "PIRATE",
+    "races": [
+      "PIRATE"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Battlecry:</b> Summon 2\nrandom locations.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Arthur Gimaldinov",
+    "attack": 2,
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 105682,
+    "elite": true,
+    "flavor": "Paladins are sooo lawful that they start feeling like a Rogue just by sitting on someone else's beach chair.",
+    "health": 6,
+    "id": "VAC_507",
+    "mechanics": [
+      "AURA"
+    ],
+    "name": "Sunsapper Lynessa",
+    "rarity": "LEGENDARY",
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Rogue Tourist</b>\nYour spells that cost (2)\nor less cast twice.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Melvin Chan",
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 105795,
+    "flavor": "You can tell this is an escapist fantasy game because there are no raisins.",
+    "id": "VAC_508",
+    "name": "Trail Mix",
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "spellSchool": "NATURE",
+    "text": "Gain 2 Mana Crystals next turn only.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Patrik Bjorkstrom",
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 105797,
+    "flavor": "Hop in, the water's cold! And angry. And alive.",
+    "id": "VAC_509",
+    "name": "Tsunami",
+    "rarity": "EPIC",
+    "referencedTags": [
+      "FREEZE"
+    ],
+    "set": "ISLAND_VACATION",
+    "spellSchool": "FROST",
+    "text": "Summon three\n3/6 Water Elementals\nthat <b>Freeze</b>. They attack random enemies.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Alex Stone",
+    "attack": 3,
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 105810,
+    "flavor": "Emerald dreams can become emerald realities.",
+    "health": 5,
+    "id": "VAC_511",
+    "name": "Dozing Dragon",
+    "race": "DRAGON",
+    "races": [
+      "DRAGON"
+    ],
+    "rarity": "RARE",
+    "referencedTags": [
+      "TAUNT"
+    ],
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Dormant</b> for 2 turns.\nWhile <b>Dormant</b>, summon\na 3/5 Dragon with <b>Taunt</b>\n at the end of your turn.",
+    "type": "MINION"
+  },
+  {
+    "artist": "James Ryman",
+    "attack": 2,
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 105815,
+    "flavor": "Squish. SquiSH. sQUIIIISH. Oops. Squish?",
+    "health": 3,
+    "id": "VAC_512",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Brain Masseuse",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD",
+      "PIRATE"
+    ],
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "[x]Whenever this minion takes\ndamage, also deal that\namount to your hero.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mike Sass",
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 105854,
+    "flavor": "It's all downhill from here.",
+    "id": "VAC_513",
+    "name": "Slippery Slope",
+    "rarity": "EPIC",
+    "referencedTags": [
+      "FREEZE"
+    ],
+    "runeCost": {
+      "blood": 0,
+      "frost": 2,
+      "unholy": 0
+    },
+    "set": "ISLAND_VACATION",
+    "spellSchool": "FROST",
+    "text": "<b>Freeze</b> a character. Draw a card for each <b>Frozen</b> character.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Gabor Szikszai",
+    "attack": 2,
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 105855,
+    "flavor": "The handler being undead speaks to a spotty safety record.",
+    "health": 1,
+    "id": "VAC_514",
+    "mechanics": [
+      "DEATHRATTLE",
+      "RUSH"
+    ],
+    "name": "Dreadhound Handler",
+    "race": "PIRATE",
+    "races": [
+      "UNDEAD",
+      "PIRATE"
+    ],
+    "rarity": "COMMON",
+    "referencedTags": [
+      "REBORN"
+    ],
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Rush</b>\n<b>Deathrattle:</b> Summon a 1/1\nDreadhound with <b>Reborn</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mooncolony",
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 105891,
+    "flavor": "\"Hello adventurers!\"\n\"Hi King Trale!\"",
+    "health": 3,
+    "id": "VAC_517",
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "Hiking Trail",
+    "rarity": "RARE",
+    "referencedTags": [
+      "TAUNT"
+    ],
+    "set": "ISLAND_VACATION",
+    "text": "<b>Discover</b> a <b>Taunt</b> minion. After you gain Armor, reopen this.",
+    "type": "LOCATION"
+  },
+  {
+    "artist": "Ivan Fomin",
+    "attack": 1,
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 105892,
+    "flavor": "Tortolla, preserve my energy for this hike!",
+    "health": 5,
+    "id": "VAC_518",
+    "mechanics": [
+      "DEATHRATTLE",
+      "TAUNT"
+    ],
+    "name": "Tortollan Traveler",
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Taunt</b>\n<b>Deathrattle:</b> Draw another\n<b>Taunt</b> minion. Reduce\nits Cost by (2).",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mooncolony",
+    "attack": 5,
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 105893,
+    "elite": true,
+    "flavor": "His government name is Vister.",
+    "health": 5,
+    "id": "VAC_519",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Mistah Vistah",
+    "rarity": "LEGENDARY",
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Mage Tourist</b>\n<b>Battlecry:</b> In 3 turns, replay\nevery spell you've cast\n  between now and then.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Vika Yarova",
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 106369,
+    "flavor": "If your luck has been particularly poor lately, try the extra salted rim!",
+    "id": "VAC_520",
+    "mechanics": [
+      "ImmuneToSpellpower"
+    ],
+    "name": "Seabreeze Chalice",
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "spellSchool": "FROST",
+    "text": "Deal $2 damage randomly split among\nall enemy minions.\n<i>(3 Drinks left!)</i>",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Matt Dixon",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 106372,
+    "flavor": "Put some respect on his name: Estebone Soulio Screamcardo Groantoya De la Grossa Ramirooze.",
+    "health": 3,
+    "howToEarnGolden": "Earnable on the <i>Perils in Paradise</i> Reward Track.",
+    "id": "VAC_521",
+    "mechanics": [
+      "BATTLECRY",
+      "TAUNT"
+    ],
+    "name": "Bumbling Bellhop",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD",
+      "PIRATE"
+    ],
+    "rarity": "RARE",
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Taunt</b>\n<b>Battlecry:</b> If you're holding a\nspell that costs (5) or more,\n  summon a copy of this.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Tanamaes Leejierasaes",
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 106373,
+    "flavor": "I know they look delicious but do NOT eat them.",
+    "health": 3,
+    "id": "VAC_522",
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "Tide Pools",
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Discover</b> a spell that\ncosts (3) or less.\nAfter you cast a spell,\nreopen this.",
+    "type": "LOCATION"
+  },
+  {
+    "artist": "Sergey Tsvelykh",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 106374,
+    "flavor": "You can't put your pinky up when you only have 3 fingers.",
+    "health": 3,
+    "id": "VAC_523",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Mixologist",
+    "rarity": "EPIC",
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Battlecry:</b> Craft a\ncustom 1-Cost Potion.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Edgar Hidalgo",
+    "attack": 4,
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 106375,
+    "elite": true,
+    "flavor": "blizz pls surf",
+    "hasDiamondSkin": true,
+    "health": 4,
+    "id": "VAC_524",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "King Tide",
+    "rarity": "LEGENDARY",
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Battlecry:</b> Both players'\nspells cost (5) until the\nend of your next turn.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Studio Hive",
+    "attack": 4,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 106377,
+    "durability": 0,
+    "elite": true,
+    "flavor": "Legend has it that this dreaded blade is be able to slice through even the most stale of sourdough baguettes.",
+    "health": 2,
+    "id": "VAC_525",
+    "mechanics": [
+      "BATTLECRY",
+      "DEATHRATTLE"
+    ],
+    "name": "The Ryecleaver",
+    "rarity": "LEGENDARY",
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Battlecry and Deathrattle:</b>\nGet a Slice of Bread.\n<i>(Get 2 to Sandwich any\nminions in between!)</i>",
+    "type": "WEAPON"
+  },
+  {
+    "artist": "Slawomir Maniak",
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 106379,
+    "flavor": "There's just no point trying to add flavor to this now.",
+    "id": "VAC_526",
+    "mechanics": [
+      "ImmuneToSpellpower"
+    ],
+    "name": "Char",
+    "rarity": "RARE",
+    "set": "ISLAND_VACATION",
+    "spellSchool": "FIRE",
+    "text": "Deal $7 damage to a minion. Give a minion in your hand stats equal to the excess damage.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Brian Despain",
+    "attack": 6,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 106381,
+    "flavor": "How to Serve your Dragon.",
+    "health": 6,
+    "id": "VAC_527",
+    "mechanics": [
+      "ELUSIVE",
+      "RUSH",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Draconic Delicacy",
+    "race": "DRAGON",
+    "races": [
+      "DRAGON"
+    ],
+    "rarity": "EPIC",
+    "set": "ISLAND_VACATION",
+    "text": "<b>Rush</b>, <b>Elusive</b>\nCan only take 1 damage\nat a time.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mooncolony",
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 106382,
+    "flavor": "Never design cards when you're hungry.",
+    "id": "VAC_528",
+    "name": "All You Can Eat",
+    "rarity": "RARE",
+    "set": "ISLAND_VACATION",
+    "text": "Draw three minions of different minion types.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Ivan Fomin",
+    "attack": 5,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 106385,
+    "flavor": "\"…and this is the time I rode a dinosaur, and this is the time that I helped solve a murder, and this is the time I got corrupted by the Old Gods...\"",
+    "health": 5,
+    "id": "VAC_529",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Scrapbooking Student",
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "targetingArrowText": "Summon a copy of a friendly location.",
+    "text": "<b>Battlecry:</b> Summon a copy of a friendly location.",
+    "type": "MINION"
+  },
+  {
+    "artist": "AJ Nazzaro",
+    "attack": 4,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 106387,
+    "flavor": "Loves to run in flow motion.",
+    "health": 7,
+    "id": "VAC_531",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Bayfin Bodybuilder",
+    "race": "MURLOC",
+    "races": [
+      "MURLOC"
+    ],
+    "rarity": "COMMON",
+    "referencedTags": [
+      "SILENCE"
+    ],
+    "set": "ISLAND_VACATION",
+    "text": "[x]After a minion is summoned\nfor your opponent during\nyour turn, <b>Silence</b> and\ndestroy it.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Anzka Nguyen",
+    "attack": 1,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 106388,
+    "flavor": "You think these just fell out of a coconut tree?",
+    "health": 4,
+    "id": "VAC_532",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Coconut Cannoneer",
+    "race": "PIRATE",
+    "races": [
+      "PIRATE"
+    ],
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "After an adjacent minion attacks, deal 1 damage to a random enemy.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Kevin Sidharta",
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 106390,
+    "flavor": "Now THIS is the deadliest catch.",
+    "id": "VAC_533",
+    "name": "Food Fight",
+    "rarity": "EPIC",
+    "referencedTags": [
+      "DEATHRATTLE"
+    ],
+    "set": "ISLAND_VACATION",
+    "text": "Summon a 0/4 Entrée for your opponent. When it dies, summon a minion from your deck.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Timur Shevtsov",
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 10,
+    "dbfId": 109262,
+    "flavor": "Time for some well-earned arrr and arrr.",
+    "id": "VAC_558",
+    "name": "Sea Shanty",
+    "rarity": "EPIC",
+    "set": "ISLAND_VACATION",
+    "text": "Summon three 5/5 Pirates. Costs (1) less for each spell you've cast on characters this game.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Matt Dixon",
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 106681,
+    "flavor": "Snatch grabbed the snacks and Grab snatched the grub. The perfect crime.",
+    "id": "VAC_700",
+    "name": "Snatch and Grab",
+    "rarity": "EPIC",
+    "set": "ISLAND_VACATION",
+    "text": "Destroy two random enemy minions. Costs (1) less for each card you've played from another class.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Jakub Kasper",
+    "attack": 3,
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 106675,
+    "flavor": "Everyone knows swords are slashier when they're shiny!",
+    "health": 3,
+    "id": "VAC_701",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Swarthy Swordshiner",
+    "race": "PIRATE",
+    "races": [
+      "PIRATE"
+    ],
+    "rarity": "EPIC",
+    "set": "ISLAND_VACATION",
+    "text": "<b>Battlecry:</b> Set the Attack and Durability of your weapon to 3.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Zoltan Boros",
+    "attack": 6,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 106682,
+    "elite": true,
+    "flavor": "Mawin! Mawin is what bwings us togethaaa... today.",
+    "health": 6,
+    "howToEarn": "Earnable after opening a <i>Perils in Paradise</i> card pack.",
+    "howToEarnGolden": "Earnable after purchasing the <i>Perils in Paradise</i> Tavern Pass.",
+    "id": "VAC_702",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Marin the Manager",
+    "race": "PIRATE",
+    "races": [
+      "PIRATE"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Battlecry:</b> Choose a\nfantastic treasure.\nShuffle the other 3\ninto your deck.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Edgar Hidalgo",
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 105813,
+    "flavor": "THRICE?! What's next, FOURTHST?!",
+    "id": "VAC_907",
+    "name": "Sleep Under the Stars",
+    "rarity": "EPIC",
+    "set": "ISLAND_VACATION",
+    "spellSchool": "ARCANE",
+    "text": "[x]<b>Choose Thrice - </b>Draw 2\ncards; Gain 5 Armor;\nRefresh 3 Mana Crystals.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Vladimir Kafanov",
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 106432,
+    "flavor": "Jeff, when I said this deck needs a power spike I did not mean it like that.",
+    "id": "VAC_915",
+    "name": "Power Spike",
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "spellSchool": "HOLY",
+    "text": "Deal $4 damage.\nGive a random friendly minion +4/+4.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Melvin Chan",
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 106433,
+    "flavor": "I'm on a cleanse, do you have any Light drinks?",
+    "id": "VAC_916",
+    "name": "Divine Brew",
+    "rarity": "RARE",
+    "referencedTags": [
+      "DIVINE_SHIELD"
+    ],
+    "set": "ISLAND_VACATION",
+    "spellSchool": "HOLY",
+    "text": "Give a character <b>Divine Shield</b>. <i>(3 Drinks left!)</i>",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Patrik Bjorkstrom",
+    "attack": 3,
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 106435,
+    "flavor": "Do you want your steak well done, rare, or LEGENDARY?",
+    "health": 4,
+    "id": "VAC_917",
+    "mechanics": [
+      "BATTLECRY",
+      "DEATHRATTLE"
+    ],
+    "name": "Grillmaster",
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Battlecry:</b> Draw your\nlowest Cost card.\n<b>Deathrattle:</b> Draw your\nhighest Cost card.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Matt Dixon",
+    "attack": 2,
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 106439,
+    "flavor": "Hey, no aggro in the pool!",
+    "health": 7,
+    "id": "VAC_919",
+    "mechanics": [
+      "BATTLECRY",
+      "TAUNT"
+    ],
+    "name": "Lifeguard",
+    "rarity": "RARE",
+    "referencedTags": [
+      "LIFESTEAL"
+    ],
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Taunt</b>\n <b>Battlecry:</b> The next spell\nyou cast has <b>Lifesteal</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Vladimir Kafanov",
+    "attack": 2,
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 106442,
+    "flavor": "No shirt, no shoes, YES service!",
+    "health": 3,
+    "id": "VAC_920",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Service Ace",
+    "rarity": "EPIC",
+    "set": "ISLAND_VACATION",
+    "text": "[x]After this minion gains\nAttack, reduce the Cost\nof the highest Cost card\nin your hand by (1).",
+    "type": "MINION"
+  },
+  {
+    "artist": "Vladimir Kafanov",
+    "attack": 3,
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 106444,
+    "durability": 0,
+    "flavor": "\"It's all fun and games until someone gets hurt.\" - LAME PARTY POOPERS",
+    "health": 2,
+    "id": "VAC_921",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Volley Maul",
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "[x]After your hero attacks,\nget a 1-Cost Sunscreen\nthat gives +1/+2.",
+    "type": "WEAPON"
+  },
+  {
+    "artist": "Zoltan Boros",
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 106446,
+    "flavor": "One ring to rule them all, and in the sunlight save them.",
+    "id": "VAC_922",
+    "name": "Lifesaving Aura",
+    "rarity": "RARE",
+    "set": "ISLAND_VACATION",
+    "spellSchool": "HOLY",
+    "text": "At the end of your turn, get a 1-Cost Sunscreen that gives +1/+2. Lasts 3 turns.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Grafit",
+    "attack": 3,
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 106449,
+    "elite": true,
+    "flavor": "That castle has some serious drip.",
+    "hasDiamondSkin": true,
+    "health": 8,
+    "id": "VAC_923",
+    "mechanics": [
+      "RUSH",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Sanc'Azel",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "ISLAND_VACATION",
+    "text": "<b>Rush</b>\nAfter this attacks, turn\ninto a location.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Jakub Kasper",
+    "attack": 6,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 106580,
+    "flavor": "Hotel policy states that you must leave your weapons at the front desk. But GOOD NEWS! You can also buy weapons at the back desk!!",
+    "health": 4,
+    "id": "VAC_924",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Weapons Attendant",
+    "race": "PIRATE",
+    "races": [
+      "PIRATE"
+    ],
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "<b>Battlecry:</b> If you control another Pirate, equip\na random weapon\nfrom your deck.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mooncolony",
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 106582,
+    "flavor": "Aim for the bushes?",
+    "id": "VAC_925",
+    "name": "Sigil of Skydiving",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "CHARGE"
+    ],
+    "set": "ISLAND_VACATION",
+    "spellSchool": "FEL",
+    "text": "At the start of your\nnext turn, summon two 1/1 Pirates with <b>Charge</b>.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Mooncolony",
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 106583,
+    "flavor": "\"Is it safe?\"\n\"Sure, we have plenty of replacement pirates.\"",
+    "id": "VAC_926",
+    "name": "Cliff Dive",
+    "rarity": "EPIC",
+    "referencedTags": [
+      "RUSH"
+    ],
+    "set": "ISLAND_VACATION",
+    "text": "[x]Summon 2 minions\nfrom your deck and give\nthem <b>Rush</b>. They go back\nat the end of your turn.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Alex Horley Orlandelli",
+    "attack": 2,
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 106584,
+    "flavor": "Puts the \"devil\" in daredevil.",
+    "health": 2,
+    "id": "VAC_927",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Adrenaline Fiend",
+    "race": "DEMON",
+    "races": [
+      "DEMON",
+      "PIRATE"
+    ],
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "After a friendly Pirate attacks, give your hero\n+1 Attack this turn.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Ursula Dorada",
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 106591,
+    "flavor": "I can see my hand from here!!!!!",
+    "id": "VAC_928",
+    "mechanics": [
+      "OUTCAST"
+    ],
+    "name": "Paraglide",
+    "rarity": "RARE",
+    "set": "ISLAND_VACATION",
+    "text": "[x]Both players\ndraw 3 cards.\n<b>Outcast:</b> Only you do.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "BOSi Studio",
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 106614,
+    "flavor": "It's not as dangerous as it looks… IT'S EVEN MORE DANGEROUS!",
+    "health": 3,
+    "id": "VAC_929",
+    "name": "Dangerous Cliffside",
+    "rarity": "RARE",
+    "referencedTags": [
+      "CHARGE"
+    ],
+    "set": "ISLAND_VACATION",
+    "text": "[x]Summon two 1/1\nPirates with <b>Charge</b>.\nAfter your hero attacks,\nreopen this.",
+    "type": "LOCATION"
+  },
+  {
+    "artist": "L. Lullabi & K. Turovec",
+    "attack": 5,
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 106615,
+    "flavor": "4 claw drive, independent joint suspension AND a 7 mana warranty? Where do I sign?",
+    "health": 8,
+    "id": "VAC_930",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "All Terrain Voidhound",
+    "race": "DEMON",
+    "races": [
+      "DEMON"
+    ],
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "Whenever this attacks, give your hero +5 Attack this turn.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Juan Calle",
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 106616,
+    "flavor": "Skkrrt *death* Skkrrt",
+    "id": "VAC_931",
+    "name": "Skirting Death",
+    "rarity": "RARE",
+    "set": "ISLAND_VACATION",
+    "spellSchool": "SHADOW",
+    "text": "Choose a minion.\nThis turn, your hero steals 4 Attack from it.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Studio Hive",
+    "attack": 5,
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 106618,
+    "durability": 0,
+    "flavor": "\"It LOOKS like a grappling hook but it's actually a climbing hook. It's a really important distinction you just wouldn't get it.\"",
+    "health": 2,
+    "id": "VAC_932",
+    "name": "Climbing Hook",
+    "rarity": "EPIC",
+    "set": "ISLAND_VACATION",
+    "text": "Doesn't lose Durability while you control a minion with 5 or more Attack.",
+    "type": "WEAPON"
+  },
+  {
+    "artist": "Matt Dixon",
+    "attack": 1,
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 106620,
+    "elite": true,
+    "flavor": "Finally, a Patches you want to draw on turn 1!",
+    "health": 1,
+    "id": "VAC_933",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Patches the Pilot",
+    "race": "DEMON",
+    "races": [
+      "DEMON",
+      "PIRATE"
+    ],
+    "rarity": "LEGENDARY",
+    "referencedTags": [
+      "CHARGE"
+    ],
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Battlecry:</b> Shuffle six\nParachutes into your deck\nthat summon a 1/1 Pirate\n     with <b>Charge</b> when drawn.   ",
+    "type": "MINION"
+  },
+  {
+    "artist": "Matt Dixon",
+    "attack": 4,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 106714,
+    "flavor": "Call me Illidan. Some years ago — never mind how long precisely — having little or no gold in my purse, and nothing particular to interest me on Azeroth, I thought I would fly about a little and see the demony part of the world…",
+    "health": 20,
+    "howToEarnGolden": "Earnable on the <i>Perils in Paradise</i> Reward Track.",
+    "id": "VAC_934",
+    "mechanics": [
+      "BATTLECRY",
+      "TAUNT"
+    ],
+    "name": "Beached Whale",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "<b>Taunt</b>\n<b>Battlecry:</b> Deal 10 damage to this minion.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Konstantin Turovec",
+    "attack": 5,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 106715,
+    "flavor": "Early worm gets priority boarding.",
+    "health": 4,
+    "howToEarnGolden": "Earnable on the <i>Perils in Paradise</i> Reward Track.",
+    "id": "VAC_935",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Carry-On Grub",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "EPIC",
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Battlecry:</b> Get a 1-Cost\nSuitcase. Pack the top 2\n cards of your deck into it.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mooncolony",
+    "attack": 1,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 106718,
+    "flavor": "Oh yeah, all of those are the spots.",
+    "health": 8,
+    "id": "VAC_936",
+    "name": "Octo-masseuse",
+    "race": "BEAST",
+    "races": [
+      "MECHANICAL",
+      "BEAST"
+    ],
+    "rarity": "RARE",
+    "set": "ISLAND_VACATION",
+    "text": "Deals octuple damage\nto minions.",
+    "type": "MINION"
+  },
+  {
+    "artist": "L. Lullabi & K. Turovec",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 107114,
+    "flavor": "I just shipped my pandaren!",
+    "health": 4,
+    "id": "VAC_937",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Sailboat Captain",
+    "race": "PIRATE",
+    "races": [
+      "PIRATE"
+    ],
+    "rarity": "COMMON",
+    "referencedTags": [
+      "WINDFURY"
+    ],
+    "set": "ISLAND_VACATION",
+    "targetingArrowText": "Give a friendly Pirate <b>Windfury</b>.",
+    "text": "<b>Battlecry:</b> Give a friendly Pirate <b>Windfury</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Ivan Fomin",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 107181,
+    "flavor": "NO MONKEY BUSINESS! ...not yet...",
+    "health": 4,
+    "id": "VAC_938",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Hozen Roughhouser",
+    "race": "PIRATE",
+    "races": [
+      "PIRATE"
+    ],
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "Whenever another\nfriendly Pirate attacks,\ngive it +1/+1.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Matt Dixon",
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 107796,
+    "flavor": "No need for flavor text, it's seasoned perfectly!",
+    "id": "VAC_939",
+    "name": "Eat! The! Imp!",
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "spellSchool": "FIRE",
+    "text": "Destroy a friendly\nminion to draw 3 cards.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Juan Calle",
+    "attack": 2,
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 107797,
+    "flavor": "Arch-rival of the Boogiemonster.",
+    "health": 1,
+    "id": "VAC_940",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Party Fiend",
+    "race": "DEMON",
+    "races": [
+      "DEMON"
+    ],
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "<b>Battlecry:</b> Summon two 1/1 Felbeasts. Deal 3 damage to your hero.",
+    "type": "MINION"
+  },
+  {
+    "artist": "James Ryman",
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 107807,
+    "flavor": "\"Ahem.... DARKNESS!!\"",
+    "id": "VAC_941",
+    "name": "Announce Darkness",
+    "rarity": "EPIC",
+    "set": "ISLAND_VACATION",
+    "spellSchool": "SHADOW",
+    "text": "Replace your Hero Power and non-Warlock cards with Warlock ones.\nThey cost (1) less.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Anton Zemskov",
+    "attack": 1,
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "collectionText": "[x]<b>Battlecry:</b> Gain stats equal\nto the damage your hero\n has taken this turn.",
+    "cost": 2,
+    "dbfId": 107812,
+    "flavor": "This is incredibly easy with 6 arms.",
+    "health": 1,
+    "id": "VAC_942",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Fearless Flamejuggler",
+    "race": "DEMON",
+    "races": [
+      "DEMON"
+    ],
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Battlecry:</b> Gain stats equal\nto the damage your hero\n has taken this turn.@ <i>(@)</i>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Konstantin Porubov",
+    "attack": 1,
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 107813,
+    "flavor": "IS THIS WHAT YOU WANTED???",
+    "health": 6,
+    "id": "VAC_943",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Sacrificial Imp",
+    "race": "DEMON",
+    "races": [
+      "DEMON"
+    ],
+    "rarity": "RARE",
+    "referencedTags": [
+      "TAUNT"
+    ],
+    "set": "ISLAND_VACATION",
+    "text": "<b>Deathrattle:</b> If it's your turn, summon a 6/6\nImp with <b>Taunt</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Alex Stone",
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 107815,
+    "flavor": "Most souvenirs are considered tacky and soulless. This one is certainly not one of those things!",
+    "id": "VAC_944",
+    "name": "Cursed Souvenir",
+    "rarity": "EPIC",
+    "set": "ISLAND_VACATION",
+    "spellSchool": "SHADOW",
+    "text": "Give a minion +3/+3 and \"At the start of your turn, deal 3 damage to your hero.\"",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Anton Zemskov",
+    "attack": 4,
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "collectionText": "<b>Battlecry:</b> If you've taken\n8 damage on your turns, summon Ourobos.",
+    "cost": 6,
+    "dbfId": 107816,
+    "elite": true,
+    "flavor": "She's known for her popular \"occult ritual to summon an otherworldly being\" parties.",
+    "health": 4,
+    "id": "VAC_945",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Party Planner Vona",
+    "rarity": "LEGENDARY",
+    "set": "ISLAND_VACATION",
+    "text": "<b>Battlecry:</b> If you've taken\n8 damage on your turns, summon Ourobos.@\n<i>({0} left!)</i>@\n<i>(Ready!)</i>",
+    "type": "MINION"
+  },
+  {
+    "artist": "AJ Nazzaro",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 107822,
+    "flavor": "Anyone can cook! But not them.",
+    "health": 1,
+    "id": "VAC_946",
+    "mechanics": [
+      "BATTLECRY",
+      "DEATHRATTLE"
+    ],
+    "name": "Terrible Chef",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD"
+    ],
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Battlecry:</b> Summon a\n0/2 Nerubian Egg.\n<b>Deathrattle:</b> Destroy it.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Stefan Bogdasarov",
+    "attack": 4,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 107824,
+    "flavor": "Used to be called Wave Pool Splasher until 'The Incident'.",
+    "health": 5,
+    "id": "VAC_947",
+    "mechanics": [
+      "BATTLECRY",
+      "DEATHRATTLE"
+    ],
+    "name": "Wave Pool Thrasher",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "<b>Battlecry:</b> Give all\nother minions -1/-1.\n<b>Deathrattle:</b> Give all\nother minions +1/+1.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Vladimir Kafanov",
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 10,
+    "dbfId": 107856,
+    "flavor": "They're drinking in herds... they do drink in herds.",
+    "id": "VAC_948",
+    "name": "Hydration Station",
+    "rarity": "RARE",
+    "referencedTags": [
+      "TAUNT"
+    ],
+    "set": "ISLAND_VACATION",
+    "text": "Resurrect three of your different highest Cost <b>Taunt</b> minions.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Eva Widermann",
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 107891,
+    "flavor": "The sky's the limit (or at least 99 is).",
+    "id": "VAC_949",
+    "name": "New Heights",
+    "rarity": "EPIC",
+    "set": "ISLAND_VACATION",
+    "text": "[x]Increase your maximum\nMana by 3 and gain an\nempty Mana Crystal.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "L. Lullabi & K. Turovec",
+    "attack": 6,
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 107892,
+    "flavor": "Why would you buy a walking stick when the forest is full of them!?",
+    "health": 7,
+    "id": "VAC_950",
+    "mechanics": [
+      "RUSH",
+      "TAUNT"
+    ],
+    "name": "Bouldering Buddy",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Rush, Taunt</b>\nCosts (1) if you have at\nleast 10 Mana Crystals.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Vladimir Kafanov",
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 107923,
+    "flavor": "Do not exceed recommend daily serving size of 0 grams.",
+    "id": "VAC_951",
+    "mechanics": [
+      "LIFESTEAL"
+    ],
+    "name": "\"Health\" Drink",
+    "rarity": "RARE",
+    "set": "ISLAND_VACATION",
+    "spellSchool": "FEL",
+    "text": "<b>Lifesteal</b>. Deal $3 damage to a minion.\n<i>(3 Drinks left!)</i>",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Vlad Botos",
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 107925,
+    "flavor": "It was then that Marsh and Mallow understood the meaning of their new nicknames.",
+    "id": "VAC_952",
+    "name": "Felfire Bonfire",
+    "rarity": "RARE",
+    "referencedTags": [
+      "DEATHRATTLE"
+    ],
+    "set": "ISLAND_VACATION",
+    "spellSchool": "FEL",
+    "text": "[x]Deal $4 damage to\na minion. If it dies, your\nnext <b>Deathrattle</b> minion\ncosts (3) less.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Mauricio Herrera",
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 108337,
+    "flavor": "How do you expect them to do the wave if their arms are buried in the sand??",
+    "id": "VAC_953",
+    "name": "Rising Waves",
+    "rarity": "RARE",
+    "set": "ISLAND_VACATION",
+    "text": "Deal $2 damage to all minions. If none die, deal $2 more.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Anzka Nguyen",
+    "attack": 3,
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 108338,
+    "flavor": "\"Ummm... I don't C a beret????\"",
+    "health": 3,
+    "id": "VAC_954",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Cabaret Headliner",
+    "race": "NAGA",
+    "races": [
+      "NAGA"
+    ],
+    "rarity": "RARE",
+    "set": "ISLAND_VACATION",
+    "text": "<b>Battlecry:</b> Reduce the Cost of a spell of each school in your hand by (2).",
+    "type": "MINION"
+  },
+  {
+    "artist": "Zoltan Boros",
+    "attack": 4,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 108346,
+    "elite": true,
+    "flavor": "Don't remove this from your deck or else you'll be cutting the cheese.",
+    "health": 4,
+    "howToEarn": "Earnable after collecting 30 <i>Perils in Paradise</i> cards.",
+    "howToEarnGolden": "Earnable after purchasing the <i>Perils in Paradise</i> Tavern Pass.",
+    "id": "VAC_955",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Gorgonzormu",
+    "race": "DRAGON",
+    "races": [
+      "DRAGON"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Battlecry:</b> Get a 2-Cost\nCheese that summons\nthree 1-Cost minions.\nIt upgrades each turn.",
+    "type": "MINION"
+  },
+  {
+    "artist": "L. Lullabi & K. Turovec",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 108449,
+    "flavor": "\"WHAT IS MY PURPOSE?\"\n\"You gain Armor.\"\n\"OH GOD.\"",
+    "health": 3,
+    "id": "VAC_956",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "XB-931 Housekeeper",
+    "race": "MECHANICAL",
+    "races": [
+      "MECHANICAL"
+    ],
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "After you use a location, gain 3 Armor.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Grafit",
+    "attack": 3,
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 108887,
+    "elite": true,
+    "flavor": "After one visit to the cryopractor, YOU TOO can be chillin' like a Vol'jin!",
+    "health": 3,
+    "id": "VAC_957",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Chillin' Vol'jin",
+    "rarity": "LEGENDARY",
+    "set": "ISLAND_VACATION",
+    "targetingArrowText": "Choose 2 minions. Swap their stats.",
+    "text": "[x]<b>Hunter Tourist</b>\n<b>Battlecry:</b> Choose 2 minions.\nSwap their stats.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Slawomir Maniak",
+    "attack": 1,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 108950,
+    "flavor": "We've only explored 5% of the ocean. So there's like a 95% chance this is accurate.",
+    "health": 2,
+    "id": "VAC_958",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Adaptive Amalgam",
+    "race": "ALL",
+    "races": [
+      "ALL"
+    ],
+    "rarity": "EPIC",
+    "set": "ISLAND_VACATION",
+    "text": "[x]<i>This has all minion types.</i>\n<b>Deathrattle:</b> Shuffle this\ninto your deck. It keeps\nany enchantments.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mike Sass",
+    "attack": 4,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 108967,
+    "elite": true,
+    "flavor": "\"Tiki mugs will match any kind of home décor! They're timeless!\"",
+    "health": 5,
+    "id": "VAC_959",
+    "mechanics": [
+      "BATTLECRY",
+      "DISCOVER"
+    ],
+    "name": "Griftah, Trusted Vendor",
+    "rarity": "LEGENDARY",
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Battlecry:</b> <b>Discover</b> an\namazing Amulet to give to\nboth players. <i>(The enemy's\nis a phony version!)</i>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Tanamaes Leejierasaes",
+    "attack": 1,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 109323,
+    "durability": 0,
+    "flavor": "That's weird… I can only catch magic carps with this old fishing rod.",
+    "health": 2,
+    "id": "VAC_960",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Trusty Fishing Rod",
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "[x]After your hero\n attacks, summon\na 1-Cost minion\nfrom your deck.",
+    "type": "WEAPON"
+  },
+  {
+    "artist": "Grace Liu",
+    "attack": 1,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 109326,
+    "flavor": "You are REQUIRED to give it crackers. It's the Bird Law.",
+    "health": 1,
+    "howToEarnGolden": "Earnable on the <i>Perils in Paradise</i> Reward Track.",
+    "id": "VAC_961",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Pet Parrot",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "<b>Battlecry:</b> Repeat the last 1-Cost card you played.",
+    "type": "MINION"
+  },
+  {
+    "artist": "L. Lullabi & K. Turovec",
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 110844,
+    "flavor": "Earthmother, catch me.",
+    "id": "WORK_001",
+    "isMiniSet": true,
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "Trust Fall",
+    "rarity": "RARE",
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Discover</b> two minions\nthat cost (5) or less.\nThey gain each other's\nAttack and Health.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Ivan Fomin",
+    "attack": 3,
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 110751,
+    "flavor": "Busy-Bot likes a clean desktop.",
+    "health": 2,
+    "id": "WORK_002",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Busy-Bot",
+    "race": "MECHANICAL",
+    "races": [
+      "MECHANICAL"
+    ],
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "<b>Battlecry:</b> Give your\n1-Attack minions +1/+1.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Vladimir Kafanov",
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 110753,
+    "flavor": "Reporting for vacation!",
+    "id": "WORK_003",
+    "isMiniSet": true,
+    "name": "Vacation Planning",
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "Restore #4 Health. Summon 3 Silver Hand Recruits. Draw 2 cards.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Matt Dixon",
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 110754,
+    "flavor": "What gnomish monitoring devices lack in subtlety, they make up for in robustness.",
+    "id": "WORK_004",
+    "isMiniSet": true,
+    "name": "Agency Espionage",
+    "rarity": "RARE",
+    "set": "ISLAND_VACATION",
+    "text": "Shuffle a card from each other class into your deck. They cost (1).",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Anton Zemskov",
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 110756,
+    "flavor": "Pre-check is amazing these days. New rules say you don't have to take off your shoes, helmet, or daggers!",
+    "id": "WORK_005",
+    "isMiniSet": true,
+    "name": "Sharp Shipment",
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "Give your weapon +2/+2.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Stefan Bogdasarov",
+    "attack": 3,
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 110757,
+    "flavor": "When I was your age, robocallers had to dial themselves!",
+    "health": 2,
+    "id": "WORK_006",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Robocaller",
+    "race": "MECHANICAL",
+    "races": [
+      "MECHANICAL"
+    ],
+    "rarity": "RARE",
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Battlecry:</b> Draw an\n{0}, {1}, and {2}-Cost card.\n<i>(Numbers dialed randomly\neach turn!)</i>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Max Grecke",
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 110759,
+    "flavor": "For all you procrastinators out there, don't worry. That's why we added Tradeable.",
+    "id": "WORK_007",
+    "isMiniSet": true,
+    "mechanics": [
+      "TRADEABLE"
+    ],
+    "name": "Deadline",
+    "rarity": "RARE",
+    "set": "ISLAND_VACATION",
+    "spellSchool": "SHADOW",
+    "text": "<b>Tradeable</b>, <b>Temporary</b>\nDestroy a minion.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Zoltan Boros",
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 110760,
+    "flavor": "Text in italics can't hurt you. <i>(Yes it can.)</i>",
+    "id": "WORK_008",
+    "isMiniSet": true,
+    "mechanics": [
+      "ImmuneToSpellpower"
+    ],
+    "name": "Fine Print",
+    "rarity": "RARE",
+    "set": "ISLAND_VACATION",
+    "spellSchool": "SHADOW",
+    "text": "Deal $4 damage to all minions.\n<i>(Excess damage hits your hero.)</i>",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Caroline Gariba",
+    "attack": 3,
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 110761,
+    "flavor": "Imployee of the Month, 666 months running.",
+    "health": 2,
+    "id": "WORK_009",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Imployee of the Month",
+    "race": "DEMON",
+    "races": [
+      "DEMON"
+    ],
+    "rarity": "COMMON",
+    "referencedTags": [
+      "LIFESTEAL"
+    ],
+    "set": "ISLAND_VACATION",
+    "targetingArrowText": "Give <b>Lifesteal</b>.",
+    "text": "<b>Battlecry:</b> Give a friendly minion <b>Lifesteal</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Jason Kang",
+    "attack": 2,
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 110762,
+    "flavor": "\"You're just gonna let ANY 8-Cost minion get past you!?\"\n\"...Yeah...\"",
+    "health": 2,
+    "id": "WORK_010",
+    "isMiniSet": true,
+    "mechanics": [
+      "DEATHRATTLE",
+      "TAUNT"
+    ],
+    "name": "Travel Security",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD"
+    ],
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "<b>Taunt</b>. <b>Deathrattle:</b> Summon a random\n8-Cost minion.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Daniil Kudriavtsev",
+    "attack": 0,
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 110763,
+    "flavor": "This filtered water really cleanses the spirit.",
+    "health": 3,
+    "id": "WORK_011",
+    "isMiniSet": true,
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Hydration Totem",
+    "race": "TOTEM",
+    "races": [
+      "TOTEM"
+    ],
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "[x]At the end of your\nturn, give adjacent\nminions +1/+1.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Sergey Tsvelykh",
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 110794,
+    "flavor": "Spell, Naga, Naga, Naga, Naga, Naga, Naga, Naga...",
+    "id": "WORK_012",
+    "isMiniSet": true,
+    "name": "Huddle Up",
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "Fill your board with random Naga.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Daniil Kudriavtsev",
+    "attack": 3,
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 110765,
+    "elite": true,
+    "flavor": "\"Passengers, we will be experiencing some minor Turbulus in the next few expansions.\"",
+    "health": 3,
+    "id": "WORK_013",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Turbulus",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "ISLAND_VACATION",
+    "text": "<b>Hunter Tourist</b>. <b>Battlecry:</b> Give +1/+1 to all other <b>Battlecry</b> minions in your hand, deck, and battlefield.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Zoltan Boros",
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 110767,
+    "flavor": "The Burning Legion upped their efforts to sell Argus Timeshares.",
+    "id": "WORK_014",
+    "isMiniSet": true,
+    "mechanics": [
+      "LIFESTEAL"
+    ],
+    "name": "Demonic Deal",
+    "rarity": "RARE",
+    "set": "ISLAND_VACATION",
+    "spellSchool": "FEL",
+    "text": "[x]<b>Lifesteal</b>. Deal $4 damage\nto a minion. Put a random\nDemon that costs (5) or\nmore on top of your deck.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Ian Ameling",
+    "attack": 6,
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 110768,
+    "flavor": "*facepalm* I asked for an art piece of a ghost on a bicycle...",
+    "health": 6,
+    "id": "WORK_015",
+    "isMiniSet": true,
+    "mechanics": [
+      "DEATHRATTLE",
+      "RUSH"
+    ],
+    "name": "Spirit Peddler",
+    "race": "DEMON",
+    "races": [
+      "DEMON"
+    ],
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Rush</b>\n<b>Deathrattle:</b> Reduce the\nCost of a random minion\nin your hand by (6).",
+    "type": "MINION"
+  },
+  {
+    "artist": "Studio Hive",
+    "attack": 3,
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 110769,
+    "durability": 0,
+    "flavor": "Excuse me, I believe you have my stapler…",
+    "health": 3,
+    "id": "WORK_016",
+    "isMiniSet": true,
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Infernal Stapler",
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "After your hero attacks, deal 3 damage to your hero.",
+    "type": "WEAPON"
+  },
+  {
+    "artist": "Mooncolony",
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 110771,
+    "flavor": "It's lovely to visit this time of year. Just ignore that enormous scarred area outside.",
+    "id": "WORK_017",
+    "isMiniSet": true,
+    "name": "Silvermoon Brochure",
+    "rarity": "RARE",
+    "referencedTags": [
+      "IMMUNE"
+    ],
+    "set": "ISLAND_VACATION",
+    "spellSchool": "HOLY",
+    "text": "Give a minion <b>Immune</b> this turn and +2/+2. <i>(Flips each turn.)</i>",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Kevin Sidharta",
+    "attack": 4,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 110772,
+    "flavor": "Give me ONE reason why a horse shouldn’t be allowed in the travel agency.",
+    "health": 2,
+    "id": "WORK_018",
+    "isMiniSet": true,
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Workhorse",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "<b>Deathrattle:</b> Summon two 2/1 Ponies.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Jaemin Kim",
+    "attack": 3,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 110775,
+    "flavor": "Show me the moo-ney!",
+    "health": 7,
+    "id": "WORK_019",
+    "isMiniSet": true,
+    "mechanics": [
+      "TAUNT",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Cash Cow",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Taunt</b>\nWhenever this takes\ndamage, get a Coin.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Patrik Bjorkstrom",
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 110776,
+    "flavor": "Why aren't the bananas randomly split???",
+    "id": "WORK_020",
+    "isMiniSet": true,
+    "name": "Monkey Business",
+    "rarity": "RARE",
+    "set": "ISLAND_VACATION",
+    "text": "Add 8 Bananas to your hand. Any that can't fit are randomly fed to friendly minions in play.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Matt Dixon",
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 110780,
+    "flavor": "She needs a spot to make sure she can quickly get to her trunk.",
+    "id": "WORK_021",
+    "isMiniSet": true,
+    "name": "Reserved Spot",
+    "rarity": "RARE",
+    "set": "ISLAND_VACATION",
+    "text": "[x]Give a random minion\nin your hand +4/+4.\nIf it's the only one there,\nreduce its Cost by (2).",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Matt Dixon",
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 110783,
+    "flavor": "Don't forget to punch out when you <b>Cleave</b>.",
+    "id": "WORK_022",
+    "isMiniSet": true,
+    "name": "Punch Card",
+    "rarity": "RARE",
+    "set": "ISLAND_VACATION",
+    "text": "Give your hero +3 Attack and \"Also damages adjacent minions\" this turn.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Jim Nelson",
+    "attack": 2,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 110785,
+    "flavor": "Numbers may betray you, but steel... steel you can trust.",
+    "health": 6,
+    "id": "WORK_023",
+    "isMiniSet": true,
+    "mechanics": [
+      "TAUNT",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Alloy Advisor",
+    "race": "MECHANICAL",
+    "races": [
+      "MECHANICAL"
+    ],
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "<b>Taunt</b>\nWhenever this takes damage, gain 3 Armor.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Jakub Kasper",
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 110786,
+    "flavor": "We guarantee your luggage will arrive at the speed of bear.",
+    "id": "WORK_024",
+    "isMiniSet": true,
+    "name": "Handle with Bear",
+    "rarity": "RARE",
+    "referencedTags": [
+      "TAUNT"
+    ],
+    "set": "ISLAND_VACATION",
+    "spellSchool": "NATURE",
+    "text": "[x]Get two 3/3 Bears\nwith <b>Taunt</b>. Each turn\nthey are in your hand,\nthey gain +1/+1.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Grafit",
+    "attack": 2,
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 110789,
+    "flavor": "*gasp* So 7 DID eat 9!!",
+    "health": 1,
+    "id": "WORK_025",
+    "isMiniSet": true,
+    "mechanics": [
+      "RUSH",
+      "TAUNT"
+    ],
+    "name": "Number Cruncher",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "RARE",
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b><b>Rush</b>, Taunt</b>\n<b>Choose Thrice -</b> Gain\n+2 Attack; or +2 Health.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Edgar Hidalgo",
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 110795,
+    "flavor": "Trust me, the next 3 cards in my deck are FIRE.",
+    "id": "WORK_026",
+    "isMiniSet": true,
+    "mechanics": [
+      "ImmuneToSpellpower"
+    ],
+    "name": "Burndown",
+    "rarity": "RARE",
+    "set": "ISLAND_VACATION",
+    "spellSchool": "FIRE",
+    "text": "[x]Draw 3 cards and\nlight them on fire.\nIn 3 turns, any still\n  in hand are destroyed!",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Mooncolony",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 110796,
+    "elite": true,
+    "flavor": "\"Your trip is my suggestion!\"",
+    "hasDiamondSkin": true,
+    "health": 2,
+    "id": "WORK_027",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Dreamplanner Zephrys",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Battlecry:</b> Choose a\nTravel Tour to get two\npotentially perfect\ncards from it.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Brian Despain",
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 112372,
+    "flavor": "Get away from it all! Forever.",
+    "id": "WORK_028",
+    "isMiniSet": true,
+    "name": "Eternal Layover",
+    "rarity": "RARE",
+    "referencedTags": [
+      "REBORN"
+    ],
+    "runeCost": {
+      "blood": 0,
+      "frost": 0,
+      "unholy": 1
+    },
+    "set": "ISLAND_VACATION",
+    "text": "[x]Give ALL minions <b>Reborn</b>,\nthen destroy all minions.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Vlad Botos",
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 110848,
+    "flavor": "The Icecrown ski slopes really are to die for.",
+    "id": "WORK_030",
+    "isMiniSet": true,
+    "name": "Icecrown Brochure",
+    "rarity": "RARE",
+    "referencedTags": [
+      "FREEZE"
+    ],
+    "set": "ISLAND_VACATION",
+    "spellSchool": "FROST",
+    "text": "Deal $3 damage to a minion and <b>Freeze</b> its neighbors.\n<i>(Flips each turn.)</i>",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Guillaume Beauchêne",
+    "attack": 4,
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 110849,
+    "flavor": "\"Our prosperity is beyond a shadow of a doubt!\"",
+    "health": 4,
+    "id": "WORK_031",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Envoy of Prosperity",
+    "race": "DRAENEI",
+    "races": [
+      "DRAENEI"
+    ],
+    "rarity": "RARE",
+    "set": "ISLAND_VACATION",
+    "text": "<b>Battlecry:</b> Put the highest Cost card in your hand on top of your deck.",
+    "type": "MINION"
+  },
+  {
+    "artist": "L. Lullabi & K. Turovec",
+    "attack": 4,
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 110850,
+    "flavor": "\"Our prosperity… is beyond… a shadow of… a doubt! Ok, got it!\"",
+    "health": 3,
+    "id": "WORK_032",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Job Shadower",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD"
+    ],
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "<b>Battlecry:</b> If your hero took damage this turn, summon a copy of this.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Matt Dixon",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 110853,
+    "flavor": "\"Aww, bummer! I spilled coffee all over your cards! Dang it! What a shame!\"",
+    "health": 4,
+    "id": "WORK_040",
+    "isMiniSet": true,
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Clumsy Steward",
+    "rarity": "RARE",
+    "set": "ISLAND_VACATION",
+    "text": "After ANY card is drawn, make it <b>Temporary</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Luca Zontini",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 110855,
+    "flavor": "Chopping wood, mining gold and repairing buildings? None of these pursuits called to Grob...pencil doodling on wood was his true labor of love.",
+    "health": 3,
+    "id": "WORK_041",
+    "isMiniSet": true,
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Busy Peon",
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "text": "<b>Deathrattle:</b> Your next location costs (2) less.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Jakub Kasper",
+    "attack": 4,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 110858,
+    "flavor": "Hey, no eating at your desk!",
+    "health": 6,
+    "id": "WORK_042",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Carnivorous Cubicle",
+    "rarity": "EPIC",
+    "set": "ISLAND_VACATION",
+    "targetingArrowText": "Destroy a friendly minion.",
+    "text": "[x]<b>Battlecry:</b> Destroy a\nfriendly minion.\nSummon a copy of it at\n the end of your turns.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Konstantin Porubov",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 10,
+    "dbfId": 110859,
+    "elite": true,
+    "flavor": "Our travel options will take you to Paradise and beyond!",
+    "hasDiamondSkin": true,
+    "health": 3,
+    "id": "WORK_043",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Travelmaster Dungar",
+    "rarity": "LEGENDARY",
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Battlecry:</b> Summon three\nminions from your\ndeck that are from\ndifferent expansions.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Konstantin Porubov",
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 110882,
+    "flavor": "Our Un'Goro package includes the Tortollan travel tour! Just don't mind the Devilsaurs.",
+    "id": "WORK_050",
+    "isMiniSet": true,
+    "name": "Un'Goro Brochure",
+    "rarity": "COMMON",
+    "set": "ISLAND_VACATION",
+    "spellSchool": "NATURE",
+    "text": "[x]Draw two minions.\nGive them +2/+2.\n<i>(Flips each turn.)</i>",
+    "type": "SPELL"
+  },
+  {
+    "artist": "James Ryman",
+    "attack": 4,
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 110965,
+    "elite": true,
+    "flavor": "\"Say goodbye to red-eye gryphon flights!\"",
+    "health": 5,
+    "id": "WORK_063",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Portalmancer Skyla",
+    "rarity": "LEGENDARY",
+    "set": "ISLAND_VACATION",
+    "text": "[x]<b>Rogue Tourist\n</b><b>Battlecry:</b> Swap the Costs of\nthe lowest and highest Cost\nspells in your hand.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Zoltan Boros",
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 111485,
+    "flavor": "ctrl-f 'soul'",
+    "id": "WORK_070",
+    "isMiniSet": true,
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "Soul Searching",
+    "rarity": "COMMON",
+    "runeCost": {
+      "blood": 0,
+      "frost": 0,
+      "unholy": 2
+    },
+    "set": "ISLAND_VACATION",
+    "spellSchool": "SHADOW",
+    "text": "<b>Discover</b> a card from your deck. Spend 5 <b>Corpses</b> to copy it.",
+    "type": "SPELL"
+  }
+]
