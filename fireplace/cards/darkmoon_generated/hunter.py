@@ -60,11 +60,41 @@ class DMF_089:
         GameTag.HEALTH: 2,
         GameTag.COST: 8,
     }
-    play = (
-        Summon(CONTROLLER, RANDOM(FRIENDLY_DECK + MINION)),
-        # TODO: 让召唤的随从攻击敌方英雄然后死亡
-        # 这需要复杂的控制逻辑，暂时简化实现
-    )
+    
+    def play(self):
+        # 从牌库中找一个随从
+        deck_minions = [card for card in self.controller.deck if card.type == CardType.MINION]
+        if not deck_minions:
+            return
+        
+        # 随机选择一个
+        import random
+        minion = random.choice(deck_minions)
+        
+        # 召唤该随从
+        yield Summon(CONTROLLER, minion)
+        
+        # 检查随从是否成功召唤到场上
+        if minion.zone != Zone.PLAY:
+            return
+        
+        # 给随从添加一个临时buff，标记它需要攻击后死亡
+        yield Buff(minion, "DMF_089e")
+        
+        # 强制该随从攻击敌方英雄
+        enemy_hero = self.controller.opponent.hero
+        if enemy_hero and minion.can_attack():
+            yield Attack(minion, enemy_hero)
+        
+        # 攻击后，摧毁该随从
+        yield Destroy(minion)
+
+
+class DMF_089e:
+    """雷管标记 - Blastenheimer Mark"""
+    # 这个buff只是一个标记，表示随从是被雷管召唤的
+    # 主要用于视觉效果或日志记录
+    pass
 
 
 class DMF_122:
@@ -206,8 +236,9 @@ class DMF_088:
         GameTag.DURABILITY: 2,
         GameTag.COST: 4,
     }
+    
+    # 使用核心的 DiscoverAndCastSecret 动作
+    # 自动处理：重复检测、数量限制、发现、施放
     events = Attack(FRIENDLY_HERO).after(
-        GenericChoice(CONTROLLER, Discover(CONTROLLER, cards=SECRET + HUNTER_CLASS))
-        # TODO: 自动施放发现的奥秘
-        # 完整实现需要扩展，暂时只发现不施放
+        DiscoverAndCastSecret(CONTROLLER, cards=SECRET + HUNTER_CLASS)
     )

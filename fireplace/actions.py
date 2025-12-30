@@ -606,23 +606,6 @@ class Play(GameAction):
                             source.game.trigger(hand_card, actions, event_args={'card': card})
                             hand_card.corrupt_active = False  # Corrupt only triggers once / 腐蚀效果只触发一次
 
-        # Spell Double Cast (Solar Eclipse)
-        # 法术双倍施放（日蚀）
-        # If the player has SPELL_DOUBLE_CAST tag and a spell was just played, cast it again
-        # 如果玩家有 SPELL_DOUBLE_CAST 标签且刚打出了法术，则再次施放该法术
-        from .enums import SPELL_DOUBLE_CAST
-        if card.type == CardType.SPELL and hasattr(player, 'tags') and player.tags.get(SPELL_DOUBLE_CAST, 0) > 0:
-            log_info("spell_double_cast", card=card, player=player)
-            # 减少双倍施放计数
-            player.tags[SPELL_DOUBLE_CAST] -= 1
-            # 重新执行法术效果（使用相同的目标）
-            # 注意：这里只重新执行法术的play效果，不重新触发完整的Play流程
-            # （不支付费用、不触发Play事件、不增加"本回合施放法术次数"等计数器）
-            if not card.ignore_scripts:
-                actions = card.get_actions("play")
-                if actions:
-                    source.game.trigger(card, actions, event_args=None)
-
 
 
 class Activate(GameAction):
@@ -2310,6 +2293,131 @@ class CastSpellPreferSource(CastSpell):
         if card.targets:
             return source.game.random.choice(card.targets)
         return None
+
+
+class DiscoverAndCastChoice(GenericChoice):
+    """
+    发现并施放的特殊选择
+    选择后自动将卡牌施放到场上（不需要支付费用）
+    """
+    
+    def __init__(self, player, cards, source):
+        super().__init__(player, cards)
+        self.source_card = source  # 保存触发源（如武器）
+    
+    def choose(self, card):
+        """重写choose方法，在选择后自动施放卡牌"""
+        # 先执行正常的选择逻辑（将卡牌放入手牌）
+        super().choose(card)
+        
+        # 然后立即施放该卡牌
+        if card.zone == Zone.HAND:
+            if card.type == CardType.SPELL:
+                # 如果是法术，施放到场上
+                if card.secret:
+                    # 奥秘直接放到场上
+                    card.zone = Zone.PLAY
+                else:
+                    # 普通法术需要选择目标并施放
+                    # 使用 CastSpell 动作来处理
+                    if card.requires_target():
+                        # 需要目标的法术，随机选择目标
+                        if card.targets:
+                            target = self.player.game.random.choice(card.targets)
+                        else:
+                            # 没有合法目标，法术失效
+                            card.discard()
+                            return
+                    else:
+                        target = None
+                    
+                    # 施放法术
+                    CastSpell(card, target).trigger(self.source_card)
+
+
+class DiscoverAndCastSecret(TargetedAction):
+    """
+    发现并施放奥秘（通用动作）
+    
+    功能：
+    - 从指定的奥秘池中发现一张奥秘
+    - 自动排除已在场的奥秘（避免重复）
+    - 自动检查奥秘数量限制（最多5个）
+    - 选择后自动施放（不需要支付费用）
+    - 不经过手牌，直接从 SETASIDE 施放到场上
+    
+    用于：Rinling's Rifle 等卡牌
+    """
+    
+    PLAYER = ActionArg()
+    CARDS = ActionArg()  # 奥秘池（Selector）
+    
+    def get_target_args(self, source, target):
+        # 获取奥秘池
+        cards = self._args[1]
+        if isinstance(cards, Selector):
+            cards = cards.eval(source.game, source)
+        elif callable(cards):
+            cards = cards()
+        return [cards]
+    
+    def do(self, source, player, cards):
+        """执行发现并施放奥秘"""
+        if not cards:
+            return
+        
+        # 1. 过滤出未在场的奥秘（避免重复）
+        active_secret_ids = {secret.id for secret in player.secrets}
+        available_secrets = [
+            c for c in cards 
+            if c.id not in active_secret_ids
+        ]
+        
+        # 2. 如果没有可用的奥秘，直接返回
+        if not available_secrets:
+            log_info("no_unique_secrets_available", player=player)
+            return
+        
+        # 3. 检查奥秘数量限制
+        if len(player.secrets) >= 5:
+            log_info("secret_zone_full", player=player)
+            return
+        
+        # 4. 从可用奥秘中随机选择3张（或更少）
+        import random
+        if len(available_secrets) > 3:
+            choices = random.sample(available_secrets, 3)
+        else:
+            choices = available_secrets
+        
+        # 5. 创建发现选择
+        choice_cards = [player.card(c.id if hasattr(c, 'id') else c, source=source) for c in choices]
+        
+        # 6. 使用自定义的 Choice 类，不经过手牌直接施放
+        choice = DiscoverSecretChoice(player, choice_cards)
+        choice.trigger(source)
+
+
+class DiscoverSecretChoice(Choice):
+    """
+    发现奥秘的特殊选择
+    选择后直接施放到场上，不经过手牌
+    """
+    
+    def choose(self, card):
+        """选择奥秘并直接施放"""
+        # 调用父类的 choose 来处理基本逻辑（清除选择状态等）
+        super().choose(card)
+        
+        # 将选中的卡牌直接施放到场上
+        # 其他未选中的卡牌丢弃
+        for _card in self.cards:
+            if _card is card:
+                # 选中的卡牌：直接施放到场上
+                _card.zone = Zone.PLAY
+            else:
+                # 未选中的卡牌：丢弃
+                _card.discard()
 
 
 class Evolve(TargetedAction):

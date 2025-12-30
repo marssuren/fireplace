@@ -184,9 +184,67 @@ class DMF_075:
         GameTag.CARDTYPE: CardType.SPELL,
         GameTag.COST: 2,
     }
-    # 简化实现：直接抽两张牌
-    # 完整实现需要玩家交互，这在AI训练中不适用
-    play = Draw(CONTROLLER) * 2
+    
+    def play(self):
+        # 先抽一张牌
+        drawn_cards = yield Draw(CONTROLLER)
+        if not drawn_cards:
+            return
+        
+        first_card = drawn_cards[0]
+        first_cost = first_card.cost
+        
+        # 检查牌库是否还有牌
+        if not self.controller.deck:
+            return
+        
+        # 查看牌库顶的牌（但不抽）
+        next_card = self.controller.deck[-1]
+        next_cost = next_card.cost
+        
+        # 让玩家选择：猜测下一张牌费用更高还是更低
+        # 创建两个选项
+        higher_choice = self.controller.card("DMF_075a", source=self)
+        lower_choice = self.controller.card("DMF_075b", source=self)
+        
+        # 存储信息到选项卡牌上，用于后续判断
+        higher_choice.first_cost = first_cost
+        higher_choice.next_cost = next_cost
+        lower_choice.first_cost = first_cost
+        lower_choice.next_cost = next_cost
+        
+        # 让玩家选择
+        yield GenericChoice(CONTROLLER, [higher_choice, lower_choice])
+
+
+class DMF_075a:
+    """更高 - Higher"""
+    tags = {
+        GameTag.CARDTYPE: CardType.SPELL,
+        GameTag.COST: 0,
+    }
+    
+    def play(self):
+        # 检查猜测是否正确
+        if hasattr(self, 'next_cost') and hasattr(self, 'first_cost'):
+            if self.next_cost > self.first_cost:
+                # 猜对了，抽牌
+                yield Draw(CONTROLLER)
+
+
+class DMF_075b:
+    """更低 - Lower"""
+    tags = {
+        GameTag.CARDTYPE: CardType.SPELL,
+        GameTag.COST: 0,
+    }
+    
+    def play(self):
+        # 检查猜测是否正确
+        if hasattr(self, 'next_cost') and hasattr(self, 'first_cost'):
+            if self.next_cost < self.first_cost:
+                # 猜对了，抽牌
+                yield Draw(CONTROLLER)
 
 
 class DMF_730:
