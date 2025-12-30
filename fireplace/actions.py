@@ -920,13 +920,14 @@ class Predamage(TargetedAction):
 
     TARGET = ActionArg()
     AMOUNT = IntArg()
+    TRIGGER_LIFESTEAL = BoolArg(default=True)
 
-    def do(self, source, target, amount):
+    def do(self, source, target, amount, trigger_lifesteal):
         amount <<= target.incoming_damage_multiplier
         target.predamage = amount
         if amount:
             self.broadcast(source, EventListener.ON, target, amount)
-            return source.game.trigger_actions(source, [Damage(target)])[0][0]
+            return source.game.trigger_actions(source, [Damage(target, None, trigger_lifesteal)])[0][0]
         return 0
 
 
@@ -965,8 +966,9 @@ class Damage(TargetedAction):
 
     TARGET = ActionArg()
     AMOUNT = IntArg()
+    TRIGGER_LIFESTEAL = BoolArg(default=True)
 
-    def do(self, source, target, amount=None):
+    def do(self, source, target, amount=None, trigger_lifesteal=True):
         if not amount:
             amount = target.predamage
         amount = target._hit(amount)
@@ -981,11 +983,18 @@ class Damage(TargetedAction):
             # check hasattr: some sources of damage are game or player (like fatigue)
             # weapon damage itself after hero attack, but does not trigger lifesteal
             if (
-                hasattr(source, "lifesteal")
+                trigger_lifesteal
+                and hasattr(source, "lifesteal")
                 and source.lifesteal
                 and source.type != CardType.WEAPON
             ):
-                source.heal(source.controller.hero, amount)
+                from fireplace.enums import LIFESTEAL_DAMAGES_ENEMY
+                if source.controller.tags.get(LIFESTEAL_DAMAGES_ENEMY, 0):
+                    # Inverted Lifesteal: Deal damage to enemy hero
+                    # Pass trigger_lifesteal=False to prevent infinite loop
+                    source.game.queue_actions(source, [Hit(source.controller.opponent.hero, amount, False)])
+                else:
+                    source.heal(source.controller.hero, amount)
             self.broadcast(source, EventListener.ON, target, amount, source)
             # poisonous can not destroy hero
             if (
@@ -1010,6 +1019,32 @@ class Damage(TargetedAction):
             target.damaged_this_turn += amount
             if source.type == CardType.HERO_POWER:
                 source.controller.hero_power_damage_this_game += amount
+
+            # Frenzy: 当随从首次受到伤害并存活时触发
+            # Trigger Frenzy if the target is a minion, survived the damage, and has frenzy_active
+            if (
+                target.type == CardType.MINION
+                and target.zone == Zone.PLAY
+                and hasattr(target, 'frenzy_active')
+                and target.frenzy_active
+            ):
+                actions = target.get_actions("frenzy")
+                if actions:
+                    source.game.trigger(target, actions, event_args={'damage': amount})
+                    target.frenzy_active = False  # Frenzy 只触发一次
+
+            # Honorable Kill: 当精确击杀目标时触发（伤害值恰好等于目标剩余生命值）
+            # Trigger Honorable Kill if the damage exactly killed the target
+            if (
+                amount > 0
+                and target.type == CardType.MINION
+                and target.health == 0  # 精确击杀：生命值降为0
+                and target.zone == Zone.GRAVEYARD  # 目标已死亡
+                and hasattr(source, 'honorable_kill')
+            ):
+                actions = source.get_actions("honorable_kill")
+                if actions:
+                    source.game.trigger(source, actions, event_args={'target': target})
         return amount
 
 
@@ -1439,12 +1474,13 @@ class Hit(TargetedAction):
 
     TARGET = ActionArg()
     AMOUNT = IntArg()
+    TRIGGER_LIFESTEAL = BoolArg(default=True)
 
-    def do(self, source, target, amount):
+    def do(self, source, target, amount, trigger_lifesteal):
         amount = source.get_damage(amount, target)
         if amount:
             source.game.manager.targeted_action(self, source, target, amount)
-            return source.game.queue_actions(source, [Predamage(target, amount)])[0][0]
+            return source.game.queue_actions(source, [Predamage(target, amount, trigger_lifesteal)])[0][0]
         return 0
 
 
@@ -1455,17 +1491,18 @@ class HitExcessDamage(TargetedAction):
 
     TARGET = ActionArg()
     AMOUNT = IntArg()
+    TRIGGER_LIFESTEAL = BoolArg(default=True)
 
-    def do(self, source, target, amount):
+    def do(self, source, target, amount, trigger_lifesteal):
         amount = source.get_damage(amount, target)
         if amount:
             source.game.manager.targeted_action(self, source, target, amount)
             if target.health >= amount:
-                source.game.queue_actions(source, [Predamage(target, amount)])
+                source.game.queue_actions(source, [Predamage(target, amount, trigger_lifesteal)])
                 return 0
             else:
                 excess_amount = amount - target.health
-                source.game.queue_actions(source, [Predamage(target, amount)])
+                source.game.queue_actions(source, [Predamage(target, amount, trigger_lifesteal)])
                 return excess_amount
         return 0
 
@@ -1740,6 +1777,15 @@ class Summon(TargetedAction):
                 # 为带有腐蚀属性的卡牌初始化腐蚀状态
                 if hasattr(card, 'corrupt'):
                     card.corrupt_active = True
+                # Initialize Frenzy state for minions with frenzy
+                # 为带有狂怒的随从初始化狂怒状态
+                if card.type == CardType.MINION and hasattr(card, 'frenzy'):
+                    card.frenzy_active = True
+                # Summon Colossal appendages
+                # 召唤巨型随从的附属部件
+                if card.type == CardType.MINION and hasattr(card, 'colossal_appendages'):
+                    for appendage_id in card.colossal_appendages:
+                        source.game.queue_actions(source, [Summon(target, appendage_id)])
             if card.type == CardType.MINION and Race.TOTEM in card.races:
                 card.controller.times_totem_summoned_this_game += 1
             source.game.manager.targeted_action(self, source, target, card)
@@ -1812,6 +1858,143 @@ class Shuffle(TargetedAction):
             target.shuffle_deck()
             source.game.manager.targeted_action(self, source, target, card)
             self.broadcast(source, EventListener.AFTER, target, card)
+
+
+class Trade(TargetedAction):
+    """
+    Trade a card from hand: shuffle it into deck and draw a card.
+    Used for Tradeable mechanic in United in Stormwind expansion.
+
+    交易机制：将手牌中的卡牌洗回牌库，然后抽一张牌。
+    """
+
+    TARGET = ActionArg()
+    CARD = CardArg()
+
+    def do(self, source, target, cards):
+        """
+        Execute the trade action.
+
+        Args:
+            source: The source entity triggering the trade
+            target: The player performing the trade
+            cards: The card(s) to trade
+        """
+        log_info("trades_card", cards=cards, target=target)
+        if not isinstance(cards, list):
+            cards = [cards]
+
+        for card in cards:
+            # 标记卡牌已被交易
+            from .enums import TRADED_THIS_TURN
+            card.tags[TRADED_THIS_TURN] = True
+
+            # 触发交易前事件（用于某些卡牌的"交易后"效果）
+            if hasattr(card, 'trade'):
+                # 执行卡牌的 trade 效果
+                actions = card.trade
+                if actions:
+                    source.game.queue_actions(source, [actions])
+
+            # 将卡牌洗回牌库
+            if card.zone == Zone.HAND:
+                card.zone = Zone.DECK
+                target.shuffle_deck()
+                log_info("card_shuffled_into_deck", card=card, target=target)
+
+            # 抽一张牌
+            target.draw()
+
+            # 广播交易事件
+            source.game.manager.targeted_action(self, source, target, card)
+            self.broadcast(source, EventListener.AFTER, target, card)
+
+
+class ShuffleIntoDeck(TargetedAction):
+    """
+    Shuffle card(s) into player's deck at a specific position.
+    Used for Azsharan mechanic in Voyage to the Sunken City expansion.
+
+    将卡牌洗入牌库的指定位置（顶部或底部）。
+    用于探寻沉没之城的艾萨拉（Azsharan）机制。
+    """
+
+    TARGET = ActionArg()
+    CARD = CardArg()
+
+    def __init__(self, *args, position='random', **kwargs):
+        """
+        Args:
+            position: 'top', 'bottom', or 'random' (default)
+        """
+        super().__init__(*args, **kwargs)
+        self.position = position
+
+    def do(self, source, target, cards):
+        log_info("shuffles_into_deck_position", cards=cards, target=target, position=self.position)
+        if not isinstance(cards, list):
+            cards = [cards]
+
+        for card in cards:
+            if card.controller != target:
+                card.zone = Zone.SETASIDE
+                card.controller = target
+            if len(target.deck) >= target.max_deck_size:
+                log_info("shuffle_fails_deck_full", card=card, target=target)
+                continue
+
+            # 根据位置放置卡牌
+            if self.position == 'bottom':
+                # 放到牌库底部
+                card.zone = Zone.DECK
+                target.deck.append(card)
+            elif self.position == 'top':
+                # 放到牌库顶部
+                card.zone = Zone.DECK
+                target.deck.insert(0, card)
+            else:
+                # 随机洗入（默认行为）
+                card.zone = Zone.DECK
+                target.shuffle_deck()
+
+            source.game.manager.targeted_action(self, source, target, card)
+            self.broadcast(source, EventListener.AFTER, target, card)
+
+
+class Dredge(TargetedAction):
+    """
+    Dredge: Look at the bottom 3 cards of your deck. Put one on top.
+    Used in Voyage to the Sunken City expansion.
+
+    疏浚：查看你牌库底部的3张牌，将其中一张置于牌库顶部。
+    用于探寻沉没之城扩展包。
+    """
+
+    TARGET = ActionArg()
+
+    def do(self, source, target):
+        log_info("dredge", source=source, target=target)
+
+        deck = target.deck
+        if len(deck) < 1:
+            return
+
+        # 查看底部最多3张牌
+        num_cards = min(3, len(deck))
+        bottom_cards = deck[-num_cards:]
+
+        # 在AI训练中，随机选择一张（或使用策略）
+        # 实际游戏中应该让玩家选择
+        import random
+        chosen = random.choice(bottom_cards)
+
+        # 将选中的牌移到顶部
+        deck.remove(chosen)
+        deck.insert(0, chosen)
+
+        log_info("dredge_chosen", card=chosen, target=target)
+        source.game.manager.targeted_action(self, source, target, chosen)
+        self.broadcast(source, EventListener.AFTER, target, chosen)
 
 
 class Swap(TargetedAction):

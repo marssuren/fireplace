@@ -753,6 +753,14 @@ CORRUPT_CARD = FuncSelector(
     else []
 )
 
+# Tradeable 机制选择器
+# 用于选择触发 Trade 的卡牌
+TRADED_CARD = FuncSelector(
+    lambda entities, source: [source.event_args.get('card')]
+    if hasattr(source, 'event_args') and source.event_args and 'card' in source.event_args
+    else []
+)
+
 
 def SAME_RACE(entity1, entity2):
     races1 = getattr(entity1, "races", [])

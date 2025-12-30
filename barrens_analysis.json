@@ -1,0 +1,27 @@
+{
+  "total": 170,
+  "by_class": {
+    "NEUTRAL": 40,
+    "HUNTER": 13,
+    "SHAMAN": 13,
+    "MAGE": 13,
+    "DEMONHUNTER": 13,
+    "PRIEST": 13,
+    "ROGUE": 13,
+    "WARRIOR": 13,
+    "DRUID": 13,
+    "PALADIN": 13,
+    "WARLOCK": 13
+  },
+  "by_type": {
+    "MINION": 115,
+    "SPELL": 48,
+    "WEAPON": 7
+  },
+  "by_rarity": {
+    "COMMON": 66,
+    "RARE": 49,
+    "EPIC": 26,
+    "LEGENDARY": 29
+  }
+}
