@@ -1701,6 +1701,13 @@ class Reveal(TargetedAction):
         if target.zone == Zone.SECRET and target.data.secret:
             self.broadcast(source, EventListener.ON, target)
             target.zone = Zone.GRAVEYARD
+            
+            # 累加玩家的奥秘触发计数器
+            # 用于支持 DMF_109（暗月先知塞格）等卡牌
+            from .enums import NUM_SECRETS_REVEALED
+            controller = target.controller
+            controller.tags[NUM_SECRETS_REVEALED] = controller.tags.get(NUM_SECRETS_REVEALED, 0) + 1
+            
         source.game.manager.targeted_action(self, source, target)
 
 

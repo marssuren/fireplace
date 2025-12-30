@@ -8,16 +8,30 @@ from ..utils import *
 # Minions
 
 class DMF_703:
-    """大地召唤者 - Grand Totem Eys'or
-    战吼：如果你在上个回合中打出了一张图腾牌，便召唤一个该图腾的复制。
+    """大图腾埃索 - Grand Totem Eys'or
+    在你的回合结束时，使你手牌、牌库和战场上的所有其他图腾获得+1/+1。
     """
     tags = {
-        GameTag.ATK: 4,
+        GameTag.ATK: 0,
         GameTag.HEALTH: 4,
-        GameTag.COST: 4,
+        GameTag.COST: 3,
+        GameTag.RACE: Race.TOTEM,
     }
-    # 简化实现：召唤一个随机图腾
-    play = Summon(CONTROLLER, RandomTotem())
+    
+    # 回合结束时，给所有其他图腾+1/+1
+    events = OwnTurnEnd(CONTROLLER).on(
+        Buff(FRIENDLY_MINIONS + TOTEM - SELF, "DMF_703e"),  # 战场上的其他图腾
+        Buff(FRIENDLY_HAND + TOTEM, "DMF_703e"),             # 手牌中的图腾
+        Buff(FRIENDLY_DECK + TOTEM, "DMF_703e"),             # 牌库中的图腾
+    )
+
+
+class DMF_703e:
+    """+1/+1"""
+    tags = {
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1,
+    }
 
 
 class DMF_704:
@@ -33,21 +47,19 @@ class DMF_704:
 
 
 class DMF_707:
-    """狂野精灵 - Dunk Tank
-    战吼：如果你在本回合中打出过元素牌，便冻结一个敌方随从。
+    """投球游戏 - Dunk Tank
+    造成4点伤害。腐蚀：然后对所有敌方随从造成2点伤害。
     """
     tags = {
-        GameTag.ATK: 2,
-        GameTag.HEALTH: 4,
+        GameTag.CARDTYPE: CardType.SPELL,
         GameTag.COST: 4,
+        GameTag.SPELL_SCHOOL: SpellSchool.NATURE,
     }
     requirements = {
-        PlayReq.REQ_TARGET_IF_AVAILABLE: 0,
-        PlayReq.REQ_ENEMY_TARGET: 0,
-        PlayReq.REQ_MINION_TARGET: 0,
+        PlayReq.REQ_TARGET_TO_PLAY: 0,
     }
-    # 简化实现：直接冻结
-    play = Freeze(TARGET)
+    play = Hit(TARGET, 4)
+    corrupt = Hit(ENEMY_MINIONS, 2)
 
 
 class DMF_708:

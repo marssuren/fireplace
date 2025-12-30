@@ -55,9 +55,20 @@ class DMF_102:
         GameTag.HEALTH: 2,
         GameTag.COST: 2,
     }
-    # TODO: 实现"每回合第一张奥秘减费"的光环效果
-    # 需要追踪每回合打出的奥秘数量
+    # 入场时给控制者添加追踪buff
+    play = Buff(CONTROLLER, "DMF_102e")
+    # 每回合开始时重新添加buff（如果随从还在场）
+    events = OwnTurnBegin(CONTROLLER).on(Buff(CONTROLLER, "DMF_102e"))
+
+
+class DMF_102e:
+    """游戏管理员减费buff
+    使手牌中的奥秘减费到1点，打出第一张奥秘后自动销毁。
+    """
+    # 刷新手牌中所有奥秘的费用为1点
     update = Refresh(FRIENDLY_HAND + SECRET, {GameTag.COST: SET(1)})
+    # 打出奥秘后，销毁此buff（确保只有第一张奥秘享受减费）
+    events = Play(CONTROLLER, SECRET).on(Destroy(SELF))
 
 
 class DMF_106:
@@ -81,9 +92,19 @@ class DMF_109:
         GameTag.HEALTH: 5,
         GameTag.COST: 6,
     }
-    # 简化实现：抽1张牌
-    # 完整实现需要追踪奥秘触发次数
-    play = Draw(CONTROLLER)
+    
+    # 战吼：抽牌数量 = 1 + 奥秘触发次数
+    # 使用核心机制提供的 NUM_SECRETS_REVEALED 计数器
+    # 该计数器从游戏开始就自动追踪，每次友方奥秘触发时自动累加
+    def play(self):
+        from ..enums import NUM_SECRETS_REVEALED
+        # 获取本局对战中触发的友方奥秘次数（默认为0）
+        secret_count = self.controller.tags.get(NUM_SECRETS_REVEALED, 0)
+        # 抽牌数量 = 1 + 触发次数
+        draw_count = 1 + secret_count
+        # 抽牌
+        for _ in range(draw_count):
+            yield Draw(CONTROLLER)
 
 
 class YOP_020:
@@ -121,9 +142,9 @@ class DMF_104:
         GameTag.CARDTYPE: CardType.SPELL,
         GameTag.COST: 8,
     }
-    # 简化实现：召唤1个8/8元素
-    # 完整实现需要追踪上回合打出的元素数量
-    play = Summon(CONTROLLER, "DMF_104t")
+    # 使用 fireplace 已有的 elemental_played_last_turn 计数器
+    # 该计数器在每回合结束时自动更新
+    play = Summon(CONTROLLER, "DMF_104t") * (Attr(CONTROLLER, "elemental_played_last_turn") + 1)
 
 
 class DMF_104t:
@@ -145,9 +166,11 @@ class DMF_105:
         GameTag.COST: 2,
         GameTag.SPELL_SCHOOL: SpellSchool.ARCANE,
     }
-    play = GenericChoice(CONTROLLER, Discover(CONTROLLER, cards=SECRET + MAGE_CLASS))
-    # TODO: 自动施放发现的奥秘
-    corrupt = GenericChoice(CONTROLLER, Discover(CONTROLLER, cards=SECRET + MAGE_CLASS)) * 2
+    # 使用核心的 DiscoverAndCastSecret 动作
+    # 自动处理：重复检测、数量限制、发现、施放
+    play = DiscoverAndCastSecret(CONTROLLER, cards=SECRET + MAGE_CLASS)
+    # 腐蚀版本：发现并施放2张奥秘
+    corrupt = DiscoverAndCastSecret(CONTROLLER, cards=SECRET + MAGE_CLASS) * 2
 
 
 class DMF_107:
@@ -159,12 +182,33 @@ class DMF_107:
         GameTag.COST: 3,
         GameTag.SECRET: True,
     }
-    # TODO: 实现追踪对手回合伤害的机制
-    # 简化实现：在对手回合结束时触发
+    # 施放时给玩家添加追踪buff
+    play = Buff(CONTROLLER, "DMF_107e")
+    # 在对手回合结束时检查是否受到伤害
     secret = OppTurnEnd(CONTROLLER).on(
-        Draw(CONTROLLER) * 3,
-        Reveal(SELF),
+        # 检查是否受到伤害（通过检查追踪buff的标记）
+        Find(~Attr(CONTROLLER, "dmf_107_damaged")) & (
+            Draw(CONTROLLER) * 3,
+            Reveal(SELF),
+        )
     )
+
+
+class DMF_107e:
+    """非公平游戏追踪buff
+    追踪对手回合中是否受到伤害。
+    """
+    def apply(self, target):
+        # 初始化标记：未受到伤害
+        target.dmf_107_damaged = False
+    
+    # 监听友方英雄受到伤害的事件
+    events = [
+        # 对手回合开始时重置标记（设为 False）
+        OppTurnBegin(CONTROLLER).on(SetAttr(CONTROLLER, "dmf_107_damaged", False)),
+        # 受到伤害时设置标记（设为 True）
+        Damage(FRIENDLY_HERO).on(SetAttr(CONTROLLER, "dmf_107_damaged", True)),
+    ]
 
 
 class DMF_108:
@@ -176,9 +220,52 @@ class DMF_108:
         GameTag.COST: 2,
         GameTag.SPELL_SCHOOL: SpellSchool.ARCANE,
     }
-    # TODO: 实现牌库法术变形但保留费用的复杂机制
-    # 这需要扩展核心代码，暂时简化
-    play = Morph(FRIENDLY_DECK + SPELL, RandomSpell(cost=COST(SELF) + 3))
+    
+    # 使用自定义 play 方法实现"变形但保留费用"的复杂逻辑
+    def play(self):
+        # 获取牌库中的所有法术
+        deck_spells = [card for card in self.controller.deck if card.type == CardType.SPELL]
+        
+        for spell in deck_spells:
+            # 记录原费用
+            original_cost = spell.cost
+            # 目标费用 = 原费用 + 3
+            target_cost = original_cost + 3
+            
+            # 查找费用为 target_cost 的随机法术
+            from ..dsl.random_picker import RandomSpell
+            new_spell_picker = RandomSpell(cost=target_cost)
+            new_spell_cards = new_spell_picker.find_cards(self.controller)
+            
+            if not new_spell_cards:
+                # 如果没有找到对应费用的法术，跳过
+                continue
+            
+            # 随机选择一张
+            import random
+            new_spell_id = random.choice(new_spell_cards)
+            
+            # 变形
+            yield Morph(spell, new_spell_id)
+            
+            # 获取变形后的卡牌（Morph 返回新卡牌）
+            # 注意：Morph 会返回新卡牌，我们需要给它添加减费buff
+            # 由于 Morph 的返回值，我们需要在变形后立即添加buff
+            # 使用一个特殊的buff来永久减少费用
+            morphed_card = spell.morphed  # 获取变形后的卡牌
+            if morphed_card:
+                # 添加永久减费buff，使费用恢复到原值
+                # 减费量 = 目标费用 - 原费用 = 3
+                yield Buff(morphed_card, "DMF_108e", cost=-3)
+
+
+class DMF_108e:
+    """愚人套牌减费buff
+    永久减少3点费用，使变形后的法术保留原费用。
+    """
+    tags = {
+        GameTag.COST: -3,
+    }
 
 
 class YOP_019:

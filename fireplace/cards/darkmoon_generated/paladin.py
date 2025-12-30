@@ -162,11 +162,50 @@ class DMF_195:
         GameTag.COST: 2,
         GameTag.SPELL_SCHOOL: SpellSchool.HOLY,
     }
-    # 简化实现：发现法术并恢复固定生命值
-    play = (
-        GenericChoice(CONTROLLER, Discover(CONTROLLER, cards=SPELL + PALADIN_CLASS)),
-        Heal(FRIENDLY_HERO, 3),
-    )
+    
+    # 使用自定义 play 方法实现"根据发现的法术费用恢复生命值"
+    def play(self):
+        # 发现一张法术（圣骑士 + 中立）
+        # 符合炉石传说的标准 Discover 机制
+        from ..dsl.random_picker import RandomCollectible
+        
+        # 获取圣骑士法术
+        paladin_spells = RandomCollectible(
+            type=CardType.SPELL, 
+            card_class=CardClass.PALADIN
+        ).find_cards(self.controller)
+        
+        # 获取中立法术（如果有的话）
+        neutral_spells = RandomCollectible(
+            type=CardType.SPELL, 
+            card_class=CardClass.NEUTRAL
+        ).find_cards(self.controller)
+        
+        # 合并两个池
+        all_spells = paladin_spells + neutral_spells
+        
+        if not all_spells:
+            return
+        
+        # 随机选择3张供发现
+        import random
+        if len(all_spells) > 3:
+            choices = random.sample(all_spells, 3)
+        else:
+            choices = all_spells
+        
+        # 创建发现选择
+        choice_cards = [self.controller.card(c, source=self) for c in choices]
+        from ..actions import GenericChoice
+        yield GenericChoice(self.controller, choice_cards)
+        
+        # 获取发现的法术（选择后会进入手牌）
+        # 检查最后加入手牌的卡牌
+        if self.controller.hand:
+            discovered_spell = self.controller.hand[-1]
+            # 根据法术的费用恢复生命值
+            heal_amount = discovered_spell.cost
+            yield Heal(FRIENDLY_HERO, heal_amount)
 
 
 class DMF_236:
@@ -178,9 +217,12 @@ class DMF_236:
         GameTag.COST: 1,
         GameTag.SECRET: True,
     }
-    # TODO: 实现替换对手法术的复杂机制
-    # 暂时简化为基础奥秘
-    secret = Play(OPPONENT, SPELL).on(Reveal(SELF))
+    # 拦截对手法术并替换成相同费用的随机法术
+    secret = Play(OPPONENT, SPELL).on(
+        Reveal(SELF),
+        Counter(Play.CARD),  # 取消对手的法术
+        CastSpell(RandomSpell(cost=COST(Play.CARD)))  # 施放相同费用的随机法术
+    )
 
 
 class DMF_244:

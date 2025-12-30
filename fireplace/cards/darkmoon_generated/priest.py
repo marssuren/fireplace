@@ -16,8 +16,11 @@ class DMF_053:
         GameTag.HEALTH: 3,
         GameTag.COST: 3,
     }
-    # 简化实现：直接发现
-    play = GenericChoice(CONTROLLER, Discover(CONTROLLER, cards=SPELL + PRIEST_CLASS))
+    # 使用 fireplace 已有的 cards_drawn_this_turn 计数器
+    # 检查本回合是否抽过至少3张牌
+    play = Find(Attr(CONTROLLER, "cards_drawn_this_turn") >= 3) & GenericChoice(
+        CONTROLLER, Discover(CONTROLLER, cards=SPELL + PRIEST_CLASS)
+    )
 
 
 class DMF_056:
@@ -29,8 +32,11 @@ class DMF_056:
         GameTag.HEALTH: 5,
         GameTag.COST: 4,
     }
-    # 简化实现：直接发现
-    play = GenericChoice(CONTROLLER, Discover(CONTROLLER, cards=SPELL + PRIEST_CLASS))
+    # 使用 fireplace 已有的 damaged_this_turn 计数器
+    # 检查英雄本回合是否受到过伤害
+    play = Find(Attr(FRIENDLY_HERO, "damaged_this_turn") > 0) & GenericChoice(
+        CONTROLLER, Discover(CONTROLLER, cards=SPELL + PRIEST_CLASS)
+    )
 
 
 class DMF_116:
@@ -47,7 +53,7 @@ class DMF_116:
 
 
 class DMF_120:
-    """暗月兔 - Idol of Y'Shaarj
+    """亚煞拉惧塑像 - Idol of Y'Shaarj
     战吼：选择一个友方随从。每当你抽一张牌，便召唤一个该随从的复制。
     """
     tags = {
@@ -60,28 +66,37 @@ class DMF_120:
         PlayReq.REQ_FRIENDLY_TARGET: 0,
         PlayReq.REQ_MINION_TARGET: 0,
     }
-    # TODO: 实现复杂的抽牌触发召唤机制
-    play = Buff(CONTROLLER, "DMF_120e")
+    # 给玩家添加buff，并将目标随从信息传递给buff
+    def play(self):
+        if self.target:
+            # 创建buff并存储目标随从信息
+            buff = self.controller.card("DMF_120e", source=self)
+            buff.stored_minion_id = self.target.id  # 存储目标随从的ID
+            yield Buff(CONTROLLER, buff)
 
 
 class DMF_120e:
-    """伊瑟拉的祝福"""
-    # 简化实现
-    events = Draw(CONTROLLER).after(Summon(CONTROLLER, "DMF_120t"))
-
-
-class DMF_120t:
-    """复制的随从"""
-    tags = {
-        GameTag.ATK: 1,
-        GameTag.HEALTH: 1,
-        GameTag.COST: 1,
-    }
+    """亚煞拉惧塑像buff
+    每当抽牌时，召唤存储的随从的复制。
+    """
+    def apply(self, target):
+        # 确保有存储的随从ID
+        if not hasattr(self, 'stored_minion_id'):
+            self.stored_minion_id = None
+    
+    # 监听抽牌事件，召唤存储的随从的复制
+    events = Draw(CONTROLLER).after(
+        lambda self, source: (
+            Summon(CONTROLLER, self.stored_minion_id) 
+            if hasattr(self, 'stored_minion_id') and self.stored_minion_id 
+            else None
+        )
+    )
 
 
 class DMF_121:
-    """暗月兔 - The Nameless One
-    战吼：选择一个友方随从。每当你抽一张牌，便召唤一个该随从的复制。
+    """无名者 - The Nameless One
+    战吼：选择一个随从。变成它的一个4/4复制，然后使其沉默。
     """
     tags = {
         GameTag.ATK: 4,
@@ -92,11 +107,27 @@ class DMF_121:
         PlayReq.REQ_TARGET_IF_AVAILABLE: 0,
         PlayReq.REQ_MINION_TARGET: 0,
     }
-    play = Morph(TARGET, RandomMinion(cost=COST(TARGET) - 1))
+    # 变成目标的复制（保持4/4），然后沉默目标
+    def play(self):
+        if self.target:
+            # 变成目标的复制
+            yield Morph(SELF, ExactCopy(self.target))
+            # 设置为4/4（覆盖复制的攻击力和生命值）
+            yield Buff(SELF, "DMF_121e")
+            # 沉默目标
+            yield Silence(self.target)
+
+
+class DMF_121e:
+    """设置为4/4"""
+    tags = {
+        GameTag.ATK: SET(4),
+        GameTag.HEALTH: SET(4),
+    }
 
 
 class DMF_184:
-    """暗月兔 - Lightsteed
+    """光明战马 - Lightsteed
     战吼：如果你在本回合中恢复过生命值，便获得+2/+2。
     """
     tags = {
@@ -104,8 +135,12 @@ class DMF_184:
         GameTag.HEALTH: 4,
         GameTag.COST: 4,
     }
-    # 简化实现：直接获得buff
-    play = Buff(SELF, "DMF_184e")
+    # 检查本回合是否有友方角色恢复过生命值
+    # 包括英雄和所有友方随从
+    play = Find(
+        (Attr(FRIENDLY_HERO, "healed_this_turn") > 0) | 
+        Find(FRIENDLY_MINIONS + (Attr(SELF, "healed_this_turn") > 0))
+    ) & Buff(SELF, "DMF_184e")
 
 
 class DMF_184e:
@@ -120,7 +155,7 @@ class DMF_184e:
 # Spells
 
 class DMF_054:
-    """暗月兔 - Insight
+    """洞察 - Insight
     抽一张牌。如果它的法力值消耗为(3)或更少，则再抽一张。
     """
     tags = {
@@ -128,11 +163,17 @@ class DMF_054:
         GameTag.COST: 2,
         GameTag.SPELL_SCHOOL: SpellSchool.SHADOW,
     }
-    play = Draw(CONTROLLER) * 2  # 简化实现
+    
+    # 抽一张牌，如果费用≤3则再抽一张
+    # 使用 Draw.CARD 引用抽到的卡牌（即使被烧毁也能检查）
+    # 如果抽到疲劳（Draw.CARD 为 None），则不会触发第二次抽牌
+    play = Draw(CONTROLLER).then(
+        Find(Draw.CARD) & Find(COST(Draw.CARD) <= 3) & Draw(CONTROLLER)
+    )
 
 
 class DMF_055:
-    """暗月兔 - Auspicious Spirits
+    """吉兆精魂 - Auspicious Spirits
     召唤一个随机的法力值消耗为(4)的随从。腐蚀：改为(8)。
     """
     tags = {
@@ -145,7 +186,7 @@ class DMF_055:
 
 
 class DMF_186:
-    """暗月兔 - Palm Reading
+    """掌纹预言 - Palm Reading
     发现一张法术牌。你手牌中的法术牌在本回合中法力值消耗减少(1)点。
     """
     tags = {
@@ -166,7 +207,7 @@ class DMF_186e:
 
 
 class DMF_187:
-    """暗月兔 - Sethekk Veilweaver
+    """塞泰克隐纱织者 - Sethekk Veilweaver
     造成2点伤害。如果目标是一个随从，则将一张随机牌置入你的手牌。
     """
     tags = {
