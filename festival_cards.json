@@ -1,0 +1,3937 @@
+[
+  {
+    "artist": "Nicola Saviori",
+    "attack": 4,
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 87639,
+    "flavor": "She is the hero of the guitar. The guitar hero. Trademark.",
+    "health": 3,
+    "id": "ETC_026",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Guitar Soloist",
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Battlecry:</b> If you control no\nother minions, draw a spell,\na minion, and a weapon.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mooncolony",
+    "attack": 4,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 87642,
+    "flavor": "A magician never reveals their Secrets. A musician on the other hand...",
+    "health": 2,
+    "id": "ETC_028",
+    "mechanics": [
+      "BATTLECRY",
+      "DISCOVER"
+    ],
+    "name": "Harmonica Soloist",
+    "rarity": "EPIC",
+    "referencedTags": [
+      "SECRET"
+    ],
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "<b>Battlecry:</b> If you control no other minions, <b>Discover</b> and cast a <b>Secret</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "James Ryman",
+    "attack": 2,
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 87648,
+    "flavor": "Give her a hand, everybody! Or maybe 4!",
+    "health": 4,
+    "id": "ETC_029",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Keyboard Soloist",
+    "race": "NAGA",
+    "races": [
+      "NAGA"
+    ],
+    "rarity": "COMMON",
+    "referencedTags": [
+      "SPELLPOWER"
+    ],
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Battlecry:</b> If you control no\nother minions, summon\ntwo 1/2 Amps with\n<b>Spell Damage +1</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Max Grecke",
+    "attack": 4,
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 87681,
+    "flavor": "It ain't over until the imp mother sings.",
+    "health": 6,
+    "id": "ETC_034",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Opera Soloist",
+    "race": "DEMON",
+    "races": [
+      "DEMON"
+    ],
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "<b>Battlecry:</b> If you control\nno other minions, deal\n3 damage to all enemy minions.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Zoltan Boros",
+    "attack": 5,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 87682,
+    "flavor": "\"Was I rushin' or was I dragon?\"",
+    "health": 5,
+    "id": "ETC_035",
+    "mechanics": [
+      "BATTLECRY",
+      "TAUNT"
+    ],
+    "name": "Drum Soloist",
+    "race": "DRAGON",
+    "races": [
+      "DRAGON"
+    ],
+    "rarity": "COMMON",
+    "referencedTags": [
+      "RUSH"
+    ],
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Taunt</b>\n<b>Battlecry:</b> If you control\nno other minions, gain\n+2/+2 and <b>Rush</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Guillaume Beauchêne",
+    "attack": 2,
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "collectionText": "[x]<b>Battlecry:</b> Take {0} Fatigue\ndamage. Gain that much\nAttack and Health.",
+    "cost": 2,
+    "dbfId": 90439,
+    "flavor": "He used to be an epic sax guy, but now he's just a common.",
+    "health": 2,
+    "id": "ETC_068",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Baritone Imp",
+    "race": "DEMON",
+    "races": [
+      "DEMON"
+    ],
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Battlecry:</b> Take Fatigue\ndamage. Gain that much\nAttack and Health.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Konstantin Turovec",
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "collectionText": "[x]Take {0} Fatigue damage.\nDeal that much damage\nto all enemies.",
+    "cost": 2,
+    "dbfId": 90440,
+    "flavor": "The more you flail your arms, the better the orchestra plays! Yup, that's definitely how it works.",
+    "id": "ETC_069",
+    "name": "Crescendo",
+    "rarity": "RARE",
+    "set": "BATTLE_OF_THE_BANDS",
+    "spellSchool": "FEL",
+    "text": "[x]Take Fatigue damage.\nDeal that much damage\nto all enemies.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Konstantin Turovec",
+    "attack": 3,
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "collectionText": "[x]<b>Battlecry:</b> Take {0} Fatigue\ndamage. Summon that\nmany 3/3 Imps.",
+    "cost": 4,
+    "dbfId": 90461,
+    "flavor": "\"The Twisting Nether is singing to me… WHAT IS THAT MELODY!?\"",
+    "health": 4,
+    "id": "ETC_070",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Crazed Conductor",
+    "rarity": "EPIC",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Battlecry:</b> Take Fatigue\ndamage. Summon that\nmany 3/3 Imps.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Anzka Nguyen",
+    "attack": 3,
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 90463,
+    "elite": true,
+    "flavor": "Rin's orchestra is the best of the best. When your replacement is just one summoning away, you have to play perfectly.",
+    "hasDiamondSkin": true,
+    "health": 6,
+    "id": "ETC_071",
+    "mechanics": [
+      "DEATHRATTLE",
+      "TAUNT"
+    ],
+    "name": "Rin, Orchestrator of Doom",
+    "rarity": "LEGENDARY",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Taunt</b>. <b>Deathrattle:</b> Both\nplayers draw 2 cards, discard\n2 cards, and destroy the top\n2 cards of their deck.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Jaemin Kim",
+    "attack": 4,
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 90561,
+    "flavor": "\"ERROR. CANNOT COMPUTE 'NO PUNCHING ALLOWED DURING MUSICAL PERFORMANCE'.\"",
+    "health": 3,
+    "id": "ETC_072",
+    "mechanics": [
+      "COMBO"
+    ],
+    "name": "Beatboxer",
+    "race": "MECHANICAL",
+    "races": [
+      "MECHANICAL"
+    ],
+    "rarity": "RARE",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Combo:</b> Deal 4 damage\nrandomly split among\n all enemies.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Maria Trepalina",
+    "attack": 1,
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "collectionText": "[x]<b>Rush</b>\n<b>Combo:</b> Gain +1/+1 for each\nother <b>Combo</b> card you've\n played this game.",
+    "cost": 3,
+    "dbfId": 90572,
+    "flavor": "For ONCE we're not talking about ice!",
+    "health": 3,
+    "id": "ETC_073",
+    "mechanics": [
+      "COMBO",
+      "RUSH"
+    ],
+    "name": "Rhyme Spinner",
+    "rarity": "RARE",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Rush</b>\n<b>Combo:</b> Gain +1/+1 for each\nother <b>Combo</b> card you've\n played this game.@ <i>(@)</i>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Gabriel Lopes",
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 90583,
+    "flavor": "That tape has got poetry and clarinet on it, Garona. POETRY. AND CLARINET.",
+    "id": "ETC_074",
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "Mixtape",
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "spellSchool": "FIRE",
+    "text": "<b>Discover</b> a copy of a card your opponent played this game.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Ramzy Kamen",
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 90586,
+    "flavor": "The perfect card to play after emoting.",
+    "id": "ETC_075",
+    "name": "Mic Drop",
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "Draw 2 cards.\n<b>Finale:</b> Give your weapon +2 Attack.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Vlad Botos",
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 90591,
+    "flavor": "\"Commander! Uhh... I'm... Pretty sure we just got served? I'm not really trained for this.\"",
+    "id": "ETC_076",
+    "name": "Breakdance",
+    "rarity": "EPIC",
+    "referencedTags": [
+      "RUSH"
+    ],
+    "set": "BATTLE_OF_THE_BANDS",
+    "spellSchool": "SHADOW",
+    "text": "Return a friendly minion to your hand. Summon a Dancer with\nits stats and <b>Rush</b>.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Mooncolony",
+    "attack": 4,
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 90600,
+    "flavor": "Hype coefficient insufficient.",
+    "health": 1,
+    "id": "ETC_077",
+    "mechanics": [
+      "COMBO"
+    ],
+    "name": "Disc Jockey",
+    "race": "MECHANICAL",
+    "races": [
+      "MECHANICAL",
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "<b>Combo:</b> Add a random\n<b>Combo</b> card to your hand.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mooncolony",
+    "attack": 5,
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 90603,
+    "elite": true,
+    "flavor": "If this is the outcome of the robot uprising, then sign me up!",
+    "health": 5,
+    "id": "ETC_078",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "MC Blingtron",
+    "race": "MECHANICAL",
+    "races": [
+      "MECHANICAL"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Battlecry:</b> Both players equip\n1/2 Microphones. Your\nopponent's increases all\ndamage they take by 1!",
+    "type": "MINION"
+  },
+  {
+    "artist": "Caroline Gariba",
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 90606,
+    "elite": true,
+    "flavor": "Another one.",
+    "id": "ETC_079",
+    "name": "Bounce Around (ft. Garona)",
+    "rarity": "LEGENDARY",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "Return all friendly minions to your hand. They cost (1) this turn.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Edgar Hidalgo",
+    "attack": 4,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 90749,
+    "elite": true,
+    "flavor": "\"This next band features the one and only M.C. Tech on the drums, the fungal king of the keyboard Loatheb, and the showstopping vocal chops of Spellbreaker!\"",
+    "hasDiamondSkin": true,
+    "health": 4,
+    "howToEarn": "Earnable after opening a <i>Festival of Legends</i> card pack.",
+    "howToEarnGolden": "Earnable after purchasing the <i>Festival of Legends</i> Tavern Pass.",
+    "id": "ETC_080",
+    "mechanics": [
+      "BATTLECRY",
+      "DISCOVER"
+    ],
+    "name": "E.T.C., Band Manager",
+    "rarity": "LEGENDARY",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]While building your deck,\nassemble a band of 3 cards.\n <b>Battlecry: Discover</b> one!",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mauricio Herrera",
+    "attack": 1,
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 90854,
+    "flavor": "That is one interesting dress code.",
+    "health": 3,
+    "id": "ETC_081",
+    "mechanics": [
+      "AURA"
+    ],
+    "name": "Void Virtuoso",
+    "race": "DEMON",
+    "races": [
+      "DEMON"
+    ],
+    "rarity": "COMMON",
+    "referencedTags": [
+      "IMMUNE"
+    ],
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "During your turn,\nyour hero is <b>Immune</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Sergey Tsvelykh",
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 90993,
+    "flavor": "Oh, the misery!",
+    "id": "ETC_082",
+    "name": "Dirge of Despair",
+    "rarity": "RARE",
+    "set": "BATTLE_OF_THE_BANDS",
+    "spellSchool": "SHADOW",
+    "text": "[x]Deal $3 damage to a\ncharacter. If that kills it,\nsummon a Demon from\nyour deck.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Todd Harris",
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 90994,
+    "flavor": "The Blue Imp Group sure knows how to put on a show!",
+    "id": "ETC_083",
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "Demonic Dynamics",
+    "rarity": "RARE",
+    "set": "BATTLE_OF_THE_BANDS",
+    "spellSchool": "FEL",
+    "text": "[x]<b>Discover</b> 2 Demons.\n<b>Finale:</b> Give them +1/+2.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Gabriel Lopes",
+    "attack": 0,
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 90996,
+    "durability": 0,
+    "flavor": "Playing it will singe your fingers and wither your soul, but at least it never needs restringing!",
+    "health": 3,
+    "id": "ETC_084",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Felstring Harp",
+    "rarity": "EPIC",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]Whenever your hero would\ntake damage on your turn,\nrestore 2 Health instead.\nLose 1 Durability.",
+    "type": "WEAPON"
+  },
+  {
+    "artist": "Mooncolony",
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 91001,
+    "elite": true,
+    "flavor": "Makes for some killer final boss music.",
+    "id": "ETC_085",
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "Symphony of Sins",
+    "rarity": "LEGENDARY",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Discover</b> and play a\nMovement. Shuffle the\nother 6 into your deck.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Matt Dixon",
+    "attack": 6,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 10,
+    "dbfId": 91076,
+    "flavor": "Before this show can continue, we have to bass-boost the elephant in the room.",
+    "health": 12,
+    "id": "ETC_086",
+    "mechanics": [
+      "DEATHRATTLE",
+      "TAUNT"
+    ],
+    "name": "Amplified Elekk",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Taunt</b>\n<b>Deathrattle:</b> Deal 3 damage\nto all enemy minions.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Daniil Kudriavtsev",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 91078,
+    "flavor": "And you thought we were putting Wildheart Guff in Core. We'd never do that! WINK WINK.",
+    "health": 3,
+    "howToEarnGolden": "Earnable on the <i>Festival of Legends</i> Reward Track.",
+    "id": "ETC_087",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Audio Amplifier",
+    "race": "MECHANICAL",
+    "races": [
+      "MECHANICAL"
+    ],
+    "rarity": "EPIC",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "<b>Battlecry:</b> Set your maximum Mana and\nhand size to 11.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Edgar Hidalgo",
+    "attack": 4,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 91080,
+    "flavor": "This eccentric scribe was cursed to an afterlife of never being recognized for his talents! Muahaha!",
+    "health": 4,
+    "howToEarnGolden": "Earnable on the <i>Festival of Legends</i> Reward Track.",
+    "id": "ETC_088",
+    "mechanics": [
+      "BATTLECRY",
+      "DISCOVER"
+    ],
+    "name": "Ghost Writer",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD"
+    ],
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "<b>Battlecry:</b> <b>Discover</b> a spell. <b>Finale:</b> <b>Discover</b> another.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Daniil Kudriavtsev",
+    "attack": 5,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 91175,
+    "flavor": "LET ME <i>SEE</i> YOU MAKE SOME NOISE!!!",
+    "health": 6,
+    "id": "ETC_089",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Static Waveform",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "RARE",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "At the start of EACH turn, lose 1 Attack or Health <i>(chosen randomly).</i>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Kami Johnson",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 91511,
+    "flavor": "\"I asked for an instrument, and you give me a CURSED BLADE!?\"",
+    "health": 4,
+    "howToEarnGolden": "Earnable on the <i>Festival of Legends</i> Reward Track.",
+    "id": "ETC_098",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Worgen Roadie",
+    "rarity": "RARE",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Battlecry:</b> Summon a 0/3\nInstrument Case for your\nopponent. <i>(Break it for\na random weapon!)</i>",
+    "type": "MINION"
+  },
+  {
+    "artist": "L. Lullabi & K. Turovec",
+    "attack": 8,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 91659,
+    "flavor": "There's a reason why it's promoting the festival instead of playing in it - it's a rhyme-lost protodrake.",
+    "health": 8,
+    "id": "ETC_099",
+    "mechanics": [
+      "TRADEABLE"
+    ],
+    "name": "Concert Promo-Drake",
+    "race": "DRAGON",
+    "races": [
+      "DRAGON"
+    ],
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "targetingArrowText": "Destroy an enemy minion.",
+    "text": "<b>Tradeable</b>\n<b>Finale:</b> Destroy an\nenemy minion.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Max Grecke",
+    "attack": 4,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 91885,
+    "flavor": "Hot take: We need LESS cowbell. Much, much less.",
+    "health": 2,
+    "id": "ETC_101",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Cowbell Soloist",
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "targetingArrowText": "Deal 2 damage.",
+    "text": "[x]<b>Battlecry:</b> If you control\nno other minions, deal\n2 damage.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mike Sass",
+    "attack": 1,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 91986,
+    "flavor": "Nailing that solo was a breeze.",
+    "health": 1,
+    "id": "ETC_102",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Air Guitarist",
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "<b>Battlecry:</b> Give your weapon +1 Durability.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Ivan Fomin",
+    "attack": 1,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 91989,
+    "flavor": "Oh, so you like Hearthstone? Name every spell.",
+    "health": 3,
+    "id": "ETC_103",
+    "mechanics": [
+      "BATTLECRY",
+      "DISCOVER"
+    ],
+    "name": "Hipster",
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Battlecry:</b> <b>Discover</b> a spell\nfrom your opponent's class\nthat isn't in their deck.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mooncolony",
+    "attack": 1,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 92243,
+    "flavor": "I'm pretty sure it's the band that's supposed to be crowd surfing, but you do you little dude.",
+    "health": 1,
+    "howToEarnGolden": "Earnable after purchasing the <i>Festival of Legends</i> Tavern Pass.",
+    "id": "ETC_104",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Crowd Surfer",
+    "race": "MURLOC",
+    "races": [
+      "MURLOC"
+    ],
+    "rarity": "EPIC",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Deathrattle:</b> Give ANY\nother minion +1/+1 and\nthis <b>Deathrattle</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Konstantin Turovec",
+    "attack": 0,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 92246,
+    "flavor": "Pass the ox cord!",
+    "health": 3,
+    "howToEarnGolden": "Earnable on the <i>Festival of Legends</i> Reward Track.",
+    "id": "ETC_105",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Stereo Totem",
+    "race": "TOTEM",
+    "races": [
+      "TOTEM"
+    ],
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "At the end of your turn, give a random minion in your hand +2/+2.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Brian Despain",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 92249,
+    "flavor": "Our lawyer made us change the flavor text of this card so we wouldn't get sued.",
+    "health": 1,
+    "id": "ETC_106",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Frequency Oscillator",
+    "race": "MECHANICAL",
+    "races": [
+      "MECHANICAL"
+    ],
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "<b>Battlecry:</b> The next Mech you play costs (1) less.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mauricio Herrera",
+    "attack": 1,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 92250,
+    "flavor": "\"This song is so good, it makes me want to PUNCH SOMEONE IN THE FACE!!\"",
+    "health": 5,
+    "id": "ETC_107",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Rowdy Fan",
+    "race": "QUILBOAR",
+    "races": [
+      "QUILBOAR"
+    ],
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "targetingArrowText": "Give +4 Attack while this is alive.",
+    "text": "<b>Battlecry:</b> Choose a minion. It has +4 Attack while this is alive.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Vika Yarova",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 92252,
+    "flavor": "\"Obsessed? No! I'm just really really really really really really really really really really into E.T.C.'s music and everything he says, does, thinks, lives, and breathes!\"",
+    "health": 6,
+    "id": "ETC_108",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Obsessive Fan",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "STEALTH"
+    ],
+    "set": "BATTLE_OF_THE_BANDS",
+    "targetingArrowText": "Give Stealth while this is alive.",
+    "text": "<b>Battlecry:</b> Choose a minion. It has <b>Stealth</b> while this is alive.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Matt Dixon",
+    "attack": 1,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 92254,
+    "flavor": "No, Annoy-o-Tron, an air horn is not an instrument.",
+    "health": 2,
+    "id": "ETC_109",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Annoying Fan",
+    "race": "MECHANICAL",
+    "races": [
+      "MECHANICAL"
+    ],
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "targetingArrowText": "Give \"Can't attack\" while this is alive.",
+    "text": "<b>Battlecry:</b> Choose a minion. It can't attack while this is alive.",
+    "type": "MINION"
+  },
+  {
+    "artist": "J. Axer",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 92256,
+    "flavor": "The Faceless Ones are servants of Yogg-Saron, and they feed on fear. Right now they are feeding on our fear of you realizing we copied this flavor text.",
+    "health": 3,
+    "id": "ETC_110",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Cover Artist",
+    "rarity": "EPIC",
+    "set": "BATTLE_OF_THE_BANDS",
+    "targetingArrowText": "Transform into a 3/3 copy.",
+    "text": "<b>Battlecry:</b> Transform into\na 3/3 copy of a minion.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Tanamaes Leejierasaes",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 92258,
+    "flavor": "\"Sorry, we're all out of Mediums. All we've got left are Gnome, Extra Large, and Annihilan.\"",
+    "health": 5,
+    "id": "ETC_111",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Merch Seller",
+    "race": "NAGA",
+    "races": [
+      "NAGA"
+    ],
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]At the end of your turn, put\na random spell on the top\n of your opponent's deck.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Patrik Bjorkstrom",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 92332,
+    "elite": true,
+    "flavor": "Look at this photograph.",
+    "health": 3,
+    "id": "ETC_113",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Photographer Fizzle",
+    "rarity": "LEGENDARY",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Battlecry:</b> Take a Snapshot\nof your current hand and\nshuffle it into your deck.\n<i>(Once per game)</i>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Alex Horley Orlandelli",
+    "attack": 4,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 94248,
+    "elite": true,
+    "flavor": "After several audience members were burnt to a crisp, Voone's band became a lot less all-in on Dragons.",
+    "health": 3,
+    "id": "ETC_121",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Rock Master Voone",
+    "rarity": "LEGENDARY",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "<b>Battlecry:</b> Copy each minion of a different type in your hand.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Arthur Gimaldinov",
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 97003,
+    "flavor": "Left Shark, get to the stage now!",
+    "id": "ETC_200",
+    "name": "Rush the Stage",
+    "rarity": "RARE",
+    "referencedTags": [
+      "RUSH"
+    ],
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]Draw two <b>Rush</b> minions.\nThey cost (1) less.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Jim Nelson",
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 96996,
+    "flavor": "This card has bananas (spelled: B-A-N-A-N-A-S).",
+    "id": "ETC_201",
+    "name": "Bunch of Bananas",
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "Give a minion +1/+1.\n<i>(3 Bananas left!)</i>",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Angelica Alieva",
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 97360,
+    "flavor": "You have to pay Mana to do that!? I thought it was just in the settings menu!",
+    "id": "ETC_205",
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "Volume Up",
+    "rarity": "EPIC",
+    "set": "BATTLE_OF_THE_BANDS",
+    "spellSchool": "ARCANE",
+    "text": "Draw 3 spells.\n<b>Finale:</b> <b>Discover</b>\na copy of one.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Konstantin Porubov",
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 97361,
+    "elite": true,
+    "flavor": "When your music is instrumental, it doesn't matter if the words make no sense.",
+    "id": "ETC_206",
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "Infinitize the Maxitude",
+    "rarity": "LEGENDARY",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "<b>Discover</b> a spell.\nReduce its Cost by (1).\n<b>Finale:</b> Return this to\nyour hand at end of turn.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Max Grecke",
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 97362,
+    "flavor": "There used to be four monkeys, but then one fell off and bumped his head.",
+    "id": "ETC_207",
+    "name": "Barrel of Monkeys",
+    "rarity": "RARE",
+    "referencedTags": [
+      "TAUNT"
+    ],
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "Summon a 1/4 Monkey with <b>Taunt</b>.\n<i>(3 Monkeys left!)</i>",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Mooncolony",
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 97363,
+    "elite": true,
+    "flavor": "The Stranglethorn mentality is to be happy with the bare necessities.",
+    "id": "ETC_208",
+    "mechanics": [
+      "TRADEABLE"
+    ],
+    "name": "Stranglethorn Heart",
+    "rarity": "LEGENDARY",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "<b>Tradeable</b>\nResurrect all friendly\nBeasts that cost (5)\nor more.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Mooncolony",
+    "attack": 2,
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 97528,
+    "flavor": "Thumb in = devil horns. Thumb out = I love you. A VERY important distinction when you're at a metal concert.",
+    "health": 1,
+    "id": "ETC_209",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Hardcore Cultist",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD"
+    ],
+    "rarity": "COMMON",
+    "runeCost": {
+      "blood": 0,
+      "frost": 1,
+      "unholy": 0
+    },
+    "set": "BATTLE_OF_THE_BANDS",
+    "targetingArrowText": "Deal 2 damage.",
+    "text": "<b>Battlecry:</b> Deal 2 damage.\n<b>Finale:</b> To all enemies.",
+    "type": "MINION"
+  },
+  {
+    "artist": "James Ryman",
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 10,
+    "dbfId": 97532,
+    "elite": true,
+    "flavor": "The less legible the band's logo, the more hardcore it is.",
+    "id": "ETC_210",
+    "mechanics": [
+      "LIFESTEAL"
+    ],
+    "name": "Climactic Necrotic Explosion",
+    "rarity": "LEGENDARY",
+    "runeCost": {
+      "blood": 1,
+      "frost": 1,
+      "unholy": 1
+    },
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Lifesteal</b>. Deal ${0} damage.\nSummon {1} {2}/{3} Souls.\n<i>(Randomly improved by\n<b>Corpses</b> you've spent)</i>",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Jason Kang",
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 90366,
+    "flavor": "For some unknown reason, using distortion intentionally in your music will attract hundreds of geckos to your location.",
+    "id": "ETC_305",
+    "name": "Shadow Chord: Distort",
+    "rarity": "RARE",
+    "set": "BATTLE_OF_THE_BANDS",
+    "spellSchool": "SHADOW",
+    "text": "Give a minion -5/-5.\nIf it has 0 Attack, destroy it.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Maria Trepalina",
+    "attack": 0,
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 90681,
+    "durability": 0,
+    "flavor": "That is a mic, not a door.",
+    "health": 2,
+    "id": "ETC_312",
+    "mechanics": [
+      "AURA",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Idol's Adoration",
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "Your Hero Power costs (0). After you use it, lose 1 Durability.",
+    "type": "WEAPON"
+  },
+  {
+    "artist": "Vika Yarova",
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 90683,
+    "flavor": "Here with supporting vocals: Snap and Crackle!",
+    "id": "ETC_314",
+    "name": "Harmonic Pop",
+    "rarity": "RARE",
+    "set": "BATTLE_OF_THE_BANDS",
+    "spellSchool": "HOLY",
+    "text": "Deal $3 damage to all minions. Summon\na 6/6 Popstar.\n<i>(Swaps each turn.)</i>",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Vika Yarova",
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 90687,
+    "flavor": "And you thought the battles between the Alliance and Horde got ugly…",
+    "id": "ETC_316",
+    "name": "Fight Over Me",
+    "rarity": "EPIC",
+    "set": "BATTLE_OF_THE_BANDS",
+    "spellSchool": "SHADOW",
+    "text": "Choose two enemy minions. They fight!\nAdd copies of any that\ndie to your hand.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Mooncolony",
+    "attack": 3,
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 90688,
+    "durability": 0,
+    "flavor": "Nah, dis go face.",
+    "health": 2,
+    "id": "ETC_317",
+    "mechanics": [
+      "DEATHRATTLE",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Disco Maul",
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Deathrattle:</b> Give a random\nfriendly minion +1/+1.\n<i>(Play minions while\nequipped to improve!)</i>",
+    "type": "WEAPON"
+  },
+  {
+    "artist": "Angelica Alieva",
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 90689,
+    "flavor": "Whatever you do, do NOT sashay to the right.",
+    "id": "ETC_318",
+    "name": "Boogie Down",
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "spellSchool": "HOLY",
+    "text": "[x]Summon two 1-Cost\nminions from your deck.\n<b>Finale:</b> Summon another.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Hideaki Takamura",
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 90694,
+    "flavor": "Everyone's eyes are on you! Well, they're also looking at the giant Elemental that we're using as a spotlight, but mainly at you!",
+    "id": "ETC_320",
+    "mechanics": [
+      "TRADEABLE"
+    ],
+    "name": "Spotlight",
+    "rarity": "EPIC",
+    "referencedTags": [
+      "DIVINE_SHIELD"
+    ],
+    "set": "BATTLE_OF_THE_BANDS",
+    "spellSchool": "HOLY",
+    "text": "<b>Tradeable</b>\nConvert a friendly <b>Divine Shield</b> into a\n5/5 Elemental.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Matt Dixon",
+    "attack": 3,
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 9,
+    "dbfId": 90695,
+    "flavor": "Some classes get Void Lords, other classes get Annoyed Lords.",
+    "health": 6,
+    "id": "ETC_321",
+    "mechanics": [
+      "DEATHRATTLE",
+      "DIVINE_SHIELD",
+      "TAUNT"
+    ],
+    "name": "Annoy-o-Troupe",
+    "race": "MECHANICAL",
+    "races": [
+      "MECHANICAL"
+    ],
+    "rarity": "EPIC",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Taunt</b>, <b>Divine Shield</b>\n<b>Deathrattle:</b> Summon three\n1/2 Mechs with <b>Taunt</b>\nand <b>Divine Shield</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Brian Despain",
+    "attack": 4,
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 90698,
+    "flavor": "The only bug that was intentional.",
+    "health": 3,
+    "id": "ETC_324",
+    "mechanics": [
+      "DIVINE_SHIELD",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Jitterbug",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "RARE",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "<b>Divine Shield</b>\nAfter a friendly character loses <b>Divine Shield</b>, draw a card.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Ursula Dorada",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 90699,
+    "flavor": "His performance isn't over, watch!",
+    "health": 3,
+    "id": "ETC_325",
+    "mechanics": [
+      "RUSH"
+    ],
+    "name": "Audio Medic",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "LIFESTEAL"
+    ],
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "<b>Rush</b>\n<b>Finale:</b> Gain <b>Lifesteal</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Zoltan Boros",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 90700,
+    "flavor": "When you're a Legendary minion, you get a shiny orange gem, a dragon emblem, and about 100 of these people following you everywhere.",
+    "health": 4,
+    "id": "ETC_326",
+    "mechanics": [
+      "BATTLECRY",
+      "DISCOVER"
+    ],
+    "name": "Paparazzi",
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "<b>Battlecry:</b> <b>Discover</b> a <b>Legendary</b> minion.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Angelica Alieva",
+    "attack": 4,
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 90941,
+    "flavor": "\"Follow my lead!\"\n*dies*",
+    "health": 2,
+    "id": "ETC_328",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Lead Dancer",
+    "rarity": "RARE",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Deathrattle:</b> Summon a\nminion from your deck\nwith less Attack than\nthis minion.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mooncolony",
+    "attack": 3,
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 90944,
+    "elite": true,
+    "flavor": "After Dr. Boom's involvement with the League of EVIL, Kangor cut ties with the Boomsday Labs and began pursuing his true passion - DISCO!!!",
+    "health": 3,
+    "id": "ETC_329",
+    "mechanics": [
+      "DEATHRATTLE",
+      "LIFESTEAL"
+    ],
+    "name": "Kangor, Dancing King",
+    "rarity": "LEGENDARY",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Lifesteal</b>\n<b>Deathrattle:</b> Swap this with\na minion from your hand\nand give it <b>Lifesteal</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Anzka Nguyen",
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 90945,
+    "elite": true,
+    "flavor": "In space, no one can hear you groove.",
+    "id": "ETC_330",
+    "name": "Starlight Groove",
+    "rarity": "LEGENDARY",
+    "referencedTags": [
+      "DIVINE_SHIELD"
+    ],
+    "set": "BATTLE_OF_THE_BANDS",
+    "spellSchool": "HOLY",
+    "text": "Give your hero <b>Divine Shield</b>. For the rest of the game, playing a Holy spell refreshes it.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Valeria Styajkina",
+    "attack": 1,
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 90952,
+    "flavor": "As the only member that can sing underwater, Paz saved Poison Bloom's Zin-Azshari tour from failure.",
+    "health": 2,
+    "id": "ETC_332",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Dreamboat",
+    "race": "NAGA",
+    "races": [
+      "NAGA"
+    ],
+    "rarity": "RARE",
+    "referencedTags": [
+      "OVERHEAL"
+    ],
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "<b>Battlecry:</b> Restore #3 Health to all other friendly minions. Gain +1/+1 for each one <b>Overhealed</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Dez Bencosme",
+    "attack": 4,
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 90956,
+    "elite": true,
+    "flavor": "Hedanis has won over the hearts and minds of millions of fans all over Azeroth! Shadow magic had nothing to do with it - not that you asked or anything.",
+    "hasDiamondSkin": true,
+    "health": 8,
+    "id": "ETC_334",
+    "mechanics": [
+      "BATTLECRY",
+      "OVERHEAL"
+    ],
+    "name": "Heartbreaker Hedanis",
+    "rarity": "LEGENDARY",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Battlecry:</b> Deal 4 damage\nto this minion.\n<b>Overheal:</b> Deal 5 damage\nto a random enemy.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Valeria Styajkina",
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 90959,
+    "elite": true,
+    "flavor": "Poison Bloom was accused of plagiarizing the \"Ooh, how long can this go on (ooh yeah)\" hook from an old-school musical group called The Saronite Chain Gang.",
+    "id": "ETC_335",
+    "name": "Love Everlasting",
+    "rarity": "LEGENDARY",
+    "set": "BATTLE_OF_THE_BANDS",
+    "spellSchool": "HOLY",
+    "text": "Your first spell each turn costs (2) less. Lasts until you don't play a spell on your turn.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Daniele Orizio",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "collectionText": "[x]<b>Charge</b>\n<b>Battlecry:</b> Gain +1/+1 for\neach other Freebird you've\nplayed this game.",
+    "cost": 4,
+    "dbfId": 90972,
+    "flavor": "Free!? But it costs Mana!",
+    "health": 2,
+    "id": "ETC_336",
+    "mechanics": [
+      "BATTLECRY",
+      "CHARGE"
+    ],
+    "name": "Freebird",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "EPIC",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Charge</b>\n<b>Battlecry:</b> Gain +1/+1 for\neach other Freebird you've\nplayed this game.@ <i>(@)</i>",
+    "type": "MINION"
+  },
+  {
+    "artist": "James Ryman",
+    "attack": 2,
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 91066,
+    "flavor": "Shake your groove fin!",
+    "health": 2,
+    "id": "ETC_337",
+    "mechanics": [
+      "AURA",
+      "DIVINE_SHIELD"
+    ],
+    "name": "Funkfin",
+    "race": "MURLOC",
+    "races": [
+      "MURLOC"
+    ],
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "<b>Divine Shield</b>\nYour minions with\n<b>Divine Shield</b> have +2 Attack.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Vika Yarova",
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 91067,
+    "flavor": "\"It's all about you, girl\nOn your 16,000th birthday\"",
+    "id": "ETC_338",
+    "name": "Power Chord: Synchronize",
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "spellSchool": "HOLY",
+    "text": "[x]Choose a minion. Add\na copy of it to your hand.\n<b>Finale:</b> Give both +1/+2.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Valeria Styajkina",
+    "attack": 2,
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 91079,
+    "flavor": "Oh no, Harth! Look out! He's here to rob you!",
+    "health": 5,
+    "id": "ETC_339",
+    "mechanics": [
+      "OVERHEAL"
+    ],
+    "name": "Heartthrob",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD"
+    ],
+    "rarity": "EPIC",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "<b>Overheal:</b> Summon a random minion with Cost equal to the amount <b>Overhealed</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Sergey Tsvelykh",
+    "attack": 5,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 91872,
+    "flavor": "Oh man, she used to rock more than ANYONE back in the Year of the Kraken. I wish I could've seen her perform back then…",
+    "health": 5,
+    "id": "ETC_349",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Unpopular Has-Been",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD"
+    ],
+    "rarity": "EPIC",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "<b>Deathrattle:</b> Summon a random 5-Cost minion from the past.",
+    "type": "MINION"
+  },
+  {
+    "artist": "L. Lullabi & K. Turovec",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 91874,
+    "flavor": "He's the wildlife of the party!",
+    "health": 3,
+    "howToEarnGolden": "Earnable on the <i>Festival of Legends</i> Reward Track.",
+    "id": "ETC_350",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Party Animal",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Battlecry:</b> Give +1/+1 to\neach minion of a different\ntype in your hand.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Ursula Dorada",
+    "attack": 1,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 91888,
+    "flavor": "Quilboar feel Rock in their blood. And blood in their rocks.",
+    "health": 3,
+    "id": "ETC_355",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Razorfen Rockstar",
+    "race": "QUILBOAR",
+    "races": [
+      "QUILBOAR"
+    ],
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "After you gain Armor,\ngain 2 more.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Juan Calle",
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 92222,
+    "flavor": "I'll never understand how bands and orchestras allow musicians that just…. play... off-key. Would love opinions on this.",
+    "id": "ETC_356",
+    "mechanics": [
+      "LIFESTEAL"
+    ],
+    "name": "Altered Chord",
+    "rarity": "RARE",
+    "referencedTags": [
+      "OVERLOAD"
+    ],
+    "set": "BATTLE_OF_THE_BANDS",
+    "spellSchool": "NATURE",
+    "text": "<b>Lifesteal</b>\nDeal $6 damage to a\nminion. Costs (3) less\nif you're <b>Overloaded</b>.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Daniil Kudriavtsev",
+    "attack": 3,
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 92225,
+    "flavor": "You handle the water spells. It's got the earth, wind, and fire covered.",
+    "health": 3,
+    "id": "ETC_357",
+    "mechanics": [
+      "DIVINE_SHIELD",
+      "RUSH",
+      "TAUNT",
+      "WINDFURY"
+    ],
+    "name": "Brass Elemental",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "RARE",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "<b>Rush</b>, <b>Divine Shield</b>,\n<b>Taunt</b>, <b>Windfury</b>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Brian Despain",
+    "attack": 1,
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 92227,
+    "flavor": "He used to play to crowds of adoring Murlocs, but 20 years later all that's left is gigs at secluded clubs and regrets. Where did all the time go? His dreams of fame and fortune, snuffed out like the flame of a small candle in a dimly lit bar. Nothing but smoke in the wind.",
+    "health": 2,
+    "id": "ETC_358",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Saxophone Soloist",
+    "race": "MURLOC",
+    "races": [
+      "MURLOC"
+    ],
+    "rarity": "EPIC",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Battlecry:</b> If you control\nno other minions, add\na Saxophone Soloist\nto your hand.",
+    "type": "MINION"
+  },
+  {
+    "artist": "James Ryman",
+    "attack": 2,
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 92228,
+    "flavor": "Her music sounds a lot better underwater where you can't hear it at all.",
+    "health": 1,
+    "id": "ETC_359",
+    "mechanics": [
+      "BATTLECRY",
+      "DISCOVER"
+    ],
+    "name": "Flowrider",
+    "race": "NAGA",
+    "races": [
+      "NAGA"
+    ],
+    "rarity": "COMMON",
+    "referencedTags": [
+      "OVERLOAD"
+    ],
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Battlecry:</b> If you're\n<b>Overloaded</b>, <b>Discover</b> a\nspell from your deck.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Ivan Fomin",
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 92232,
+    "elite": true,
+    "flavor": "\"WHY IS NO ONE JIVING? I SPECIFICALLY REQUESTED IT!\"",
+    "id": "ETC_362",
+    "mechanics": [
+      "OVERLOAD"
+    ],
+    "name": "JIVE, INSECT!",
+    "overload": 2,
+    "rarity": "LEGENDARY",
+    "set": "BATTLE_OF_THE_BANDS",
+    "spellSchool": "FIRE",
+    "text": "Transform a minion into\nRagnaros the Firelord.\n<b>Overload:</b> (2)",
+    "type": "SPELL"
+  },
+  {
+    "artist": "James Ryman",
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 92266,
+    "flavor": "Well anyways, here's Worgen Wall.",
+    "id": "ETC_363",
+    "name": "Verse Riff",
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]Give your hero +2 Attack\nthis turn. Gain 2 Armor.\n<b>Finale:</b> Play your last Riff.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Konstantin Turovec",
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 92267,
+    "flavor": "What do you mean, what do you mean, I SAY WHAT DO YOU MEEEEEAN, mean, mean, meaaaaaaan this chorus is repetitive?",
+    "id": "ETC_364",
+    "name": "Chorus Riff",
+    "rarity": "RARE",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "Draw a minion. Give it +3/+3.\n<b>Finale:</b> Play your last Riff.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Alex Stone",
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 92268,
+    "flavor": "Can be played in other places too.",
+    "id": "ETC_365",
+    "name": "Bridge Riff",
+    "rarity": "EPIC",
+    "referencedTags": [
+      "RUSH",
+      "TAUNT"
+    ],
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]Summon a 3/4 Rocker with\n<b>Taunt</b> and a 4/3 with <b>Rush</b>.\n<b>Finale:</b> Play your last Riff.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Valeria Styajkina",
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 0,
+    "dbfId": 92276,
+    "flavor": "I once saw a horse that had watermelons for hair. It was a melon mane, ya?!",
+    "id": "ETC_367",
+    "name": "Melomania",
+    "rarity": "EPIC",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "Each time you play a minion this turn,\nadd a random Shaman spell to your hand.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Vladimir Kafanov",
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 92325,
+    "flavor": "\"You're listening to 47.7 Shaman FM radio. It's time to kick back, relax, and take in the music.\"",
+    "id": "ETC_369",
+    "name": "Chill Vibes",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "TAUNT"
+    ],
+    "set": "BATTLE_OF_THE_BANDS",
+    "spellSchool": "FROST",
+    "text": "Restore #8 Health.\n<b>Finale:</b> Summon a 3/3\nElemental with <b>Taunt</b>.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "BOSi Studio",
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 92335,
+    "flavor": "How many Pack the Houses would a pack house if a pack could house Pack the House?",
+    "id": "ETC_370",
+    "mechanics": [
+      "OVERLOAD"
+    ],
+    "name": "Pack the House",
+    "overload": 2,
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "Summon a random 6, 5, 4, and 3-Cost minion.\n<b>Overload:</b> (2)",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Ivan Fomin",
+    "attack": 5,
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 92338,
+    "elite": true,
+    "flavor": "Inzah plays the trumpet, saxophone, piano, guitar, AND bass. No wonder he's always so overloaded!",
+    "health": 5,
+    "id": "ETC_371",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Inzah",
+    "rarity": "LEGENDARY",
+    "referencedTags": [
+      "OVERLOAD"
+    ],
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "<b>Battlecry:</b> For the rest of the game, your <b>Overload</b> cards cost (1) less.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Kevin Sidharta",
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 92340,
+    "flavor": "Please clap.",
+    "id": "ETC_372",
+    "name": "Roaring Applause",
+    "rarity": "EPIC",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "Draw a card.\nRepeat for each\nminion of a different\ntype you control.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "BOSi Studio",
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 94201,
+    "flavor": "It's more of a drum pentagon, really.",
+    "id": "ETC_373",
+    "mechanics": [
+      "CHOOSE_ONE"
+    ],
+    "name": "Drum Circle",
+    "rarity": "RARE",
+    "referencedTags": [
+      "TAUNT"
+    ],
+    "set": "BATTLE_OF_THE_BANDS",
+    "spellSchool": "NATURE",
+    "text": "<b>Choose One -</b> Summon five 2/2 Treants;\nor Give your minions +2/+4 and <b>Taunt</b>.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Tanamaes Leejierasaes",
+    "attack": 1,
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 94204,
+    "flavor": "\"Is there anything worth more than peace and love on the planet Azeroth?\"",
+    "health": 1,
+    "id": "ETC_375",
+    "mechanics": [
+      "CHOOSE_ONE"
+    ],
+    "name": "Peaceful Piper",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "DISCOVER"
+    ],
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "<b>Choose One -</b> Draw a Beast; or <b>Discover</b> one.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Tanamaes Leejierasaes",
+    "attack": 4,
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 94205,
+    "flavor": "\"Ugh, those Winter Floweradults just don't get our music.\"",
+    "health": 5,
+    "id": "ETC_376",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Summer Flowerchild",
+    "rarity": "RARE",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]  <b>Battlecry:</b> Draw two cards  \nthat cost (6) or more.\n<b>Finale:</b> They cost (1) less.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Ivan Fomin",
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 94210,
+    "flavor": "ROYGBive your hero +2 Attack this turn.",
+    "id": "ETC_379",
+    "name": "Harmonic Mood",
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "Give your hero +2 Attack this turn. Gain 4 Armor.\n<i>(Swaps each turn.)</i>",
+    "type": "SPELL"
+  },
+  {
+    "artist": "L. Lullabi & K. Turovec",
+    "attack": 1,
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 94218,
+    "flavor": "His soul was supposed to go to Ardenweald, but you can't chain a free spirit down.",
+    "health": 2,
+    "id": "ETC_382",
+    "mechanics": [
+      "BATTLECRY",
+      "DEATHRATTLE"
+    ],
+    "name": "Free Spirit",
+    "race": "BEAST",
+    "races": [
+      "UNDEAD",
+      "BEAST"
+    ],
+    "rarity": "EPIC",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Battlecry and Deathrattle:</b>\nYour Hero Power gains 1\nmore Armor this game.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Todd Harris",
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 94225,
+    "flavor": "W_____O_____R_____D",
+    "id": "ETC_384",
+    "name": "Spread the Word",
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "Draw 2 cards.\nCosts (1) less for each Attack your hero has.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Eva Widermann",
+    "attack": 2,
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 94249,
+    "flavor": "\"Like, what if we're all just cards living in this box called Hearthstone, man?\"",
+    "health": 1,
+    "id": "ETC_385",
+    "mechanics": [
+      "BATTLECRY",
+      "DEATHRATTLE"
+    ],
+    "name": "Groovy Cat",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "RARE",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "<b>Battlecry and Deathrattle:</b> Your Hero Power gives your hero 1 more Attack this game.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Max Grecke",
+    "attack": 6,
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 94250,
+    "elite": true,
+    "flavor": "Despite having only 3 digits on each hand, Zok plays Bass like he has 5.",
+    "health": 6,
+    "id": "ETC_386",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Zok Fogsnout",
+    "race": "QUILBOAR",
+    "races": [
+      "QUILBOAR"
+    ],
+    "rarity": "LEGENDARY",
+    "referencedTags": [
+      "TAUNT"
+    ],
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Battlecry:</b> Summon two\n{0}/{1} Quilboar with <b>Taunt</b>.\n <i>(Improved by your hero Attack \n  & Armor gained this turn!)</i>",
+    "type": "MINION"
+  },
+  {
+    "artist": "L. Lullabi & K. Turovec",
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 94251,
+    "elite": true,
+    "flavor": "For Zok's latest song, he decided to go back to his roots. Like the ones on a tree. Tree roots.",
+    "id": "ETC_387",
+    "mechanics": [
+      "CHOOSE_ONE"
+    ],
+    "name": "Rhythm and Roots",
+    "rarity": "LEGENDARY",
+    "set": "BATTLE_OF_THE_BANDS",
+    "spellSchool": "NATURE",
+    "text": "[x]<b>Choose One (Secretly) -</b>\nSummon three 5/5\nAncients in 2 turns; or\n8/8 Giants in 4 turns.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Cynthia  Garcia",
+    "attack": 2,
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 94381,
+    "durability": 0,
+    "flavor": "Timberine anyone? TIMBERINE!?",
+    "health": 3,
+    "id": "ETC_388",
+    "mechanics": [
+      "DEATHRATTLE",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Timber Tambourine",
+    "rarity": "EPIC",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Deathrattle:</b> Summon 1\n5/5 Ancient. <i>(Play cards\nthat cost (5) or more while\n  equipped to improve!)</i>",
+    "type": "WEAPON"
+  },
+  {
+    "artist": "A.J. Nazzaro",
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 96946,
+    "flavor": "It's spicy!",
+    "id": "ETC_394",
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "Taste of Chaos",
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "spellSchool": "FEL",
+    "text": "Deal $2 damage\nto a minion. <b>Finale:</b> <b>Discover</b> a Fel spell.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Konstantin Porubov",
+    "attack": 8,
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 9,
+    "dbfId": 96992,
+    "elite": true,
+    "flavor": "Do not sleep on his Tinker Town deep house set - absolutely legendary.",
+    "health": 8,
+    "id": "ETC_395",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "DJ Manastorm",
+    "rarity": "LEGENDARY",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "<b>Battlecry:</b> Set the Cost of spells in your hand to (0).\nAfter you cast one, the others cost (1) more.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Alex Stone",
+    "attack": 2,
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 96997,
+    "flavor": "It's hard to makeup flavor text sometimes.",
+    "health": 3,
+    "id": "ETC_398",
+    "mechanics": [
+      "AURA"
+    ],
+    "name": "Eye of Shadow",
+    "race": "DEMON",
+    "races": [
+      "DEMON"
+    ],
+    "rarity": "EPIC",
+    "referencedTags": [
+      "LIFESTEAL"
+    ],
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "Your hero has <b>Lifesteal</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Rafael Zanchetin",
+    "attack": 4,
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 96999,
+    "elite": true,
+    "flavor": "You know someone's cool when their name sounds like a font.",
+    "hasDiamondSkin": true,
+    "health": 3,
+    "id": "ETC_399",
+    "mechanics": [
+      "RUSH",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Halveria Darkraven",
+    "rarity": "LEGENDARY",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "<b>Rush</b>\nAfter a friendly <b>Rush</b>\nminion attacks, give your minions +1 Attack.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Juan Calle",
+    "attack": 3,
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 90441,
+    "flavor": "Guitar? Nah, she plays percussion.",
+    "health": 6,
+    "id": "ETC_400",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Instrument Smasher",
+    "rarity": "EPIC",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]Whenever your weapon is\ndestroyed, equip a random\nDemon Hunter weapon.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Studio Hive",
+    "attack": 4,
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 90532,
+    "durability": 0,
+    "flavor": "Might need tuning, I think it's a bit sharp.",
+    "health": 2,
+    "id": "ETC_405",
+    "mechanics": [
+      "DEATHRATTLE",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Glaivetar",
+    "rarity": "RARE",
+    "referencedTags": [
+      "OUTCAST"
+    ],
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x] <b>Deathrattle:</b> Draw 1 card. \n<i>(Play <b>Outcast</b> cards while\n equipped to improve!)</i>",
+    "type": "WEAPON"
+  },
+  {
+    "artist": "Alex Stone",
+    "attack": 2,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "collectionText": "[x]<b>Rush</b>. <b>Battlecry:</b> Gain\n+1/+1 for each minion\nof a different type you've\nplayed this game.",
+    "cost": 3,
+    "dbfId": 90541,
+    "flavor": "There's a huge difference between a battle-axe and an axe-guitar. One is for combat, and the other is for combat AND rocking out.",
+    "health": 3,
+    "id": "ETC_408",
+    "mechanics": [
+      "BATTLECRY",
+      "RUSH"
+    ],
+    "name": "Power Slider",
+    "rarity": "RARE",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Rush</b>. <b>Battlecry:</b> Gain\n+1/+1 for each minion\nof a different type you've\nplayed this game.@ <i>(@)</i>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Vladimir Kafanov",
+    "attack": 6,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "collectionText": "[x]<b>Battlecry:</b> Gain a random\n<b>Bonus Effect</b> for each minion\nof a different type you've\nplayed this game.",
+    "cost": 7,
+    "dbfId": 90543,
+    "elite": true,
+    "flavor": "Why be good with ONE instrument when you can be terrible with ALL of them!!!",
+    "health": 6,
+    "id": "ETC_409",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "The One-Amalgam Band",
+    "race": "ALL",
+    "races": [
+      "ALL"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Battlecry:</b> Gain a random\n<b>Bonus Effect</b> for each minion\nof a different type you've\nplayed this game.@ <i>(@)</i>",
+    "type": "MINION"
+  },
+  {
+    "artist": "James Ryman",
+    "attack": 1,
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "collectionText": "<b>Rush</b>\n<b>Battlecry:</b> Gain +1/+1\nfor each minion that died this turn.",
+    "cost": 2,
+    "dbfId": 90608,
+    "flavor": "Don't look her in the eyes or you'll turn to ROCK!",
+    "health": 1,
+    "id": "ETC_410",
+    "mechanics": [
+      "BATTLECRY",
+      "RUSH"
+    ],
+    "name": "Snakebite",
+    "race": "NAGA",
+    "races": [
+      "NAGA"
+    ],
+    "rarity": "RARE",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "<b>Rush</b>\n<b>Battlecry:</b> Gain +1/+1\nfor each minion that died this turn.@ <i>(@)</i>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Maria Trepalina",
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 90612,
+    "flavor": "Check all of the boxes that contain VENGEANCE to play this card.",
+    "id": "ETC_411",
+    "mechanics": [
+      "OUTCAST"
+    ],
+    "name": "SECURITY!!",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "RUSH"
+    ],
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "Summon two 1/1 Illidari with <b>Rush</b>.\n<b>Outcast:</b> Summon\none more.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "James Ryman",
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 90615,
+    "elite": true,
+    "flavor": "Halveria was outcast from Gilneas for being too edgy, which she sees as an achievement.",
+    "id": "ETC_413",
+    "name": "Going Down Swinging",
+    "rarity": "LEGENDARY",
+    "referencedTags": [
+      "IMMUNE"
+    ],
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]Give your hero +2 Attack\nand <b>Immune</b> this turn, then\n attack each enemy minion.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Alex Horley Orlandelli",
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 90678,
+    "elite": true,
+    "flavor": "Thank goodness it's not called Black-ska Mountain.",
+    "id": "ETC_417",
+    "name": "Blackrock 'n' Roll",
+    "rarity": "LEGENDARY",
+    "set": "BATTLE_OF_THE_BANDS",
+    "spellSchool": "FIRE",
+    "text": "Give all minions in your deck Attack and Health equal to their Cost.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Mike Sass",
+    "attack": 1,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 90808,
+    "flavor": "A tech card without Tradeable? CRINGE.",
+    "health": 2,
+    "id": "ETC_418",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Instrument Tech",
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "<b>Battlecry:</b> Draw a weapon.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Luca Zontini",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 90966,
+    "flavor": "In the pit, he feels more alive than ever.",
+    "health": 10,
+    "howToEarnGolden": "Earnable on the <i>Festival of Legends</i> Reward Track.",
+    "id": "ETC_419",
+    "mechanics": [
+      "RUSH",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Mish-Mash Mosher",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD"
+    ],
+    "rarity": "RARE",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Rush</b>\nAfter this attacks, gain\n+1 Attack and attack a\n random enemy minion.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Angelina Chernyak",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 90968,
+    "flavor": "She has this terrible habit of eating melted cheese while on the job.",
+    "health": 2,
+    "id": "ETC_420",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Outfit Tailor",
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "targetingArrowText": "Give stats equal to this minion's.",
+    "text": "[x]<b>Battlecry:</b> Give a friendly\nminion Attack and Health\nequal to this minion's.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Melvin Chan",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 91215,
+    "flavor": "He's very popular on Click-Clock.",
+    "health": 4,
+    "id": "ETC_422",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Metrognome",
+    "race": "MECHANICAL",
+    "races": [
+      "MECHANICAL"
+    ],
+    "rarity": "RARE",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]After you play a {0}-Cost\ncard, draw a {1}-Cost card.\n<i>(Then increase!)</i>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mooncolony",
+    "attack": 3,
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 91232,
+    "durability": 0,
+    "flavor": "A guitar with a skull - perfect for headbanging.",
+    "health": 2,
+    "id": "ETC_423",
+    "mechanics": [
+      "DEATHRATTLE",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Arcanite Ripper",
+    "rarity": "RARE",
+    "referencedTags": [
+      "LIFESTEAL"
+    ],
+    "runeCost": {
+      "blood": 1,
+      "frost": 0,
+      "unholy": 0
+    },
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Deathrattle:</b> Summon a 1/1\n<b>Lifesteal</b> Undead. <i>(Change\nyour Health on your turn while\nequipped to improve!)</i>",
+    "type": "WEAPON"
+  },
+  {
+    "artist": "Mooncolony",
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 91251,
+    "flavor": "GRRRRR I'M SO ANGRY BECAUSE I'M DEAD!",
+    "id": "ETC_424",
+    "name": "Death Growl",
+    "rarity": "RARE",
+    "referencedTags": [
+      "DEATHRATTLE"
+    ],
+    "runeCost": {
+      "blood": 0,
+      "frost": 0,
+      "unholy": 1
+    },
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "Choose a minion.\nSpread its <b>Deathrattle</b>\nto adjacent minions.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Kevin Sidharta",
+    "attack": 5,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 91252,
+    "elite": true,
+    "flavor": "\"I'm down here, fixin' all the Gnomish tech that breaks down mid-set while that buffoon Fizzle is up there taking pictures of the sky. YOU tell ME who's the better engineer!\"",
+    "health": 4,
+    "howToEarn": "Earnable after collecting 30 <i>Festival of Legends</i> cards.",
+    "howToEarnGolden": "Earnable after purchasing the <i>Festival of Legends</i> Tavern Pass.",
+    "id": "ETC_425",
+    "mechanics": [
+      "BATTLECRY",
+      "DEATHRATTLE"
+    ],
+    "name": "Pozzik, Audio Engineer",
+    "rarity": "LEGENDARY",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "<b>Battlecry:</b> Add two 3/3 Bots to your opponent's hand. <b>Deathrattle:</b> Summon them for yourself.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Konstantin Porubov",
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 91412,
+    "flavor": "I have bashed together plenty of pieces of metal in my day and not ONCE has it sounded harmonic.",
+    "id": "ETC_427",
+    "name": "Harmonic Metal",
+    "rarity": "COMMON",
+    "runeCost": {
+      "blood": 1,
+      "frost": 0,
+      "unholy": 0
+    },
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]Give 4 random minions\nin your hand +2/+2.\n<i>(Swaps each turn.)</i>",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Alex Horley Orlandelli",
+    "attack": 5,
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 91493,
+    "flavor": "Is that his makeup or just his natural fur pattern?",
+    "health": 4,
+    "id": "ETC_428",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Boneshredder",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD"
+    ],
+    "rarity": "EPIC",
+    "referencedTags": [
+      "DEATHRATTLE"
+    ],
+    "runeCost": {
+      "blood": 0,
+      "frost": 0,
+      "unholy": 1
+    },
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Battlecry:</b> Spend 5 <b>Corpses</b> to\ntrigger and gain the <b>Deathrattle</b>\nof a random friendly minion\nthat died this game.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Evgeniy Dlinnov",
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 97403,
+    "flavor": "\"Well that was weird. Yeah, I just walked up to the president of the fan club, he blabbered on for like 10 minutes, and then gave me a bike voucher...\"",
+    "health": 2,
+    "id": "ETC_449",
+    "name": "Fan Club",
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "Restore #3 Health to all friendly characters.",
+    "type": "LOCATION"
+  },
+  {
+    "artist": "Vlad Botos",
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 88580,
+    "flavor": "\"Worry not, festival patrons! A disco is hardly any means for panic!\"",
+    "id": "ETC_506",
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "Harmonic Disco",
+    "rarity": "RARE",
+    "set": "BATTLE_OF_THE_BANDS",
+    "spellSchool": "HOLY",
+    "text": "<b>Discover</b> a 5-Cost minion. Summon it\nwith +1/+1.\n<i>(Swaps each turn.)</i>",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Studio Hive",
+    "attack": 3,
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 90356,
+    "durability": 0,
+    "flavor": "A Rogue's favorite audio sample is an orchestral stab.",
+    "health": 2,
+    "id": "ETC_518",
+    "mechanics": [
+      "DEATHRATTLE",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Record Scratcher",
+    "rarity": "EPIC",
+    "referencedTags": [
+      "COMBO"
+    ],
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Deathrattle:</b> Refresh\n1 Mana Crystal.\n<i>(Play <b>Combo</b> cards while\n    equipped to improve!)</i>  ",
+    "type": "WEAPON"
+  },
+  {
+    "artist": "Studio Hive",
+    "attack": 3,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 90359,
+    "durability": 0,
+    "flavor": "Stolen from a druidic drum circle, now destined to make music that is actually good.",
+    "health": 2,
+    "id": "ETC_520",
+    "mechanics": [
+      "DEATHRATTLE",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Kodohide Drumkit",
+    "rarity": "RARE",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Deathrattle:</b> Deal 1\ndamage to all minions.\n<i>(Gain Armor while\n    equipped to improve!)</i>  ",
+    "type": "WEAPON"
+  },
+  {
+    "artist": "Ursula Dorada",
+    "attack": 0,
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 90368,
+    "durability": 0,
+    "flavor": "Mine is signed by Algalon himself.",
+    "health": 3,
+    "id": "ETC_521",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Cosmic Keyboard",
+    "rarity": "RARE",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]After you cast a spell,\nsummon an Elemental with\nstats equal to its Cost.\nLose 1 Durability.",
+    "type": "WEAPON"
+  },
+  {
+    "artist": "Konstantin Turovec",
+    "attack": 3,
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 90481,
+    "flavor": "Her singing will be sure to wake you up (wake you up inside).",
+    "health": 6,
+    "id": "ETC_522",
+    "mechanics": [
+      "LIFESTEAL",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Screaming Banshee",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD"
+    ],
+    "rarity": "EPIC",
+    "runeCost": {
+      "blood": 1,
+      "frost": 0,
+      "unholy": 0
+    },
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Lifesteal</b>\n After your hero gains Health, \nsummon a Soul with that\n much Attack and Health.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Konstantin Porubov",
+    "attack": 3,
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 90484,
+    "flavor": "He prefers listening to bands dead rather than live.",
+    "health": 4,
+    "id": "ETC_523",
+    "mechanics": [
+      "TAUNT"
+    ],
+    "name": "Death Metal Knight",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD"
+    ],
+    "rarity": "RARE",
+    "runeCost": {
+      "blood": 2,
+      "frost": 0,
+      "unholy": 0
+    },
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Taunt</b>\nCosts Health instead\nof Mana if your hero was\nhealed this turn.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Alex Horley Orlandelli",
+    "attack": 5,
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 90497,
+    "elite": true,
+    "flavor": "You get your head stuck in a cage ONCE, and all of a sudden you've got a new nickname.",
+    "health": 1,
+    "id": "ETC_526",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Cage Head",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD"
+    ],
+    "rarity": "LEGENDARY",
+    "referencedTags": [
+      "CHARGE",
+      "TAUNT"
+    ],
+    "runeCost": {
+      "blood": 0,
+      "frost": 0,
+      "unholy": 2
+    },
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "<b>Deathrattle:</b> Summon\na 9/9 Blight Boar with <b>Charge</b> and <b>Taunt</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Arthur Gimaldinov",
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 90534,
+    "flavor": "Always remember P.L.U.R.: Peace, Laser-beams, Unity, Respect.",
+    "id": "ETC_528",
+    "name": "Lightshow",
+    "rarity": "RARE",
+    "set": "BATTLE_OF_THE_BANDS",
+    "spellSchool": "ARCANE",
+    "text": "[x]Shoot 2 beams at enemies\nthat each deal $2 damage.\nYour future Lightshows\nshoot one more beam.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Konstantin Porubov",
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 90592,
+    "flavor": "If you don't find the spell you want, just cast this one more time and see if you get lucky.",
+    "id": "ETC_532",
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "Rewind",
+    "rarity": "RARE",
+    "set": "BATTLE_OF_THE_BANDS",
+    "spellSchool": "ARCANE",
+    "text": "<b>Discover</b> a copy of another spell you've cast this game.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "BOSi Studio",
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 90648,
+    "flavor": "Let the Corpses hit the floor!",
+    "health": 2,
+    "id": "ETC_533",
+    "name": "Mosh Pit",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "REBORN"
+    ],
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]Spend 3 <b>Corpses</b> to give\na friendly minion <b>Reborn</b>.",
+    "type": "LOCATION"
+  },
+  {
+    "artist": "Mooncolony",
+    "attack": 3,
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 90671,
+    "flavor": "Ironically, operating the spotlight comes with very little recognition.",
+    "health": 4,
+    "id": "ETC_534",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Holotechnician",
+    "rarity": "EPIC",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "After ANY minion takes exactly 1 damage,\ndestroy it.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Konstantin Turovec",
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 90738,
+    "flavor": "After the invention of elemental audio processing, Azeroth went through a major synth phase.",
+    "id": "ETC_535",
+    "name": "Synthesize",
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "Add a random 1, 2,\nand 3-Cost Elemental to your hand.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Melvin Chan",
+    "attack": 3,
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 90856,
+    "flavor": "\"I tried to give him some constructive criticism but gosh, he really hates feedback!\"",
+    "health": 2,
+    "id": "ETC_536",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "Audio Splitter",
+    "race": "MECHANICAL",
+    "races": [
+      "MECHANICAL"
+    ],
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "<b>Deathrattle:</b> Copy the\nhighest Cost spell in\nyour hand.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mauricio Herrera",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 92235,
+    "flavor": "The difference between a pyrotechnician and a pyromaniac is a paycheck.",
+    "health": 5,
+    "id": "ETC_540",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Pyrotechnician",
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]After you cast a spell,\nadd a random Fire spell\nto your hand.",
+    "type": "MINION"
+  },
+  {
+    "artist": "A.J. Nazzaro",
+    "attack": 4,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 92237,
+    "elite": true,
+    "flavor": "Tony prefers sailing on torrents rather than streams.",
+    "health": 6,
+    "id": "ETC_541",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Tony, King of Piracy",
+    "race": "PIRATE",
+    "races": [
+      "PIRATE"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "<b>Battlecry:</b> Replace your deck with a copy of your opponent's.\n<b>Finale:</b> Draw a card.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Zoltan Boros",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 92240,
+    "flavor": "\"Incident in the mosh pit? Copy that, be there in a year.\"",
+    "health": 5,
+    "howToEarnGolden": "Earnable on the <i>Festival of Legends</i> Reward Track.",
+    "id": "ETC_542",
+    "mechanics": [
+      "TAUNT"
+    ],
+    "name": "Festival Security",
+    "rarity": "RARE",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Taunt</b>\n<b>Finale:</b> Force all enemy\nminions to attack this.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Jason Kang",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 92242,
+    "flavor": "You would not believe your eyes\nIf ten million kobold guys\nLit up the world to this ogre beat",
+    "health": 3,
+    "id": "ETC_543",
+    "mechanics": [
+      "DIVINE_SHIELD"
+    ],
+    "name": "Candleraiser",
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Divine Shield</b>\n<b>Finale:</b> Give adjacent\nminions <b>Divine Shield</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Patrik Bjorkstrom",
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 88403,
+    "flavor": "I can name four things that rhyme with 'orange': Four inch, Door hinge, Syringe, and uh… Shmorange.",
+    "id": "ETC_717",
+    "name": "Harmonic Hip Hop",
+    "rarity": "RARE",
+    "set": "BATTLE_OF_THE_BANDS",
+    "spellSchool": "SHADOW",
+    "text": "Deal $1 damage. Give your weapon +3 Attack.\n<i>(Swaps each turn.)</i>",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Melvin Chan",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 88982,
+    "flavor": "Sadly, the mariachi band it used to play in gathers no más.",
+    "health": 2,
+    "id": "ETC_742",
+    "mechanics": [
+      "BATTLECRY",
+      "RUSH"
+    ],
+    "name": "Rolling Stone",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Rush</b>\n<b>Battlecry:</b> If the last card\nyou played costs (1),\ngain +1/+1.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Studio Hive",
+    "attack": 3,
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 90781,
+    "durability": 0,
+    "flavor": "No birds, <i>plural</i>, were harmed in the making of this bass.",
+    "health": 2,
+    "id": "ETC_813",
+    "mechanics": [
+      "DEATHRATTLE",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Jazz Bass",
+    "rarity": "RARE",
+    "referencedTags": [
+      "OVERLOAD"
+    ],
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Deathrattle:</b> Your next\nspell costs (1) less.\n<i>(<b>Overload</b> while equipped\nto improve!)</i>",
+    "type": "WEAPON"
+  },
+  {
+    "artist": "Adam Byrne",
+    "attack": 1,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 91494,
+    "flavor": "She calls the hyena her \"little chef\". Not sure what that's about.",
+    "health": 3,
+    "id": "ETC_831",
+    "name": "Thornmantle Musician",
+    "race": "QUILBOAR",
+    "races": [
+      "QUILBOAR"
+    ],
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "<b>Finale:</b> The next Beast you summon gets +1/+1.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Cynthia  Garcia",
+    "attack": 4,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 91495,
+    "durability": 0,
+    "flavor": "When asked what animal they would be, people always say things like \"I'd be wolf-lion hybrid mix. King of the jungle, but still sociable and ferocious.\" No, you'd be a rat.",
+    "health": 2,
+    "id": "ETC_832",
+    "mechanics": [
+      "DEATHRATTLE",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Jungle Jammer",
+    "rarity": "EPIC",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Deathrattle:</b> Summon a\nrandom 1-Cost Beast.\n<i>(Cast spells while\n    equipped to improve!)</i>  ",
+    "type": "WEAPON"
+  },
+  {
+    "artist": "Konstantin Turovec",
+    "attack": 2,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 91496,
+    "flavor": "\"What do you mean it's a <i>violin</i> bow!?!\"",
+    "health": 3,
+    "id": "ETC_833",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Arrow Smith",
+    "race": "NAGA",
+    "races": [
+      "NAGA"
+    ],
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]After you cast a spell,\ndeal 1 damage to the\nlowest Health enemy.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Nicola Saviori",
+    "attack": 10,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 91498,
+    "elite": true,
+    "flavor": "Music is Mukla's escape from his anger. When he's on-stage, it's like he's a whole different gorilla… Until you boo him.",
+    "health": 10,
+    "id": "ETC_836",
+    "mechanics": [
+      "BATTLECRY",
+      "RUSH"
+    ],
+    "name": "Mister Mukla",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Rush</b>. <b>Battlecry:</b> Fill\nyour opponent's hand\nwith Bananas.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Tanamaes Leejierasaes",
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 92296,
+    "flavor": "Just a small town Taunka\nLivin' in a lonely... waunka",
+    "id": "ETC_838",
+    "name": "Big Dreams",
+    "rarity": "RARE",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "Summon the\nhighest Cost Beast\nfrom your hand. It goes <b>Dormant</b> for 2 turns.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Todd Harris",
+    "attack": 5,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 10,
+    "dbfId": 92328,
+    "flavor": "You'll all be singing along once he gets to the tyranno-chorus.",
+    "health": 6,
+    "id": "ETC_840",
+    "mechanics": [
+      "RUSH",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Banjosaur",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "RARE",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Rush</b>\nWhenever this attacks, draw\na Beast and gain its stats.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mooncolony",
+    "attack": 3,
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 94727,
+    "flavor": "\"Mine gave me free money!\"\n\"Mine gave me free ice cream!\"\n\"… mine gave me two sheep that explode. They were free but I still want a refund.\"",
+    "health": 3,
+    "id": "JAM_000",
+    "isMiniSet": true,
+    "name": "Remixed Dispense-o-bot",
+    "race": "MECHANICAL",
+    "races": [
+      "MECHANICAL"
+    ],
+    "rarity": "RARE",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "Gains an extra effect in your hand that changes each turn.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Matt Dixon",
+    "attack": 1,
+    "cardClass": "MAGE",
+    "classes": [
+      "HUNTER",
+      "MAGE"
+    ],
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 95336,
+    "flavor": "Who knows which forgotten, washed-up, former C-list celebrity might be in there!",
+    "health": 1,
+    "id": "JAM_001",
+    "isMiniSet": true,
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Costumed Singer",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "SECRET"
+    ],
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "At the end of your turn,\ndraw a <b>Secret</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Ursula Dorada",
+    "cardClass": "MAGE",
+    "classes": [
+      "HUNTER",
+      "MAGE"
+    ],
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 96627,
+    "flavor": "Five of the spectators were star-struck.",
+    "id": "JAM_002",
+    "isMiniSet": true,
+    "mechanics": [
+      "ImmuneToSpellpower"
+    ],
+    "name": "Star Power",
+    "rarity": "RARE",
+    "set": "BATTLE_OF_THE_BANDS",
+    "spellSchool": "ARCANE",
+    "text": "[x]Deal $5 damage to a\nrandom enemy minion.\nRepeat this with 1\nless damage.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Kevin Sidharta",
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 96618,
+    "flavor": "I'm telling you, if you play the song backwards at triple speed I SWEAR Mukla sings about the Burning Legion.",
+    "id": "JAM_003",
+    "isMiniSet": true,
+    "mechanics": [
+      "SECRET"
+    ],
+    "name": "Hidden Meaning",
+    "rarity": "RARE",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "<b>Secret:</b> When your opponent ends their turn with no Mana, summon a random 3-Cost minion.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Slawomir Maniak",
+    "attack": 3,
+    "cardClass": "HUNTER",
+    "classes": [
+      "DEATHKNIGHT",
+      "HUNTER"
+    ],
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 94735,
+    "flavor": "Uh oh, the hollow hound is coming out of its cage! Don't worry though, it's doing just fine.",
+    "health": 4,
+    "id": "JAM_004",
+    "isMiniSet": true,
+    "mechanics": [
+      "LIFESTEAL",
+      "RUSH"
+    ],
+    "name": "Hollow Hound",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD",
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Lifesteal</b>, <b>Rush</b>\nAlso damages minions next\nto whomever this attacks.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Matt Dixon",
+    "attack": 3,
+    "cardClass": "DEATHKNIGHT",
+    "classes": [
+      "DEATHKNIGHT",
+      "HUNTER"
+    ],
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 95344,
+    "flavor": "Maybe it's OK for the Grimtotem to destroy <i>some</i> music forever.",
+    "health": 4,
+    "id": "JAM_005",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Yelling Yodeler",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD"
+    ],
+    "rarity": "RARE",
+    "referencedTags": [
+      "DEATHRATTLE"
+    ],
+    "set": "BATTLE_OF_THE_BANDS",
+    "targetingArrowText": "Trigger a friendly minion's Deathrattle twice.",
+    "text": "[x]<b>Battlecry:</b> Trigger a friendly\nminion's <b>Deathrattle</b> twice.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Angelica Alieva",
+    "cardClass": "DEATHKNIGHT",
+    "classes": [
+      "DEATHKNIGHT",
+      "PALADIN"
+    ],
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 98390,
+    "flavor": "Looks like some of the dancers still need to warm up.",
+    "id": "JAM_006",
+    "isMiniSet": true,
+    "name": "Cold Feet",
+    "rarity": "RARE",
+    "set": "BATTLE_OF_THE_BANDS",
+    "spellSchool": "FROST",
+    "text": "Enemy minions cost\n(5) more next turn.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Matt Dixon",
+    "attack": 3,
+    "cardClass": "DEATHKNIGHT",
+    "classes": [
+      "DEATHKNIGHT",
+      "PALADIN"
+    ],
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 94736,
+    "flavor": "He has disco fever! :D\nBecause of the disco plague. :(",
+    "health": 1,
+    "id": "JAM_007",
+    "isMiniSet": true,
+    "mechanics": [
+      "DIVINE_SHIELD",
+      "REBORN"
+    ],
+    "name": "Cool Ghoul",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD"
+    ],
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "<b>Divine Shield</b>\n<b>Reborn</b>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Grace Liu",
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 98410,
+    "flavor": "We'll be right back after a word from our specters.",
+    "id": "JAM_008",
+    "isMiniSet": true,
+    "name": "Dead Air",
+    "rarity": "RARE",
+    "runeCost": {
+      "blood": 0,
+      "frost": 1,
+      "unholy": 1
+    },
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "Destroy your Undead. Resummon them.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "BOSi Studio",
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 98411,
+    "flavor": "I don't think Rush would ever be here.",
+    "health": 2,
+    "id": "JAM_009",
+    "isMiniSet": true,
+    "name": "Dance Floor",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "RUSH"
+    ],
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]Give your minions <b>Rush</b>.",
+    "type": "LOCATION"
+  },
+  {
+    "artist": "Daniil Kudriavtsev",
+    "attack": 0,
+    "cardClass": "PALADIN",
+    "classes": [
+      "PALADIN",
+      "SHAMAN"
+    ],
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 95345,
+    "flavor": "If you really love Hearthstone, put another coin in the Totem baby!",
+    "health": 4,
+    "id": "JAM_010",
+    "isMiniSet": true,
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Jukebox Totem",
+    "race": "TOTEM",
+    "races": [
+      "MECHANICAL",
+      "TOTEM"
+    ],
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]At the end of your turn,\nsummon a 1/1 Silver\nHand Recruit.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Studio Hive",
+    "attack": 3,
+    "cardClass": "SHAMAN",
+    "classes": [
+      "PALADIN",
+      "SHAMAN"
+    ],
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 95350,
+    "durability": 0,
+    "flavor": "Woodwinds! Obey my command!",
+    "health": 4,
+    "id": "JAM_011",
+    "isMiniSet": true,
+    "mechanics": [
+      "TRIGGER_VISUAL",
+      "WINDFURY"
+    ],
+    "name": "Horn of the Windlord",
+    "rarity": "RARE",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Windfury</b>\nWhenever your hero\nattacks a minion, set\nits stats to 3/3.",
+    "type": "WEAPON"
+  },
+  {
+    "artist": "Zoltan Boros",
+    "attack": 3,
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 95454,
+    "flavor": "Music always sounds better on old, wooden speakers.",
+    "health": 2,
+    "id": "JAM_012",
+    "isMiniSet": true,
+    "name": "Remixed Totemcarver",
+    "rarity": "RARE",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "Gains an extra effect in your hand that changes each turn.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Ramzy Kamen",
+    "cardClass": "WARRIOR",
+    "classes": [
+      "SHAMAN",
+      "WARRIOR"
+    ],
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 96628,
+    "flavor": "Their skills will make you jelly.",
+    "id": "JAM_013",
+    "isMiniSet": true,
+    "mechanics": [
+      "OVERLOAD"
+    ],
+    "name": "Jam Session",
+    "overload": 1,
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "spellSchool": "FIRE",
+    "text": "[x]Give a friendly minion\n+3/+3. Deal $1 damage\nto all other minions.\n<b>Overload:</b> (1)",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Matt Dixon",
+    "attack": 4,
+    "cardClass": "WARRIOR",
+    "classes": [
+      "SHAMAN",
+      "WARRIOR"
+    ],
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 94821,
+    "flavor": "Doesn't see your name on the list. Also doesn't know how to read the names on the list.",
+    "health": 5,
+    "id": "JAM_014",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY",
+      "TAUNT"
+    ],
+    "name": "Backstage Bouncer",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "RARE",
+    "set": "BATTLE_OF_THE_BANDS",
+    "targetingArrowText": "Transform a friendly minion into a copy of this.",
+    "text": "<b>Taunt</b>\n<b>Battlecry:</b> Transform a friendly minion into a copy of this.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Konstantin Turovec",
+    "attack": 2,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 95408,
+    "durability": 0,
+    "flavor": "You can tune a fork, but you can't tune a fish.",
+    "health": 2,
+    "id": "JAM_015",
+    "isMiniSet": true,
+    "name": "Remixed Tuning Fork",
+    "rarity": "RARE",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "Gains an extra effect in\nyour hand that changes\neach turn.",
+    "type": "WEAPON"
+  },
+  {
+    "artist": "Jaemin Kim",
+    "attack": 4,
+    "cardClass": "DEMONHUNTER",
+    "classes": [
+      "WARRIOR",
+      "DEMONHUNTER"
+    ],
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 94819,
+    "flavor": "DROP THE BASS (INTO THE ABYSS)!",
+    "health": 7,
+    "id": "JAM_016",
+    "isMiniSet": true,
+    "mechanics": [
+      "LIFESTEAL",
+      "TAUNT"
+    ],
+    "name": "Abyssal Bassist",
+    "race": "DEMON",
+    "races": [
+      "DEMON"
+    ],
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Taunt</b>, <b>Lifesteal</b>\nCosts (2) less for each\nweapon you've equipped\nthis game.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mike Sass",
+    "cardClass": "WARRIOR",
+    "classes": [
+      "WARRIOR",
+      "DEMONHUNTER"
+    ],
+    "collectible": true,
+    "cost": 0,
+    "dbfId": 94820,
+    "flavor": "It's a Fel spell, but also a FIRE spell.",
+    "id": "JAM_017",
+    "isMiniSet": true,
+    "name": "Through Fel and Flames",
+    "rarity": "RARE",
+    "referencedTags": [
+      "RUSH"
+    ],
+    "set": "BATTLE_OF_THE_BANDS",
+    "spellSchool": "FEL",
+    "text": "Give a minion <b>Rush</b>. <b>Finale:</b> And +1/+1.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Anton Zemskov",
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 95856,
+    "flavor": "\"Is this real life?\"\n\"No, this is a card game.\"",
+    "id": "JAM_018",
+    "isMiniSet": true,
+    "name": "Remixed Rhapsody",
+    "rarity": "RARE",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "Deal $3 damage\nto all minions. Gains an extra effect in your hand that changes each turn.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Sergey Tsvelykh",
+    "attack": 3,
+    "cardClass": "ROGUE",
+    "classes": [
+      "ROGUE",
+      "DEMONHUNTER"
+    ],
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 94802,
+    "elite": true,
+    "flavor": "Shadowstep to the left!\nDouble jump to the right!\nClass cross!",
+    "health": 5,
+    "id": "JAM_019",
+    "isMiniSet": true,
+    "mechanics": [
+      "RUSH",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "Rhythmdancer Risa",
+    "rarity": "LEGENDARY",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Rush</b>\nAfter your hero attacks,\nreturn this to your hand\nand set its Cost to (1).",
+    "type": "MINION"
+  },
+  {
+    "artist": "Brian Despain",
+    "attack": 2,
+    "cardClass": "ROGUE",
+    "classes": [
+      "ROGUE",
+      "DEMONHUNTER"
+    ],
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 95374,
+    "flavor": "\"Your music's bad and you should feel bad.\"",
+    "health": 1,
+    "id": "JAM_020",
+    "isMiniSet": true,
+    "mechanics": [
+      "OUTCAST"
+    ],
+    "name": "Tough Crowd",
+    "race": "DEMON",
+    "races": [
+      "DEMON"
+    ],
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "targetingArrowText": "Return a minion to its owner's hand.",
+    "text": "<b>Outcast:</b> Return a minion to its owner's hand.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Vladimir Kafanov",
+    "attack": 2,
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 95377,
+    "flavor": "They're trying to get a second hit in with their next single, \"Divine Shield\".",
+    "health": 1,
+    "id": "JAM_021",
+    "isMiniSet": true,
+    "mechanics": [
+      "COMBO",
+      "RUSH"
+    ],
+    "name": "One Hit Wonder",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD"
+    ],
+    "rarity": "COMMON",
+    "referencedTags": [
+      "POISONOUS"
+    ],
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "<b>Rush</b>\n<b>Combo:</b> Gain <b><b>Poisonous</b>.</b>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Hideaki Takamura",
+    "cardClass": "PRIEST",
+    "classes": [
+      "PRIEST",
+      "ROGUE"
+    ],
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 98377,
+    "flavor": "Hey, Volsat, we can't hear you. You're on mute.",
+    "id": "JAM_022",
+    "isMiniSet": true,
+    "mechanics": [
+      "COMBO"
+    ],
+    "name": "Deafen",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "SILENCE"
+    ],
+    "set": "BATTLE_OF_THE_BANDS",
+    "spellSchool": "SHADOW",
+    "text": "<b>Silence</b> a minion. <b>Combo:</b> Also deal $2 damage to it.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Zoltan Boros",
+    "attack": 4,
+    "cardClass": "PRIEST",
+    "classes": [
+      "PRIEST",
+      "ROGUE"
+    ],
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 95825,
+    "flavor": "He's also working on his own Hearthstone expansion: Festival of Epics.",
+    "health": 3,
+    "id": "JAM_023",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Plagiarizarrr",
+    "race": "PIRATE",
+    "races": [
+      "PIRATE"
+    ],
+    "rarity": "RARE",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "<b>Battlecry:</b> Get a copy\nof the top card of your opponent's deck.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Todd Harris",
+    "attack": 3,
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 97579,
+    "flavor": "Make sure it's smaller than your other lightspawns for the best fill lighting.",
+    "health": 4,
+    "id": "JAM_024",
+    "isMiniSet": true,
+    "mechanics": [
+      "OVERHEAL"
+    ],
+    "name": "Ambient Lightspawn",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Finale and Overheal:</b>\nGive another random\nfriendly minion +2/+2.",
+    "type": "MINION"
+  },
+  {
+    "artist": "BOSi Studio",
+    "cardClass": "PRIEST",
+    "classes": [
+      "DRUID",
+      "PRIEST"
+    ],
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 95394,
+    "flavor": "After all this time…. I thought it'd be bigger!",
+    "id": "JAM_025",
+    "isMiniSet": true,
+    "name": "Funnel Cake",
+    "rarity": "RARE",
+    "referencedTags": [
+      "OVERHEAL"
+    ],
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]Restore #3 Health to a\n minion and its neighbors.\nFor each one <b>Overhealed</b>,\nrefresh a Mana Crystal.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Melvin Chan",
+    "attack": 2,
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 95395,
+    "flavor": "Popular Pixie personally prefers particularly powerful pop performances.",
+    "health": 3,
+    "id": "JAM_026",
+    "isMiniSet": true,
+    "mechanics": [
+      "CHOOSE_ONE"
+    ],
+    "name": "Popular Pixie",
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Choose One -</b> Refresh\nyour Hero Power; or\nYour next one costs (0).",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mauricio Herrera",
+    "attack": 2,
+    "cardClass": "PRIEST",
+    "classes": [
+      "DRUID",
+      "PRIEST"
+    ],
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 98413,
+    "flavor": "His name? Stan.",
+    "health": 2,
+    "id": "JAM_027",
+    "isMiniSet": true,
+    "mechanics": [
+      "CHOOSE_ONE"
+    ],
+    "name": "Fanboy",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "LIFESTEAL",
+      "RUSH"
+    ],
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Choose One -</b> Give a friendly\nminion +2 Attack and <b>Rush</b>;\nor +2 Health and <b>Lifesteal</b>.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Ian Ameling",
+    "attack": 2,
+    "cardClass": "DRUID",
+    "classes": [
+      "DRUID",
+      "WARLOCK"
+    ],
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 94798,
+    "flavor": "The blood of my enemies makes for some great fertilizer!",
+    "health": 2,
+    "id": "JAM_028",
+    "isMiniSet": true,
+    "name": "Blood Treant",
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "Costs Health instead\nof Mana.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mooncolony",
+    "attack": 3,
+    "cardClass": "DRUID",
+    "classes": [
+      "DRUID",
+      "WARLOCK"
+    ],
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 98382,
+    "flavor": "Now THIS is Mana cheating.",
+    "health": 4,
+    "id": "JAM_029",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Doomkin",
+    "rarity": "RARE",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "<b>Battlecry:</b> Take one of\nyour opponent's empty Mana Crystals.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Brian Despain",
+    "attack": 15,
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 30,
+    "dbfId": 95404,
+    "elite": true,
+    "flavor": "Writing a compelling symphony takes time. Usually around 20 turns or more.",
+    "health": 15,
+    "id": "JAM_030",
+    "isMiniSet": true,
+    "mechanics": [
+      "LIFESTEAL",
+      "TAUNT"
+    ],
+    "name": "Fanottem, Lord of the Opera",
+    "rarity": "LEGENDARY",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "<b>Taunt</b>, <b>Lifesteal</b>\nThis card's Cost is\nequal to the amount of cards in your deck.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Michaela Nienaber",
+    "cardClass": "WARLOCK",
+    "classes": [
+      "MAGE",
+      "WARLOCK"
+    ],
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 98417,
+    "flavor": "This sounds much louder in the void.",
+    "id": "JAM_031",
+    "isMiniSet": true,
+    "name": "Reverberations",
+    "rarity": "RARE",
+    "set": "BATTLE_OF_THE_BANDS",
+    "spellSchool": "SHADOW",
+    "text": "Summon a copy of a minion. Each one dies after taking damage.",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Slawomir Maniak",
+    "attack": 3,
+    "cardClass": "WARLOCK",
+    "classes": [
+      "MAGE",
+      "WARLOCK"
+    ],
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 94852,
+    "flavor": "Most find the stages set aflame by the Grimtotem too dangerous to perform on, but to him they're perfect!",
+    "health": 3,
+    "id": "JAM_032",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Fiddlefire Imp",
+    "race": "DEMON",
+    "races": [
+      "DEMON"
+    ],
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "<b>Battlecry:</b> Add a random Fire Mage and Fire Warlock spell to your hand.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Vladimir Kafanov",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 95464,
+    "flavor": "Like every bard I know, he's a chaotic Neutral jack of all trades.",
+    "health": 3,
+    "id": "JAM_033",
+    "isMiniSet": true,
+    "mechanics": [
+      "RUSH"
+    ],
+    "name": "Remixed Musician",
+    "rarity": "COMMON",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Rush</b>\nGains an extra effect in\nyour hand that changes\neach turn.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Luca Zontini",
+    "attack": 4,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 95405,
+    "flavor": "Just like in Hoofloose.",
+    "health": 4,
+    "id": "JAM_034",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY",
+      "TRADEABLE"
+    ],
+    "name": "Speaker Stomper",
+    "rarity": "RARE",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Tradeable</b>\n<b>Battlecry:</b> Enemy spells\ncost (2) more next turn.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mike Sass",
+    "attack": 5,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 95630,
+    "flavor": "I'd be mad too if you called me a 'buzzkill'.",
+    "health": 4,
+    "id": "JAM_035",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Grimtotem Buzzkill",
+    "rarity": "EPIC",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "<b>Battlecry:</b> Discard a weapon to draw 3 cards.",
+    "type": "MINION"
+  },
+  {
+    "artist": "James Ryman",
+    "attack": 5,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 94822,
+    "elite": true,
+    "flavor": "Not to be confused with that one other \"-agatha\" that likes when you play minions.",
+    "hasDiamondSkin": true,
+    "health": 5,
+    "id": "JAM_036",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "Magatha, Bane of Music",
+    "rarity": "LEGENDARY",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "<b>Battlecry:</b> Draw 5 cards. Give any spells drawn\nto your opponent.",
+    "type": "MINION"
+  },
+  {
+    "artist": "Rafael Zanchetin",
+    "attack": 5,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 96621,
+    "elite": true,
+    "flavor": "Strumming his guitar with a molten ember from the first fire of Azeroth, E.T.C.'s ear-splitting, heart-wrenching, head-banging solo held back Magatha and her forces of evil, single-handedly saving music for centuries to come.",
+    "health": 5,
+    "id": "JAM_037",
+    "isMiniSet": true,
+    "name": "Elite Tauren Champion",
+    "rarity": "LEGENDARY",
+    "set": "BATTLE_OF_THE_BANDS",
+    "text": "[x]<b>Finale:</b> Start a ROCK DUEL!\n   Players must spend all their   \nMana each turn or else they\ntake 8 <i>(or more)</i> damage!",
+    "type": "MINION"
+  }
+]

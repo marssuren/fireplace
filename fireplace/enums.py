@@ -27,6 +27,14 @@ ACTIVATIONS_THIS_TURN = -29
 LIFESTEAL_DAMAGES_ENEMY = -30
 TRADEABLE_ACTIVE = -31  # 卡牌是否可以被交易
 TRADED_THIS_TURN = -32  # 本回合是否已交易过此卡
+INFUSE_COUNTER = -33  # Infuse 充能计数器
+INFUSE_THRESHOLD = -34  # Infuse 需要的充能数量
+LOCATION_COOLDOWN = -35  # 地标是否处于冷却状态
+LOCATION_ACTIVATIONS_THIS_TURN = -36  # 本回合激活次数
+FORGE_ACTIVE = -37  # 卡牌是否可以被锻造
+FORGED = -38  # 卡牌是否已被锻造
+TITAN_ABILITY_USED = -39  # 泰坦已使用的技能次数
+TITAN_ABILITY_COUNT = -40  # 泰坦总共有多少个技能（通常是3个）
 
 
 class SpellType(IntEnum):

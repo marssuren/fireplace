@@ -761,6 +761,17 @@ TRADED_CARD = FuncSelector(
     else []
 )
 
+# Overheal 机制 - 获取过量治疗数值
+# 用于访问触发 Overheal 时的过量治疗数值
+class OverhealAmount:
+    """返回过量治疗的数值"""
+    def eval(self, entities, source):
+        if hasattr(source, 'event_args') and source.event_args and 'amount' in source.event_args:
+            return source.event_args.get('amount', 0)
+        return 0
+
+OVERHEAL_AMOUNT = OverhealAmount()
+
 
 def SAME_RACE(entity1, entity2):
     races1 = getattr(entity1, "races", [])

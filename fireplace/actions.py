@@ -368,6 +368,24 @@ class Death(GameAction):
             source.game.manager.game_action(self, source, card)
             self.broadcast(source, EventListener.ON, card)
 
+            # INFUSE 机制：友方随从死亡时，为手牌中的 Infuse 卡牌充能
+            if card.type == CardType.MINION and card.controller:
+                for hand_card in card.controller.hand:
+                    if hasattr(hand_card, 'infuse_threshold') and hand_card.infuse_threshold > 0:
+                        # 增加充能计数
+                        if not hasattr(hand_card, 'infuse_counter'):
+                            hand_card.infuse_counter = 0
+                        hand_card.infuse_counter += 1
+
+                        # 检查是否达到充能阈值
+                        if hand_card.infuse_counter >= hand_card.infuse_threshold:
+                            # 触发 infuse 效果
+                            if hasattr(hand_card, 'infuse'):
+                                hand_card.infuse_counter = hand_card.infuse_threshold  # 锁定计数器
+                                # 触发 infuse 效果（通过 trigger 方法）
+                                if callable(hand_card.infuse):
+                                    hand_card.infuse()
+
         for card in cards:
             if not card.dead:
                 continue
@@ -391,6 +409,18 @@ class EndTurn(GameAction):
         self.broadcast(source, EventListener.ON, player)
         if player.extra_end_turn_effect:
             self.broadcast(source, EventListener.ON, player)
+
+        # Trigger Finale effects
+        # 触发压轴效果
+        # If the last card played this turn has finale, trigger it
+        # 如果本回合最后打出的卡牌有压轴效果，触发它
+        if hasattr(player, 'last_card_played') and player.last_card_played:
+            last_card = player.last_card_played
+            if not last_card.ignore_scripts and hasattr(last_card, 'finale'):
+                actions = last_card.get_actions("finale")
+                if actions:
+                    source.game.trigger(last_card, actions, event_args=None)
+
         source.game._end_turn()
 
 
@@ -506,7 +536,13 @@ class Play(GameAction):
         if card.type == CardType.SPELL and card.twinspell:
             source.game.queue_actions(card, [Give(player, card.twinspell_copy)])
 
-        if card.type in (CardType.MINION, CardType.WEAPON):
+        # LOCATION 机制：销毁旧地标
+        if card.type == CardType.LOCATION:
+            existing_locations = [c for c in player.field if c.type == CardType.LOCATION]
+            for loc in existing_locations:
+                loc.destroy()
+
+        if card.type in (CardType.MINION, CardType.WEAPON, CardType.LOCATION):
             self.queue_broadcast(
                 summon_action, (player, EventListener.ON, player, card)
             )
@@ -535,7 +571,7 @@ class Play(GameAction):
             # have to broadcast the morph result as minion instead.
             played_card = card.morphed or card
             played_card.play_right_most = card.play_right_most
-            if played_card.type in (CardType.MINION, CardType.WEAPON):
+            if played_card.type in (CardType.MINION, CardType.WEAPON, CardType.LOCATION):
                 summon_action.broadcast(
                     player, EventListener.AFTER, player, played_card
                 )
@@ -1307,6 +1343,11 @@ class Draw(TargetedAction):
             # 当卡牌被抽到手牌时，初始化腐蚀状态（如果卡牌有腐蚀属性）
             if hasattr(card, 'corrupt'):
                 card.corrupt_active = True
+            # Initialize Forge state for cards with forge when drawn to hand
+            # 当卡牌被抽到手牌时，初始化锻造状态（如果卡牌有锻造属性）
+            if hasattr(card, 'forge'):
+                card.forge_active = True
+                card.forged = False
             source.game.manager.targeted_action(self, source, target, card)
             if source.game.step > Step.BEGIN_MULLIGAN:
                 # Proc the draw script, but only if we are past mulligan
@@ -1520,6 +1561,11 @@ class Heal(TargetedAction):
             return source.game.queue_actions(source.controller, [Hit(target, amount)])
 
         amount = source.get_heal(amount, target)
+
+        # Calculate overheal amount before capping
+        # 在限制治疗量之前计算过量治疗数值
+        overheal_amount = max(0, amount - target.damage)
+
         amount = min(amount, target.damage)
         if amount:
             # Undamaged targets do not receive heals
@@ -1529,6 +1575,17 @@ class Heal(TargetedAction):
             self.queue_broadcast(self, (source, EventListener.ON, target, amount))
             target.healed_this_turn += amount
             source.controller.healed_this_game += amount
+
+        # Trigger Overheal effects
+        # 触发过量治疗效果
+        if overheal_amount > 0:
+            for entity in source.controller.live_entities:
+                if not entity.ignore_scripts and hasattr(entity, 'overheal'):
+                    actions = entity.get_actions("overheal")
+                    if actions:
+                        # Pass overheal amount as event_args
+                        # 将过量治疗数值作为 event_args 传递
+                        source.game.trigger(entity, actions, event_args={'amount': overheal_amount})
 
 
 class ManaThisTurn(TargetedAction):
