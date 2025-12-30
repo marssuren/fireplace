@@ -164,9 +164,16 @@ class DMF_058:
 
 class DMF_058e:
     """日蚀 - 下一个法术施放两次"""
-    # TODO: 实现法术施放两次的效果
-    # 这需要扩展核心代码，暂时使用简化实现
-    events = Play(CONTROLLER, SPELL).on(Destroy(SELF))
+    from fireplace.enums import SPELL_DOUBLE_CAST
+    
+    def apply(self, target):
+        # 设置SPELL_DOUBLE_CAST标签，表示下一个法术施放两次
+        if not hasattr(target, 'tags'):
+            target.tags = {}
+        target.tags[SPELL_DOUBLE_CAST] = target.tags.get(SPELL_DOUBLE_CAST, 0) + 1
+    
+    # 在法术施放后销毁buff
+    events = Play(CONTROLLER, SPELL).after(Destroy(SELF))
 
 
 class DMF_075:

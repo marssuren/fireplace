@@ -35,6 +35,7 @@ FORGE_ACTIVE = -37  # 卡牌是否可以被锻造
 FORGED = -38  # 卡牌是否已被锻造
 TITAN_ABILITY_USED = -39  # 泰坦已使用的技能次数
 TITAN_ABILITY_COUNT = -40  # 泰坦总共有多少个技能（通常是3个）
+SPELL_DOUBLE_CAST = -41  # 下一个法术施放两次（Solar Eclipse等）
 
 
 class SpellType(IntEnum):

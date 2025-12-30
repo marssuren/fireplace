@@ -606,6 +606,23 @@ class Play(GameAction):
                             source.game.trigger(hand_card, actions, event_args={'card': card})
                             hand_card.corrupt_active = False  # Corrupt only triggers once / 腐蚀效果只触发一次
 
+        # Spell Double Cast (Solar Eclipse)
+        # 法术双倍施放（日蚀）
+        # If the player has SPELL_DOUBLE_CAST tag and a spell was just played, cast it again
+        # 如果玩家有 SPELL_DOUBLE_CAST 标签且刚打出了法术，则再次施放该法术
+        from .enums import SPELL_DOUBLE_CAST
+        if card.type == CardType.SPELL and hasattr(player, 'tags') and player.tags.get(SPELL_DOUBLE_CAST, 0) > 0:
+            log_info("spell_double_cast", card=card, player=player)
+            # 减少双倍施放计数
+            player.tags[SPELL_DOUBLE_CAST] -= 1
+            # 重新执行法术效果（使用相同的目标）
+            # 注意：这里只重新执行法术的play效果，不重新触发完整的Play流程
+            # （不支付费用、不触发Play事件、不增加"本回合施放法术次数"等计数器）
+            if not card.ignore_scripts:
+                actions = card.get_actions("play")
+                if actions:
+                    source.game.trigger(card, actions, event_args=None)
+
 
 
 class Activate(GameAction):
