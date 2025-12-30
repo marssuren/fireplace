@@ -595,16 +595,40 @@ class Play(GameAction):
         # When a card is played, all cards in hand with Corrupt and cost < played card cost
         # will trigger their corrupt effect (upgrade)
         # 当打出一张卡牌后，手牌中所有带有腐蚀属性且费用小于打出卡牌费用的卡牌会触发腐蚀效果（升级）
+        # 
+        # Extended to support multiple corruptions (corrupt, corrupt2, corrupt3, etc.)
+        # 扩展支持多次腐蚀（corrupt, corrupt2, corrupt3 等）
         if card.cost > 0:  # Only trigger on cards with cost / 只在打出有费用的卡牌时触发
             for hand_card in player.hand:
                 if not hand_card.ignore_scripts and hasattr(hand_card, 'corrupt_active'):
                     if hand_card.corrupt_active and hand_card.cost < card.cost:
-                        actions = hand_card.get_actions("corrupt")
+                        # Initialize corrupt_count if not present
+                        # 如果不存在则初始化腐蚀计数器
+                        if not hasattr(hand_card, 'corrupt_count'):
+                            hand_card.corrupt_count = 0
+                        
+                        # Increment corrupt count
+                        # 增加腐蚀计数
+                        hand_card.corrupt_count += 1
+                        
+                        # Try to get the appropriate corrupt action based on count
+                        # 根据计数尝试获取相应的腐蚀动作
+                        # corrupt_count=1 -> "corrupt", corrupt_count=2 -> "corrupt2", etc.
+                        corrupt_action_name = "corrupt" if hand_card.corrupt_count == 1 else f"corrupt{hand_card.corrupt_count}"
+                        actions = hand_card.get_actions(corrupt_action_name)
+                        
                         if actions:
                             # Pass the triggering card as event_args so Corrupt effects can access it
                             # 将触发卡牌作为 event_args 传递，这样腐蚀效果可以访问触发卡牌的信息
                             source.game.trigger(hand_card, actions, event_args={'card': card})
-                            hand_card.corrupt_active = False  # Corrupt only triggers once / 腐蚀效果只触发一次
+                        
+                        # Check if there are more corrupt levels available
+                        # 检查是否还有更多腐蚀等级可用
+                        next_corrupt_name = f"corrupt{hand_card.corrupt_count + 1}"
+                        if not hasattr(hand_card, next_corrupt_name):
+                            # No more corrupt levels, deactivate
+                            # 没有更多腐蚀等级，停用腐蚀
+                            hand_card.corrupt_active = False
 
 
 
@@ -1343,6 +1367,7 @@ class Draw(TargetedAction):
             # 当卡牌被抽到手牌时，初始化腐蚀状态（如果卡牌有腐蚀属性）
             if hasattr(card, 'corrupt'):
                 card.corrupt_active = True
+                card.corrupt_count = 0  # Initialize corrupt counter for multi-level corruption
             # Initialize Forge state for cards with forge when drawn to hand
             # 当卡牌被抽到手牌时，初始化锻造状态（如果卡牌有锻造属性）
             if hasattr(card, 'forge'):

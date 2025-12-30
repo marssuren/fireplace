@@ -5,10 +5,15 @@ from ..utils import *
 # Minions
 
 class DMF_070:
-    """Darkmoon Rabbit (暗月兔子)
-    Rush, Poisonous Also damages the minions next to whomever this attacks."""
-    # 10费 1/1 突袭+剧毒 - 同时对攻击目标相邻的随从造成伤害
-    # 使用 CLEAVE（定义在 utils.py: Hit(TARGET_ADJACENT, ATK(SELF))）
+    """暗月兔子 - Darkmoon Rabbit
+    突袭，剧毒。同时对其攻击目标相邻的随从造成伤害。"""
+    tags = {
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1,
+        GameTag.COST: 10,
+        GameTag.RUSH: True,
+        GameTag.POISONOUS: True,
+    }
     events = Attack(SELF).on(CLEAVE)
 
 

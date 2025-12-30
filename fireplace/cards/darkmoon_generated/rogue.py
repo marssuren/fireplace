@@ -41,7 +41,7 @@ class DMF_512:
 
 
 class DMF_513:
-    """暗影珠宝商 - Ticket Master
+    """票务大师 - Ticket Master
     战吼：随机将你牌库中的一张牌洗入对手的牌库。
     """
     tags = {
@@ -53,7 +53,7 @@ class DMF_513:
 
 
 class DMF_515:
-    """暗影珠宝商 - Malevolent Strike
+    """恶意打击 - Malevolent Strike
     连击：获得+1攻击力。
     """
     tags = {
@@ -72,7 +72,7 @@ class DMF_515e:
 
 
 class DMF_516:
-    """暗影珠宝商 - Foxy Fraud
+    """狡猾诈骗者 - Foxy Fraud
     战吼：你的下一个连击牌在本回合中的法力值消耗减少(2)点。
     """
     tags = {
@@ -90,7 +90,7 @@ class DMF_516e:
 
 
 class DMF_517:
-    """暗影珠宝商 - Tenwu of the Red Smoke
+    """红烟天乌 - Tenwu of the Red Smoke
     战吼：将一个友方随从移回你的手牌。该牌在本回合中的法力值消耗为(1)点。
     """
     tags = {
@@ -121,7 +121,7 @@ class DMF_517e:
 # Spells
 
 class DMF_510:
-    """暗影珠宝商 - Prize Plunderer
+    """奖品掠夺者 - Prize Plunderer
     造成3点伤害。连击：并抽一张牌。
     """
     tags = {
@@ -137,7 +137,7 @@ class DMF_510:
 
 
 class DMF_514:
-    """暗影珠宝商 - Swindle
+    """诈骗 - Swindle
     抽一张法术牌。连击：并抽一张武器牌。
     """
     tags = {
@@ -149,7 +149,7 @@ class DMF_514:
 
 
 class DMF_518:
-    """暗影珠宝商 - Cloak of Shadows
+    """暗影斗篷 - Cloak of Shadows
     你的英雄获得免疫，直到你的下个回合开始。
     """
     tags = {
@@ -168,7 +168,7 @@ class DMF_518e:
 
 
 class DMF_519:
-    """暗影珠宝商 - Octobot
+    """八爪机器人 - Octobot
     秘密：当你的随从被攻击时，召唤三个2/2的海盗。
     """
     tags = {
@@ -196,7 +196,7 @@ class DMF_519t:
 # Weapons
 
 class DMF_520:
-    """暗影珠宝商 - Cutting Class
+    """切割课程 - Cutting Class
     抽一张牌。连击：再抽一张。
     """
     tags = {
