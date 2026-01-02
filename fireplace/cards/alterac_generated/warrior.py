@@ -1,113 +1,138 @@
-"""奥特兰克的决裂（Fractured in Alterac Valley）卡牌实现"""
+# -*- coding: utf-8 -*-
+"""
+奥特兰克的决裂（Fractured in Alterac Valley）- 战士
+"""
+
 from ..utils import *
 
 
 class AV_108:
-    """Shield Shatter - 裂盾一击
-    [x]Deal $5 damage to all
-minions. Costs (1) less
-for each Armor you have.
-    """
-    # TODO: 实现卡牌效果
-    pass
+    """裂盾一击 / Shield Shatter
+    对所有随从造成$5点伤害。你每有1点护甲值，本牌的法力值消耗便减少（1）点。"""
+    play = Hit(ALL_MINIONS, 5)
+    cost_mod = lambda self, i: -min(self.controller.hero.armor, self.cost - 1)
 
 
 class AV_109:
-    """Frozen Buckler - 凝冰护盾
-    Gain 10 Armor. At the start of your next turn, lose 5 Armor.
-    """
-    # TODO: 实现卡牌效果
-    pass
+    """凝冰护盾 / Frozen Buckler
+    获得10点护甲值。在你的下个回合开始时，失去5点护甲值。"""
+    play = GainArmor(FRIENDLY_HERO, 10) & Buff(FRIENDLY_HERO, "AV_109e")
+
+
+class AV_109e:
+    """凝冰护盾效果"""
+    events = OwnTurnBegins(CONTROLLER).on(
+        GainArmor(FRIENDLY_HERO, -5) & Destroy(SELF)
+    )
 
 
 class AV_119:
-    """To the Front! - 奔赴前线
-    Your minions cost (2) less this turn <i>(but not less than 1)</i>.
-    """
-    # TODO: 实现卡牌效果
-    pass
+    """奔赴前线 / To the Front!
+    在本回合中，你的随从牌的法力值消耗减少（2）点（但不能少于1点）。"""
+    play = Buff(CONTROLLER, "AV_119e")
+
+
+class AV_119e:
+    """奔赴前线效果"""
+    update = Refresh(FRIENDLY_HAND + MINION, {
+        GameTag.COST: lambda self, i: max(1, self.cost - 2)
+    })
+    events = OwnTurnEnds(CONTROLLER).on(Destroy(SELF))
 
 
 class AV_145:
-    """Captain Galvangar - 加尔范上尉
-    [x]<b>Battlecry:</b> If you have
-gained 15 or more Armor
-this game, gain +3/+3
-and <b>Charge</b>.@ <i>({0} left!)</i>@ <i>(Ready!)</i>
-    """
-    # TODO: 实现卡牌效果
-    pass
+    """加尔范上尉 / Captain Galvangar
+    战吼：在本局对战中，如果你获得的护甲值大于或等于15点，便获得+3/+3和冲锋。"""
+    def play(self):
+        """检查护甲值获得"""
+        if self.controller.armor_gained_this_game >= 15:
+            yield Buff(SELF, "AV_145e") & SetTag(SELF, {GameTag.CHARGE: True})
+
+
+class AV_145e:
+    """加尔范上尉增益"""
+    atk = 3
+    max_health = 3
 
 
 class AV_321:
-    """Glory Chaser - 荣耀追逐者
-    After you play a <b>Taunt</b> minion, draw a card.
-    """
-    # TODO: 实现卡牌效果
-    pass
+    """荣耀追逐者 / Glory Chaser
+    在你打出一张嘲讽随从后，抽一张牌。"""
+    events = Play(CONTROLLER, MINION + TAUNT).after(Draw(CONTROLLER))
 
 
 class AV_322:
-    """Snowed In - 冰雪围困
-    Destroy a damaged minion. <b>Freeze</b> all other minions.
-    """
-    # TODO: 实现卡牌效果
-    pass
+    """冰雪围困 / Snowed In
+    消灭一个受伤的随从。冻结所有其他随从。"""
+    play = Destroy(TARGET) & Freeze(ALL_MINIONS - TARGET)
 
 
 class AV_323:
-    """Scrapsmith - 废料铁匠
-    <b>Taunt</b>
-<b>Battlecry:</b> Add two 2/4 Grunts with <b>Taunt</b> to your hand.
-    """
-    # TODO: 实现卡牌效果
-    pass
+    """废料铁匠 / Scrapsmith
+    嘲讽 战吼：将两张2/4并具有嘲讽的步兵牌置入你的手牌。"""
+    play = Give(CONTROLLER, "AV_323t") * 2
+
+
+class AV_323t:
+    """步兵 / Grunt
+    2/4 嘲讽随从"""
+    # 在 CardDefs.xml 中定义
 
 
 class AV_565:
-    """Axe Berserker - 执斧狂战士
-    <b>Rush</b>. <b>Honorable Kill:</b>
-Draw a weapon.
-    """
-    # TODO: 实现 Honorable Kill 机制
-    pass
+    """执斧狂战士 / Axe Berserker
+    突袭 荣誉击杀：抽一张武器牌。"""
+    honorable_kill = ForceDraw(RANDOM(FRIENDLY_DECK + WEAPON))
 
 
 class AV_660:
-    """Iceblood Garrison - 冰血要塞
-    [x]At the end of your turn,
-deal $1 damage to all 
-minions. Lasts 3 turns.
-    """
-    # TODO: 实现卡牌效果
-    pass
+    """冰血要塞 / Iceblood Garrison
+    在你的回合结束时，对所有随从造成$1点伤害。持续3个回合。"""
+    # 前地标时代的伪地标设计
+    # 使用 PseudoSecret 核心类实现
+    
+    # 设置持续时间
+    duration = 3
+    
+    # 伪奥秘事件：每回合结束时触发
+    pseudo_secret = [
+        OwnTurnEnds(CONTROLLER).on(
+            Hit(ALL_MINIONS, 1)
+        ).then(
+            # 递减持续时间
+            lambda self: self.decrement_duration()
+        )
+    ]
 
 
 class ONY_023:
-    """Hit It Very Hard - 猛力进攻
-    Gain +10 Attack and "Can't attack heroes" this turn.
-    """
-    # TODO: 实现卡牌效果
-    pass
+    """猛力进攻 / Hit It Very Hard
+    在本回合中，获得+10攻击力和"无法攻击英雄"。"""
+    play = Buff(FRIENDLY_HERO, "ONY_023e")
+
+
+class ONY_023e:
+    """猛力进攻效果"""
+    tags = {
+        GameTag.ATK: 10,
+        GameTag.CANNOT_ATTACK_HEROES: True
+    }
+    events = OwnTurnEnds(CONTROLLER).on(Destroy(SELF))
 
 
 class ONY_024:
-    """Onyxian Drake - 奥妮克希亚幼龙
-    [x]<b>Taunt</b>
- <b>Battlecry:</b> Deal damage
-equal to your Armor to
-an enemy minion.
-    """
-    # TODO: 实现卡牌效果
-    pass
+    """奥妮克希亚幼龙 / Onyxian Drake
+    嘲讽 战吼：对一个敌方随从造成等同于你护甲值的伤害。"""
+    play = Hit(TARGET, Count(FRIENDLY_HERO + ARMOR))
 
 
 class ONY_025:
-    """Shoulder Check - 铁肩冲撞
-    <b>Tradeable</b>
-Give a minion +2/+1 and <b>Rush</b>.
-    """
-    # TODO: 实现 Tradeable 机制
-    pass
+    """铁肩冲撞 / Shoulder Check
+    可交易 使一个随从获得+2/+1和突袭。"""
+    play = Buff(TARGET, "ONY_025e") & SetTag(TARGET, {GameTag.RUSH: True})
 
 
+class ONY_025e:
+    """铁肩冲撞增益"""
+    atk = 2
+    max_health = 1

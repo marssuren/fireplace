@@ -559,6 +559,11 @@ class Play(GameAction):
                 source.game.queue_actions(
                     card, [Battlecry(battlecry_card, card.target)]
                 )
+            
+            # 记录最后的抉择法术（用于"开路者"等卡牌）
+            if choose and card.has_choose_one:
+                player.last_choose_one_card = card
+                player.last_choose_one_choice = choose
 
             if card.echo:
                 source.game.queue_actions(
@@ -1610,6 +1615,11 @@ class Give(TargetedAction):
             card.controller = target
             card.zone = Zone.HAND
             ret.append(card)
+
+            # 追踪非潜行者职业牌加入手牌（用于 AV_298 野爪豺狼人）
+            if hasattr(card, 'card_class') and card.card_class != CardClass.ROGUE and card.card_class != CardClass.NEUTRAL:
+                target.non_rogue_cards_added_to_hand += 1
+
             source.game.manager.targeted_action(self, source, target, card)
             self.broadcast(source, EventListener.AFTER, target, card)
         return ret
@@ -2026,6 +2036,11 @@ class Summon(TargetedAction):
                         source.game.queue_actions(source, [Summon(target, appendage_id)])
             if card.type == CardType.MINION and Race.TOTEM in card.races:
                 card.controller.times_totem_summoned_this_game += 1
+            # 追踪野兽召唤（用于"霜刃豹头领"等卡牌）
+            if card.type == CardType.MINION and Race.BEAST in card.races:
+                if not hasattr(card.controller, 'beasts_summoned_this_game'):
+                    card.controller.beasts_summoned_this_game = 0
+                card.controller.beasts_summoned_this_game += 1
             source.game.manager.targeted_action(self, source, target, card)
             self.queue_broadcast(self, (source, EventListener.ON, target, card))
             self.broadcast(source, EventListener.AFTER, target, card)
@@ -2405,6 +2420,10 @@ class CastSpell(TargetedAction):
         spell_school = card.tags.get(GameTag.SPELL_SCHOOL)
         if spell_school:
             player.spell_schools_played_this_game.add(spell_school)
+
+            # 追踪冰霜法术数量（用于"熊人格拉希尔"等卡牌）
+            if spell_school == enums.SpellSchool.FROST:
+                player.frost_spells_cast += 1
         
         # 追踪每回合施放的法术（用于"首席法师安东尼达斯"等卡牌）
         current_turn = source.game.turn

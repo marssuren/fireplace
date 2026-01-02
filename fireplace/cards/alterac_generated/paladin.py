@@ -1,115 +1,115 @@
-"""奥特兰克的决裂（Fractured in Alterac Valley）卡牌实现"""
+"""
+奥特兰克的决裂 - 圣骑士
+Fractured in Alterac Valley - Paladin
+"""
 from ..utils import *
 
 
-class AV_213:
-    """Vitality Surge - 活力涌现
-    Draw a minion.
-Restore Health to your hero equal to its Cost.
-    """
-    # TODO: 实现卡牌效果
-    pass
+##
+# 英雄卡 / Hero Cards
+
+class AV_206:
+    """光铸卡瑞尔 / Lightforged Cariel
+    8费传说英雄卡 - 战吼：对所有敌人造成2点伤害。装备一把2/5的不动之物武器。"""
+
+    # 战吼：对所有敌人造成2点伤害，装备武器
+    def play(self):
+        yield Hit(ENEMY_CHARACTERS, 2)
+        yield Summon(CONTROLLER, "AV_206t")
 
 
-class AV_338:
-    """Hold the Bridge - 坚守桥梁
-    [x]Give a minion +2/+1
-and <b>Divine Shield</b>.
-It gains <b>Lifesteal</b> until
-end of turn.
-    """
-    # TODO: 实现卡牌效果
-    pass
+class AV_206t:
+    """不动之物 / Immovable Object
+    2/5武器 - 你的英雄受到的伤害减半（向上取整）。此武器不会失去耐久度。"""
+
+    atk = 2
+    durability = 5
+
+    # 武器不会失去耐久度
+    tags = {
+        GameTag.IMMUNE_WHILE_ATTACKING: True,
+    }
+
+    # 英雄受到的伤害减半
+    events = Predamage(FRIENDLY_HERO).on(
+        lambda self, source, target, amount: [amount // 2 + (amount % 2)]
+    )
+
+
+##
+# 随从 / Minions
+
+class AV_340:
+    """亮铜之翼 / Brasswing
+    8费 9/7 史诗龙 - 在你的回合结束时，对所有敌人造成2点伤害。荣誉击杀：为你的英雄恢复4点生命值。"""
+
+    atk = 9
+    max_health = 7
+    tags = {
+        GameTag.CARDRACE: Race.DRAGON,
+    }
+
+    # 回合结束时对所有敌人造成2点伤害
+    events = OWN_TURN_END.on(Hit(ENEMY_CHARACTERS, 2))
 
 
 class AV_339:
-    """Templar Captain - 圣殿骑士队长
-    [x]<b>Rush</b>. After this attacks
-a minion, summon a 5/5
-Defender with <b>Taunt</b>.
-    """
-    # TODO: 实现卡牌效果
-    pass
+    """圣殿骑兵队长 / Templar Captain
+    8费 6/6 随从 - 突袭。在攻击一个随从后，召唤一个5/5并具有嘲讽的防御者。"""
+
+    atk = 6
+    max_health = 6
+    tags = {
+        GameTag.RUSH: True,
+    }
+
+    # 攻击随从后召唤防御者
+    events = Attack(SELF, MINION).after(Summon(CONTROLLER, "AV_339t"))
 
 
-class AV_340:
-    """Brasswing - 亮铜之翼
-    [x]At the end of your turn, deal
-2 damage to all enemies.
-<b>Honorable Kill:</b> Restore 4
-Health to your hero.
-    """
-    # TODO: 实现 Honorable Kill 机制
-    pass
+class AV_339t:
+    """防御者 / Defender
+    5/5 随从 - 嘲讽"""
+
+    atk = 5
+    max_health = 5
+    tags = {
+        GameTag.TAUNT: True,
+    }
 
 
-class AV_341:
-    """Cavalry Horn - 骑兵号角
-    <b>Deathrattle:</b> Summon the lowest Cost minion in your hand.
-    """
-    # TODO: 实现卡牌效果
-    pass
-
-
-class AV_342:
-    """Protect the Innocent - 舍己为人
-    Summon a 5/5 Defender with <b>Taunt</b>. If your hero was healed this turn, summon another.
-    """
-    # TODO: 实现卡牌效果
-    pass
-
+##
+# 法术 / Spells
 
 class AV_343:
-    """Stonehearth Vindicator - 石炉守备官
-    [x]<b>Battlecry:</b> Draw a spell
-that costs (3) or less.
-It costs (0) this turn.
-    """
-    # TODO: 实现卡牌效果
-    pass
+    """保护无辜者 / Protect the Innocent
+    1费法术 - 为你的英雄恢复3点生命值。抽一张牌。"""
+
+    play = Heal(FRIENDLY_HERO, 3), Draw(CONTROLLER)
 
 
 class AV_344:
-    """Dun Baldar Bridge - 丹巴达尔桥
-    [x]After you summon a
-minion, give it +2/+2.
-Lasts 3 turns.
-    """
-    # TODO: 实现卡牌效果
-    pass
+    """活力涌动 / Vitality Surge
+    2费法术 - 为一个随从恢复8点生命值。"""
 
+    requirements = {
+        PlayReq.REQ_TARGET_TO_PLAY: 0,
+        PlayReq.REQ_MINION_TARGET: 0,
+    }
+
+    play = Heal(TARGET, 8)
+
+
+##
+# 武器 / Weapons
 
 class AV_345:
-    """Saidan the Scarlet - 血色骑士赛丹
-    <b>Rush.</b> Whenever this minion gains Attack or Health, double that amount <i>(wherever this is)</i>.
-    """
-    # TODO: 实现卡牌效果
-    pass
+    """骑兵号角 / Cavalry Horn
+    3费 2/2 武器 - 在你的英雄攻击后，召唤一个1/1的银色之手新兵。"""
 
+    atk = 2
+    durability = 2
 
-class ONY_020:
-    """Stormwind Avenger - 暴风城复仇者
-    After you cast a spell on this minion, it gains +2 Attack.
-    """
-    # TODO: 实现卡牌效果
-    pass
-
-
-class ONY_022:
-    """Battle Vicar - 武装教士
-    <b>Battlecry:</b> <b>Discover</b> a
-Holy spell.
-    """
-    # TODO: 实现卡牌效果
-    pass
-
-
-class ONY_027:
-    """Ring of Courage - 勇气之戒
-    <b>Tradeable</b>
-Give a minion +1/+1. Repeat for each enemy minion.
-    """
-    # TODO: 实现 Tradeable 机制
-    pass
-
+    # 攻击后召唤银色之手新兵
+    events = Attack(FRIENDLY_HERO).after(Summon(CONTROLLER, "CS2_101t"))
 

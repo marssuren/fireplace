@@ -1,193 +1,218 @@
-"""奥特兰克的决裂（Fractured in Alterac Valley）卡牌实现"""
+# -*- coding: utf-8 -*-
+"""
+奥特兰克的决裂（Fractured in Alterac Valley）- 中立普通
+"""
+
 from ..utils import *
 
 
 class AV_101:
-    """Herald of Lokholar - 洛克霍拉的使者
-    <b>Battlecry:</b> Draw a
-Frost spell.
-    """
-    # TODO: 实现卡牌效果
-    pass
+    """洛克霍拉的使者 / Herald of Lokholar
+    战吼：抽一张冰霜法术牌。"""
+    play = ForceDraw(RANDOM(FRIENDLY_DECK + SPELL + FROST))
 
 
 class AV_121:
-    """Gnome Private - 侏儒列兵
-    [x]<b>Honorable Kill:</b> Gain
-+2 Attack.
-    """
-    # TODO: 实现 Honorable Kill 机制
-    pass
+    """侏儒列兵 / Gnome Private
+    荣誉击杀：获得+2攻击力。"""
+    honorable_kill = Buff(SELF, "AV_121e")
+
+
+class AV_121e:
+    """侏儒列兵增益"""
+    atk = 2
 
 
 class AV_122:
-    """Corporal - 下士
-    <b>Honorable Kill:</b> Give
-your other minions
-<b>Divine Shield</b>.
-    """
-    # TODO: 实现 Honorable Kill 机制
-    pass
+    """下士 / Corporal
+    荣誉击杀：使你的其他随从获得圣盾。"""
+    honorable_kill = SetTag(FRIENDLY_MINIONS - SELF, {GameTag.DIVINE_SHIELD: True})
 
 
 class AV_123:
-    """Sneaky Scout - 潜匿斥候
-    [x]<b>Stealth</b>
-<b>Honorable Kill:</b> Your next
-Hero Power costs (0).
-    """
-    # TODO: 实现 Honorable Kill 机制
-    pass
+    """潜匿斥候 / Sneaky Scout
+    潜行 荣誉击杀：你的下一个英雄技能法力值消耗为（0）点。"""
+    honorable_kill = Buff(FRIENDLY_HERO, "AV_123e")
+
+
+class AV_123e:
+    """潜匿斥候增益"""
+    update = Refresh(FRIENDLY_HERO_POWER, {GameTag.COST: SET(0)})
+    events = Activate(CONTROLLER, HERO_POWER).on(Destroy(SELF))
 
 
 class AV_124:
-    """Direwolf Commander - 恐狼指挥官
-    <b>Honorable Kill:</b> Summon a 2/2 Wolf with <b>Stealth</b>.
-    """
-    # TODO: 实现 Honorable Kill 机制
-    pass
+    """恐狼指挥官 / Direwolf Commander
+    荣誉击杀：召唤一个2/2并具有潜行的狼。"""
+    honorable_kill = Summon(CONTROLLER, "AV_124t")
+
+
+class AV_124t:
+    """狼 / Wolf
+    2/2 潜行随从"""
+    # 在 CardDefs.xml 中定义
 
 
 class AV_125:
-    """Tower Sergeant - 塔楼中士
-    <b>Battlecry:</b> If you control at least 2 other minions, gain +2/+2.
-    """
-    # TODO: 实现卡牌效果
-    pass
+    """塔楼中士 / Tower Sergeant
+    战吼：如果你控制至少2个其他随从，获得+2/+2。"""
+    play = Find(FRIENDLY_MINIONS - SELF, count=2) & Buff(SELF, "AV_125e")
+
+
+class AV_125e:
+    """塔楼中士增益"""
+    atk = 2
+    max_health = 2
 
 
 class AV_126:
-    """Bunker Sergeant - 碉堡中士
-    [x]<b>Battlecry:</b> If your opponent
-has 2 or more minions,
-deal 1 damage to all
-enemy minions.
-    """
-    # TODO: 实现卡牌效果
-    pass
+    """碉堡中士 / Bunker Sergeant
+    战吼：如果你的对手控制2个或更多随从，对所有敌方随从造成1点伤害。"""
+    play = Find(ENEMY_MINIONS, count=2) & Hit(ENEMY_MINIONS, 1)
 
 
 class AV_127:
-    """Ice Revenant - 冰雪亡魂
-    Whenever you cast a Frost spell, gain +2/+2.
-    """
-    # TODO: 实现卡牌效果
-    pass
+    """冰雪亡魂 / Ice Revenant
+    每当你施放一个冰霜法术，获得+2/+2。"""
+    events = Play(CONTROLLER, SPELL + FROST).after(Buff(SELF, "AV_127e"))
+
+
+class AV_127e:
+    """冰雪亡魂增益"""
+    atk = 2
+    max_health = 2
 
 
 class AV_129:
-    """Blood Guard - 血卫士
-    Whenever this minion takes damage, give your minions +1 Attack.
-    """
-    # TODO: 实现卡牌效果
-    pass
+    """血卫士 / Blood Guard
+    每当该随从受到伤害，使你的所有随从获得+1攻击力。"""
+    events = Damage(SELF).on(Buff(FRIENDLY_MINIONS, "AV_129e"))
+
+
+class AV_129e:
+    """血卫士增益"""
+    atk = 1
 
 
 class AV_130:
-    """Legionnaire - 军团士兵
-    <b>Deathrattle:</b> Give all minions in your hand +2/+2.
-    """
-    # TODO: 实现卡牌效果
-    pass
+    """军团士兵 / Legionnaire
+    亡语：使你手牌中的所有随从获得+2/+2。"""
+    deathrattle = Buff(FRIENDLY_HAND + MINION, "AV_130e")
+
+
+class AV_130e:
+    """军团士兵增益"""
+    atk = 2
+    max_health = 2
 
 
 class AV_131:
-    """Knight-Captain - 骑士队长
-    [x]<b>Battlecry:</b> Deal 3 damage.
-<b>Honorable Kill:</b> Gain +3/+3.
-    """
-    # TODO: 实现 Honorable Kill 机制
-    pass
+    """骑士队长 / Knight-Captain
+    战吼：造成3点伤害。荣誉击杀：获得+3/+3。"""
+    play = Hit(TARGET, 3)
+    honorable_kill = Buff(SELF, "AV_131e")
+
+
+class AV_131e:
+    """骑士队长增益"""
+    atk = 3
+    max_health = 3
 
 
 class AV_132:
-    """Troll Centurion - 巨魔百夫长
-    [x]<b>Rush</b>. <b>Honorable Kill:</b>
-Deal 8 damage to the
-enemy hero.
-    """
-    # TODO: 实现 Honorable Kill 机制
-    pass
+    """巨魔百夫长 / Troll Centurion
+    突袭 荣誉击杀：对敌方英雄造成8点伤害。"""
+    honorable_kill = Hit(ENEMY_HERO, 8)
 
 
 class AV_133:
-    """Icehoof Protector - 冰蹄护卫
-    <b>Taunt</b>
-<b>Freeze</b> any character damaged by this minion.
-    """
-    # TODO: 实现卡牌效果
-    pass
+    """冰蹄护卫 / Icehoof Protector
+    嘲讽 冻结任何受到该随从伤害的角色。"""
+    events = Damage(ALL_CHARACTERS, SELF).on(Freeze(Damage.TARGET))
 
 
 class AV_215:
-    """Frantic Hippogryph - 狂乱角鹰兽
-    <b>Rush</b>. <b>Honorable Kill</b>:
- Gain <b>Windfury</b>. 
-    """
-    # TODO: 实现 Honorable Kill 机制
-    pass
+    """狂乱角鹰兽 / Frantic Hippogryph
+    突袭 荣誉击杀：获得风怒。"""
+    honorable_kill = SetTag(SELF, {GameTag.WINDFURY: True})
 
 
 class AV_219:
-    """Ram Commander - 群羊指挥官
-    [x]<b>Battlecry:</b> Add two
-1/1 Rams with <b>Rush</b>
-to your hand.
-    """
-    # TODO: 实现卡牌效果
-    pass
+    """群羊指挥官 / Ram Commander
+    战吼：将两张1/1并具有突袭的山羊牌置入你的手牌。"""
+    play = Give(CONTROLLER, "AV_219t") * 2
+
+
+class AV_219t:
+    """山羊 / Ram
+    1/1 突袭随从"""
+    # 在 CardDefs.xml 中定义
 
 
 class AV_238:
-    """Gankster - 伏兵
-    [x]<b>Stealth</b>
-After your opponent plays
-a minion, attack it.
-    """
-    # TODO: 实现卡牌效果
-    pass
+    """伏兵 / Gankster
+    潜行 在你的对手打出一张随从牌后，攻击该随从。"""
+    events = Play(OPPONENT, MINION).after(Attack(SELF, Play.CARD))
 
 
 class AV_256:
-    """Reflecto Engineer - 反射工程师
-    <b>Battlecry:</b> Swap the Attack and Health of all minions in both players' hands.
-    """
-    # TODO: 实现卡牌效果
-    pass
+    """反射工程师 / Reflecto Engineer
+    战吼：交换双方玩家手牌中所有随从的攻击力和生命值。"""
+    play = Buff(FRIENDLY_HAND + MINION, "AV_256e") | Buff(ENEMY_HAND + MINION, "AV_256e")
+
+
+class AV_256e:
+    """反射工程师增益"""
+    tags = {
+        GameTag.ATK: lambda self, i: self._xatk,
+        GameTag.HEALTH: lambda self, i: self._xhealth,
+    }
+
+    def apply(self, target):
+        self._xatk = target.health
+        self._xhealth = target.atk
+        super().apply(target)
 
 
 class AV_309:
-    """Piggyback Imp - 被背小鬼
-    <b>Deathrattle:</b> Summon a 4/1 Imp.
-    """
-    # TODO: 实现卡牌效果
-    pass
+    """被背小鬼 / Piggyback Imp
+    亡语：召唤一个4/1的小鬼。"""
+    deathrattle = Summon(CONTROLLER, "AV_309t")
+
+
+class AV_309t:
+    """小鬼 / Imp
+    4/1 随从"""
+    # 在 CardDefs.xml 中定义
 
 
 class AV_401:
-    """Stormpike Quartermaster - 雷矛军需官
-    After you cast a spell,
-give a random minion in your hand +1/+1.
-    """
-    # TODO: 实现卡牌效果
-    pass
+    """雷矛军需官 / Stormpike Quartermaster
+    在你施放一个法术后，随机使你手牌中的一个随从获得+1/+1。"""
+    events = Play(CONTROLLER, SPELL).after(
+        Find(FRIENDLY_HAND + MINION) & Buff(RANDOM(FRIENDLY_HAND + MINION), "AV_401e")
+    )
+
+
+class AV_401e:
+    """雷矛军需官增益"""
+    atk = 1
+    max_health = 1
 
 
 class AV_704:
-    """Humongous Owl - 巨型猫头鹰
-    <b>Deathrattle:</b> Deal 8 damage to a random enemy.
-    """
-    # TODO: 实现卡牌效果
-    pass
+    """巨型猫头鹰 / Humongous Owl
+    亡语：对一个随机敌人造成8点伤害。"""
+    deathrattle = Hit(RANDOM_ENEMY_CHARACTER, 8)
 
 
 class ONY_001:
-    """Onyxian Warder - 奥妮克希亚守卫
-    [x]<b>Battlecry:</b> If you're holding
-a Dragon, summon two
-2/1 Whelps with <b>Rush</b>.
-    """
-    # TODO: 实现卡牌效果
-    pass
+    """奥妮克希亚守卫 / Onyxian Warder
+    战吼：如果你的手牌中有龙，召唤两个2/1并具有突袭的雏龙。"""
+    play = Find(FRIENDLY_HAND + DRAGON) & Summon(CONTROLLER, "ONY_001t") * 2
 
 
+class ONY_001t:
+    """雏龙 / Whelp
+    2/1 突袭随从"""
+    # 在 CardDefs.xml 中定义

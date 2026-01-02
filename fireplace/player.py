@@ -86,7 +86,10 @@ class Player(Entity, TargetableByAuras):
         self.times_hero_power_used_this_game = 0
         self.used_mana = 0
         self.minions_killed_this_turn = 0
+        self.minions_killed_this_game = 0  # 本局对战中死亡的随从数量
         self.minions_played_this_turn = 0
+        self.beasts_summoned_this_game = 0  # 本局对战中召唤的野兽数量
+        self.non_rogue_cards_added_to_hand = 0  # 本局对战中加入手牌的非潜行者职业牌数量
         self.weapon = None
         self.zone = Zone.INVALID
         self.turn = None
@@ -124,6 +127,13 @@ class Player(Entity, TargetableByAuras):
         
         # 追踪本回合受到的伤害（用于"暗影之刃飞刀手"等卡牌）
         self.damage_taken_this_turn = 0
+        
+        # 追踪最后的抉择法术（用于"开路者"等卡牌）
+        self.last_choose_one_card = None
+        self.last_choose_one_choice = None
+
+        # 追踪本局游戏施放的冰霜法术数量（用于"熊人格拉希尔"等卡牌）
+        self.frost_spells_cast = 0
 
 
 

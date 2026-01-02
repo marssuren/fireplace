@@ -1287,6 +1287,7 @@ class Minion(Character):
                 self.controller.field.append(self)
         elif value == Zone.GRAVEYARD and self.zone == Zone.PLAY:
             self.controller.minions_killed_this_turn += 1
+            self.controller.minions_killed_this_game += 1
 
         if self.zone == Zone.PLAY:
             self.log("%r is removed from the field", self)
@@ -1516,6 +1517,83 @@ class SideQuest(Spell):
         if self.zone == Zone.SECRET:
             ret += self.data.scripts.sidequest
         return ret
+
+
+class PseudoSecret(Spell):
+    """
+    伪奥秘 - 用于"前地标时代"的持续效果卡牌
+    
+    这些卡牌在地标(LOCATION)机制引入之前被设计出来，用于模拟场地效果。
+    它们占用奥秘槽位，但通常有持续时间限制（如"持续3个回合"）。
+    
+    示例：冰血要塞(Iceblood Garrison) - 奥特兰克的决裂
+    """
+    spelltype = enums.SpellType.SPELL
+    
+    def __init__(self, data):
+        super().__init__(data)
+        self.turns_remaining = 0  # 剩余回合数，由子类初始化
+    
+    def _set_zone(self, value):
+        """打出后进入奥秘区域"""
+        if value == Zone.PLAY:
+            value = Zone.SECRET
+            # 初始化持续时间（由子类的duration属性定义）
+            if hasattr(self.data.scripts, 'duration'):
+                self.turns_remaining = self.data.scripts.duration
+        
+        # 处理奥秘区域的添加/移除
+        if self.zone == Zone.SECRET:
+            self.controller.secrets.remove(self)
+        if value == Zone.SECRET:
+            self.controller.secrets.append(self)
+        
+        # 调用PlayableCard的_set_zone，跳过Spell的实现
+        PlayableCard._set_zone(self, value)
+    
+    @property
+    def zone_position(self):
+        if self.zone == Zone.SECRET:
+            return self.controller.secrets.index(self) + 1
+        return super().zone_position
+    
+    def dump_hidden(self):
+        """对对手隐藏具体信息"""
+        if self.zone == Zone.SECRET:
+            data = super().dump_hidden()
+            data["type"] = int(CardType.SPELL)
+            data["cost"] = self.cost
+            data["id"] = "PSEUDO_SECRET"
+            data["name"] = "持续效果"
+            data["rarity"] = int(Rarity.INVALID)
+            data["description"] = "一个持续性的场地效果..."
+            data["spelltype"] = int(self.spelltype)
+            data["classes"] = [int(card_class) for card_class in self.classes]
+            return data
+        return super().dump_hidden()
+    
+    @property
+    def events(self):
+        """当在奥秘区域时激活事件"""
+        ret = super().events
+        if self.zone == Zone.SECRET:
+            ret += self.data.scripts.pseudo_secret
+        return ret
+    
+    def is_summonable(self):
+        """检查是否可以打出（不能重复，受奥秘槽位限制）"""
+        if self.controller.secrets.contains(self.id):
+            return False
+        if len(self.controller.secrets) >= self.game.MAX_SECRETS_ON_PLAY:
+            return False
+        return super().is_summonable()
+    
+    def decrement_duration(self):
+        """递减持续时间，如果归零则销毁"""
+        if self.turns_remaining > 0:
+            self.turns_remaining -= 1
+            if self.turns_remaining <= 0:
+                self.destroy()
 
 
 class Enchantment(BaseCard):

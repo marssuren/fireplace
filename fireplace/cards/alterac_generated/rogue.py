@@ -1,120 +1,199 @@
-"""奥特兰克的决裂（Fractured in Alterac Valley）卡牌实现"""
+# -*- coding: utf-8 -*-
+"""
+奥特兰克的决裂（Fractured in Alterac Valley）- 潜行者
+"""
+
 from ..utils import *
 
 
 class AV_201:
-    """Coldtooth Yeti - 冷齿雪人
-    <b>Combo:</b> Gain +3 Attack.
-    """
-    # TODO: 实现卡牌效果
-    pass
+    """冷牙雪人 / Coldtooth Yeti
+    连击：获得+3攻击力。"""
+    combo = Buff(SELF, "AV_201e")
 
 
-class AV_298:
-    """Wildpaw Gnoll - 蛮爪豺狼人
-    [x]<b>Rush</b>
-Costs (1) less for each
-non-Rogue Class card added
-to your hand this game.
-    """
-    # TODO: 实现卡牌效果
-    pass
-
-
-class AV_400:
-    """Snowfall Graveyard - 雪落墓地
-    [x]Your <b>Deathrattles</b>
-trigger twice.
-Lasts 3 turns.
-    """
-    # TODO: 实现卡牌效果
-    pass
+class AV_201e:
+    """冷牙雪人增益"""
+    atk = 3
 
 
 class AV_402:
-    """The Lobotomizer - 剥夺者
-    [x]<b>Honorable Kill:</b> Get a
-copy of the top card
-of your opponent's
-deck.
-    """
-    # TODO: 实现 Honorable Kill 机制
-    pass
-
-
-class AV_403:
-    """Cera'thine Fleetrunner - 赛拉辛·疾行
-    [x]<b>Battlecry:</b> Replace your
-minions in hand and deck
- with ones from other classes.
-They cost (2) less.
-    """
-    # TODO: 实现卡牌效果
-    pass
-
-
-class AV_405:
-    """Contraband Stash - 珍藏私货
-    Replay 5 cards from other classes you've played this game.
-    """
-    # TODO: 实现卡牌效果
-    pass
+    """脑叶切除器 / The Lobotomizer
+    荣誉消灭：获得对手牌库顶的一张牌的复制。"""
+    honorable_kill = Give(CONTROLLER, Copy(ENEMY_DECK.top(1)))
 
 
 class AV_601:
-    """Forsaken Lieutenant - 被遗忘者军官
-    <b><b>Stealth</b>.</b> After you play
-a <b>Deathrattle</b> minion, become a 2/2 copy of it with <b>Rush</b>.
-    """
-    # TODO: 实现卡牌效果
-    pass
+    """被遗忘的中尉 / Forsaken Lieutenant
+    潜行。在你使用一张亡语随从后，变形成为它的2/2复制，并具有突袭。"""
+    events = Play(CONTROLLER, MINION + DEATHRATTLE).after(
+        Morph(SELF, Copy(Play.CARD)) &
+        SetTag(SELF, {GameTag.ATK: 2, GameTag.HEALTH: 2}) &
+        SetTag(SELF, {GameTag.RUSH: True})
+    )
 
 
 class AV_710:
-    """Reconnaissance - 侦察
-    <b>Discover</b> a <b>Deathrattle</b> minion from another class. It costs (2) less.
-    """
-    # TODO: 实现卡牌效果
-    pass
+    """侦察 / Reconnaissance
+    发现一张其他职业的亡语随从牌。其法力值消耗减少（2）点。"""
+    play = GenericChoice(CONTROLLER, Discover(
+        CONTROLLER,
+        RandomCollectible(card_class=CardClass.NEUTRAL, type=CardType.MINION, mechanics=[GameTag.DEATHRATTLE]) |
+        RandomCollectible(card_class=~CardClass.ROGUE, type=CardType.MINION, mechanics=[GameTag.DEATHRATTLE])
+    )) & Buff(GenericChoice.CARD, "AV_710e")
 
 
-class AV_711:
-    """Double Agent - 双面间谍
-    [x]<b>Battlecry:</b> If you're holding
-a card from another class,
- summon a copy of this.
-    """
-    # TODO: 实现卡牌效果
-    pass
-
-
-class ONY_030:
-    """SI:7 Smuggler - 军情七处走私贩
-    [x]<b>Battlecry:</b> Summon a random
-1-Cost minion. <i>(Upgraded
-for each other SI:7 card you
- have played this game.)</i>
-    """
-    # TODO: 实现卡牌效果
-    pass
-
-
-class ONY_031:
-    """Smokescreen - 烟幕
-    [x]Draw 5 cards. Trigger
-any <b>Deathrattles</b> drawn.
-    """
-    # TODO: 实现卡牌效果
-    pass
+class AV_710e:
+    """侦察减费"""
+    tags = {GameTag.COST: -2}
 
 
 class ONY_032:
-    """Tooth of Nefarian - 奈法利安的牙
-    [x]Deal $3 damage.
-<b>Honorable Kill:</b> <b>Discover</b> a
-spell from another class.
-    """
-    # TODO: 实现 Honorable Kill 机制
-    pass
+    """奈法利安之牙 / Tooth of Nefarian
+    造成$3点伤害。荣誉消灭：发现一张其他职业的法术牌。"""
+    play = Hit(TARGET, 3)
+    honorable_kill = GenericChoice(CONTROLLER, Discover(
+        CONTROLLER,
+        RandomCollectible(card_class=~CardClass.ROGUE, type=CardType.SPELL)
+    ))
 
+
+class AV_711:
+    """双面间谍 / Double Agent
+    战吼：如果你的手牌中有其他职业的牌，召唤一个本随从的复制。"""
+    powered_up = Find(FRIENDLY_HAND + (~CARD_CLASS(CardClass.ROGUE)))
+    play = powered_up & Summon(CONTROLLER, ExactCopy(SELF))
+
+
+class ONY_030:
+    """军情七处走私者 / SI:7 Smuggler
+    战吼：如果你的手牌中有其他职业的牌，抽两张牌。"""
+    powered_up = Find(FRIENDLY_HAND + (~CARD_CLASS(CardClass.ROGUE)))
+    play = powered_up & (Draw(CONTROLLER) * 2)
+
+
+class ONY_031:
+    """烟幕 / Smokescreen
+    你的随从获得潜行，直到你的下个回合。"""
+    play = Buff(FRIENDLY_MINIONS, "ONY_031e")
+
+
+class ONY_031e:
+    """烟幕效果"""
+    tags = {GameTag.STEALTH: True}
+    events = OwnTurnBegins(CONTROLLER).on(Destroy(SELF))
+
+
+class AV_298:
+    """野爪豺狼人 / Wildpaw Gnoll
+    突袭。在本局对战中，每有一张非潜行者职业的牌加入你的手牌，本牌的法力值消耗便减少（1）点。"""
+    def cost_mod(self):
+        """根据本局对战中加入手牌的非潜行者职业牌数量减费"""
+        if not hasattr(self.controller, 'non_rogue_cards_added_to_hand'):
+            return 0
+        return -self.controller.non_rogue_cards_added_to_hand
+
+
+class AV_400:
+    """雪落墓地 / Snowfall Graveyard
+    你的亡语触发两次。持续3回合。"""
+    play = Buff(FRIENDLY_HERO, "AV_400e")
+
+
+class AV_400e:
+    """雪落墓地效果"""
+    tags = {GameTag.EXTRA_DEATHRATTLES: 1}
+    turns_remaining = 3
+
+    events = OwnTurnEnds(CONTROLLER).on(
+        lambda self: (
+            setattr(self, 'turns_remaining', self.turns_remaining - 1),
+            self.turns_remaining <= 0 and Destroy(SELF)
+        )[-1] if self.turns_remaining > 0 else Destroy(SELF)
+    )
+
+
+class AV_403:
+    """塞拉辛·疾行者 / Cera'thine Fleetrunner
+    战吼：将你手牌和牌库中的随从替换为其他职业的随从。这些随从的法力值消耗减少（2）点。"""
+    def play(self):
+        """替换手牌和牌库中的随从为其他职业的随从"""
+        # 替换手牌中的随从
+        for minion in list(self.controller.hand):
+            if minion.type == CardType.MINION:
+                # 变形为其他职业的随机随从
+                new_minion = RandomCollectible(
+                    card_class=~CardClass.ROGUE,
+                    type=CardType.MINION
+                )
+                yield Transform(minion, new_minion)
+                # 给予减费buff
+                yield Buff(minion, "AV_403e")
+
+        # 替换牌库中的随从
+        for minion in list(self.controller.deck):
+            if minion.type == CardType.MINION:
+                new_minion = RandomCollectible(
+                    card_class=~CardClass.ROGUE,
+                    type=CardType.MINION
+                )
+                yield Transform(minion, new_minion)
+                yield Buff(minion, "AV_403e")
+
+
+
+class AV_403e:
+    """塞拉辛·疾行者减费"""
+    tags = {GameTag.COST: -2}
+
+
+class AV_405:
+    """违禁品藏匿处 / Contraband Stash
+    重新使用本局对战中你使用过的5张其他职业的牌。"""
+    def play(self):
+        """重新使用本局对战中使用过的其他职业的牌"""
+        # 筛选其他职业的牌（排除潜行者和中立）
+        other_class_cards = [
+            card for card in self.controller.cards_played_this_game
+            if hasattr(card, 'card_class') and
+               card.card_class != CardClass.ROGUE and
+               card.card_class != CardClass.NEUTRAL
+        ]
+
+        # 随机选择最多5张牌
+        if not other_class_cards:
+            return
+
+        cards_to_replay = self.game.random.sample(
+            other_class_cards,
+            min(5, len(other_class_cards))
+        )
+
+        # 重新使用这些牌
+        for card in cards_to_replay:
+            if card.type == CardType.SPELL:
+                # 重新施放法术
+                yield CastSpell(CONTROLLER, Copy(card))
+            elif card.type == CardType.MINION:
+                # 召唤随从
+                yield Summon(CONTROLLER, Copy(card))
+            elif card.type == CardType.WEAPON:
+                # 装备武器
+                yield Summon(CONTROLLER, Copy(card))
+
+
+
+class AV_203:
+    """暗影工匠斯卡布斯 / Shadowcrafter Scabbs
+    战吼：将所有随从移回其拥有者的手牌。召唤两个4/2并具有潜行的暗影。"""
+    play = (
+        Bounce(ALL_MINIONS) &
+        Summon(CONTROLLER, "AV_203t") * 2
+    )
+
+
+class AV_203t:
+    """暗影 / Shadow
+    4/2 潜行"""
+    # 在 CardDefs.xml 中定义
 
