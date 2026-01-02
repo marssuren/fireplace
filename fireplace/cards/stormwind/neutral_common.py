@@ -8,7 +8,7 @@ from ..utils import *
 
 class DED_523:
     """葛拉卡蟹杀手 / Golakka Glutton
-    Battlecry: Destroy a Beast and gain +1/+1."""
+    战吼：消灭一个野兽并获得+1/+1。"""
     play = Find(ENEMY_MINIONS + BEAST) & (
         Destroy(TARGET) & Buff(SELF, "DED_523e")
     )
@@ -22,13 +22,13 @@ class DED_523e:
 
 class SW_006:
     """顽固的嫌疑人 / Stubborn Suspect
-    Deathrattle: Summon a random 3-Cost minion."""
+    亡语：召唤一个随机的法力值消耗为（3）的随从。"""
     deathrattle = Summon(CONTROLLER, RandomMinion(cost=3))
 
 
 class SW_054:
     """暴风城卫兵 / Stormwind Guard
-    Taunt Battlecry: Give adjacent minions +1/+1."""
+    嘲讽 战吼：使相邻的随从获得+1/+1。"""
     play = Buff(SELF_ADJACENT, "SW_054e")
 
 
@@ -40,25 +40,25 @@ class SW_054e:
 
 class SW_055:
     """不耐烦的店长 / Impatient Shopkeep
-    Tradeable Rush"""
+    可交易 突袭"""
     pass  # Tradeable 和 Rush 在 CardDefs.xml 中定义
 
 
 class SW_056:
     """香料面包师 / Spice Bread Baker
-    Battlecry: Restore Health to your hero equal to your hand size."""
+    战吼：为你的英雄恢复等同于你手牌数量的生命值。"""
     play = Heal(FRIENDLY_HERO, Count(FRIENDLY_HAND))
 
 
 class SW_057:
     """包裹速递员 / Package Runner
-    Can only attack if you have at least 8 cards in hand."""
+    只有在你的手牌中至少有8张牌时才能攻击。"""
     update = Refresh(SELF, {GameTag.CANNOT_ATTACK: Count(FRIENDLY_HAND) < 8})
 
 
 class SW_059:
     """矿道工程师 / Deeprun Engineer
-    Battlecry: Discover a Mech. It costs (1) less."""
+    战吼：发现一张机械牌。其法力值消耗减少（1）点。"""
     play = GenericChoice(CONTROLLER, Discover(CONTROLLER, RandomCollectible(race=Race.MECHANICAL))) & Buff(CARD, "SW_059e")
 
 
@@ -69,7 +69,7 @@ class SW_059e:
 
 class SW_060:
     """卖花女郎 / Florist
-    At the end of your turn, reduce the Cost of a Nature spell in your hand by (1)."""
+    在你的回合结束时，使你手牌中一张自然法术牌的法力值消耗减少（1）点。"""
     events = OwnTurnEnds(CONTROLLER).on(
         Find(FRIENDLY_HAND + SPELL + NATURE) & Buff(RANDOM(FRIENDLY_HAND + SPELL + NATURE), "SW_060e")
     )
@@ -82,19 +82,19 @@ class SW_060e:
 
 class SW_061:
     """公会商人 / Guild Trader
-    Tradeable Spell Damage +2"""
+    可交易 法术伤害+2"""
     pass  # Tradeable 和 Spell Damage 在 CardDefs.xml 中定义
 
 
 class SW_063:
     """战场军官 / Battleground Battlemaster
-    Adjacent minions have Windfury."""
+    相邻的随从具有风怒。"""
     update = Refresh(SELF_ADJACENT, {GameTag.WINDFURY: True})
 
 
 class SW_064:
     """北郡农民 / Northshire Farmer
-    Battlecry: Choose a friendly Beast. Shuffle three 3/3 copies into your deck."""
+    战吼：选择一个友方野兽。将三张3/3的复制洗入你的牌库。"""
     play = Find(FRIENDLY_MINIONS + BEAST) & (
         Shuffle(CONTROLLER, Copy(TARGET)) * 3
     )
@@ -102,32 +102,32 @@ class SW_064:
 
 class SW_065:
     """熊猫人进口商 / Pandaren Importer
-    Battlecry: Discover a spell that didn't start in your deck."""
+    战吼：发现一张不在你初始牌组中的法术牌。"""
     # 发现一张不在初始牌组中的法术
     play = GenericChoice(CONTROLLER, Discover(CONTROLLER, RandomSpell()))
 
 
 class SW_066:
     """王室图书管理员 / Royal Librarian
-    Tradeable Battlecry: Silence a minion."""
+    可交易 战吼：沉默一个随从。"""
     play = Silence(TARGET)
 
 
 class SW_067:
     """监狱守卫 / Stockades Guard
-    Battlecry: Give a friendly minion Taunt."""
+    战吼：使一个友方随从获得嘲讽。"""
     play = Find(FRIENDLY_MINIONS) & SetTag(TARGET, {GameTag.TAUNT: True})
 
 
 class SW_068:
     """莫尔葛熔魔 / Mo'arg Forgefiend
-    Taunt Deathrattle: Gain 8 Armor."""
+    嘲讽 亡语：获得8点护甲值。"""
     deathrattle = GainArmor(FRIENDLY_HERO, 8)
 
 
 class SW_071:
     """雄狮卫士 / Lion's Guard
-    Battlecry: If you have 15 or less Health, gain +2/+4 and Taunt."""
+    战吼：如果你的生命值小于或等于15点，获得+2/+4和嘲讽。"""
     play = Find(FRIENDLY_HERO + (CURRENT_HEALTH <= 15)) & (
         Buff(SELF, "SW_071e") & SetTag(SELF, {GameTag.TAUNT: True})
     )
@@ -141,13 +141,13 @@ class SW_071e:
 
 class SW_072:
     """锈烂蝰蛇 / Rustrot Viper
-    Tradeable Battlecry: Destroy your opponent's weapon."""
+    可交易 战吼：摧毁你对手的武器。"""
     play = Destroy(ENEMY_WEAPON)
 
 
 class SW_076:
     """城市建筑师 / City Architect
-    Battlecry: Summon two 0/5 Castle Walls with Taunt."""
+    战吼：召唤两个0/5并具有嘲讽的城墙。"""
     play = Summon(CONTROLLER, "SW_076t") * 2
 
 
@@ -158,7 +158,7 @@ class SW_076t:
 
 class SW_307:
     """旅行商人 / Traveling Merchant
-    Tradeable Battlecry: Gain +1/+1 for each other friendly minion you control."""
+    可交易 战吼：每有一个其他友方随从，便获得+1/+1。"""
     play = Buff(SELF, "SW_307e") * Count(FRIENDLY_MINIONS - SELF)
 
 
@@ -170,13 +170,13 @@ class SW_307e:
 
 class SW_319:
     """农夫 / Peasant
-    At the start of your turn, draw a card."""
+    在你的回合开始时，抽一张牌。"""
     events = OwnTurnBegins(CONTROLLER).on(Draw(CONTROLLER))
 
 
 class SW_418:
     """军情七处潜伏者 / SI:7 Skulker
-    Stealth Battlecry: The next card you draw costs (1) less."""
+    潜行 战吼：你抽到的下一张牌法力值消耗减少（1）点。"""
     play = Buff(CONTROLLER, "SW_418e")
 
 

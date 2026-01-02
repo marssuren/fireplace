@@ -25,6 +25,16 @@ class Copy(LazyValue):
             new_entity.custom_card = True
             new_entity.create_custom_card = entity.create_custom_card
             new_entity.create_custom_card(new_entity)
+        
+        # 设置复制追踪
+        # 如果原卡已经是复制，则使用其 copy_group_id
+        # 否则使用原卡的 entity_id 作为 copy_group_id
+        if entity.copy_group_id is not None:
+            new_entity.copy_group_id = entity.copy_group_id
+        else:
+            new_entity.copy_group_id = entity.entity_id
+        new_entity.original_entity_id = entity.entity_id
+        
         return new_entity
 
     def evaluate(self, source) -> list[str]:
@@ -51,6 +61,12 @@ class ExactCopy(Copy):
         ret = super().copy(source, entity)
         if self.id:
             ret = source.controller.card(self.id, source)
+            # 如果使用了不同的 ID，仍然需要设置复制追踪
+            if entity.copy_group_id is not None:
+                ret.copy_group_id = entity.copy_group_id
+            else:
+                ret.copy_group_id = entity.entity_id
+            ret.original_entity_id = entity.entity_id
         for buff in entity.buffs:
             # Recreate the buff stack
             new_buff = source.controller.card(buff.id)

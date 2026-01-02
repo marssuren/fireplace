@@ -75,6 +75,12 @@ class BaseCard(BaseEntity):
         self.card_class = CardClass.INVALID
         self.multi_class_group = MultiClassGroup.INVALID
         self.tags.update(data.tags)
+        
+        # 复制追踪机制
+        # original_entity_id: 原始卡牌的 entity_id（如果是复制，则指向原卡）
+        # copy_group_id: 复制组ID，所有复制共享同一个组ID
+        self.original_entity_id = None  # 如果是复制，记录原卡的 entity_id
+        self.copy_group_id = None  # 复制组ID，用于追踪所有相关的复制
 
     def dump(self):
         data = super().dump()
@@ -540,6 +546,11 @@ class PlayableCard(BaseCard, Entity, TargetableByAuras):
     def play(self, target=None, index=None, choose=None):
         """
         Queue a Play action on the card.
+        
+        Args:
+            target: 单个目标或目标列表（用于多目标卡牌）
+            index: 召唤位置
+            choose: 选择的子卡牌
         """
         if choose:
             if self.must_choose_one:
@@ -560,17 +571,54 @@ class PlayableCard(BaseCard, Entity, TargetableByAuras):
             card = self
         if not self.is_playable():
             raise InvalidAction("%r isn't playable." % (self))
-        if card.requires_target():
-            if not target:
-                raise InvalidAction("%r requires a target to play." % (self))
-            elif target not in self.play_targets:
-                raise InvalidAction("%r is not a valid target for %r." % (target, self))
-            if self.controller.all_targets_random:
-                new_target = self.game.random.choice(self.play_targets)
-                self.logger.info(
-                    "Retargeting %r from %r to %r", self, target, new_target
-                )
-                target = new_target
+        
+        # 检查是否需要多目标
+        requires_multiple = PlayReq.REQ_MULTIPLE_TARGETS in self.requirements
+        target_count = self.requirements.get(PlayReq.REQ_TARGET_COUNT, 1)
+        
+        if card.requires_target() or requires_multiple:
+            # 处理多目标
+            if requires_multiple:
+                if not target:
+                    raise InvalidAction("%r requires %d targets to play." % (self, target_count))
+                
+                # 确保 target 是列表
+                if not isinstance(target, list):
+                    target = [target]
+                
+                # 验证目标数量
+                if len(target) != target_count:
+                    raise InvalidAction(
+                        "%r requires exactly %d targets, got %d" % (self, target_count, len(target))
+                    )
+                
+                # 验证每个目标的有效性
+                for t in target:
+                    if t not in self.play_targets:
+                        raise InvalidAction("%r is not a valid target for %r." % (t, self))
+                
+                # 随机重定向（如果需要）
+                if self.controller.all_targets_random:
+                    new_targets = []
+                    for _ in range(target_count):
+                        new_target = self.game.random.choice(self.play_targets)
+                        new_targets.append(new_target)
+                    self.logger.info(
+                        "Retargeting %r from %r to %r", self, target, new_targets
+                    )
+                    target = new_targets
+            else:
+                # 单目标处理（原有逻辑）
+                if not target:
+                    raise InvalidAction("%r requires a target to play." % (self))
+                elif target not in self.play_targets:
+                    raise InvalidAction("%r is not a valid target for %r." % (target, self))
+                if self.controller.all_targets_random:
+                    new_target = self.game.random.choice(self.play_targets)
+                    self.logger.info(
+                        "Retargeting %r from %r to %r", self, target, new_target
+                    )
+                    target = new_target
         elif target:
             self.logger.warning(
                 "%r does not require a target, ignoring target %r", self, target
@@ -1309,9 +1357,22 @@ class Spell(PlayableCard):
         amount = super().get_damage(amount, target)
         if not self.immune_to_spellpower:
             amount = self.controller.get_spell_damage(amount)
+            
+            # 检查是否有针对特定法术学派的伤害加成
+            # 用于"普瑞斯托的炎术师"等卡牌
+            spell_school = self.spell_school
+            if spell_school:
+                for entity in self.controller.live_entities:
+                    # 检查是否有针对该法术学派的伤害加成
+                    if hasattr(entity, 'spell_school_damage_bonus'):
+                        bonus_dict = getattr(entity, 'spell_school_damage_bonus', {})
+                        if spell_school in bonus_dict:
+                            amount += bonus_dict[spell_school]
+        
         if self.receives_double_spelldamage_bonus:
             amount = self.controller.get_spell_damage(amount)
         return amount
+
 
     def get_heal(self, amount, target):
         if not self.immune_to_spellpower:

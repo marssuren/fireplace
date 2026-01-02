@@ -8,13 +8,13 @@ from ..utils import *
 
 class DED_521:
     """最疯狂的爆破者 / Maddest Bomber
-    Battlecry: Deal 12 damage randomly split among all other characters."""
+    战吼：随机对所有其他角色造成总共12点伤害。"""
     play = Hit(ALL_CHARACTERS - SELF, 1) * 12
 
 
 class SW_069:
     """热情的柜员 / Enthusiastic Banker
-    At the end of your turn, store a card from your deck. Deathrattle: Add the stored cards to your hand."""
+    在你的回合结束时，从你的牌库中存储一张牌。亡语：将存储的牌加入你的手牌。"""
     events = OwnTurnEnds(CONTROLLER).on(
         Find(FRIENDLY_DECK) & (
             Setaside(RANDOM(FRIENDLY_DECK)) & Buff(SELF, "SW_069e")
@@ -36,7 +36,7 @@ class SW_069e:
 
 class SW_073:
     """奶酪商贩 / Cheesemonger
-    Whenever your opponent casts a spell, add a random spell with the same Cost to your hand."""
+    每当你的对手施放一个法术时，将一张法力值消耗相同的随机法术牌置入你的手牌。"""
     events = CastSpell(OPPONENT).on(
         Give(CONTROLLER, RandomSpell(cost=COST(CastSpell.CARD)))
     )
@@ -44,57 +44,83 @@ class SW_073:
 
 class SW_074:
     """贵族 / Nobleman
-    Battlecry: Create a Golden copy of a random card in your hand."""
+    战吼：复制你手牌中一张随机卡牌的金色版本。"""
     play = Give(CONTROLLER, Copy(RANDOM(FRIENDLY_HAND)))
 
 
 class SW_075:
     """艾尔文野猪 / Elwynn Boar
-    Deathrattle: If you had 7 Elwynn Boars die this game, equip a 15/3 Sword of a Thousand Truths."""
-    # 需要追踪本局游戏中死亡的艾尔文野猪数量
-    deathrattle = Buff(FRIENDLY_HERO, "SW_075e")
-
-
-class SW_075e:
-    """艾尔文野猪计数器"""
-    def apply(self, target):
+    亡语：如果本局游戏中有7只艾尔文野猪死亡，装备一把15/3的千真剑。"""
+    tags = {
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1,
+        GameTag.COST: 1,
+        GameTag.RACE: Race.BEAST,
+    }
+    
+    def deathrattle(self):
+        """
+        增加死亡计数
+        如果达到7只，装备千真剑
+        """
         # 增加死亡计数
-        if not hasattr(target, 'elwynn_boars_died'):
-            target.elwynn_boars_died = 0
-        target.elwynn_boars_died += 1
-
+        if not hasattr(self.controller, 'elwynn_boars_died'):
+            self.controller.elwynn_boars_died = 0
+        self.controller.elwynn_boars_died += 1
+        
         # 如果达到7只，装备武器
-        if target.elwynn_boars_died >= 7:
-            from ..actions import Summon
-            Summon(target.controller, "SW_075t").trigger(target)
+        if self.controller.elwynn_boars_died >= 7:
+            yield Equip(CONTROLLER, "SW_075t")
 
 
 class SW_075t:
     """千真剑 / Sword of a Thousand Truths"""
-    # 15/3 武器，在 CardDefs.xml 中定义
-    pass
+    tags = {
+        GameTag.CARDTYPE: CardType.WEAPON,
+        GameTag.ATK: 15,
+        GameTag.DURABILITY: 3,
+        GameTag.COST: 10,
+    }
+
 
 
 class SW_077:
     """监狱囚徒 / Stockades Prisoner
-    Starts Dormant. After you play 3 cards, this awakens."""
-    # 休眠机制：打出3张牌后苏醒
-    # 需要在控制器级别追踪打出的卡牌数量
-    events = Play(CONTROLLER).after(
-        Buff(FRIENDLY_HERO, "SW_077e")
-    )
+    初始休眠。在你打出3张牌后，本随从苏醒。"""
+    tags = {
+        GameTag.DORMANT: True,  # 初始休眠
+    }
+    
+    # 打出后开始追踪打出的卡牌
+    play = Buff(SELF, "SW_077e")
 
 
 class SW_077e:
-    """监狱囚徒计数器"""
-    def apply(self, target):
-        # 增加打出卡牌计数
-        if not hasattr(target, 'cards_played_for_prisoner'):
-            target.cards_played_for_prisoner = 0
-        target.cards_played_for_prisoner += 1
+    """监狱囚徒追踪器"""
+    # 每次打出卡牌时增加计数
+    events = Play(CONTROLLER).after(
+        Find(SELF.owner) & Buff(SELF.owner, "SW_077_counter")
+    )
 
-        # 如果达到3张，唤醒所有监狱囚徒
-        if target.cards_played_for_prisoner >= 3:
-            prisoners = [m for m in target.controller.field if m.id == "SW_077" and m.dormant]
-            for prisoner in prisoners:
-                prisoner.dormant = False
+
+class SW_077_counter:
+    """打出卡牌计数标记"""
+    def apply(self, target):
+        """
+        统计此囚徒上的计数标记数量
+        达到3个时唤醒
+        """
+        # 统计此囚徒身上有多少个计数标记
+        count = sum(1 for buff in target.buffs if buff.id == "SW_077_counter")
+        
+        # 如果达到3张，唤醒
+        if count >= 3:
+            if target.dormant:
+                # 使用 Awaken action 唤醒
+                from ..actions import Awaken
+                Awaken(target).trigger(target)
+                
+                # 清除所有计数标记
+                for buff in list(target.buffs):
+                    if buff.id == "SW_077_counter":
+                        buff.destroy()

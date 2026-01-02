@@ -4,207 +4,246 @@ from ..utils import *
 
 class BAR_020:
     """Razormane Raider - 钢鬃掠夺者
-    <b>Frenzy:</b> Attack a
-random enemy.
+    Frenzy: Attack a random enemy.
+    暴怒：攻击一个随机敌人。
     """
-    # TODO: 实现 Frenzy 机制
-    pass
+    frenzy = Attack(SELF, RANDOM_ENEMY_CHARACTER)
 
 
 class BAR_021:
     """Gold Road Grunt - 黄金之路步兵
-    [x]<b>Taunt</b>
-<b>Frenzy:</b> Gain Armor equal
-to the damage taken.
+    Taunt. Frenzy: Gain Armor equal to the damage taken.
+    嘲讽。暴怒：获得等同于受到伤害数值的护甲值。
     """
-    # TODO: 实现 Frenzy 机制
-    pass
+    frenzy = GainArmor(FRIENDLY_HERO, EventValue())
 
 
 class BAR_022:
     """Peon - 苦工
-    [x]<b>Frenzy:</b> Add a random
-spell from your class
-to your hand.
+    Frenzy: Add a random spell from your class to your hand.
+    暴怒：将一张你职业的随机法术牌置入你的手牌。
     """
-    # TODO: 实现 Frenzy 机制
-    pass
+    frenzy = Give(CONTROLLER, RandomSpell(card_class=CONTROLLER_CLASS))
 
 
 class BAR_024:
     """Oasis Thrasher - 绿洲长尾鳄
-    <b>Frenzy:</b> Deal 3 damage to the enemy hero.
+    Frenzy: Deal 3 damage to the enemy hero.
+    暴怒：对敌方英雄造成3点伤害。
     """
-    # TODO: 实现 Frenzy 机制
-    pass
+    frenzy = Hit(ENEMY_HERO, 3)
 
 
 class BAR_025:
     """Sunwell Initiate - 太阳之井新兵
-    <b>Frenzy:</b> Gain <b>Divine Shield</b>.
+    Frenzy: Gain Divine Shield.
+    暴怒：获得圣盾。
     """
-    # TODO: 实现 Frenzy 机制
-    pass
+    frenzy = GiveDivineShield(SELF)
 
 
 class BAR_026:
     """Death's Head Cultist - 亡首教徒
-    <b>Taunt</b>
-<b>Deathrattle:</b> Restore 4 Health to your hero.
+    Taunt. Deathrattle: Restore 4 Health to your hero.
+    嘲讽。亡语：为你的英雄恢复4点生命值。
     """
-    # TODO: 实现卡牌效果
-    pass
+    deathrattle = Heal(FRIENDLY_HERO, 4)
 
 
 class BAR_027:
     """Darkspear Berserker - 暗矛狂战士
-    <b>Deathrattle:</b> Deal 5 damage to your hero.
+    Deathrattle: Deal 5 damage to your hero.
+    亡语：对你的英雄造成5点伤害。
     """
-    # TODO: 实现卡牌效果
-    pass
+    deathrattle = Hit(FRIENDLY_HERO, 5)
 
 
 class BAR_060:
     """Hog Rancher - 放猪牧人
-    <b>Battlecry:</b> Summon a
-2/1 Hog with <b>Rush</b>.
+    Battlecry: Summon a 2/1 Hog with Rush.
+    战吼：召唤一个2/1并具有突袭的野猪。
     """
-    # TODO: 实现卡牌效果
-    pass
+    play = Summon(CONTROLLER, "BAR_060t")
 
 
 class BAR_061:
     """Ratchet Privateer - 棘齿城私掠者
-    <b>Battlecry:</b> Give your weapon +1 Attack.
+    Battlecry: Give your weapon +1 Attack.
+    战吼：使你的武器获得+1攻击力。
     """
-    # TODO: 实现卡牌效果
-    pass
+    play = Buff(FRIENDLY_WEAPON, "BAR_061e")
+
+
+class BAR_061e:
+    tags = {
+        GameTag.ATK: 1,
+    }
 
 
 class BAR_062:
     """Lushwater Murcenary - 甜水鱼人佣兵
-    <b>Battlecry:</b> If you control a Murloc, gain +1/+1.
+    Battlecry: If you control a Murloc, gain +1/+1.
+    战吼：如果你控制一个鱼人，获得+1/+1。
     """
-    # TODO: 实现卡牌效果
-    pass
+    play = Find(FRIENDLY_MINIONS + MURLOC) & Buff(SELF, "BAR_062e")
+
+
+class BAR_062e:
+    tags = {
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1,
+    }
 
 
 class BAR_063:
     """Lushwater Scout - 甜水鱼人斥候
-    After you summon a Murloc, give it +1 Attack and <b>Rush</b>.
+    After you summon a Murloc, give it +1 Attack and Rush.
+    在你召唤一个鱼人后，使其获得+1攻击力和突袭。
     """
-    # TODO: 实现卡牌效果
-    pass
+    events = Summon(CONTROLLER, MURLOC).after(
+        Buff(Summon.CARD, "BAR_063e"),
+        SetTag(Summon.CARD, GameTag.RUSH, True),
+    )
+
+
+class BAR_063e:
+    tags = {
+        GameTag.ATK: 1,
+    }
 
 
 class BAR_064:
     """Talented Arcanist - 精明的奥术师
-    <b>Battlecry:</b> Your next spell this turn has <b>Spell Damage +2</b>.
+    Battlecry: Your next spell this turn has Spell Damage +2.
+    战吼：你在本回合中的下一个法术获得法术伤害+2。
     """
-    # TODO: 实现卡牌效果
-    pass
+    play = Buff(FRIENDLY_HERO, "BAR_064e")
+
+
+class BAR_064e:
+    tags = {
+        GameTag.SPELLPOWER: 2,
+    }
+    events = (
+        Play(CONTROLLER, SPELL).after(Destroy(SELF)),
+        OWN_TURN_END.on(Destroy(SELF)),
+    )
 
 
 class BAR_065:
     """Venomous Scorpid - 剧毒魔蝎
-    <b>Poisonous</b>
-<b>Battlecry:</b> <b>Discover</b> a spell.
+    Poisonous. Battlecry: Discover a spell.
+    剧毒。战吼：发现一张法术牌。
     """
-    # TODO: 实现卡牌效果
-    pass
+    play = DISCOVER(RandomSpell())
 
 
 class BAR_069:
     """Injured Marauder - 受伤的掠夺者
-    <b>Taunt</b>
-<b>Battlecry:</b> Deal 6 damage to this minion.
+    Taunt. Battlecry: Deal 6 damage to this minion.
+    嘲讽。战吼：对该随从造成6点伤害。
     """
-    # TODO: 实现卡牌效果
-    pass
+    play = Hit(SELF, 6)
 
 
 class BAR_070:
     """Gruntled Patron - 满意的奴隶主
-    <b>Frenzy:</b> Summon another Gruntled Patron.
+    Frenzy: Summon another Gruntled Patron.
+    暴怒：召唤另一个满意的奴隶主。
     """
-    # TODO: 实现 Frenzy 机制
-    pass
+    frenzy = Summon(CONTROLLER, "BAR_070")
 
 
 class BAR_074:
     """Far Watch Post - 前沿哨所
-    [x]Can't attack. After your
-opponent draws a card, it
-   costs (1) more <i>(up to 10)</i>.  
+    Can't attack. After your opponent draws a card, it costs (1) more (up to 10).
+    无法攻击。在你的对手抽一张牌后，使其法力值消耗增加（1）点（最多为10点）。
     """
-    # TODO: 实现卡牌效果
-    pass
+    events = Draw(OPPONENT).after(
+        Buff(Draw.CARDS, "BAR_074e")
+    )
+
+
+class BAR_074e:
+    max_cost = 10
+    tags = {
+        GameTag.COST: +1,
+    }
 
 
 class BAR_082:
     """Barrens Trapper - 贫瘠之地诱捕者
-    Your <b>Deathrattle</b> cards
-cost (1) less.
+    Your Deathrattle cards cost (1) less.
+    你的亡语牌的法力值消耗减少（1）点。
     """
-    # TODO: 实现卡牌效果
-    pass
+    update = Refresh(FRIENDLY_HAND + DEATHRATTLE, {GameTag.COST: -1})
 
 
 class BAR_743:
     """Toad of the Wilds - 狂野蟾蜍
-    [x]<b>Taunt</b>
-<b>Battlecry:</b> If you're holding
-a Nature spell, gain
-+2 Health.
+    Taunt. Battlecry: If you're holding a Nature spell, gain +2 Health.
+    嘲讽。战吼：如果你的手牌中有自然法术，获得+2生命值。
     """
-    # TODO: 实现卡牌效果
-    pass
+    play = Find(FRIENDLY_HAND + SPELL + NATURE) & Buff(SELF, "BAR_743e")
+
+
+class BAR_743e:
+    tags = {
+        GameTag.HEALTH: 2,
+    }
 
 
 class BAR_854:
     """Kindling Elemental - 火光元素
-    [x]<b>Battlecry:</b> The next
- Elemental you play
-costs (1) less.
+    Battlecry: The next Elemental you play costs (1) less.
+    战吼：你打出的下一张元素牌的法力值消耗减少（1）点。
     """
-    # TODO: 实现卡牌效果
-    pass
+    play = Buff(FRIENDLY_HERO, "BAR_854e")
+
+
+class BAR_854e:
+    update = Refresh(FRIENDLY_HAND + ELEMENTAL, {GameTag.COST: -1})
+    events = Play(CONTROLLER, ELEMENTAL).after(Destroy(SELF))
 
 
 class BAR_890:
     """Crossroads Gossiper - 十字路口大嘴巴
-    After a friendly <b>Secret</b> is revealed, gain +2/+2.
+    After a friendly Secret is revealed, gain +2/+2.
+    在一个友方奥秘被揭示后，获得+2/+2。
     """
-    # TODO: 实现卡牌效果
-    pass
+    events = Reveal(FRIENDLY + SECRET).on(Buff(SELF, "BAR_890e"))
+
+
+class BAR_890e:
+    tags = {
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 2,
+    }
 
 
 class WC_027:
     """Devouring Ectoplasm - 吞噬软浆怪
-    [x]<b>Deathrattle:</b> Summon a
-2/2 Adventurer with
- a random bonus effect.
+    Deathrattle: Summon a 2/2 Adventurer with a random bonus effect.
+    亡语：召唤一个2/2并具有随机奖励效果的冒险者。
     """
-    # TODO: 实现卡牌效果
-    pass
+    deathrattle = Summon(CONTROLLER, RandomID("WC_027t", "WC_027t2", "WC_027t3", "WC_027t4"))
 
 
 class WC_028:
     """Meeting Stone - 集合石
-    [x]At the end of your turn,
-add a 2/2 Adventurer
-with a random bonus effect
-to your hand.
+    At the end of your turn, add a 2/2 Adventurer with a random bonus effect to your hand.
+    在你的回合结束时，将一个2/2并具有随机奖励效果的冒险者置入你的手牌。
     """
-    # TODO: 实现卡牌效果
-    pass
+    events = OWN_TURN_END.on(
+        Give(CONTROLLER, RandomID("WC_028t", "WC_028t2", "WC_028t3", "WC_028t4"))
+    )
 
 
 class WC_029:
     """Selfless Sidekick - 无私的同伴
-    <b>Battlecry:</b> Equip a random weapon from your deck.
+    Battlecry: Equip a random weapon from your deck.
+    战吼：从你的牌库中装备一把随机武器。
     """
-    # TODO: 实现卡牌效果
-    pass
+    play = Equip(RANDOM(FRIENDLY_DECK + WEAPON))
 
 

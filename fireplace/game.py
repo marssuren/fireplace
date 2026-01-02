@@ -354,6 +354,11 @@ class BaseGame(Entity):
             for buff in CardList(entity.entities).filter(one_turn_effect=True):
                 self.log("Ending One-Turn effect: %r", buff)
                 buff.remove()
+        
+        # 重置本回合受到的伤害（用于"暗影之刃飞刀手"等卡牌）
+        if hasattr(self.current_player, 'damage_taken_this_turn'):
+            self.current_player.damage_taken_this_turn = 0
+
         # Extra turn
         if self.next_players:
             next_player = self.next_players.pop(0)

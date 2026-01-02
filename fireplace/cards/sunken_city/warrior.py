@@ -6,15 +6,15 @@
 from ..utils import *
 
 class TID_714:
-    """Igneous Lavagorger - 4费 3/5
-    嘲讽。战吼：疏浚。获得等同于其费用的护甲值"""
+    """火成熔岩吞食者 - 4费 3/5
+    嘲讽。战吼：探底。获得等同于选中的牌的法力值消耗的护甲值"""
     tags = {GameTag.TAUNT: True}
     play = Dredge(CONTROLLER) & GainArmor(CONTROLLER, COST(DREDGED_CARD))
 
 
 class TID_715:
-    """Clash of the Colossals - 3费法术
-    将一张随机巨型随从置入双方手牌。你的费用减少(2)点"""
+    """巨型剧斗 - 3费法术
+    随机将一张巨型随从牌置入双方玩家的手牌。你的那张法力值消耗减少（2）点"""
     play = (
         Give(CONTROLLER, RandomMinion(tag=GameTag.COLOSSAL)) &
         Buff(LAST_GIVEN, "TID_715e") &
@@ -28,14 +28,14 @@ class TID_715e:
 
 
 class TID_716:
-    """Tidal Revenant - 8费 5/8
+    """潮汐亡魂 - 8费 5/8
     战吼：造成5点伤害。获得8点护甲值"""
     play = Hit(TARGET, 5) & GainArmor(CONTROLLER, 8)
 
 
 class TSC_659:
-    """Trenchstalker - 9费 8/9
-    战吼：攻击三个不同的随机敌人"""
+    """海沟追猎者 - 9费 8/9
+    战吼：随机攻击三个不同的敌人"""
     play = (
         Attack(SELF, RANDOM(ALL_ENEMIES)) &
         Attack(SELF, RANDOM(ALL_ENEMIES)) &
@@ -44,8 +44,8 @@ class TSC_659:
 
 
 class TSC_660:
-    """Nellie, the Great Thresher - 7费 5/5
-    巨型+1。战吼：发现3个海盗来组成奈莉的船员"""
+    """奈利，超巨蛇颈龙 - 7费 5/5
+    巨型+1。战吼：发现三个海盗来构成奈利的船员团队"""
     colossal_appendages = ["TSC_660t"]
     play = (
         GenericChoice(CONTROLLER, Discover(CONTROLLER, RandomMinion(race=Race.PIRATE))) * 3
@@ -53,21 +53,21 @@ class TSC_660:
 
 
 class TSC_913:
-    """Azsharan Trident - 3费 3/2武器
-    亡语：将一张"沉没的三叉戟"置入你的牌库底部"""
+    """艾萨拉的三叉戟 - 3费 3/2武器
+    亡语：将一张\"沉没的三叉戟\"置于你的牌库底"""
     deathrattle = ShuffleIntoDeck(CONTROLLER, "TSC_913t", position='bottom')
 
 
 class TSC_917:
-    """Blackscale Brute - 7费 5/6
-    嘲讽。战吼：如果你装备了武器，召唤一个5/6并具有突袭的娜迦"""
+    """黑鳞蛮兵 - 7费 5/6
+    嘲讽。战吼：如果你装备着武器，召唤一个5/6并具有突袭的纳迦"""
     tags = {GameTag.TAUNT: True}
     play = Find(FRIENDLY_WEAPON) & Summon(CONTROLLER, "TSC_917t")
 
 
 class TSC_939:
-    """Forged in Flame - 2费法术
-    摧毁你的武器，然后抽等同于其攻击力的牌"""
+    """火焰熔铸 - 2费法术
+    摧毁你的武器，然后抽数量等同于其攻击力的牌"""
     play = (
         lambda self, target: [
             Draw(self.controller) * self.controller.weapon.atk,
@@ -77,8 +77,8 @@ class TSC_939:
 
 
 class TSC_940:
-    """From the Depths - 3费法术
-    使你牌库底部的5张牌费用减少(3)点，然后疏浚"""
+    """深海来客 - 3费法术
+    使你牌库底五张牌的法力值消耗减少（3）点，然后探底"""
     play = (
         Buff(FRIENDLY_DECK[-5:], "TSC_940e") &
         Dredge(CONTROLLER)
@@ -91,14 +91,14 @@ class TSC_940e:
 
 
 class TSC_941:
-    """Guard the City - 2费法术
-    获得3点护甲值。召唤一个2/3并具有嘲讽的娜迦"""
+    """保卫城市 - 2费法术
+    获得3点护甲值。召唤一个2/3并具有嘲讽的纳迦"""
     play = GainArmor(CONTROLLER, 3) & Summon(CONTROLLER, "TSC_941t")
 
 
 class TSC_942:
-    """Obsidiansmith - 2费 3/2
-    战吼：疏浚。如果是随从或武器，使其获得+1/+1"""
+    """黑曜石铸匠 - 2费 3/2
+    战吼：探底。如果选中的是随从牌或武器牌，则使其获得+1/+1"""
     play = (
         Dredge(CONTROLLER) &
         Find(DREDGED_CARD + (MINION | WEAPON)) &
@@ -112,8 +112,8 @@ class TSC_942e:
 
 
 class TSC_943:
-    """Lady Ashvane - 5费 5/5
-    战吼：使你手牌、牌库和战场上的所有武器获得+1/+1"""
+    """艾什凡女勋爵 - 5费 5/5
+    战吼：使你手牌，牌库和战场上的所有武器获得+1/+1"""
     play = Buff(FRIENDLY_HAND + WEAPON, "TSC_943e") & Buff(FRIENDLY_DECK + WEAPON, "TSC_943e") & Buff(FRIENDLY_WEAPON, "TSC_943e")
 
 
@@ -123,8 +123,8 @@ class TSC_943e:
 
 
 class TSC_944:
-    """The Fires of Zin-Azshari - 2费法术
-    将你的牌库替换为费用不低于(5)的随从。它们的费用变为(5)点"""
+    """辛艾萨莉之火 - 2费法术
+    将你牌库里的所有卡牌替换成法力值消耗大于或等于（5）点的随从牌。替换后的牌法力值消耗为（5）点"""
     play = (
         lambda self, target: [
             Destroy(card) for card in list(self.controller.deck)

@@ -86,9 +86,15 @@ class SCH_162:
             for whelp in whelps:
                 # 随机选择一个死亡随从的亡语复制给幼龙
                 source = self.game.random_choice(dead_minions_with_deathrattle)
-                # 复制亡语效果（简化实现：添加相同的亡语）
-                if hasattr(source, 'deathrattle'):
-                    whelp.deathrattle = source.deathrattle
+                # 使用 CopyDeathrattleBuff 正确复制亡语效果
+                yield Retarget(whelp, source)
+                yield CopyDeathrattleBuff(source, "SCH_162e")
+
+
+class SCH_162e:
+    """Vectus - Copied Deathrattle / 复制的亡语"""
+    # 这个 buff 会由 CopyDeathrattleBuff 填充实际的亡语效果
+    pass
 
 
 class SCH_162t:

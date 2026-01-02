@@ -6,8 +6,8 @@
 from ..utils import *
 
 class TID_710:
-    """Snapdragon - 3费 3/3
-    战吼：使你牌库中所有战吼随从获得+1/+1"""
+    """毒鳍龙 - 3费 3/3
+    战吼：使你牌库中的所有战吼随从获得+1/+1"""
     play = Buff(FRIENDLY_DECK + MINION + BATTLECRY, "TID_710e")
 
 
@@ -17,10 +17,19 @@ class TID_710e:
 
 
 class TID_744:
-    """Coilfang Constrictor - 4费 5/4
-    战吼：查看对手手牌中的3张牌，选择一张。该牌在下回合无法打出"""
-    # 简化实现：随机选择对手手牌中的一张牌，使其下回合无法打出
-    play = Buff(RANDOM(ENEMY_HAND), "TID_744e")
+    """盘牙蟠蟒 - 4费 5/4
+    战吼：检视你对手的3张手牌并选择一张，使其无法在下回合中使用"""
+    tags = {
+        GameTag.ATK: 5,
+        GameTag.HEALTH: 4,
+        GameTag.COST: 4,
+    }
+    
+    # 从对手手牌中随机选择3张（去重），让玩家选择一张，然后对其施加 buff
+    play = GenericChoice(CONTROLLER, RANDOM(DeDuplicate(ENEMY_HAND)) * 3).then(
+        Buff(GenericChoice.CARD, "TID_744e")
+    )
+
 
 
 class TID_744e:
@@ -30,13 +39,13 @@ class TID_744e:
 
 
 class TSC_065:
-    """Helmet Hermit - 1费 4/3
+    """盔中寄居蟹 - 1费 4/3
     无法攻击"""
     tags = {GameTag.CANT_ATTACK: True}
 
 class TSC_645:
-    """Stormcoil Mothership - 6费 5/4
-    突袭。亡语：召唤两个随机的费用不超过(3)的机械"""
+    """积雷母舰 - 6费 5/4
+    突袭。亡语：随机召唤两个法力值消耗小于或等于（3）点的机械"""
     tags = {GameTag.RUSH: True}
     deathrattle = (
         Summon(CONTROLLER, RandomMinion(cost=3, race=Race.MECHANICAL)) * 2
@@ -44,8 +53,8 @@ class TSC_645:
 
 
 class TSC_826:
-    """Crushclaw Enforcer - 3费 3/4
-    战吼：如果你在持有该牌时施放过法术，抽一张娜迦牌"""
+    """重钳执行者 - 3费 3/4
+    战吼：如果你在本牌在你手中时施放过法术，抽一张纳迦牌"""
     powered_up = Find(FRIENDLY_HAND + SPELL) & Buff(SELF, "TSC_826e")
     play = Find(SELF + POWERED_UP) & ForceDraw(RANDOM(FRIENDLY_DECK + NAGA))
 
@@ -55,8 +64,8 @@ class TSC_826e:
     tags = {GameTag.POWERED_UP: True}
 
 class TSC_827:
-    """Vicious Slitherspear - 1费 1/3
-    在你施放一个法术后，获得+1攻击力，直到你的下个回合"""
+    """凶恶的滑矛纳迦 - 1费 1/3
+    在你施放一个法术后，直到你的下个回合，获得+1攻击力"""
     events = Play(CONTROLLER, SPELL).after(
         Buff(SELF, "TSC_827e")
     )
@@ -69,8 +78,8 @@ class TSC_827e:
 
 
 class TSC_960:
-    """Twin-fin Fin Twin - 3费 2/1
-    突袭。战吼：召唤一个该随从的复制"""
+    """并鳍奇兵 - 3费 2/1
+    突袭。战吼：召唤一个本随从的复制"""
     tags = {GameTag.RUSH: True}
     play = Summon(CONTROLLER, ExactCopy(SELF))
 

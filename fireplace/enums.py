@@ -38,6 +38,15 @@ TITAN_ABILITY_COUNT = -40  # 泰坦总共有多少个技能（通常是3个）
 SPELL_DOUBLE_CAST = -41  # 下一个法术施放两次（Solar Eclipse等）
 NUM_SECRETS_REVEALED = -42  # 本局对战中触发的友方奥秘次数
 
+# Questline（任务线）机制 - 暴风城（2021年8月）
+QUESTLINE_STAGE = -43  # 任务线当前阶段（1/2/3）
+QUESTLINE_PROGRESS = -44  # 当前阶段的进度
+
+# Ranked Spells（等级法术）机制 - 贫瘠之地（2021年3月）
+RANKED_SPELL_NEXT_RANK = -45  # 下一等级的卡牌 ID（字符串）
+RANKED_SPELL_THRESHOLD = -46  # 升级所需的法力水晶数量
+
+
 
 class SpellType(IntEnum):
     INVALID = 0
@@ -187,6 +196,10 @@ class PlayReq(IntEnum):
     REQ_TARGET_IS_NON_TITAN = 141
     REQ_TARGET_EXACT_ATTACK = 143
     REQ_DRAG_TO_PLAY = 999
+    
+    # Fireplace 扩展：多目标支持
+    REQ_MULTIPLE_TARGETS = 1000  # 需要选择多个目标
+    REQ_TARGET_COUNT = 1001  # 需要选择的目标数量
 
     # Renamed
     REQ_ENCHANTED_TARGET = REQ_MAX_SECRETS

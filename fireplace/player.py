@@ -103,6 +103,31 @@ class Player(Entity, TargetableByAuras):
         self.healed_this_game = 0
         self.cthun = None
         self.invoke_counter = 0
+        
+        # 追踪最后一个战吼效果（用于"重复战吼"类卡牌）
+        self.last_battlecry = None  # (card, target) 元组
+        
+        # 追踪本局游戏施放过的法术学派（用于"多系施法者"等卡牌）
+        self.spell_schools_played_this_game = set()  # 使用 set 自动去重
+        
+        # 英雄技能伤害加成（用于"瞄准射击"等卡牌）
+        self.hero_power_damage_bonus = 0
+        
+        # 追踪每回合施放的法术（用于"首席法师安东尼达斯"等卡牌）
+        self.spells_by_turn = {}  # {turn_number: [spells]}
+        
+        # 追踪上一个对友方随从施放的法术（用于"金翼鹦鹉"等卡牌）
+        self.last_spell_on_friendly_minion = None
+        
+        # 追踪上一个战吼随从（用于"艳丽的金刚鹦鹉"等卡牌）
+        self.last_battlecry = None
+        
+        # 追踪本回合受到的伤害（用于"暗影之刃飞刀手"等卡牌）
+        self.damage_taken_this_turn = 0
+
+
+
+
 
     def dump(self):
         data = super().dump()
@@ -182,8 +207,14 @@ class Player(Entity, TargetableByAuras):
 
     @max_mana.setter
     def max_mana(self, amount):
+        old_max_mana = self._max_mana
         self._max_mana = min(self.max_resources, max(0, amount))
         self.log(translate("player_mana_crystals", player=self, count=self._max_mana))
+        
+        # 等级法术自动升级机制
+        # 当玩家的最大法力水晶增加时，检查并升级手牌和牌库中的等级法术
+        if self._max_mana > old_max_mana and self.game:
+            self._upgrade_ranked_spells()
 
     @property
     def heropower_damage(self):
@@ -413,3 +444,43 @@ class Player(Entity, TargetableByAuras):
             card = self.card(card)
         self.game.cheat_action(self, [Summon(self, card)])
         return card
+
+    def _upgrade_ranked_spells(self):
+        """
+        等级法术自动升级机制
+        
+        当玩家的最大法力水晶增加时，自动升级手牌和牌库中的等级法术。
+        检查卡牌的 RANKED_SPELL_NEXT_RANK 和 RANKED_SPELL_THRESHOLD 标签，
+        如果当前法力水晶达到阈值，则将卡牌变形为下一等级。
+        """
+        from . import enums
+        from .actions import Morph
+        
+        # 检查并升级手牌中的等级法术
+        for card in list(self.hand):
+            self._try_upgrade_ranked_spell(card)
+        
+        # 检查并升级牌库中的等级法术
+        for card in list(self.deck):
+            self._try_upgrade_ranked_spell(card)
+    
+    def _try_upgrade_ranked_spell(self, card):
+        """
+        尝试升级单张等级法术卡牌
+        
+        Args:
+            card: 要检查的卡牌
+        """
+        from . import enums
+        from .actions import Morph
+        
+        # 检查卡牌是否有等级法术标签
+        next_rank = card.tags.get(enums.RANKED_SPELL_NEXT_RANK)
+        threshold = card.tags.get(enums.RANKED_SPELL_THRESHOLD)
+        
+        # 如果卡牌有下一等级且达到了升级阈值，则升级
+        if next_rank and threshold and self._max_mana >= threshold:
+            self.log("%s upgrades %s to %s (reached %d mana)", 
+                    self, card, next_rank, threshold)
+            # 使用 Morph 将卡牌变形为下一等级
+            self.game.queue_actions(self, [Morph(card, next_rank)])

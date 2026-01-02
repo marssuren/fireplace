@@ -554,6 +554,8 @@ class Play(GameAction):
             if card.play_outcast and card.get_actions("outcast"):
                 source.game.trigger(card, card.get_actions("outcast"), event_args=None)
             elif trigger_battlecry:
+                # 记录最后的战吼（用于"重复战吼"类卡牌）
+                player.last_battlecry = (battlecry_card, card.target)
                 source.game.queue_actions(
                     card, [Battlecry(battlecry_card, card.target)]
                 )
@@ -798,9 +800,29 @@ class Buff(TargetedAction):
             if isinstance(v, LazyValue):
                 v = v.evaluate(source)
             setattr(buff, k, v)
+        
+        # 检查是否给英雄增加了攻击力（用于德鲁伊任务线等卡牌）
+        is_hero_attack_buff = (
+            target.type == CardType.HERO and 
+            hasattr(buff, 'tags') and 
+            buff.tags.get(GameTag.ATK, 0) > 0
+        )
+        attack_gained = buff.tags.get(GameTag.ATK, 0) if is_hero_attack_buff else 0
+        
         buff.apply(target)
         source.game.manager.targeted_action(self, source, target, buff)
+        
+        # 触发"英雄获得攻击力"事件
+        if is_hero_attack_buff and attack_gained > 0:
+            # 触发所有监听该事件的实体
+            for entity in target.controller.live_entities:
+                if hasattr(entity, 'hero_attack_gained'):
+                    actions = entity.get_actions("hero_attack_gained")
+                    if actions:
+                        source.game.trigger(entity, actions, event_args={'attack': attack_gained})
+        
         return target
+
 
 
 class MultiBuff(TargetedAction):
@@ -921,6 +943,20 @@ class GenericChoice(Choice):
                     _card.discard()
             else:
                 _card.discard()
+
+
+class SecretChoice(GenericChoice):
+    """
+    秘密选择（Secret Choice）- 对手看不到玩家的选择内容
+    用于实现类似"剑圣奥卡尼"这样的秘密选择机制
+    """
+    def do(self, source, player, cards):
+        # 标记这是一个秘密选择
+        result = super().do(source, player, cards)
+        if hasattr(self, 'player') and self.player:
+            # 为选择添加秘密标记，供游戏管理器使用
+            self.secret = True
+        return result
 
 
 class CopyDeathrattleBuff(TargetedAction):
@@ -1190,6 +1226,52 @@ class Battlecry(TargetedAction):
 
         if card.overload:
             source.game.queue_actions(card, [Overload(player, card.overload)])
+
+
+class RepeatBattlecry(GameAction):
+    """
+    重复上一个战吼效果
+    用于"璀璨金刚鹦鹉"等卡牌
+    """
+    PLAYER = ActionArg()
+    
+    def do(self, source, player):
+        """
+        重复上一个战吼
+        
+        从 player.last_battlecry 获取最后的战吼信息并重新触发
+        """
+        if not player.last_battlecry:
+            # 没有上一个战吼
+            return
+        
+        battlecry_card, original_target = player.last_battlecry
+        
+        # 检查卡牌是否需要目标
+        if battlecry_card.battlecry_requires_target():
+            # 需要目标，验证原目标是否仍然有效
+            from .targeting import is_valid_target
+            
+            valid_targets = [
+                t for t in source.game.characters
+                if is_valid_target(battlecry_card, t)
+            ]
+            
+            if not valid_targets:
+                # 没有有效目标，无法重复战吼
+                return
+            
+            # 如果原目标仍然有效，使用原目标；否则随机选择
+            if original_target and original_target in valid_targets:
+                target = original_target
+            else:
+                target = source.game.random_choice(valid_targets)
+        else:
+            target = None
+        
+        # 触发战吼
+        source.game.queue_actions(source, [Battlecry(battlecry_card, target)])
+
 
 
 class ExtraBattlecry(Battlecry):
@@ -1543,11 +1625,25 @@ class Hit(TargetedAction):
     TRIGGER_LIFESTEAL = BoolArg(default=True)
 
     def do(self, source, target, amount, trigger_lifesteal):
+        # 应用英雄技能伤害加成（用于"瞄准射击"等卡牌）
+        if source.type == CardType.HERO_POWER and hasattr(source.controller, 'hero_power_damage_bonus'):
+            bonus = source.controller.hero_power_damage_bonus
+            if bonus > 0:
+                amount += bonus
+                # 使用后重置加成
+                source.controller.hero_power_damage_bonus = 0
+        
         amount = source.get_damage(amount, target)
         if amount:
             source.game.manager.targeted_action(self, source, target, amount)
+            
+            # 追踪本回合受到的伤害（用于"暗影之刃飞刀手"等卡牌）
+            if target.type == CardType.HERO and hasattr(target.controller, 'damage_taken_this_turn'):
+                target.controller.damage_taken_this_turn += amount
+            
             return source.game.queue_actions(source, [Predamage(target, amount, trigger_lifesteal)])[0][0]
         return 0
+
 
 
 class HitExcessDamage(TargetedAction):
@@ -1918,6 +2014,11 @@ class Summon(TargetedAction):
                 # 为带有狂怒的随从初始化狂怒状态
                 if card.type == CardType.MINION and hasattr(card, 'frenzy'):
                     card.frenzy_active = True
+                # Track battlecry minions for Brilliant Macaw
+                # 追踪战吼随从（用于"艳丽的金刚鹦鹉"等卡牌）
+                if card.type == CardType.MINION and hasattr(card, 'play') and callable(card.play):
+                    card.controller.last_battlecry = card
+
                 # Summon Colossal appendages
                 # 召唤巨型随从的附属部件
                 if card.type == CardType.MINION and hasattr(card, 'colossal_appendages'):
@@ -2299,6 +2400,26 @@ class CastSpell(TargetedAction):
                         # Pass the spell card as event_args so Spellburst effects can access it
                         source.game.trigger(entity, actions, event_args={'spell': card})
                         entity.spellburst_active = False
+        
+        # 追踪施放过的法术学派（用于"多系施法者"等卡牌）
+        spell_school = card.tags.get(GameTag.SPELL_SCHOOL)
+        if spell_school:
+            player.spell_schools_played_this_game.add(spell_school)
+        
+        # 追踪每回合施放的法术（用于"首席法师安东尼达斯"等卡牌）
+        current_turn = source.game.turn
+        if current_turn not in player.spells_by_turn:
+            player.spells_by_turn[current_turn] = []
+        player.spells_by_turn[current_turn].append(card)
+        
+        # 追踪对友方随从施放的法术（用于"金翼鹦鹉"等卡牌）
+        if hasattr(card, 'target') and card.target:
+            target = card.target
+            if (hasattr(target, 'type') and target.type == CardType.MINION and 
+                hasattr(target, 'controller') and target.controller == player):
+                player.last_spell_on_friendly_minion = card
+
+
 
 
 class CastSpellTargetsEnemiesIfPossible(CastSpell):
@@ -2837,3 +2958,183 @@ class RotateMinions(GameAction):
         
         source.game.refresh_auras()
         source.game.manager.game_action(self, source, direction)
+
+
+# ========================================
+# Questline（任务线）机制 - 暴风城（2021年8月）
+# ========================================
+
+class QuestlineProgress(GameAction):
+    """
+    任务线进度增加
+    
+    当满足任务线条件时，增加进度
+    达到目标后自动升级到下一阶段
+    """
+    QUEST = CardArg()
+    AMOUNT = IntArg()
+    
+    def do(self, source, quest, amount=1):
+        """
+        增加任务线进度
+        
+        Args:
+            quest: 任务线卡牌
+            amount: 增加的进度量（默认1）
+        """
+        from .enums import QUESTLINE_STAGE, QUESTLINE_PROGRESS
+        
+        # 获取当前阶段和进度
+        current_stage = quest.tags.get(QUESTLINE_STAGE, 1)
+        current_progress = quest.tags.get(QUESTLINE_PROGRESS, 0)
+        
+        # 增加进度
+        new_progress = current_progress + amount
+        quest.tags[QUESTLINE_PROGRESS] = new_progress
+        
+        # 检查是否完成当前阶段
+        # 每个任务线都有自己的目标值，存储在 questline_requirements 属性中
+        if hasattr(quest, 'questline_requirements'):
+            requirements = quest.questline_requirements
+            if current_stage <= len(requirements):
+                target = requirements[current_stage - 1]
+                
+                if new_progress >= target:
+                    # 完成当前阶段，升级到下一阶段
+                    source.game.queue_actions(quest, [QuestlineAdvance(quest)])
+
+
+class QuestlineAdvance(GameAction):
+    """
+    任务线升级到下一阶段
+    
+    完成当前阶段后：
+    1. 给予奖励
+    2. 升级到下一阶段（如果还有）
+    3. 重置进度
+    """
+    QUEST = CardArg()
+    
+    def do(self, source, quest):
+        """
+        升级任务线到下一阶段
+        
+        Args:
+            quest: 任务线卡牌
+        """
+        from .enums import QUESTLINE_STAGE, QUESTLINE_PROGRESS
+        
+        # 获取当前阶段
+        current_stage = quest.tags.get(QUESTLINE_STAGE, 1)
+        
+        # 触发当前阶段的奖励
+        reward_action_name = f"questline_reward_{current_stage}"
+        if hasattr(quest, reward_action_name):
+            reward_actions = getattr(quest, reward_action_name)
+            if callable(reward_actions):
+                reward_actions = reward_actions(quest)
+            source.game.queue_actions(quest, reward_actions)
+        
+        # 检查是否还有下一阶段
+        if hasattr(quest, 'questline_requirements'):
+            max_stages = len(quest.questline_requirements)
+            
+            if current_stage < max_stages:
+                # 升级到下一阶段
+                quest.tags[QUESTLINE_STAGE] = current_stage + 1
+                quest.tags[QUESTLINE_PROGRESS] = 0
+                
+                log_info(f"Questline {quest} advanced to stage {current_stage + 1}")
+            else:
+                # 已完成所有阶段，移除任务线
+                log_info(f"Questline {quest} completed all stages!")
+                quest.destroy()
+
+class ReplaceHero(TargetedAction):
+	"""
+	Replace a player's hero with a new hero card.
+	Preserves health, armor, and other important stats.
+	用新的英雄卡牌替换玩家的英雄。
+	保留生命值、护甲和其他重要属性。
+	"""
+	
+	TARGET = ActionArg()
+	CARD = CardArg()
+	
+	def do(self, source, target, cards):
+		"""
+		Replace target player's hero with the specified hero card
+		
+		Args:
+			source: The source of this action
+			target: The player whose hero to replace
+			cards: The new hero card(s) to use
+		"""
+		log_info("replace_hero", target=target, cards=cards)
+		
+		if not isinstance(cards, list):
+			cards = [cards]
+		
+		for card in cards:
+			if card.type != CardType.HERO:
+				log_info(f"Cannot replace hero with non-hero card: {card}")
+				continue
+			
+			old_hero = target.hero
+			
+			# Create the new hero
+			if isinstance(card, str):
+				new_hero = target.card(card, source=source)
+			else:
+				new_hero = card
+			
+			# Preserve important stats from old hero
+			new_hero.controller = target
+			new_hero.zone = Zone.PLAY
+			
+			# Preserve health and armor
+			current_health = old_hero.health
+			current_armor = old_hero.armor
+			max_health = new_hero.max_health
+			
+			# Set health (don't exceed new max health)
+			new_hero.health = min(current_health, max_health)
+			new_hero.armor = current_armor
+			
+			# Preserve attack if hero had a weapon
+			if old_hero.atk > 0 and not target.weapon:
+				new_hero.atk = old_hero.atk
+			
+			# Preserve damage taken
+			damage_taken = old_hero.max_health - current_health
+			if damage_taken > 0:
+				new_hero.damage = min(damage_taken, new_hero.max_health)
+			
+			# Replace the hero
+			old_hero.zone = Zone.GRAVEYARD
+			target.hero = new_hero
+			
+			# Handle hero power
+			if hasattr(new_hero, 'power') and new_hero.power:
+				# Create the new hero power
+				if isinstance(new_hero.power, str):
+					power_card = target.card(new_hero.power, source=new_hero)
+				else:
+					power_card = new_hero.power
+				
+				# Remove old hero power
+				if old_hero.power:
+					old_hero.power.zone = Zone.GRAVEYARD
+				
+				# Set new hero power
+				power_card.controller = target
+				power_card.zone = Zone.PLAY
+				new_hero.power = power_card
+			
+			log_info(f"Hero replaced: {old_hero} -> {new_hero}")
+			
+			# Broadcast the hero replacement event
+			source.game.manager.targeted_action(self, source, target, new_hero)
+			self.broadcast(source, EventListener.AFTER, target, new_hero)
+		
+		return cards
