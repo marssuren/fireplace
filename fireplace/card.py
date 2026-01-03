@@ -391,6 +391,27 @@ class PlayableCard(BaseCard, Entity, TargetableByAuras):
         return self.play_left_most or self.play_right_most
 
     @property
+    def infuse_threshold(self):
+        """
+        获取 Infuse 阈值
+        Returns the Infuse threshold value if the card has the infuse attribute.
+        """
+        if hasattr(self, 'infuse') and isinstance(self.infuse, int):
+            return self.infuse
+        return 0
+
+    @property
+    def infused(self):
+        """
+        检查卡牌是否已注能
+        Returns True if the card has been infused (reached its infuse threshold).
+        """
+        if not hasattr(self, 'infuse_counter'):
+            return False
+        threshold = self.infuse_threshold
+        return threshold > 0 and self.infuse_counter >= threshold
+
+    @property
     def zone_position(self):
         """
         Returns the card's position (1-indexed) in its zone, or 0 if not available.
@@ -871,6 +892,18 @@ class LiveEntity(PlayableCard, Entity):
         return self.turn_killed == self.game.turn
 
     def _hit(self, amount):
+        # 检查是否有最小生命值限制
+        from . import enums
+        if hasattr(self, 'tags') and enums.MINIMUM_HEALTH in self.tags:
+            minimum_health = self.tags[enums.MINIMUM_HEALTH]
+            # 计算受伤后的生命值
+            new_health = self.health - amount
+            # 如果会低于最小生命值，减少伤害
+            if new_health < minimum_health:
+                amount = self.health - minimum_health
+                # 确保伤害不为负
+                amount = max(0, amount)
+        
         self.damage += amount
         return amount
 

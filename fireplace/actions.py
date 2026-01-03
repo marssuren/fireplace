@@ -293,6 +293,26 @@ class BeginTurn(GameAction):
         source.manager.step(source.next_step, source.next_step)
         source.game.manager.game_action(self, source, player)
         self.broadcast(source, EventListener.ON, player)
+
+        # 处理对手的待猜测发现（用于"可疑的炼金师"等卡牌）
+        opponent = player.opponent
+        if opponent and hasattr(opponent, 'pending_guesses') and opponent.pending_guesses:
+            for guess_data in opponent.pending_guesses:
+                # 对手从相同的选项中猜测
+                options = guess_data["options"]
+                chosen_id = guess_data["chosen"]
+
+                # 对手AI进行猜测（通过choice机制）
+                guess_id = player.choice(options) if hasattr(player, 'choice') and callable(player.choice) else None
+
+                # 如果猜中，对手获得一张复制
+                if guess_id == chosen_id:
+                    from .dsl.lazynum import Copy
+                    Give(player, Copy(chosen_id)).trigger(source)
+
+            # 清空队列
+            opponent.pending_guesses.clear()
+
         source._begin_turn(player)
 
 
@@ -370,21 +390,84 @@ class Death(GameAction):
 
             # INFUSE 机制：友方随从死亡时，为手牌中的 Infuse 卡牌充能
             if card.type == CardType.MINION and card.controller:
+                # 为手牌中的 Infuse 卡充能
                 for hand_card in card.controller.hand:
                     if hasattr(hand_card, 'infuse_threshold') and hand_card.infuse_threshold > 0:
+                        # 检查是否有种族限制（infuse_race属性）
+                        infuse_race = getattr(hand_card, 'infuse_race', None)
+
+                        # 如果有种族限制，检查死亡随从是否匹配
+                        if infuse_race is not None and card.race != infuse_race:
+                            continue  # 跳过不匹配的随从
+
                         # 增加充能计数
                         if not hasattr(hand_card, 'infuse_counter'):
                             hand_card.infuse_counter = 0
                         hand_card.infuse_counter += 1
+                        
+                        # 追踪死亡随从的信息（用于 REV_843 等卡牌）
+                        if not hasattr(hand_card, 'infused_minions'):
+                            hand_card.infused_minions = []
+                        hand_card.infused_minions.append({
+                            'atk': card.atk,
+                            'health': card.health,
+                            'id': card.id,
+                            'race': card.race
+                        })
 
                         # 检查是否达到充能阈值
                         if hand_card.infuse_counter >= hand_card.infuse_threshold:
                             # 触发 infuse 效果
                             if hasattr(hand_card, 'infuse'):
-                                hand_card.infuse_counter = hand_card.infuse_threshold  # 锁定计数器
+                                # 检查是否为无尽注能（如德纳修斯大帝）
+                                # 无尽注能不锁定计数器，可以继续充能
+                                if not getattr(hand_card, 'endless_infuse', False):
+                                    hand_card.infuse_counter = hand_card.infuse_threshold  # 锁定计数器
                                 # 触发 infuse 效果（通过 trigger 方法）
                                 if callable(hand_card.infuse):
                                     hand_card.infuse()
+                
+                # 牌库注能机制（MAW_031 冥界侍从）
+                # 检查控制者是否有"牌库注能激活"标记
+                from ..enums import GameTag
+                controller = card.controller
+                hero = controller.hero
+                
+                # 检查英雄是否有 MAW_031e buff（牌库注能激活标记）
+                has_deck_infuse = any(
+                    buff.id == "MAW_031e" 
+                    for buff in hero.buffs 
+                    if hasattr(buff, 'id')
+                )
+                
+                # 如果有牌库注能标记，也为牌库中的 Infuse 卡充能
+                if has_deck_infuse:
+                    for deck_card in controller.deck:
+                        if hasattr(deck_card, 'infuse_threshold') and deck_card.infuse_threshold > 0:
+                            # 检查是否有种族限制
+                            infuse_race = getattr(deck_card, 'infuse_race', None)
+                            
+                            # 如果有种族限制，检查死亡随从是否匹配
+                            if infuse_race is not None and card.race != infuse_race:
+                                continue  # 跳过不匹配的随从
+                            
+                            # 增加充能计数
+                            if not hasattr(deck_card, 'infuse_counter'):
+                                deck_card.infuse_counter = 0
+                            deck_card.infuse_counter += 1
+                            
+                            # 追踪死亡随从的信息
+                            if not hasattr(deck_card, 'infused_minions'):
+                                deck_card.infused_minions = []
+                            deck_card.infused_minions.append({
+                                'atk': card.atk,
+                                'health': card.health,
+                                'id': card.id,
+                                'race': card.race
+                            })
+                            
+                            # 注意：牌库中的卡不触发 infuse 效果
+                            # 只是累积充能计数，等抽到手牌时已经是充能状态
 
         for card in cards:
             if not card.dead:
@@ -961,6 +1044,41 @@ class SecretChoice(GenericChoice):
         if hasattr(self, 'player') and self.player:
             # 为选择添加秘密标记，供游戏管理器使用
             self.secret = True
+        return result
+
+
+class DiscoverWithPendingGuess(GenericChoice):
+    """
+    发现并记录待对手猜测（Discover with Pending Guess）
+    用于实现"可疑的炼金师"等卡牌
+
+    流程：
+    1. 玩家发现一张卡牌（从3个选项中选择）
+    2. 记录选项和选择到对手的 pending_guesses 队列
+    3. 在对手回合开始时，对手猜测玩家的选择
+    4. 如果猜中，对手也获得一张复制
+    """
+    def do(self, source, player, cards):
+        # 玩家正常发现
+        result = super().do(source, player, cards)
+
+        # 记录到对手的待猜测队列
+        opponent = player.opponent
+        if opponent and hasattr(opponent, 'pending_guesses'):
+            # 获取选中的卡牌ID
+            chosen_card = None
+            for card in cards:
+                if card.zone == Zone.HAND or card.zone == Zone.PLAY:
+                    chosen_card = card
+                    break
+
+            if chosen_card:
+                # 记录选项和选择
+                opponent.pending_guesses.append({
+                    "options": [c.card_id for c in cards],  # 3个选项的ID
+                    "chosen": chosen_card.card_id           # 玩家选择的ID
+                })
+
         return result
 
 
@@ -1774,6 +1892,18 @@ class Morph(TargetedAction):
 
     def do(self, source, target, card):
         log_info("morphing", target=target, card=card)
+        
+        # 检查目标是否免疫变形（用于 REV_925 瓦丝琪女男爵）
+        # 如果目标有 TRANSFORM_IMMUNE 标签，改为召唤新随从
+        from . import enums
+        if hasattr(target, 'tags') and target.tags.get(enums.TRANSFORM_IMMUNE, False):
+            # 免疫变形：召唤新随从而不是变形
+            log_info("transform_immune", target=target, card=card)
+            # 召唤新随从
+            source.game.queue_actions(source, [Summon(target.controller, card)])
+            # 返回新召唤的随从
+            return card
+        
         target_zone = target.zone
         if card.zone != target_zone:
             # Transfer the zone position
@@ -1783,6 +1913,11 @@ class Morph(TargetedAction):
         target.clear_buffs()
         target.zone = Zone.SETASIDE
         target.morphed = card
+        
+        # 保存原随从信息到变形后的卡牌
+        # 用于支持"恢复原随从"的效果（如 REV_828t 绑架的麻袋）
+        card.morphed_from = target
+        
         source.game.manager.targeted_action(self, source, target, card)
         return card
 
@@ -1830,6 +1965,12 @@ class Reveal(TargetedAction):
     def do(self, source, target):
         log_info("revealing", target=target)
         if target.zone == Zone.SECRET and target.data.secret:
+            # 检查奥秘是否被保护（MAW_032 无语的证人）
+            from .enums import CANT_BE_REVEALED
+            if target.tags.get(CANT_BE_REVEALED, False):
+                log_info("secret_protected", target=target)
+                return  # 奥秘被保护，不能被揭示
+            
             self.broadcast(source, EventListener.ON, target)
             target.zone = Zone.GRAVEYARD
             

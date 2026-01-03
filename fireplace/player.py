@@ -128,12 +128,32 @@ class Player(Entity, TargetableByAuras):
         # 追踪本回合受到的伤害（用于"暗影之刃飞刀手"等卡牌）
         self.damage_taken_this_turn = 0
         
+        # 追踪本回合对敌方英雄造成的伤害（用于"邪恶的厨师"等卡牌）
+        self.hero_damage_this_turn = 0
+
+        # 待对手猜测的发现队列（用于"可疑的炼金师"等卡牌）
+        # 每个元素: {"options": [card1, card2, card3], "chosen": card_id}
+        self.pending_guesses = []
+        
         # 追踪最后的抉择法术（用于"开路者"等卡牌）
         self.last_choose_one_card = None
         self.last_choose_one_choice = None
 
         # 追踪本局游戏施放的冰霜法术数量（用于"熊人格拉希尔"等卡牌）
         self.frost_spells_cast = 0
+        
+        # 追踪下一张卡的费用减少（用于"锯齿骨刺"等卡牌）
+        # 格式: int，表示减少的费用
+        self.next_card_cost_reduction = 0
+        
+        # 追踪本局游戏召唤的图腾数量（用于"图腾巨像"等卡牌）
+        self.totems_summoned_this_game = 0
+        
+        # 追踪本回合死亡的随从数量（用于"暗影华尔兹"等卡牌）
+        self.minions_killed_this_turn = 0
+        
+        # 追踪上一个暗影法术（用于"暗脉女勋爵"等卡牌）
+        self.last_shadow_spell = None
 
 
 

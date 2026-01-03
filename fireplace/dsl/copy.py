@@ -35,6 +35,14 @@ class Copy(LazyValue):
             new_entity.copy_group_id = entity.entity_id
         new_entity.original_entity_id = entity.entity_id
         
+        # 检测是否从对手复制
+        # 如果原卡的控制者是当前玩家的对手，设置 COPIED_FROM_OPPONENT 标签
+        from .. import enums
+        if hasattr(entity, 'controller') and hasattr(source, 'controller'):
+            if entity.controller != source.controller:
+                # 从对手复制的卡牌，设置标签
+                new_entity.tags[enums.COPIED_FROM_OPPONENT] = True
+        
         return new_entity
 
     def evaluate(self, source) -> list[str]:

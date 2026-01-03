@@ -46,6 +46,21 @@ QUESTLINE_PROGRESS = -44  # 当前阶段的进度
 RANKED_SPELL_NEXT_RANK = -45  # 下一等级的卡牌 ID（字符串）
 RANKED_SPELL_THRESHOLD = -46  # 升级所需的法力水晶数量
 
+# Relic（圣物）机制 - 纳斯利亚堡（2022年8月）
+RELIC = -47  # 标记卡牌是否为圣物
+
+# 奥秘保护机制 - 纳斯利亚堡（2022年8月）
+CANT_BE_REVEALED = -48  # 标记奥秘不能被揭示（MAW_032 无语的证人）
+
+# 复制卡追踪机制 - 纳斯利亚堡（2022年8月）
+COPIED_FROM_OPPONENT = -49  # 标记卡牌是从对手复制的（用于牧师主题卡牌）
+
+# 变形免疫机制 - 纳斯利亚堡（2022年8月）
+TRANSFORM_IMMUNE = -50  # 标记随从免疫变形（用于瓦丝琪女男爵）
+
+# 最小生命值机制 - 纳斯利亚堡（2022年8月）
+MINIMUM_HEALTH = -51  # 限制最小生命值（用于动乱等卡牌）
+
 
 
 class SpellType(IntEnum):
