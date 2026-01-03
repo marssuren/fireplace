@@ -75,6 +75,7 @@ class Player(Entity, TargetableByAuras):
         self.combo = False
         self.fatigue_counter = 0
         self.last_card_played = None
+        self.last_played_spell = None
         self.overloaded = 0
         self.overload_locked = 0
         self.overloaded_this_game = 0
@@ -109,10 +110,17 @@ class Player(Entity, TargetableByAuras):
         
         # 追踪最后一个战吼效果（用于"重复战吼"类卡牌）
         self.last_battlecry = None  # (card, target) 元组
-        
+
         # 追踪本局游戏施放过的法术学派（用于"多系施法者"等卡牌）
         self.spell_schools_played_this_game = set()  # 使用 set 自动去重
-        
+
+        # 追踪上回合之后是否有友方亡灵死亡（用于RLK_116等卡牌）
+        self.undead_died_last_turn = False
+        self.undead_died_last_turn_list = []  # 存储上回合之后死亡的友方亡灵
+
+        # 追踪本局游戏英雄攻击次数（用于RLK_825等卡牌）
+        self.hero_attacks_this_game = 0
+
         # 英雄技能伤害加成（用于"瞄准射击"等卡牌）
         self.hero_power_damage_bonus = 0
         
@@ -154,6 +162,19 @@ class Player(Entity, TargetableByAuras):
         
         # 追踪上一个暗影法术（用于"暗脉女勋爵"等卡牌）
         self.last_shadow_spell = None
+        
+        # 残骸系统（死亡骑士专属资源）- 巫妖王的进军（2022年12月）
+        self.corpses = 0  # 当前残骸数量
+
+        # 追踪本局游戏使用过的流放牌数量（用于RLK_213等卡牌）
+        self.outcast_cards_played_this_game = 0
+
+        # 追踪本局游戏施放的套牌之外的法术（用于RLK_803等卡牌）
+        self.spells_cast_not_from_deck = []  # 存储施放过的套牌外法术的ID
+
+        # 下一份药剂减费机制（用于RLK_570食尸鬼炼金师等卡牌）
+        self.next_potion_cost_zero = False  # 标记下一份药剂费用为0
+
 
 
 

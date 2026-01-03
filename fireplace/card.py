@@ -81,6 +81,10 @@ class BaseCard(BaseEntity):
         # copy_group_id: 复制组ID，所有复制共享同一个组ID
         self.original_entity_id = None  # 如果是复制，记录原卡的 entity_id
         self.copy_group_id = None  # 复制组ID，用于追踪所有相关的复制
+        
+        # 纳迦施法计数机制 - 巫妖王的进军（2022年12月）
+        # 追踪卡牌在手中时施放的法术数量（用于纳迦卡牌）
+        self.spells_cast_while_in_hand = 0
 
     def dump(self):
         data = super().dump()
@@ -437,6 +441,10 @@ class PlayableCard(BaseCard, Entity, TargetableByAuras):
             for id in self.data.choose_cards:
                 card = self.controller.card(id, source=self, parent=self)
                 self.choose_cards.append(card)
+        else:
+            # 纳迦施法计数机制：当卡牌离开手牌时重置计数器
+            if old_zone == Zone.HAND:
+                self.spells_cast_while_in_hand = 0
 
     def destroy(self):
         return self.game.cheat_action(self, [actions.Destroy(self), actions.Deaths()])

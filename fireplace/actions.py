@@ -271,6 +271,10 @@ class Attack(GameAction):
 
         self.broadcast(source, EventListener.AFTER, attacker, defender)
 
+        # 追踪英雄攻击次数（用于RLK_825等卡牌）
+        if attacker.type == CardType.HERO:
+            attacker.controller.hero_attacks_this_game += 1
+
         attacker.attack_target = None
         defender.defending = False
         if source == attacker:
@@ -312,6 +316,10 @@ class BeginTurn(GameAction):
 
             # 清空队列
             opponent.pending_guesses.clear()
+
+        # 重置"上回合之后友方亡灵是否死亡"标记
+        player.undead_died_last_turn = False
+        player.undead_died_last_turn_list = []  # 清空上回合死亡的亡灵列表
 
         source._begin_turn(player)
 
@@ -390,6 +398,12 @@ class Death(GameAction):
 
             # INFUSE 机制：友方随从死亡时，为手牌中的 Infuse 卡牌充能
             if card.type == CardType.MINION and card.controller:
+                # 追踪友方亡灵死亡（用于RLK_116等卡牌）
+                if hasattr(card, 'race') and Race.UNDEAD in card.races:
+                    card.controller.undead_died_last_turn = True
+                    # 添加到死亡亡灵列表（用于RLK_832等卡牌）
+                    card.controller.undead_died_last_turn_list.append(card)
+
                 # 为手牌中的 Infuse 卡充能
                 for hand_card in card.controller.hand:
                     if hasattr(hand_card, 'infuse_threshold') and hand_card.infuse_threshold > 0:
@@ -468,6 +482,15 @@ class Death(GameAction):
                             
                             # 注意：牌库中的卡不触发 infuse 效果
                             # 只是累积充能计数，等抽到手牌时已经是充能状态
+                
+                # 残骸系统：友方随从死亡时，为死亡骑士玩家生成残骸
+                # CORPSE 机制 - 巫妖王的进军（2022年12月）
+                if card.type == CardType.MINION and card.controller:
+                    # 检查控制者是否为死亡骑士
+                    if card.controller.hero and card.controller.hero.card_class == CardClass.DEATHKNIGHT:
+                        # 友方随从死亡时生成1份残骸
+                        card.controller.corpses += 1
+                        log_info("corpse_generated", player=card.controller, corpses=card.controller.corpses)
 
         for card in cards:
             if not card.dead:
@@ -587,6 +610,10 @@ class Play(GameAction):
         player = source
         log_info("plays_card", player=player, card=card, target=target, index=index)
 
+        player.last_card_played = card
+        if card.type == CardType.SPELL:
+            player.last_played_spell = card
+
         player.pay_cost(card, card.cost)
 
         card.target = target
@@ -610,6 +637,11 @@ class Play(GameAction):
             card.cast_on_friendly_characters = True
             if target.type == CardType.MINION:
                 card.cast_on_friendly_minions = True
+
+        # 追踪套牌之外的法术（用于RLK_803等卡牌）
+        if card.type == CardType.SPELL and hasattr(card, 'creator'):
+            # 如果法术有 creator 属性，说明是套牌之外的卡牌
+            source.spells_cast_not_from_deck.append(card.id)
 
         source.game.manager.game_action(self, source, card, target, index, choose)
         # NOTE: A Play is not a summon! But it sure looks like one.
@@ -635,6 +667,8 @@ class Play(GameAction):
         # "Can't Play" (aka Counter) means triggers don't happen either
         if not card.cant_play:
             if card.play_outcast and card.get_actions("outcast"):
+                # 追踪本局游戏使用过的流放牌数量（用于RLK_213等卡牌）
+                player.outcast_cards_played_this_game += 1
                 source.game.trigger(card, card.get_actions("outcast"), event_args=None)
             elif trigger_battlecry:
                 # 记录最后的战吼（用于"重复战吼"类卡牌）
@@ -679,6 +713,14 @@ class Play(GameAction):
         player.cards_played_this_game.append(card)
         card.turn_played = source.game.turn
         card.choose = None
+        
+        # 纳迦施法计数机制 - 巫妖王的进军（2022年12月）
+        # 当施放法术时，更新手牌中所有纳迦卡牌的施法计数器
+        if card.type == CardType.SPELL:
+            for hand_card in player.hand:
+                # 检查是否为纳迦卡牌（包括多种族）
+                if Race.NAGA in getattr(hand_card, 'races', []):
+                    hand_card.spells_cast_while_in_hand += 1
 
         # Trigger Corrupt effects
         # 触发腐蚀效果
@@ -764,6 +806,40 @@ class Overload(GameAction):
         self.broadcast(source, EventListener.ON, player, amount)
         player.overloaded += amount
         player.overloaded_this_game += amount
+
+
+class SpendCorpses(GameAction):
+    """
+    消耗残骸（死亡骑士专属资源）
+    CORPSE 机制 - 巫妖王的进军（2022年12月）
+    """
+    PLAYER = ActionArg()
+    AMOUNT = IntArg()
+
+    def do(self, source, player, amount):
+        if player.corpses < amount:
+            log_info("insufficient_corpses", source=source, player=player, required=amount, available=player.corpses)
+            return False
+        log_info("spends_corpses", source=source, player=player, amount=amount)
+        source.game.manager.game_action(self, source, player, amount)
+        self.broadcast(source, EventListener.ON, player, amount)
+        player.corpses -= amount
+        return True
+
+
+class GainCorpses(GameAction):
+    """
+    获得残骸（死亡骑士专属资源）
+    CORPSE 机制 - 巫妖王的进军（2022年12月）
+    """
+    PLAYER = ActionArg()
+    AMOUNT = IntArg()
+
+    def do(self, source, player, amount):
+        log_info("gains_corpses", source=source, player=player, amount=amount)
+        source.game.manager.game_action(self, source, player, amount)
+        self.broadcast(source, EventListener.ON, player, amount)
+        player.corpses += amount
 
 
 class TargetedAction(Action):
@@ -1710,6 +1786,22 @@ class SetMana(TargetedAction):
             0, target.max_mana - target.overload_locked - old_mana + target.temp_mana
         )
         source.game.manager.targeted_action(self, source, target, amount)
+
+
+class SpendArmor(TargetedAction):
+    """
+    Make hero targets spend \a amount Armor.
+    Used for cards like Anub'Rekhan (RLK_659) that allow paying with armor instead of mana.
+    """
+
+    TARGET = ActionArg()
+    AMOUNT = IntArg()
+
+    def do(self, source, target, amount):
+        # Reduce armor by the specified amount
+        target.armor = max(0, target.armor - amount)
+        source.game.manager.targeted_action(self, source, target, amount)
+        self.broadcast(source, EventListener.AFTER, target, amount)
 
 
 class Give(TargetedAction):
