@@ -49,8 +49,9 @@ class NX2_044:
     机制: BATTLECRY, DISCOVER
     [迷你扩展包]
     """
-    # TODO: 实现卡牌效果
-    pass
+    # 使用 DiscoverWithPendingGuess 实现"猜牌"机制
+    # 发现一张1费卡牌 (自动遵循发现规则：本职业或中立)
+    play = DiscoverWithPendingGuess(CONTROLLER, RandomCollectible(cost=1))
 
 
 
