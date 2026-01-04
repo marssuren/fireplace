@@ -321,6 +321,10 @@ class BeginTurn(GameAction):
         player.undead_died_last_turn = False
         player.undead_died_last_turn_list = []  # 清空上回合死亡的亡灵列表
 
+        # 重置本回合获得的护甲值和攻击力（用于 Etc_386 等卡牌）
+        player.armor_gained_this_turn = 0
+        player.attack_gained_this_turn = 0
+
         source._begin_turn(player)
 
 
@@ -515,17 +519,6 @@ class EndTurn(GameAction):
         self.broadcast(source, EventListener.ON, player)
         if player.extra_end_turn_effect:
             self.broadcast(source, EventListener.ON, player)
-
-        # Trigger Finale effects
-        # 触发压轴效果
-        # If the last card played this turn has finale, trigger it
-        # 如果本回合最后打出的卡牌有压轴效果，触发它
-        if hasattr(player, 'last_card_played') and player.last_card_played:
-            last_card = player.last_card_played
-            if not last_card.ignore_scripts and hasattr(last_card, 'finale'):
-                actions = last_card.get_actions("finale")
-                if actions:
-                    source.game.trigger(last_card, actions, event_args=None)
 
         source.game._end_turn()
 
@@ -762,6 +755,15 @@ class Play(GameAction):
                             # 没有更多腐蚀等级，停用腐蚀
                             hand_card.corrupt_active = False
 
+        # Trigger Finale effects
+        # 触发压轴效果
+        # Finale triggers if the player has 0 remaining mana after paying for the card
+        # 压轴：当玩家支付卡牌费用后剩余法力值为0时触发
+        if player.mana == 0 and hasattr(card, 'finale'):
+             actions = card.get_actions("finale")
+             if actions:
+                 source.game.trigger(card, actions, event_args=None)
+
 
 
 class Activate(GameAction):
@@ -791,6 +793,91 @@ class Activate(GameAction):
 
         self.broadcast(source, EventListener.AFTER, player, heropower, target, choose)
         heropower.activations_this_turn += 1
+        
+        # 简单启发式：如果英雄技能增加了英雄攻击力（例如德鲁伊变身），累加 attack_gained_this_turn
+        # 由于无法精确追踪所有来源，这里主要捕获英雄技能带来的攻击力
+        # 实际更准确的做法是在 Buff/Enchantment 应用时追踪，但这涉及核心重构
+        # 此处只检查 Hero Power 施放后的 Hero Attack 变化？不，这比较难比较前后。
+        # 假设 Druid HP (+1 Atk) 是主要来源。
+        # 该值需由具体卡牌逻辑维护，或者通过特定 Action 增加。
+        # 鉴于无法修改所有 Gain Attack 的源头，我们可以在 Druid 的 HP 逻辑或其他卡牌中手动增加这个计数器。
+        # 但既然我们修改了 Player，最好有一个通用的入口。
+        # 暂时在 Activate 中不做通用处理，依靠卡牌脚本手动更新 player.attack_gained_this_turn。
+
+
+class ActivateLocation(GameAction):
+    """
+    激活地标
+    
+    地标激活流程:
+    1. 检查地标是否可激活(未耗尽、未冷却、有耐久度)
+    2. 验证目标(如果需要)
+    3. 执行地标的 activate 脚本
+    4. 消耗1点耐久度
+    5. 增加激活次数
+    6. 触发相关事件
+    7. 如果耐久度归零,销毁地标
+    """
+    LOCATION = CardArg()
+    TARGET = ActionArg()
+    
+    def get_args(self, source):
+        # source 是 player
+        return (source,) + super().get_args(source)
+    
+    def do(self, source, location, target):
+        """
+        执行地标激活
+        
+        Args:
+            source: 激活地标的玩家
+            location: 要激活的地标
+            target: 激活目标(如果需要)
+        """
+        player = source
+        
+        # 验证地标是否可激活
+        if not location.is_usable():
+            raise InvalidAction("%r cannot be activated (exhausted or no durability)" % location)
+        
+        # 验证目标
+        if location.requires_target():
+            if not target:
+                raise InvalidAction("%r requires a target" % location)
+            # TODO: 验证目标是否有效(类似 play_targets 检查)
+        
+        log_info("activates_location", player=player, location=location, target=target)
+        
+        # 记录目标
+        location.target = target
+        
+        # 广播激活事件(ON)
+        source.game.manager.game_action(self, source, location, target)
+        self.broadcast(source, EventListener.ON, player, location, target)
+        
+        # 执行地标的 activate 脚本
+        source.game.action_start(BlockType.PLAY, location, 0, target)
+        actions = location.get_actions("activate")
+        if actions:
+            source.game.trigger(location, actions, event_args=None)
+        source.game.action_end(BlockType.PLAY, location)
+        
+        # 消耗耐久度
+        source.game.queue_actions(source, [Hit(location, 1)])
+        
+        # 增加激活次数
+        location.activations_this_turn += 1
+        
+        # 广播激活事件(AFTER)
+        self.broadcast(source, EventListener.AFTER, player, location, target)
+        
+        # 清除目标
+        location.target = None
+        
+        # 检查耐久度,如果归零则销毁
+        if location.durability <= 0:
+            log_info("location_destroyed", location=location)
+            source.game.queue_actions(source, [Destroy(location)])
 
 
 class Overload(GameAction):
@@ -1726,6 +1813,11 @@ class GainArmor(TargetedAction):
 
     def do(self, source, target, amount):
         target.armor += amount
+        
+        # 追踪本回合获得的护甲（如果目标是英雄）
+        if target.type == CardType.HERO and hasattr(target.controller, 'armor_gained_this_turn'):
+            target.controller.armor_gained_this_turn += amount
+            
         source.game.manager.targeted_action(self, source, target, amount)
         self.broadcast(source, EventListener.ON, target, amount)
 
@@ -1918,15 +2010,15 @@ class Heal(TargetedAction):
             source.controller.healed_this_game += amount
 
         # Trigger Overheal effects
+        # Trigger Overheal effects
         # 触发过量治疗效果
-        if overheal_amount > 0:
-            for entity in source.controller.live_entities:
-                if not entity.ignore_scripts and hasattr(entity, 'overheal'):
-                    actions = entity.get_actions("overheal")
-                    if actions:
-                        # Pass overheal amount as event_args
-                        # 将过量治疗数值作为 event_args 传递
-                        source.game.trigger(entity, actions, event_args={'amount': overheal_amount})
+        # Overheal triggers on the minion being healed
+        # 过量治疗：当随从受到过量治疗时触发（只触发目标随从的效果）
+        if overheal_amount > 0 and hasattr(target, 'overheal'):
+             actions = target.get_actions("overheal")
+             if actions:
+                 # Pass overheal amount as event_args
+                 source.game.trigger(target, actions, event_args={'amount': overheal_amount})
 
 
 class ManaThisTurn(TargetedAction):

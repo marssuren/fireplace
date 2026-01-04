@@ -66,6 +66,7 @@ class Player(Entity, TargetableByAuras):
         self.field = CardList["Minion"]()
         self.graveyard = CardList["PlayableCard"]()
         self.secrets = CardList["Secret | Quest | SideQuest"]()
+        self.locations = CardList()  # 地标区域
         self.choice = None
         self.max_hand_size = 10
         self.max_resources = 10
@@ -174,6 +175,10 @@ class Player(Entity, TargetableByAuras):
 
         # 下一份药剂减费机制（用于RLK_570食尸鬼炼金师等卡牌）
         self.next_potion_cost_zero = False  # 标记下一份药剂费用为0
+        
+        # 追踪本回合获得的护甲值和攻击力（用于"ETC_386 佐克·雾鼻"等卡牌）
+        self.armor_gained_this_turn = 0
+        self.attack_gained_this_turn = 0
 
 
 
@@ -194,6 +199,7 @@ class Player(Entity, TargetableByAuras):
         data["hand"] = [card.dump() for card in self.hand]
         data["field"] = [card.dump() for card in self.field]
         data["secrets"] = [card.dump() for card in self.secrets]
+        data["locations"] = [card.dump() for card in self.locations]
         if self.choice:
             choice = data["choice"] = {}
             choice["cards"] = [card.dump() for card in self.choice.cards]
@@ -219,6 +225,7 @@ class Player(Entity, TargetableByAuras):
         data["hand"] = [card.dump_hidden() for card in self.hand]
         data["field"] = [card.dump() for card in self.field]
         data["secrets"] = [card.dump_hidden() for card in self.secrets]
+        data["locations"] = [card.dump() for card in self.locations]  # 地标对双方可见
         if self.choice:
             choice = data["choice"] = {}
             choice["cards"] = [card.dump_hidden() for card in self.choice.cards]
@@ -299,6 +306,7 @@ class Player(Entity, TargetableByAuras):
         for entity in self.field:
             yield from entity.entities
         yield from self.secrets
+        yield from self.locations  # 包含地标
         yield from self.buffs
         if self.hero:
             yield from self.hero.entities
@@ -307,6 +315,7 @@ class Player(Entity, TargetableByAuras):
     @property
     def live_entities(self):
         yield from self.field
+        yield from self.locations  # 包含地标
         if self.hero:
             yield self.hero
         if self.weapon:

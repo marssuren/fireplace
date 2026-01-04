@@ -42,6 +42,7 @@ def Card(id):
         CardType.ENCHANTMENT: Enchantment,
         CardType.WEAPON: Weapon,
         CardType.HERO_POWER: HeroPower,
+        CardType.LOCATION: Location,  # 地标类型支持
     }[data.type]
     if subclass is Spell:
         if data.secret:
@@ -1751,6 +1752,144 @@ class Weapon(rules.WeaponRules, LiveEntity):
         elif self.zone == Zone.PLAY:
             self.controller.weapon = None
         super()._set_zone(zone)
+
+
+class Location(rules.LocationRules, LiveEntity):
+    """
+    地标卡牌类型
+    
+    地标是炉石传说中的一种特殊卡牌类型,具有以下特性:
+    - 有耐久度(使用 health 属性表示)
+    - 可以被激活(类似英雄技能)
+    - 激活后消耗耐久度
+    - 耐久度归零时销毁
+    - 每回合激活次数可能受限
+    - 每个玩家最多只能有1个地标
+    """
+    health_attribute = "durability"
+    playable_zone = Zone.PLAY
+    
+    def __init__(self, data):
+        super().__init__(data)
+        self.damage = 0
+        self.activations_this_turn = 0
+        self.cooldown = False
+    
+    def dump(self):
+        data = super().dump()
+        data["max_durability"] = self.max_durability
+        data["durability"] = self.durability
+        data["activations_this_turn"] = self.activations_this_turn
+        data["cooldown"] = self.cooldown
+        data["is_usable"] = self.is_usable()
+        return data
+    
+    @property
+    def durability(self):
+        """当前耐久度 = 最大耐久度 - 已受伤害"""
+        return max(0, self.max_durability - self.damage)
+    
+    @property
+    def max_durability(self):
+        """最大耐久度从 HEALTH tag 读取"""
+        ret = self._max_health
+        ret += self._getattr("max_health", 0)
+        return max(0, ret)
+    
+    @max_durability.setter
+    def max_durability(self, value):
+        self._max_health = value
+    
+    @property
+    def exhausted(self):
+        """
+        地标是否已耗尽
+        
+        地标在以下情况下被视为耗尽:
+        1. 处于冷却状态
+        2. 本回合激活次数已达上限
+        3. 不是当前玩家的回合(某些地标可能例外)
+        """
+        # 检查冷却状态
+        if self.cooldown:
+            return True
+        
+        # 检查激活次数限制
+        # 默认每回合可激活1次,某些地标可能有额外激活次数
+        max_activations = 1 + getattr(self, "additional_activations", 0)
+        if self.activations_this_turn >= max_activations:
+            return True
+        
+        # 大多数地标只能在自己回合激活
+        if self.zone == Zone.PLAY and not self.controller.current_player:
+            return True
+        
+        return False
+    
+    @property
+    def zone_position(self):
+        """地标在地标区域中的位置"""
+        if self.zone == Zone.PLAY:
+            return self.controller.locations.index(self) + 1
+        return super().zone_position
+    
+    def _set_zone(self, zone):
+        """
+        管理地标的区域变化
+        
+        规则:
+        - 打出地标时,如果场上已有地标,销毁旧地标
+        - 地标进入 PLAY 区域时,添加到 controller.locations
+        - 地标离开 PLAY 区域时,从 controller.locations 移除
+        """
+        if zone == Zone.PLAY:
+            # 检查是否已有地标,如果有则销毁
+            if self.controller.locations:
+                old_location = self.controller.locations[0]
+                self.log("Destroying old location %r", old_location)
+                old_location.destroy()
+            
+            # 将地标添加到地标区域
+            self.controller.locations.append(self)
+        
+        elif self.zone == Zone.PLAY:
+            # 地标离开场上时,从地标区域移除
+            if self in self.controller.locations:
+                self.controller.locations.remove(self)
+        
+        super()._set_zone(zone)
+    
+    def activate(self, target=None):
+        """
+        激活地标
+        
+        这是一个便捷方法,实际激活逻辑由 ActivateLocation 动作处理
+        """
+        from . import actions
+        return self.game.queue_actions(
+            self.controller, [actions.ActivateLocation(self, target)]
+        )
+    
+    def is_usable(self):
+        """检查地标是否可以被激活"""
+        if self.exhausted:
+            return False
+        if self.zone != Zone.PLAY:
+            return False
+        if self.durability <= 0:
+            return False
+        return True
+    
+    def requires_target(self):
+        """检查地标激活是否需要目标"""
+        # 从 requirements 中检查是否需要目标
+        reqs = self.data.requirements
+        return (
+            PlayReq.REQ_TARGET_TO_PLAY in reqs
+            or PlayReq.REQ_MINION_TARGET in reqs
+            or PlayReq.REQ_LOCATION_TARGET in reqs
+            or PlayReq.REQ_LOCATION_OR_MINION_TARGET in reqs
+        )
 
 
 class HeroPower(PlayableCard):
