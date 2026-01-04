@@ -1,298 +1,329 @@
-# -*- coding: utf-8 -*-
-"""
-探寻沉没之城（Voyage to the Sunken City）- 萨满
-"""
-
 from ..utils import *
 
 
-class TID_701:
-    """Schooling - 鱼群
-    1费法术 使对手手牌中的一张牌在下回合无法打出。
+class TSC_631:
+    """Schooling - 鱼群聚集
+    1费法术 将三张1/1的食人鱼群置入你的手牌。
     """
     tags = {
         GameTag.CARDTYPE: CardType.SPELL,
         GameTag.COST: 1,
     }
-    
-    def play(self):
-        """
-        随机选择对手手牌中的一张牌，使其下回合无法打出
-        """
-        if self.controller.opponent.hand:
-            # 随机选择一张牌
-            target_card = self.game.random_choice(self.controller.opponent.hand)
-            # 添加buff使其无法打出
-            yield Buff(target_card, "TID_701e")
+    play = Give(CONTROLLER, "TSC_631t") * 3
 
 
-class TID_701e:
-    """无法打出"""
-    tags = {
-        GameTag.CANT_PLAY: True,
-    }
-    # 下回合结束时移除
-    events = OWN_TURN_END.on(Destroy(SELF))
-
-
-class TID_707:
-    """Bioluminescence - 生物发光
-    1费法术 你本回合每打出过一张牌，便抽一张牌。
-    """
-    tags = {
-        GameTag.CARDTYPE: CardType.SPELL,
-        GameTag.COST: 1,
-    }
-    
-    def play(self):
-        """
-        本回合每打出过一张牌，抽一张牌
-        """
-        # 统计本回合打出的牌数量
-        cards_played = len(self.controller.cards_played_this_turn)
-        
-        if cards_played > 0:
-            yield Draw(CONTROLLER) * cards_played
-
-
-class TID_709:
-    """Command of Neptulon - 奈普图隆的命令
-    5费法术 获得5点护甲值。如果你在本回合打出过娜迦牌，召唤一个5/5的元素，并具有突袭和嘲讽。
-    """
-    tags = {
-        GameTag.CARDTYPE: CardType.SPELL,
-        GameTag.COST: 5,
-    }
-    
-    def play(self):
-        """
-        获得5点护甲，如果打出过娜迦，召唤元素
-        """
-        yield GainArmor(FRIENDLY_HERO, 5)
-        
-        # 检查本回合是否打出过娜迦
-        naga_played_this_turn = any(
-            Race.NAGA in card.races
-            for card in self.controller.cards_played_this_turn
-            if card.type == CardType.MINION
-        )
-        
-        if naga_played_this_turn:
-            yield Summon(CONTROLLER, "TID_709t")
-
-
-class TID_709t:
-    """Elemental - 元素
-    5费 5/5 突袭，嘲讽
-    """
-    tags = {
-        GameTag.ATK: 5,
-        GameTag.HEALTH: 5,
-        GameTag.COST: 5,
-        GameTag.RUSH: True,
-        GameTag.TAUNT: True,
-    }
-
-
-class TSC_642:
+class TSC_631t:
     """Piranha Swarmer - 食人鱼群
-    1费 2/1 突袭 在本随从攻击并消灭一个随从后，召唤一个本随从的复制。
+    1费 1/1 野兽
+    在你的战场上每有另一个食人鱼群，便获得+1攻击力。
     """
     tags = {
-        GameTag.ATK: 2,
+        GameTag.ATK: 1,
         GameTag.HEALTH: 1,
         GameTag.COST: 1,
+        GameTag.RACE: Race.BEAST,
         GameTag.RUSH: True,
     }
-    # 攻击并消灭随从后，召唤复制
-    events = Attack(SELF, MINION).after(
-        Dead(Attack.DEFENDER) & Summon(CONTROLLER, ExactCopy(SELF))
-    )
+    auras = [
+        Buff(SELF, "TSC_631te")
+    ]
 
 
-class TSC_643:
-    """Azsharan Scroll - 艾萨拉卷轴
-    1费法术 抽一张牌。将一张"沉没的卷轴"置于你的牌库底部。
+class TSC_631te:
+    def atk(self, value):
+        others = len([m for m in self.source.controller.field if m.card_id == "TSC_631t" and m is not self.source])
+        return value + others
+
+
+class TSC_637:
+    """Scalding Geyser - 间歇热泉
+    1费法术 造成$2点伤害。探底。
     """
     tags = {
         GameTag.CARDTYPE: CardType.SPELL,
         GameTag.COST: 1,
-    }
-    play = (
-        Draw(CONTROLLER),
-        ShuffleIntoDeck(CONTROLLER, "TSC_643t"),
-    )
-
-
-class TSC_643t:
-    """Sunken Scroll - 沉没的卷轴
-    1费法术 将你的手牌移到牌库底部。从牌库底部抽等量的牌。
-    """
-    tags = {
-        GameTag.CARDTYPE: CardType.SPELL,
-        GameTag.COST: 1,
-    }
-    
-    def play(self):
-        """
-        将手牌移到牌库底部，然后从底部抽等量的牌
-        """
-        hand_size = len(self.controller.hand)
-        
-        # 将手牌移到牌库底部
-        for card in list(self.controller.hand):
-            if card != self:  # 不包括自己
-                yield ShuffleIntoDeck(CONTROLLER, card)
-        
-        # 从牌库底部抽牌
-        for _ in range(hand_size - 1):  # -1因为不包括自己
-            if self.controller.deck:
-                bottom_card = self.controller.deck[-1]
-                yield ForceDraw(CONTROLLER, bottom_card)
-
-
-class TSC_645:
-    """Scalding Geyser - 沸腾间歇泉
-    3费法术 造成$4点伤害。过载：(1)
-    """
-    tags = {
-        GameTag.CARDTYPE: CardType.SPELL,
-        GameTag.COST: 3,
-        GameTag.OVERLOAD: 1,
     }
     requirements = {
         PlayReq.REQ_TARGET_TO_PLAY: 0,
     }
-    play = Hit(TARGET, 4)
+    play = Hit(TARGET, 2), Dredge(CONTROLLER)
 
 
-class TSC_646:
-    """Coral Keeper - 珊瑚守护者
-    5费 3/4 战吼：召唤一个随机图腾。如果你在本回合打出过娜迦牌，再召唤一个。
+class TSC_772:
+    """Azsharan Scroll - 艾萨拉的卷轴
+    1费法术 发现一张火焰、冰霜或自然法术牌。将一张"沉没的卷轴"置于你的牌库底部。
     """
     tags = {
-        GameTag.ATK: 3,
-        GameTag.HEALTH: 4,
-        GameTag.COST: 5,
+        GameTag.CARDTYPE: CardType.SPELL,
+        GameTag.COST: 1,
     }
-    
-    def play(self):
-        """
-        召唤一个随机图腾，如果打出过娜迦，再召唤一个
-        """
-        yield Summon(CONTROLLER, RandomTotem())
-        
-        # 检查本回合是否打出过娜迦
-        naga_played_this_turn = any(
-            Race.NAGA in card.races
-            for card in self.controller.cards_played_this_turn
-            if card.type == CardType.MINION
-        )
-        
-        if naga_played_this_turn:
-            yield Summon(CONTROLLER, RandomTotem())
+    play = Discover(CONTROLLER, RandomSpell(spell_school=[SpellSchool.FIRE, SpellSchool.FROST, SpellSchool.NATURE])).then(
+        Give(CONTROLLER, Discover.CARD),
+        PutOnBottom(CONTROLLER, "TSC_772t")
+    )
 
 
-class TSC_647:
-    """Brilliant Macaw - 璀璨金刚鹦鹉
-    3费 3/3 战吼：重复你上一个战吼。
+class TSC_772t:
+    """Sunken Scroll - 沉没的卷轴
+    1费法术 对敌方英雄造成$3点伤害，随机将两张火焰、冰霜或自然法术牌置入你的手牌。
     """
     tags = {
-        GameTag.ATK: 3,
-        GameTag.HEALTH: 3,
-        GameTag.COST: 3,
+        GameTag.CARDTYPE: CardType.SPELL,
+        GameTag.COST: 1,
     }
-    
-    # 使用核心的 RepeatBattlecry action
-    play = RepeatBattlecry(CONTROLLER)
+    play = Hit(ENEMY_HERO, 3), Give(CONTROLLER, RandomSpell(spell_school=[SpellSchool.FIRE, SpellSchool.FROST, SpellSchool.NATURE])) * 2
 
 
-class TSC_648:
-    """Clownfish - 小丑鱼
-    2费 3/2 战吼：你的下一个娜迦的法力值消耗减少(2)点。
-    """
-    tags = {
-        GameTag.ATK: 3,
-        GameTag.HEALTH: 2,
-        GameTag.COST: 2,
-    }
-    play = Buff(CONTROLLER, "TSC_648e")
-
-
-class TSC_648e:
-    """Clownfish Buff"""
-    # 下一个娜迦减少2费
-    update = Refresh(FRIENDLY_HAND + MINION + NAGA, {GameTag.COST: -2})
-    events = Play(CONTROLLER, MINION + NAGA).on(Destroy(SELF))
-
-
-class TSC_649:
-    """Anchored Totem - 锚定图腾
-    2费 0/3 在你的回合结束时，召唤一个随机基础图腾。
+class TSC_922:
+    """Anchored Totem - 驻锚图腾
+    2费 0/3 图腾
+    在你召唤一个法力值消耗为(1)的随从后，使其获得+2/+1。
     """
     tags = {
         GameTag.ATK: 0,
         GameTag.HEALTH: 3,
         GameTag.COST: 2,
+        GameTag.RACE: Race.TOTEM,
     }
-    events = OWN_TURN_END.on(Summon(CONTROLLER, RandomTotem()))
+    events = Summon(CONTROLLER, MINION + (COST == 1)).after(Buff(Summon.CARD, "TSC_922e"))
 
 
-class TSC_776:
-    """Gorloc Ravager - 鱼人掠夺者
-    5费 4/3 战吼：抽三张过载牌。
+class TSC_922e:
+    tags = {
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 1,
+    }
+
+
+class TID_004:
+    """Clownfish - 小丑鱼
+    3费 3/2 鱼人
+    战吼：你的下两张鱼人牌法力值消耗减少(2)点。
     """
     tags = {
-        GameTag.ATK: 4,
-        GameTag.HEALTH: 3,
-        GameTag.COST: 5,
+        GameTag.ATK: 3,
+        GameTag.HEALTH: 2,
+        GameTag.COST: 3,
+        GameTag.RACE: Race.MURLOC,
     }
-    
-    def play(self):
-        """
-        抽三张过载牌
-        """
-        for _ in range(3):
-            # 从牌库中抽取有过载的牌
-            yield ForceDraw(CONTROLLER, FRIENDLY_DECK + OVERLOAD)
+    # 使用带计数器的Buff
+    play = Buff(CONTROLLER, "TID_004e")
 
 
-class TSC_777:
-    """Gigafin - 巨鳍
-    8费 7/4 巨型+2 战吼：吞噬所有敌方随从。亡语：吐出它们。
-    """
+class TID_004e:
+    """Clownfish Cost Reduction"""
     tags = {
-        GameTag.ATK: 7,
-        GameTag.HEALTH: 4,
-        GameTag.COST: 8,
+        GameTag.TAG_SCRIPT_DATA_NUM_1: 2, # 使用这个Tag作为计数器
     }
-    # 巨型+2：召唤2个附属部件
-    colossal_appendages = ["TSC_777t", "TSC_777t"]
+    # 光环：手牌中鱼人减2费
+    update = Refresh(FRIENDLY_HAND + MURLOC, {GameTag.COST: -2})
     
-    def play(self):
-        """
-        吞噬所有敌方随从
-        """
-        # 将所有敌方随从移到暂存区
-        for minion in list(self.controller.opponent.field):
-            yield Setaside(minion)
-        
-        # 添加追踪buff
-        yield Buff(SELF, "TSC_777e")
+    # 监听打出事件
+    events = Play(CONTROLLER, MURLOC).on(
+        # 减少计数: SetTag(SELF, TAG, Attr(SELF, TAG) - 1)
+        SetTag(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1, Attr(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1) - 1),
+        # 如果计数归零，销毁自身
+        (Attr(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1) <= 0) & Destroy(SELF)
+    )
 
 
-class TSC_777e:
-    """Gigafin Tracker"""
-    # 亡语：吐出所有随从
-    deathrattle = Summon(OPPONENT, FRIENDLY_SETASIDE)
-
-
-class TSC_777t:
-    """Gigafin's Maw - 巨鳍之口
-    2费 2/4
+class TSC_633:
+    """Piranha Poacher - 食人鱼偷猎者
+    3费 2/5
+    在你的回合结束时，将一张1/1的食人鱼群置入你的手牌。
     """
     tags = {
         GameTag.ATK: 2,
+        GameTag.HEALTH: 5,
+        GameTag.COST: 3,
+    }
+    events = OwnTurnEnd(CONTROLLER).on(Give(CONTROLLER, "TSC_631t"))
+
+
+class TSC_635:
+    """Radiance of Azshara - 艾萨拉之辉
+    3费 3/4 元素
+    法术伤害+2。你的自然法术法力值消耗减少(1)点。在你施放一个自然法术后，获得3点护甲值。
+    """
+    tags = {
+        GameTag.ATK: 3,
         GameTag.HEALTH: 4,
+        GameTag.COST: 3,
+        GameTag.RACE: Race.ELEMENTAL,
+        GameTag.SPELLPOWER: 2,
+    }
+    # Aura: Nature spells cost -1
+    # Events: Cast Natural spell -> Gain Armor
+    update = Refresh(FRIENDLY_HAND + SPELL + NATURE, {GameTag.COST: -1})
+    events = Play(CONTROLLER, SPELL + NATURE).after(GainArmor(FRIENDLY_HERO, 3))
+
+
+class TID_003:
+    """Tidelost Burrower - 迷潮挖掘者
+    4费 4/4 鱼人
+    战吼：探底。如果选中的牌是鱼人牌，召唤一个它的2/2复制。
+    """
+    tags = {
+        GameTag.ATK: 4,
+        GameTag.HEALTH: 4,
+        GameTag.COST: 4,
+        GameTag.RACE: Race.MURLOC,
+    }
+    
+    def play(self):
+        yield Dredge(CONTROLLER)
+        if self.controller.deck:
+            top_card = self.controller.deck[0]
+            if top_card.type == CardType.MINION and Race.MURLOC in top_card.races:
+                yield Summon(CONTROLLER, ExactCopy(top_card), {GameTag.ATK: 2, GameTag.HEALTH: 2})
+
+
+class TSC_923:
+    """Bioluminescence - 生物荧光
+    3费法术 使你的随从获得法术伤害+1。
+    """
+    tags = {
+        GameTag.CARDTYPE: CardType.SPELL,
+        GameTag.COST: 3,
+    }
+    play = Buff(FRIENDLY_MINIONS, "TSC_923e")
+
+
+class TSC_923e:
+    tags = {
+        GameTag.SPELLPOWER: 1,
+    }
+
+
+class TID_005:
+    """Command of Neptulon - 耐普图隆的指令
+    5费法术 召唤两个5/4并具有突袭的元素。过载：(1)。
+    """
+    tags = {
+        GameTag.CARDTYPE: CardType.SPELL,
+        GameTag.COST: 5,
+        GameTag.OVERLOAD: 1,
+    }
+    play = Summon(CONTROLLER, "TID_005t") * 2
+
+
+class TID_005t:
+    """Elemental (5/4 Rush)"""
+    tags = {
+        GameTag.ATK: 5,
+        GameTag.HEALTH: 4,
+        GameTag.COST: 5,
+        GameTag.RUSH: True,
+        GameTag.RACE: Race.ELEMENTAL,
+    }
+
+
+class TSC_630:
+    """Wrathspine Enchanter - 怒脊附魔师
+    7费 5/4
+    战吼：从你的手牌中施放一张火焰、冰霜和自然法术牌的复制（目标随机而定）。
+    """
+    tags = {
+        GameTag.ATK: 5,
+        GameTag.HEALTH: 4,
+        GameTag.COST: 7,
+    }
+    
+    def play(self):
+        # Fire
+        fire_spells = [c for c in self.controller.hand if c.type == CardType.SPELL and SpellSchool.FIRE in c.spell_school]
+        frost_spells = [c for c in self.controller.hand if c.type == CardType.SPELL and SpellSchool.FROST in c.spell_school]
+        nature_spells = [c for c in self.controller.hand if c.type == CardType.SPELL and SpellSchool.NATURE in c.spell_school]
+        
+        if fire_spells:
+             target = self.game.random.choice(fire_spells)
+             yield CastSpell(Copy(target))
+             
+        if frost_spells:
+             target = self.game.random.choice(frost_spells)
+             yield CastSpell(Copy(target))
+             
+        if nature_spells:
+             target = self.game.random.choice(nature_spells)
+             yield CastSpell(Copy(target))
+
+
+class GluggAbsorb(Action):
+    def do(self, source, target):
+        atk = target.original_atk
+        health = target.original_health
+        source.buff(atk=atk, max_health=health)
+
+
+class TSC_639:
+    """Glugg the Gulper - 暴食巨鳗格拉格
+    7费 3/5 野兽
+    巨型+3。嘲讽。在一个友方随从死亡后，获得其原始属性值。
+    """
+    tags = {
+        GameTag.ATK: 3,
+        GameTag.HEALTH: 5,
+        GameTag.COST: 7,
+        GameTag.RACE: Race.BEAST,
+        GameTag.COLOSSAL: 3,
+        GameTag.TAUNT: True,
+    }
+    colossal_appendages = ["TSC_639t", "TSC_639t", "TSC_639t"]
+    
+    events = Death(FRIENDLY_MINIONS - SELF).after(GluggAbsorb(SELF, Death.ENTITY))
+
+
+class TSC_639t:
+    """Glugg's Tail"""
+    tags = {
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 2,
         GameTag.COST: 2,
+        GameTag.RACE: Race.BEAST,
+    }
+
+
+class TSC_648:
+    """Coral Keeper - 珊瑚培育师
+    5费 3/4
+    战吼：在本局对战中，你每施放过一个派系的法术，召唤一个3/3的元素。
+    """
+    tags = {
+        GameTag.ATK: 3,
+        GameTag.HEALTH: 4,
+        GameTag.COST: 5,
+        GameTag.RACE: Race.NAGA, 
+    }
+    
+    def play(self):
+        # 统计已施放的法术派系
+        schools = set()
+        for c in self.controller.cards_played_this_game:
+            if c.type == CardType.SPELL:
+                if hasattr(c, 'spell_school'):
+                     # spell_school might be a list or single enum?
+                     # In Fireplace usually list.
+                     # But some implementations might use single. 
+                     # Check if iterable.
+                     try:
+                         for s in c.spell_school:
+                             if s != SpellSchool.NONE:
+                                 schools.add(s)
+                     except:
+                         # Single value
+                         if c.spell_school != SpellSchool.NONE:
+                             schools.add(c.spell_school)
+        
+        count = len(schools)
+        if count > 0:
+            yield Summon(CONTROLLER, "TSC_648t") * count
+
+
+class TSC_648t:
+    """Coral Elemental"""
+    tags = {
+        GameTag.ATK: 3,
+        GameTag.HEALTH: 3,
+        GameTag.COST: 3,
+        GameTag.RACE: Race.ELEMENTAL,
     }

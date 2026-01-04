@@ -1,321 +1,311 @@
-# -*- coding: utf-8 -*-
-"""
-探寻沉没之城（Voyage to the Sunken City）- 术士
-"""
-
 from ..utils import *
 
 
-class TID_710:
-    """Bloodscent Vilefin - 血腥鱼人
-    3费 3/4 战吼：消灭一个友方随从。如果是恶魔，抽一张牌。
+# Helper Action to Give Abyssal Curse
+class GiveAbyssalCurse(Action):
+    def do(self, source, target_player):
+        controller = source.controller
+        current_level = controller.tags.get(GameTag.TAG_SCRIPT_DATA_NUM_1, 0) + 1
+        controller.tags[GameTag.TAG_SCRIPT_DATA_NUM_1] = current_level
+        
+        curse_card = controller.card("TSC_950t")
+        curse_card.tags[GameTag.TAG_SCRIPT_DATA_NUM_1] = current_level
+        
+        source.game.queue_actions(source, [Give(target_player, curse_card)])
+
+
+class TSC_925:
+    """Rock Bottom - 岩石海底
+    1费法术 召唤一个1/3的虚空行者。探底。
+    """
+    tags = {
+        GameTag.CARDTYPE: CardType.SPELL,
+        GameTag.COST: 1,
+    }
+    play = Summon(CONTROLLER, "CS2_065"), Dredge(CONTROLLER)
+
+
+class TSC_614:
+    """Voidgill - 虚鳃鱼人
+    2费 3/2 鱼人
+    亡语：使你手牌中的所有鱼人牌获得+1/+1。
+    """
+    tags = {
+        GameTag.ATK: 3,
+        GameTag.HEALTH: 2,
+        GameTag.COST: 2,
+        GameTag.RACE: Race.MURLOC,
+    }
+    deathrattle = Buff(FRIENDLY_HAND + MURLOC, "TSC_614e")
+
+
+class TSC_614e:
+    tags = {
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1,
+    }
+
+
+class TSC_957:
+    """Chum Bucket - 鱼饵桶
+    2费法术 使你手牌中的所有鱼人牌获得+2/+2。
+    """
+    tags = {
+        GameTag.CARDTYPE: CardType.SPELL,
+        GameTag.COST: 2,
+    }
+    play = Buff(FRIENDLY_HAND + MURLOC, "TSC_957e")
+
+
+class TSC_957e:
+    tags = {
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 2,
+    }
+
+
+class TID_717:
+    """Shadow Suffusion - 暗影灌注
+    3费法术 使一个随从获得亡语：对所有敌人造成3点伤害。
+    """
+    tags = {
+        GameTag.CARDTYPE: CardType.SPELL,
+        GameTag.COST: 3,
+    }
+    requirements = {
+        PlayReq.REQ_MINION_TARGET: 0,
+        PlayReq.REQ_TARGET_TO_PLAY: 0,
+    }
+    play = Buff(TARGET, "TID_717e")
+
+
+class TID_717e:
+    tags = {
+        GameTag.DEATHRATTLE: True,
+    }
+    deathrattle = Hit(ENEMY_CHARACTERS, 3)
+
+
+class TSC_753:
+    """Bloodscent Vilefin - 血腥恶鳍鱼人
+    3费 3/4 鱼人
+    战吼：探底。如果选中的牌是鱼人牌，将其法力值消耗改为生命值消耗。
     """
     tags = {
         GameTag.ATK: 3,
         GameTag.HEALTH: 4,
         GameTag.COST: 3,
-    }
-    requirements = {
-        PlayReq.REQ_TARGET_IF_AVAILABLE: 0,
-        PlayReq.REQ_MINION_TARGET: 0,
-        PlayReq.REQ_FRIENDLY_TARGET: 0,
+        GameTag.RACE: Race.MURLOC,
     }
     
     def play(self):
-        """
-        消灭一个友方随从，如果是恶魔，抽一张牌
-        """
-        is_demon = Race.DEMON in self.target.races
-        
-        yield Destroy(TARGET)
-        
-        if is_demon:
-            yield Draw(CONTROLLER)
+        yield Dredge(CONTROLLER)
+        if self.controller.deck:
+            top_card = self.controller.deck[0]
+            if top_card.type == CardType.MINION and Race.MURLOC in top_card.races:
+                yield Buff(top_card, "TSC_753e")
 
 
-class TID_711:
+class TSC_753e:
+    """Costs Health Instead of Mana"""
+    tags = {
+        GameTag.COSTS_HEALTH: True,
+    }
+
+
+class TSC_955:
+    """Sira'kess Cultist - 希拉柯丝教徒
+    3费 2/3 纳迦
+    战吼：塞给你的对手一张深渊诅咒。
+    """
+    tags = {
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 3,
+        GameTag.COST: 3,
+        GameTag.RACE: Race.NAGA,
+    }
+    play = GiveAbyssalCurse(SELF, OPPONENT)
+
+
+class TSC_956:
     """Dragged Below - 拖入深渊
-    2费法术 消灭一个攻击力小于或等于2的随从。探底。
-    """
-    tags = {
-        GameTag.CARDTYPE: CardType.SPELL,
-        GameTag.COST: 2,
-    }
-    requirements = {
-        PlayReq.REQ_TARGET_TO_PLAY: 0,
-        PlayReq.REQ_MINION_TARGET: 0,
-        PlayReq.REQ_TARGET_MAX_ATTACK: 2,
-    }
-    play = (
-        Destroy(TARGET),
-        Dredge(CONTROLLER),
-    )
-
-
-class TID_960:
-    """Abyssal Wave - 深渊波浪
-    2费法术 对所有随从造成$2点伤害。如果你在本回合打出过娜迦牌，改为造成$4点伤害。
-    """
-    tags = {
-        GameTag.CARDTYPE: CardType.SPELL,
-        GameTag.COST: 2,
-    }
-    
-    def play(self):
-        """
-        对所有随从造成2点伤害，如果打出过娜迦，改为4点
-        """
-        # 检查本回合是否打出过娜迦
-        naga_played_this_turn = any(
-            Race.NAGA in card.races
-            for card in self.controller.cards_played_this_turn
-            if card.type == CardType.MINION
-        )
-        
-        damage = 4 if naga_played_this_turn else 2
-        yield Hit(ALL_MINIONS, damage)
-
-
-class TSC_055:
-    """Azsharan Scavenger - 艾萨拉拾荒者
-    2费 2/3 战吼：将一张"沉没的拾荒者"置于你的牌库底部。
-    """
-    tags = {
-        GameTag.ATK: 2,
-        GameTag.HEALTH: 3,
-        GameTag.COST: 2,
-    }
-    play = ShuffleIntoDeck(CONTROLLER, "TSC_055t")
-
-
-class TSC_055t:
-    """Sunken Scavenger - 沉没的拾荒者
-    2费 2/3 战吼：抽一张牌。
-    """
-    tags = {
-        GameTag.ATK: 2,
-        GameTag.HEALTH: 3,
-        GameTag.COST: 2,
-    }
-    play = Draw(CONTROLLER)
-
-
-class TSC_056:
-    """Chum Bucket - 鱼饵桶
-    2费法术 对你的英雄造成$2点伤害。召唤两个2/1的鱼人。
-    """
-    tags = {
-        GameTag.CARDTYPE: CardType.SPELL,
-        GameTag.COST: 2,
-    }
-    play = (
-        Hit(FRIENDLY_HERO, 2),
-        Summon(CONTROLLER, "TSC_056t") * 2,
-    )
-
-
-class TSC_056t:
-    """Murloc - 鱼人
-    1费 2/1
-    """
-    tags = {
-        GameTag.ATK: 2,
-        GameTag.HEALTH: 1,
-        GameTag.COST: 1,
-    }
-
-
-class TSC_620:
-    """Immolate - 献祭
-    2费法术 对一个友方随从造成$3点伤害。对一个敌方随从造成$3点伤害。
-    """
-    tags = {
-        GameTag.CARDTYPE: CardType.SPELL,
-        GameTag.COST: 2,
-    }
-    requirements = {
-        PlayReq.REQ_TARGET_TO_PLAY: 0,
-        PlayReq.REQ_MINION_TARGET: 0,
-    }
-    
-    def play(self):
-        """
-        对友方和敌方随从各造成3点伤害
-        """
-        yield Hit(TARGET, 3)
-        
-        # 对一个随机敌方随从造成3点伤害
-        yield Hit(RANDOM_ENEMY_MINION, 3)
-
-
-class TSC_621:
-    """Abyssal Depths - 深渊深处
-    3费法术 抽两张牌。如果你的手牌中有娜迦牌，再抽一张牌。
+    3费法术 造成$4点伤害。塞给你的对手一张深渊诅咒。
     """
     tags = {
         GameTag.CARDTYPE: CardType.SPELL,
         GameTag.COST: 3,
     }
-    
-    def play(self):
-        """
-        抽两张牌，如果手牌中有娜迦，再抽一张
-        """
-        yield Draw(CONTROLLER) * 2
-        
-        # 检查手牌中是否有娜迦
-        has_naga = any(
-            Race.NAGA in card.races
-            for card in self.controller.hand
-            if card.type == CardType.MINION
-        )
-        
-        if has_naga:
-            yield Draw(CONTROLLER)
-
-
-class TSC_622:
-    """Shadowborn - 暗影之子
-    2费 2/2 亡语：召唤一个2/2的暗影之子。
-    """
-    tags = {
-        GameTag.ATK: 2,
-        GameTag.HEALTH: 2,
-        GameTag.COST: 2,
+    requirements = {
+        PlayReq.REQ_TARGET_TO_PLAY: 0,
     }
-    deathrattle = Summon(CONTROLLER, "TSC_622")
+    play = Hit(TARGET, 4), GiveAbyssalCurse(SELF, OPPONENT)
 
 
-class TSC_623:
-    """Imposing Angler - 威严钓者
-    5费 4/4 嘲讽 战吼：如果你在本回合打出过娜迦牌，获得吸血。
+class TID_718:
+    """Immolate - 献祭
+    4费法术 焚烧对手手牌中的所有卡牌。3回合后，被焚烧的卡牌会被弃掉。
     """
     tags = {
-        GameTag.ATK: 4,
-        GameTag.HEALTH: 4,
+        GameTag.CARDTYPE: CardType.SPELL,
+        GameTag.COST: 4,
+    }
+    play = Buff(ENEMY_HAND, "TID_718e")
+
+
+class TID_718e:
+    """Immolate Effect"""
+    tags = {
+        GameTag.TAG_SCRIPT_DATA_NUM_1: 3, # Counter
+    }
+    events = OwnTurnBegin(OWNER).on(
+        SetTag(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1, Attr(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1) - 1),
+        (Attr(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1) <= 0) & Discard(OWNER)
+    )
+
+
+class TID_719:
+    """Commander Ulthok - 指挥官乌尔索克
+    5费 7/7 恶魔
+    战吼：对你的英雄造成5点伤害。你的牌消耗生命值，而非法力值。
+    """
+    tags = {
+        GameTag.ATK: 7,
+        GameTag.HEALTH: 7,
         GameTag.COST: 5,
-        GameTag.TAUNT: True,
+        GameTag.RACE: Race.DEMON,
     }
+    play = Hit(FRIENDLY_HERO, 5)
+    auras = [Buff(SELF, "TID_719e_Real")] 
+
+
+class TID_719e_Real:
+    update = Refresh(FRIENDLY_HAND, {GameTag.COSTS_HEALTH: True})
+
+
+class TSC_959:
+    """Za'qul - 扎库尔
+    5费 6/5
+    你的深渊诅咒为你恢复生命值，而不是造成伤害。战吼：塞给你的对手一张深渊诅咒。
+    """
+    tags = {
+        GameTag.ATK: 6,
+        GameTag.HEALTH: 5,
+        GameTag.COST: 5,
+    }
+    play = GiveAbyssalCurse(SELF, OPPONENT)
     
-    def play(self):
-        """
-        如果本回合打出过娜迦，获得吸血
-        """
-        # 检查本回合是否打出过娜迦
-        naga_played_this_turn = any(
-            Race.NAGA in card.races
-            for card in self.controller.cards_played_this_turn
-            if card.type == CardType.MINION
-        )
-        
-        if naga_played_this_turn:
-            yield SetAttr(SELF, GameTag.LIFESTEAL, True)
+    # 监听诅咒造成的伤害并补偿治疗
+    events = Damage(ENEMY_HERO, ID("TSC_950t")).on(
+        Heal(FRIENDLY_HERO, Damage.AMOUNT)
+    )
 
 
-class TSC_624:
-    """Gigafin - 巨鳍
-    8费 7/4 巨型+2 战吼：吞噬所有敌方随从。亡语：吐出它们。
+class TSC_924:
+    """Abyssal Wave - 深渊波流
+    6费法术 对所有随从造成$4点伤害。塞给你的对手一张深渊诅咒。
+    """
+    tags = {
+        GameTag.CARDTYPE: CardType.SPELL,
+        GameTag.COST: 6,
+    }
+    play = Hit(ALL_MINIONS, 4), GiveAbyssalCurse(SELF, OPPONENT)
+
+
+class TSC_962:
+    """Gigafin - 老巨鳍
+    8费 7/4 鱼人
+    巨型+1。战吼：吞食所有敌方随从。亡语：吐出它们。
     """
     tags = {
         GameTag.ATK: 7,
         GameTag.HEALTH: 4,
         GameTag.COST: 8,
+        GameTag.RACE: Race.MURLOC,
+        GameTag.COLOSSAL: 1,
     }
-    # 巨型+2：召唤2个附属部件
-    colossal_appendages = ["TSC_624t", "TSC_624t"]
+    colossal_appendages = ["TSC_962t"]
     
     def play(self):
-        """
-        吞噬所有敌方随从
-        """
-        # 将所有敌方随从移到暂存区
-        for minion in list(self.controller.opponent.field):
-            yield Setaside(minion)
+        buff = yield Buff(SELF, "TSC_962e")
+        targets = list(self.controller.opponent.field)
+        for minion in targets:
+             yield Setaside(minion)
+             buff.devoured.append(minion)
+
+
+class TSC_962e:
+    """Gigafin Stomach"""
+    def __init__(self):
+        self.devoured = []
         
-        # 添加追踪buff
-        yield Buff(SELF, "TSC_624e")
+    deathrattle = Summon(OPPONENT, lambda self: self.devoured)
 
 
-class TSC_624e:
-    """Gigafin Tracker"""
-    # 亡语：吐出所有随从
-    deathrattle = Summon(OPPONENT, FRIENDLY_SETASIDE)
-
-
-class TSC_624t:
-    """Gigafin's Maw - 巨鳍之口
-    2费 2/4
-    """
-    tags = {
-        GameTag.ATK: 2,
-        GameTag.HEALTH: 4,
-        GameTag.COST: 2,
-    }
-
-
-class TSC_625:
-    """Caria Felsoul - 卡莉亚·邪魂
-    6费 6/6 战吼：消灭所有其他随从。如果你在本回合打出过娜迦牌，改为消灭所有其他敌方随从。
-    """
-    tags = {
-        GameTag.ATK: 6,
-        GameTag.HEALTH: 6,
-        GameTag.COST: 6,
-    }
-    
-    def play(self):
-        """
-        消灭所有其他随从，如果打出过娜迦，只消灭敌方
-        """
-        # 检查本回合是否打出过娜迦
-        naga_played_this_turn = any(
-            Race.NAGA in card.races
-            for card in self.controller.cards_played_this_turn
-            if card.type == CardType.MINION
-        )
-        
-        if naga_played_this_turn:
-            # 只消灭敌方随从
-            yield Destroy(ENEMY_MINIONS)
-        else:
-            # 消灭所有其他随从
-            yield Destroy(ALL_MINIONS - SELF)
-
-
-class TSC_626:
-    """Entitled Customer - 傲慢顾客
-    3费 4/4 战吼：对你的英雄造成$4点伤害。
+class TSC_962t:
+    """Gigafin's Maw - 老巨鳍之口
+    4费 4/7 鱼人
+    嘲讽
     """
     tags = {
         GameTag.ATK: 4,
-        GameTag.HEALTH: 4,
-        GameTag.COST: 3,
+        GameTag.HEALTH: 7,
+        GameTag.COST: 4,
+        GameTag.RACE: Race.MURLOC,
+        GameTag.TAUNT: True,
     }
-    play = Hit(FRIENDLY_HERO, 4)
 
 
-class TSC_919:
-    """Bloodscent Vilefin - 血腥鱼人
-    3费 3/4 战吼：消灭一个友方随从。如果是鱼人，抽一张牌。
+class TSC_039:
+    """Azsharan Scavenger - 艾萨拉的拾荒者
+    2费 2/3 鱼人
+    战吼：将一张"沉没的拾荒者"置于你的牌库底部。
     """
     tags = {
-        GameTag.ATK: 3,
-        GameTag.HEALTH: 4,
-        GameTag.COST: 3,
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 3,
+        GameTag.COST: 2,
+        GameTag.RACE: Race.MURLOC,
     }
-    requirements = {
-        PlayReq.REQ_TARGET_IF_AVAILABLE: 0,
-        PlayReq.REQ_MINION_TARGET: 0,
-        PlayReq.REQ_FRIENDLY_TARGET: 0,
+    play = PutOnBottom(CONTROLLER, "TSC_039t")
+
+
+class TSC_039t:
+    """Sunken Scavenger - 沉没的拾荒者
+    2费 2/3 鱼人
+    战吼：使你的所有鱼人牌获得+1/+1。
+    """
+    tags = {
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 3,
+        GameTag.COST: 2,
+        GameTag.RACE: Race.MURLOC,
     }
-    
-    def play(self):
-        """
-        消灭一个友方随从，如果是鱼人，抽一张牌
-        """
-        is_murloc = Race.MURLOC in self.target.races
-        
-        yield Destroy(TARGET)
-        
-        if is_murloc:
-            yield Draw(CONTROLLER)
+    # "Give your murlocs +1/+1" usually implies everywhere?
+    # Or just board/hand?
+    # Text said "Permanently". Usually implies "Wherever they are".
+    # Buff(FRIENDLY_MINIONS + FRIENDLY_HAND + FRIENDLY_DECK + MURLOC, ...)
+    # For safety/common power level, assume Board/Hand/Deck.
+    play = Buff(FRIENDLY_MINIONS + FRIENDLY_HAND + FRIENDLY_DECK + MURLOC, "TSC_039te")
+
+
+class TSC_039te:
+    tags = {
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1,
+    }
+
+
+class TSC_950t:
+    """Abyssal Curse - 深渊诅咒
+    2费法术
+    在你的回合开始时，受到X点伤害。你每受到一次诅咒伤害，该数值增加1。
+    """
+    tags = {
+        GameTag.CARDTYPE: CardType.SPELL,
+        GameTag.COST: 2,
+        GameTag.TAG_SCRIPT_DATA_NUM_1: 0, # Damage amount set at creation
+    }
+    class Hand:
+        events = OwnTurnBegin(CONTROLLER).on(
+            Hit(FRIENDLY_HERO, Attr(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1))
+        )
