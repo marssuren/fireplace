@@ -7,43 +7,130 @@ from ..utils import *
 
 class TTN_713:
     """生气的冥狱之犬 - Angry Helhound
-    <b>Rush</b> Has +4 Attack on your turn.
+    <b>突袭</b> 在你的回合拥有+4攻击力。
     """
-    pass
+    tags = {
+        GameTag.ATK: 3,
+        GameTag.HEALTH: 5,
+        GameTag.COST: 4,
+        GameTag.RUSH: True,
+    }
+
+    # 在自己回合开始时获得+4攻击
+    events = OWN_TURN_BEGIN.on(Buff(SELF, "TTN_713e"))
+
+
+class TTN_713e:
+    """生气的冥狱之犬攻击力加成"""
+    tags = {
+        GameTag.ATK: 4,
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+    }
+
+    # 回合结束时自动移除
+    events = OWN_TURN_END.on(Destroy(SELF))
 
 
 class TTN_714:
     """符文供能魔像 - Runefueled Golem
-    <b>Battlecry:</b> <b>Discover</b> a weapon from any class.
+    <b>战吼：</b><b>发现</b>一张任意职业的武器牌。
     """
-    pass
+    tags = {
+        GameTag.ATK: 3,
+        GameTag.HEALTH: 4,
+        GameTag.COST: 4,
+    }
+
+    play = DISCOVER(RandomCollectible(card_type=CardType.WEAPON))
 
 
 class TTN_718:
     """星光雏龙 - Starlight Whelp
-    <b>Battlecry:</b> Get a random card from your starting hand.
+    <b>战吼：</b>随机获取你起始手牌中的一张牌。
     """
-    pass
+    tags = {
+        GameTag.ATK: 3,
+        GameTag.HEALTH: 2,
+        GameTag.COST: 2,
+        GameTag.RACE: Race.DRAGON,
+    }
+
+    def play(self):
+        """战吼：从起始手牌中随机获取一张牌"""
+        if self.controller.starting_hand:
+            card = self.game.random.choice(self.controller.starting_hand)
+            yield Give(CONTROLLER, card.id)
 
 
 class TTN_741:
     """伪装的克熙尔 - Disguised K'thir
-    Each turn this is in your hand, transform into a random card in your opponent's deck.
+    如果这张牌在你的手牌中，每个回合都会随机变成你对手牌库中的一张牌。
     """
-    pass
+    tags = {
+        GameTag.ATK: 4,
+        GameTag.HEALTH: 5,
+        GameTag.COST: 5,
+    }
+
+    class Hand:
+        # 每回合开始时，变形为对手牌库中的随机卡牌
+        events = OWN_TURN_BEGIN.on(
+            lambda self, source: [
+                Morph(SELF, self.game.random.choice(source.controller.opponent.deck))
+            ] if source.controller.opponent.deck else []
+        )
 
 
 class TTN_742:
     """星空投影师 - Celestial Projectionist
-    [x]<b>Battlecry:</b> Choose a friendly minion. Add a <b>Temporary</b> copy of it to your hand.
+    <b>战吼：</b>选择一个友方随从，将它的一张<b>临时</b>复制置入你的手牌。
     """
-    pass
+    tags = {
+        GameTag.ATK: 3,
+        GameTag.HEALTH: 4,
+        GameTag.COST: 4,
+    }
+
+    requirements = {
+        PlayReq.REQ_TARGET_IF_AVAILABLE: 0,
+        PlayReq.REQ_FRIENDLY_TARGET: 0,
+        PlayReq.REQ_MINION_TARGET: 0,
+    }
+
+    def play(self):
+        """战吼：创建目标随从的临时复制"""
+        if self.target:
+            # 创建目标的复制
+            temp_copy = yield Give(CONTROLLER, Copy(self.target))
+            if temp_copy:
+                # 添加临时标记（回合结束时消失）
+                yield Buff(temp_copy, "TTN_742e")
 
 
 class YOG_411:
     """越狱者 - Prison Breaker
-    [x]<b>Battlecry:</b> If you've cast 5 or more spells this game, deal 2 damage to all enemies. @ <i>({0} left!)</i>@ <i>(Ready!)</i>
+    <b>战吼：</b>在本局对战中，如果你施放过5个或以上法术，对所有敌人造成2点伤害。@<i>（还剩{0}个！）</i>@<i>（已经就绪！）</i>
     """
-    pass
+    tags = {
+        GameTag.ATK: 4,
+        GameTag.HEALTH: 3,
+        GameTag.COST: 4,
+    }
+
+    def play(self):
+        """战吼：如果施放过5个或以上法术，对所有敌人造成2点伤害"""
+        # 检查本局对战施放的法术数量
+        if self.controller.cards_played_this_game.filter(type=CardType.SPELL).count() >= 5:
+            yield Hit(ENEMY_CHARACTERS, 2)
 
 
+# ========== 附魔类 ==========
+
+class TTN_742e:
+    """临时复制标记 - Temporary"""
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+    }
+
+    # 回合结束时移除卡牌
+    events = TURN_END.on(Destroy(OWNER))

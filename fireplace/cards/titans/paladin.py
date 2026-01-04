@@ -9,104 +9,322 @@ from ..utils import *
 
 class TTN_852:
     """崇高的迷你机 - Noble Minibot
-    <b>Magnetic</b> After this attacks, give a random minion in your hand +1/+1.
+    <b>磁力</b>。在本随从攻击后，随机使你手牌中的一张随从牌获得+1/+1。
     """
-    pass
+    magnetic = MAGNETIC("TTN_852e")
+    events = Attack(SELF).after(
+        Buff(RANDOM(FRIENDLY_HAND + MINION), "TTN_852e2")
+    )
+
+class TTN_852e:
+    """磁力附魔"""
+    events = Attack(SELF).after(
+        Buff(RANDOM(FRIENDLY_HAND + MINION), "TTN_852e2")
+    )
+
+class TTN_852e2:
+    """崇高祝福 - Noble Blessing"""
+    tags = {GameTag.ATK: 1, GameTag.HEALTH: 1}
 
 
 class TTN_854:
     """发明家的光环 - Inventor's Aura
-    Your Mechs cost (1) less. Lasts 2 turns.
+    你的机械的法力值消耗减少（1）点。持续2回合。
     """
-    pass
+    play = Buff(CONTROLLER, "TTN_854e")
+
+class TTN_854e:
+    """发明家的光环效果"""
+    auras = [Buff(FRIENDLY_HAND + MECHANICAL, "TTN_854e2")]
+    events = OwnTurnEnd(CONTROLLER).on(
+        UpdateProgress(SELF, 1),
+        If(Attr(SELF, GameTag.PROGRESS) >= 2, Destroy(SELF))
+    )
+
+class TTN_854e2:
+    """减费附魔"""
+    tags = {GameTag.COST: -1}
 
 
 class TTN_907:
     """星界翔龙 - Astral Serpent
-    At the end of your turn, if this didn't attack, draw 2 cards.
+    在你的回合结束时，如果本随从未攻击，抽两张牌。
     """
-    pass
+    events = OwnTurnEnd(CONTROLLER).on(
+        If(Attr(SELF, GameTag.NUM_ATTACKS_THIS_TURN) == 0, Draw(CONTROLLER) * 2)
+    )
 
 
 class YOG_525:
     """健身肌器人 - Muscle-o-Tron
-    [x]<b>Battlecry:</b> Give all minions in your hand +1/+1. <b>Forge:</b> +2/+2 instead.
+    <b>战吼：</b>使你手牌中的所有随从牌获得+1/+1。<b>锻造：</b>改为+2/+2。
     """
-    # TODO: 实现 Forge 效果
-    forge = None  # Forge effect placeholder
-    pass
+    play = Buff(FRIENDLY_HAND + MINION, "YOG_525e")
+    forge = "YOG_525t"
+
+class YOG_525e:
+    """健身增强 +1/+1"""
+    tags = {GameTag.ATK: 1, GameTag.HEALTH: 1}
+
+class YOG_525t:
+    """健身肌器人 - Muscle-o-Tron (Forged)"""
+    play = Buff(FRIENDLY_HAND + MINION, "YOG_525e2")
+
+class YOG_525e2:
+    """健身增强 +2/+2"""
+    tags = {GameTag.ATK: 2, GameTag.HEALTH: 2}
 
 
 # RARE
 
 class TTN_855t:
     """提尔之涕 - Tyr's Tears
-    [x]Resurrect 3 different  minions from your class. Set their stats to 2/2. <b>Forge:</b> Resurrect another.
+    复活3个不同的你职业的随从，将其属性值变为2/2。<b>锻造：</b>再复活一个。
     """
-    # TODO: 实现 Forge 效果
-    forge = None  # Forge effect placeholder
-    pass
+    def play(self):
+        # 从墓地中选择3个不同的职业随从
+        graveyard_minions = self.controller.graveyard.filter(
+            type=CardType.MINION,
+            card_class=CardClass.PALADIN
+        )
+        # 选择最多3个不同的随从
+        selected = []
+        seen_ids = set()
+        for minion in graveyard_minions:
+            if minion.id not in seen_ids and len(selected) < 3:
+                selected.append(minion)
+                seen_ids.add(minion.id)
+
+        # 复活并设置为2/2
+        for minion in selected:
+            copy = minion.copy()
+            yield Summon(CONTROLLER, copy)
+            yield SetAttr(copy, GameTag.ATK, 2)
+            yield SetAttr(copy, GameTag.HEALTH, 2)
+
+    forge = "TTN_855t2"
+
+class TTN_855t2:
+    """提尔之涕 - Tyr's Tears (Forged)"""
+    def play(self):
+        # 锻造版本：复活4个不同的职业随从
+        graveyard_minions = self.controller.graveyard.filter(
+            type=CardType.MINION,
+            card_class=CardClass.PALADIN
+        )
+        selected = []
+        seen_ids = set()
+        for minion in graveyard_minions:
+            if minion.id not in seen_ids and len(selected) < 4:
+                selected.append(minion)
+                seen_ids.add(minion.id)
+
+        for minion in selected:
+            copy = minion.copy()
+            yield Summon(CONTROLLER, copy)
+            yield SetAttr(copy, GameTag.ATK, 2)
+            yield SetAttr(copy, GameTag.HEALTH, 2)
 
 
 class TTN_900:
     """石心之王 - Stoneheart King
-    [x]<b>Deathrattle:</b> Summon a 2/2 Earthen that gains +2/+2 for each other Earthen you've summoned this game.
+    <b>亡语：</b>召唤一个2/2的土灵。在本局对战中你每召唤过一个其他土灵，这个土灵获得+2/+2。
     """
+    deathrattle = Summon(CONTROLLER, "TTN_900t")
+
+class TTN_900t:
+    """土灵 - Earthen"""
+    atk = 2
+    health = 2
+    race = Race.ELEMENTAL
+
+    events = Summon(SELF).after(
+        # 召唤时增加计数器
+        lambda self: setattr(self.controller, 'earthen_summoned_this_game',
+                            self.controller.earthen_summoned_this_game + 1)
+    )
+
+    def summon(self):
+        # 计算本局对战中召唤过的其他土灵数量
+        earthen_count = self.controller.earthen_summoned_this_game - 1  # 减去自己
+        if earthen_count > 0:
+            buff_amount = earthen_count * 2
+            yield Buff(SELF, "TTN_900e", atk=buff_amount, health=buff_amount)
+
+class TTN_900e:
+    """土灵增强"""
     pass
 
 
 class TTN_906:
     """修理机器人X-21 - X-21 Repairbot
-    <b>Deathrattle:</b> Return any Mechs <b>Magnetized</b> to this to your hand.
+    <b>亡语：</b>将所有<b>磁力吸附</b>在本随从上的机械移回你的手牌。
     """
-    pass
+    def deathrattle(self):
+        # 获取所有磁力吸附在本随从上的机械
+        magnetic_cards = []
+        for buff in self.buffs:
+            if buff.tags.get(GameTag.MAGNETIC):
+                # 获取原始卡牌ID（通过扩展的磁力系统）
+                source_card_id = getattr(buff, 'source_card_id', None)
+                if source_card_id:
+                    magnetic_cards.append(source_card_id)
+
+        # 将这些卡牌移回手牌
+        for card_id in magnetic_cards:
+            yield Give(CONTROLLER, card_id)
 
 
 class YOG_509:
     """守护者的力量 - Keeper's Strength
-    Give a friendly minion +2/+2. Deal its Attack damage to all other minions.
+    使一个友方随从获得+2/+2。对所有其他随从造成等同于其攻击力的伤害。
     """
-    pass
+    def play(self):
+        # 使目标随从获得+2/+2
+        yield Buff(TARGET, "YOG_509e")
+        # 对所有其他随从造成等同于目标攻击力的伤害
+        target_atk = TARGET.atk
+        yield Hit(ALL_MINIONS - TARGET, target_atk)
+
+    requirements = {PlayReq.REQ_TARGET_TO_PLAY: 0, PlayReq.REQ_FRIENDLY_TARGET: 0, PlayReq.REQ_MINION_TARGET: 0}
+
+class YOG_509e:
+    """守护者的力量增强"""
+    tags = {GameTag.ATK: 2, GameTag.HEALTH: 2}
 
 
 class YOG_510:
     """报警安保机器人 - Alarmed Securitybot
-    [x]<b>Deathrattle:</b> Draw another minion. Set its Attack, Health, and Cost to 5.
+    <b>亡语：</b>抽一张其他随从牌。将其攻击力，生命值和法力值消耗变为5。
     """
-    pass
+    def deathrattle(self):
+        # 抽一张随从牌
+        drawn_cards = yield Draw(CONTROLLER)
+        if drawn_cards:
+            card = drawn_cards[0]
+            if card.type == CardType.MINION:
+                # 将其攻击力、生命值和法力值消耗变为5
+                yield Buff(card, "YOG_510e")
+
+class YOG_510e:
+    """安保增强"""
+    tags = {GameTag.ATK: SetTag.SET, GameTag.HEALTH: SetTag.SET, GameTag.COST: SetTag.SET}
+    atk = 5
+    health = 5
+    cost = 5
 
 
 # EPIC
 
 class TTN_853:
     """审判恶徒 - Judge Unworthy
-    Set an enemy minion's Health to 1, then deal $1 damage to all enemies.
+    将一个敌方随从的生命值变为1，然后对所有敌人造成$1点伤害。
     """
-    pass
+    def play(self):
+        # 将目标敌方随从的生命值变为1
+        yield SetAttr(TARGET, GameTag.HEALTH, 1)
+        # 对所有敌人造成1点伤害
+        yield Hit(ENEMY_CHARACTERS, 1)
+
+    requirements = {
+        PlayReq.REQ_TARGET_TO_PLAY: 0,
+        PlayReq.REQ_ENEMY_TARGET: 0,
+        PlayReq.REQ_MINION_TARGET: 0
+    }
 
 
 class TTN_856:
     """阿米图斯的信徒 - Disciple of Amitus
-    [x]At the end of your turn, summon a 2/2 Earthen that gains +2/+2 for each other Earthen you've summoned this game.
+    在你的回合结束时，召唤一个2/2的土灵。在本局对战中你每召唤过一个其他土灵，这个土灵获得+2/+2。
     """
-    pass
+    events = OwnTurnEnd(CONTROLLER).on(Summon(CONTROLLER, "TTN_900t"))
 
 
 # LEGENDARY
 
 class TTN_857:
     """提尔 - Tyr
-    <b>Battlecry:</b> Resurrect a 2, 3, and 4-Attack minion from your class.
+    <b>战吼：</b>复活攻击力为2，3和4点的你职业的随从各一个。
     """
-    pass
+    def play(self):
+        # 从墓地中找到攻击力为2、3、4的职业随从各一个
+        graveyard = self.controller.graveyard.filter(
+            type=CardType.MINION,
+            card_class=CardClass.PALADIN
+        )
+
+        # 分别找到攻击力为2、3、4的随从
+        atk_2 = None
+        atk_3 = None
+        atk_4 = None
+
+        for minion in graveyard:
+            if minion.atk == 2 and atk_2 is None:
+                atk_2 = minion
+            elif minion.atk == 3 and atk_3 is None:
+                atk_3 = minion
+            elif minion.atk == 4 and atk_4 is None:
+                atk_4 = minion
+
+        # 复活找到的随从
+        if atk_2:
+            yield Summon(CONTROLLER, atk_2.copy())
+        if atk_3:
+            yield Summon(CONTROLLER, atk_3.copy())
+        if atk_4:
+            yield Summon(CONTROLLER, atk_4.copy())
 
 
 class TTN_858:
     """维和者阿米图斯 - Amitus, the Peacekeeper
-    <b>Titan</b> <b>Taunt</b>. Your minions can't take more than 2 damage at a time.
+    <b>泰坦</b> <b>嘲讽</b>。你的随从每次受到伤害不会超过2点。
     """
-    # TODO: 实现 Titan 技能
-    # Titan 卡牌有 3 个特殊技能
-    pass
+    titan = True
+    taunt = True
 
+    # 被动效果：你的随从每次受到伤害不会超过2点
+    # 使用 Predamage 事件，当伤害大于2时，将伤害改为2
+    events = Predamage(FRIENDLY_MINIONS, lambda i: i > 2).on(
+        Predamage(Predamage.TARGET, 2)
+    )
+
+    def titan_ability_1(self):
+        """镇压 - Pacified
+        将所有敌方随从的攻击力和生命值变为2。
+        """
+        for minion in ENEMY_MINIONS.eval(self.game, self):
+            yield Buff(minion, "TTN_858t1e")
+
+    def titan_ability_2(self):
+        """强化 - Reinforced
+        抽2张随从牌。将其攻击力、生命值和法力值变为2。
+        """
+        drawn_cards = yield Draw(CONTROLLER, 2)
+        if drawn_cards:
+            for card in drawn_cards:
+                if card.type == CardType.MINION:
+                    yield Buff(card, "TTN_858t2e")
+
+    def titan_ability_3(self):
+        """增益 - Empowered
+        使你其他随从获得+2/+2。
+        """
+        yield Buff(FRIENDLY_MINIONS - SELF, "TTN_858t3e")
+
+class TTN_858t1e:
+    """镇压附魔 - 攻击力和生命值变为2"""
+    tags = {GameTag.ATK: SetTag.SET, GameTag.HEALTH: SetTag.SET}
+    atk = 2
+    health = 2
+
+class TTN_858t2e:
+    """强化附魔 - 攻击力、生命值和法力值变为2"""
+    tags = {GameTag.ATK: SetTag.SET, GameTag.HEALTH: SetTag.SET, GameTag.COST: SetTag.SET}
+    atk = 2
+    health = 2
+    cost = 2
+
+class TTN_858t3e:
+    """增益附魔 - +2/+2"""
+    tags = {GameTag.ATK: 2, GameTag.HEALTH: 2}
 

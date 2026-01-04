@@ -274,6 +274,7 @@ CARD_ATTRIBUTE_MAP = {
     enums.KILLED_THIS_TURN: "killed_this_turn",
     enums.DISCARDED: "discarded",
     enums.MURLOCS_COST_HEALTH: "murlocs_cost_health",
+    enums.MINIONS_COST_HEALTH: "minions_cost_health",
     enums.UNLIMITED_ATTACKS: "unlimited_attacks",
     enums.EXTRA_END_TURN_EFFECT: "extra_end_turn_effect",
     enums.PASSIVE_HERO_POWER: "passive_hero_power",

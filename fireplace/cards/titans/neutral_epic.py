@@ -7,45 +7,136 @@ from ..utils import *
 
 class TTN_083:
     """霍迪尔之子 - Son of Hodir
-    <b>Battlecry:</b> Shuffle four 8/8 Giants into your deck that are summoned when drawn.
+    <b>战吼：</b>将四张抽到时会被召唤的8/8的巨人洗入你的牌库。
     """
-    pass
+    play = Shuffle(CONTROLLER, "TTN_083t") * 4
+
+
+class TTN_083t:
+    """冰霜霸主 - Frost Lord
+    8/8 抽到时召唤
+    """
+    tags = {
+        GameTag.TOPDECK: True,
+    }
+
+    def drawn(self):
+        # 抽到时：移除自己（不进入手牌），然后召唤到场上
+        yield Remove(SELF)
+        yield Summon(CONTROLLER, ExactCopy(SELF))
 
 
 class TTN_724:
     """风暴巨人 - Storm Giant
-    <b>Taunt</b> <b>Forge:</b> Costs (2) less. Can be <b>Forged</b> endlessly.
+    <b>嘲讽</b>。<b>锻造：</b>法力值消耗减少（2）点。可以被无限<b>锻造</b>。
     """
-    # TODO: 实现 Forge 效果
-    forge = None  # Forge effect placeholder
-    pass
+    taunt = True
+    # 第一次锻造会自动变形为 TTN_724t（通过 Forge 机制的 Morph）
+
+
+class TTN_724t:
+    """风暴巨人 - Storm Giant (Forged)
+    已锻造版本，法力值消耗为6费，可继续无限锻造
+    """
+    taunt = True
+    tags = {
+        GameTag.COST: 6,  # 基础8费，锻造后6费
+    }
+    # 无限锻造：每次锻造给自己加减费 buff
+    forge = Buff(SELF, "TTN_724e")
+
+
+class TTN_724e:
+    """风暴之怒 - Storm's Fury
+    法力值消耗减少（2）点
+    """
+    tags = {
+        GameTag.COST: -2,
+        GameTag.CARDTYPE: CardType.ENCHANTMENT
+    }
 
 
 class TTN_734:
     """机甲跳蛙 - Mecha-Leaper
-    <b>Magnetic</b> <b>Deathrattle:</b> Give a friendly Mech +2/+2 and this <b>Deathrattle</b>.
+    <b>磁力</b>。<b>亡语：</b>使一个友方机械获得+2/+2以及此<b>亡语</b>。
     """
-    pass
+    magnetic = MAGNETIC("TTN_734e")
+
+    def deathrattle(self):
+        # 随机选择一个友方机械，给予+2/+2和此亡语
+        target = yield RANDOM(FRIENDLY_MINIONS + MECHANICAL)
+        if target:
+            yield Buff(target, "TTN_734e2")
+
+
+class TTN_734e:
+    """机甲跳蛙附魔 - Mecha-Leaper (Magnetic)"""
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.MAGNETIC: True,
+    }
+
+    def deathrattle(self):
+        # 磁力附魔的亡语效果
+        target = yield RANDOM(FRIENDLY_MINIONS + MECHANICAL)
+        if target:
+            yield Buff(target, "TTN_734e2")
+
+
+class TTN_734e2:
+    """机甲蛙跳 - Mecha Leap
+    +2/+2 和亡语效果
+    """
+    tags = {
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 2,
+        GameTag.CARDTYPE: CardType.ENCHANTMENT
+    }
+
+    def deathrattle(self):
+        # 递归传递亡语效果
+        target = yield RANDOM(FRIENDLY_MINIONS + MECHANICAL)
+        if target:
+            yield Buff(target, "TTN_734e2")
 
 
 class TTN_859:
     """命运切分者 - Fate Splitter
-    <b>Deathrattle:</b> Get a copy of the last card your opponent played.
+    <b>亡语：</b>获取你对手使用的上一张牌的一张复制。
     """
-    pass
+    def deathrattle(self):
+        # 获取对手使用的上一张牌
+        opponent = self.controller.opponent
+        if opponent.last_card_played:
+            yield Give(CONTROLLER, ExactCopy(opponent.last_card_played))
 
 
 class TTN_924:
     """锋鳞 - Razorscale
-    Cards can't cost less than (2).
+    卡牌的法力值消耗不能低于（2）点。
     """
-    pass
+    # 光环效果：所有手牌的法力值消耗至少为2点
+    auras = [Buff(ALL_HAND, "TTN_924e")]
+
+
+class TTN_924e:
+    """锋鳞之锐 - Razorscale's Edge
+    法力值消耗至少为（2）点
+    """
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT
+    }
+
+    def cost_mod(self):
+        # 如果卡牌费用小于2，则将其提升到2
+        if self.owner.cost < 2:
+            return 2 - self.owner.cost
+        return 0
 
 
 class YOG_515:
     """混沌之眼 - Eye of Chaos
-    <b>Battlecry:</b> Get two 1/1 Chaotic Tendrils.
+    <b>战吼：</b>获取两张1/1的混乱触须。
     """
-    pass
-
+    play = Give(CONTROLLER, "YOG_514") * 2
 

@@ -48,7 +48,7 @@ EMPTY_HAND = Count(FRIENDLY_HAND) == 0
 FULL_BOARD = Count(FRIENDLY_MINIONS) == 7
 FULL_HAND = Count(FRIENDLY_HAND) == Attr(CONTROLLER, GameTag.MAXHANDSIZE)
 HOLDING_DRAGON = Find(FRIENDLY_HAND + DRAGON - SELF)
-ELEMENTAL_PLAYED_LAST_TURN = Attr(CONTROLLER, enums.ELEMENTAL_PLAYED_LAST_TURN) > 0
+ELEMENTAL_PLAYED_LAST_TURN = Attr(CONTROLLER, "elemental_played_last_turn") > 0
 TIMES_SPELL_PLAYED_THIS_GAME = Count(CARDS_PLAYED_THIS_GAME + SPELL)
 TIMES_SECRETS_PLAYED_THIS_GAME = Count(CARDS_PLAYED_THIS_GAME + SECRET)
 MANA_SPENT_ON_SPELLS_THIS_GAME = lambda player: player.spent_mana_on_spells_this_game
@@ -167,10 +167,53 @@ JOUST_SPELL = JoustHelper(RANDOM(FRIENDLY_DECK + SPELL), RANDOM(ENEMY_DECK + SPE
 RECRUIT = Summon(CONTROLLER, RANDOM(FRIENDLY_DECK + MINION))
 Recruit = lambda selector: Summon(CONTROLLER, RANDOM(FRIENDLY_DECK + MINION + selector))
 
-MAGNETIC = lambda buff: Find(RIGHT_OF(SELF) + MECH) & (
-    Buff(RIGHT_OF(SELF), buff, atk=ATK(SELF), max_health=CURRENT_HEALTH(SELF)),
-    Remove(SELF),
-)
+def MAGNETIC(buff):
+    """
+    磁力机制：将随从吸附到右侧的目标随从上
+    
+    默认只能吸附在机械上。
+    如果卡牌设置了 MAGNETIC_TARGET_RACES 标签，则可以吸附在指定种族上。
+    
+    Args:
+        buff: 附魔ID
+    
+    Examples:
+        # 标准磁力（只能吸附在机械上）
+        magnetic = MAGNETIC("BOT_020e")
+        
+        # 特殊磁力（需要在tags中设置 MAGNETIC_TARGET_RACES）
+        tags = {
+            enums.MAGNETIC_TARGET_RACES: [Race.MECHANICAL, Race.BEAST]
+        }
+        magnetic = MAGNETIC("TTN_087e")
+    """
+    from . import enums
+    from hearthstone.enums import Race
+    
+    # 定义一个选择器函数，在运行时检查卡牌的 MAGNETIC_TARGET_RACES 标签
+    def magnetic_target_selector(source):
+        # 获取源卡牌允许的目标种族
+        allowed_races = source.tags.get(enums.MAGNETIC_TARGET_RACES, None)
+        
+        if allowed_races is None:
+            # 默认：只能吸附在机械上
+            return RIGHT_OF(source) + MECH
+        else:
+            # 自定义种族列表
+            # 构建种族过滤器
+            def race_filter(card):
+                return any(race in card.races for race in allowed_races)
+            
+            return RIGHT_OF(source).filter(race_filter)
+    
+    # 返回磁力动作
+    # 注意：这里需要使用延迟求值，因为需要在运行时获取 source
+    return lambda source: (
+        Find(magnetic_target_selector(source)) & (
+            Buff(RIGHT_OF(source), buff, atk=ATK(source), max_health=CURRENT_HEALTH(source), source_card_id=source.id),
+            Remove(source),
+        )
+    ).trigger(source)
 
 INVOKE = Invoke(MAIN_GALAKROND)
 

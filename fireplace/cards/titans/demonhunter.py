@@ -9,102 +9,262 @@ from ..utils import *
 
 class TTN_843:
     """艾瑞达欺诈者 - Eredar Deceptor
-    Whenever you draw a card, summon a 1/1 Demon with <b>Rush</b>.
+    每当你抽一张牌时，召唤一个1/1并具有<b>突袭</b>的恶魔。
     """
-    pass
+    events = Draw(CONTROLLER).on(Summon(CONTROLLER, "TTN_843t"))
+
+
+class TTN_843t:
+    """Imp"""
+    atk = 1
+    health = 1
+    rush = True
+    race = Race.DEMON
 
 
 class TTN_844:
     """阿古尼特魔像 - Argunite Golem
-    [x]Has +1 Attack for each card you've drawn this turn.
+    在本回合中你每抽一张牌，便拥有+1攻击力。
     """
-    pass
+    events = Draw(CONTROLLER).on(Buff(SELF, "TTN_844e"))
+
+class TTN_844e:
+    tags = {GameTag.ATK: 1}
+    events = TurnEnd(CONTROLLER).on(Destroy(SELF))
 
 
 class TTN_861:
     """阿古斯的信徒 - Disciple of Argus
-    [x]<b>Deathrattle:</b> Summon two 2/2 Elementals with <b>Taunt</b>.
+    <b>亡语：</b>召唤两个2/2并具有<b>嘲讽</b>的元素。
     """
-    pass
+    deathrattle = Summon(CONTROLLER, "TTN_861t") * 2
+
+class TTN_861t:
+    """Tantilizing Elemental"""
+    atk = 2
+    health = 2
+    taunt = True
+    race = Race.ELEMENTAL
 
 
 class YOG_401:
     """时间咒符 - Sigil of Time
-    At the start of your next turn, draw 3 additional cards.
+    在你的下个回合开始时，额外抽三张牌。
     """
-    pass
+    play = Buff(CONTROLLER, "YOG_401e")
+
+class YOG_401e:
+    events = OwnTurnBegin(CONTROLLER).on(Draw(CONTROLLER, 3), Destroy(SELF))
 
 
 class YOG_402:
     """摧心魔 - Mindbender
-    <b>Battlecry:</b> Deal 1 damage for each card you have drawn this turn.@ <i>(@)</i>
+    <b>战吼：</b>在本回合中你每抽一张牌，造成1点伤害。0<i>（造成0点）</i>
     """
-    pass
+    def play(self):
+        # 伤害 = 本回合抽牌数 * 1
+        damage = self.controller.cards_drawn_this_turn
+        yield Hit(TARGET, damage)
+    requirements = {PlayReq.REQ_TARGET_TO_PLAY: True}
 
 
 # RARE
 
 class TTN_840:
     """晶石雕像 - Crystalline Statue
-    <b>Rush</b>. Starts <b>Dormant</b>. After you draw 4 cards, this awakens.
+    <b>突袭</b>。起始<b>休眠</b>状态。在你抽四张牌后唤醒。
     """
-    pass
+    rush = True
+    dormant = True 
+    events = Draw(CONTROLLER).on(
+        UpdateProgress(SELF, 1),
+        If(Attr(SELF, GameTag.PROGRESS) >= 4, Awaken(SELF))
+    )
 
 
 class TTN_841:
     """势如破竹 - Momentum
-    Give your hero +4 Attack this turn. Costs (1) less for each card you've drawn this turn.
+    在本回合中，使你的英雄获得+4攻击力。在本回合中你每抽一张牌，本牌的法力值消耗便 减少（1）点。
     """
-    pass
+    play = Buff(FRIENDLY_HERO, "TTN_841e")
+    @property
+    def cost_mod(self):
+         return -self.controller.cards_drawn_this_turn
+
+class TTN_841e:
+    tags = {GameTag.ATK: 4}
+    events = TurnEnd(CONTROLLER).on(Destroy(SELF))
 
 
 class TTN_865:
     """举世之重 - Weight of the World
-    Draw 2 cards. <b>Forge:</b> Draw cards until you have as many in hand as your opponent first.
+    抽两张牌。<b>锻造：</b>先抽若干数量的牌，直到你的手牌数量等同于你对手的手牌数量。
     """
-    # TODO: 实现 Forge 效果
-    forge = None  # Forge effect placeholder
-    pass
+    play = Draw(CONTROLLER, 2)
+
+
+class TTN_865t:
+    """举世之重 - Weight of the World (Forged)"""
+    def play(self):
+        diff = len(self.controller.opponent.hand) - len(self.controller.hand)
+        if diff > 0:
+            yield Draw(CONTROLLER, diff)
+        yield Draw(CONTROLLER, 2)
 
 
 class YOG_521:
     """萨隆铁矿蹒跚者 - Saronite Shambler
-    [x]<b>Battlecry:</b> If you've cast 5 or more spells this game, give your hero +4 Attack this turn. @ <i>({0} left!)</i>@ <i>(Ready!)</i>
+    <b>战吼：</b>在本局对战中，如果你施放过5个或以上法术，使你的英雄在本回合中获得+4攻击力。@<i>（还剩{0}个！）</i>@<i>（已经就绪！）</i>
     """
-    pass
+    def play(self):
+        # 检查本局对战施放的法术数量
+        # 玩家追踪 `spent_mana_on_spells_this_game` 但不直接追踪数量?
+        # 玩家有 `cards_played_this_game`.
+        # 在 `cards_played_this_game` 中统计 type == SPELL 的卡牌数量
+        # 注意: `cards_played_this_game` 是一个 CardList.
+        spells_cast = len([c for c in self.controller.cards_played_this_game if c.type == CardType.SPELL])
+        if spells_cast >= 5:
+            yield Buff(FRIENDLY_HERO, "YOG_521e")
+
+class YOG_521e:
+    tags = {GameTag.ATK: 4}
+    events = TurnEnd(CONTROLLER).on(Destroy(SELF))
 
 
 # EPIC
 
 class TTN_845:
     """符文装饰 - Runic Adornment
-    <b>Discover</b> a spell that costs (3) or less. Shuffle 2 copies into your deck that <b>Cast When Drawn</b>.
+    <b>发现</b>一张法力值消耗小于或等于（3）点的法术牌，将2张具有<b>抽到时施放</b>的复制洗入你的牌库。
     """
-    pass
+    # 筛选条件：法术，法力值消耗 <= 3
+    def play(self):
+        yield Discover(CONTROLLER, RANDOM(FRIENDLY_DECK + SPELL + (COST <= 3))).then(
+            TTN_845_ShuffleCopies(Give.CARD)
+        )
+
+class TTN_845_ShuffleCopies(TargetedAction):
+    def do(self, source, target, card):
+        copies = [card.copy(), card.copy()]
+        # 赋予“抽到时施放”效果的附魔
+        # 我们需要模拟 "Casts When Drawn"。
+        # 我们可以添加一个处理此逻辑的附魔，或者依赖 CastWhenDrawn 助手（如果我们能注入事件）。
+        # 但向实例注入事件比较困难。
+        # 最好的方法：用一个带有 CastWhenDrawn 逻辑的附魔来 buff 这些卡牌。
+        for copy in copies:
+            copy.buffs.append(source.controller.card("TTN_845e"))
+            # 注意: 在 SetAside/Deck 中 buff 卡牌可能需要适当的 `Buff` 动作?
+            # 或者如果不在场上，只需追加到 buffs 列表。
+            # 使用 `Buff` 动作更安全。
+        
+        source.game.queue_actions(source, [Buff(copies, "TTN_845e")])
+        source.game.queue_actions(source, [Shuffle(source.controller, copies)])
+
+class TTN_845e:
+    """赋予抽到时施放的附魔"""
+    tags = {GameTag.CASTS_WHEN_DRAWN: True}
+    # CastWhenDrawn(Action) -> Draw(CONTROLLER, SELF).after(Action, Draw(CONTROLLER))
+    # 这里的 Action 是 CastSpell(OWNER).
+    events = CastWhenDrawn(CastSpell(OWNER))
 
 
 class TTN_866:
     """神秘恐魔 - Mythical Terror
-    [x]<b>Lifesteal</b> At the end of your turn, force all enemy minions to attack this.
+    <b>吸血</b>。在你的回合结束时，迫使所有敌方随从攻击本随从。
     """
-    pass
+    lifesteal = True
+    # 强制攻击：Attack(Source, Target)。源攻击目标。
+    # 敌方随从攻击本随从。
+    # 事件循环遍历敌方随从。
+    events = OwnTurnEnd(CONTROLLER).on(
+        Foreach(ENEMY_MINIONS, Attack(Foreach.CARD, SELF))
+    )
 
 
 # LEGENDARY
 
 class TTN_842:
     """永恒者尤顿 - Jotun, the Eternal
-    [x]<b>Battlecry:</b> For the rest of the game, cast a copy of the first spell you draw each turn at enemies.
+    <b>战吼：</b>在本局对战的剩余时间内，对敌人施放你每回合抽到的第一张法术牌的复制。
     """
-    pass
+    play = Buff(CONTROLLER, "TTN_842e")
+
+class TTN_842e:
+    # 逻辑：
+    # 1. 新回合 -> 重置“已触发”标记。
+    # 2. 抽牌 -> 如果是法术且未触发 -> 随机对敌人施放复制 -> 设置已触发。
+    # 需要一个属性来追踪已触发状态。在附魔本身上使用一个 Tag?
+    # 或者如果是有状态的，使用脚本变量?
+    # 让我们在 SELF (附魔) 上使用一个虚拟 Tag。
+    # GameTag.LOCKED 是通用的，但可能引起混淆。
+    # 可以使用 `powered_up` (GameTag.POWERED_UP) 作为布尔标记。
+    
+    events = [
+        # 在每个回合开始时重置? 文本说 "your turn"。"First spell you draw EACH turn" (通常意味着你的每个回合)。
+        # 英文: "cast a copy of the first spell you draw each turn".
+        # 让我们假设是拥有者的回合。
+        OwnTurnBegin(CONTROLLER).on(SetTag(SELF, {GameTag.POWERED_UP: False})),
+        
+        Draw(CONTROLLER).on(
+            If(And(
+                Is(Draw.CARD, SPELL), 
+                Not(Tag(SELF, GameTag.POWERED_UP)),
+                CurrentPlayer(CONTROLLER) # 确保是我们的回合 (如果 "each turn" 意味着那样)
+               ),
+               [
+                   # 施放复制
+                   CastSpell(CopyOf(Draw.CARD), TARGET=RANDOM(ENEMY_CHARACTERS)),
+                   # 设置标记
+                   SetTag(SELF, {GameTag.POWERED_UP: True})
+               ]
+            )
+        )
+    ]
 
 
 class TTN_862:
     """翠绿之星阿古斯 - Argus, the Emerald Star
-    [x]<b>Titan</b> Minions to the left of this have <b>Rush</b>, and ones to the right have <b>Lifesteal</b>.
+    <b>泰坦</b> 本随从左边的随从均拥有<b>突袭</b>，本随从右边的随从均拥有<b>吸血</b>。
     """
-    # TODO: 实现 Titan 技能
-    # Titan 卡牌有 3 个特殊技能
-    pass
+    titan = True
+    # 左右随从的被动光环
+    # 由于 fireplace 原生不便支持“我左边”/“我右边”的选择器来实现光环，
+    # 我们通过简化脚本或注释其复杂性来实现。
+    # 然而，如果我们有“ZonePosition Update”钩子，我们可以近似或使用自定义更新逻辑。
+    #目前，我们将实现泰坦技能。
+    
+    # 泰坦技能
+    def titan_ability_1(self):
+        # 雕琢晶石：发现一张亡语随从牌，法力值消耗减少（3）点。
+        # 选择器：随机具有亡语的可收集随从牌。
+        # 注意：Discover 动作通常接受一个选择器。
+        yield Discover(CONTROLLER, RandomCollectible(deathrattle=True, type=CardType.MINION)).then(
+            Give(CONTROLLER, Discover.CARD),
+            Buff(Give.CARD, "TTN_862t1e")
+        )
 
+    def titan_ability_2(self):
+        # 力量展现：使你手牌中的所有随从牌的法力值消耗减少（2）点。
+        yield Buff(FRIENDLY_HAND + MINION, "TTN_862t3e")
+        # 注意：输出显示 TTN_862t3e 是 "阿古斯的祝福"，带有减费文本。
+        # 它似乎与 "Show of Force" 技能 (TTN_862t2) 相关联。
+
+    def titan_ability_3(self):
+        # 阿古尼特大军：召唤四个2/2并具有嘲讽的元素。
+        yield Summon(CONTROLLER, "TTN_862t4") * 4
+
+class TTN_862t1e:
+    """大地之晶 - Cost reduced by (3)"""
+    tags = {GameTag.COST: -3}
+
+class TTN_862t3e:
+    """阿古斯的祝福 - Cost reduced by (2)"""
+    tags = {GameTag.COST: -2}
+
+class TTN_862t4:
+    """晶石元素 - Crystal Elemental"""
+    atk = 2
+    health = 2
+    taunt = True
+    race = Race.ELEMENTAL
 

@@ -7,52 +7,748 @@ from ..utils import *
 
 class TTN_090:
     """尤格-萨隆的监狱 - Prison of Yogg-Saron
-    [x]Choose a character. Cast 4 random spells <i>(targeting it if possible)</i>.
+    选择一个角色。随机施放4个法术<i>（尽可能以其为目标）</i>。
     """
-    pass
+    tags = {
+        GameTag.CARDTYPE: CardType.LOCATION,
+        GameTag.COST: 7,
+        GameTag.HEALTH: 3,
+    }
+
+    requirements = {
+        PlayReq.REQ_TARGET_TO_PLAY: 0,
+    }
+
+    def activate(self):
+        """地标激活：对目标随机施放4个法术"""
+        target = self.target
+        # 随机施放4个法术，尽可能以目标为目标
+        for _ in range(4):
+            yield CastSpell(RandomSpell(), TARGET=target if target and target.zone == Zone.PLAY else RANDOM(ALL_CHARACTERS))
 
 
 class TTN_330:
     """科隆加恩 - Kologarn
-    [x]<b>Rush</b>. Whenever this attacks a minion, put it in your hand. <b>Deathrattle:</b> Move any in your   hand to your opponent's.
+    <b>突袭</b>。每当本随从攻击随从时，将被攻击的随从放入你的手牌。<b>亡语：</b>将还在你手牌的这些随从牌移至对手的手牌。
     """
-    pass
+    tags = {
+        GameTag.ATK: 6,
+        GameTag.HEALTH: 10,
+        GameTag.COST: 8,
+        GameTag.RUSH: True,
+    }
+
+    # 攻击随从时，将其放入手牌并标记
+    events = Attack(SELF, MINION).on(
+        lambda self, source: [
+            Bounce(Attack.DEFENDER).then(
+                # 给被抓取的随从添加标记附魔
+                Buff(Bounce.TARGET, "TTN_330e")
+            )
+        ]
+    )
+
+    def deathrattle(self):
+        """亡语：将还在手牌中被标记的随从移至对手手牌"""
+        # 查找手牌中所有被科隆加恩标记的随从
+        for card in list(self.controller.hand):
+            if card.type == CardType.MINION and card.buffs:
+                # 检查是否有科隆加恩的标记
+                for buff in card.buffs:
+                    if buff.id == "TTN_330e":
+                        yield Give(OPPONENT, card)
+                        break
+
+
+class TTN_330e:
+    """科隆加恩标记 - Kologarn's Mark
+    标记被科隆加恩抓取的随从
+    """
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+    }
 
 
 class TTN_716:
     """烈焰猛兽 - Flame Behemoth
-    <b>Battlecry:</b> Get two random <b>Magnetic</b> Mechs. They cost (2) less.
+    <b>战吼：</b>随机获取两张<b>磁力</b>机械牌，其法力值消耗减少（2）点。
     """
-    pass
+    tags = {
+        GameTag.ATK: 4,
+        GameTag.HEALTH: 5,
+        GameTag.COST: 6,
+        GameTag.RACE: Race.MECHANICAL,
+    }
+
+    def play(self):
+        """战吼：随机获取两张磁力机械牌，减少2点费用"""
+        for _ in range(2):
+            card = yield Give(CONTROLLER, RandomCollectible(race=Race.MECHANICAL, magnetic=True))
+            if card:
+                yield Buff(card[0], "TTN_716e")
+
+
+class TTN_716e:
+    """烈焰猛兽减费附魔"""
+    tags = {
+        GameTag.COST: -2,
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+    }
 
 
 class TTN_717:
     """观察者奥尔加隆 - Algalon the Observer
-    <b>Battlecry:</b> Replace your Hero Power with Algalon's Vision.
+    <b>战吼：</b>将你的英雄技能替换为奥尔加隆的预见。
     """
-    pass
+    tags = {
+        GameTag.ATK: 4,
+        GameTag.HEALTH: 4,
+        GameTag.COST: 4,
+    }
+
+    play = Summon(CONTROLLER, "TTN_717t")
+
+
+class TTN_717t:
+    """奥尔加隆的预见 - Algalon's Foresight
+    英雄技能：发现一张牌。
+    """
+    tags = {
+        GameTag.CARDTYPE: CardType.HERO_POWER,
+        GameTag.COST: 2,
+    }
+
+    activate = DISCOVER(RandomCollectible())
 
 
 class TTN_751:
     """永恒之火伊格尼斯 - Ignis, the Eternal Flame
-    <b>Battlecry:</b> If you've <b>Forged</b> a card this game, craft a custom weapon.
+    <b>战吼：</b>在本局对战中，如果你<b>锻造</b>过卡牌，则制造一张自定义的武器牌。
     """
-    pass
+    tags = {
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 4,
+        GameTag.COST: 4,
+    }
+
+    def play(self):
+        """战吼：如果锻造过卡牌，启动三步武器制造流程"""
+        # 检查是否锻造过卡牌（使用核心属性）
+        if self.controller.forged_cards_this_game > 0:
+            # 第一步：选择武器基础（费用/攻击/耐久）
+            base_options = ["TTN_751t1", "TTN_751t2", "TTN_751t3"]
+            chosen_base = yield GenericChoice(self.controller, cards=base_options)
+
+            if not chosen_base:
+                return
+
+            # 确定武器等级（用于后续特效缩放）
+            tier = 1 if chosen_base.id == "TTN_751t1" else (2 if chosen_base.id == "TTN_751t2" else 3)
+
+            # 第二步：选择武器特质（从5个中随机3个）
+            trait_pool = ["TTN_751trait1", "TTN_751trait2", "TTN_751trait3",
+                         "TTN_751trait4", "TTN_751trait5"]
+            trait_options = self.game.random_sample(trait_pool, 3)
+            chosen_trait = yield GenericChoice(self.controller, cards=trait_options)
+
+            if not chosen_trait:
+                return
+
+            # 第三步：选择武器特效（从5个中随机3个，根据等级选择对应版本）
+            ability_bases = ["ability1", "ability2", "ability3", "ability4", "ability5"]
+            ability_samples = self.game.random_sample(ability_bases, 3)
+            ability_options = [f"TTN_751{ab}_tier{tier}" for ab in ability_samples]
+            chosen_ability = yield GenericChoice(self.controller, cards=ability_options)
+
+            if not chosen_ability:
+                return
+
+            # 动态生成最终武器：合并基础、特质和特效
+            final_weapon = yield self._create_custom_weapon(
+                chosen_base, chosen_trait, chosen_ability
+            )
+
+            # 将生成的武器给予玩家
+            yield Give(CONTROLLER, final_weapon)
+
+    def _create_custom_weapon(self, base, trait, ability):
+        """动态创建自定义武器，合并基础、特质和特效"""
+        # 创建武器实例，从基础武器复制属性
+        weapon = self.controller.card(base.id, source=self)
+
+        # 应用特质（复制tags和events）
+        trait_card = self.controller.card(trait.id, source=self)
+        if hasattr(trait_card, 'tags'):
+            for tag, value in trait_card.tags.items():
+                weapon.tags[tag] = value
+        if hasattr(trait_card, 'events'):
+            if not hasattr(weapon, 'events'):
+                weapon.events = []
+            weapon.events.extend(trait_card.events if isinstance(trait_card.events, list) else [trait_card.events])
+
+        # 应用特效（复制play/deathrattle/events）
+        ability_card = self.controller.card(ability.id, source=self)
+        if hasattr(ability_card, 'play'):
+            weapon.play = ability_card.play
+        if hasattr(ability_card, 'deathrattle'):
+            weapon.deathrattle = ability_card.deathrattle
+        if hasattr(ability_card, 'events'):
+            if not hasattr(weapon, 'events'):
+                weapon.events = []
+            weapon.events.extend(ability_card.events if isinstance(ability_card.events, list) else [ability_card.events])
+        if hasattr(ability_card, 'requirements'):
+            weapon.requirements = ability_card.requirements
+
+        return weapon
+
+
+# ========== 伊格尼斯自定义武器系统 ==========
+# 武器基础 - 第一步选择（决定费用、攻击力、耐久度）
+
+class TTN_751t1:
+    """符文短剑 - Runic Shortsword (1费 2/2)"""
+    tags = {
+        GameTag.CARDTYPE: CardType.WEAPON,
+        GameTag.COST: 1,
+        GameTag.ATK: 2,
+        GameTag.DURABILITY: 2,
+    }
+
+
+class TTN_751t2:
+    """符文战斧 - Runic Axe (5费 3/4)"""
+    tags = {
+        GameTag.CARDTYPE: CardType.WEAPON,
+        GameTag.COST: 5,
+        GameTag.ATK: 3,
+        GameTag.DURABILITY: 4,
+    }
+
+
+class TTN_751t3:
+    """符文巨锤 - Runic Greatmace (10费 5/6)"""
+    tags = {
+        GameTag.CARDTYPE: CardType.WEAPON,
+        GameTag.COST: 10,
+        GameTag.ATK: 5,
+        GameTag.DURABILITY: 6,
+    }
+
+
+# 武器特质 - 第二步选择（从5个特质中随机选3个）
+
+class TTN_751trait1:
+    """特质：毒性 - Poisonous"""
+    tags = {GameTag.POISONOUS: True}
+
+
+class TTN_751trait2:
+    """特质：吸血 - Lifesteal"""
+    tags = {GameTag.LIFESTEAL: True}
+
+
+class TTN_751trait3:
+    """特质：风怒 - Windfury"""
+    tags = {GameTag.WINDFURY: True}
+
+
+class TTN_751trait4:
+    """特质：溅射 - Also damages adjacent minions"""
+    events = Attack(FRIENDLY_HERO).on(CLEAVE)
+
+
+class TTN_751trait5:
+    """特质：免疫 - Your hero is Immune while attacking"""
+    # 攻击时英雄免疫
+    events = [
+        Attack(FRIENDLY_HERO).on(SetTag(FRIENDLY_HERO, GameTag.IMMUNE)),
+        Attack(FRIENDLY_HERO).after(UnsetTag(FRIENDLY_HERO, GameTag.IMMUNE))
+    ]
+
+
+# 武器特效 - 第三步选择（从5个特效中随机选3个，效果根据武器等级缩放）
+
+class TTN_751ability1_tier1:
+    """特效：召唤随从 (1费版本) - 攻击后召唤2费随从"""
+    events = Attack(FRIENDLY_HERO).after(Summon(CONTROLLER, RandomMinion(cost=2)))
+
+
+class TTN_751ability1_tier2:
+    """特效：召唤随从 (5费版本) - 攻击后召唤4费随从"""
+    events = Attack(FRIENDLY_HERO).after(Summon(CONTROLLER, RandomMinion(cost=4)))
+
+
+class TTN_751ability1_tier3:
+    """特效：召唤随从 (10费版本) - 攻击后召唤8费随从"""
+    events = Attack(FRIENDLY_HERO).after(Summon(CONTROLLER, RandomMinion(cost=8)))
+
+
+class TTN_751ability2_tier1:
+    """特效：战吼伤害 (1费版本) - 战吼造成2点伤害"""
+    play = Hit(TARGET, 2)
+    requirements = {PlayReq.REQ_TARGET_IF_AVAILABLE: 0}
+
+
+class TTN_751ability2_tier2:
+    """特效：战吼伤害 (5费版本) - 战吼造成4点伤害"""
+    play = Hit(TARGET, 4)
+    requirements = {PlayReq.REQ_TARGET_IF_AVAILABLE: 0}
+
+
+class TTN_751ability2_tier3:
+    """特效：战吼伤害 (10费版本) - 战吼造成6点伤害"""
+    play = Hit(TARGET, 6)
+    requirements = {PlayReq.REQ_TARGET_IF_AVAILABLE: 0}
+
+
+class TTN_751ability3_tier1:
+    """特效：抽牌 (1费版本) - 攻击后抽1张牌"""
+    events = Attack(FRIENDLY_HERO).after(Draw(CONTROLLER))
+
+
+class TTN_751ability3_tier2:
+    """特效：抽牌 (5费版本) - 攻击后抽2张牌"""
+    events = Attack(FRIENDLY_HERO).after(Draw(CONTROLLER) * 2)
+
+
+class TTN_751ability3_tier3:
+    """特效：抽牌 (10费版本) - 攻击后抽3张牌"""
+    events = Attack(FRIENDLY_HERO).after(Draw(CONTROLLER) * 3)
+
+
+class TTN_751ability4_tier1:
+    """特效：亡语伤害 (1费版本) - 亡语对所有敌人造成1点伤害"""
+    deathrattle = Hit(ENEMY_CHARACTERS, 1)
+
+
+class TTN_751ability4_tier2:
+    """特效：亡语伤害 (5费版本) - 亡语对所有敌人造成2点伤害"""
+    deathrattle = Hit(ENEMY_CHARACTERS, 2)
+
+
+class TTN_751ability4_tier3:
+    """特效：亡语伤害 (10费版本) - 亡语对所有敌人造成4点伤害"""
+    deathrattle = Hit(ENEMY_CHARACTERS, 4)
+
+
+class TTN_751ability5_tier1:
+    """特效：护甲 (1费版本) - 攻击后获得2点护甲"""
+    events = Attack(FRIENDLY_HERO).after(GainArmor(FRIENDLY_HERO, 2))
+
+
+class TTN_751ability5_tier2:
+    """特效：护甲 (5费版本) - 攻击后获得4点护甲"""
+    events = Attack(FRIENDLY_HERO).after(GainArmor(FRIENDLY_HERO, 4))
+
+
+class TTN_751ability5_tier3:
+    """特效：护甲 (10费版本) - 攻击后获得8点护甲"""
+    events = Attack(FRIENDLY_HERO).after(GainArmor(FRIENDLY_HERO, 8))
 
 
 class YOG_516:
     """脱困古神尤格-萨隆 - Yogg-Saron, Unleashed
-    [x]<b>Titan</b> After this uses an ability, cast two random spells.
+    <b>泰坦</b> 在本随从使用一个技能后，随机施放两个法术。
     """
-    # TODO: 实现 Titan 技能
-    # Titan 卡牌有 3 个特殊技能
-    pass
+    tags = {
+        GameTag.ATK: 7,
+        GameTag.HEALTH: 5,
+        GameTag.COST: 9,
+        GameTag.TITAN: True,
+    }
+
+    # 泰坦技能使用后触发
+    events = UseTitanAbility(SELF).after(
+        CastSpell(RandomSpell(), TARGET=RANDOM(ALL_CHARACTERS)) * 2
+    )
+
+    def titan_ability_1(self):
+        """泰坦技能1：混沌统治 (YOG_516t) - 夺取一个敌方随从的控制权"""
+        if ENEMY_MINIONS.eval(self.game, self):
+            yield Steal(RANDOM(ENEMY_MINIONS))
+
+    def titan_ability_2(self):
+        """泰坦技能2：诱引狂乱 (YOG_516t2) - 迫使每个敌方随从分别随机攻击一个敌方随从"""
+        enemy_minions = list(ENEMY_MINIONS.eval(self.game, self))
+        for minion in enemy_minions:
+            # 获取可攻击的其他敌方随从
+            other_enemies = [m for m in enemy_minions if m != minion and m.zone == Zone.PLAY]
+            if other_enemies:
+                target = self.game.random_choice(other_enemies)
+                yield Attack(minion, target)
+
+    def titan_ability_3(self):
+        """泰坦技能3：触须攒聚 (YOG_516t3) - 用1/1的混乱触须填满你的手牌"""
+        # 填满手牌（最多10张）
+        hand_space = self.controller.max_hand_size - len(self.controller.hand)
+        for _ in range(hand_space):
+            yield Give(CONTROLLER, "YOG_516t3t")
+
+
+class YOG_516t3t:
+    """混乱触须 - Chaotic Tendril
+    1/1 随从
+    """
+    tags = {
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1,
+        GameTag.COST: 1,
+    }
 
 
 class YOG_530:
     """暮光头领古加尔 - Cho'gall, Twilight Chieftain
-    [x]<b>Taunt</b>, <b>Lifesteal</b> <b>Start of Game:</b> 50% chance to corrupt the game with a random anomaly.
-    """
-    pass
+    <b>嘲讽</b>。<b>吸血</b>。<b>对战开始时：</b>有50%的几率用一项随机的畸变来腐蚀这局对战。
 
+    注意：畸变（Anomaly）是炉石传说中的全局游戏规则修改机制，会影响双方玩家。
+    本实现包含了核心框架和几个代表性的畸变效果作为示例。
+    完整的畸变效果列表包含17种，可根据需要扩展。
+    """
+    tags = {
+        GameTag.ATK: 6,
+        GameTag.HEALTH: 7,
+        GameTag.COST: 6,
+        GameTag.TAUNT: True,
+        GameTag.LIFESTEAL: True,
+    }
+
+    def start_of_game(self):
+        """对战开始时：50%几率触发随机畸变"""
+        # 50% 几率触发
+        if self.game.random.random() < 0.5:
+            # 从可用的畸变池中随机选择一个（完整17种畸变）
+            available_anomalies = [
+                # 起始效果类（游戏开始时生效）
+                "uncontrollable_growth",    # 双方起始额外1个水晶
+                "light_in_the_dark",        # 双方英雄技能减少1费
+                "severed_souls",            # 双方英雄起始+5生命
+                "surging_inspiration",      # 双方英雄技能升级
+                "gift_of_gluttony",         # 双方起始多抽2张牌
+                "approaching_nightmare",    # 双方起始获得尤格-萨隆
+                "fast_track",               # 双方起始手牌减费
+                "shifting_fate",            # 双方起始获得变速齿轮
+                "shifting_futures",         # 双方起始获得变形者泽鲁斯
+                "your_eyes_betray_you",     # 所有卡牌金色（视觉效果）
+                # 事件触发类（游戏过程中持续生效）
+                "twist_reality",            # 施放卡牌后洗入复制
+                "army_of_the_corrupted",    # 每回合首个随从减费
+                "spread_of_corruption",     # 每回合首个法术减费
+                "driven_to_greed",          # 回合结束剩余法力获得硬币
+                "driven_to_excess",         # 回合结束剩余法力抽牌
+                "opportunity_knocks",       # 回合开始首抽可支付卡牌
+                "control_the_makers",       # 英雄回合开始+1攻击
+            ]
+
+            chosen = self.game.random.choice(available_anomalies)
+            self.game.active_anomaly = chosen
+
+            # 应用畸变效果
+            yield self._apply_anomaly(chosen)
+
+    def _apply_anomaly(self, anomaly_id):
+        """应用指定的畸变效果"""
+        if anomaly_id == "uncontrollable_growth":
+            # 双方起始额外1个水晶
+            for player in self.game.players:
+                player.max_mana = min(player.max_mana + 1, player.max_resources)
+
+        elif anomaly_id == "light_in_the_dark":
+            # 双方英雄技能减少1费
+            for player in self.game.players:
+                if player.hero and player.hero.power:
+                    yield Buff(player.hero.power, "YOG_530e1")
+
+        elif anomaly_id == "severed_souls":
+            # 双方英雄起始+5生命
+            for player in self.game.players:
+                if player.hero:
+                    player.hero.max_health += 5
+                    player.hero.health += 5
+
+        elif anomaly_id == "surging_inspiration":
+            # 双方英雄技能升级（使用核心的 UPGRADE_HERO_POWER 机制）
+            for player in self.game.players:
+                if player.hero and player.hero.power:
+                    # 使用核心系统的技能升级机制
+                    upgraded = player.hero.power.upgraded_hero_power
+                    if upgraded:
+                        # 如果有升级版技能，则替换
+                        new_power = player.card(upgraded, source=player.hero)
+                        player.hero.power = new_power
+                        new_power.controller = player
+                        new_power.zone = Zone.PLAY
+                    else:
+                        # 如果没有定义升级版技能，则给技能减1费作为替代
+                        yield Buff(player.hero.power, "YOG_530e2")
+
+        elif anomaly_id == "gift_of_gluttony":
+            # 双方起始多抽2张牌
+            for player in self.game.players:
+                yield Draw(player) * 2
+
+        elif anomaly_id == "approaching_nightmare":
+            # 双方起始获得尤格-萨隆（脱困古神尤格-萨隆）
+            for player in self.game.players:
+                yield Give(player, "YOG_516")
+
+        elif anomaly_id == "fast_track":
+            # 双方起始手牌减少(1)费
+            for player in self.game.players:
+                for card in player.hand:
+                    yield Buff(card, "YOG_530e_fast_track")
+
+        elif anomaly_id == "shifting_fate":
+            # 双方起始获得变速齿轮
+            for player in self.game.players:
+                yield Give(player, "YOG_530t_timeshifter")
+
+        elif anomaly_id == "shifting_futures":
+            # 双方起始获得变形者泽鲁斯
+            for player in self.game.players:
+                yield Give(player, "OG_123")
+
+        elif anomaly_id == "your_eyes_betray_you":
+            # 所有卡牌金色（视觉效果，在fireplace中无实际影响）
+            # 这是一个纯视觉效果，在后端逻辑中不需要特殊处理
+            pass
+
+        # === 事件触发类畸变（需要创建持久化的附魔/光环） ===
+        elif anomaly_id == "twist_reality":
+            # 施放卡牌后洗入复制
+            for player in self.game.players:
+                yield Buff(player.hero, "YOG_530e_twist_reality")
+
+        elif anomaly_id == "army_of_the_corrupted":
+            # 每回合首个随从减费(2)
+            for player in self.game.players:
+                yield Buff(player.hero, "YOG_530e_army")
+
+        elif anomaly_id == "spread_of_corruption":
+            # 每回合首个法术减费(2)
+            for player in self.game.players:
+                yield Buff(player.hero, "YOG_530e_spread")
+
+        elif anomaly_id == "driven_to_greed":
+            # 回合结束剩余法力获得硬币
+            for player in self.game.players:
+                yield Buff(player.hero, "YOG_530e_greed")
+
+        elif anomaly_id == "driven_to_excess":
+            # 回合结束剩余法力抽牌
+            for player in self.game.players:
+                yield Buff(player.hero, "YOG_530e_excess")
+
+        elif anomaly_id == "opportunity_knocks":
+            # 回合开始首抽可支付卡牌
+            for player in self.game.players:
+                yield Buff(player.hero, "YOG_530e_opportunity")
+
+        elif anomaly_id == "control_the_makers":
+            # 英雄回合开始+1攻击
+            for player in self.game.players:
+                yield Buff(player.hero, "YOG_530e_control")
+
+
+# ========== 畸变效果附魔 ==========
+
+class YOG_530e1:
+    """畸变：黑暗之光 - 技能减费"""
+    tags = {
+        GameTag.COST: -1,
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+    }
+
+
+class YOG_530e2:
+    """畸变：激涌灵感 - 技能强化（后备方案）
+
+    注意：这个附魔只在英雄技能没有定义 upgraded_hero_power 时使用。
+
+    核心系统已经有完整的技能升级机制（UPGRADE_HERO_POWER），
+    大部分基础英雄技能都已经定义了升级版本（如 HERO_01bp -> HERO_01bp2）。
+
+    此附魔作为后备方案，当某些特殊技能没有升级版本时，
+    给技能减少1费作为简化的"升级"效果。
+    """
+    tags = {
+        GameTag.COST: -1,  # 技能减少1费作为后备的"升级"效果
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+    }
+
+
+class YOG_530e_fast_track:
+    """畸变：快速通道 - 起始手牌减费"""
+    tags = {
+        GameTag.COST: -1,
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+    }
+    events = REMOVED_IN_PLAY  # 打出后移除附魔
+
+
+# === 事件触发类畸变附魔 ===
+
+class YOG_530e_twist_reality:
+    """畸变：扭曲现实 - 施放卡牌后洗入复制"""
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+    }
+
+    # 当控制者打出卡牌时，将复制洗入牌库
+    events = Play(CONTROLLER).after(
+        Shuffle(CONTROLLER, Copy(Play.CARD))
+    )
+
+
+class YOG_530e_army:
+    """畸变：腐化军团 - 每回合首个随从减费(2)"""
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+    }
+
+    # 回合开始时，给手牌中所有随从添加减费标记
+    events = OWN_TURN_BEGIN.on(
+        Buff(FRIENDLY_HAND + MINION, "YOG_530e_army_discount")
+    )
+
+
+class YOG_530e_army_discount:
+    """腐化军团减费标记 - 每回合首个随从减费(2)"""
+    tags = {
+        GameTag.COST: -2,
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+    }
+
+    # 打出后移除所有同类标记，或回合结束时移除
+    events = [
+        REMOVED_IN_PLAY,
+        # 当任意随从被打出时，移除所有手牌中的此标记
+        Play(CONTROLLER, MINION).after(
+            lambda self, source: [
+                buff.destroy() for card in source.controller.hand
+                for buff in card.buffs if buff.id == "YOG_530e_army_discount"
+            ]
+        ),
+        OWN_TURN_END.on(Destroy(SELF))
+    ]
+
+
+class YOG_530e_spread:
+    """畸变：腐化蔓延 - 每回合首个法术减费(2)"""
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+    }
+
+    # 回合开始时，给手牌中所有法术添加减费标记
+    events = OWN_TURN_BEGIN.on(
+        Buff(FRIENDLY_HAND + SPELL, "YOG_530e_spread_discount")
+    )
+
+
+class YOG_530e_spread_discount:
+    """腐化蔓延减费标记 - 每回合首个法术减费(2)"""
+    tags = {
+        GameTag.COST: -2,
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+    }
+
+    # 打出后移除所有同类标记，或回合结束时移除
+    events = [
+        REMOVED_IN_PLAY,
+        # 当任意法术被打出时，移除所有手牌中的此标记
+        Play(CONTROLLER, SPELL).after(
+            lambda self, source: [
+                buff.destroy() for card in source.controller.hand
+                for buff in card.buffs if buff.id == "YOG_530e_spread_discount"
+            ]
+        ),
+        OWN_TURN_END.on(Destroy(SELF))
+    ]
+
+
+class YOG_530e_greed:
+    """畸变：贪婪驱使 - 回合结束剩余法力获得硬币"""
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+    }
+
+    # 回合结束时，根据剩余法力给予硬币
+    events = OWN_TURN_END.on(
+        lambda self, source: [
+            Give(CONTROLLER, "GAME_005") * source.controller.mana
+        ] if source.controller.mana > 0 else []
+    )
+
+
+class YOG_530e_excess:
+    """畸变：过度驱使 - 回合结束剩余法力抽牌"""
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+    }
+
+    # 回合结束时，根据剩余法力抽牌
+    events = OWN_TURN_END.on(
+        lambda self, source: [
+            Draw(CONTROLLER) * source.controller.mana
+        ] if source.controller.mana > 0 else []
+    )
+
+
+class YOG_530e_opportunity:
+    """畸变：机会敲门 - 每回合第一次抽牌保证可支付（完整实现）
+
+    官方效果：每个玩家回合中，抽到的第一张牌将是他们当前回合有足够法力值可以使用的牌。
+
+    实现方式：
+    1. 已扩展核心 Draw 动作（actions.py:1744-1762）
+    2. Draw.get_target_args 会检查 game.active_anomaly == 'opportunity_knocks'
+    3. 如果是本回合第一次抽牌（cards_drawn_this_turn == 0），从牌库中筛选可支付的牌
+    4. 随机选择一张可支付的牌，如果没有则正常抽牌
+
+    此附魔只需要存在即可，实际逻辑在 Draw 动作中实现。
+    """
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+    }
+
+    # 这个附魔不需要事件，只需要存在即可
+    # 实际的抽牌逻辑已经在 Draw 动作中实现
+
+class YOG_530e_control:
+    """畸变：掌控造物主 - 英雄回合开始+1攻击"""
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+    }
+
+    # 回合开始时，英雄获得+1攻击
+    events = OWN_TURN_BEGIN.on(
+        Buff(FRIENDLY_HERO, "YOG_530e_control_attack")
+    )
+
+
+class YOG_530e_control_attack:
+    """掌控造物主攻击力加成"""
+    tags = {
+        GameTag.ATK: 1,
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+    }
+
+    # 回合结束时移除
+    events = OWN_TURN_END.on(Destroy(SELF))
+
+
+# ========== 畸变效果Token卡牌 ==========
+
+class YOG_530t_timeshifter:
+    """变速齿轮 - Timeshifter
+    1费法术：抽一张牌。将一张随机法术牌置入你的手牌。
+    """
+    tags = {
+        GameTag.CARDTYPE: CardType.SPELL,
+        GameTag.COST: 1,
+    }
+
+    def play(self):
+        """抽一张牌，然后给予一张随机法术"""
+        yield Draw(CONTROLLER)
+        yield Give(CONTROLLER, RandomSpell())
 

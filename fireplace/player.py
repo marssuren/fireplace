@@ -47,6 +47,7 @@ class Player(Entity, TargetableByAuras):
     heropower_damage_adjustment = slot_property("heropower_damage", sum)
     spells_cost_health = slot_property("spells_cost_health")
     murlocs_cost_health = slot_property("murlocs_cost_health")
+    minions_cost_health = slot_property("minions_cost_health")
     type = CardType.PLAYER
 
     def __init__(self, name, deck: list[str], hero: str, is_standard=True):
@@ -137,6 +138,9 @@ class Player(Entity, TargetableByAuras):
         # 追踪本回合受到的伤害（用于"暗影之刃飞刀手"等卡牌）
         self.damage_taken_this_turn = 0
         
+        # 追踪在自己回合受到的伤害（本局游戏累计,用于TTN_462被禁锢的恐魔等卡牌）
+        self.damage_taken_on_own_turn_this_game = 0
+        
         # 追踪本回合对敌方英雄造成的伤害（用于"邪恶的厨师"等卡牌）
         self.hero_damage_this_turn = 0
 
@@ -173,12 +177,24 @@ class Player(Entity, TargetableByAuras):
         # 追踪本局游戏施放的套牌之外的法术（用于RLK_803等卡牌）
         self.spells_cast_not_from_deck = []  # 存储施放过的套牌外法术的ID
 
+        # 追踪本局游戏使用的套牌之外的随从（用于TTN_481莱登等卡牌）
+        self.minions_played_from_outside_deck = []  # 存储使用过的套牌外随从的ID
+
         # 下一份药剂减费机制（用于RLK_570食尸鬼炼金师等卡牌）
         self.next_potion_cost_zero = False  # 标记下一份药剂费用为0
         
         # 追踪本回合获得的护甲值和攻击力（用于"ETC_386 佐克·雾鼻"等卡牌）
         self.armor_gained_this_turn = 0
         self.attack_gained_this_turn = 0
+
+        # 追踪本局对战洗入对手牌库瘟疫
+        self.plagues_shuffled_into_enemy = 0
+
+        # 追踪本局对战锻造的卡牌数量（用于TTN_751伊格尼斯等卡牌）- 泰坦诸神（2023年8月）
+        self.forged_cards_this_game = 0
+
+        # 追踪本局对战召唤的土灵数量（用于TTN_900石心之王等卡牌）- 泰坦诸神（2023年8月）
+        self.earthen_summoned_this_game = 0
 
 
 
@@ -428,6 +444,10 @@ class Player(Entity, TargetableByAuras):
         amount <<= self.controller.hero_power_double
         return amount
 
+    @property
+    def num_spells_played_this_game(self):
+        return len([card for card in self.cards_played_this_game if card.type == CardType.SPELL])
+
     def discard_hand(self):
         self.log("%r discards their entire hand!", self)
         # iterate the list in reverse so we don't skip over cards in the process
@@ -444,6 +464,9 @@ class Player(Entity, TargetableByAuras):
         if self.murlocs_cost_health:
             if card.type == CardType.MINION and Race.MURLOC in card.races:
                 return self.hero.health > card.cost
+        if self.minions_cost_health:
+            if card.type == CardType.MINION:
+                return self.hero.health > card.cost
         return self.mana >= card.cost
 
     def pay_cost(self, source: Entity, amount: int) -> int:
@@ -458,6 +481,11 @@ class Player(Entity, TargetableByAuras):
         if self.murlocs_cost_health:
             if source.type == CardType.MINION and Race.MURLOC in source.races:
                 self.log("%s murlocs cost %i health", self, amount)
+                self.game.queue_actions(self, [Hit(self.hero, amount)])
+                return amount
+        if self.minions_cost_health:
+            if source.type == CardType.MINION:
+                self.log("%s minions cost %i health", self, amount)
                 self.game.queue_actions(self, [Hit(self.hero, amount)])
                 return amount
         if source.type == CardType.SPELL:

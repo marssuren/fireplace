@@ -35,6 +35,9 @@ FORGE_ACTIVE = -37  # 卡牌是否可以被锻造
 FORGED = -38  # 卡牌是否已被锻造
 TITAN_ABILITY_USED = -39  # 泰坦已使用的技能次数
 TITAN_ABILITY_COUNT = -40  # 泰坦总共有多少个技能（通常是3个）
+TITAN_ABILITY_USED_1 = -101 # 泰坦技能1是否已使用
+TITAN_ABILITY_USED_2 = -102 # 泰坦技能2是否已使用
+TITAN_ABILITY_USED_3 = -103 # 泰坦技能3是否已使用
 SPELL_DOUBLE_CAST = -41  # 下一个法术施放两次（Solar Eclipse等）
 NUM_SECRETS_REVEALED = -42  # 本局对战中触发的友方奥秘次数
 
@@ -69,6 +72,15 @@ HEALTH_COST = -53  # 标记卡牌消耗生命值而非法力值（用于灵魂�
 
 # 下一份药剂减费机制 - 巫妖王的进军（2022年12月）
 NEXT_POTION_COST_ZERO = -54  # 标记下一份药剂费用为0（用于食尸鬼炼金师等卡牌）
+
+# 溢出伤害机制 - 泰坦诸神（2023年8月）
+EXCESS_DAMAGE_TO_HERO = -55  # 标记随从攻击时溢出伤害命中敌方英雄（用于虫外有虫等卡牌）
+
+# 特殊磁力机制 - 泰坦诸神（2023年8月）
+MAGNETIC_TARGET_RACES = -56  # 磁力可吸附的目标种族列表（用于吸附寄生体等特殊磁力卡）
+
+# 随从消耗生命值机制 - 泰坦诸神（2023年8月）
+MINIONS_COST_HEALTH = -57  # 标记随从牌消耗生命值而非法力值（用于YOG_503血肉诅咒等卡牌）
 
 
 

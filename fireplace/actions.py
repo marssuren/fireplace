@@ -8,6 +8,7 @@ from hearthstone.enums import (
     Mulligan,
     PlayState,
     Race,
+    SpellSchool,
     Step,
     Zone,
 )
@@ -22,6 +23,7 @@ from .exceptions import InvalidAction
 from .logging import log, log_info
 from .i18n import _ as translate
 from .utils import random_class
+from . import cards
 
 
 def _eval_card(source, card):
@@ -265,7 +267,28 @@ class Attack(GameAction):
         # Save the attacker/defender atk values in case they change during the attack
         # (eg. in case of Enrage)
         def_atk = defender.atk
-        source.game.queue_actions(attacker, [Hit(defender, attacker.atk)])
+        attacker_atk = attacker.atk
+        
+        # 检查是否有溢出伤害效果（用于虫外有虫等）
+        from . import enums
+        has_excess_damage = attacker.tags.get(enums.EXCESS_DAMAGE_TO_HERO, False)
+        
+        if has_excess_damage and defender.type == CardType.MINION:
+            # 计算溢出伤害
+            defender_health = defender.health
+            if attacker_atk > defender_health:
+                # 先对目标造成伤害
+                source.game.queue_actions(attacker, [Hit(defender, attacker_atk)])
+                # 溢出部分伤害命中敌方英雄
+                excess_damage = attacker_atk - defender_health
+                source.game.queue_actions(attacker, [Hit(defender.controller.hero, excess_damage)])
+            else:
+                # 没有溢出，正常伤害
+                source.game.queue_actions(attacker, [Hit(defender, attacker_atk)])
+        else:
+            # 正常攻击逻辑
+            source.game.queue_actions(attacker, [Hit(defender, attacker_atk)])
+        
         if def_atk:
             source.game.queue_actions(defender, [Hit(attacker, def_atk)])
 
@@ -636,6 +659,11 @@ class Play(GameAction):
             # 如果法术有 creator 属性，说明是套牌之外的卡牌
             source.spells_cast_not_from_deck.append(card.id)
 
+        # 追踪套牌之外的随从（用于TTN_481莱登等卡牌）
+        if card.type == CardType.MINION and hasattr(card, 'creator'):
+            # 如果随从有 creator 属性，说明是套牌之外的卡牌
+            source.minions_played_from_outside_deck.append(card.id)
+
         source.game.manager.game_action(self, source, card, target, index, choose)
         # NOTE: A Play is not a summon! But it sure looks like one.
         # We need to fake a Summon broadcast.
@@ -710,6 +738,10 @@ class Play(GameAction):
         # 纳迦施法计数机制 - 巫妖王的进军（2022年12月）
         # 当施放法术时，更新手牌中所有纳迦卡牌的施法计数器
         if card.type == CardType.SPELL:
+            # Update spell schools played
+            if hasattr(card, "spell_school") and card.spell_school != SpellSchool.NONE:
+                player.spell_schools_played_this_game.add(card.spell_school)
+
             for hand_card in player.hand:
                 # 检查是否为纳迦卡牌（包括多种族）
                 if Race.NAGA in getattr(hand_card, 'races', []):
@@ -1713,7 +1745,22 @@ class Draw(TargetedAction):
             if hasattr(card, "__iter__"):
                 card = card[0]
             return [card]
-        if target.deck:
+
+        # 检查"机会敲门"畸变效果（YOG_530 古加尔的畸变）
+        # 如果是本回合第一次抽牌，且畸变生效，则从牌库中选择可支付的牌
+        if (target.deck and
+            target.cards_drawn_this_turn == 0 and
+            hasattr(source.game, 'active_anomaly') and
+            source.game.active_anomaly == 'opportunity_knocks'):
+            # 筛选牌库中可支付的牌
+            affordable_cards = [c for c in target.deck if c.cost <= target.mana]
+            if affordable_cards:
+                # 随机选择一张可支付的牌
+                card = source.game.random.choice(affordable_cards)
+            else:
+                # 如果没有可支付的牌，则正常抽取牌库顶的牌
+                card = target.deck[-1]
+        elif target.deck:
             card = target.deck[-1]
         else:
             card = None
@@ -1952,6 +1999,11 @@ class Hit(TargetedAction):
             # 追踪本回合受到的伤害（用于"暗影之刃飞刀手"等卡牌）
             if target.type == CardType.HERO and hasattr(target.controller, 'damage_taken_this_turn'):
                 target.controller.damage_taken_this_turn += amount
+            
+            # 追踪在自己回合受到的伤害（本局游戏累计,用于TTN_462被禁锢的恐魔等卡牌）
+            if target.type == CardType.HERO and target.controller.current_player:
+                if hasattr(target.controller, 'damage_taken_on_own_turn_this_game'):
+                    target.controller.damage_taken_on_own_turn_this_game += amount
             
             return source.game.queue_actions(source, [Predamage(target, amount, trigger_lifesteal)])[0][0]
         return 0
@@ -2287,8 +2339,78 @@ class ForgeCard(TargetedAction):
         if actions:
             source.game.cheat_action(target, actions)
 
+        # Check for card transformation (convention: ID + "t")
+        token_id = target.id + "t"
+        if token_id in cards.db:
+            source.game.queue_actions(target, [Morph(target, token_id)])
+
         source.game.manager.targeted_action(self, source, target)
         self.broadcast(source, EventListener.ON, target)
+
+
+class TitanAbility(TargetedAction):
+    """
+    Activate a Titan ability.
+    """
+    TARGET = ActionArg()  # The Titan Minion
+    ABILITY_INDEX = IntArg()  # The ability index (1, 2, or 3)
+
+    def do(self, source, target, ability_index):
+        if not target.titan:
+            log_info("target_is_not_titan", target=target)
+            return
+
+        if target.frozen:
+            log_info("target_is_frozen", target=target)
+            return
+            
+        # Check if already attacked/used ability this turn
+        # Titans can only use 1 ability per turn replacing attack.
+        # If num_attacks >= max_attacks (usually 1), can't use.
+        # Note: Titans usually have "Charge" for abilities implicitly, so summoning sickness doesn't block abilities.
+        # But if they attacked (Windfury?), they might be able to use ability?
+        # Rule: "Each turn, you can choose one of their 3 abilities... instead of attacking."
+        # If they attacked, they can't use ability.
+        if target.num_attacks >= target.max_attacks:
+             log_info("titan_exhausted", target=target)
+             return
+
+        from . import enums
+        
+        # Check if ability already used
+        used_tag_name = f"TITAN_ABILITY_USED_{ability_index}"
+        if not hasattr(enums, used_tag_name):
+             log_info(f"Invalid ability index {ability_index}")
+             return
+             
+        used_tag = getattr(enums, used_tag_name)
+        if target.tags.get(used_tag):
+            log_info(f"Ability {ability_index} already used")
+            return
+
+        # Execute Ability
+        # Look for script "titan_ability_X"
+        script_name = f"titan_ability_{ability_index}"
+        actions = target.get_actions(script_name)
+        
+        if not actions:
+             log_info(f"No actions for {script_name}")
+             return
+             
+        log_info("activates_titan_ability", target=target, index=ability_index)
+
+        # Mark used
+        target.tags[used_tag] = True
+        target.tags[enums.TITAN_ABILITY_USED] = target.tags.get(enums.TITAN_ABILITY_USED, 0) + 1
+        
+        # Consume Attack
+        target.num_attacks += 1
+        
+        # Execute actions
+        source.game.queue_actions(target, actions)
+        
+        source.game.manager.targeted_action(self, source, target, ability_index)
+        self.broadcast(source, EventListener.ON, target, ability_index)
 
 
 class Summon(TargetedAction):
@@ -2434,6 +2556,18 @@ class Shuffle(TargetedAction):
                 continue
             card.zone = Zone.DECK
             target.shuffle_deck()
+            
+            # 追踪洗入对手牌库的瘟疫数量（用于 TTN_459 Chained Guardian）
+            # 瘟疫 ID: TTN_450t, TTN_450t2, TTN_450t3
+            if card.id in ("TTN_450t", "TTN_450t2", "TTN_450t3"):
+                 # 如果 source.controller (洗入者) 和 target (被洗入者) 是对手关系
+                 # 洗入者的 plaques_shuffled_into_enemy 计数 +1
+                 # Shuffle 参数: source (引发者), target (牌库归属玩家), cards (被洗入卡牌)
+                 # 通常 source 是打出的牌（归属 Controller），target 是 Opponent
+                 if source.controller and source.controller != target:
+                     if hasattr(source.controller, 'plagues_shuffled_into_enemy'):
+                         source.controller.plagues_shuffled_into_enemy += 1
+            
             source.game.manager.targeted_action(self, source, target, card)
             self.broadcast(source, EventListener.AFTER, target, card)
 

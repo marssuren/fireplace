@@ -417,6 +417,39 @@ class PlayableCard(BaseCard, Entity, TargetableByAuras):
         return threshold > 0 and self.infuse_counter >= threshold
 
     @property
+    def is_forgeable(self):
+        """
+        Check if the card can be forged.
+        Returns True if the card is in hand, has Forge keyword, is not yet forged, and player has enough mana.
+        """
+        if self.zone != Zone.HAND:
+            return False
+        
+        # Check for FORGE tag
+        if not self.tags.get(GameTag.FORGE):
+            return False
+            
+        # Check if already forged
+        if self.tags.get(enums.FORGED):
+            return False
+            
+        # Check mana cost (Forge always costs 2)
+        if self.controller.mana < 2:
+            return False
+            
+        # Must be your turn
+        if self.controller != self.game.current_player:
+            return False
+            
+        return True
+
+    def forge(self):
+        """
+        Forge the card.
+        """
+        return self.game.cheat_action(self, [actions.ForgeCard(self.controller, self)])
+
+    @property
     def zone_position(self):
         """
         Returns the card's position (1-indexed) in its zone, or 0 if not available.
@@ -999,6 +1032,24 @@ class Character(LiveEntity):
             value = False
         self._frozen = value
 
+    @property
+    def titan(self):
+        """
+        Check if the character is a Titan.
+        """
+        # Check against GameTag.TITAN if available, or mechanics list
+        # Assuming TITAN tag is available or we check mechanics
+        return "TITAN" in getattr(self.data, "mechanics", [])
+
+    @property
+    def titan_abilities_exhausted(self):
+        """
+        Check if the Titan has used all its abilities.
+        """
+        from . import enums
+        # Default to 3 abilities for Titans
+        return self.tags.get(enums.TITAN_ABILITY_USED, 0) >= 3
+
     def can_attack(self, target=None):
         if self.controller.choice:
             return False
@@ -1006,6 +1057,11 @@ class Character(LiveEntity):
             return False
         if self.cant_attack:
             return False
+        
+        # Titan Logic: Cannot attack if abilities are not exhausted
+        if self.titan and not self.titan_abilities_exhausted and not self.silenced:
+            return False
+            
         if not self.controller.current_player:
             return False
         if not self.atk:

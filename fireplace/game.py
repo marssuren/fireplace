@@ -58,6 +58,9 @@ class BaseGame(Entity):
         self.setaside = CardList()
         self._action_stack = 0
 
+        # Anomaly 系统（用于古加尔等卡牌）- 泰坦诸神（2023年8月）
+        self.active_anomaly = None  # 当前激活的畸变效果
+
     def __repr__(self):
         return "%s(players=%r)" % (self.__class__.__name__, self.players)
 

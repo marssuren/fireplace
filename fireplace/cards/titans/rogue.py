@@ -9,102 +9,319 @@ from ..utils import *
 
 class TTN_719:
     """废料回收 - From the Scrapheap
-    Get three 1/1 <b>Magnetic</b> Sparkbots with random <b>Bonus Effects</b>.
+    获取三张1/1并具有<b>磁力</b>和随机<b>额外效果</b>的火花机器人。
     """
-    pass
+    tags = {
+        GameTag.CARDTYPE: CardType.SPELL,
+        GameTag.COST: 2,
+    }
+
+    def play(self):
+        # 随机选择火花机器人版本（TTN_719e, TTN_719e1-e7）
+        spark_bots = ["TTN_719e", "TTN_719e1", "TTN_719e2", "TTN_719e3",
+                      "TTN_719e4", "TTN_719e5", "TTN_719e6", "TTN_719e7"]
+        for _ in range(3):
+            yield Give(CONTROLLER, RANDOM(spark_bots))
 
 
 class TTN_921:
     """铜尾刺探鼠 - Coppertail Snoop
-    [x]<b>Magnetic</b> Whenever this attacks, get a Coin.
+    <b>磁力</b>。每当本随从攻击时，获取一张 幸运币。
     """
-    pass
+    tags = {
+        GameTag.ATK: 4,
+        GameTag.HEALTH: 3,
+        GameTag.COST: 3,
+        GameTag.RACE: Race.MECHANICAL,
+    }
+    magnetic = MAGNETIC("TTN_921e")
+    events = Attack(SELF).on(Give(CONTROLLER, THE_COIN))
+
+
+class TTN_921e:
+    """铜尾刺探鼠附魔"""
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.MAGNETIC: True,
+    }
+    events = Attack(SELF).on(Give(CONTROLLER, THE_COIN))
 
 
 class TTN_923:
     """SP-3Y3-D3R蛛型机 - SP-3Y3-D3R
-    <b>Magnetic</b> <b>Stealth</b> for 1 turn.
+    <b>磁力</b>。<b>潜行</b>1回合。
     """
-    pass
+    tags = {
+        GameTag.ATK: 3,
+        GameTag.HEALTH: 4,
+        GameTag.COST: 3,
+        GameTag.RACE: Race.MECHANICAL,
+    }
+    magnetic = MAGNETIC("TTN_923e")
+    stealth = True
+
+
+class TTN_923e:
+    """SP-3Y3-D3R蛛型机附魔"""
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.MAGNETIC: True,
+        GameTag.STEALTH: True,
+    }
 
 
 class YOG_526:
     """触须缠握 - Tentacle Grip
-    Deal $3 damage. <b>Combo:</b> Get a 1/1 Chaotic Tendril.
+    造成$3点伤害。<b>连击：</b>获取一张1/1的混乱触须。
     """
-    pass
+    tags = {
+        GameTag.CARDTYPE: CardType.SPELL,
+        GameTag.COST: 2,
+    }
+    requirements = {PlayReq.REQ_TARGET_TO_PLAY: 0}
+    play = Hit(TARGET, 3)
+    combo = Give(CONTROLLER, "YOG_514")
 
 
 class YOG_527:
     """迷你灭世者 - Tiny Worldbreaker
-    <b>Battlecry:</b> If you control another Mech, deal 4 damage.
+    <b>战吼：</b>如果你控制着其他机械，则造成4点伤害。
     """
-    pass
+    tags = {
+        GameTag.ATK: 4,
+        GameTag.HEALTH: 4,
+        GameTag.COST: 4,
+        GameTag.RACE: Race.MECHANICAL,
+    }
+    requirements = {PlayReq.REQ_TARGET_IF_AVAILABLE: 0}
+    powered_up = Find(FRIENDLY_MINIONS + MECHANICAL - SELF)
+    play = powered_up & Hit(TARGET, 4)
 
 
 # RARE
 
 class TTN_728:
     """整备站 - Pit Stop
-    <b>Discover</b> a Mech from your deck. Give it +2/+1.
+    从你的牌库中<b>发现</b>一张机械牌，使其获得+2/+1。
     """
-    pass
+    tags = {
+        GameTag.CARDTYPE: CardType.SPELL,
+        GameTag.COST: 2,
+    }
+
+    def play(self):
+        # 从牌库中发现一张机械牌
+        discovered = yield GenericChoice(CONTROLLER, RANDOM(FRIENDLY_DECK + MECHANICAL) * 3)
+        if discovered:
+            # 将发现的机械牌移到手牌（GenericChoice从牌库发现会自动移动）
+            # 使其获得+2/+1
+            yield Buff(discovered, "TTN_728e")
+
+
+class TTN_728e:
+    """整备站增强"""
+    tags = {
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 1,
+        GameTag.CARDTYPE: CardType.ENCHANTMENT
+    }
 
 
 class TTN_922:
     """换挡漂移 - Gear Shift
-    Shuffle the two left-most cards in your hand into your deck. Draw 3 cards.
+    将你最左边的两张手牌洗入你的牌库。抽三张牌。
     """
-    pass
+    tags = {
+        GameTag.CARDTYPE: CardType.SPELL,
+        GameTag.COST: 1,
+    }
+
+    def play(self):
+        # 获取最左边的两张手牌
+        hand_cards = list(self.controller.hand)
+        # 移除自己（正在施放的卡牌）
+        hand_cards = [c for c in hand_cards if c != self]
+        # 取最左边的两张
+        leftmost_cards = hand_cards[:2]
+        # 直接洗入牌库（Shuffle会自动从手牌移除）
+        for card in leftmost_cards:
+            yield Shuffle(CONTROLLER, card)
+        # 抽三张牌
+        yield Draw(CONTROLLER) * 3
 
 
 class TTN_925:
     """卡亚矿石造物 - Kaja'mite Creation
-    <b>Battlecry:</b> <b>Discover</b> a spell from another class that costs (3) or less.
+    <b>战吼：</b><b>发现</b>一张另一职业的法力值消耗小于或等于（3）点的法术牌。
     """
-    pass
+    tags = {
+        GameTag.ATK: 3,
+        GameTag.HEALTH: 2,
+        GameTag.COST: 2,
+    }
+    play = DISCOVER(RandomCollectible(card_class=ENEMY_CLASS, card_type=CardType.SPELL, cost=range(0, 4)))
 
 
 class YOG_410:
     """汇编阵线 - Assembly Line
-    <b>Discover</b> a Mech from another class.
+    <b>发现</b>一张另一职业的机械牌。
     """
-    pass
+    tags = {
+        GameTag.CARDTYPE: CardType.SPELL,
+        GameTag.COST: 1,
+    }
+    play = DISCOVER(RandomCollectible(card_class=ENEMY_CLASS, race=Race.MECHANICAL))
 
 
 # EPIC
 
 class TTN_726:
     """焦油飞溅 - Tar Slick
-    Minions take double damage this turn. Deal $1 damage.
+    在本回合中，随从受到的伤害翻倍。造成$1点伤害。
     """
-    pass
+    tags = {
+        GameTag.CARDTYPE: CardType.SPELL,
+        GameTag.COST: 1,
+    }
+    requirements = {PlayReq.REQ_TARGET_TO_PLAY: 0}
+    def play(self):
+        # 给所有随从添加伤害翻倍buff（本回合）
+        yield Buff(ALL_MINIONS, "TTN_726e")
+        # 造成1点伤害
+        yield Hit(TARGET, 1)
+
+
+class TTN_726e:
+    """焦油飞溅 - 伤害翻倍"""
+    tags = {
+        GameTag.INCOMING_DAMAGE_MULTIPLIER: 2,
+        GameTag.CARDTYPE: CardType.ENCHANTMENT
+    }
+    events = TurnEnd(ALL_PLAYERS).on(Destroy(SELF))
 
 
 class TTN_730:
     """实验室构筑机 - Lab Constructor
-    [x]At the end of your turn, summon a copy of this. <b>Forge:</b> Gain <b>Magnetic</b>.
+    在你的回合结束时，召唤一个本随从的复制。<b>锻造：</b>获得<b>磁力</b>。
     """
-    # TODO: 实现 Forge 效果
-    forge = None  # Forge effect placeholder
-    pass
+    tags = {
+        GameTag.ATK: 3,
+        GameTag.HEALTH: 2,
+        GameTag.COST: 4,
+        GameTag.RACE: Race.MECHANICAL,
+    }
+    events = OWN_TURN_END.on(Summon(CONTROLLER, ExactCopy(SELF)))
+    forge = "TTN_730t"
+
+
+class TTN_730t:
+    """实验室构筑机 - Lab Constructor (Forged)
+    <b>磁力</b>。在你的回合结束时，召唤一个本随从的复制。
+    """
+    magnetic = MAGNETIC("TTN_730e")
+    events = OWN_TURN_END.on(Summon(CONTROLLER, ExactCopy(SELF)))
+
+
+class TTN_730e:
+    """实验室构筑机附魔"""
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.MAGNETIC: True,
+    }
+    events = OWN_TURN_END.on(Summon(CONTROLLER, ExactCopy(SELF)))
 
 
 # LEGENDARY
 
 class TTN_721:
     """终极V-07-TR-0N - V-07-TR-0N Prime
-    [x]<b>T1T4N</b> This minion's abilities repeat on another random friendly minion.
+    <b>泰钽</b> 本随从的技能会在另一个随机友方随从身上重复。
     """
-    # TODO: 实现 Titan 技能
-    # Titan 卡牌有 3 个特殊技能
-    pass
+    tags = {
+        GameTag.ATK: 3,
+        GameTag.HEALTH: 5,
+        GameTag.COST: 6,
+        GameTag.RACE: Race.MECHANICAL,
+    }
+    titan = True
+
+    # 泰坦技能1: 加装火炮！获得+2/+1。随机对一个敌人造成4点伤害。
+    def titan_ability_1(self):
+        # 自己获得+2/+1
+        yield Buff(SELF, "TTN_721te")
+        # 随机对一个敌人造成4点伤害
+        yield Hit(RANDOM(ENEMY_CHARACTERS), 4)
+        # 在另一个随机友方随从身上重复
+        other_minions = [m for m in self.controller.field if m != self and m.type == CardType.MINION]
+        if other_minions:
+            target = self.game.random.choice(other_minions)
+            yield Buff(target, "TTN_721te")
+            yield Hit(RANDOM(ENEMY_CHARACTERS), 4)
+
+    # 泰坦技能2: 动力全开！获得+1/+2。抽一张牌。
+    def titan_ability_2(self):
+        # 自己获得+1/+2
+        yield Buff(SELF, "TTN_721t1e")
+        # 抽一张牌
+        yield Draw(CONTROLLER)
+        # 在另一个随机友方随从身上重复
+        other_minions = [m for m in self.controller.field if m != self and m.type == CardType.MINION]
+        if other_minions:
+            target = self.game.random.choice(other_minions)
+            yield Buff(target, "TTN_721t1e")
+            yield Draw(CONTROLLER)
+
+    # 泰坦技能3: 防御拉满！获得+3生命值和扰魔。
+    def titan_ability_3(self):
+        # 自己获得+3生命值和扰魔
+        yield Buff(SELF, "TTN_721t2e")
+        # 在另一个随机友方随从身上重复
+        other_minions = [m for m in self.controller.field if m != self and m.type == CardType.MINION]
+        if other_minions:
+            target = self.game.random.choice(other_minions)
+            yield Buff(target, "TTN_721t2e")
+
+
+class TTN_721te:
+    """加装火炮！+2/+1"""
+    tags = {
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 1,
+        GameTag.CARDTYPE: CardType.ENCHANTMENT
+    }
+
+
+class TTN_721t1e:
+    """动力全开！+1/+2"""
+    tags = {
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 2,
+        GameTag.CARDTYPE: CardType.ENCHANTMENT
+    }
+
+
+class TTN_721t2e:
+    """防御拉满！+3生命值和扰魔"""
+    tags = {
+        GameTag.HEALTH: 3,
+        GameTag.CANT_BE_TARGETED_BY_SPELLS: True,
+        GameTag.CANT_BE_TARGETED_BY_HERO_POWERS: True,
+        GameTag.CARDTYPE: CardType.ENCHANTMENT
+    }
 
 
 class TTN_920:
     """天才米米尔隆 - Mimiron, the Mastermind
-    [x]After you play a Mech, get a random one of Mimiron's Gadgets.
+    在你使用一张机械牌后，随机获取一张米米尔隆的小工具。
     """
-    pass
-
+    tags = {
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 5,
+        GameTag.COST: 3,
+        GameTag.RACE: Race.MECHANICAL,
+    }
+    events = Play(CONTROLLER, MECHANICAL).on(
+        Give(CONTROLLER, RANDOM(["TTN_920t5", "TTN_920t6", "TTN_920t7",
+                                  "TTN_920t8", "TTN_920t9", "TTN_920t10"]))
+    )
 

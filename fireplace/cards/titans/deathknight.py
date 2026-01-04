@@ -9,102 +9,223 @@ from ..utils import *
 
 class TTN_457:
     """悼词宣诵者 - Eulogizer
-    [x]<b>Battlecry:</b> Spend 3 <b>Corpses</b> to deal 3 damage. <b>Forge:</b> Gain them instead.
+    <b>战吼：</b>消耗3份<b>残骸</b>，造成3点伤害。<b>锻造：</b>改为获得残骸。
     """
-    # TODO: 实现 Forge 效果
-    forge = None  # Forge effect placeholder
-    pass
+    def play(self):
+        if self.controller.corpses >= 3:
+            yield SpendCorpses(CONTROLLER, 3)
+            yield Hit(self.target, 3)
+
+
+class TTN_457t:
+    """悼词宣诵者 - Eulogizer (Forged)"""
+    def play(self):
+        yield GainCorpses(CONTROLLER, 3)
+        yield Hit(self.target, 3)
 
 
 class TTN_735:
     """北境导航 - Northern Navigation
-    <b>Discover</b> a spell from your deck. If it's a Frost spell, <b>Freeze</b> a random enemy minion.
+    从你的牌库中<b>发现</b>一张法术牌。如果选中的是冰霜法术牌，随机<b>冻结</b>一个敌方随从。
     """
-    pass
+    def play(self):
+        yield Discover(CONTROLLER, RANDOM(FRIENDLY_DECK + SPELL)).then(
+            If(Attr(Give.CARD, GameTag.SPELL_SCHOOL) == SpellSchool.FROST, Freeze(RANDOM(ENEMY_MINIONS)))
+        )
 
 
 class TTN_736:
     """兵主之杖 - Staff of the Primus
-    After your hero attacks, shuffle a random Plague into your opponent's deck.
+    在你的英雄攻击后，随机将一张疫病牌洗入你对手的牌库。
     """
-    pass
+    events = Attack(FRIENDLY_HERO).after(
+        Shuffle(OPPONENT, RandomID("TTN_450t", "TTN_450t2", "TTN_450t3"))
+    )
 
 
 class YOG_511:
     """黑暗符文 - Runes of Darkness
-    <b>Discover</b> a weapon. Spend 3 <b>Corpses</b> to give it +1/+1.
+    <b>发现</b>一张武器牌。消耗3份<b>残骸</b>，使其获得+1/+1。
     """
-    pass
+    def play(self):
+        yield Discover(CONTROLLER, RANDOM(FRIENDLY_DECK + WEAPON)).then(
+            If(Attr(CONTROLLER, GameTag.CORPSES) >= 3,
+               SpendCorpses(CONTROLLER, 3) & Buff(Give.CARD, "FiveManaBuff") # Placeholder buff logic
+               # Actually, simple buff:
+               & Buff(Give.CARD, "YOG_511e")
+            )
+        )
+
+class YOG_511e:
+    tags = {GameTag.ATK: 1, GameTag.HEALTH: 1} # For weapon, Health is Durability
 
 
 class YOG_512:
     """秽病行尸 - Sickly Grimewalker
-    [x]After you summon an  Undead, give it <b>Poisonous</b>.
+    在你召唤一个亡灵后，使其获得<b>剧毒</b>。
     """
-    pass
+    events = Summon(FRIENDLY + UNDEAD).after(GivePoisonous(Summon.CARD))
 
 
 # RARE
 
+class TTN_450:
+    """困苦的克瓦迪尔 - Distressed Kvaldir
+    <b>亡语：</b>随机将两张疫病牌洗入你对手的牌库。
+    """
+    deathrattle = Shuffle(OPPONENT, RandomID("TTN_450t", "TTN_450t2", "TTN_450t3")) * 2
+
+
+class TTN_450t:
+    """鲜血疫病 - Blood Plague"""
+    tags = {GameTag.CASTS_WHEN_DRAWN: True}
+    events = CastWhenDrawn(
+        Hit(FRIENDLY_HERO, 2),
+        Heal(ENEMY_HERO, 2),
+        If(Attr(CONTROLLER, "UNENDING_PLAGUES"), Shuffle(CONTROLLER, "TTN_450t"))
+    )
+
+class TTN_450t2:
+    """邪恶疫病 - Unholy Plague"""
+    tags = {GameTag.CASTS_WHEN_DRAWN: True}
+    events = CastWhenDrawn(
+        Hit(FRIENDLY_HERO, 2),
+        Summon(CONTROLLER, "TTN_450t2t"),
+        If(Attr(CONTROLLER, "UNENDING_PLAGUES"), Shuffle(CONTROLLER, "TTN_450t2"))
+    )
+
+class TTN_450t2t:
+    """陷入疯狂的维库人 - Frenzied Vrykul"""
+    # 2/2 亡灵
+    atk = 2
+    health = 2
+    race = Race.UNDEAD
+
+class TTN_450t3:
+    """冰霜疫病 - Frost Plague"""
+    tags = {GameTag.CASTS_WHEN_DRAWN: True}
+    events = CastWhenDrawn(
+        Hit(FRIENDLY_HERO, 2),
+        Buff(FRIENDLY_HAND, "TTN_450t3e"), # 增加下一张牌费用？或全手牌？
+        If(Attr(CONTROLLER, "UNENDING_PLAGUES"), Shuffle(CONTROLLER, "TTN_450t3"))
+    )
+
 class TTN_454:
     """殉船 - Down with the Ship
-    Deal $3 damage. Shuffle two random Plagues into your opponent's deck.
+    造成$3点伤害。随机将两张疫病牌洗入你对手的牌库。
     """
-    pass
+    requirements = {PlayReq.REQ_TARGET_TO_PLAY: True}
+    play = Hit(TARGET, 3), Shuffle(OPPONENT, RandomID("TTN_450t", "TTN_450t2", "TTN_450t3")) * 2
 
 
 class TTN_455:
     """墓地叛徒 - Tomb Traitor
-    <b>Battlecry:</b> Destroy a Plague in your opponent's deck to deal 3 damage to all enemy minions.
+    <b>战吼：</b>摧毁你对手牌库中的一张疫病牌，对所有敌方随从造成3点伤害。
     """
-    pass
+    def play(self):
+        # 在对手牌库中查找疫病牌
+        plagues = self.controller.opponent.deck.filter(id=["TTN_450t", "TTN_450t2", "TTN_450t3"])
+        if plagues:
+            plague = plagues[0] # 取一张
+            yield Destroy(plague)
+            yield Hit(ENEMY_MINIONS, 3)
 
 
 class TTN_744:
     """严寒冰封 - Frozen Over
-    [x]Both players draw 2 cards. Your opponent can not play them next turn.
+    双方玩家各抽两张牌。你的对手下回合不能使用抽到的这些牌。
     """
-    pass
+    def play(self):
+        yield Draw(CONTROLLER, 2)
+        yield Draw(OPPONENT, 2).then(
+            Buff(Draw.CARD, "TTN_744e")
+        )
+
+class TTN_744e:
+    tags = {GameTag.CANT_PLAY: True}
+    events = OwnTurnEnd(CONTROLLER).on(Destroy(SELF))
 
 
 class YOG_513:
     """邪恶魂笼 - Sinister Soulcage
-    [x]Give a friendly Undead +2/+2. Spend 5 <b>Corpses</b> to summon a copy of it.
+    使一个友方亡灵获得+2/+2。消耗5份<b>残骸</b>，召唤一个它的复制。
     """
-    pass
+    requirements = {
+        PlayReq.REQ_MINION_TARGET: True,
+        PlayReq.REQ_FRIENDLY_TARGET: True,
+        PlayReq.REQ_TARGET_WITH_RACE: Race.UNDEAD
+    }
+    def play(self):
+        yield Buff(self.target, "YOG_513e")
+        if self.controller.corpses >= 5:
+            yield SpendCorpses(CONTROLLER, 5)
+            # 召唤目标的精确复制（带 buff）
+            yield Summon(CONTROLLER, ExactCopy(self.target))
+
+class YOG_513e:
+    tags = {GameTag.ATK: 2, GameTag.HEALTH: 2}
 
 
 # EPIC
 
-class TTN_450:
-    """困苦的克瓦迪尔 - Distressed Kvaldir
-    <b>Deathrattle:</b> Shuffle two random Plagues into your opponent's deck.
-    """
-    pass
-
-
 class TTN_459:
     """链缚守护者 - Chained Guardian
-    [x]<b><b>Rush</b>, Reborn</b> Costs (1) less for each Plague shuffled into the  enemy deck this game.
+    <b><b>突袭</b>，复生</b> 在本局对战中，每有一张疫病牌被洗入敌方牌库，本牌的法力值消耗便减少（1）点。
     """
-    pass
+    rush = True
+    reborn = True
+    
+    # 减费逻辑：本局对战中每洗入一张疫病牌到敌方牌库减少 (1) 点。
+    @property
+    def cost_mod(self):
+        return -self.controller.plagues_shuffled_into_enemy
+
+class TTN_459_Script:
+     pass
 
 
 # LEGENDARY
 
 class TTN_737:
     """兵主 - The Primus
-    <b>Titan</b> After this uses an ability, <b>Discover</b> a card with that Rune.
+    <b>泰坦</b> 在本随从使用一个技能后，<b>发现</b>一张对应符文的牌。
     """
-    # TODO: 实现 Titan 技能
-    # Titan 卡牌有 3 个特殊技能
+    # 3个技能：
+    # 1. 鲜血符文：消灭一个敌方随从及其相邻随从。获得他们的生命值。
+    # 2. 冰霜符文：造成3点伤害。冻结该敌人及其相邻随从。
+    # 3. 邪恶符文：召唤两个3/3具有嘲讽和复生的亡灵。
+    
+    titan = True
+    
+    # 技能逻辑将在 action scripts 中实现
+    # titan_ability_1, titan_ability_2, titan_ability_3
+    # 另外，“在本随从使用一个技能后，发现...”
+    # 这是泰坦本身的触发效果。
+    events = [
+        # 在使用泰坦技能时触发
+        # 事件: TITAN_ABILITY_USED?
+        # 我需要自定义事件或检查标签。
+        # “在本随从使用一个技能后” -> 标签变更？
+        # 注意: 在 actions.py 中, TitanAbility 会广播 (source, EventListener.ON, target, ability_index).
+        # 但这是一个 "After" 触发器。
+        # 我需要支持监听 TitanAbility 动作。
+        # 目前，我可以在技能脚本内部定义 "After..." 部分，或者添加一个 EventListener。
+    ]
     pass
 
 
 class TTN_850:
     """海拉 - Helya
-    [x]<b>Battlecry:</b> Shuffle all three Plagues into your opponent's deck. Plagues they draw this game are unending.
+    <b>战吼：</b>将全部三种疫病牌洗入你对手的牌库。在本局对战中，对手抽到的疫病不会终结。
     """
-    pass
+    def play(self):
+        yield Shuffle(OPPONENT, [
+            "TTN_450t", "TTN_450t2", "TTN_450t3"
+        ])
+        # “本局对战中他们抽到的疫病是无尽的。”
+        # 给对手添加标签: UNENDING_PLAGUES = True
+        # 疫病 CastWhenDrawn 逻辑中: 如果 UNENDING_PLAGUES, 洗回一张复制。
+        yield SetTag(OPPONENT, "UNENDING_PLAGUES") # 自定义标签
+
 
 

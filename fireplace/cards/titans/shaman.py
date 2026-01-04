@@ -9,102 +9,441 @@ from ..utils import *
 
 class TTN_722:
     """潮流逆转 - Turn the Tides
-    [x]Give your hero +3 Attack this turn. Summon a 3/3 Elemental with <b>Rush</b>. <b>Overload:</b> (1)
+    在本回合中，使你的英雄获得+3攻击力。召唤一个3/3并具有<b>突袭</b>的元素。<b>过载：</b>（1）
     """
-    pass
+    tags = {
+        GameTag.CARDTYPE: CardType.SPELL,
+        GameTag.COST: 3,
+        GameTag.SPELL_SCHOOL: SpellSchool.NATURE,
+        GameTag.OVERLOAD: 1,
+    }
+
+    play = [
+        Buff(FRIENDLY_HERO, "TTN_722e"),
+        Summon(CONTROLLER, "TTN_722t")
+    ]
+
+
+class TTN_722e:
+    """潮流逆转增益 - Turn the Tides Buff"""
+    tags = {
+        GameTag.ATK: 3,
+        GameTag.CARDTYPE: CardType.ENCHANTMENT
+    }
+    events = TurnEnd(CONTROLLER).on(Destroy(SELF))
+
+
+class TTN_722t:
+    """元素 - Elemental"""
+    tags = {
+        GameTag.ATK: 3,
+        GameTag.HEALTH: 3,
+        GameTag.RACE: Race.ELEMENTAL,
+        GameTag.RUSH: True,
+    }
 
 
 class TTN_831:
     """雷电崩鸣 - Crash of Thunder
-    Deal $3 damage to all enemies. Costs (1) less for each Nature spell you've cast this turn.
+    对所有敌人造成$3点伤害。在本回合中，你每施放过一个自然法术，本牌的法力值消耗便减少 （1）点。
     """
-    pass
+    tags = {
+        GameTag.CARDTYPE: CardType.SPELL,
+        GameTag.COST: 5,
+        GameTag.SPELL_SCHOOL: SpellSchool.NATURE,
+    }
+
+    # 每施放自然法术减少1费
+    events = Play(CONTROLLER, SPELL + NATURE).on(Buff(SELF, "TTN_831e"))
+
+    play = Hit(ENEMY_CHARACTERS, 3)
+
+
+class TTN_831e:
+    """减费附魔 - Cost Reduction"""
+    tags = {
+        GameTag.COST: -1,
+        GameTag.CARDTYPE: CardType.ENCHANTMENT
+    }
+    events = TurnEnd(CONTROLLER).on(Destroy(SELF))
 
 
 class TTN_833:
     """高戈奈斯的信徒 - Disciple of Golganneth
-    [x]At the end of your turn, reduce the Cost of a random <b>Overload</b> card in your hand by (1).
+    在你的回合结束时，随机使你手牌中一张<b>过载</b>牌的法力值消耗减少（1）点。
     """
-    pass
+    tags = {
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 3,
+        GameTag.COST: 2,
+    }
+
+    events = OwnTurnEnd(CONTROLLER).on(
+        Buff(RANDOM(FRIENDLY_HAND + (GameTag.OVERLOAD > 0)), "TTN_833e")
+    )
+
+
+class TTN_833e:
+    """减费附魔 - Cost Reduction"""
+    tags = {
+        GameTag.COST: -1,
+        GameTag.CARDTYPE: CardType.ENCHANTMENT
+    }
 
 
 class YOG_523:
     """被寄生的看守者 - Infested Watcher
-    [x]<b>Taunt</b> <b>Deathrattle:</b> Get two 1/1 Chaotic Tendrils.
+    <b>嘲讽</b>。<b>亡语：</b>获取两张1/1的混乱触须。
     """
-    pass
+    tags = {
+        GameTag.ATK: 4,
+        GameTag.HEALTH: 4,
+        GameTag.COST: 4,
+        GameTag.TAUNT: True,
+    }
+
+    deathrattle = Give(CONTROLLER, "YOG_523t") * 2
+
+
+class YOG_523t:
+    """混乱触须 - Chaotic Tendril"""
+    tags = {
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1,
+        GameTag.COST: 1,
+    }
 
 
 class YOG_524:
     """雷电跳蛙 - Shock Hopper
-    [x]<b>Battlecry:</b> Get a random <b>Overload</b> card.
+    <b>战吼：</b>随机获取一张<b>过载</b>牌。
     """
-    pass
+    tags = {
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 2,
+        GameTag.COST: 1,
+        GameTag.RACE: Race.BEAST,
+    }
+
+    play = Give(CONTROLLER, RandomCollectible(overload=True))
 
 
 # RARE
 
 class TTN_317:
     """闪电反射 - Lightning Reflexes
-    [x]<b>Discover</b> a Nature spell. If you play it this turn, <b>Discover</b> another.
+    <b>发现</b>一张自然法术牌。如果你在本回合使用发现的牌，再<b>发现</b>一张。
     """
-    pass
+    tags = {
+        GameTag.CARDTYPE: CardType.SPELL,
+        GameTag.COST: 1,
+        GameTag.SPELL_SCHOOL: SpellSchool.NATURE,
+    }
+
+    def play(self):
+        # 发现一张自然法术牌
+        discover_result = yield Discover(CONTROLLER, RandomSpell(spell_school=SpellSchool.NATURE)).then(
+            Give(CONTROLLER, Discover.CARD)
+        )
+        if discover_result:
+            card = discover_result[0]
+            # 给发现的牌添加标记，如果本回合使用则再发现一张
+            yield Buff(card, "TTN_317e")
+
+
+class TTN_317e:
+    """闪电反射标记 - Lightning Reflexes Marker"""
+    tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
+
+    events = Play(OWNER, SELF).on(
+        Discover(CONTROLLER, RandomSpell(spell_school=SpellSchool.NATURE)).then(
+            Give(CONTROLLER, Discover.CARD)
+        )
+    )
 
 
 class TTN_725:
     """雷霆之锤 - Tempest Hammer
-    After your hero attacks, deal 3 damage to the lowest Health enemy.
+    在你的英雄攻击后，对生命值最低的敌人造成3点伤害。
     """
-    pass
+    tags = {
+        GameTag.CARDTYPE: CardType.WEAPON,
+        GameTag.ATK: 1,
+        GameTag.DURABILITY: 3,
+        GameTag.COST: 4,
+    }
+
+    events = Attack(FRIENDLY_HERO).after(
+        Hit(LOWESTHEALTH(ENEMY_CHARACTERS), 3)
+    )
 
 
 class TTN_727:
     """托林尼尔幼龙 - Thorignir Drake
-    [x]<b>Rush</b> Whenever this attacks, summon two 3/1 Whelps to attack the target first.
+    <b>突袭</b>。每当本随从攻击时，召唤两条3/1的雏龙，并使其率先攻击目标。
     """
-    pass
+    tags = {
+        GameTag.ATK: 6,
+        GameTag.HEALTH: 6,
+        GameTag.COST: 7,
+        GameTag.RACE: Race.DRAGON,
+        GameTag.RUSH: True,
+    }
+
+    # 攻击时召唤雏龙并让它们攻击同一目标
+    # 使用自定义事件处理器
+    class Hand:
+        events = Attack(OWNER).on(
+            lambda self, source, target: self.owner._handle_attack(target)
+        )
+
+    def _handle_attack(self, attack_target):
+        """处理攻击事件：召唤雏龙并让它们攻击目标"""
+        # 召唤两条雏龙
+        for _ in range(2):
+            whelps = yield Summon(CONTROLLER, "TTN_727t")
+            # 让雏龙攻击同一目标
+            if whelps and attack_target and not attack_target.dead:
+                yield Attack(whelps[0], attack_target)
+
+
+class TTN_727t:
+    """雏龙 - Whelp"""
+    tags = {
+        GameTag.ATK: 3,
+        GameTag.HEALTH: 1,
+        GameTag.RACE: Race.DRAGON,
+    }
 
 
 class YOG_522:
     """电流导联 - Conductivity
-    The next spell you cast this turn also targets adjacent minions.
+    在本回合中，你的下一个法术还会以相邻的随从为目标。
     """
-    pass
+    tags = {
+        GameTag.CARDTYPE: CardType.SPELL,
+        GameTag.COST: 2,
+        GameTag.SPELL_SCHOOL: SpellSchool.NATURE,
+    }
+
+    play = Buff(CONTROLLER, "YOG_522e")
+
+
+class YOG_522e:
+    """电流导联效果 - Conductivity Effect"""
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.TAG_SCRIPT_DATA_NUM_1: 0,  # 0 = 未使用，1 = 已使用
+    }
+
+    # 监听法术施放事件，对相邻随从也施放
+    # 参考 TRL_319e 的实现方式
+    events = Play(CONTROLLER, SPELL).on(
+        lambda self, source, card, target: [
+            # 如果法术有目标且目标是随从，则对相邻随从也施放
+            self._cast_on_adjacent(card, target) if target and target.type == CardType.MINION else None,
+            # 标记为已使用并销毁
+            SetTag(SELF, {GameTag.TAG_SCRIPT_DATA_NUM_1: 1}),
+            Destroy(SELF)
+        ]
+    )
+
+    def _cast_on_adjacent(self, spell, target):
+        """对相邻随从也施放法术效果"""
+        # 获取相邻随从
+        adjacent_minions = ADJACENT(target).eval(spell.game, spell.controller)
+
+        # 对每个相邻随从重复施放法术效果
+        for minion in adjacent_minions:
+            if minion and not minion.dead:
+                # 重新执行法术的 play 效果
+                # 注意：这里需要根据法术的具体效果来处理
+                # 简化实现：只处理伤害/治疗类法术
+                if hasattr(spell, 'damage'):
+                    yield Hit(minion, spell.damage)
+                elif hasattr(spell, 'heal'):
+                    yield Heal(minion, spell.heal)
 
 
 # EPIC
 
 class TTN_801:
     """风暴勇士 - Champion of Storms
-    After you cast a Nature spell, summon a 4/2 Elemental. <b>Forge:</b> With <b>Rush</b>.
+    在你施放一个自然法术后，召唤一个4/2的元素。<b>锻造：</b>召唤的元素具有<b>突袭</b>
     """
-    # TODO: 实现 Forge 效果
-    forge = None  # Forge effect placeholder
-    pass
+    tags = {
+        GameTag.ATK: 3,
+        GameTag.HEALTH: 5,
+        GameTag.COST: 4,
+        GameTag.RACE: Race.ELEMENTAL,
+    }
+
+    events = Play(CONTROLLER, SPELL + NATURE).after(
+        Summon(CONTROLLER, "TTN_801t")
+    )
+
+
+class TTN_801t:
+    """元素 - Elemental"""
+    tags = {
+        GameTag.ATK: 4,
+        GameTag.HEALTH: 2,
+        GameTag.RACE: Race.ELEMENTAL,
+    }
+
+
+class TTN_801_FORGED:
+    """风暴勇士 - Champion of Storms (Forged)"""
+    tags = {
+        GameTag.ATK: 3,
+        GameTag.HEALTH: 5,
+        GameTag.COST: 4,
+        GameTag.RACE: Race.ELEMENTAL,
+    }
+
+    events = Play(CONTROLLER, SPELL + NATURE).after(
+        Summon(CONTROLLER, "TTN_801t_FORGED")
+    )
+
+
+class TTN_801t_FORGED:
+    """元素 - Elemental (Forged)"""
+    tags = {
+        GameTag.ATK: 4,
+        GameTag.HEALTH: 2,
+        GameTag.RACE: Race.ELEMENTAL,
+        GameTag.RUSH: True,
+    }
 
 
 class TTN_830:
     """须臾闪电 - Flash of Lightning
-    Draw a card. Next turn, your Nature spells cost (1) less.
+    抽一张牌。下个回合，你的自然法术牌法力值消耗减少（1）点。
     """
-    pass
+    tags = {
+        GameTag.CARDTYPE: CardType.SPELL,
+        GameTag.COST: 2,
+        GameTag.SPELL_SCHOOL: SpellSchool.NATURE,
+    }
+
+    play = [
+        Draw(CONTROLLER),
+        Buff(CONTROLLER, "TTN_830e")
+    ]
+
+
+class TTN_830e:
+    """须臾闪电效果 - Flash of Lightning Effect"""
+    tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
+
+    # 下个回合开始时激活减费效果
+    events = OwnTurnBegin(CONTROLLER).on(
+        Buff(CONTROLLER, "TTN_830e2"),
+        Destroy(SELF)
+    )
+
+
+class TTN_830e2:
+    """须臾闪电减费 - Flash of Lightning Cost Reduction"""
+    tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
+    auras = [Buff(FRIENDLY_HAND + SPELL + NATURE, "TTN_830e3")]
+    events = TurnEnd(CONTROLLER).on(Destroy(SELF))
+
+
+class TTN_830e3:
+    """减费附魔 - Cost Reduction"""
+    tags = {
+        GameTag.COST: -1,
+        GameTag.CARDTYPE: CardType.ENCHANTMENT
+    }
 
 
 # LEGENDARY
 
 class TTN_800:
     """雷霆之神高戈奈斯 - Golganneth, the Thunderer
-    <b>Titan</b> Your first spell each turn costs (3) less.
+    <b>泰坦</b> 你每个回合使用的第一张法术牌的法力值消耗减少（3）点。
     """
-    # TODO: 实现 Titan 技能
-    # Titan 卡牌有 3 个特殊技能
-    pass
+    tags = {
+        GameTag.ATK: 5,
+        GameTag.HEALTH: 7,
+        GameTag.COST: 6,
+        GameTag.TITAN: True,
+    }
+
+    titan = True
+
+    # 被动光环：每回合第一张法术减3费
+    auras = [Buff(CONTROLLER, "TTN_800e")]
+
+    # 泰坦技能
+    def titan_ability_1(self):
+        # 技能1：雷霆打击 - 对所有敌方随从造成2点伤害
+        yield Hit(ENEMY_MINIONS, 2)
+
+    def titan_ability_2(self):
+        # 技能2：风暴之怒 - 对一个随从造成5点伤害
+        yield Hit(TARGET, 5)
+
+    def titan_ability_3(self):
+        # 技能3：闪电链 - 对一个敌人造成3点伤害，然后对相邻的敌人造成2点伤害
+        yield Hit(TARGET, 3)
+        # 对相邻敌人造成2点伤害
+        yield Hit(ADJACENT(TARGET), 2)
+
+
+class TTN_800e:
+    """高戈奈斯光环 - Golganneth Aura"""
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.TAG_SCRIPT_DATA_NUM_1: 0,  # 0 = 未使用法术，1 = 已使用法术
+    }
+
+    # 每回合开始时重置标记
+    events = [
+        OwnTurnBegin(CONTROLLER).on(SetTag(SELF, {GameTag.TAG_SCRIPT_DATA_NUM_1: 0})),
+        # 监听法术施放，设置标记
+        Play(CONTROLLER, SPELL).on(SetTag(SELF, {GameTag.TAG_SCRIPT_DATA_NUM_1: 1}))
+    ]
+
+    # 第一张法术减3费
+    auras = [Buff(FRIENDLY_HAND + SPELL, "TTN_800e2")]
+
+
+class TTN_800e2:
+    """减费附魔 - Cost Reduction"""
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT
+    }
+
+    # 条件减费：只有在未使用法术时才生效
+    def cost(self, value):
+        # 查找 TTN_800e 附魔并检查其标记
+        for ench in self.source.controller.entities:
+            if hasattr(ench, 'card_id') and ench.card_id == "TTN_800e":
+                used = ench.tags.get(GameTag.TAG_SCRIPT_DATA_NUM_1, 0)
+                if used == 0:
+                    return max(0, value - 3)
+                break
+        return value
 
 
 class TTN_835:
     """风暴之王托里姆 - Thorim, Stormlord
-    [x]<b>Battlecry:</b> Unlock your <b>Overloaded</b> Mana Crystals. Draw that many cards.
+    <b>战吼：</b>解锁你<b>过载</b>的法力水晶，抽取相同数量的牌。
     """
-    pass
+    tags = {
+        GameTag.ATK: 3,
+        GameTag.HEALTH: 4,
+        GameTag.COST: 3,
+    }
 
+    def play(self):
+        # 获取当前过载的法力水晶数量
+        overload_amount = self.controller.overload_locked + self.controller.overload_owed
+        # 解锁过载的法力水晶
+        yield UnlockOverload(CONTROLLER)
+        # 抽取相同数量的牌
+        if overload_amount > 0:
+            yield Draw(CONTROLLER) * overload_amount
 

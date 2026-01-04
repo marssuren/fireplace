@@ -7,156 +7,296 @@ from ..utils import *
 
 class TTN_039:
     """太阳看护者 - Watcher of the Sun
-    <b>Battlecry:</b> Get a random Holy spell. <b>Forge:</b> Also restore 6 Health to your hero.
+    <b>战吼：</b>随机获取一张神圣法术牌。<b>锻造：</b>还会为你的英雄恢复6点生命值。
     """
-    # TODO: 实现 Forge 效果
-    forge = None  # Forge effect placeholder
-    pass
+    events = [
+        Battlecry(Give(CONTROLLER, RandomSpell(spell_school=SpellSchool.HOLY)))
+    ]
+
+
+class TTN_039t:
+    """太阳看护者 - Watcher of the Sun (Forged)"""
+    events = [
+        Battlecry(Give(CONTROLLER, RandomSpell(spell_school=SpellSchool.HOLY))),
+        Battlecry(Heal(FRIENDLY_HERO, 6))
+    ]
 
 
 class TTN_042:
     """独眼突击者 - Cyclopian Crusher
-    <b>Rush</b> <b>Forge:</b> Gain +3/+2.
+    <b>突袭</b>。<b>锻造：</b>获得+3/+2。
     """
-    # TODO: 实现 Forge 效果
-    forge = None  # Forge effect placeholder
-    pass
+    rush = True
+
+
+class TTN_042t:
+    """独眼突击者 - Cyclopian Crusher (Forged)"""
+    rush = True
+    # 锻造版：基础 3/3 + 锻造增益 +3/+2 = 6/5
+    tags = {
+        GameTag.ATK: 6,
+        GameTag.HEALTH: 5,
+    }
 
 
 class TTN_076:
     """机械侏儒向导 - Mechagnome Guide
-    <b>Battlecry:</b> <b>Discover</b> a spell. <b>Forge:</b> It costs (3) less.
+    <b>战吼：</b><b>发现</b>一张法术牌。<b>锻造：</b>发现的牌法力值消耗减少（3）点。
     """
-    # TODO: 实现 Forge 效果
-    forge = None  # Forge effect placeholder
-    pass
+    play = Discover(CONTROLLER, RandomSpell())
+
+
+class TTN_076t:
+    """机械侏儒向导 - Mechagnome Guide (Forged)"""
+    def play(self):
+        card = yield Discover(CONTROLLER, RandomSpell())
+        if card:
+            yield Buff(card, "TTN_076e")
+
+
+class TTN_076e:
+    """法力值消耗减少"""
+    tags = {
+        GameTag.COST: -3,
+        GameTag.CARDTYPE: CardType.ENCHANTMENT
+    }
 
 
 class TTN_458:
     """XB-488清理机器人 - XB-488 Disposalbot
-    <b>Battlecry:</b> Deal 5 damage randomly split among all enemy minions. <b>Forge:</b> Gain <b>Lifesteal</b>.
+    <b>战吼：</b>造成5点伤害，随机分配到所有敌方随从身上。<b>锻造：</b>获得<b>吸血</b>。
     """
-    # TODO: 实现 Forge 效果
-    forge = None  # Forge effect placeholder
-    pass
+    play = Hit(RANDOM_ENEMY_MINION, 1) * 5
+
+
+class TTN_458t:
+    """XB-488清理机器人 - XB-488 Disposalbot (Forged)"""
+    lifesteal = True
+    play = Hit(RANDOM_ENEMY_MINION, 1) * 5
 
 
 class TTN_479:
     """烈焰亡魂 - Flame Revenant
-    [x]After you summon an  Elemental, give it +1/+1.
+    在你召唤一个元素后，使其获得+1/+1。
     """
-    pass
+    events = Summon(CONTROLLER, ELEMENTAL).after(Buff(Summon.CARD, "TTN_479e"))
+
+
+class TTN_479e:
+    """+1/+1 增益"""
+    tags = {
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1,
+        GameTag.CARDTYPE: CardType.ENCHANTMENT
+    }
 
 
 class TTN_700:
     """羁押装置 - Containment Unit
-    [x]<b>Magnetic</b> <b>Deathrattle:</b> Summon a random 8-Cost minion.
+    <b>磁力</b>。<b>亡语：</b>随机召唤一个法力值消耗为（8）的随从。
     """
-    pass
+    magnetic = MAGNETIC("TTN_700e")
+    deathrattle = Summon(CONTROLLER, RandomMinion(cost=8))
+
+
+class TTN_700e:
+    """羁押装置附魔"""
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.MAGNETIC: True,
+    }
+    deathrattle = Summon(CONTROLLER, RandomMinion(cost=8))
 
 
 class TTN_710:
     """远古图腾 - Ancient Totem
-    
+    0/3 图腾，无特殊效果
     """
     pass
 
 
 class TTN_711:
     """萨隆邪铁托维尔 - Saronite Tol'vir
-    [x]<b>Taunt</b> Whenever this is attacked, draw a card.
+    <b>嘲讽</b> 每当本随从受到攻击时，抽一张牌。
     """
-    pass
+    taunt = True
+    events = Attack(ALL_MINIONS, SELF).on(Draw(CONTROLLER))
 
 
 class TTN_712:
     """锐目搜寻者 - Sharp-Eyed Seeker
-    <b>Battlecry:</b> If there is a card in your deck that didn't start there, draw it.
+    <b>战吼：</b>如果你的牌库中有对战开始时不在牌库中的牌，则抽取其中的一张。
     """
-    pass
+    def play(self):
+        # 检测牌库中是否有外来牌（有 creator 属性的牌）
+        cards = [c for c in self.controller.deck if hasattr(c, 'creator') and c.creator is not None]
+        if cards:
+            yield ForceDraw(RANDOM(cards))
 
 
 class TTN_715:
     """迷时始祖幼龙 - Time-Lost Protodrake
-    [x]<b>Taunt</b> When you draw this, add a random Dragon to your hand.
+    <b>嘲讽</b> 当你抽到该牌时，随机将一张龙牌置入你的手牌。
     """
-    pass
+    taunt = True
+    events = Draw(CONTROLLER, SELF).on(Give(CONTROLLER, RandomMinion(race=Race.DRAGON)))
 
 
 class TTN_723:
     """地铁司机 - Tram Operator
-    <b>Battlecry:</b> Draw a Mech. The next Mech you play costs (2) less.
+    <b>战吼：</b>抽一张机械牌。你下一张机械牌的法力值消耗减少（2）点。
     """
-    pass
+    play = [
+        ForceDraw(RANDOM(FRIENDLY_DECK + MECHANICAL)),
+        Buff(CONTROLLER, "TTN_723e")
+    ]
+
+
+class TTN_723e:
+    """下一张机械牌减费"""
+    tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
+    auras = [Buff(FRIENDLY_HAND + MECHANICAL, "TTN_723e2")]
+    events = Play(CONTROLLER, MECHANICAL).on(Destroy(SELF))
+
+
+class TTN_723e2:
+    """减费附魔"""
+    tags = {
+        GameTag.COST: -2,
+        GameTag.CARDTYPE: CardType.ENCHANTMENT
+    }
 
 
 class TTN_729:
     """岩熔冶锻师 - Melted Maker
-    After you <b>Forge</b> a card, get a copy of it.
+    在你<b>锻造</b>一张牌后，获取一张它的复制。
     """
-    pass
+    # 锻造事件触发后，复制锻造的牌
+    events = Forge(CONTROLLER).after(Give(CONTROLLER, ExactCopy(Forge.CARD)))
 
 
 class TTN_731:
     """粗心的机械师 - Careless Mechanist
-    After you draw your second card in a turn, destroy this.
+    在一回合中，在你抽第二张牌后，消灭本随从。
     """
-    pass
+    events = [
+        OwnTurnBegin(CONTROLLER).on(SetTag(SELF, {GameTag.TAG_SCRIPT_DATA_NUM_1: 0})),
+        Draw(CONTROLLER).on(
+            SetTag(SELF, {GameTag.TAG_SCRIPT_DATA_NUM_1: Tag(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1) + 1}),
+            If(
+                GreaterEqual(Tag(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1), 2),
+                Destroy(SELF)
+            )
+        )
+    ]
 
 
 class TTN_732:
     """发明机器人 - Invent-o-matic
-    Whenever you <b>Magnetize</b> a minion, give it +1/+1.
+    每当你<b>磁力吸附</b>一个随从时，使其获得+1/+1。
     """
-    pass
+    events = MagneticSummon(CONTROLLER).after(Buff(MagneticSummon.TARGET, "TTN_732e"))
+
+
+class TTN_732e:
+    """+1/+1 增益"""
+    tags = {
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1,
+        GameTag.CARDTYPE: CardType.ENCHANTMENT
+    }
 
 
 class TTN_733:
     """铁血座狼 - Relentless Worg
-    <b>Rush</b> After this attacks and kills a minion, restore this to full Health.
+    <b>突袭</b>。在本随从攻击并消灭一个随从后，为本随从恢复所有生命值。
     """
-    pass
+    rush = True
+    events = Attack(SELF, MINION).after(
+        Dead(Attack.DEFENDER) & FullHeal(SELF)
+    )
 
 
 class TTN_754:
     """饥饿的海怪 - Ravenous Kraken
-    <b>Battlecry:</b> Destroy a friendly minion. <b>Deathrattle:</b> Summon a copy of it.
+    <b>战吼：</b>消灭一个友方随从。<b>亡语：</b>召唤一个被消灭随从的复制。
     """
-    pass
+    requirements = {
+        PlayReq.REQ_TARGET_IF_AVAILABLE: 0,
+        PlayReq.REQ_FRIENDLY_TARGET: 0,
+        PlayReq.REQ_MINION_TARGET: 0,
+    }
+
+    def play(self):
+        if TARGET:
+            # 记住被消灭的随从
+            yield SetTag(SELF, {GameTag.TAG_SCRIPT_DATA_ENT_1: ID(TARGET)})
+            yield Destroy(TARGET)
+
+    def deathrattle(self):
+        # 召唤被消灭随从的复制
+        card_id = self.tags.get(GameTag.TAG_SCRIPT_DATA_ENT_1)
+        if card_id:
+            target_card = self.game.find_entity_by_id(card_id)
+            if target_card:
+                yield Summon(CONTROLLER, ExactCopy(target_card))
 
 
 class TTN_812:
     """得胜的维库人 - Victorious Vrykul
-    After this attacks, get a 2/3 Val'kyr that costs (1).
+    在本随从攻击后，获取一张法力值消耗为（1）点的2/3的 瓦格里。
     """
-    pass
+    events = Attack(SELF).after(Give(CONTROLLER, "TTN_812t"))
+
+
+class TTN_812t:
+    """瓦格里 - Valkyra"""
+    tags = {
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 3,
+        GameTag.COST: 1,
+    }
 
 
 class TTN_832:
     """流亡穴居人 - Trogg Exile
-    <b>Rush</b> <b>Battlecry:</b> Deal 4 damage to your hero.
+    <b>突袭</b>。<b>战吼：</b>对你的英雄造成4点伤害。
     """
-    pass
+    rush = True
+    play = Hit(FRIENDLY_HERO, 4)
 
 
 class TTN_860:
     """无人机拆解器 - Drone Deconstructor
-    [x]<b>Battlecry:</b> Get a 1/1 <b>Magnetic</b> Sparkbot with a random <b>Bonus Effect</b>.
+    <b>战吼：</b>获取一张1/1并具有<b>磁力</b>和一项随机<b>额外效果</b>的火花 机器人。
     """
-    pass
+    def play(self):
+        # 随机选择一个火花机器人版本（TTN_719e, TTN_719e1-e7）
+        spark_bots = ["TTN_719e", "TTN_719e1", "TTN_719e2", "TTN_719e3",
+                      "TTN_719e4", "TTN_719e5", "TTN_719e6", "TTN_719e7"]
+        yield Give(CONTROLLER, RANDOM(spark_bots))
 
 
 class TTN_931:
     """威严的阿努比萨斯 - Imposing Anubisath
-    <b>Taunt</b> Can't attack.
+    <b>嘲讽</b> 无法攻击。
     """
-    pass
+    taunt = True
+    cannot_attack = True
 
 
 class YOG_514:
     """混乱触须 - Chaotic Tendril
-    <b>Battlecry:</b> Cast a random 1-Cost spell. Improve your future Chaotic Tendrils.
+    <b>战吼：</b>随机施放一个法力值消耗为（1）的法术。提升你此后的混乱触须的效果。
     """
-    pass
+    def play(self):
+        # 获取当前玩家已经施放的混乱触须次数
+        count = self.controller.tags.get(GameTag.TAG_SCRIPT_DATA_NUM_1, 0)
 
+        # 施放对应费用的法术
+        spell_cost = count + 1
+        yield CastSpell(RandomSpell(cost=spell_cost))
+
+        # 增加计数器
+        yield SetTag(CONTROLLER, {GameTag.TAG_SCRIPT_DATA_NUM_1: count + 1})
 
