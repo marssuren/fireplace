@@ -1,0 +1,2949 @@
+[
+    {
+        "artist": "Patrik Bjorkstrom",
+        "cardClass": "MAGE",
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 118636,
+        "flavor": "传送门技术进步神速！现在每年的传送门维护费用降到了GDP的29%。",
+        "howToEarn": "打开<i>穿越时间流</i>卡牌包后可解锁。",
+        "howToEarnGolden": "打开<i>穿越时间流</i>金色包后可解锁。",
+        "id": "TIME_000",
+        "name": "半稳定的传送门",
+        "rarity": "RARE",
+        "set": "TIME_TRAVEL",
+        "spellSchool": "ARCANE",
+        "text": "<b>回溯</b>。随机将一张随从牌置入你的手牌。该牌的法力值消耗减少（3）点。",
+        "type": "SPELL"
+    },
+    {
+        "artist": "Vlad Botos",
+        "cardClass": "ROGUE",
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 119270,
+        "flavor": "啊。啊。啊。别，别再扎了！啊。啊。啊。",
+        "id": "TIME_001",
+        "name": "时空飞刃",
+        "rarity": "RARE",
+        "set": "TIME_TRAVEL",
+        "text": "<b>回溯</b>。随机向敌人射出3把飞刀，每把造成$2点伤害。",
+        "type": "SPELL"
+    },
+    {
+        "artist": "Christina Kraus",
+        "attack": 3,
+        "cardClass": "NEUTRAL",
+        "collectible": true,
+        "cost": 5,
+        "dbfId": 119312,
+        "flavor": "连出四张死亡轮盘的概率微乎其微。这也算是一种幸运！",
+        "health": 5,
+        "id": "TIME_002",
+        "mechanics": [
+            "BATTLECRY"
+        ],
+        "name": "永世巫师",
+        "rarity": "COMMON",
+        "set": "TIME_TRAVEL",
+        "text": "<b>回溯</b>。<b>战吼：</b>随机获取2张你职业的法术牌。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Ramzy Kamen",
+        "attack": 2,
+        "cardClass": "NEUTRAL",
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 119314,
+        "flavor": "“不要再抽鼬鼠挖掘工了！”",
+        "health": 2,
+        "howToEarn": "打开<i>穿越时间流</i>卡牌包后可解锁。",
+        "howToEarnGolden": "打开<i>穿越时间流</i>金色包后可解锁。",
+        "id": "TIME_003",
+        "mechanics": [
+            "BATTLECRY"
+        ],
+        "name": "传送门卫士",
+        "race": "DRAGON",
+        "races": [
+            "DRAGON"
+        ],
+        "rarity": "RARE",
+        "set": "TIME_TRAVEL",
+        "text": "<b>回溯</b>。<b>战吼：</b>随机抽一张随从牌，使其获得+2/+2。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Ian Ameling",
+        "attack": 7,
+        "cardClass": "NEUTRAL",
+        "collectible": true,
+        "cost": 7,
+        "dbfId": 119317,
+        "flavor": "请把我的仇家全都扫掉。",
+        "health": 7,
+        "howToEarnGolden": "购买<i>穿越时间流</i>炉石通行证后开放解锁。",
+        "id": "TIME_004",
+        "mechanics": [
+            "BATTLECRY"
+        ],
+        "name": "时光流汇扫荡者",
+        "race": "DRAGON",
+        "races": [
+            "DRAGON"
+        ],
+        "rarity": "EPIC",
+        "set": "TIME_TRAVEL",
+        "text": "<b>回溯</b>。<b>战吼：</b>随机对一个敌人造成7点伤害。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Alex Horley Orlandelli",
+        "attack": 10,
+        "cardClass": "WARLOCK",
+        "collectible": true,
+        "collectionText": "<b>奇闻+</b>\n你的套牌容量为40，但其中有10张拉法姆！<b>战吼：</b>如果你使用过其余拉法姆，消灭敌方英雄。",
+        "cost": 10,
+        "dbfId": 119432,
+        "elite": true,
+        "flavor": "时空大盗拉法姆纠集了各个平行世界的自己，意图统治所有的时空！姆诺兹多不过是一时之间的小小障碍……",
+        "health": 10,
+        "id": "TIME_005",
+        "mechanics": [
+            "BATTLECRY"
+        ],
+        "name": "时空大盗拉法姆",
+        "rarity": "LEGENDARY",
+        "set": "TIME_TRAVEL",
+        "text": "<b>奇闻+</b>\n你的套牌容量为40，但其中有10张拉法姆！<b>战吼：</b>如果你使用过其余拉法姆，消灭敌方英雄。@<i>（还剩{0}个！）</i>@<i>（已经就绪！）</i>",
+        "type": "MINION"
+    },
+    {
+        "artist": "Kevin Sidharta",
+        "cardClass": "MAGE",
+        "collectible": true,
+        "cost": 1,
+        "dbfId": 119541,
+        "flavor": "还会召唤两个4/0的镜像。",
+        "id": "TIME_006",
+        "name": "镜像维度",
+        "rarity": "COMMON",
+        "referencedTags": [
+            "TAUNT"
+        ],
+        "set": "TIME_TRAVEL",
+        "text": "召唤一个0/4并具有<b>嘲讽</b>的随从。如果你的手牌中有龙牌，再召唤一个。",
+        "type": "SPELL"
+    },
+    {
+        "artist": "Juan Calle",
+        "attack": 3,
+        "cardClass": "WARLOCK",
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 119545,
+        "flavor": "过去的……就让他说去吧。",
+        "health": 3,
+        "id": "TIME_008",
+        "mechanics": [
+            "BATTLECRY"
+        ],
+        "name": "过去的末日宣言者",
+        "rarity": "EPIC",
+        "set": "TIME_TRAVEL",
+        "text": "<b>回溯</b>。<b>战吼：</b>双方玩家各随机弃一张牌。",
+        "type": "MINION"
+    },
+    {
+        "artist": "James Ryman",
+        "attack": 6,
+        "cardClass": "PALADIN",
+        "collectible": true,
+        "cost": 8,
+        "dbfId": 119918,
+        "elite": true,
+        "flavor": "在某条未来的时间线中，格尔宾发明出了用机甲保存大脑的方法，并带领侏儒一族奔向了以圣光为能源的光明未来。",
+        "health": 6,
+        "id": "TIME_009",
+        "mechanics": [
+            "BATTLECRY"
+        ],
+        "name": "明日巨匠格尔宾",
+        "race": "MECHANICAL",
+        "races": [
+            "MECHANICAL"
+        ],
+        "rarity": "LEGENDARY",
+        "set": "TIME_TRAVEL",
+        "text": "<b>奇闻</b>\n<b>战吼：</b>将每种不同的光环从你的牌库中置入战场。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Max Grecke",
+        "attack": 2,
+        "cardClass": "SHAMAN",
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 119686,
+        "elite": true,
+        "flavor": "她冥想了两个星期，心无旁骛地探知着宇宙的每一个角落，事无巨细，无所不包。当她从冥想中醒来，口中只吐出了一个声音：“喔。”",
+        "hasDiamondSkin": true,
+        "health": 6,
+        "id": "TIME_013",
+        "mechanics": [
+            "DISCOVER",
+            "ELUSIVE",
+            "TRIGGER_VISUAL"
+        ],
+        "name": "先知者沃",
+        "rarity": "LEGENDARY",
+        "set": "TIME_TRAVEL",
+        "text": "<b>扰魔</b>。在你施放一个法术后，<b>发现</b>一张来自过去的自然法术牌。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Gabriel Lopes",
+        "cardClass": "SHAMAN",
+        "collectible": true,
+        "cost": 6,
+        "dbfId": 119688,
+        "flavor": "呃，真让人兽不了……",
+        "id": "TIME_014",
+        "mechanics": [
+            "OVERLOAD"
+        ],
+        "name": "瞬时多重宇宙",
+        "overload": 3,
+        "rarity": "EPIC",
+        "set": "TIME_TRAVEL",
+        "text": "<b>回溯</b>。随机召唤消耗总计12点法力值的随从。<b>过载：</b>（3）",
+        "type": "SPELL"
+    },
+    {
+        "artist": "Daniil Kudriavtsev",
+        "attack": 2,
+        "cardClass": "PALADIN",
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 119963,
+        "flavor": "保卫更加光明的未来。",
+        "health": 1,
+        "id": "TIME_015",
+        "mechanics": [
+            "BATTLECRY",
+            "DIVINE_SHIELD"
+        ],
+        "name": "强光护卫",
+        "race": "MECHANICAL",
+        "races": [
+            "MECHANICAL"
+        ],
+        "rarity": "COMMON",
+        "set": "TIME_TRAVEL",
+        "text": "<b>圣盾</b>。<b>战吼：</b>为你的英雄恢复#3点生命值并使其获得<b>圣盾</b>。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Matt Dixon",
+        "cardClass": "PALADIN",
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 119964,
+        "flavor": "“这星期你带护盾机器人来班里三次了。”",
+        "id": "TIME_016",
+        "mechanics": [
+            "DISCOVER",
+            "GEARS"
+        ],
+        "name": "耀眼创意",
+        "rarity": "RARE",
+        "set": "TIME_TRAVEL",
+        "spellSchool": "HOLY",
+        "text": "<b>发现</b>一张来自过去的圣骑士机械牌。使其获得+5/+5。",
+        "type": "SPELL"
+    },
+    {
+        "artist": "Matt Dixon",
+        "attack": 2,
+        "cardClass": "PALADIN",
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 119965,
+        "flavor": "它什么都能修——只要是坦克。",
+        "health": 1,
+        "id": "TIME_017",
+        "mechanics": [
+            "DEATHRATTLE",
+            "DIVINE_SHIELD"
+        ],
+        "name": "坦克机械师",
+        "race": "MECHANICAL",
+        "races": [
+            "MECHANICAL"
+        ],
+        "rarity": "COMMON",
+        "set": "TIME_TRAVEL",
+        "text": "<b>圣盾</b>。<b>亡语：</b>召唤一辆7/7并具有<b>圣盾</b>\n的坦克。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Ivan Fomin",
+        "cardClass": "PALADIN",
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 119977,
+        "flavor": "时间会治愈一切。",
+        "id": "TIME_018",
+        "name": "修补时间线",
+        "rarity": "EPIC",
+        "set": "TIME_TRAVEL",
+        "spellSchool": "HOLY",
+        "text": "<b>回溯</b>。随机获取2张神圣法术牌，为你的英雄恢复等同于其法力值消耗的生命值。",
+        "type": "SPELL"
+    },
+    {
+        "artist": "Daniil Kudriavtsev",
+        "attack": 3,
+        "cardClass": "PALADIN",
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 120011,
+        "flavor": "稍等，我这就把我的光环具象化。",
+        "health": 3,
+        "howToEarnGolden": "购买<i>穿越时间流</i>炉石通行证后开放解锁。",
+        "id": "TIME_019",
+        "mechanics": [
+            "BATTLECRY"
+        ],
+        "name": "时间流具象",
+        "race": "ELEMENTAL",
+        "races": [
+            "ELEMENTAL"
+        ],
+        "rarity": "RARE",
+        "set": "TIME_TRAVEL",
+        "text": "<b>战吼：</b>如果你控制着光环，对所有敌人造成3点伤害。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Luca Zontini",
+        "attack": 12,
+        "cardClass": "DEMONHUNTER",
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 120074,
+        "elite": true,
+        "flavor": "布洛克斯的临终一击伤到了萨格拉斯。这项光辉战绩在兽人英雄当中无人可及。",
+        "health": 12,
+        "id": "TIME_020",
+        "mechanics": [
+            "CHARGE",
+            "START_OF_GAME_KEYWORD"
+        ],
+        "name": "布洛克斯加",
+        "rarity": "LEGENDARY",
+        "set": "TIME_TRAVEL",
+        "text": "<b>奇闻\n冲锋。</b><b>对战开始时：</b>消失。\n消灭全部4个来自阿古斯的恶魔以重新出现在[x]手牌中。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Danny Beck",
+        "attack": 5,
+        "cardClass": "DEMONHUNTER",
+        "collectible": true,
+        "cost": 5,
+        "dbfId": 120179,
+        "flavor": "我让出了自己的食品储藏空间来存放各种耐储存的物品。你又牺牲了什么？",
+        "health": 4,
+        "id": "TIME_021",
+        "mechanics": [
+            "OUTCAST"
+        ],
+        "name": "末日准备狂",
+        "rarity": "EPIC",
+        "referencedTags": [
+            "IMMUNE"
+        ],
+        "set": "TIME_TRAVEL",
+        "text": "<b>流放：</b>直到你的下个回合，你的英雄<b>免疫</b>。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Jaemin Kim",
+        "attack": 7,
+        "cardClass": "DEMONHUNTER",
+        "collectible": true,
+        "cost": 8,
+        "dbfId": 120181,
+        "flavor": "如果有得选，我更愿意在院子里饲养应季的新鲜巨蛇。",
+        "health": 9,
+        "id": "TIME_022",
+        "mechanics": [
+            "RUSH"
+        ],
+        "name": "累世巨蛇",
+        "race": "BEAST",
+        "races": [
+            "BEAST"
+        ],
+        "rarity": "RARE",
+        "set": "TIME_TRAVEL",
+        "text": "<b>突袭</b>。如果有<b>休眠</b>的随从，本牌的法力值消耗减少（4）点。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Patrik Bjorkstrom",
+        "cardClass": "DRUID",
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 120208,
+        "flavor": "直接跳到Z计划！",
+        "id": "TIME_023",
+        "name": "后备预案",
+        "rarity": "COMMON",
+        "set": "TIME_TRAVEL",
+        "text": "抽取你牌库底的两张牌。",
+        "type": "SPELL"
+    },
+    {
+        "artist": "Zoltan Boros",
+        "attack": 8,
+        "cardClass": "NEUTRAL",
+        "collectible": true,
+        "cost": 9,
+        "dbfId": 120266,
+        "elite": true,
+        "flavor": "啊？？下回合我岂不是有无穷+1！",
+        "health": 8,
+        "id": "TIME_024",
+        "mechanics": [
+            "BATTLECRY"
+        ],
+        "name": "无限巨龙姆诺兹多",
+        "race": "DRAGON",
+        "races": [
+            "DRAGON"
+        ],
+        "rarity": "LEGENDARY",
+        "set": "TIME_TRAVEL",
+        "text": "<b>战吼：</b>在你的下个回合开始时，将本随从的攻击力变为无穷大！",
+        "type": "MINION"
+    },
+    {
+        "artist": "Mauricio Herrera",
+        "attack": 4,
+        "cardClass": "WARLOCK",
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 120482,
+        "flavor": "只需跃迁一点点。",
+        "health": 4,
+        "id": "TIME_025",
+        "mechanics": [
+            "BATTLECRY"
+        ],
+        "name": "暮光时空跃迁者",
+        "race": "DRAGON",
+        "races": [
+            "DRAGON"
+        ],
+        "rarity": "COMMON",
+        "set": "TIME_TRAVEL",
+        "text": "<b>战吼：</b>将2张时空撕裂洗入你的牌库。抽到时空撕裂时会对你的英雄造成3点伤害。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Zoltan Boros",
+        "cardClass": "WARLOCK",
+        "collectible": true,
+        "cost": 1,
+        "dbfId": 120484,
+        "flavor": "我以为自己选的是商务，没想到是熵能……",
+        "id": "TIME_026",
+        "name": "续连熵能",
+        "rarity": "RARE",
+        "set": "TIME_TRAVEL",
+        "text": "使你的随从获得+1/+1。将2张时空撕裂洗入你的牌库。",
+        "type": "SPELL"
+    },
+    {
+        "artist": "Kevin Sidharta",
+        "cardClass": "WARLOCK",
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 120485,
+        "flavor": "要我说，我觉得太刺激了。",
+        "id": "TIME_027",
+        "mechanics": [
+            "ImmuneToSpellpower"
+        ],
+        "name": "超光子弹幕",
+        "rarity": "COMMON",
+        "set": "TIME_TRAVEL",
+        "text": "造成$6点伤害，随机分配到所有敌人身上。将2张时空撕裂洗入你的牌库。",
+        "type": "SPELL"
+    },
+    {
+        "artist": "Guillaume Beauchêne",
+        "attack": 4,
+        "cardClass": "WARLOCK",
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 120487,
+        "flavor": "去他的龙命！我命由我不由天！",
+        "health": 4,
+        "id": "TIME_028",
+        "mechanics": [
+            "BATTLECRY",
+            "LIFESTEAL"
+        ],
+        "name": "破命之龙",
+        "race": "DRAGON",
+        "races": [
+            "DRAGON"
+        ],
+        "rarity": "RARE",
+        "set": "TIME_TRAVEL",
+        "text": "<b>吸血</b>。<b>战吼：</b>从你的牌库中施放一张时空撕裂以获得+3/+3。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Edgar Hidalgo",
+        "attack": 5,
+        "cardClass": "WARLOCK",
+        "collectible": true,
+        "cost": 5,
+        "dbfId": 120488,
+        "flavor": "如果你的迅疾幼龙能接近光速，那么时间就会变慢。",
+        "health": 5,
+        "id": "TIME_029",
+        "mechanics": [
+            "BATTLECRY",
+            "RUSH"
+        ],
+        "name": "灾毁迅疾幼龙",
+        "race": "DRAGON",
+        "races": [
+            "DRAGON"
+        ],
+        "rarity": "COMMON",
+        "set": "TIME_TRAVEL",
+        "text": "<b>突袭</b>。<b>战吼：</b>从你的牌库中施放一张时空撕裂以召唤一个本随从的复制。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Slawomir Maniak",
+        "cardClass": "WARLOCK",
+        "collectible": true,
+        "cost": 5,
+        "dbfId": 120489,
+        "flavor": "这位真的是我的另一半。",
+        "id": "TIME_030",
+        "name": "裂解术",
+        "rarity": "EPIC",
+        "set": "TIME_TRAVEL",
+        "spellSchool": "SHADOW",
+        "text": "随机将你手牌中的一张随从牌拆成两半。",
+        "type": "SPELL"
+    },
+    {
+        "artist": "Patrik Bjorkstrom",
+        "cardClass": "WARLOCK",
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 120490,
+        "flavor": "拉法姆不需要天梯。拉法姆用小号就能组成自己的天梯。",
+        "id": "TIME_031",
+        "name": "拉法姆人梯",
+        "rarity": "RARE",
+        "set": "TIME_TRAVEL",
+        "text": "抽三张法力值消耗不同的牌。",
+        "type": "SPELL"
+    },
+    {
+        "artist": "Brian Adriel",
+        "attack": 6,
+        "cardClass": "WARLOCK",
+        "collectible": true,
+        "cost": 6,
+        "dbfId": 120491,
+        "elite": true,
+        "flavor": "“起飞！我准备好了！”“我还没准备好！”",
+        "health": 7,
+        "id": "TIME_032",
+        "mechanics": [
+            "BATTLECRY"
+        ],
+        "name": "克洛诺戈尔",
+        "race": "DRAGON",
+        "races": [
+            "DRAGON"
+        ],
+        "rarity": "LEGENDARY",
+        "set": "TIME_TRAVEL",
+        "text": "<b>战吼：</b>你抽取你法力值消耗最高的两张牌，你的对手抽取你法力值消耗最低的两张牌。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Stefano Spagnuolo",
+        "attack": 3,
+        "cardClass": "DRUID",
+        "collectible": true,
+        "cost": 6,
+        "dbfId": 120499,
+        "flavor": "看起来很美——直到你发现这其实是入侵物种。",
+        "health": 5,
+        "id": "TIME_033",
+        "mechanics": [
+            "BATTLECRY"
+        ],
+        "name": "再生德鲁伊",
+        "rarity": "COMMON",
+        "set": "TIME_TRAVEL",
+        "text": "<b>回溯</b>。<b>战吼：</b>随机施放2个自然法术。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Kleston Marques",
+        "attack": 3,
+        "cardClass": "WARRIOR",
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 120503,
+        "flavor": "“注意了！”“人体大炮！！”",
+        "health": 3,
+        "id": "TIME_034",
+        "mechanics": [
+            "BATTLECRY"
+        ],
+        "name": "现场播报员",
+        "race": "DRAGON",
+        "races": [
+            "DRAGON"
+        ],
+        "rarity": "RARE",
+        "set": "TIME_TRAVEL",
+        "text": "<b>回溯</b>。<b>战吼：</b>双方玩家各随机装备一把武器，使你的武器获得+1/+1。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Brian Despain",
+        "attack": 6,
+        "cardClass": "NEUTRAL",
+        "collectible": true,
+        "cost": 6,
+        "dbfId": 120506,
+        "flavor": "博士，你居然造出了时间机器……用冰箱造的？",
+        "health": 6,
+        "howToEarnGolden": "购买<i>穿越时间流</i>炉石通行证后开放解锁。",
+        "id": "TIME_035",
+        "mechanics": [
+            "DEATHRATTLE",
+            "TAUNT"
+        ],
+        "name": "时间机器",
+        "race": "MECHANICAL",
+        "races": [
+            "MECHANICAL"
+        ],
+        "rarity": "COMMON",
+        "set": "TIME_TRAVEL",
+        "text": "<b>嘲讽</b>。<b>亡语：</b>随机获取一张<b>回溯</b>牌。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Ursula Dorada",
+        "attack": 2,
+        "cardClass": "ROGUE",
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 120534,
+        "flavor": "“嘘，保密……那个戴着王冠的人，是国王。”",
+        "health": 4,
+        "id": "TIME_036",
+        "mechanics": [
+            "BATTLECRY"
+        ],
+        "name": "王室线人",
+        "rarity": "EPIC",
+        "set": "TIME_TRAVEL",
+        "text": "<b>战吼：</b>检视你对手最右边的手牌。获取该牌的一张复制，或者使其法力值消耗增加（2）点。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Vika Yarova",
+        "attack": 2,
+        "cardClass": "PRIEST",
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 120547,
+        "flavor": "鸽子圣徒，人称鸽圣。",
+        "health": 2,
+        "id": "TIME_037",
+        "mechanics": [
+            "BATTLECRY"
+        ],
+        "name": "白鸽学徒",
+        "rarity": "COMMON",
+        "set": "TIME_TRAVEL",
+        "text": "<b>战吼：</b>抽一张随从牌。使你手牌中的随从牌获得+2生命值。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Stefan Bogdasarov",
+        "attack": 3,
+        "cardClass": "NEUTRAL",
+        "collectible": true,
+        "cost": 8,
+        "dbfId": 120646,
+        "elite": true,
+        "flavor": "“先生，请问您的钟表价值几何？”“时分珍贵啊，亲爱的孩子。”",
+        "health": 3,
+        "howToEarn": "完成起始任务后解锁。",
+        "howToEarnGolden": "购买<i>穿越时间流</i>炉石通行证后开放解锁。",
+        "id": "TIME_038",
+        "mechanics": [
+            "BATTLECRY"
+        ],
+        "name": "钟表先生克劳沃斯",
+        "race": "MECHANICAL",
+        "races": [
+            "MECHANICAL"
+        ],
+        "rarity": "LEGENDARY",
+        "set": "TIME_TRAVEL",
+        "text": "<b>回溯</b>，<b>回溯</b>，<b>回溯</b>\n<b>战吼：</b>随机召唤2个<b>传说</b>随从。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Kevin Sidharta",
+        "cardClass": "ROGUE",
+        "collectible": true,
+        "cost": 1,
+        "dbfId": 120647,
+        "flavor": "“这一局我梦到过！”",
+        "howToEarnGolden": "购买<i>穿越时间流</i>炉石通行证后开放解锁。",
+        "id": "TIME_039",
+        "mechanics": [
+            "DISCOVER"
+        ],
+        "name": "似曾相识",
+        "rarity": "RARE",
+        "set": "TIME_TRAVEL",
+        "text": "<b>发现</b>一张你的对手手牌的复制，其法力值消耗减少（1）点。",
+        "type": "SPELL"
+    },
+    {
+        "artist": "AJ Nazzaro",
+        "attack": 6,
+        "cardClass": "NEUTRAL",
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 120782,
+        "flavor": "我想到了一条绝妙的卡牌趣文……怎么又忘了？",
+        "health": 3,
+        "id": "TIME_040",
+        "mechanics": [
+            "DEATHRATTLE"
+        ],
+        "name": "消散的回忆",
+        "race": "UNDEAD",
+        "races": [
+            "UNDEAD"
+        ],
+        "rarity": "COMMON",
+        "set": "TIME_TRAVEL",
+        "text": "<b>亡语：</b>随机获取一张来自过去的法力值消耗为（5）的随从牌。",
+        "type": "MINION"
+    },
+    {
+        "artist": "James Ryman",
+        "attack": 4,
+        "cardClass": "NEUTRAL",
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 120784,
+        "flavor": "当心不要变成自己的先祖。",
+        "health": 4,
+        "id": "TIME_041",
+        "mechanics": [
+            "BATTLECRY"
+        ],
+        "name": "未来主义先祖",
+        "rarity": "EPIC",
+        "referencedTags": [
+            "TAUNT"
+        ],
+        "set": "TIME_TRAVEL",
+        "text": "<b>嘲讽</b>。<b>战吼：</b>检视三张卡牌。猜中来自你对手手牌中的卡牌，则获得+4生命值。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Juan Calle",
+        "attack": 5,
+        "cardClass": "HUNTER",
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 120795,
+        "elite": true,
+        "flavor": "抛弃手中的牌，重新追本溯猿。",
+        "health": 6,
+        "id": "TIME_042",
+        "mechanics": [
+            "BATTLECRY"
+        ],
+        "name": "穆拉克",
+        "race": "BEAST",
+        "races": [
+            "BEAST"
+        ],
+        "rarity": "LEGENDARY",
+        "set": "TIME_TRAVEL",
+        "text": "<b>战吼：</b>弃掉你的手牌。获取一张无穷香蕉。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Ivan Fomin",
+        "attack": 4,
+        "cardClass": "PALADIN",
+        "collectible": true,
+        "cost": 6,
+        "dbfId": 120818,
+        "flavor": "没人知道永动体现在哪里。",
+        "health": 4,
+        "id": "TIME_043",
+        "mechanics": [
+            "BATTLECRY"
+        ],
+        "name": "无穷永动机",
+        "race": "MECHANICAL",
+        "races": [
+            "MECHANICAL"
+        ],
+        "rarity": "RARE",
+        "set": "TIME_TRAVEL",
+        "targetingArrowText": "变成8/8。",
+        "text": "<b>战吼：</b>将一个友方随从的攻击力和生命值变为8。该随从在本回合中无法攻击英雄。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Kevin Sidharta",
+        "cardClass": "PALADIN",
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 120821,
+        "flavor": "穴居人侵入之前，诺莫瑞根曾是一座欣欣向荣，科技发达的大都市。",
+        "health": 3,
+        "id": "TIME_044",
+        "name": "过去的诺莫瑞根",
+        "rarity": "EPIC",
+        "set": "TIME_TRAVEL",
+        "text": "使一个随从获得+2/+1。<i>推进到现在！</i>",
+        "type": "LOCATION"
+    },
+    {
+        "artist": "Matt Dixon",
+        "attack": 1,
+        "cardClass": "NEUTRAL",
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 120856,
+        "flavor": "。啊爱可好哇",
+        "health": 4,
+        "id": "TIME_045",
+        "mechanics": [
+            "POISONOUS",
+            "REBORN"
+        ],
+        "name": "永恒雏龙",
+        "race": "DRAGON",
+        "races": [
+            "DRAGON"
+        ],
+        "rarity": "COMMON",
+        "set": "TIME_TRAVEL",
+        "text": "<b>剧毒</b>。<b>复生</b>",
+        "type": "MINION"
+    },
+    {
+        "artist": "Mike Sass",
+        "attack": 3,
+        "cardClass": "NEUTRAL",
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 120857,
+        "flavor": "我们有技术，也有香蕉，当然可以重造他的身体。",
+        "health": 12,
+        "id": "TIME_046",
+        "mechanics": [
+            "TAUNT"
+        ],
+        "name": "赛博格族长",
+        "race": "BEAST",
+        "races": [
+            "MECHANICAL",
+            "BEAST"
+        ],
+        "rarity": "COMMON",
+        "set": "TIME_TRAVEL",
+        "text": "<b>休眠</b>3回合。<b>嘲讽</b>",
+        "type": "MINION"
+    },
+    {
+        "artist": "Max Grecke",
+        "attack": 5,
+        "cardClass": "NEUTRAL",
+        "collectible": true,
+        "cost": 5,
+        "dbfId": 120859,
+        "flavor": "不要受它的鱼弄！",
+        "health": 3,
+        "id": "TIME_047",
+        "mechanics": [
+            "STEALTH"
+        ],
+        "name": "狡诈的郊狼",
+        "race": "BEAST",
+        "races": [
+            "BEAST"
+        ],
+        "rarity": "COMMON",
+        "set": "TIME_TRAVEL",
+        "text": "<b>潜行</b>。在本回合中，敌方英雄每受到一次伤害，本牌的法力值消耗便减少（1）点。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Felideus Bubastis",
+        "attack": 5,
+        "cardClass": "NEUTRAL",
+        "collectible": true,
+        "cost": 5,
+        "dbfId": 120860,
+        "flavor": "“根据我的记录，你迟到了两分钟！！”",
+        "health": 1,
+        "id": "TIME_048",
+        "mechanics": [
+            "BATTLECRY"
+        ],
+        "name": "钟表发条暴怒者",
+        "race": "MECHANICAL",
+        "races": [
+            "MECHANICAL"
+        ],
+        "rarity": "COMMON",
+        "set": "TIME_TRAVEL",
+        "text": "<b>战吼：</b>在本局对战中，你每进行过一个回合，便获得+1生命值。0<i>（已进行过0个回合）</i>",
+        "type": "MINION"
+    },
+    {
+        "artist": "Matt Dixon",
+        "attack": 1,
+        "cardClass": "NEUTRAL",
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 120944,
+        "flavor": "我觉得我是<i>改良</i>的异变体。",
+        "health": 1,
+        "id": "TIME_049",
+        "mechanics": [
+            "TRIGGER_VISUAL"
+        ],
+        "name": "危险的异变体",
+        "rarity": "COMMON",
+        "set": "TIME_TRAVEL",
+        "text": "在你的回合开始时，随机变形成为一个法力值消耗为（5）的随从。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Todd Harris",
+        "attack": 4,
+        "cardClass": "NEUTRAL",
+        "collectible": true,
+        "cost": 6,
+        "dbfId": 120947,
+        "flavor": "人人都在意它转得对不对，没有人在意它转得累不累。",
+        "health": 9,
+        "id": "TIME_050",
+        "mechanics": [
+            "RUSH",
+            "TRIGGER_VISUAL"
+        ],
+        "name": "灵知沙漏",
+        "race": "ELEMENTAL",
+        "races": [
+            "ELEMENTAL"
+        ],
+        "rarity": "COMMON",
+        "set": "TIME_TRAVEL",
+        "text": "<b>突袭</b>。在本随从受到伤害并存活下来后，其攻击力和生命值互换。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Zoltan Boros",
+        "attack": 3,
+        "cardClass": "NEUTRAL",
+        "collectible": true,
+        "cost": 5,
+        "dbfId": 120949,
+        "flavor": "龙族士兵接受了一个世纪的永恒化后，这是他的身体发生的变化。",
+        "health": 5,
+        "id": "TIME_051",
+        "mechanics": [
+            "BATTLECRY",
+            "RUSH"
+        ],
+        "name": "永恒龙士兵",
+        "race": "DRAGON",
+        "races": [
+            "DRAGON"
+        ],
+        "rarity": "RARE",
+        "set": "TIME_TRAVEL",
+        "text": "<b>突袭</b>。<b>战吼：</b>本随从的攻击力翻倍。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Sergey Tsvelykh",
+        "attack": 4,
+        "cardClass": "NEUTRAL",
+        "collectible": true,
+        "cost": 8,
+        "dbfId": 120951,
+        "flavor": "对于琥珀守卫而言，这是生命中最重要的时刻。对于我而言，那不过是第八回合。",
+        "health": 12,
+        "id": "TIME_052",
+        "mechanics": [
+            "DEATHRATTLE",
+            "TAUNT"
+        ],
+        "name": "琥珀守卫",
+        "race": "DRAGON",
+        "races": [
+            "DRAGON"
+        ],
+        "rarity": "EPIC",
+        "set": "TIME_TRAVEL",
+        "text": "<b>嘲讽</b>。<b>亡语：</b>随机召唤一个来自过去的随从。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Kevin Sidharta",
+        "attack": 7,
+        "cardClass": "NEUTRAL",
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 120954,
+        "flavor": "最爱的风味：香草。",
+        "health": 2,
+        "id": "TIME_053",
+        "name": "流沙巨口",
+        "race": "BEAST",
+        "races": [
+            "ELEMENTAL",
+            "BEAST"
+        ],
+        "rarity": "COMMON",
+        "set": "TIME_TRAVEL",
+        "type": "MINION"
+    },
+    {
+        "artist": "Kati Sarin",
+        "attack": 3,
+        "cardClass": "NEUTRAL",
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 120955,
+        "flavor": "呃，我决定跳过这个世纪了，真的“艇”无聊的。",
+        "health": 4,
+        "id": "TIME_054",
+        "mechanics": [
+            "TRIGGER_VISUAL"
+        ],
+        "name": "时空艇长",
+        "race": "PIRATE",
+        "races": [
+            "PIRATE"
+        ],
+        "rarity": "COMMON",
+        "set": "TIME_TRAVEL",
+        "text": "在每个玩家的回合结束时，使其获得一张幸运币。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Brian Despain",
+        "attack": 4,
+        "cardClass": "NEUTRAL",
+        "collectible": true,
+        "cost": 5,
+        "dbfId": 120958,
+        "flavor": "仔细一想，我们都是来自过去的时空旅人。",
+        "health": 5,
+        "howToEarnGolden": "购买<i>穿越时间流</i>炉石通行证后开放解锁。",
+        "id": "TIME_055",
+        "mechanics": [
+            "TRIGGER_VISUAL"
+        ],
+        "name": "未知旅客",
+        "rarity": "RARE",
+        "set": "TIME_TRAVEL",
+        "text": "在本随从受到伤害并存活下来后，随机变形成为一个法力值消耗为（7）的随从。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Matt Dixon",
+        "attack": 4,
+        "cardClass": "NEUTRAL",
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 120961,
+        "flavor": "哇好可爱啊。",
+        "health": 1,
+        "howToEarnGolden": "购买<i>穿越时间流</i>炉石通行证后开放解锁。",
+        "id": "TIME_056",
+        "mechanics": [
+            "DIVINE_SHIELD",
+            "LIFESTEAL"
+        ],
+        "name": "青铜雏龙",
+        "race": "DRAGON",
+        "races": [
+            "DRAGON"
+        ],
+        "rarity": "COMMON",
+        "set": "TIME_TRAVEL",
+        "text": "<b>吸血</b>。<b>圣盾</b>",
+        "type": "MINION"
+    },
+    {
+        "artist": "Caroline Gariba",
+        "attack": 4,
+        "cardClass": "NEUTRAL",
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 120962,
+        "flavor": "他每一段故事的开头都是“想当初，我……”",
+        "health": 5,
+        "id": "TIME_057",
+        "mechanics": [
+            "BATTLECRY"
+        ],
+        "name": "年迈的真理追寻者",
+        "race": "DRAENEI",
+        "races": [
+            "DRAENEI"
+        ],
+        "rarity": "COMMON",
+        "set": "TIME_TRAVEL",
+        "text": "<b>战吼：</b>将双方玩家手牌中每张牌的法力值消耗变回原消耗。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Tanamaes Leejierasaes",
+        "attack": 1,
+        "cardClass": "NEUTRAL",
+        "collectible": true,
+        "cost": 1,
+        "dbfId": 120964,
+        "flavor": "当心，振翅蝶效应的后果更危险！",
+        "health": 1,
+        "id": "TIME_058",
+        "mechanics": [
+            "DEATHRATTLE"
+        ],
+        "name": "渺小的振翅蝶",
+        "race": "BEAST",
+        "races": [
+            "BEAST"
+        ],
+        "rarity": "RARE",
+        "set": "TIME_TRAVEL",
+        "text": "<b>亡语：</b>随机召唤一个\n法力值消耗为（2）并<b>休眠</b>2回合的随从。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Max Grecke",
+        "attack": 2,
+        "cardClass": "NEUTRAL",
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 120966,
+        "flavor": "只要找到正确的复制体就可以了。",
+        "health": 1,
+        "howToEarnGolden": "购买<i>穿越时间流</i>炉石通行证后开放解锁。",
+        "id": "TIME_059",
+        "mechanics": [
+            "BATTLECRY",
+            "ELUSIVE"
+        ],
+        "name": "悖论活体",
+        "rarity": "COMMON",
+        "set": "TIME_TRAVEL",
+        "text": "<b>扰魔</b>。<b>战吼：</b>召唤两个2/1并具有<b>扰魔</b>的悖论活体。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Matt Dixon",
+        "attack": 4,
+        "cardClass": "NEUTRAL",
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 120976,
+        "flavor": "这不公平！因为你的观测行为，整个结果都变了！",
+        "health": 9,
+        "id": "TIME_060",
+        "name": "量子反稳定机",
+        "race": "MECHANICAL",
+        "races": [
+            "MECHANICAL"
+        ],
+        "rarity": "COMMON",
+        "set": "TIME_TRAVEL",
+        "text": "本随从受到的所有伤害翻倍。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Stefan Bogdasarov",
+        "attack": 3,
+        "cardClass": "NEUTRAL",
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 120977,
+        "flavor": "越时相关性和越时因果有很大区别。",
+        "health": 2,
+        "id": "TIME_061",
+        "mechanics": [
+            "BATTLECRY"
+        ],
+        "name": "越时因果",
+        "race": "ELEMENTAL",
+        "races": [
+            "ELEMENTAL"
+        ],
+        "rarity": "EPIC",
+        "set": "TIME_TRAVEL",
+        "text": "<b>战吼：</b>倒转你的牌库排序。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Vika Yarova",
+        "attack": 3,
+        "cardClass": "NEUTRAL",
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 120979,
+        "flavor": "不需要强行加设定！",
+        "health": 6,
+        "id": "TIME_062",
+        "mechanics": [
+            "BATTLECRY"
+        ],
+        "name": "史书守护者",
+        "rarity": "COMMON",
+        "referencedTags": [
+            "DIVINE_SHIELD",
+            "TAUNT"
+        ],
+        "set": "TIME_TRAVEL",
+        "text": "<b>战吼：</b>如果你的手牌中有龙牌，则获得<b>嘲讽</b>和<b>圣盾</b>。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Stefan Bogdasarov",
+        "attack": 8,
+        "cardClass": "NEUTRAL",
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 120981,
+        "elite": true,
+        "flavor": "我们本想让他<b>休眠</b>15秒，但后来发现实在太短了。",
+        "hasDiamondSkin": true,
+        "health": 8,
+        "id": "TIME_063",
+        "mechanics": [
+            "RUSH"
+        ],
+        "name": "时光之主诺兹多姆",
+        "race": "DRAGON",
+        "races": [
+            "DRAGON"
+        ],
+        "rarity": "LEGENDARY",
+        "set": "TIME_TRAVEL",
+        "text": "<b>休眠</b>5回合。<b>突袭</b>。在你使用一张最新扩展包的牌后，提前1回合唤醒。",
+        "type": "MINION"
+    },
+    {
+        "artist": "James Ryman",
+        "attack": 4,
+        "cardClass": "NEUTRAL",
+        "collectible": true,
+        "cost": 7,
+        "dbfId": 120985,
+        "elite": true,
+        "flavor": "戴……欧斯。德——哎爱——欧斯……",
+        "health": 8,
+        "howToEarn": "可以在<i>穿越时间流</i>奖励路线中获得该奖励。",
+        "howToEarnGolden": "购买<i>穿越时间流</i>炉石通行证后开放解锁。",
+        "id": "TIME_064",
+        "mechanics": [
+            "AURA"
+        ],
+        "name": "时空领主戴欧斯",
+        "rarity": "LEGENDARY",
+        "referencedTags": [
+            "BATTLECRY",
+            "DEATHRATTLE"
+        ],
+        "set": "TIME_TRAVEL",
+        "text": "你的<b>战吼</b>，<b>亡语</b>，英雄技能和回合结束效果会触发两次。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Matt Dixon",
+        "attack": 2,
+        "cardClass": "NEUTRAL",
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 121051,
+        "faction": "HORDE",
+        "flavor": "花了大力气来保持沙漏形体。",
+        "health": 4,
+        "id": "TIME_100",
+        "mechanics": [
+            "DIVINE_SHIELD",
+            "TRIGGER_VISUAL"
+        ],
+        "name": "沙漏侍者",
+        "rarity": "COMMON",
+        "set": "TIME_TRAVEL",
+        "text": "<b>圣盾</b>。在你的回合结束时，使你手牌中的所有随从牌获得+1/+1。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Tanamaes Leejierasaes",
+        "attack": 4,
+        "cardClass": "NEUTRAL",
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 121670,
+        "flavor": "糟了！时间线<b>裂变</b>了！",
+        "health": 3,
+        "id": "TIME_101",
+        "mechanics": [
+            "TRIGGER_VISUAL"
+        ],
+        "name": "穿越的炎术士",
+        "rarity": "COMMON",
+        "set": "TIME_TRAVEL",
+        "text": "每当你<b>裂变</b>一张牌时，对所有敌方随从造成2点伤害。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Felideus Bubastis",
+        "attack": 2,
+        "cardClass": "NEUTRAL",
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 121671,
+        "flavor": "“我就是自己的闹钟。”",
+        "health": 2,
+        "howToEarnGolden": "购买<i>穿越时间流</i>炉石通行证后开放解锁。",
+        "id": "TIME_102",
+        "mechanics": [
+            "BATTLECRY"
+        ],
+        "name": "昼夜节律术师",
+        "rarity": "EPIC",
+        "set": "TIME_TRAVEL",
+        "text": "<b>战吼：</b>随机将一张法力值消耗为（8）的随从牌置入你的手牌，在你的回合开始时，其法力值消耗减少（1）点。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Ivan Fomin",
+        "attack": 4,
+        "cardClass": "NEUTRAL",
+        "collectible": true,
+        "cost": 6,
+        "dbfId": 121672,
+        "elite": true,
+        "flavor": "克罗米上下求索，可就是找不到足以对抗姆诺兹多的英雄团队。至少，<i>这</i>条时间线不够……",
+        "hasDiamondSkin": true,
+        "health": 6,
+        "id": "TIME_103",
+        "mechanics": [
+            "DEATHRATTLE"
+        ],
+        "name": "克罗米",
+        "rarity": "LEGENDARY",
+        "set": "TIME_TRAVEL",
+        "text": "<b>亡语：</b>抽取你在本局对战中使用过的每张牌的另一张复制。0<i>（抽0张牌）</i>",
+        "type": "MINION"
+    },
+    {
+        "artist": "Timur Shevtsov",
+        "attack": 3,
+        "cardClass": "SHAMAN",
+        "collectible": true,
+        "cost": 5,
+        "dbfId": 119643,
+        "elite": true,
+        "flavor": "铁炉堡的史书中最为惨痛的一笔，莫过于穆拉丁国王亲手击毙了堕落的王子阿尔萨斯。巫妖王未能崛起，驭雷者团结如初，可是王子的死还是给联盟留下了一道嫌隙，永远无法弥合。",
+        "health": 2,
+        "id": "TIME_209",
+        "mechanics": [
+            "BATTLECRY",
+            "DEATHRATTLE",
+            "RUSH"
+        ],
+        "name": "高山之王穆拉丁",
+        "rarity": "LEGENDARY",
+        "set": "TIME_TRAVEL",
+        "text": "<b>奇闻</b>\n<b>突袭</b>。<b>战吼：</b>为本随从装备高山之王的战锤！<b>亡语：</b>将该战锤置入你的手牌。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Eva Widermann",
+        "attack": 5,
+        "cardClass": "DRUID",
+        "collectible": true,
+        "cost": 5,
+        "dbfId": 119928,
+        "elite": true,
+        "flavor": "艾萨拉曾是卡多雷一族仁善的女王。而在某条时间线中，她一直都是这样的女王。",
+        "health": 5,
+        "id": "TIME_211",
+        "mechanics": [
+            "CHOOSE_ONE"
+        ],
+        "name": "艾萨拉女士",
+        "rarity": "LEGENDARY",
+        "set": "TIME_TRAVEL",
+        "text": "<b>奇闻</b>\n<b>抉择：</b>强化辛艾萨莉；或者永恒之井。<i>（未选择的选项会被摧毁！）</i>",
+        "type": "MINION"
+    },
+    {
+        "artist": "Brian Adriel",
+        "cardClass": "SHAMAN",
+        "collectible": true,
+        "cost": 1,
+        "dbfId": 120173,
+        "flavor": "阿针，你来真的啊。",
+        "id": "TIME_212",
+        "name": "引雷针",
+        "rarity": "COMMON",
+        "set": "TIME_TRAVEL",
+        "spellSchool": "NATURE",
+        "text": "对一个友方随从造成$2点伤害，以随机对一个敌方随从造成$4点伤害。",
+        "type": "SPELL"
+    },
+    {
+        "artist": "Kati Sarin",
+        "attack": 2,
+        "cardClass": "SHAMAN",
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 120437,
+        "flavor": "在这条时间线中，矮人一族在图腾雕刻方面展现出了非凡的创意。",
+        "health": 3,
+        "id": "TIME_213",
+        "mechanics": [
+            "BATTLECRY"
+        ],
+        "name": "始源监督者",
+        "rarity": "COMMON",
+        "set": "TIME_TRAVEL",
+        "text": "<b>战吼：</b>如果你在本牌在你手中时施放过自然法术，获得+1/+1并抽一张牌。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Ivo Campelo da Silva",
+        "attack": 1,
+        "cardClass": "SHAMAN",
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 120175,
+        "flavor": "“我把那个电容放哪了……”",
+        "health": 4,
+        "id": "TIME_214",
+        "mechanics": [
+            "TAUNT",
+            "TRIGGER_VISUAL"
+        ],
+        "name": "时流亡魂",
+        "race": "ELEMENTAL",
+        "races": [
+            "ELEMENTAL"
+        ],
+        "rarity": "RARE",
+        "set": "TIME_TRAVEL",
+        "text": "<b>嘲讽</b>。每当你即将用自然法术对本随从造成伤害，改为本随从获得+2/+1。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Timur Shevtsov",
+        "cardClass": "SHAMAN",
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 120176,
+        "flavor": "想看看我的肌肉吗？发挥得不错！发挥得不错！吃我一锤！",
+        "id": "TIME_215",
+        "name": "雷霆动地",
+        "rarity": "RARE",
+        "set": "TIME_TRAVEL",
+        "spellSchool": "NATURE",
+        "text": "对所有随从造成$1点伤害。获取一张静电震击。",
+        "type": "SPELL"
+    },
+    {
+        "artist": "Diego Gil",
+        "cardClass": "SHAMAN",
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 120448,
+        "flavor": "等等吧，等它长成一道成熟的闪电。",
+        "id": "TIME_216",
+        "name": "新生闪电",
+        "rarity": "RARE",
+        "set": "TIME_TRAVEL",
+        "spellSchool": "NATURE",
+        "text": "对一个随从造成$5点伤害。如果该随从依然存活，抽两张牌。",
+        "type": "SPELL"
+    },
+    {
+        "artist": "Edgar Hidalgo",
+        "attack": 5,
+        "cardClass": "SHAMAN",
+        "collectible": true,
+        "cost": 5,
+        "dbfId": 120177,
+        "flavor": "矮人和自己的雷鸫之间有着特殊的连结，不惧锤锻，不怕火炼。",
+        "health": 5,
+        "id": "TIME_217",
+        "mechanics": [
+            "TRIGGER_VISUAL"
+        ],
+        "name": "雷鸫",
+        "race": "ELEMENTAL",
+        "races": [
+            "ELEMENTAL",
+            "BEAST"
+        ],
+        "rarity": "EPIC",
+        "set": "TIME_TRAVEL",
+        "text": "每当你即将用自然法术对本随从造成伤害，改为随机召唤一个法力值消耗为（5）的随从。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Luca Zontini",
+        "cardClass": "SHAMAN",
+        "collectible": true,
+        "cost": 0,
+        "dbfId": 121020,
+        "flavor": "开战之前用脚在毛毡上反复摩擦了几个小时。",
+        "id": "TIME_218",
+        "name": "静电震击",
+        "rarity": "COMMON",
+        "set": "TIME_TRAVEL",
+        "spellSchool": "NATURE",
+        "text": "对一个随从造成$1点伤害。在本回合中，使你的英雄获得+1攻击力。",
+        "type": "SPELL"
+    },
+    {
+        "artist": "Stefan Bogdasarov",
+        "attack": 2,
+        "cardClass": "PRIEST",
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 120450,
+        "flavor": "要解决最顽固的污渍，只需混合以下物品：小苏打，醋，还有炽烈的救赎之光。",
+        "health": 3,
+        "id": "TIME_427",
+        "mechanics": [
+            "BATTLECRY",
+            "LIFESTEAL"
+        ],
+        "name": "净化的光耀之子",
+        "race": "ELEMENTAL",
+        "races": [
+            "ELEMENTAL"
+        ],
+        "rarity": "RARE",
+        "set": "TIME_TRAVEL",
+        "targetingArrowText": "造成等同于本随从生命值的伤害。",
+        "text": "<b>吸血</b>。<b>战吼：</b>对一个敌方随从造成等同于本随从生命值的伤害。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Tanamaes Leejierasaes",
+        "attack": 3,
+        "cardClass": "NEUTRAL",
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 120452,
+        "flavor": "*老派的鱼人语*",
+        "health": 1,
+        "id": "TIME_428",
+        "mechanics": [
+            "TRIGGER_VISUAL"
+        ],
+        "name": "昨日鱼人",
+        "race": "MURLOC",
+        "races": [
+            "MURLOC"
+        ],
+        "rarity": "COMMON",
+        "set": "TIME_TRAVEL",
+        "text": "在你的回合结束时，使你的其他随从获得+1生命值。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Edgar Hidalgo",
+        "attack": 4,
+        "cardClass": "PRIEST",
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 120471,
+        "flavor": "欲成圣道，须修澄心。",
+        "health": 5,
+        "id": "TIME_429",
+        "mechanics": [
+            "BATTLECRY"
+        ],
+        "name": "神圣预言师",
+        "race": "DRAENEI",
+        "races": [
+            "DRAENEI"
+        ],
+        "rarity": "EPIC",
+        "set": "TIME_TRAVEL",
+        "text": "<b>战吼：</b>将你手牌中每张随从牌的攻击力和生命值变为两者中的高值。",
+        "type": "MINION"
+    },
+    {
+        "artist": "James Ryman",
+        "attack": 1,
+        "cardClass": "PRIEST",
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 120475,
+        "flavor": "“我愿为你效力。而且，我猛得很！”",
+        "health": 4,
+        "id": "TIME_431",
+        "mechanics": [
+            "BATTLECRY",
+            "TAUNT"
+        ],
+        "name": "琥珀女祭司",
+        "rarity": "COMMON",
+        "set": "TIME_TRAVEL",
+        "targetingArrowText": "恢复等同于本角色生命值的生命值。",
+        "text": "<b>嘲讽</b>。<b>战吼：</b>为一个角色恢复等同于本随从生命值的生命值。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Vlad Botos",
+        "cardClass": "PRIEST",
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 120477,
+        "flavor": "想象一下……龙来了！",
+        "id": "TIME_432",
+        "mechanics": [
+            "DISCOVER"
+        ],
+        "name": "纠缠宿命",
+        "rarity": "RARE",
+        "set": "TIME_TRAVEL",
+        "text": "从你的牌库和对手的牌库各<b>发现</b>一张牌的一张复制。",
+        "type": "SPELL"
+    },
+    {
+        "artist": "Brian Despain",
+        "cardClass": "PRIEST",
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 120492,
+        "flavor": "空引用异常：对象引用未设置为对象的实例。",
+        "id": "TIME_433",
+        "name": "抹除存在",
+        "rarity": "COMMON",
+        "referencedTags": [
+            "SILENCE"
+        ],
+        "set": "TIME_TRAVEL",
+        "text": "<b>回溯</b>。<b>沉默</b>并消灭一个随机敌方随从。",
+        "type": "SPELL"
+    },
+    {
+        "artist": "Ursula Dorada",
+        "attack": 4,
+        "cardClass": "NEUTRAL",
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 120527,
+        "flavor": "写给过去的自己：我就快死了，记得给我报仇。",
+        "health": 1,
+        "id": "TIME_434",
+        "mechanics": [
+            "DEATHRATTLE"
+        ],
+        "name": "时空旅行者",
+        "rarity": "COMMON",
+        "set": "TIME_TRAVEL",
+        "text": "<b>亡语：</b>召唤一个4/1的影子，并使其随机攻击一个敌方随从。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Mooncolony",
+        "attack": 6,
+        "cardClass": "PRIEST",
+        "collectible": true,
+        "cost": 6,
+        "dbfId": 120543,
+        "elite": true,
+        "flavor": "“伊特努丝绝不会背弃我们！”——永恒龙军团",
+        "hasDiamondSkin": true,
+        "health": 2,
+        "id": "TIME_435",
+        "mechanics": [
+            "BATTLECRY"
+        ],
+        "name": "伊特努丝",
+        "race": "DRAGON",
+        "races": [
+            "DRAGON"
+        ],
+        "rarity": "LEGENDARY",
+        "set": "TIME_TRAVEL",
+        "targetingArrowText": "夺取生命值小于本随从的随从的控制权。",
+        "text": "<b>战吼：</b>夺取一个生命值小于或等于本随从的敌方随从的控制权。",
+        "type": "MINION"
+    },
+    {
+        "artist": "BOSi Studio",
+        "cardClass": "PRIEST",
+        "collectible": true,
+        "cost": 7,
+        "dbfId": 120544,
+        "flavor": "万年以来，魔法笼罩着时光流汇以及整片巨龙群岛，将其与艾泽拉斯的其余地区隔绝开来——哪怕是巨龙军团自己也无法接近。",
+        "health": 3,
+        "id": "TIME_436",
+        "name": "过去的时光流汇",
+        "rarity": "EPIC",
+        "set": "TIME_TRAVEL",
+        "text": "随机召唤一条法力值消耗大于或等于（5）点的龙。<i>推进到现在！</i>",
+        "type": "LOCATION"
+    },
+    {
+        "artist": "Jason Kang",
+        "cardClass": "DEMONHUNTER",
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 120922,
+        "flavor": "回溯之后再次错斩，这太伊利丹了。",
+        "id": "TIME_441",
+        "name": "永世裂痕",
+        "rarity": "COMMON",
+        "set": "TIME_TRAVEL",
+        "spellSchool": "FEL",
+        "text": "<b>回溯</b>。随机对两个敌人造成$4点伤害。",
+        "type": "SPELL"
+    },
+    {
+        "artist": "BOSi Studio",
+        "attack": 2,
+        "cardClass": "DEMONHUNTER",
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 120988,
+        "flavor": "如果表现良好，刑期还能减几个回合。",
+        "health": 6,
+        "id": "TIME_442",
+        "mechanics": [
+            "BATTLECRY",
+            "DEATHRATTLE"
+        ],
+        "name": "时间流守望者",
+        "rarity": "EPIC",
+        "set": "TIME_TRAVEL",
+        "targetingArrowText": "将一个随从囚禁10000回合。",
+        "text": "<b>战吼：</b>囚禁一个敌方随从，使其<b>休眠</b>10000回合。<b>亡语：</b>唤醒该随从。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Vladimir Kafanov",
+        "cardClass": "DEMONHUNTER",
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 120990,
+        "flavor": "这样的狗狗摸不得！",
+        "id": "TIME_443",
+        "name": "怒火狱犬",
+        "rarity": "RARE",
+        "set": "TIME_TRAVEL",
+        "text": "召唤两个3/3的恶魔。如果你的牌库中没有随从牌，使其攻击生命值最低的敌人。",
+        "type": "SPELL"
+    },
+    {
+        "artist": "Daniil Kudriavtsev",
+        "attack": 2,
+        "cardClass": "DEMONHUNTER",
+        "collectible": true,
+        "cost": 1,
+        "dbfId": 120993,
+        "durability": 0,
+        "flavor": "哦，原来丢在这个时候了。",
+        "health": 2,
+        "id": "TIME_444",
+        "mechanics": [
+            "DEATHRATTLE"
+        ],
+        "name": "迷时战刃",
+        "rarity": "COMMON",
+        "set": "TIME_TRAVEL",
+        "text": "<b>亡语：</b>随机获取\n一张来自过去的恶魔牌。",
+        "type": "WEAPON"
+    },
+    {
+        "artist": "BOSi Studio",
+        "cardClass": "DEMONHUNTER",
+        "collectible": true,
+        "cost": 6,
+        "dbfId": 120999,
+        "elite": true,
+        "flavor": "用时间垒成的坚垒，永时坚垒。",
+        "health": 3,
+        "id": "TIME_446",
+        "mechanics": [
+            "DISCOVER"
+        ],
+        "name": "永时坚垒",
+        "rarity": "LEGENDARY",
+        "set": "TIME_TRAVEL",
+        "text": "<b>发现</b>一张法力值消耗大于或等于（5）点的任意恶魔牌。如果你的牌库中没有随从牌，你的下一张随从牌法力值消耗为（0）点。",
+        "type": "LOCATION"
+    },
+    {
+        "artist": "Ramzy Kamen",
+        "cardClass": "PRIEST",
+        "collectible": true,
+        "cost": 1,
+        "dbfId": 121005,
+        "flavor": "所谓团队合作的真谛，就是躲在黄色的泡泡里，假装伤害机制不存在。",
+        "id": "TIME_447",
+        "name": "真言术：障",
+        "rarity": "RARE",
+        "referencedTags": [
+            "DIVINE_SHIELD"
+        ],
+        "set": "TIME_TRAVEL",
+        "spellSchool": "HOLY",
+        "text": "使一个角色获得<b>圣盾</b>。使你手牌中的随从牌获得+2生命值。",
+        "type": "SPELL"
+    },
+    {
+        "artist": "Stefan Bogdasarov",
+        "cardClass": "DEMONHUNTER",
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 121023,
+        "flavor": "独处时间。",
+        "id": "TIME_448",
+        "mechanics": [
+            "DISCOVER"
+        ],
+        "name": "命源",
+        "rarity": "COMMON",
+        "set": "TIME_TRAVEL",
+        "text": "<b>发现</b>2张随从牌。如果你的牌库中没有随从牌，使你手牌中的随从牌法力值消耗减少（2）点。",
+        "type": "SPELL"
+    },
+    {
+        "artist": "Ramzy Kamen",
+        "cardClass": "DEMONHUNTER",
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 121024,
+        "flavor": "我的父亲有+4攻击力，我父亲的父亲也有+4攻击力。",
+        "id": "TIME_449",
+        "name": "绵延传承",
+        "rarity": "RARE",
+        "set": "TIME_TRAVEL",
+        "text": "在本回合中，使你的英雄获得+4攻击力。如果你的牌库中没有随从牌，使你手牌中的随从牌获得+4攻击力。",
+        "type": "SPELL"
+    },
+    {
+        "artist": "Tee Fuyuan",
+        "cardClass": "HUNTER",
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 119696,
+        "flavor": "保证精确，但不保证准确。",
+        "id": "TIME_600",
+        "name": "精确射击",
+        "rarity": "EPIC",
+        "set": "TIME_TRAVEL",
+        "text": "造成$3点伤害。如果本牌位于你手牌的正中间，改为造成$5点。",
+        "type": "SPELL"
+    },
+    {
+        "artist": "Vika Yarova",
+        "attack": 3,
+        "cardClass": "HUNTER",
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 120788,
+        "flavor": "不会计较你脱靶了多少次。",
+        "health": 1,
+        "id": "TIME_601",
+        "mechanics": [
+            "BATTLECRY"
+        ],
+        "name": "拾箭龙鹰",
+        "race": "BEAST",
+        "races": [
+            "BEAST"
+        ],
+        "rarity": "COMMON",
+        "set": "TIME_TRAVEL",
+        "text": "<b>战吼：</b>抽牌，直到你拥有三张手牌。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Slawomir Maniak",
+        "cardClass": "HUNTER",
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 120501,
+        "flavor": "大个子山姆鱼饵专营店出品，生产过程中没有虫子受到虐待。",
+        "id": "TIME_602",
+        "name": "虫洞",
+        "rarity": "RARE",
+        "set": "TIME_TRAVEL",
+        "text": "<b>回溯</b>。随机召唤一只法力值消耗为（3）的野兽并使其攻击随机敌人。",
+        "type": "SPELL"
+    },
+    {
+        "artist": "Melvin Chan",
+        "attack": 1,
+        "cardClass": "HUNTER",
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 119702,
+        "flavor": "相信我，计时器总会在0秒时准时停止。",
+        "health": 1,
+        "id": "TIME_603",
+        "mechanics": [
+            "DEATHRATTLE"
+        ],
+        "name": "计时炸弹",
+        "race": "MECHANICAL",
+        "races": [
+            "MECHANICAL"
+        ],
+        "rarity": "COMMON",
+        "set": "TIME_TRAVEL",
+        "text": "<b>亡语：</b>随机消灭一个敌方随从。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Dmitry Bolotov",
+        "attack": 3,
+        "cardClass": "HUNTER",
+        "collectible": true,
+        "cost": 6,
+        "dbfId": 119703,
+        "flavor": "当心！它在你6点钟方向！",
+        "health": 4,
+        "id": "TIME_605",
+        "mechanics": [
+            "BATTLECRY",
+            "ELUSIVE",
+            "RUSH"
+        ],
+        "name": "纪元追猎者",
+        "race": "BEAST",
+        "races": [
+            "BEAST"
+        ],
+        "rarity": "COMMON",
+        "set": "TIME_TRAVEL",
+        "text": "<b>突袭</b>。<b>扰魔</b>\n<b>战吼：</b>召唤一个本随从的复制。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Tee Fuyuan",
+        "attack": 1,
+        "cardClass": "HUNTER",
+        "collectible": true,
+        "cost": 1,
+        "dbfId": 119704,
+        "flavor": "打脸的时候，时间过得总是很快。",
+        "health": 3,
+        "id": "TIME_606",
+        "mechanics": [
+            "AURA"
+        ],
+        "name": "奎尔多雷造箭师",
+        "rarity": "RARE",
+        "set": "TIME_TRAVEL",
+        "text": "当你的手牌少于或等于三张时，你的英雄技能的法力值消耗为（0）点。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Rafael Zanchetin",
+        "attack": 2,
+        "cardClass": "HUNTER",
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 119707,
+        "elite": true,
+        "flavor": "无论她后来会变成什么样子，她都是抗击巫妖王时最为英勇的游侠将军，是银月城的英雄。",
+        "hasDiamondSkin": true,
+        "health": 4,
+        "id": "TIME_609",
+        "mechanics": [
+            "BATTLECRY"
+        ],
+        "name": "游侠将军希尔瓦娜斯",
+        "rarity": "LEGENDARY",
+        "set": "TIME_TRAVEL",
+        "text": "<b>奇闻</b>\n<b>战吼：</b>对所有敌人造成2点伤害。如果你使用过奥蕾莉亚或温蕾萨，每使用过一位，重复一次。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Daniil Kudriavtsev",
+        "cardClass": "DEATHKNIGHT",
+        "collectible": true,
+        "cost": 6,
+        "dbfId": 120530,
+        "flavor": "昨日的旧事往往会在明天拖下长长的阴影。比方说，选择<b>回溯</b>。",
+        "id": "TIME_610",
+        "name": "昨日之影",
+        "rarity": "RARE",
+        "runeCost": {
+            "blood": 0,
+            "frost": 0,
+            "unholy": 2
+        },
+        "set": "TIME_TRAVEL",
+        "spellSchool": "SHADOW",
+        "text": "<b>回溯</b>。召唤四个3/2的影子，每个影子分别随机获得两项<b>额外效果</b>。",
+        "type": "SPELL"
+    },
+    {
+        "artist": "Brian Adriel",
+        "cardClass": "DEATHKNIGHT",
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 120389,
+        "flavor": "时间拖得足够长，坏掉的钟也能有几次准的时候。",
+        "id": "TIME_611",
+        "name": "时间停滞",
+        "rarity": "COMMON",
+        "referencedTags": [
+            "FREEZE"
+        ],
+        "runeCost": {
+            "blood": 0,
+            "frost": 2,
+            "unholy": 0
+        },
+        "set": "TIME_TRAVEL",
+        "spellSchool": "FROST",
+        "text": "造成$3点伤害。随机<b>冻结</b>两个敌方随从。",
+        "type": "SPELL"
+    },
+    {
+        "artist": "Brian Despain",
+        "cardClass": "DEATHKNIGHT",
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 121011,
+        "flavor": "这不是血，是月莓汁。",
+        "id": "TIME_612",
+        "mechanics": [
+            "DISCOVER"
+        ],
+        "name": "赤红汲取",
+        "rarity": "COMMON",
+        "runeCost": {
+            "blood": 1,
+            "frost": 0,
+            "unholy": 0
+        },
+        "set": "TIME_TRAVEL",
+        "spellSchool": "SHADOW",
+        "text": "<b>发现</b>一张法术牌。本牌消耗生命值，而非法力值。",
+        "type": "SPELL"
+    },
+    {
+        "artist": "Kevin Sidharta",
+        "attack": 2,
+        "cardClass": "DEATHKNIGHT",
+        "collectible": true,
+        "cost": 1,
+        "dbfId": 120481,
+        "flavor": "勇士的笑容渐渐凝固……",
+        "health": 1,
+        "id": "TIME_613",
+        "mechanics": [
+            "DEATHRATTLE"
+        ],
+        "name": "时空冰封勇士",
+        "rarity": "COMMON",
+        "runeCost": {
+            "blood": 0,
+            "frost": 1,
+            "unholy": 0
+        },
+        "set": "TIME_TRAVEL",
+        "text": "<b>亡语：</b>随机获取一张<b>传说</b>随从牌，其法力值消耗减少（1）点。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Caroline Gariba",
+        "attack": 3,
+        "cardClass": "DEATHKNIGHT",
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 121015,
+        "flavor": "可以把你的痛苦转嫁给更健康的个体——你的对手。",
+        "health": 4,
+        "id": "TIME_614",
+        "mechanics": [
+            "BATTLECRY"
+        ],
+        "name": "生命撕裂者",
+        "race": "UNDEAD",
+        "races": [
+            "UNDEAD"
+        ],
+        "rarity": "RARE",
+        "set": "TIME_TRAVEL",
+        "targetingArrowText": "对一个敌方随从造成6点伤害。",
+        "text": "<b>战吼：</b>在本回合中，如果你的英雄的生命值发生变化，对一个敌方随从造成6点伤害。",
+        "type": "MINION"
+    },
+    {
+        "artist": "AJ Nazzaro",
+        "cardClass": "DEATHKNIGHT",
+        "collectible": true,
+        "cost": 8,
+        "dbfId": 121014,
+        "flavor": "既然忘了，就别提了。",
+        "id": "TIME_615",
+        "name": "遗忘纪元",
+        "rarity": "EPIC",
+        "runeCost": {
+            "blood": 1,
+            "frost": 0,
+            "unholy": 1
+        },
+        "set": "TIME_TRAVEL",
+        "text": "用随机亡灵牌填满你的手牌。在本回合中，这些牌消耗生命值，而非法力值。",
+        "type": "SPELL"
+    },
+    {
+        "artist": "Felideus Bubastis",
+        "cardClass": "DEATHKNIGHT",
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 120209,
+        "flavor": "“放我安心地去吧！”",
+        "id": "TIME_616",
+        "name": "悼念成真",
+        "rarity": "RARE",
+        "set": "TIME_TRAVEL",
+        "spellSchool": "SHADOW",
+        "text": "召唤在本局对战中死亡的法力值消耗最高的友方亡灵。",
+        "type": "SPELL"
+    },
+    {
+        "artist": "Dmitry Bolotov",
+        "attack": 8,
+        "cardClass": "DEATHKNIGHT",
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 121017,
+        "flavor": "冻心的时候，时间过得总是特别特别快。",
+        "health": 7,
+        "id": "TIME_617",
+        "mechanics": [
+            "TRIGGER_VISUAL"
+        ],
+        "name": "时空封冻者",
+        "race": "UNDEAD",
+        "races": [
+            "UNDEAD"
+        ],
+        "rarity": "EPIC",
+        "runeCost": {
+            "blood": 0,
+            "frost": 1,
+            "unholy": 1
+        },
+        "set": "TIME_TRAVEL",
+        "text": "你不再会在你的回合开始时抽牌。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Grafit",
+        "attack": 5,
+        "cardClass": "DEATHKNIGHT",
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 121000,
+        "elite": true,
+        "flavor": "第二次生命往往会被白白浪费，这为哈斯克提供了无尽的笑料。",
+        "health": 3,
+        "id": "TIME_618",
+        "mechanics": [
+            "BATTLECRY"
+        ],
+        "name": "永时收割者哈斯克",
+        "race": "UNDEAD",
+        "races": [
+            "UNDEAD"
+        ],
+        "rarity": "LEGENDARY",
+        "referencedTags": [
+            "DEATHRATTLE"
+        ],
+        "set": "TIME_TRAVEL",
+        "text": "<b>战吼：</b>使你的英雄获得“<b>亡语：</b>消耗最多20份<b>残骸</b>，复活你的英雄并使其具有等量生命值。”",
+        "type": "MINION"
+    },
+    {
+        "artist": "James Ryman",
+        "attack": 4,
+        "cardClass": "DEATHKNIGHT",
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 120183,
+        "elite": true,
+        "flavor": "在某条黑暗的时间线中，塔兰吉不幸被害，又被复活为死亡骑士。可即便是死亡，也不能阻止她保护赞达拉的人民。",
+        "health": 5,
+        "id": "TIME_619",
+        "mechanics": [
+            "BATTLECRY"
+        ],
+        "name": "墓地尊主塔兰吉",
+        "race": "UNDEAD",
+        "races": [
+            "UNDEAD"
+        ],
+        "rarity": "LEGENDARY",
+        "set": "TIME_TRAVEL",
+        "text": "<b>奇闻</b>\n<b>战吼：</b>抽取邦桑迪<i>（如果他已经死亡则将其复活）</i>，选择并使其获得一项恩泽。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Patrik Bjorkstrom",
+        "cardClass": "HUNTER",
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 121210,
+        "flavor": "无情的时间沙漏每年都会带走……",
+        "id": "TIME_620",
+        "mechanics": [
+            "SECRET"
+        ],
+        "name": "失时往生",
+        "rarity": "RARE",
+        "set": "TIME_TRAVEL",
+        "text": "<b>奥秘：</b>当一个友方随从在被使用的下一回合死亡时，再次召唤该随从。",
+        "type": "SPELL"
+    },
+    {
+        "artist": "Vlad Botos",
+        "cardClass": "PALADIN",
+        "collectible": true,
+        "cost": 5,
+        "dbfId": 120644,
+        "flavor": "我们需要找到龙族进化链上缺失的那一环！",
+        "id": "TIME_700",
+        "name": "时序光环",
+        "rarity": "COMMON",
+        "referencedTags": [
+            "TAUNT"
+        ],
+        "set": "TIME_TRAVEL",
+        "spellSchool": "HOLY",
+        "text": "在你的回合\n结束时，召唤一条3/5并具有<b>嘲讽</b>的龙。持续3回合。",
+        "type": "SPELL"
+    },
+    {
+        "artist": "Sergey Tsvelykh",
+        "cardClass": "DRUID",
+        "collectible": true,
+        "cost": 1,
+        "dbfId": 120746,
+        "flavor": "水无常形。",
+        "id": "TIME_701",
+        "mechanics": [
+            "DISCOVER"
+        ],
+        "name": "波涛形塑",
+        "rarity": "RARE",
+        "set": "TIME_TRAVEL",
+        "spellSchool": "NATURE",
+        "text": "从你的牌库中<b>发现</b>一张牌。将其余选项置于牌库底。",
+        "type": "SPELL"
+    },
+    {
+        "artist": "Vlad Botos",
+        "cardClass": "DRUID",
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 120748,
+        "flavor": "随波而起，顺潮而去。",
+        "id": "TIME_702",
+        "name": "潮起潮落",
+        "rarity": "COMMON",
+        "set": "TIME_TRAVEL",
+        "spellSchool": "NATURE",
+        "text": "造成$3点伤害。如果你在本牌在你手中时使用过随从牌，获得5点护甲值。",
+        "type": "SPELL"
+    },
+    {
+        "artist": "Matt Dixon",
+        "attack": 5,
+        "cardClass": "DRUID",
+        "collectible": true,
+        "cost": 5,
+        "dbfId": 120749,
+        "flavor": "各种有关我的物种濒危报告有过分夸大的——",
+        "health": 5,
+        "id": "TIME_703",
+        "mechanics": [
+            "BATTLECRY",
+            "TAUNT"
+        ],
+        "name": "濒危的渡渡鸟",
+        "race": "BEAST",
+        "races": [
+            "BEAST"
+        ],
+        "rarity": "RARE",
+        "set": "TIME_TRAVEL",
+        "text": "<b>嘲讽</b>。<b>战吼：</b>如果你的生命值小于或等于10点，获得+5/+5并召唤一个本随从的复制。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Sergey Tsvelykh",
+        "attack": 6,
+        "cardClass": "DRUID",
+        "collectible": true,
+        "cost": 7,
+        "dbfId": 120761,
+        "flavor": "随堂测验考的永远都是冷门难题。",
+        "health": 6,
+        "id": "TIME_704",
+        "mechanics": [
+            "BATTLECRY",
+            "DISCOVER"
+        ],
+        "name": "上层精灵教师",
+        "rarity": "EPIC",
+        "set": "TIME_TRAVEL",
+        "text": "<b>战吼：</b>获取一张2/2的小学生。<b>发现</b>一个来自过去的法力值消耗大于或等于（7）点的法术，教会小学生。",
+        "type": "MINION"
+    },
+    {
+        "artist": "James Ryman",
+        "attack": 4,
+        "cardClass": "DRUID",
+        "collectible": true,
+        "cost": 6,
+        "dbfId": 120762,
+        "elite": true,
+        "flavor": "这条卡牌趣文花了我们整整一个纪元的时间。",
+        "health": 7,
+        "id": "TIME_705",
+        "mechanics": [
+            "BATTLECRY",
+            "TAUNT"
+        ],
+        "name": "纪元守护者克洛纳",
+        "rarity": "LEGENDARY",
+        "set": "TIME_TRAVEL",
+        "text": "<b>嘲讽</b>。<b>战吼：</b>将你牌库底的五张牌的法力值消耗变为（1）点。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Max Grecke",
+        "attack": 2,
+        "cardClass": "PALADIN",
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 120774,
+        "elite": true,
+        "flavor": "卡牌？我们要去的时空不需要卡牌。",
+        "health": 3,
+        "id": "TIME_706",
+        "mechanics": [
+            "BATTLECRY"
+        ],
+        "name": "超时空鳍侠",
+        "race": "MURLOC",
+        "races": [
+            "MURLOC"
+        ],
+        "rarity": "LEGENDARY",
+        "set": "TIME_TRAVEL",
+        "text": "<b>战吼：</b>将你的手牌替换为你的起始手牌。在你的回合结束时\n换回。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Jakub Kasper",
+        "cardClass": "DRUID",
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 122833,
+        "flavor": "我不接受你的现实。换成我的吧！",
+        "id": "TIME_707",
+        "name": "平行现实",
+        "rarity": "EPIC",
+        "set": "TIME_TRAVEL",
+        "text": "将你的手牌和牌库里的牌替换为来自过去的随机<b>抉择</b>牌，其法力值消耗减少（1）点。",
+        "type": "SPELL"
+    },
+    {
+        "artist": "Stefano Spagnuolo",
+        "attack": 3,
+        "cardClass": "ROGUE",
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 120790,
+        "flavor": "“赶快投降！”“不然就打一场！”",
+        "health": 3,
+        "id": "TIME_710",
+        "mechanics": [
+            "COMBO",
+            "STEALTH"
+        ],
+        "name": "暴徒双人组",
+        "rarity": "COMMON",
+        "set": "TIME_TRAVEL",
+        "text": "<b>潜行</b>。<b>连击：</b>召唤一个本随从的复制。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Matt Dixon",
+        "cardClass": "ROGUE",
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 120793,
+        "flavor": "这让我回想起了……使用上一张牌的时候。",
+        "id": "TIME_711",
+        "mechanics": [
+            "COMBO"
+        ],
+        "name": "闪回",
+        "rarity": "RARE",
+        "set": "TIME_TRAVEL",
+        "text": "随机召唤两个来自过去的法力值消耗为（1）的随从。<b>连击：</b>并具有+1攻击力。",
+        "type": "SPELL"
+    },
+    {
+        "artist": "Vlad Botos",
+        "cardClass": "ROGUE",
+        "collectible": true,
+        "cost": 7,
+        "dbfId": 120797,
+        "flavor": "诛暴和王冠都归我啦！",
+        "id": "TIME_712",
+        "mechanics": [
+            "COMBO"
+        ],
+        "name": "诛灭暴君",
+        "rarity": "COMMON",
+        "set": "TIME_TRAVEL",
+        "spellSchool": "SHADOW",
+        "text": "消灭一个随从。<b>连击：</b>随机召唤一个法力值消耗为（8）的随从。",
+        "type": "SPELL"
+    },
+    {
+        "artist": "Ivan Fomin",
+        "attack": 4,
+        "cardClass": "ROGUE",
+        "collectible": true,
+        "cost": 5,
+        "dbfId": 120805,
+        "elite": true,
+        "flavor": "海盗龙最喜欢这种箱子了。真箱。",
+        "health": 6,
+        "id": "TIME_713",
+        "mechanics": [
+            "BATTLECRY"
+        ],
+        "name": "时空上将钩尾",
+        "race": "PIRATE",
+        "races": [
+            "DRAGON",
+            "PIRATE"
+        ],
+        "rarity": "LEGENDARY",
+        "set": "TIME_TRAVEL",
+        "text": "<b>战吼：</b>为你的对手召唤一个0/8的宝箱。<i>宝箱装满了幸运币！</i>",
+        "type": "MINION"
+    },
+    {
+        "artist": "Grafit",
+        "attack": 7,
+        "cardClass": "WARRIOR",
+        "collectible": true,
+        "cost": 6,
+        "dbfId": 120817,
+        "elite": true,
+        "flavor": "埃博克好刻薄唉！",
+        "health": 5,
+        "id": "TIME_714",
+        "mechanics": [
+            "BATTLECRY"
+        ],
+        "name": "时光领主埃博克",
+        "race": "DRAGON",
+        "races": [
+            "DRAGON"
+        ],
+        "rarity": "LEGENDARY",
+        "set": "TIME_TRAVEL",
+        "text": "<b>战吼：</b>消灭你的对手上回合使用的\n所有随从。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Dmitry Bolotov",
+        "cardClass": "WARRIOR",
+        "collectible": true,
+        "cost": 5,
+        "dbfId": 120828,
+        "flavor": "观众其实很满意。",
+        "id": "TIME_715",
+        "name": "为了荣耀！",
+        "rarity": "COMMON",
+        "set": "TIME_TRAVEL",
+        "text": "抽两张牌。你的对手每控制一个随从，本牌的法力值消耗便减少（1）点。",
+        "type": "SPELL"
+    },
+    {
+        "artist": "Timur Shevtsov",
+        "cardClass": "WARRIOR",
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 120829,
+        "flavor": "当前对战模式为始祖龟模式",
+        "id": "TIME_716",
+        "name": "慢动作",
+        "rarity": "RARE",
+        "set": "TIME_TRAVEL",
+        "text": "下个回合，你的对手卡牌的法力值消耗增加（1）点。",
+        "type": "SPELL"
+    },
+    {
+        "artist": "Zoltan Boros",
+        "attack": 5,
+        "cardClass": "NEUTRAL",
+        "collectible": true,
+        "cost": 5,
+        "dbfId": 120847,
+        "flavor": "龙族士兵接受了一个世纪的青铜化后，这是他的身体发生的变化。",
+        "health": 3,
+        "id": "TIME_720",
+        "mechanics": [
+            "BATTLECRY",
+            "TAUNT"
+        ],
+        "name": "青铜龙士兵",
+        "race": "DRAGON",
+        "races": [
+            "DRAGON"
+        ],
+        "rarity": "RARE",
+        "set": "TIME_TRAVEL",
+        "text": "<b>嘲讽</b>。<b>战吼：</b>本随从的生命值翻倍。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Sergey Tsvelykh",
+        "attack": 2,
+        "cardClass": "DRUID",
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 121460,
+        "flavor": "如果这两只野兽浮到了你的牌库表面上，那可不是什么好兆头。",
+        "health": 3,
+        "id": "TIME_730",
+        "mechanics": [
+            "BATTLECRY",
+            "DISCOVER"
+        ],
+        "name": "卡多雷培育师",
+        "rarity": "RARE",
+        "set": "TIME_TRAVEL",
+        "text": "<b>战吼：</b><b>发现</b>2张野兽牌，将它们置于你的牌库底并具有+5/+5。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Mike Sass",
+        "cardClass": "WARRIOR",
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 120975,
+        "flavor": "先行击中球三次，对手就出局了。",
+        "id": "TIME_750",
+        "name": "先行打击",
+        "rarity": "COMMON",
+        "set": "TIME_TRAVEL",
+        "text": "造成$3点伤害。如果你的手牌中有法力值消耗大于或等于（5）点的随从牌，抽一张随从牌。",
+        "type": "SPELL"
+    },
+    {
+        "artist": "Vika Yarova",
+        "cardClass": "ROGUE",
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 121142,
+        "flavor": "2倍速，4倍速，8倍速，16倍速，不对！等等，倒回去！",
+        "id": "TIME_770",
+        "name": "快进",
+        "rarity": "COMMON",
+        "set": "TIME_TRAVEL",
+        "text": "抽两张牌，从中选择一张，使其法力值消耗减少（2）点。",
+        "type": "SPELL"
+    },
+    {
+        "artist": "Mooncolony",
+        "cardClass": "HUNTER",
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 119166,
+        "flavor": "银月城巍然屹立近七千年，堪称奎尔萨拉斯王冠上的明珠。可那都是巫妖王进军之前的事了。",
+        "health": 3,
+        "id": "TIME_810",
+        "name": "过去的银月城",
+        "rarity": "EPIC",
+        "set": "TIME_TRAVEL",
+        "text": "随机对一个敌方随从造成5点伤害。<i>推进到现在！</i>",
+        "type": "LOCATION"
+    },
+    {
+        "artist": "Alex Horley Orlandelli",
+        "attack": 7,
+        "cardClass": "WARRIOR",
+        "collectible": true,
+        "cost": 7,
+        "dbfId": 119451,
+        "elite": true,
+        "flavor": "在血红之环，人们称他为“幽灵之狼”洛戈什。他已然忘了自己的过去，他的另一重身份：瓦里安·乌瑞恩，暴风城国王。",
+        "health": 7,
+        "id": "TIME_850",
+        "mechanics": [
+            "DEATHRATTLE",
+            "RUSH"
+        ],
+        "name": "血斗士洛戈什",
+        "rarity": "LEGENDARY",
+        "set": "TIME_TRAVEL",
+        "text": "<b>奇闻</b>\n<b>突袭</b>。<b>亡语：</b>从你的手牌中召唤一位血斗士，使其获得+5/+5并随机攻击一个敌人。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Zoltan Boros",
+        "attack": 2,
+        "cardClass": "MAGE",
+        "collectible": true,
+        "cost": 5,
+        "dbfId": 119524,
+        "elite": true,
+        "flavor": "辛达苟萨曾是玛里苟斯的爱侣，也是首批怀疑奈萨里奥已被腐蚀的巨龙之一。她悔恨自己没能坚持当初的怀疑。",
+        "health": 8,
+        "id": "TIME_852",
+        "mechanics": [
+            "AURA"
+        ],
+        "name": "碧蓝女王辛达苟萨",
+        "race": "DRAGON",
+        "races": [
+            "DRAGON"
+        ],
+        "rarity": "LEGENDARY",
+        "set": "TIME_TRAVEL",
+        "text": "<b>奇闻</b>\n如果你控制着其他龙，你的奥术法术的法力值消耗减少（2）点。",
+        "type": "MINION"
+    },
+    {
+        "artist": "James Ryman",
+        "cardClass": "MAGE",
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 119528,
+        "flavor": "嗷嗷嗷嗷奥术弹幕！",
+        "id": "TIME_855",
+        "name": "奥术弹幕",
+        "rarity": "COMMON",
+        "set": "TIME_TRAVEL",
+        "spellSchool": "ARCANE",
+        "text": "对一个敌人造成$3点伤害，并随机对两个其他敌人造成$2点伤害。",
+        "type": "SPELL"
+    },
+    {
+        "artist": "James Ryman",
+        "attack": 4,
+        "cardClass": "MAGE",
+        "collectible": true,
+        "cost": 5,
+        "dbfId": 119632,
+        "flavor": "教授的第一个法术：伤害。",
+        "health": 7,
+        "id": "TIME_856",
+        "mechanics": [
+            "SPELLPOWER"
+        ],
+        "name": "艾杰斯亚导师",
+        "race": "DRAGON",
+        "races": [
+            "DRAGON"
+        ],
+        "rarity": "COMMON",
+        "set": "TIME_TRAVEL",
+        "spellDamage": 1,
+        "text": "<b>法术伤害+2</b>",
+        "type": "MINION"
+    },
+    {
+        "artist": "Edgar Hidalgo",
+        "cardClass": "MAGE",
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 119633,
+        "flavor": "来自过去和未来的法术牌的消耗会根据通货膨胀加以调整。",
+        "id": "TIME_857",
+        "mechanics": [
+            "DISCOVER"
+        ],
+        "name": "操控时间",
+        "rarity": "RARE",
+        "set": "TIME_TRAVEL",
+        "spellSchool": "ARCANE",
+        "text": "<b>发现</b>两张来自过去的奥术法术牌，其法力值消耗减少（2）点。",
+        "type": "SPELL"
+    },
+    {
+        "artist": "Tanamaes Leejierasaes",
+        "attack": 5,
+        "cardClass": "MAGE",
+        "collectible": true,
+        "cost": 7,
+        "dbfId": 119649,
+        "flavor": "时间自有其构造。请看。",
+        "health": 5,
+        "id": "TIME_858",
+        "mechanics": [
+            "BATTLECRY"
+        ],
+        "name": "时空构造体",
+        "race": "ELEMENTAL",
+        "races": [
+            "ELEMENTAL"
+        ],
+        "rarity": "RARE",
+        "set": "TIME_TRAVEL",
+        "targetingArrowText": "对一个敌方随从造成5点伤害。",
+        "text": "<b>战吼：</b>对一个敌方随从造成5点伤害，然后抽牌，数量等同于超过目标生命值的伤害。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Stefano Spagnuolo",
+        "cardClass": "MAGE",
+        "collectible": true,
+        "cost": 7,
+        "dbfId": 119691,
+        "flavor": "只是名义上的异化。",
+        "id": "TIME_859",
+        "name": "异化",
+        "rarity": "EPIC",
+        "set": "TIME_TRAVEL",
+        "spellSchool": "ARCANE",
+        "text": "随机召唤法力值消耗为（10）和（1）的随从各一个，打乱其属性值。",
+        "type": "SPELL"
+    },
+    {
+        "artist": "Jaemin Kim",
+        "attack": 2,
+        "cardClass": "MAGE",
+        "collectible": true,
+        "cost": 2,
+        "dbfId": 119740,
+        "flavor": "只有最亲密的朋友和敌人能分享我的秘密。",
+        "health": 2,
+        "id": "TIME_860",
+        "mechanics": [
+            "BATTLECRY"
+        ],
+        "name": "神秘无面者",
+        "rarity": "EPIC",
+        "referencedTags": [
+            "SECRET"
+        ],
+        "set": "TIME_TRAVEL",
+        "text": "<b>战吼：</b>检视2个随机<b>奥秘</b>，选择其中一个为你自己施放，另一个为你的对手施放。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Patrik Bjorkstrom",
+        "attack": 3,
+        "cardClass": "MAGE",
+        "collectible": true,
+        "cost": 3,
+        "dbfId": 119741,
+        "elite": true,
+        "flavor": "唔，这个循环完蛋了。冥想静待下一个循环吧。",
+        "health": 3,
+        "id": "TIME_861",
+        "mechanics": [
+            "BATTLECRY"
+        ],
+        "name": "时光循环者托奇",
+        "rarity": "LEGENDARY",
+        "set": "TIME_TRAVEL",
+        "text": "<b>战吼：</b>随机获取3张来自过去的法术牌。当你使用了全部3张法术牌，再获取一张时光循环者托奇。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Dmitry Bolotov",
+        "cardClass": "WARRIOR",
+        "collectible": true,
+        "cost": 5,
+        "dbfId": 119778,
+        "flavor": "就算我把一颗脑袋绑在背后都能赢你！",
+        "id": "TIME_870",
+        "name": "角斗开战",
+        "rarity": "EPIC",
+        "referencedTags": [
+            "STEALTH"
+        ],
+        "set": "TIME_TRAVEL",
+        "text": "从你的牌库中随机召唤一个随从。为你的对手召唤一只5/5并具有<b>潜行</b>的老虎。",
+        "type": "SPELL"
+    },
+    {
+        "artist": "Danny Beck",
+        "attack": 2,
+        "cardClass": "WARRIOR",
+        "collectible": true,
+        "cost": 5,
+        "dbfId": 119780,
+        "flavor": "今日之嗣，明日之逝。",
+        "health": 6,
+        "id": "TIME_871",
+        "mechanics": [
+            "BATTLECRY",
+            "TAUNT"
+        ],
+        "name": "后世之嗣",
+        "race": "DRAGON",
+        "races": [
+            "DRAGON"
+        ],
+        "rarity": "EPIC",
+        "set": "TIME_TRAVEL",
+        "text": "<b>嘲讽</b>。<b>战吼：</b>每有一个受伤的随从，便获得+2/+2。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Mike Sass",
+        "attack": 13,
+        "cardClass": "WARRIOR",
+        "collectible": true,
+        "cost": 8,
+        "dbfId": 119783,
+        "flavor": "这充其量是个临时的称号，就和“成熟番茄”差不多。",
+        "health": 13,
+        "id": "TIME_872",
+        "mechanics": [
+            "BATTLECRY",
+            "RUSH"
+        ],
+        "name": "不败冠军",
+        "rarity": "RARE",
+        "set": "TIME_TRAVEL",
+        "text": "<b>突袭</b>。<b>战吼：</b>用随机的法力值消耗为（1）的随从填满你对手的面板。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Grafit",
+        "cardClass": "WARRIOR",
+        "collectible": true,
+        "cost": 1,
+        "dbfId": 119786,
+        "flavor": "收起你的鳄鱼眼泪。",
+        "id": "TIME_873",
+        "name": "放出鳄鱼",
+        "rarity": "COMMON",
+        "set": "TIME_TRAVEL",
+        "text": "获得10点护甲值。为你的对手召唤两只2/3的鳄鱼。",
+        "type": "SPELL"
+    },
+    {
+        "artist": "L. Lullabi & T. Shevtsov",
+        "attack": 5,
+        "cardClass": "ROGUE",
+        "collectible": true,
+        "cost": 4,
+        "dbfId": 119814,
+        "elite": true,
+        "flavor": "那一天，迦罗娜成就了奇功。从此，她不仅仅是部落派出的刺客，更是终结洛丹伦独裁暴政的解放者。",
+        "health": 4,
+        "id": "TIME_875",
+        "mechanics": [
+            "BATTLECRY"
+        ],
+        "name": "半兽人迦罗娜",
+        "rarity": "LEGENDARY",
+        "set": "TIME_TRAVEL",
+        "text": "<b>奇闻</b>\n<b>战吼：</b>如果莱恩国王在对手手牌中，将其摧毁并将敌方英雄的生命值砍半。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Todd Harris",
+        "attack": 1,
+        "cardClass": "ROGUE",
+        "collectible": true,
+        "cost": 1,
+        "dbfId": 119841,
+        "flavor": "变成方形！变成圆形！变成菱形！",
+        "health": 1,
+        "id": "TIME_876",
+        "name": "神秘变形者",
+        "rarity": "EPIC",
+        "set": "TIME_TRAVEL",
+        "text": "如果这张牌在你的手牌中，每个回合都会随机变成你对手手牌中的一张随从牌。",
+        "type": "MINION"
+    },
+    {
+        "artist": "Sergey Tsvelykh",
+        "attack": 7,
+        "cardClass": "PRIEST",
+        "collectible": true,
+        "cost": 10,
+        "dbfId": 120060,
+        "elite": true,
+        "flavor": "在我们的时间线中，麦迪文以为萨格拉斯的黑暗影响无法抵抗。但在某条时间线中，他成功了。",
+        "health": 7,
+        "id": "TIME_890",
+        "mechanics": [
+            "BATTLECRY"
+        ],
+        "name": "圣者麦迪文",
+        "rarity": "LEGENDARY",
+        "referencedTags": [
+            "SILENCE"
+        ],
+        "set": "TIME_TRAVEL",
+        "text": "<b>奇闻</b>\n如果你控制着卡拉赞，本牌的法力值消耗为（0）点。<b>战吼：</b><b>沉默</b>并消灭所有其他随从。",
+        "type": "MINION"
+    }
+]

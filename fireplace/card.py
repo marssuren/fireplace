@@ -312,6 +312,7 @@ class PlayableCard(BaseCard, Entity, TargetableByAuras):
         self.choose_cards = CardList()
         self.morphed = None
         self.turn_drawn = -1
+        self.turn_entered_hand = -1
         self.turn_played = -1
         self.cast_on_friendly_characters = False
         self.cast_on_friendly_minions = False
@@ -476,9 +477,22 @@ class PlayableCard(BaseCard, Entity, TargetableByAuras):
                 card = self.controller.card(id, source=self, parent=self)
                 self.choose_cards.append(card)
         else:
-            # 纳迦施法计数机制：当卡牌离开手牌时重置计数器
+        # 纳迦施法计数机制：当卡牌离开手牌时重置计数器
             if old_zone == Zone.HAND:
                 self.spells_cast_while_in_hand = 0
+
+            # Quickdraw / 快枪 mechanism
+            # Record the turn when the card enters the hand
+            if zone == Zone.HAND and old_zone != Zone.HAND:
+                if self.game:
+                    self.turn_entered_hand = self.game.turn
+
+    @property
+    def quickdraw(self):
+        """
+        Returns True if the card entered the hand this turn (Quickdraw active).
+        """
+        return self.turn_entered_hand == self.game.turn
 
     def destroy(self):
         return self.game.cheat_action(self, [actions.Destroy(self), actions.Deaths()])

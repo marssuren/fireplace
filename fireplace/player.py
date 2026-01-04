@@ -30,6 +30,8 @@ if TYPE_CHECKING:
 class Player(Entity, TargetableByAuras):
     Manager = PlayerManager
     all_targets_random = slot_property("all_targets_random")
+    excavate_tier = slot_property("excavate_tier")
+    times_excavated = slot_property("times_excavated")
     cant_overload = slot_property("cant_overload")
     choose_both = slot_property("choose_both")
     extra_battlecries = slot_property("extra_battlecries")

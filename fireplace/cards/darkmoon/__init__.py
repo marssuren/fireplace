@@ -1,4 +1,3 @@
-from .transfer_student import *
 from .demonhunter import *
 from .druid import *
 from .hunter import *
