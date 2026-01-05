@@ -1,6 +1,20 @@
 from fireplace.card import Minion, Spell, Location
 from fireplace.enums import Race, CardClass
 
+# Sheriff Barrelbrim Token
+class WW_359t(Location):  # Badlands Jail
+    """荒芜之地监狱 - Badlands Jail
+    地标，耐久度3。使一个随从休眠3回合。
+    Location with 3 Durability. Make a minion go Dormant for 3 turns.
+    """
+    # 地标的激活效果：使目标随从休眠3回合
+    # 参考休眠机制，设置 DORMANT 标签并设置进度
+    activate = (
+        SetTag(TARGET, GameTag.DORMANT) &
+        SetAttr(TARGET, "progress_total", 3) &
+        SetAttr(TARGET, "progress_current", 0)
+    )
+
 # Tier 1
 class WW_001t(Spell): # Rock
     pass

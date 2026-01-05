@@ -362,6 +362,11 @@ class BaseGame(Entity):
         if hasattr(self.current_player, 'damage_taken_this_turn'):
             self.current_player.damage_taken_this_turn = 0
 
+        # 更新上回合使用的卡牌追踪（用于WW_053飞车劫掠等卡牌）
+        if hasattr(self.current_player, 'cards_played_this_turn_ids'):
+            self.current_player.cards_played_last_turn = self.current_player.cards_played_this_turn_ids.copy()
+            self.current_player.cards_played_this_turn_ids = []
+
         # Extra turn
         if self.next_players:
             next_player = self.next_players.pop(0)
@@ -398,17 +403,25 @@ class BaseGame(Entity):
         player.overload_locked = player.overloaded
         player.overloaded = 0
         player.elemental_played_last_turn = player.elemental_played_this_turn
+        # 更新元素连续回合计数器
+        if player.elemental_played_this_turn > 0:
+            player.elemental_streak += 1
+        else:
+            player.elemental_streak = 0
         player.elemental_played_this_turn = 0
+        # 更新上回合施放的法术数量（用于DEEP_010等卡牌）
+        player.spells_played_last_turn = player.spells_played_this_turn
+        player.spells_played_this_turn = 0
 
         for entity in self.live_entities:
             if entity.type != CardType.PLAYER:
                 entity.turns_in_play += 1
 
+        # 处理休眠随从的计数递减
+        # dormant_turns 的 property setter 会在计数清零时自动唤醒（card.py）
         for entity in player.live_entities:
             if getattr(entity, "dormant_turns", 0):
                 entity.dormant_turns -= 1
-                if entity.dormant_turns == 0:
-                    self.queue_actions(player, [Awaken(entity)])
 
         if player.hero.power:
             player.hero.power.activations_this_turn = 0

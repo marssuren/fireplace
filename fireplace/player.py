@@ -103,6 +103,9 @@ class Player(Entity, TargetableByAuras):
         self.times_totem_summoned_this_game = 0
         self.elemental_played_this_turn = 0
         self.elemental_played_last_turn = 0
+        self.elemental_streak = 0  # 连续回合使用元素牌的次数（用于WW_424等卡牌）
+        self.spells_played_this_turn = 0  # 本回合施放的法术数量（用于DEEP_010等卡牌）
+        self.spells_played_last_turn = 0  # 上回合施放的法术数量（用于DEEP_010等卡牌）
         self.cards_drawn_this_turn = 0
         self.cards_played_this_turn = 0
         self.cards_played_this_game = CardList()
@@ -197,6 +200,10 @@ class Player(Entity, TargetableByAuras):
 
         # 追踪本局对战召唤的土灵数量（用于TTN_900石心之王等卡牌）- 泰坦诸神（2023年8月）
         self.earthen_summoned_this_game = 0
+
+        # 追踪上回合使用的卡牌（用于WW_053飞车劫掠等卡牌）- 决战荒芜之地（2023年11月）
+        self.cards_played_last_turn = []  # 存储上回合使用的卡牌ID列表
+        self.cards_played_this_turn_ids = []  # 临时存储本回合使用的卡牌ID
 
 
 

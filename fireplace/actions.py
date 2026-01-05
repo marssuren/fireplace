@@ -732,12 +732,20 @@ class Play(GameAction):
                 player.elemental_played_this_turn += 1
         player.cards_played_this_turn += 1
         player.cards_played_this_game.append(card)
+
+        # 追踪本回合使用的卡牌ID（用于WW_053飞车劫掠等卡牌）
+        if hasattr(player, 'cards_played_this_turn_ids'):
+            player.cards_played_this_turn_ids.append(card.id)
+
         card.turn_played = source.game.turn
         card.choose = None
         
         # 纳迦施法计数机制 - 巫妖王的进军（2022年12月）
         # 当施放法术时，更新手牌中所有纳迦卡牌的施法计数器
         if card.type == CardType.SPELL:
+            # 追踪本回合施放的法术数量（用于DEEP_010等卡牌）
+            player.spells_played_this_turn += 1
+            
             # Update spell schools played
             if hasattr(card, "spell_school") and card.spell_school != SpellSchool.NONE:
                 player.spell_schools_played_this_game.add(card.spell_school)
@@ -3622,8 +3630,14 @@ class Excavate(GameAction):
     """
     Excavate a treasure.
     """
+    PLAYER = ActionArg()
+    
     def do(self, source, controller):
         from fireplace.cards.badlands.excavate import TIER_1_IDS, TIER_2_IDS, TIER_3_IDS, TIER_4_IDS
+        
+        # Broadcast ON event (before excavate)
+        source.game.manager.game_action(self, source, controller)
+        self.broadcast(source, EventListener.ON, controller)
         
         # Increment total excavates
         controller.times_excavated += 1
@@ -3667,3 +3681,97 @@ class Excavate(GameAction):
             
         if card_id:
              source.game.add_card(controller, card_id, source=source)
+        
+        # Broadcast AFTER event (after excavate)
+        self.broadcast(source, EventListener.AFTER, controller)
+
+
+class SplitCard(GameAction):
+    """
+    Split a card into two halves.
+    将一张卡牌拆分成两半（用于 Mes'Adune the Fractured 等卡牌）
+
+    拆分规则：
+    - 偶数属性：均分（如 4 → 2 + 2）
+    - 奇数属性：随机不均等拆分（如 5 → 3 + 2 或 2 + 3）
+    - Cost/Attack 为 1：拆分为 0 + 1
+    - Health 为 1：拆分为 1 + 1（特殊规则，避免随从立即死亡）
+    - 保留原卡的所有效果（战吼、光环等）
+    """
+    CARD = ActionArg()
+
+    def do(self, source, card):
+        """
+        拆分一张卡牌
+
+        Args:
+            source: 触发拆分的来源
+            card: 要拆分的卡牌
+
+        Returns:
+            tuple: (half1, half2) 两张拆分后的卡牌
+        """
+        import random
+
+        if card.type != CardType.MINION:
+            # 只能拆分随从卡牌
+            return None, None
+
+        # 获取原始属性
+        original_cost = card.cost
+        original_atk = card.atk
+        original_health = card.health
+
+        # Cost 拆分
+        if original_cost == 1:
+            cost1, cost2 = 0, 1
+        else:
+            half_cost = original_cost // 2
+            if original_cost % 2 == 1:  # 奇数
+                if random.random() < 0.5:
+                    cost1, cost2 = half_cost + 1, half_cost
+                else:
+                    cost1, cost2 = half_cost, half_cost + 1
+            else:  # 偶数
+                cost1 = cost2 = half_cost
+
+        # Attack 拆分
+        if original_atk == 1:
+            atk1, atk2 = 0, 1
+        else:
+            half_atk = original_atk // 2
+            if original_atk % 2 == 1:  # 奇数
+                if random.random() < 0.5:
+                    atk1, atk2 = half_atk + 1, half_atk
+                else:
+                    atk1, atk2 = half_atk, half_atk + 1
+            else:  # 偶数
+                atk1 = atk2 = half_atk
+
+        # Health 拆分（特殊规则：1 拆分为 1 + 1）
+        if original_health == 1:
+            health1, health2 = 1, 1
+        else:
+            half_health = original_health // 2
+            if original_health % 2 == 1:  # 奇数
+                if random.random() < 0.5:
+                    health1, health2 = half_health + 1, half_health
+                else:
+                    health1, health2 = half_health, half_health + 1
+            else:  # 偶数
+                health1 = health2 = half_health
+
+        # 创建两张"一半"的牌（保留原卡 ID 和所有效果）
+        controller = card.controller
+        half1 = controller.card(card.id, source=controller)
+        half1.cost = max(0, cost1)
+        half1.atk = atk1
+        half1.health = max(1, health1)
+
+        half2 = controller.card(card.id, source=controller)
+        half2.cost = max(0, cost2)
+        half2.atk = atk2
+        half2.health = max(1, health2)
+
+        return half1, half2
+

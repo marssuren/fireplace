@@ -87,6 +87,9 @@ class BaseCard(BaseEntity):
         # 追踪卡牌在手中时施放的法术数量（用于纳迦卡牌）
         self.spells_cast_while_in_hand = 0
 
+        # 追踪卡牌进入手牌的回合（用于WW_422艾泽里特矿脉等卡牌）
+        self.turn_entered_hand = None
+
     def dump(self):
         data = super().dump()
         data["id"] = self.id
@@ -243,6 +246,10 @@ class BaseCard(BaseEntity):
         if value == Zone.PLAY or value == Zone.SECRET:
             self.play_counter = self.game.play_counter
             self.game.play_counter += 1
+
+        # 追踪卡牌进入手牌的回合（用于WW_422艾泽里特矿脉等卡牌）
+        if value == Zone.HAND and self.old_zone != Zone.HAND:
+            self.turn_entered_hand = self.game.turn
 
     def buff(self, target, buff, **kwargs):
         """
@@ -1306,9 +1313,26 @@ class Minion(Character):
         self.silenced = False
         self._summon_index = None
         self.dormant = False
-        self.dormant_turns = data.scripts.dormant_turns
+        self._dormant_turns = data.scripts.dormant_turns  # 使用私有属性存储
         self.reborn = False
         super().__init__(data)
+    
+    @property
+    def dormant_turns(self):
+        """获取休眠回合数"""
+        return self._dormant_turns
+    
+    @dormant_turns.setter
+    def dormant_turns(self, value):
+        """设置休眠回合数，如果设置为0或更小则自动唤醒"""
+        old_value = self._dormant_turns
+        self._dormant_turns = value
+        
+        # 如果从 >0 变为 <=0，且当前处于休眠状态，则自动唤醒
+        if old_value > 0 and value <= 0 and self.dormant and hasattr(self, 'game') and self.game:
+            from .actions import Awaken
+            self._dormant_turns = 0  # 确保不会是负数
+            self.game.queue_actions(self, [Awaken(self)])
 
     def dump(self):
         data = super().dump()
