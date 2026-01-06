@@ -7,10 +7,13 @@ from ..utils import *
 class GDB_100:
     """阿肯尼特防护水晶 - Arkonite Defense Crystal
     Deathrattle: Gain 4 Armor. Starship Piece
+
+    5费 4/5 中立随从 - 星舰组件
+    <b>亡语：</b>获得4点护甲值。
+    <b>星舰组件</b>
     """
-    # Mechanics: DEATHRATTLE, STARSHIP_PIECE
-    # TODO: 实现卡牌效果
-    pass
+    # 亡语：获得4点护甲值
+    deathrattle = Armor(CONTROLLER, 4)
 
 
 class GDB_132:

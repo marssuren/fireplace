@@ -17,6 +17,22 @@ from ..enums import PlayReq, BoardEnum
 from ..events import *
 
 
+# 星际争霸种族定义 - 深暗领域（2024年11月）
+# 由于 hearthstone.enums.Race 中没有星际争霸种族，我们在这里定义自定义种族常量
+# 这些值使用负数以避免与官方Race枚举冲突
+class StarCraftRace:
+    """星际争霸种族常量"""
+    ZERG = -100  # 异虫
+    TERRAN = -101  # 人类
+    PROTOSS = -102  # 神族
+
+# 为了方便使用，将星际争霸种族添加到Race命名空间
+# 注意：这是一个临时解决方案，直到官方添加这些种族
+Race.ZERG = StarCraftRace.ZERG
+Race.TERRAN = StarCraftRace.TERRAN
+Race.PROTOSS = StarCraftRace.PROTOSS
+
+
 # For buffs which are removed when the card is moved to play (eg. cost buffs)
 # This needs to be Summon, because of Summon from the hand
 REMOVED_IN_PLAY = Summon(ALL_PLAYERS, OWNER).after(Destroy(SELF))

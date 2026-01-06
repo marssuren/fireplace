@@ -523,6 +523,12 @@ TREANT = FuncSelector(
     ]
 )  # Race.`TREANT` is not defined yet.
 
+# StarCraft种族选择器 (Heroes of StarCraft Mini-set)
+# 这些种族在hearthstone.enums.Race中定义
+ZERG = EnumSelector(Race.ZERG)
+PROTOSS = EnumSelector(Race.PROTOSS)
+TERRAN = EnumSelector(Race.TERRAN)
+
 COMMON = EnumSelector(Rarity.COMMON)
 RARE = EnumSelector(Rarity.RARE)
 EPIC = EnumSelector(Rarity.EPIC)

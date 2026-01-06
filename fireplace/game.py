@@ -415,6 +415,14 @@ class BaseGame(Entity):
         # 清空本回合施放的法术流派列表（用于MIS_709圣光荧光棒等卡牌）
         if hasattr(player, 'spell_schools_played_this_turn'):
             player.spell_schools_played_this_turn = []
+        
+        # 重置本回合发现的卡牌数量（用于GDB_843视差光枪等卡牌）- 深暗领域（2024年11月）
+        if hasattr(player, 'cards_discovered_this_turn'):
+            player.cards_discovered_this_turn = 0
+
+        # 重置本回合英雄受到的伤害（用于GDB_125治疗石等卡牌）- 深暗领域（2024年11月）
+        if hasattr(player, 'damage_taken_this_turn'):
+            player.damage_taken_this_turn = 0
 
         for entity in self.live_entities:
             if entity.type != CardType.PLAYER:

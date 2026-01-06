@@ -119,13 +119,13 @@ class Player(Entity, TargetableByAuras):
         # 追踪最后一个战吼效果（用于"重复战吼"类卡牌）
         self.last_battlecry = None  # (card, target) 元组
 
-        # 追踪本局游戏施放过的法术学派（用于"多系施法者"等卡牌）
+        # 追踪本局游戏施放过的法术学派（用�?多系施法�?等卡牌）
         self.spell_schools_played_this_game = set()  # 使用 set 自动去重
         
-        # 追踪本回合施放过的法术学派（用于MIS_709圣光荧光棒等卡牌）- 威兹班的工坊（2024年3月）
-        self.spell_schools_played_this_turn = []  # 使用 list 保留顺序和重复
+        # 追踪本回合施放过的法术学派（用于MIS_709圣光荧光棒等卡牌�? 威兹班的工坊�?024�?月）
+        self.spell_schools_played_this_turn = []  # 使用 list 保留顺序和重�?
 
-        # 追踪本局游戏施放过的法术费用（用于TOY_378星空投影球等卡牌）- 威兹班的工坊（2024年3月）
+        # 追踪本局游戏施放过的法术费用（用于TOY_378星空投影球等卡牌�? 威兹班的工坊�?024�?月）
         self.spell_costs_played_this_game = set()  # 使用 set 自动去重
 
         # 追踪上回合之后是否有友方亡灵死亡（用于RLK_116等卡牌）
@@ -138,32 +138,32 @@ class Player(Entity, TargetableByAuras):
         # 英雄技能伤害加成（用于"瞄准射击"等卡牌）
         self.hero_power_damage_bonus = 0
         
-        # 追踪每回合施放的法术（用于"首席法师安东尼达斯"等卡牌）
+        # 追踪每回合施放的法术（用�?首席法师安东尼达�?等卡牌）
         self.spells_by_turn = {}  # {turn_number: [spells]}
         
         # 追踪上一个对友方随从施放的法术（用于"金翼鹦鹉"等卡牌）
         self.last_spell_on_friendly_minion = None
         
-        # 追踪上一个战吼随从（用于"艳丽的金刚鹦鹉"等卡牌）
+        # 追踪上一个战吼随从（用于"艳丽的金刚鹦�?等卡牌）
         self.last_battlecry = None
         
-        # 追踪本回合受到的伤害（用于"暗影之刃飞刀手"等卡牌）
+        # 追踪本回合受到的伤害（用�?暗影之刃飞刀�?等卡牌）
         self.damage_taken_this_turn = 0
         
         # 追踪在自己回合受到的伤害（本局游戏累计,用于TTN_462被禁锢的恐魔等卡牌）
         self.damage_taken_on_own_turn_this_game = 0
         
-        # 追踪本回合对敌方英雄造成的伤害（用于"邪恶的厨师"等卡牌）
+        # 追踪本回合对敌方英雄造成的伤害（用于"邪恶的厨�?等卡牌）
         self.hero_damage_this_turn = 0
         
-        # 追踪英雄在己方回合受到伤害的次数（用于VAC_418桑拿常客等卡牌）- 胜地历险记（2024年7月）
+        # 追踪英雄在己方回合受到伤害的次数（用于VAC_418桑拿常客等卡牌）- 胜地历险记（2024�?月）
         self.hero_damage_count_on_own_turn = 0
 
-        # 待对手猜测的发现队列（用于"可疑的炼金师"等卡牌）
+        # 待对手猜测的发现队列（用�?可疑的炼金师"等卡牌）
         # 每个元素: {"options": [card1, card2, card3], "chosen": card_id}
         self.pending_guesses = []
         
-        # 追踪最后的抉择法术（用于"开路者"等卡牌）
+        # 追踪最后的抉择法术（用�?开路�?等卡牌）
         self.last_choose_one_card = None
         self.last_choose_one_choice = None
 
@@ -177,13 +177,13 @@ class Player(Entity, TargetableByAuras):
         # 追踪本局游戏召唤的图腾数量（用于"图腾巨像"等卡牌）
         self.totems_summoned_this_game = 0
         
-        # 追踪本回合死亡的随从数量（用于"暗影华尔兹"等卡牌）
+        # 追踪本回合死亡的随从数量（用�?暗影华尔�?等卡牌）
         self.minions_killed_this_turn = 0
         
-        # 追踪上一个暗影法术（用于"暗脉女勋爵"等卡牌）
+        # 追踪上一个暗影法术（用于"暗脉女勋�?等卡牌）
         self.last_shadow_spell = None
         
-        # 残骸系统（死亡骑士专属资源）- 巫妖王的进军（2022年12月）
+        # 残骸系统（死亡骑士专属资源）- 巫妖王的进军�?022�?2月）
         self.corpses = 0  # 当前残骸数量
 
         # 追踪本局游戏使用过的流放牌数量（用于RLK_213等卡牌）
@@ -205,32 +205,75 @@ class Player(Entity, TargetableByAuras):
         # 追踪本局对战洗入对手牌库瘟疫
         self.plagues_shuffled_into_enemy = 0
 
-        # 追踪本局对战锻造的卡牌数量（用于TTN_751伊格尼斯等卡牌）- 泰坦诸神（2023年8月）
+        # 追踪本局对战锻造的卡牌数量（用于TTN_751伊格尼斯等卡牌）- 泰坦诸神�?023�?月）
         self.forged_cards_this_game = 0
 
-        # 追踪本局对战召唤的土灵数量（用于TTN_900石心之王等卡牌）- 泰坦诸神（2023年8月）
+        # 追踪本局对战召唤的土灵数量（用于TTN_900石心之王等卡牌）- 泰坦诸神�?023�?月）
         self.earthen_summoned_this_game = 0
 
-        # 追踪上回合使用的卡牌（用于WW_053飞车劫掠等卡牌）- 决战荒芜之地（2023年11月）
+        # 追踪上回合使用的卡牌（用于WW_053飞车劫掠等卡牌）- 决战荒芜之地�?023�?1月）
         self.cards_played_last_turn = []  # 存储上回合使用的卡牌ID列表
         self.cards_played_this_turn_ids = []  # 临时存储本回合使用的卡牌ID
 
-        # 追踪本局对战中触发过的奥秘（用于MIS_914量产泰迪等卡牌）- 威兹班的工坊（2024年3月）
+        # 追踪本局对战中触发过的奥秘（用于MIS_914量产泰迪等卡牌）- 威兹班的工坊�?024�?月）
         self.triggered_secrets = []  # 存储触发过的奥秘ID列表
 
-        # 追踪使用的威兹班实验套牌类型（用于实现特殊套牌机制）- 威兹班的工坊（2024年3月）
-        # 可能的值: None, "DECK_OF_WONDERS", "NONUPLET_DECK", "SHRUNKEN_DECK" 等
+        # 追踪使用的威兹班实验套牌类型（用于实现特殊套牌机制）- 威兹班的工坊�?024�?月）
+        # 可能的�? None, "DECK_OF_WONDERS", "NONUPLET_DECK", "SHRUNKEN_DECK" �?
         self.whizbang_deck_type = None
 
-        # 追踪本局游戏使用地标的次数（用于VAC_439海滨巨人等卡牌）- 胜地历险记（2024年7月）
+        # 追踪本局游戏使用地标的次数（用于VAC_439海滨巨人等卡牌）- 胜地历险记（2024�?月）
         self.locations_used_this_game = 0
 
-        # 追踪本局游戏对角色施放的法术数量（用于VAC_558海上船歌等卡牌）- 胜地历险记（2024年7月）
+        # 追踪本局游戏对角色施放的法术数量（用于VAC_558海上船歌等卡牌）- 胜地历险记（2024�?月）
         self.spells_cast_on_characters_this_game = 0
 
-        # 追踪使用过的另一职业卡牌（用于VAC_700横夺硬抢等卡牌）- 胜地历险记（2024年7月）
+        # 追踪使用过的另一职业卡牌（用于VAC_700横夺硬抢等卡牌）- 胜地历险记（2024�?月）
         self.cards_played_from_other_class_count = 0  # 使用过的另一职业卡牌数量
+
+        # 星舰机制 - 深暗领域�?024�?1月）
+        self.starship_in_progress = None  # 当前正在构筑的星舰实�?
+        self.starships_launched_this_game = 0  # 本局对战中发射的星舰数量
+        self.starship_pieces_died_this_game = []  # 本局对战中死亡的星舰组件列表
         self.last_card_played_from_other_class = None  # 上一张使用的另一职业卡牌
+
+        # 手牌位置追踪 - 深暗领域�?024�?1月）
+        # 用于 GDB_475 近轨血月等需要检测相邻卡牌的卡牌
+        self.cards_played_this_turn_with_position = []  # [(card, hand_position), ...]
+        
+        # 残骸支付机制 - 深暗领域�?024�?1月）
+        # 用于 GDB_470 大主教玛拉达�?
+        self.next_card_costs_corpses = False  # 标记下一张牌是否消耗残骸而非法力�?
+
+        # Discover追踪机制 - 深暗领域�?024�?1月）
+        # 用于 GDB_237 接触异星生物（本局发现次数减费）和 GDB_843 视差光枪（本回合发现�?2攻）
+        self.cards_discovered_this_game = 0  # 本局对战中发现的卡牌数量
+        self.cards_discovered_this_turn = 0  # 本回合发现的卡牌数量
+
+        # 星灵法术追踪机制 - 深暗领域�?024�?1月）
+        # 用于 SC_758 巨像（本局施放的星灵法术数量提升效果）
+        self.protoss_spells_cast_this_game = 0  # 本局对战中施放的星灵法术数量
+
+        # 卡牌摧毁追踪 - 深暗领域�?024�?1月）
+        # 用于 GDB_142 无界空宇（每次抽�?打牌/摧毁牌减费）
+        self.cards_destroyed_this_game = 0  # 本局对战中摧毁的卡牌数量
+
+        # 随从打出追踪 - 深暗领域�?024�?1月）
+        # 用于 GDB_131 维伦（触发本局所有德莱尼的战吼和亡语�?
+        self.minions_played_this_game = []  # 本局对战中打出的随从ID列表
+
+        # 基尔加丹恶魔传送门 - 深暗领域�?024�?1月）
+        # 用于 GDB_145 基尔加丹（无尽恶魔传送门机制�?
+        self.kiljaeden_portal_active = False  # 是否激活基尔加丹传送门
+        self.kiljaeden_portal_buff_stacks = 0  # 传送门buff层数（每回合+1，恶魔获�?2/+2�?
+
+        # 阿塔尼斯神族减费 - 深暗领域�?024�?1月）
+        # 用于 SC_754 阿塔尼斯（神族随从本局减少2费）
+        self.artanis_protoss_discount = False  # 是否拥有阿塔尼斯的神族减费效�?
+
+        # 星舰发射历史 - 深暗领域�?024�?1月）
+        # 用于 SC_400 吉姆·雷诺（重新发射所有星舰）
+        # 存储每次发射的星舰的完整快照：{id, accumulated_atk, accumulated_health, keywords, pieces}n        # �������ħ׷�� - �����2024��11�£�n        self.demons_not_started_in_deck_played = []  # ���ֶ�ս��ʹ�ù����������ħID�б�n        # ���غ��˺�׷�� - �����2024��11�£�n        self.damage_taken_this_turn = 0  # ���غ�Ӣ���ܵ����˺�����
 
 
 
@@ -277,7 +320,7 @@ class Player(Entity, TargetableByAuras):
         data["hand"] = [card.dump_hidden() for card in self.hand]
         data["field"] = [card.dump() for card in self.field]
         data["secrets"] = [card.dump_hidden() for card in self.secrets]
-        data["locations"] = [card.dump() for card in self.locations]  # 地标对双方可见
+        data["locations"] = [card.dump() for card in self.locations]  # 地标对双方可�?
         if self.choice:
             choice = data["choice"] = {}
             choice["cards"] = [card.dump_hidden() for card in self.choice.cards]
@@ -322,7 +365,7 @@ class Player(Entity, TargetableByAuras):
         self.log(translate("player_mana_crystals", player=self, count=self._max_mana))
         
         # 等级法术自动升级机制
-        # 当玩家的最大法力水晶增加时，检查并升级手牌和牌库中的等级法术
+        # 当玩家的最大法力水晶增加时，检查并升级手牌和牌库中的等级法�?
         if self._max_mana > old_max_mana and self.game:
             self._upgrade_ranked_spells()
 
@@ -402,6 +445,11 @@ class Player(Entity, TargetableByAuras):
             card.creator = source
         if parent is not None:
             card.parent_card = parent
+
+        # 标记卡牌是否起始于套牌（用于GDB_121恶兆邪火、GDB_128阿克蒙德等卡牌）
+        # 如果是从牌库区域创建，标记为起始套牌卡牌
+        card.started_in_deck = (zone == Zone.DECK)
+
         # C'THUN
         if self.cthun and id == self.cthun.id:
             self.copy_cthun_buff(card)
@@ -409,7 +457,7 @@ class Player(Entity, TargetableByAuras):
         return card
 
     def prepare_for_game(self):
-        # Whizbang the Wonderful (原版威兹班)
+        # Whizbang the Wonderful (原版威兹�?
         if self.starting_hero == "BOT_914h" or self.starting_deck == ["BOT_914"]:
             from .cards.boomsday.whizbang_decks import WHIZBANG_DECKS
 
@@ -417,7 +465,7 @@ class Player(Entity, TargetableByAuras):
                 WHIZBANG_DECKS
             )
 
-        # Zayle, Shadow Cloak (暗影斗篷扎伊尔)
+        # Zayle, Shadow Cloak (暗影斗篷扎伊�?
         if self.starting_hero == "DAL_800h" or self.starting_deck == ["DAL_800"]:
             from .cards.dalaran.zayle_decks import ZAYLE_DECKS
 
@@ -425,12 +473,12 @@ class Player(Entity, TargetableByAuras):
                 ZAYLE_DECKS
             )
 
-        # Splendiferous Whizbang (酷炫的威兹班) - 威兹班的工坊 (2024年3月)
-        # 当套牌中只有 TOY_700 时,随机选择一个实验套牌
+        # Splendiferous Whizbang (酷炫的威兹班) - 威兹班的工坊 (2024�?�?
+        # 当套牌中只有 TOY_700 �?随机选择一个实验套�?
         if self.starting_deck == ["TOY_700"]:
             from .cards.whizbang.whizbang_experimental_decks import WHIZBANG_EXPERIMENTAL_DECKS
 
-            # 随机选择一个实验套牌
+            # 随机选择一个实验套�?
             # 返回格式: (英雄ID, 卡牌ID列表, 套牌类型)
             selected_deck = self.game.random.choice(WHIZBANG_EXPERIMENTAL_DECKS)
             self.starting_hero, self.starting_deck, self.whizbang_deck_type = selected_deck
@@ -584,9 +632,9 @@ class Player(Entity, TargetableByAuras):
         """
         等级法术自动升级机制
         
-        当玩家的最大法力水晶增加时，自动升级手牌和牌库中的等级法术。
-        检查卡牌的 RANKED_SPELL_NEXT_RANK 和 RANKED_SPELL_THRESHOLD 标签，
-        如果当前法力水晶达到阈值，则将卡牌变形为下一等级。
+        当玩家的最大法力水晶增加时，自动升级手牌和牌库中的等级法术�?
+        检查卡牌的 RANKED_SPELL_NEXT_RANK �?RANKED_SPELL_THRESHOLD 标签�?
+        如果当前法力水晶达到阈值，则将卡牌变形为下一等级�?
         """
         from . import enums
         from .actions import Morph
@@ -613,9 +661,10 @@ class Player(Entity, TargetableByAuras):
         next_rank = card.tags.get(enums.RANKED_SPELL_NEXT_RANK)
         threshold = card.tags.get(enums.RANKED_SPELL_THRESHOLD)
         
-        # 如果卡牌有下一等级且达到了升级阈值，则升级
+        # 如果卡牌有下一等级且达到了升级阈值，则升�?
         if next_rank and threshold and self._max_mana >= threshold:
             self.log("%s upgrades %s to %s (reached %d mana)", 
                     self, card, next_rank, threshold)
             # 使用 Morph 将卡牌变形为下一等级
             self.game.queue_actions(self, [Morph(card, next_rank)])
+

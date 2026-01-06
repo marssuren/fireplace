@@ -1986,6 +1986,96 @@ class Location(rules.LocationRules, LiveEntity):
         )
 
 
+class Starship(LiveEntity):
+    """
+    星舰实体类 - 深暗领域（2024年11月）
+
+    星舰是一种特殊的场上实体，具有以下特性：
+    - 当第一个星舰组件死亡时，创建一个休眠的星舰实体
+    - 后续星舰组件死亡时，将其属性和效果累积到星舰上
+    - 玩家可以花费5点法力值发射星舰，使其成为活跃随从
+    - 发射后，星舰拥有所有累积的属性和效果
+    - 同时只能构筑一艘星舰，发射后可以开始构筑新的星舰
+    """
+    playable_zone = Zone.PLAY
+
+    def __init__(self, data):
+        super().__init__(data)
+        self.starship_pieces = []  # 存储所有添加到星舰的组件
+        self.accumulated_keywords = []  # 累积的关键词
+        self.accumulated_effects = []  # 累积的效果
+        self.is_dormant = True  # 星舰是否处于休眠状态
+
+    def dump(self):
+        data = super().dump()
+        data["is_dormant"] = self.is_dormant
+        data["pieces_count"] = len(self.starship_pieces)
+        data["accumulated_attack"] = self.atk
+        data["accumulated_health"] = self.max_health
+        data["is_launchable"] = self.is_launchable()
+        return data
+
+    def add_piece(self, piece):
+        """
+        将星舰组件添加到星舰
+
+        累积组件的：
+        - 基础攻击力和生命值
+        - 关键词（圣盾、嘲讽、风怒等）
+        - 特殊效果
+        """
+        self.starship_pieces.append(piece)
+
+        # 累积攻击力和生命值
+        self.atk += piece.atk
+        self.max_health += piece.max_health
+
+        # 累积关键词
+        keywords_to_copy = [
+            GameTag.DIVINE_SHIELD, GameTag.TAUNT, GameTag.WINDFURY,
+            GameTag.LIFESTEAL, GameTag.POISONOUS, GameTag.RUSH,
+            GameTag.CHARGE, GameTag.STEALTH, GameTag.ELUSIVE,
+            GameTag.REBORN, GameTag.DEATHRATTLE
+        ]
+
+        for keyword in keywords_to_copy:
+            if piece.tags.get(keyword):
+                self.tags[keyword] = True
+                if keyword not in self.accumulated_keywords:
+                    self.accumulated_keywords.append(keyword)
+
+    def is_launchable(self):
+        """检查星舰是否可以发射"""
+        if not self.is_dormant:
+            return False
+        if self.zone != Zone.PLAY:
+            return False
+        if not self.controller.current_player:
+            return False
+        if self.controller.mana < 5:  # 发射需要5点法力值
+            return False
+        return True
+
+    def launch(self):
+        """
+        发射星舰
+
+        这是一个便捷方法，实际发射逻辑由 LaunchStarship 动作处理
+        """
+        from . import actions
+        return self.game.queue_actions(
+            self.controller, [actions.LaunchStarship(self)]
+        )
+
+    @property
+    def zone_position(self):
+        """星舰在场上的位置"""
+        if self.zone == Zone.PLAY:
+            # 星舰占据一个场地位置
+            return self.controller.field.index(self) + 1
+        return super().zone_position
+
+
 class HeroPower(PlayableCard):
     additional_activations = int_property("additional_activations")
     heropower_disabled = int_property("heropower_disabled")

@@ -82,6 +82,13 @@ MAGNETIC_TARGET_RACES = -56  # 磁力可吸附的目标种族列表（用于吸�
 # 随从消耗生命值机制 - 泰坦诸神（2023年8月）
 MINIONS_COST_HEALTH = -57  # 标记随从牌消耗生命值而非法力值（用于YOG_503血肉诅咒等卡牌）
 
+# 星舰机制 - 深暗领域（2024年11月）
+STARSHIP_PIECE = -58  # 标记随从是星舰组件
+STARSHIP_ATTACK = -59  # 星舰累积的攻击力
+STARSHIP_HEALTH = -60  # 星舰累积的生命值
+STARSHIP_PIECES_COUNT = -61  # 星舰包含的组件数量
+STARSHIP_LAUNCHED_THIS_GAME = -62  # 本局对战中是否发射过星舰
+
 
 
 

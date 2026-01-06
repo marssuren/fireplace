@@ -420,6 +420,75 @@ class Death(GameAction):
                 )
         return super()._broadcast(entity, source, at, *args)
 
+    def _handle_starship_piece_death(self, piece):
+        """
+        处理星舰组件死亡 - 深暗领域（2024年11月）
+
+        当星舰组件死亡时：
+        1. 如果玩家没有正在构筑的星舰，创建一个新的星舰
+        2. 如果玩家已有正在构筑的星舰，将组件累积到星舰上
+        """
+        from ..card import Card
+
+        player = piece.controller
+
+        # 记录死亡的星舰组件
+        player.starship_pieces_died_this_game.append(piece)
+
+        # 如果玩家没有正在构筑的星舰，创建一个新的
+        if player.starship_in_progress is None:
+            # 获取玩家职业对应的星舰ID
+            starship_id = self._get_starship_id_for_class(player.hero.card_class)
+
+            # 创建星舰实体
+            starship = Card(starship_id)
+            starship.controller = player
+            starship.zone = Zone.PLAY
+
+            # 初始化星舰属性
+            player.starship_in_progress = starship
+
+            log_info("starship_building_started", player=player, starship=starship)
+
+        # 将组件添加到星舰
+        player.starship_in_progress.add_piece(piece)
+        log_info("starship_piece_added", player=player, piece=piece,
+                 starship=player.starship_in_progress)
+
+    def _get_starship_id_for_class(self, card_class):
+        """
+        根据职业获取对应的星舰ID
+
+        6个职业有专属星舰：Death Knight, Demon Hunter, Druid, Hunter, Rogue, Warlock
+        其他职业使用中立星舰
+        """
+        from hearthstone.enums import CardClass
+
+        # 专属星舰映射
+        starship_map = {
+            CardClass.DEATHKNIGHT: "GDB_STARSHIP_DEATHKNIGHT",
+            CardClass.DEMONHUNTER: "GDB_STARSHIP_DEMONHUNTER",
+            CardClass.DRUID: "GDB_STARSHIP_DRUID",
+            CardClass.HUNTER: "GDB_STARSHIP_HUNTER",
+            CardClass.ROGUE: "GDB_STARSHIP_ROGUE",
+            CardClass.WARLOCK: "GDB_STARSHIP_WARLOCK",
+        }
+
+        # 中立星舰映射
+        neutral_starship_map = {
+            CardClass.PALADIN: "GDB_STARSHIP_BATTLECRUISER",
+            CardClass.SHAMAN: "GDB_STARSHIP_BATTLECRUISER",
+            CardClass.WARRIOR: "GDB_STARSHIP_BATTLECRUISER",
+            CardClass.MAGE: "GDB_STARSHIP_EXILES_HOPE",
+            CardClass.PRIEST: "GDB_STARSHIP_EXILES_HOPE",
+        }
+
+        # 返回对应的星舰ID
+        if card_class in starship_map:
+            return starship_map[card_class]
+        else:
+            return neutral_starship_map.get(card_class, "GDB_STARSHIP_BATTLECRUISER")
+
     def do(self, source, cards):
         for card in cards:
             if not card.dead:
@@ -529,6 +598,13 @@ class Death(GameAction):
                         # 友方随从死亡时生成1份残骸
                         card.controller.corpses += 1
                         log_info("corpse_generated", player=card.controller, corpses=card.controller.corpses)
+
+                # 星舰机制：星舰组件死亡时，构筑或累积星舰 - 深暗领域（2024年11月）
+                from ..enums import STARSHIP_PIECE
+                if card.type == CardType.MINION and card.controller:
+                    # 检查是否为星舰组件
+                    if card.tags.get(STARSHIP_PIECE):
+                        self._handle_starship_piece_death(card)
 
         for card in cards:
             if not card.dead:
@@ -641,7 +717,32 @@ class Play(GameAction):
         if card.type == CardType.SPELL:
             player.last_played_spell = card
 
-        player.pay_cost(card, card.cost)
+        # 记录手牌位置（用于 GDB_475 近轨血月等卡牌）- 深暗领域（2024年11月）
+        if card.zone == Zone.HAND:
+            hand_position = card.zone_position
+            player.cards_played_this_turn_with_position.append((card, hand_position))
+
+        # 残骸支付机制（用于 GDB_470 大主教玛拉达尔）- 深暗领域（2024年11月）
+        if player.next_card_costs_corpses:
+            # 下一张牌消耗残骸而非法力值
+            corpses_needed = card.cost
+            if player.corpses >= corpses_needed:
+                # 消耗残骸
+                player.corpses -= corpses_needed
+                log_info("corpses_spent", player=player, amount=corpses_needed, 
+                        remaining=player.corpses)
+                # 清除标志
+                player.next_card_costs_corpses = False
+                # 不消耗法力值（跳过 pay_cost）
+            else:
+                # 残骸不足，无法使用
+                raise InvalidAction(
+                    "%r tried to play %r with corpses but only has %d corpses (needs %d)" 
+                    % (player, card, player.corpses, corpses_needed)
+                )
+        else:
+            # 正常支付法力值
+            player.pay_cost(card, card.cost)
 
         card.target = target
         card._summon_index = index
@@ -764,6 +865,9 @@ class Play(GameAction):
         player.last_card_played = card
         if card.type == CardType.MINION:
             player.minions_played_this_turn += 1
+            # 追踪本局对战中打出的随从（用于GDB_131维伦等卡牌）- 深暗领域（2024年11月）
+            if hasattr(player, 'minions_played_this_game'):
+                player.minions_played_this_game.append(card.id)
             if Race.TOTEM in card.races:
                 card.controller.times_totem_summoned_this_game += 1
             if Race.ELEMENTAL in card.races:
@@ -783,6 +887,13 @@ class Play(GameAction):
                 # 这是另一职业的卡牌
                 player.cards_played_from_other_class_count += 1
                 player.last_card_played_from_other_class = card
+
+        # 追踪套牌外恶魔的使用（用于GDB_121恶兆邪火、GDB_128阿克蒙德等卡牌）- 深暗领域（2024年11月）
+        if card.type == CardType.MINION and Race.DEMON in card.races:
+            # 检查是否是套牌外的恶魔（不是起始套牌中的牌）
+            if not getattr(card, 'started_in_deck', True):
+                if hasattr(player, 'demons_not_started_in_deck_played'):
+                    player.demons_not_started_in_deck_played.append(card.id)
 
         # Miniaturize / Gigantify mechanism (Whizbang's Workshop)
         # 微缩 / 巨大化 机制（威兹班的工坊）
@@ -996,6 +1107,114 @@ class ActivateLocation(GameAction):
         if location.durability <= 0:
             log_info("location_destroyed", location=location)
             source.game.queue_actions(source, [Destroy(location)])
+
+
+class LaunchStarship(GameAction):
+    """
+    发射星舰 - 深暗领域（2024年11月）
+
+    星舰发射流程:
+    1. 检查星舰是否可发射(休眠状态、玩家有5点法力值)
+    2. 消耗5点法力值
+    3. 将星舰从休眠状态转换为活跃随从
+    4. 触发所有星舰组件的"发射时"效果
+    5. 清除玩家的 starship_in_progress
+    6. 增加发射计数
+    """
+    STARSHIP = CardArg()
+
+    def get_args(self, source):
+        # source 是 player
+        return (source,) + super().get_args(source)
+
+    def do(self, source, starship):
+        """
+        执行星舰发射
+
+        Args:
+            source: 发射星舰的玩家
+            starship: 要发射的星舰实体
+        """
+        player = source
+
+        # 验证星舰是否可发射
+        if not starship.is_launchable():
+            raise InvalidAction("%r cannot be launched" % starship)
+
+        log_info("launches_starship", player=player, starship=starship)
+
+        # 计算星舰发射费用(基础5费)
+        launch_cost = 5
+        
+        # 检查玩家的buff,查找星舰发射减费效果（用于SC_404回收地堡等卡牌）
+        buffs_to_remove = []
+        for buff in player.buffs:
+            if hasattr(buff, 'starship_launch_cost_reduction'):
+                reduction = buff.starship_launch_cost_reduction
+                launch_cost -= reduction
+                log_info("starship_launch_cost_reduced", buff=buff, reduction=reduction)
+                # 标记为待移除(一次性效果)
+                buffs_to_remove.append(buff)
+        
+        # 移除已使用的减费buff
+        for buff in buffs_to_remove:
+            buff.destroy()
+        
+        # 确保费用不为负
+        launch_cost = max(0, launch_cost)
+        
+        # 验证法力值是否足够
+        if player.mana < launch_cost:
+            raise InvalidAction("%r does not have enough mana to launch starship (needs %d, has %d)" % (player, launch_cost, player.mana))
+        
+        # 消耗法力值
+        player.used_mana += launch_cost
+
+        # 广播发射事件(ON)
+        source.game.manager.game_action(self, source, starship)
+        self.broadcast(source, EventListener.ON, player, starship)
+
+        # 将星舰转换为活跃随从
+        starship.is_dormant = False
+
+        # 触发所有星舰组件的"发射时"效果
+        for piece in starship.starship_pieces:
+            # 执行组件的发射时效果
+            actions = piece.get_actions("launch")
+            if actions:
+                source.game.trigger(starship, actions, event_args=None)
+
+        # 清除玩家的构筑中星舰
+        player.starship_in_progress = None
+
+        # 增加发射计数
+        player.starships_launched_this_game += 1
+
+        # 记录星舰快照（用于SC_400吉姆·雷诺的重新发射）- 深暗领域（2024年11月）
+        if hasattr(player, 'launched_starships_history'):
+            # 创建星舰快照
+            starship_snapshot = {
+                'id': starship.id,
+                'accumulated_atk': starship.atk - starship.data.atk,  # 累积的额外攻击力
+                'accumulated_health': starship.max_health - starship.data.health,  # 累积的额外生命值
+                'keywords': {
+                    # 记录所有关键词
+                    GameTag.DIVINE_SHIELD: starship.divine_shield,
+                    GameTag.TAUNT: starship.taunt,
+                    GameTag.RUSH: starship.rush,
+                    GameTag.LIFESTEAL: starship.lifesteal,
+                    GameTag.WINDFURY: starship.windfury,
+                    GameTag.STEALTH: starship.stealth,
+                    GameTag.POISONOUS: starship.poisonous,
+                    GameTag.REBORN: starship.reborn,
+                    GameTag.ELUSIVE: starship.elusive,
+                },
+                'pieces': list(starship.starship_pieces) if hasattr(starship, 'starship_pieces') else []
+            }
+            player.launched_starships_history.append(starship_snapshot)
+
+        # 广播发射事件(AFTER)
+        self.broadcast(source, EventListener.AFTER, player, starship)
 
 
 class Overload(GameAction):
@@ -1758,6 +1977,16 @@ class Destroy(TargetedAction):
             source.game.manager.targeted_action(self, source, target)
         else:
             log_info("destroys", source=source, target=target)
+            
+            # 追踪卡牌摧毁（用于GDB_142无界空宇等卡牌）- 深暗领域（2024年11月）
+            # 追踪双方玩家的摧毁卡牌数量
+            if hasattr(target, 'controller') and target.controller:
+                if hasattr(target.controller, 'cards_destroyed_this_game'):
+                    target.controller.cards_destroyed_this_game += 1
+                # 同时追踪对手的摧毁数量（因为无界空宇对双方都计数）
+                if hasattr(target.controller.opponent, 'cards_destroyed_this_game'):
+                    target.controller.opponent.cards_destroyed_this_game += 1
+            
             if target.type == CardType.ENCHANTMENT:
                 target.remove()
             else:
@@ -1842,6 +2071,13 @@ class Discover(TargetedAction):
                 "%r is not a valid choice (one of %r)" % (card, self.cards)
             )
         self.player.choice = None
+        
+        # 追踪发现的卡牌数量（用于GDB_237接触异星生物、GDB_843视差光枪等卡牌）- 深暗领域（2024年11月）
+        if hasattr(self.player, 'cards_discovered_this_game'):
+            self.player.cards_discovered_this_game += 1
+        if hasattr(self.player, 'cards_discovered_this_turn'):
+            self.player.cards_discovered_this_turn += 1
+        
         for action in self._callback:
             self.source.game.trigger(
                 self.source, [action], [self.target, self.cards, card]
@@ -2595,6 +2831,20 @@ class Summon(TargetedAction):
                         card._summon_index = getattr(source, "_dead_position", None)
                         if card._summon_index is not None:
                             card._summon_index += cards.index(card)
+                
+                # 标记复生召唤 - 深暗领域（2024年11月）
+                # 用于 GDB_469 奥金尼亡语者等需要检测复生的卡牌
+                # 检查卡牌是否是通过 RebornCopy 创建的
+                from ..dsl.copy import RebornCopy
+                # 如果卡牌的 reborn 标签为 False 但原始实体有 reborn，说明是复生召唤
+                # 或者检查卡牌的生命值是否被设置为1（RebornCopy 的特征）
+                if card.type == CardType.MINION and hasattr(card, 'original_entity_id'):
+                    # 这是一个复制的卡牌，检查是否是复生
+                    # RebornCopy 会将 reborn 设为 False 并设置生命值为1
+                    if not card.reborn and card.health == 1 and card.max_health > 1:
+                        # 标记为复生召唤
+                        card.is_reborn_summon = True
+                
                 card.zone = Zone.PLAY
                 # Initialize Spellburst state for minions with spellburst
                 # 为带有法术迸发的随从初始化法术迸发状态
