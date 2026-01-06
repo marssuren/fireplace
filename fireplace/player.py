@@ -155,6 +155,9 @@ class Player(Entity, TargetableByAuras):
         
         # 追踪本回合对敌方英雄造成的伤害（用于"邪恶的厨师"等卡牌）
         self.hero_damage_this_turn = 0
+        
+        # 追踪英雄在己方回合受到伤害的次数（用于VAC_418桑拿常客等卡牌）- 胜地历险记（2024年7月）
+        self.hero_damage_count_on_own_turn = 0
 
         # 待对手猜测的发现队列（用于"可疑的炼金师"等卡牌）
         # 每个元素: {"options": [card1, card2, card3], "chosen": card_id}
@@ -218,6 +221,16 @@ class Player(Entity, TargetableByAuras):
         # 追踪使用的威兹班实验套牌类型（用于实现特殊套牌机制）- 威兹班的工坊（2024年3月）
         # 可能的值: None, "DECK_OF_WONDERS", "NONUPLET_DECK", "SHRUNKEN_DECK" 等
         self.whizbang_deck_type = None
+
+        # 追踪本局游戏使用地标的次数（用于VAC_439海滨巨人等卡牌）- 胜地历险记（2024年7月）
+        self.locations_used_this_game = 0
+
+        # 追踪本局游戏对角色施放的法术数量（用于VAC_558海上船歌等卡牌）- 胜地历险记（2024年7月）
+        self.spells_cast_on_characters_this_game = 0
+
+        # 追踪使用过的另一职业卡牌（用于VAC_700横夺硬抢等卡牌）- 胜地历险记（2024年7月）
+        self.cards_played_from_other_class_count = 0  # 使用过的另一职业卡牌数量
+        self.last_card_played_from_other_class = None  # 上一张使用的另一职业卡牌
 
 
 

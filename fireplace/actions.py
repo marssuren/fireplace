@@ -664,6 +664,12 @@ class Play(GameAction):
             card.cast_on_friendly_characters = True
             if target.type == CardType.MINION:
                 card.cast_on_friendly_minions = True
+        
+        # 追踪对角色施放的法术数量（用于VAC_558海上船歌等卡牌）- 胜地历险记（2024年7月）
+        if card.type == CardType.SPELL and target:
+            # 检查目标是否为角色（英雄或随从）
+            if target.type in [CardType.HERO, CardType.MINION]:
+                source.spells_cast_on_characters_this_game += 1
 
         # 追踪套牌之外的法术（用于RLK_803等卡牌）
         if card.type == CardType.SPELL and hasattr(card, 'creator'):
@@ -732,6 +738,27 @@ class Play(GameAction):
                     player, EventListener.AFTER, player, played_card
                 )
             self.broadcast(player, EventListener.AFTER, player, played_card, target)
+            
+            # 低费法术施放两次机制（用于VAC_507阳光汲取者莱妮莎等卡牌）- 胜地历险记（2024年7月）
+            # 检查是否为法术且费用<=2，以及玩家是否有"低费法术施放两次"效果
+            if card.type == CardType.SPELL and card.cost <= 2:
+                # 检查玩家的所有buff，查找low_cost_spells_cast_twice标记
+                has_cast_twice_effect = False
+                for buff in player.buffs:
+                    if hasattr(buff, 'low_cost_spells_cast_twice') and buff.low_cost_spells_cast_twice:
+                        has_cast_twice_effect = True
+                        break
+                
+                if has_cast_twice_effect:
+                    # 重复触发法术效果
+                    # 使用标记防止无限循环
+                    if not getattr(card, '_cast_twice_triggered', False):
+                        card._cast_twice_triggered = True
+                        # 重复触发法术的play效果
+                        actions = card.get_actions("play")
+                        if actions:
+                            source.game.trigger(card, actions, event_args=None)
+                        card._cast_twice_triggered = False
 
         player.combo = True
         player.last_card_played = card
@@ -747,6 +774,15 @@ class Play(GameAction):
         # 追踪本回合使用的卡牌ID（用于WW_053飞车劫掠等卡牌）
         if hasattr(player, 'cards_played_this_turn_ids'):
             player.cards_played_this_turn_ids.append(card.id)
+
+        # 追踪使用过的另一职业卡牌（用于VAC_700横夺硬抢、VAC_333蓄谋诈骗犯等卡牌）- 胜地历险记（2024年7月）
+        # 判断是否为另一职业的卡牌（排除中立和本职业）
+        if hasattr(card, 'card_class') and card.card_class != CardClass.NEUTRAL:
+            player_class = player.hero.card_class if player.hero else None
+            if player_class and card.card_class != player_class:
+                # 这是另一职业的卡牌
+                player.cards_played_from_other_class_count += 1
+                player.last_card_played_from_other_class = card
 
         # Miniaturize / Gigantify mechanism (Whizbang's Workshop)
         # 微缩 / 巨大化 机制（威兹班的工坊）
@@ -946,6 +982,9 @@ class ActivateLocation(GameAction):
         
         # 增加激活次数
         location.activations_this_turn += 1
+        
+        # 追踪本局游戏使用地标的次数（用于VAC_439海滨巨人等卡牌）- 胜地历险记（2024年7月）
+        player.locations_used_this_game += 1
         
         # 广播激活事件(AFTER)
         self.broadcast(source, EventListener.AFTER, player, location, target)
