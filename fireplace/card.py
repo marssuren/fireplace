@@ -488,11 +488,11 @@ class PlayableCard(BaseCard, Entity, TargetableByAuras):
             if old_zone == Zone.HAND:
                 self.spells_cast_while_in_hand = 0
 
-            # Quickdraw / 快枪 mechanism
-            # Record the turn when the card enters the hand
-            if zone == Zone.HAND and old_zone != Zone.HAND:
-                if self.game:
-                    self.turn_entered_hand = self.game.turn
+        # Quickdraw / 快枪 mechanism
+        # Record the turn when the card enters the hand
+        if zone == Zone.HAND and old_zone != Zone.HAND:
+            if self.game:
+                self.turn_entered_hand = self.game.turn
 
     @property
     def quickdraw(self):

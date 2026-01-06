@@ -412,6 +412,9 @@ class BaseGame(Entity):
         # 更新上回合施放的法术数量（用于DEEP_010等卡牌）
         player.spells_played_last_turn = player.spells_played_this_turn
         player.spells_played_this_turn = 0
+        # 清空本回合施放的法术流派列表（用于MIS_709圣光荧光棒等卡牌）
+        if hasattr(player, 'spell_schools_played_this_turn'):
+            player.spell_schools_played_this_turn = []
 
         for entity in self.live_entities:
             if entity.type != CardType.PLAYER:
@@ -431,6 +434,40 @@ class BaseGame(Entity):
             character.num_attacks = 0
             character.damaged_this_turn = 0
             character.healed_this_turn = 0
+
+        # 【Deck of Wonders (奇迹套牌) 特殊机制】
+        # 每回合开始时,将手牌随机变形为法师或中立卡牌
+        if getattr(player, "whizbang_deck_type", None) == "DECK_OF_WONDERS":
+            from .actions import Morph
+            from .cards import db
+            from hearthstone.enums import CardClass
+            
+            # 获取所有可用的法师和中立卡牌
+            # 只选择可收集的、标准模式的卡牌
+            mage_and_neutral_cards = []
+            for card_id, card_data in db.items():
+                # 跳过英雄、英雄技能等非可打出卡牌
+                if card_data.type not in (CardType.MINION, CardType.SPELL, CardType.WEAPON):
+                    continue
+                # 只选择法师和中立卡牌
+                if card_data.card_class not in (CardClass.MAGE, CardClass.NEUTRAL):
+                    continue
+                # 只选择可收集的卡牌
+                if not card_data.collectible:
+                    continue
+                # 如果是标准模式,只选择标准卡牌
+                if player.is_standard and not card_data.is_standard:
+                    continue
+                
+                mage_and_neutral_cards.append(card_id)
+            
+            # 将手牌中的每张卡随机变形
+            if mage_and_neutral_cards:
+                for card in list(player.hand):
+                    # 随机选择一张法师或中立卡牌
+                    random_card_id = self.random.choice(mage_and_neutral_cards)
+                    # 使用 Morph action 变形
+                    self.queue_actions(player, [Morph(card, random_card_id)])
 
         player.draw()
         self.manager.step(self.next_step, Step.MAIN_END)

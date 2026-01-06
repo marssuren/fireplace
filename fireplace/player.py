@@ -107,6 +107,7 @@ class Player(Entity, TargetableByAuras):
         self.spells_played_this_turn = 0  # 本回合施放的法术数量（用于DEEP_010等卡牌）
         self.spells_played_last_turn = 0  # 上回合施放的法术数量（用于DEEP_010等卡牌）
         self.cards_drawn_this_turn = 0
+        self.cards_drawn_this_game = 0  # 本局游戏抽牌总数（用于TOY_530游乐巨人等卡牌）
         self.cards_played_this_turn = 0
         self.cards_played_this_game = CardList()
         self.hero_power_damage_this_game = 0
@@ -120,6 +121,12 @@ class Player(Entity, TargetableByAuras):
 
         # 追踪本局游戏施放过的法术学派（用于"多系施法者"等卡牌）
         self.spell_schools_played_this_game = set()  # 使用 set 自动去重
+        
+        # 追踪本回合施放过的法术学派（用于MIS_709圣光荧光棒等卡牌）- 威兹班的工坊（2024年3月）
+        self.spell_schools_played_this_turn = []  # 使用 list 保留顺序和重复
+
+        # 追踪本局游戏施放过的法术费用（用于TOY_378星空投影球等卡牌）- 威兹班的工坊（2024年3月）
+        self.spell_costs_played_this_game = set()  # 使用 set 自动去重
 
         # 追踪上回合之后是否有友方亡灵死亡（用于RLK_116等卡牌）
         self.undead_died_last_turn = False
@@ -204,6 +211,13 @@ class Player(Entity, TargetableByAuras):
         # 追踪上回合使用的卡牌（用于WW_053飞车劫掠等卡牌）- 决战荒芜之地（2023年11月）
         self.cards_played_last_turn = []  # 存储上回合使用的卡牌ID列表
         self.cards_played_this_turn_ids = []  # 临时存储本回合使用的卡牌ID
+
+        # 追踪本局对战中触发过的奥秘（用于MIS_914量产泰迪等卡牌）- 威兹班的工坊（2024年3月）
+        self.triggered_secrets = []  # 存储触发过的奥秘ID列表
+
+        # 追踪使用的威兹班实验套牌类型（用于实现特殊套牌机制）- 威兹班的工坊（2024年3月）
+        # 可能的值: None, "DECK_OF_WONDERS", "NONUPLET_DECK", "SHRUNKEN_DECK" 等
+        self.whizbang_deck_type = None
 
 
 
@@ -382,7 +396,7 @@ class Player(Entity, TargetableByAuras):
         return card
 
     def prepare_for_game(self):
-        # Whizbang
+        # Whizbang the Wonderful (原版威兹班)
         if self.starting_hero == "BOT_914h" or self.starting_deck == ["BOT_914"]:
             from .cards.boomsday.whizbang_decks import WHIZBANG_DECKS
 
@@ -390,12 +404,23 @@ class Player(Entity, TargetableByAuras):
                 WHIZBANG_DECKS
             )
 
+        # Zayle, Shadow Cloak (暗影斗篷扎伊尔)
         if self.starting_hero == "DAL_800h" or self.starting_deck == ["DAL_800"]:
             from .cards.dalaran.zayle_decks import ZAYLE_DECKS
 
             self.starting_hero, self.starting_deck = self.game.random.choice(
                 ZAYLE_DECKS
             )
+
+        # Splendiferous Whizbang (酷炫的威兹班) - 威兹班的工坊 (2024年3月)
+        # 当套牌中只有 TOY_700 时,随机选择一个实验套牌
+        if self.starting_deck == ["TOY_700"]:
+            from .cards.whizbang.whizbang_experimental_decks import WHIZBANG_EXPERIMENTAL_DECKS
+
+            # 随机选择一个实验套牌
+            # 返回格式: (英雄ID, 卡牌ID列表, 套牌类型)
+            selected_deck = self.game.random.choice(WHIZBANG_EXPERIMENTAL_DECKS)
+            self.starting_hero, self.starting_deck, self.whizbang_deck_type = selected_deck
 
         self.summon(self.starting_hero)
         # self.game.trigger(self, [Summon(self, self.starting_hero)], event_args=None)

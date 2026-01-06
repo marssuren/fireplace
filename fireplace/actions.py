@@ -119,6 +119,17 @@ class IntArg(ActionArg, LazyNum):
         return self.num(ret)
 
 
+class BoolArg(ActionArg):
+    """Boolean argument for actions"""
+    def __init__(self, default=False):
+        self.default = default
+    
+    def evaluate(self, source):
+        ret = super().evaluate(source)
+        return bool(ret) if ret is not None else self.default
+
+
+
 class Action(metaclass=ActionMeta):
     def __init__(self, *args, **kwargs):
         self._args = args
@@ -737,6 +748,28 @@ class Play(GameAction):
         if hasattr(player, 'cards_played_this_turn_ids'):
             player.cards_played_this_turn_ids.append(card.id)
 
+        # Miniaturize / Gigantify mechanism (Whizbang's Workshop)
+        # 微缩 / 巨大化 机制（威兹班的工坊）
+        # When a card with MINIATURIZE or GIGANTIFY is played, add the corresponding token to hand
+        # 当打出带有 MINIATURIZE 或 GIGANTIFY 标签的卡牌时，将对应的 Token 加入手牌
+        if card.type == CardType.MINION:
+            # Check for Miniaturize
+            if GameTag.MINIATURIZE in card.tags:
+                token_id = card.id + "t"
+                if token_id in cards.db:
+                    # Create 1-cost 1/1 miniaturized token
+                    source.game.queue_actions(card, [Give(player, token_id)])
+            
+            # Check for Gigantify
+            if GameTag.GIGANTIFY in card.tags:
+                # Gigantify tokens usually have "t1" suffix (or just "t" if no Miniaturize)
+                # Check both possibilities
+                token_id = card.id + "t1" if (card.id + "t1") in cards.db else card.id + "t"
+                if token_id in cards.db and token_id != card.id + "t":  # Avoid duplicate if Miniaturize exists
+                    # Create 8-cost 8/8 gigantified token
+                    source.game.queue_actions(card, [Give(player, token_id)])
+
+
         card.turn_played = source.game.turn
         card.choose = None
         
@@ -749,6 +782,12 @@ class Play(GameAction):
             # Update spell schools played
             if hasattr(card, "spell_school") and card.spell_school != SpellSchool.NONE:
                 player.spell_schools_played_this_game.add(card.spell_school)
+                # 追踪本回合施放的法术流派（用于MIS_709圣光荧光棒等卡牌）
+                if hasattr(player, 'spell_schools_played_this_turn'):
+                    player.spell_schools_played_this_turn.append(card.spell_school)
+            
+            # Update spell costs played (用于TOY_378星空投影球等卡牌)
+            player.spell_costs_played_this_game.add(card.cost)
 
             for hand_card in player.hand:
                 # 检查是否为纳迦卡牌（包括多种族）
@@ -1529,6 +1568,36 @@ class Battlecry(TargetedAction):
 
         return False
 
+    def get_extra_battlecry_count(self, player, card):
+        """
+        计算战吼额外触发的次数
+        返回额外触发次数（不包括原始的1次）
+        
+        支持：
+        - 布尔值 extra_battlecries：额外触发1次
+        - 多个 extra_battlecries buff：叠加触发次数
+        """
+        if not card.has_battlecry:
+            return 0
+        
+        extra_count = 0
+        
+        # 检查玩家的所有 buff，统计 EXTRA_BATTLECRIES 的数量
+        for buff in player.buffs:
+            if hasattr(buff, 'tags') and buff.tags.get(enums.EXTRA_BATTLECRIES):
+                extra_count += 1
+        
+        # 检查随从的额外战吼（Spirit of the Shark）
+        if card.type == CardType.MINION:
+            if player.minion_extra_combos and card.has_combo and player.combo:
+                extra_count += 1
+            elif player.minion_extra_battlecries:
+                for buff in player.buffs:
+                    if hasattr(buff, 'tags') and buff.tags.get(enums.MINION_EXTRA_BATTLECRIES):
+                        extra_count += 1
+        
+        return extra_count
+
     def do(self, source, card, target=None):
         player = source.controller
 
@@ -1545,9 +1614,13 @@ class Battlecry(TargetedAction):
 
         source.game.manager.targeted_action(self, source, card, target)
         source.target = target
+        
+        # 原始触发（1次）
         source.game.main_power(source, actions, target)
 
-        if self.has_extra_battlecries(player, card):
+        # 额外触发（根据 buff 数量决定）
+        extra_count = self.get_extra_battlecry_count(player, card)
+        for _ in range(extra_count):
             source.game.main_power(source, actions, target)
 
         if card.overload:
@@ -1786,6 +1859,7 @@ class Draw(TargetedAction):
             card.zone = Zone.HAND
             card.turn_drawn = source.game.turn
             source.controller.cards_drawn_this_turn += 1
+            source.controller.cards_drawn_this_game += 1  # 更新本局游戏抽牌总数（用于TOY_530等卡牌）
             # Initialize Corrupt state for cards with corrupt when drawn to hand
             # 当卡牌被抽到手牌时，初始化腐蚀状态（如果卡牌有腐蚀属性）
             if hasattr(card, 'corrupt'):
@@ -1992,6 +2066,16 @@ class Hit(TargetedAction):
     TRIGGER_LIFESTEAL = BoolArg(default=True)
 
     def do(self, source, target, amount, trigger_lifesteal):
+        # 检查"战吼无法伤害敌方英雄"限制（用于 TOY_501 Shudderblock）
+        # 如果源卡牌的控制者有此 buff，且目标是敌方英雄，则跳过伤害
+        if target.type == CardType.HERO and target.controller != source.controller:
+            # 检查控制者是否有"战吼无法伤害敌方英雄"的 buff
+            for buff in source.controller.buffs:
+                if hasattr(buff, 'battlecry_cant_damage_enemy_hero') and buff.battlecry_cant_damage_enemy_hero:
+                    # 跳过对敌方英雄的伤害
+                    log_info("battlecry_cant_damage_enemy_hero", source=source, target=target)
+                    return 0
+        
         # 应用英雄技能伤害加成（用于"瞄准射击"等卡牌）
         if source.type == CardType.HERO_POWER and hasattr(source.controller, 'hero_power_damage_bonus'):
             bonus = source.controller.hero_power_damage_bonus
@@ -2223,6 +2307,12 @@ class Reveal(TargetedAction):
             from .enums import NUM_SECRETS_REVEALED
             controller = target.controller
             controller.tags[NUM_SECRETS_REVEALED] = controller.tags.get(NUM_SECRETS_REVEALED, 0) + 1
+            
+            # 记录触发的奥秘ID（用于MIS_914量产泰迪等卡牌）
+            if not hasattr(controller, 'triggered_secrets'):
+                controller.triggered_secrets = []
+            if target.id not in controller.triggered_secrets:
+                controller.triggered_secrets.append(target.id)
             
         source.game.manager.targeted_action(self, source, target)
 
