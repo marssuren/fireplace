@@ -1231,8 +1231,21 @@ class Hero(Character):
             if old_hero:
                 old_hero.zone = Zone.GRAVEYARD
         elif value == Zone.GRAVEYARD:
+            # 英雄进入墓地时的特殊处理
+            # 支持英雄亡语机制（如 TIME_618 永时收割者哈斯克）
             if self.controller.hero is self:
-                self.controller.playstate = PlayState.LOSING
+                # 先触发英雄的亡语（如果有）
+                # 亡语可能会复活英雄（通过 SetCurrentHealth）
+                if self.has_deathrattle:
+                    from .actions import Deathrattle
+                    self.game.queue_actions(self, [Deathrattle(self)])
+                    # 刷新光环，让 SetCurrentHealth 生效
+                    self.game.refresh_auras()
+                
+                # 亡语触发后，再次检查英雄是否真的死亡
+                # 如果英雄被复活（health > 0），则不设置 LOSING 状态
+                if self.health <= 0:
+                    self.controller.playstate = PlayState.LOSING
 
     def _hit(self, amount):
         amount = super()._hit(amount)

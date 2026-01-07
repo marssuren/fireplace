@@ -3,6 +3,7 @@ import time
 from random import Random
 from calendar import timegm
 from itertools import chain
+import copy
 from typing import TYPE_CHECKING
 
 from hearthstone.enums import BlockType, CardType, PlayState, State, Step, Zone
@@ -60,6 +61,9 @@ class BaseGame(Entity):
 
         # Anomaly 系统（用于古加尔等卡牌）- 泰坦诸神（2023年8月）
         self.active_anomaly = None  # 当前激活的畸变效果
+
+        # Rewind Mechanism Snapshot Storage
+        self.rewind_snapshot = None
 
     def __repr__(self):
         return "%s(players=%r)" % (self.__class__.__name__, self.players)
@@ -301,6 +305,57 @@ class BaseGame(Entity):
 
         self.tick += 1
 
+    def save_rewind_snapshot(self):
+        """
+        Save a deepcopy of the game state for the Rewind mechanic.
+        Warning: This is an expensive operation! Only use when a Rewind card is played.
+        """
+        try:
+            # Deepcopy includes the random state, entities, and everything reachable
+            self.rewind_snapshot = copy.deepcopy(self)
+        except Exception as e:
+            self.log("FAILED TO SAVE REWIND SNAPSHOT: %s", e)
+            self.rewind_snapshot = None
+
+    def restore_rewind_snapshot(self):
+        """
+        Restore the game state from the saved snapshot.
+        Returns True if successful, False otherwise.
+        """
+        if not self.rewind_snapshot:
+            return False
+            
+        snapshot = self.rewind_snapshot
+        
+        # Update the internal state of THIS game object to match the snapshot
+        self.__dict__.update(snapshot.__dict__)
+        
+        # Re-link internal references to 'self' instead of 'snapshot'
+        # Since we copied the entities, their .game attribute points to the 'snapshot' object
+        # We need to redirect them to 'self' (the current running game instance)
+        for entity in self.entities:
+            entity.game = self
+            
+            # Additional safety for controllers (though logical they should be correct if point to P1/P2)
+            if hasattr(entity, "controller") and entity.controller:
+                 if entity.controller == snapshot.player1:
+                     entity.controller = self.player1
+                 elif entity.controller == snapshot.player2:
+                     entity.controller = self.player2
+        
+        # Fix Player references
+        self.player1.game = self
+        self.player2.game = self
+        
+        # Fix GameManager reference
+        # The manager was also deepcopied, so it points to 'snapshot'
+        self.manager.obj = self
+        
+        # Clear the snapshot after restore (optional, but prevents loops or stale data)
+        self.rewind_snapshot = None
+        
+        return True
+
     def setup(self):
         self.log(translate("setting_up_game", game=self))
         self.state = State.RUNNING
@@ -481,7 +536,18 @@ class BaseGame(Entity):
                     # 使用 Morph action 变形
                     self.queue_actions(player, [Morph(card, random_card_id)])
 
-        player.draw()
+        # 检查是否有随从阻止回合开始抽牌（用于 TIME_617 时空封冻者等卡牌）
+        # 只有当场上没有任何随从拥有 blocks_turn_start_draw 属性时才抽牌
+        should_draw = True
+        for minion in player.field:
+            if getattr(minion, 'blocks_turn_start_draw', False):
+                self.log("%s blocks turn start draw for %s", minion, player)
+                should_draw = False
+                break
+        
+        if should_draw:
+            player.draw()
+        
         self.manager.step(self.next_step, Step.MAIN_END)
 
 

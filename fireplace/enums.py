@@ -110,6 +110,15 @@ KINDRED_ACTIVE = -72  # 标记 Kindred 效果是否激活（上回合打出过�
 # Map Cards 机制 - 失落之城（2025年7月）
 MAP_DISCOVERED_THIS_TURN = -73  # 标记本回合从地图发现的卡牌ID（用于触发二次发现）
 
+# Rewind 机制 - 穿越时间流（2025年11月）
+REWIND = -74  # 标记卡牌具有 Rewind 效果
+REWIND_COUNT = -75  # 标记卡牌可以 Rewind 的次数
+REWIND_AVAILABLE = -76  # 标记卡牌当前是否可以 Rewind
+
+# Fabled 机制 - 穿越时间流（2025年11月）
+FABLED = -77  # 标记卡牌为 Fabled 传说卡牌
+FABLED_CARDS = -78  # 存储 Fabled 卡牌附带的额外卡牌ID列表
+
 
 
 
