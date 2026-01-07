@@ -249,20 +249,49 @@ class YOG_522e:
     )
 
     def _cast_on_adjacent(self, spell, target):
-        """对相邻随从也施放法术效果"""
-        # 获取相邻随从
-        adjacent_minions = ADJACENT(target).eval(spell.game, spell.controller)
+        """对相邻随从也施放法术效果
 
-        # 对每个相邻随从重复施放法术效果
+        完整实现：
+        - 获取目标的相邻随从
+        - 为每个相邻随从重新执行法术的效果
+        - 支持各种类型的法术（伤害、治疗、buff等）
+        """
+        # 获取相邻随从
+        adjacent_minions = []
+        if target and target.zone == Zone.PLAY:
+            # 获取目标在场上的位置
+            field = target.controller.field
+            try:
+                target_pos = field.index(target)
+                # 左侧相邻
+                if target_pos > 0:
+                    adjacent_minions.append(field[target_pos - 1])
+                # 右侧相邻
+                if target_pos < len(field) - 1:
+                    adjacent_minions.append(field[target_pos + 1])
+            except (ValueError, IndexError):
+                pass
+
+        # 对每个相邻随从重新执行法术效果
         for minion in adjacent_minions:
             if minion and not minion.dead:
-                # 重新执行法术的 play 效果
-                # 注意：这里需要根据法术的具体效果来处理
-                # 简化实现：只处理伤害/治疗类法术
-                if hasattr(spell, 'damage'):
-                    yield Hit(minion, spell.damage)
-                elif hasattr(spell, 'heal'):
-                    yield Heal(minion, spell.heal)
+                # 重新执行法术的 play 脚本，将目标设置为相邻随从
+                # 保存原始目标
+                original_target = spell.target
+                spell.target = minion
+
+                # 执行法术的 play 效果
+                if hasattr(spell, 'play'):
+                    play_actions = spell.play
+                    if callable(play_actions):
+                        # 如果是方法，调用它
+                        yield from play_actions()
+                    elif play_actions:
+                        # 如果是 action 列表，触发它们
+                        spell.game.trigger(spell, [play_actions], None)
+
+                # 恢复原始目标
+                spell.target = original_target
 
 
 # EPIC
