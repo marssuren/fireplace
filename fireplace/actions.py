@@ -737,6 +737,9 @@ class Play(GameAction):
         if card.zone == Zone.HAND:
             hand_position = card.zone_position
             player.cards_played_this_turn_with_position.append((card, hand_position))
+            # 保存打出前的手牌位置（用于 DINO_137 灵敏的厨师等卡牌）- 失落之城（2025年7月）
+            # 这样战吼时可以访问 self._hand_position_when_played 来影响相邻手牌
+            card._hand_position_when_played = hand_position
 
         # 残骸支付机制（用于 GDB_470 大主教玛拉达尔）- 深暗领域（2024年11月）
         if player.next_card_costs_corpses:
@@ -895,6 +898,11 @@ class Play(GameAction):
         if hasattr(player, 'cards_played_this_turn_ids'):
             player.cards_played_this_turn_ids.append(card.id)
 
+        # 追踪任务牌使用 - 失落之城（2025年7月）
+        # 用于 TLC_987 任务助理等卡牌
+        if card.data.quest:
+            player.quest_played = True
+
         # 追踪使用过的另一职业卡牌（用于VAC_700横夺硬抢、VAC_333蓄谋诈骗犯等卡牌）- 胜地历险记（2024年7月）
         # 判断是否为另一职业的卡牌（排除中立和本职业）
         if hasattr(card, 'card_class') and card.card_class != CardClass.NEUTRAL:
@@ -910,6 +918,12 @@ class Play(GameAction):
             if not getattr(card, 'started_in_deck', True):
                 if hasattr(player, 'demons_not_started_in_deck_played'):
                     player.demons_not_started_in_deck_played.append(card.id)
+
+        # 追踪套牌外卡牌的使用（用于DINO_409科技恐龙等卡牌）- 失落之城（2025年7月）
+        # 检查是否是套牌外的卡牌（不是起始套牌中的牌）
+        if not getattr(card, 'started_in_deck', True):
+            if hasattr(player, 'cards_not_started_in_deck_played'):
+                player.cards_not_started_in_deck_played.append(card.id)
 
         # Miniaturize / Gigantify mechanism (Whizbang's Workshop)
         # 微缩 / 巨大化 机制（威兹班的工坊）
@@ -2990,6 +3004,13 @@ class Shuffle(TargetedAction):
                  if source.controller and source.controller != target:
                      if hasattr(source.controller, 'plagues_shuffled_into_enemy'):
                          source.controller.plagues_shuffled_into_enemy += 1
+            
+            # 追踪洗入牌库的卡牌次数（用于 TLC_517 一脚踢飞、TLC_520 灌林追踪者等卡牌）
+            # 失落之城（2025年7月）
+            if source.controller and source.controller == target:
+                # 只追踪洗入自己牌库的卡牌
+                if hasattr(source.controller, 'cards_shuffled_into_deck'):
+                    source.controller.cards_shuffled_into_deck += 1
             
             source.game.manager.targeted_action(self, source, target, card)
             self.broadcast(source, EventListener.AFTER, target, card)

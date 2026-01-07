@@ -1,0 +1,3795 @@
+[
+  {
+    "artist": "Todd Harris",
+    "attack": 0,
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 118490,
+    "flavor": "没想到吧，长颈龙幼体不叫短颈龙。",
+    "health": 2,
+    "id": "DINO_130",
+    "isMiniSet": true,
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "长颈龙蛋",
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "text": "<b>亡语：</b>召唤一只3/3的野兽。使你的随从获得+1/+1。",
+    "type": "MINION"
+  },
+  {
+    "artist": "James Ryman",
+    "attack": 2,
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 118494,
+    "flavor": "不知道是什么附了我的身，我开始画起了恐龙，根本停不下来！",
+    "health": 2,
+    "id": "DINO_131",
+    "isMiniSet": true,
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "着魔的动物术师",
+    "rarity": "RARE",
+    "referencedTags": [
+      "LIFESTEAL"
+    ],
+    "set": "THE_LOST_CITY",
+    "text": "<b>亡语：</b>随机从你的牌库中召唤一只野兽。使其获得<b>吸血</b>。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mike Sass",
+    "attack": 6,
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 118497,
+    "flavor": "始祖龟医生提示您：不惜一切代价避免窒息。",
+    "health": 12,
+    "id": "DINO_132",
+    "isMiniSet": true,
+    "mechanics": [
+      "TAUNT",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "绝息剑龙",
+    "race": "BEAST",
+    "races": [
+      "DEMON",
+      "BEAST"
+    ],
+    "rarity": "RARE",
+    "set": "THE_LOST_CITY",
+    "text": "<b>嘲讽</b>。在你的回合结束时，随机对一个敌方随从造成5点伤害。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Ramzy Kamen",
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 118503,
+    "flavor": "生的熟的半生半熟的都有。",
+    "id": "DINO_136",
+    "isMiniSet": true,
+    "name": "盛宴之角",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "IMMUNE",
+      "OUTCAST",
+      "RUSH"
+    ],
+    "set": "THE_LOST_CITY",
+    "text": "召唤三只2/1并具有<b>突袭</b>的迅猛龙。<b>流放：</b>使其在本回合中获得攻击时<b>免疫</b>。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Ramzy Kamen",
+    "attack": 4,
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 118505,
+    "flavor": "“弱弱地问一句，这个职位为什么空出来了？”",
+    "health": 2,
+    "id": "DINO_137",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "灵敏的厨师",
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "text": "<b>战吼：</b>\n使相邻手牌的法力值消耗减少（1）点。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Max Grecke",
+    "attack": 6,
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 118507,
+    "flavor": "脑袋大大的……爪子小小的。",
+    "health": 5,
+    "id": "DINO_138",
+    "isMiniSet": true,
+    "name": "魔神暴龙",
+    "race": "BEAST",
+    "races": [
+      "DEMON",
+      "BEAST"
+    ],
+    "rarity": "RARE",
+    "set": "THE_LOST_CITY",
+    "text": "<b>延系：</b>对你的对手最左边和最右边的随从造成6点伤害。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Bima Kusuma",
+    "attack": 4,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 118403,
+    "flavor": "这个就叫做反应装甲。",
+    "health": 3,
+    "id": "DINO_400",
+    "isMiniSet": true,
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "怒袭甲龙",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "RARE",
+    "set": "THE_LOST_CITY",
+    "text": "每当你获得护甲值，获得+2/+2并随机攻击一个敌方随从。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mike Sass",
+    "attack": 5,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 118404,
+    "elite": true,
+    "flavor": "你们满脑子想着能不能这么做，却没有停下来想想该不该这么做。",
+    "hasDiamondSkin": true,
+    "health": 12,
+    "id": "DINO_401",
+    "isMiniSet": true,
+    "mechanics": [
+      "RUSH",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "伟岸的德拉克雷斯",
+    "race": "BEAST",
+    "races": [
+      "BEAST",
+      "DRAGON"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "THE_LOST_CITY",
+    "text": "<b>突袭</b>。在本随从攻击一个敌方随从后，还会对所有其他敌方随从造成伤害。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Slawomir Maniak",
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 118406,
+    "flavor": "引虫香水的效果消失了。",
+    "id": "DINO_402",
+    "isMiniSet": true,
+    "name": "蝙蝠面具",
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "text": "将一个友方随从的属性值变为1/1。用它的复制填满你的\n面板。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Matt Dixon",
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 118408,
+    "flavor": "“看看这个面具后到底是谁……雪鳍企鹅？！？！”",
+    "id": "DINO_403",
+    "isMiniSet": true,
+    "name": "魔暴龙面具",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "CHARGE"
+    ],
+    "set": "THE_LOST_CITY",
+    "text": "将一个随从的属性值变为8/8。使其获得<b>冲锋</b>。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Felideus Bubastis",
+    "attack": 3,
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 118410,
+    "flavor": "水里火里空气里，全都能呼吸。",
+    "health": 2,
+    "id": "DINO_404",
+    "isMiniSet": true,
+    "name": "火鳃鱼人",
+    "race": "MURLOC",
+    "races": [
+      "ELEMENTAL",
+      "MURLOC"
+    ],
+    "rarity": "COMMON",
+    "referencedTags": [
+      "RUSH"
+    ],
+    "set": "THE_LOST_CITY",
+    "text": "<b>延系：</b>使你的其他随从获得<b>突袭</b>。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Felideus Bubastis",
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 118413,
+    "flavor": "家财万贯，没孵出来不……哦，好的，现在可以算了。",
+    "id": "DINO_405",
+    "isMiniSet": true,
+    "name": "孵化仪典",
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "text": "在你的下个回合结束时，使你的随从获得+2/+2。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Brian Adriel",
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 118480,
+    "flavor": "“……这个节目我们还是坐在后排看吧。”",
+    "id": "DINO_406",
+    "isMiniSet": true,
+    "name": "喷吐火焰",
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "spellSchool": "FIRE",
+    "text": "造成$4点伤害。使你的元素获得+1/+1。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Ivo Campelo da Silva",
+    "attack": 3,
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 118481,
+    "elite": true,
+    "flavor": "每次孵化仪典时，米尔雷斯都会从洞穴中探身而出。如果光线没能映在它镜面般的鳞片上，那说明火山喷发还会持续6个星期。",
+    "health": 4,
+    "id": "DINO_407",
+    "isMiniSet": true,
+    "name": "米尔雷斯，晶化镜甲龙",
+    "race": "BEAST",
+    "races": [
+      "ELEMENTAL",
+      "BEAST"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "THE_LOST_CITY",
+    "text": "此牌在你的手牌中时，会变成你的对手使用的上一张随从牌的3/4的复制。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Studio Hive",
+    "attack": 2,
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 118484,
+    "durability": 0,
+    "flavor": "我看了三部电影就弃坑了。然后你告诉我第四部讲的是外星人？",
+    "health": 2,
+    "id": "DINO_408",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY",
+      "DEATHRATTLE"
+    ],
+    "name": "棱晶獠牙",
+    "rarity": "RARE",
+    "set": "THE_LOST_CITY",
+    "text": "<b>战吼：</b>将你最左边的手牌洗入你的牌库。<b>亡语：</b>抽两张牌。",
+    "type": "WEAPON"
+  },
+  {
+    "artist": "Zoltan Boros",
+    "attack": 3,
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 118485,
+    "flavor": "恐龙的假肢行业原本近乎灭绝，直到始祖龟一族来到了这里。",
+    "health": 6,
+    "id": "DINO_409",
+    "isMiniSet": true,
+    "mechanics": [
+      "TAUNT"
+    ],
+    "name": "科技恐龙",
+    "race": "BEAST",
+    "races": [
+      "MECHANICAL",
+      "BEAST"
+    ],
+    "rarity": "RARE",
+    "set": "THE_LOST_CITY",
+    "text": "<b>嘲讽</b>。在本局对战中，你每使用一张你的套牌之外的卡牌，本牌的法力值消耗便减少（1）点。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Vlad Botos",
+    "attack": 0,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 118487,
+    "elite": true,
+    "flavor": "千万年来，凯洛斯一直等待着破壳而出。但愿你不用也等那么久。",
+    "health": 3,
+    "id": "DINO_410",
+    "isMiniSet": true,
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "凯洛斯的蛋",
+    "rarity": "LEGENDARY",
+    "referencedTags": [
+      "TAUNT"
+    ],
+    "set": "THE_LOST_CITY",
+    "text": "<b>亡语：</b>召唤一枚轻微开裂的蛋。<i>（破壳5次即可孵化为一只20/20并具有<b>嘲讽</b>的野兽！）</i>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Bima Kusuma",
+    "attack": 1,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 118496,
+    "flavor": "如果事业不顺，至少还有神圣煎蛋者的职位等着呢！",
+    "health": 2,
+    "id": "DINO_411",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "神圣布蛋者",
+    "rarity": "RARE",
+    "set": "THE_LOST_CITY",
+    "text": "<b>战吼：</b>抽一张攻击力为0的随从牌。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Studio Hive",
+    "attack": 0,
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 118500,
+    "flavor": "要是你把它弄翻了，就要受到7年的厄运诅咒。",
+    "health": 3,
+    "id": "DINO_412",
+    "isMiniSet": true,
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "始祖龟图腾",
+    "race": "TOTEM",
+    "races": [
+      "TOTEM"
+    ],
+    "rarity": "RARE",
+    "set": "THE_LOST_CITY",
+    "text": "在你的回合结束时，随机获取一张具有多类型的随从牌。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Luca Zontini",
+    "attack": 3,
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 118501,
+    "flavor": "我的尾巴都快冻掉了！",
+    "health": 4,
+    "id": "DINO_413",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "冰脊剑龙",
+    "race": "BEAST",
+    "races": [
+      "ELEMENTAL",
+      "BEAST"
+    ],
+    "rarity": "RARE",
+    "referencedTags": [
+      "FREEZE"
+    ],
+    "set": "THE_LOST_CITY",
+    "text": "<b>战吼：</b>随机对两个敌方随从造成2点伤害。<b>延系：</b>并将其<b>冻结</b>。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Vika Yarova",
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 118554,
+    "flavor": "祭，如在。",
+    "id": "DINO_414",
+    "isMiniSet": true,
+    "name": "祭礼之舞",
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "text": "选择一个随从，将其变形成为你另选的一个不同的随从。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Vika Yarova",
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 118555,
+    "flavor": "“她想把这座隐秘之城的秘密告诉外人，于是我们把她逐出了这座隐秘之城，让她长长记性！”",
+    "id": "DINO_415",
+    "isMiniSet": true,
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "安布拉的故事",
+    "rarity": "RARE",
+    "referencedTags": [
+      "DEATHRATTLE"
+    ],
+    "set": "THE_LOST_CITY",
+    "text": "<b>发现</b>一个法力值消耗大于或等于（5）点的<b>亡语</b>随从，召唤该随从并触发其<b>亡语</b>。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Edgar Hidalgo",
+    "attack": 5,
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 118558,
+    "flavor": "啊我活了！啊我死了！啊我在看电视呢！",
+    "health": 4,
+    "id": "DINO_416",
+    "isMiniSet": true,
+    "mechanics": [
+      "RUSH",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "空角恐角龙",
+    "race": "BEAST",
+    "races": [
+      "UNDEAD",
+      "BEAST"
+    ],
+    "rarity": "RARE",
+    "referencedTags": [
+      "REBORN"
+    ],
+    "set": "THE_LOST_CITY",
+    "text": "<b>突袭</b>。在一个友方随从死亡后，消耗3份<b>残骸</b>以获得<b>复生</b>。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Daniil Kudriavtsev",
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 118559,
+    "flavor": "魂蛋！是谁干的！",
+    "id": "DINO_417",
+    "isMiniSet": true,
+    "name": "安魂仪典",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "RUSH"
+    ],
+    "set": "THE_LOST_CITY",
+    "spellSchool": "SHADOW",
+    "text": "使你的随从获得+1攻击力和<b>突袭</b>。它们会在你的回合结束时死亡。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Patrik Bjorkstrom",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 118563,
+    "flavor": "“下午你的日程全都排满了。必须重排你的食草计划，挤出时间来活动活动。”",
+    "health": 2,
+    "id": "DINO_419",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "饲草助手",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "RUSH"
+    ],
+    "set": "THE_LOST_CITY",
+    "targetingArrowText": "使一只野兽获得+2/+2和<b>突袭</b>。",
+    "text": "<b>战吼：</b>使一只友方野兽获得+2/+2和<b>突袭</b>。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Todd Harris",
+    "attack": 9,
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 9,
+    "dbfId": 118617,
+    "flavor": "地雷？什么地雷？",
+    "health": 9,
+    "id": "DINO_421",
+    "isMiniSet": true,
+    "mechanics": [
+      "DEATHRATTLE",
+      "ELUSIVE",
+      "TAUNT"
+    ],
+    "name": "震地雷龙",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "RARE",
+    "set": "THE_LOST_CITY",
+    "text": "<b>嘲讽</b>。<b>扰魔</b>\n<b>亡语：</b>使你的手牌和牌库里的所有随从牌获得+3/+3。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Gabor Szikszai",
+    "attack": 7,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 118620,
+    "flavor": "低劣的甲龙一般被称为“破甲龙”。",
+    "health": 5,
+    "id": "DINO_422",
+    "isMiniSet": true,
+    "mechanics": [
+      "DEATHRATTLE",
+      "TAUNT"
+    ],
+    "name": "甲龙",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "RARE",
+    "set": "THE_LOST_CITY",
+    "text": "<b><b>嘲讽</b>。亡语：</b>随机召唤两只法力值消耗为（3）的野兽，并使其攻击随机敌人。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Topdog Entertainment",
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 118625,
+    "flavor": "安布拉的阴谋失败之后，洛终于完成了平生的心愿，准备在拉特维亚安享退休生活。",
+    "id": "DINO_424",
+    "isMiniSet": true,
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "英雄欢迎仪式",
+    "rarity": "RARE",
+    "set": "THE_LOST_CITY",
+    "text": "<b>发现</b>并召唤一个<b>传说</b>随从，将其属性值变为10/10。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Tee Fuyuan",
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 118628,
+    "flavor": "Naaaaaants ingonyama bagithi baba！",
+    "id": "DINO_426",
+    "isMiniSet": true,
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "生命仪式",
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "spellSchool": "HOLY",
+    "text": "<b>发现</b>一张法力值消耗为（3）的随从牌，召唤一个它的2/3的复制。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "BOSi Studio",
+    "attack": 2,
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 118632,
+    "flavor": "每年秋天，这个始祖龟都会租掉废弃龟壳店。",
+    "health": 4,
+    "id": "DINO_427",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY",
+      "COMBO"
+    ],
+    "name": "装扮商贩",
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "text": "<b>战吼：</b>随机获取一张另一职业的面具牌。<b>连击：</b>其法力值消耗减少（2）点。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Matt Dixon",
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 118649,
+    "flavor": "“更换一处海底光源，需要多少条小鱼？”“不知道，一条又一条，全都不见了。”",
+    "id": "DINO_428",
+    "isMiniSet": true,
+    "name": "巨鳗面具",
+    "rarity": "RARE",
+    "referencedTags": [
+      "LIFESTEAL"
+    ],
+    "set": "THE_LOST_CITY",
+    "text": "将一个随从的属性值变为8/10并使其获得<b>吸血</b>。随机迫使一个敌方随从攻击该随从。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Adam Byrne",
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 118651,
+    "flavor": "滋……滋……自爆绵羊",
+    "id": "DINO_429",
+    "isMiniSet": true,
+    "name": "绵羊面具",
+    "rarity": "RARE",
+    "referencedTags": [
+      "DEATHRATTLE"
+    ],
+    "set": "THE_LOST_CITY",
+    "text": "将一个随从的属性值变为1/1并使其获得“<b>亡语：</b>对所有随从造成2点伤害。”",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Kevin Sidharta",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 118653,
+    "elite": true,
+    "flavor": "每年此时，兽语者塔卡都会开启重生之日的节庆活动，以及恐龙的孵化季。在这个节日里，我们纪念逝者，同时欢庆环形山中的新生。",
+    "hasDiamondSkin": true,
+    "health": 2,
+    "id": "DINO_430",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY",
+      "DEATHRATTLE",
+      "DISCOVER"
+    ],
+    "name": "兽语者塔卡",
+    "rarity": "LEGENDARY",
+    "set": "THE_LOST_CITY",
+    "text": "<b>战吼：</b><b>发现</b>一只任意职业的<b>传说</b>野兽并获得其属性值。<b>亡语：</b>召唤该野兽。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Kevin Sidharta",
+    "attack": 5,
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 118656,
+    "flavor": "举世之重，力擎在肩。",
+    "health": 10,
+    "id": "DINO_431",
+    "isMiniSet": true,
+    "mechanics": [
+      "DEATHRATTLE",
+      "TAUNT"
+    ],
+    "name": "擎天雷龙",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "text": "<b>嘲讽</b>。<b>亡语：</b>随机召唤一个法力值消耗大于或等于（5）点的<b>嘲讽</b>随从。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Ivan Fomin",
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 118712,
+    "flavor": "哪个随从不想当小猫咪呢。",
+    "id": "DINO_432",
+    "isMiniSet": true,
+    "name": "奔行豹面具",
+    "rarity": "RARE",
+    "referencedTags": [
+      "STEALTH"
+    ],
+    "set": "THE_LOST_CITY",
+    "text": "将一个随从的属性值变为5/4并使其获得<b>潜行</b>。抽两张牌。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Sergey Tsvelykh",
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 118730,
+    "flavor": "“我的兄弟都去屠龙了，我呢？当个守卫，执勤。”",
+    "id": "DINO_433",
+    "isMiniSet": true,
+    "name": "守卫执勤",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "TAUNT"
+    ],
+    "set": "THE_LOST_CITY",
+    "text": "随机召唤法力值消耗为（6），（4）和（2）的<b>嘲讽</b>随从各一个。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Miki Neves",
+    "attack": 1,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 118766,
+    "flavor": "太棒了，再给我来14个，快。",
+    "health": 1,
+    "id": "DINO_434",
+    "isMiniSet": true,
+    "mechanics": [
+      "BATTLECRY",
+      "DEATHRATTLE"
+    ],
+    "name": "迅猛龙巢护工",
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "text": "<b>战吼：</b>随机获取一张法力值消耗为（1）的随从牌。<b><b>亡语：</b></b>随机获取一张法力值消耗为（1）的法术牌。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Matt Dixon",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 119695,
+    "flavor": "这就是集体决策设计出的恐龙。",
+    "health": 4,
+    "id": "DINO_435",
+    "isMiniSet": true,
+    "name": "环形山实验体",
+    "race": "ALL",
+    "races": [
+      "ALL"
+    ],
+    "rarity": "EPIC",
+    "set": "THE_LOST_CITY",
+    "text": "<b>延系：</b>召唤一个本随从的复制。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Tee Fuyuan",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 117762,
+    "elite": true,
+    "flavor": "“这个树墩子我之前见过，我们肯定走对了！”",
+    "hasDiamondSkin": true,
+    "health": 5,
+    "id": "TLC_100",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "导航员伊莉斯",
+    "rarity": "LEGENDARY",
+    "set": "THE_LOST_CITY",
+    "text": "<b>战吼：</b>如果你的套牌中的牌有10种不同的法力值消耗，制造一个自定义的地标。",
+    "type": "MINION"
+  },
+  {
+    "artist": "James Ryman",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 119781,
+    "flavor": "自然一点，自然一点。",
+    "health": 3,
+    "id": "TLC_101",
+    "mechanics": [
+      "ENRAGED",
+      "REBORN",
+      "TAUNT"
+    ],
+    "name": "卧底教徒",
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "text": "<b>嘲讽</b>。<b>复生</b>。受伤时拥有+3攻击力。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Ramzy Kamen",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 117848,
+    "elite": true,
+    "flavor": "托加被杀害，被分食，被用来召唤亡灵，甚至被当作灵体的传声筒。但至少他收获了许多故事。",
+    "health": 7,
+    "id": "TLC_102",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "托加",
+    "race": "BEAST",
+    "races": [
+      "UNDEAD",
+      "BEAST"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "THE_LOST_CITY",
+    "text": "<b>战吼：</b>抽一张<b>延系</b>牌以及另一张可以激活其效果的牌。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Matt Dixon",
+    "attack": 6,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 117877,
+    "elite": true,
+    "flavor": "安布拉在外游荡多年，如今又将重返故土。当她回到这座古城，她一定要让始祖龟一族得到其应有的……",
+    "hasDiamondSkin": true,
+    "health": 6,
+    "howToEarn": "打开<i>安戈洛龟途</i>卡牌包后可解锁。",
+    "howToEarnGolden": "购买<i>安戈洛龟途</i>炉石通行证后开放解锁。",
+    "id": "TLC_106",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "末日使者安布拉",
+    "rarity": "LEGENDARY",
+    "referencedTags": [
+      "DEATHRATTLE"
+    ],
+    "set": "THE_LOST_CITY",
+    "text": "<b>战吼：</b>触发本局对战中死亡的5个友方随从的<b>亡语</b>。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Timur Shevtsov",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 117885,
+    "flavor": "那是个月黑风高的元素……",
+    "health": 6,
+    "howToEarnGolden": "可以在<i>安戈洛龟途</i>奖励路线中获得该奖励。",
+    "id": "TLC_107",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "聚积旋风",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "EPIC",
+    "referencedTags": [
+      "RUSH"
+    ],
+    "set": "THE_LOST_CITY",
+    "text": "每当本随从攻击时，先对目标造成3点伤害。<b>延系：</b>获得<b>突袭</b>。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Timur Shevtsov",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 117889,
+    "flavor": "“我镐到了黄金！不——！”",
+    "health": 3,
+    "id": "TLC_109",
+    "mechanics": [
+      "BATTLECRY",
+      "DISCOVER"
+    ],
+    "name": "遗宝挖掘工",
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "text": "<b>战吼：</b>摧毁你牌库顶的牌，<b>发现</b>一张稀有度与其相同的牌。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Kevin Sidharta",
+    "attack": 5,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 121026,
+    "elite": true,
+    "flavor": "“我来陪你逛？城！”",
+    "health": 7,
+    "howToEarn": "可以在<i>安戈洛龟途</i>奖励路线中获得该奖励。",
+    "howToEarnGolden": "购买<i>安戈洛龟途</i>炉石通行证后开放解锁。",
+    "id": "TLC_110",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "城市首脑埃舒",
+    "rarity": "LEGENDARY",
+    "set": "THE_LOST_CITY",
+    "text": "<b>战吼：</b>如果你牌库中的随从牌均属于同一随从类型，使你的其他随从获得+2/+2<i>（无论它们在哪）</i>。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Drew Hill",
+    "attack": 4,
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 117531,
+    "flavor": "书欲静而风不止。",
+    "health": 5,
+    "id": "TLC_220",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "扫页疾风",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "text": "在你召唤一个元素后，随机对一个敌人造成3点伤害。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Alex Stone",
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 117532,
+    "flavor": "能帮我开个窗吗？我有点上火。",
+    "id": "TLC_221",
+    "name": "炽火缠身",
+    "rarity": "RARE",
+    "set": "THE_LOST_CITY",
+    "spellSchool": "FIRE",
+    "text": "造成$3点伤害，召唤相同数量的2/1的炽烈烬火。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Grafit",
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 117606,
+    "flavor": "还是一首著名始祖龟交响乐的名字。",
+    "id": "TLC_222",
+    "name": "火鹰飞翔",
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "spellSchool": "FIRE",
+    "text": "抽两张不同类型的随从牌，使其获得+2/+2。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Stefano Spagnuolo",
+    "attack": 2,
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 117533,
+    "flavor": "生性友善，但它找你玩抛接游戏的时候一定要小心。",
+    "health": 3,
+    "id": "TLC_223",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "火山长尾蜥",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL",
+      "BEAST"
+    ],
+    "rarity": "RARE",
+    "referencedTags": [
+      "SPELLPOWER"
+    ],
+    "set": "THE_LOST_CITY",
+    "text": "<b>战吼：</b>抽一张火焰法术牌。<b>延系：</b>使其获得<b>法术伤害+2</b>。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Felideus Bubastis",
+    "attack": 2,
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 117534,
+    "flavor": "它那条机械手臂由火山热能驱动，而另一条手臂……也一样。",
+    "health": 5,
+    "id": "TLC_224",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "机械熔火",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL",
+      "MECHANICAL"
+    ],
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "text": "每当你使用一张\n火焰法术牌时，获得等同于其法力值消耗的属性值。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Melvin Chan",
+    "attack": 1,
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 117612,
+    "flavor": "“离火远一点。”“可它们是我的朋友！”",
+    "health": 2,
+    "id": "TLC_225",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "烬鳍鱼人",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL",
+      "MURLOC"
+    ],
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "text": "<b>亡语：</b>召唤一个2/1的炽烈烬火。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Drew Hill",
+    "attack": 2,
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 117535,
+    "flavor": "负责收拾图书馆暴怒者留下的烂摊子。",
+    "health": 2,
+    "id": "TLC_226",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "咒术图书管理员",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "EPIC",
+    "set": "THE_LOST_CITY",
+    "text": "<b>亡语：</b>抽一张法术牌。<b>延系：</b>召唤一个本随从的复制。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Stefan Bogdasarov",
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 117536,
+    "flavor": "熔岩必须流动。",
+    "id": "TLC_227",
+    "mechanics": [
+      "OVERLOAD"
+    ],
+    "name": "熔岩涌流",
+    "overload": 1,
+    "rarity": "EPIC",
+    "set": "THE_LOST_CITY",
+    "spellSchool": "FIRE",
+    "text": "对生命值最低的敌人造成$2点伤害，触发三次。<b>过载：</b>（1）。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Ivan Fomin",
+    "attack": 1,
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 117617,
+    "elite": true,
+    "flavor": "她做了个奇特的熔岩蛋糕。",
+    "health": 5,
+    "id": "TLC_228",
+    "mechanics": [
+      "AURA"
+    ],
+    "name": "布拉玛·灼石",
+    "rarity": "LEGENDARY",
+    "set": "THE_LOST_CITY",
+    "text": "你的元素会额外造成1点伤害。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Dmitry Bolotov",
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 117538,
+    "elite": true,
+    "flavor": "第10天。有个叫布拉玛的始祖龟把尼利，伊莉斯和我带到了山体内的深处。她给我们展示了“熔岩渠”系统，始祖龟就是用它把岩浆运到高处。山里居然还住着一群火山龙！",
+    "id": "TLC_229",
+    "mechanics": [
+      "QUEST"
+    ],
+    "name": "群山之灵",
+    "rarity": "LEGENDARY",
+    "set": "THE_LOST_CITY",
+    "text": "<b>任务：</b>使用6个不同类型的随从牌。<b>奖励：</b>阿沙隆。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Patrik Bjorkstrom",
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 117646,
+    "flavor": "如果手速够快，就能掌控这群失控的树人。",
+    "id": "TLC_230",
+    "name": "树群来袭",
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "spellSchool": "NATURE",
+    "text": "选择一个随从。召唤四个2/2的树人攻击该随从。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Matt Dixon",
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 117648,
+    "flavor": "“从前啊，有一只巨大的恐龙，太大了，把所有人都挤死了。完了。”",
+    "id": "TLC_231",
+    "name": "班纳布斯的故事",
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "text": "抽一张随从牌。如果其攻击力大于或等于5点，使其获得+5生命值并获得5点护甲值。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Guillaume Beauchêne",
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 117650,
+    "flavor": "一群大啸子！",
+    "id": "TLC_232",
+    "name": "待哺群雏",
+    "rarity": "RARE",
+    "set": "THE_LOST_CITY",
+    "text": "在你的下个回合开始时，召唤三只2/1的啸天龙宝宝。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Eva Widermann",
+    "attack": 2,
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 117652,
+    "flavor": "是呀，给蛋画上彩绘可*太*有用了呢。",
+    "health": 3,
+    "id": "TLC_233",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "孵化辅助师",
+    "rarity": "RARE",
+    "referencedTags": [
+      "TAUNT"
+    ],
+    "set": "THE_LOST_CITY",
+    "text": "<b>战吼：</b>使你的其他攻击力小于或等于2的随从获得+1/+2和<b>嘲讽</b>。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Gabriel Lopes",
+    "attack": 5,
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 117653,
+    "flavor": "安戈洛版的螃蟹草。",
+    "health": 1,
+    "id": "TLC_234",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "永生血瓣花",
+    "rarity": "EPIC",
+    "set": "THE_LOST_CITY",
+    "text": "<b>亡语：</b>召唤一个0/1的永生花芽。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mooncolony",
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 117655,
+    "flavor": "这就是生——命的循——环。",
+    "id": "TLC_235",
+    "name": "生命循环",
+    "rarity": "EPIC",
+    "set": "THE_LOST_CITY",
+    "spellSchool": "NATURE",
+    "text": "消灭一个随从，随机召唤一个法力值消耗相同的随从来替换它。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Stefan Bogdasarov",
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 117656,
+    "flavor": "你选择蓝色的花——那么故事到此结束，你会在旅店里醒来，继续相信你愿意相信的事。你选择红色的花——那么你会留在安戈洛，而我会让你明白，格里什地洞到底有多深。",
+    "id": "TLC_236",
+    "name": "杂交育种",
+    "rarity": "RARE",
+    "set": "THE_LOST_CITY",
+    "spellSchool": "NATURE",
+    "text": "抽取法力值消耗为（1），（2），（3），（4）的随从牌各一张。<b>延系：</b>其法力值消耗减少（1）点。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Ivo Campelo da Silva",
+    "attack": 0,
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 117657,
+    "flavor": "啊！煎蛋卷！",
+    "health": 2,
+    "id": "TLC_237",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "啸天龙蛋",
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "text": "<b>亡语：</b>召唤四只2/1的啸天龙宝宝。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Daniil Kudriavtsev",
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 117661,
+    "elite": true,
+    "flavor": "第3天。我们撞进了一片开满了血瓣花的地方，太危险了。我正在记笔记的时候，天突然黑了。我的视力当然不会出问题，似乎是什么巨大的飞行物挡住了阳光！奇怪。",
+    "id": "TLC_239",
+    "mechanics": [
+      "QUEST"
+    ],
+    "name": "治愈荒野",
+    "rarity": "LEGENDARY",
+    "set": "THE_LOST_CITY",
+    "text": "<b>任务：</b>填满你的面板，总计3回合。<b>奖励：</b>永茂之花。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Tanamaes Leejierasaes",
+    "attack": 6,
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 117949,
+    "flavor": "这只恐龙的样子好鳍怪……",
+    "health": 3,
+    "id": "TLC_240",
+    "mechanics": [
+      "DEATHRATTLE",
+      "RUSH"
+    ],
+    "name": "填鳃暴龙",
+    "race": "BEAST",
+    "races": [
+      "MURLOC",
+      "BEAST"
+    ],
+    "rarity": "RARE",
+    "set": "THE_LOST_CITY",
+    "text": "<b>突袭</b>。<b>亡语：</b>\n召唤三个2/1的鱼人，使其各获得一项随机<b>额外效果</b>。",
+    "type": "MINION"
+  },
+  {
+    "artist": "James Ryman",
+    "attack": 2,
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 117951,
+    "elite": true,
+    "flavor": "蛇颈龙：我湿，故我载。",
+    "health": 7,
+    "id": "TLC_241",
+    "mechanics": [
+      "AURA"
+    ],
+    "name": "蛇颈龙群的伊度",
+    "rarity": "LEGENDARY",
+    "referencedTags": [
+      "DIVINE_SHIELD"
+    ],
+    "set": "THE_LOST_CITY",
+    "text": "当本随从存活时，你获取一张法力值消耗为（2）的神圣法术牌，该牌可以使一个随从获得+2/+2和<b>圣盾</b>。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Gabor Szikszai",
+    "attack": 1,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 118220,
+    "flavor": "我才刚满30岁。",
+    "health": 5,
+    "id": "TLC_242",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "远古剑龙",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "referencedTags": [
+      "POISONOUS",
+      "TAUNT"
+    ],
+    "set": "THE_LOST_CITY",
+    "text": "<b>战吼：</b>从<b>嘲讽</b>，<b>剧毒</b>或+1/+1中选择一项并获得。",
+    "type": "MINION"
+  },
+  {
+    "artist": "BOSi Studio",
+    "attack": 8,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 9,
+    "dbfId": 118221,
+    "flavor": "召集风暴。喷吐火焰。不过首先，转上几圈。",
+    "health": 8,
+    "id": "TLC_243",
+    "mechanics": [
+      "RUSH",
+      "WINDFURY"
+    ],
+    "name": "涡流风暴幼龙",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL",
+      "DRAGON"
+    ],
+    "rarity": "COMMON",
+    "referencedTags": [
+      "IMMUNE"
+    ],
+    "set": "THE_LOST_CITY",
+    "text": "<b>突袭</b>。<b>风怒</b>\n<b>延系：</b>在本回合中获得<b>免疫</b>。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Sergey Tsvelykh",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 118223,
+    "flavor": "“哇，这朵花张着大嘴，刚好能把脑袋放进去。”",
+    "health": 5,
+    "id": "TLC_244",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "好奇的探险者",
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "text": "<b>亡语：</b>使你对手的手牌中一张随从牌的\n法力值消耗减少（2）点。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Zoltan Boros",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 118224,
+    "flavor": "它更喜欢“资深”这个词。",
+    "health": 1,
+    "id": "TLC_245",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "远古迅猛龙",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "EPIC",
+    "referencedTags": [
+      "DEATHRATTLE",
+      "DIVINE_SHIELD"
+    ],
+    "set": "THE_LOST_CITY",
+    "text": "<b>战吼：</b>从+3攻击力，<b>圣盾</b>或“<b>亡语：</b>召唤两个1/1的植物”中选择一项并获得。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Jaemin Kim",
+    "attack": 4,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 118232,
+    "flavor": "那是什么动静？请他导览太可怕了。",
+    "health": 4,
+    "id": "TLC_246",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "远古翼手龙",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "RARE",
+    "referencedTags": [
+      "ELUSIVE",
+      "STEALTH",
+      "WINDFURY"
+    ],
+    "set": "THE_LOST_CITY",
+    "text": "<b>战吼：</b>从<b>扰魔</b>，<b>风怒</b>或直到下回合<b>潜行</b>中选择一项获得。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Alex Horley Orlandelli",
+    "attack": 5,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 118235,
+    "flavor": "100只恐鸟对阵1只剑齿豹，哪一方会获胜？",
+    "health": 3,
+    "id": "TLC_247",
+    "mechanics": [
+      "STEALTH",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "原始剑齿豹",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "text": "<b>潜行</b>。在本随从攻击并消灭一个随从后，获取一张被消灭随从的复制。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Matt Dixon",
+    "attack": 14,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 11,
+    "dbfId": 118238,
+    "flavor": "摩天摩天龙。",
+    "health": 28,
+    "id": "TLC_248",
+    "name": "超巨摩天龙",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "type": "MINION"
+  },
+  {
+    "artist": "Vika Yarova",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 118222,
+    "flavor": "“嘿！你知道我有多火吗？”",
+    "health": 1,
+    "id": "TLC_249",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "炽烈烬火",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "text": "<b>亡语：</b>造成2点伤害，随机分配到所有敌人身上。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Gabor Szikszai",
+    "attack": 5,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 118247,
+    "flavor": "山鳄鱼为什么是环形的？",
+    "health": 4,
+    "id": "TLC_250",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "环形山鳄鱼",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "text": "<b>战吼：</b>直到你的下个回合开始，敌方英雄无法被治疗。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mauricio Herrera",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 118251,
+    "flavor": "“姆咯啦哇啦咯啦咯啦！！！”<i>全都干掉！</i>",
+    "health": 2,
+    "howToEarnGolden": "可以在<i>安戈洛龟途</i>奖励路线中获得该奖励。",
+    "id": "TLC_251",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "蛮鱼挑战者",
+    "race": "MURLOC",
+    "races": [
+      "MURLOC"
+    ],
+    "rarity": "RARE",
+    "set": "THE_LOST_CITY",
+    "text": "<b>战吼：</b>你的下一个<b>延系</b>效果会触发两次。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Ivan Fomin",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 118252,
+    "flavor": "软泥怪→软泥→软→车",
+    "health": 3,
+    "howToEarn": "打开<i>安戈洛龟途</i>卡牌包后可解锁。",
+    "howToEarnGolden": "打开<i>安戈洛龟途</i>金色包后可解锁。",
+    "id": "TLC_252",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "蚀解软泥怪",
+    "rarity": "RARE",
+    "set": "THE_LOST_CITY",
+    "targetingArrowText": "消灭一个友方随从。",
+    "text": "<b>战吼：</b>消灭一个友方随从，将一张骸骨置入你的手牌。骸骨可以使一个随从获得被消灭随从的攻击力和生命值。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Luca Zontini",
+    "attack": 5,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 118254,
+    "flavor": "说句石化……",
+    "health": 5,
+    "id": "TLC_253",
+    "name": "石化食人魔",
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "text": "起始<b>休眠</b>状态。<b>休眠</b>状态下，在你的回合开始时，获得+2/+2。<i>（50%的几率改为唤醒。）</i>",
+    "type": "MINION"
+  },
+  {
+    "artist": "Max Grecke",
+    "attack": 1,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 118257,
+    "flavor": "“后来，又一只海龟成功入水！”",
+    "health": 2,
+    "id": "TLC_254",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "讲故事的始祖龟",
+    "rarity": "EPIC",
+    "set": "THE_LOST_CITY",
+    "text": "在你的回合结束时，使每个不同类型的各一个友方随从获得+1/+1。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Edgar Hidalgo",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 118259,
+    "flavor": "“不许摸我的宝贝！”",
+    "health": 2,
+    "id": "TLC_255",
+    "mechanics": [
+      "BATTLECRY",
+      "TRADEABLE"
+    ],
+    "name": "水晶养护工",
+    "rarity": "EPIC",
+    "set": "THE_LOST_CITY",
+    "text": "<b>可交易</b>\n<b>战吼：</b>获得空的法力水晶，直到双方玩家拥有的法力水晶相同。",
+    "type": "MINION"
+  },
+  {
+    "artist": "James Ryman",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 118260,
+    "flavor": "“记好了，被拍到的时候，一定要注意光影和虚化感。”",
+    "health": 3,
+    "id": "TLC_256",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "沼地蛇颈龙",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "referencedTags": [
+      "DIVINE_SHIELD"
+    ],
+    "set": "THE_LOST_CITY",
+    "text": "在你施放一个法术后，获得<b>圣盾</b>。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Max Grecke",
+    "attack": 5,
+    "cardClass": "DRUID",
+    "collectible": true,
+    "cost": 9,
+    "dbfId": 118575,
+    "elite": true,
+    "flavor": "4217岁的精神老龟。",
+    "hasDiamondSkin": true,
+    "health": 5,
+    "id": "TLC_257",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "洛，在世传奇",
+    "rarity": "LEGENDARY",
+    "set": "THE_LOST_CITY",
+    "text": "<b>战吼：</b>在本局对战中，你的随从牌的法力值消耗为（5）点。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Jakub Kasper",
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 118616,
+    "flavor": "“哇哦，好大的盘子！”",
+    "id": "TLC_334",
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "列王遗宝",
+    "rarity": "RARE",
+    "set": "THE_LOST_CITY",
+    "text": "<b>发现</b>一张法力值消耗大于或等于（8）点的任意职业法术牌，其法力值消耗为（1）点。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Jason Kang",
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 118265,
+    "flavor": "“……当年，无数人都被这道门打崩了。”",
+    "id": "TLC_364",
+    "name": "时空之门的故事",
+    "rarity": "RARE",
+    "set": "THE_LOST_CITY",
+    "text": "使你手牌中套牌之外的牌的法力值消耗减少（1）点。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Mooncolony",
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 118266,
+    "flavor": "翻翻找找洗洗换换，把这库存统统搞乱！",
+    "id": "TLC_365",
+    "name": "乱翻库存",
+    "rarity": "RARE",
+    "referencedTags": [
+      "DISCOVER"
+    ],
+    "set": "THE_LOST_CITY",
+    "spellSchool": "ARCANE",
+    "text": "对一个随从造成$3点伤害。如果你在本回合中<b>发现</b>过，则本牌的法力值消耗为（0）点。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Alex Stone",
+    "attack": 7,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 118269,
+    "flavor": "事实证明，只要从足够高的地方扔下去，任何恐龙都能变成在天上尖叫的啸天龙。",
+    "health": 5,
+    "id": "TLC_366",
+    "mechanics": [
+      "RUSH"
+    ],
+    "name": "掠食飞翼龙",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "RARE",
+    "set": "THE_LOST_CITY",
+    "text": "<b>突袭</b>。<b>延系：</b>法力值消耗减少（2）点。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Grafit",
+    "attack": 6,
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 116376,
+    "flavor": "冷血为寒，邪恶入骨。问其所需：加件衣服。",
+    "health": 3,
+    "id": "TLC_401",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "寒骨剑龙",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD",
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "runeCost": {
+      "blood": 0,
+      "frost": 2,
+      "unholy": 0
+    },
+    "set": "THE_LOST_CITY",
+    "text": "<b>亡语：</b>随机对三个敌人造成6点伤害。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Kevin Sidharta",
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 117341,
+    "elite": true,
+    "flavor": "第5天。伊莉斯有个预感，失落之城就在葛拉卡温泉的深处。尼利潜了下去，发现了一个美丽的洞窟！也许鱼人不知道失落之城的入口，但它们身上肯定还有秘密。",
+    "id": "TLC_426",
+    "mechanics": [
+      "QUEST",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "潜入葛拉卡",
+    "rarity": "LEGENDARY",
+    "set": "THE_LOST_CITY",
+    "text": "<b>可重复任务：</b>召唤6个鱼人。<b>奖励：</b>你召唤的鱼人获得+1/+1。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Ivan Fomin",
+    "attack": 1,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 117381,
+    "flavor": "小石头，像皮球，一扔扔进溪水流。",
+    "health": 3,
+    "id": "TLC_427",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "抛石鱼人",
+    "race": "MURLOC",
+    "races": [
+      "MURLOC"
+    ],
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "text": "<b>战吼：</b>获取一张\n法力值消耗为（1）的石头。石头可以造成$3点伤害。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Patrik Bjorkstrom",
+    "attack": 2,
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 117382,
+    "flavor": "要想在安戈洛环形山活得久一点，姿态一定要放低。显然，嘎咯尔命不久矣。",
+    "health": 4,
+    "id": "TLC_428",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "温泉踏浪鱼人",
+    "race": "MURLOC",
+    "races": [
+      "MURLOC"
+    ],
+    "rarity": "COMMON",
+    "referencedTags": [
+      "DIVINE_SHIELD"
+    ],
+    "set": "THE_LOST_CITY",
+    "text": "<b>战吼：</b>你的下一张鱼人牌的法力值消耗减少（1）点。<b>延系：</b>且会获得<b>圣盾</b>。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Matt Dixon",
+    "attack": 4,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 117383,
+    "flavor": "鱼人盗窃案，请按M。",
+    "health": 3,
+    "howToEarnGolden": "可以在<i>安戈洛龟途</i>奖励路线中获得该奖励。",
+    "id": "TLC_429",
+    "name": "蒸鳍偷蛋贼",
+    "race": "MURLOC",
+    "races": [
+      "MURLOC"
+    ],
+    "rarity": "COMMON",
+    "referencedTags": [
+      "RUSH"
+    ],
+    "set": "THE_LOST_CITY",
+    "text": "<b>延系：</b>召唤两个1/1并具有<b>突袭</b>的鱼人。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Jakub Kasper",
+    "attack": 2,
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 117384,
+    "flavor": "非常喜欢听故事。",
+    "health": 5,
+    "id": "TLC_430",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "圣窟生物",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "EPIC",
+    "set": "THE_LOST_CITY",
+    "text": "在你的回合结束时，再次施放本回合中你施放过的一个随机神圣法术<i>（尽可能以本随从为目标）</i>。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Zoltan Boros",
+    "attack": 3,
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 117423,
+    "flavor": "“恐惧利爪！”",
+    "health": 4,
+    "id": "TLC_432",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "恐惧迅猛龙",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD",
+      "BEAST"
+    ],
+    "rarity": "RARE",
+    "referencedTags": [
+      "DEATHRATTLE"
+    ],
+    "runeCost": {
+      "blood": 0,
+      "frost": 1,
+      "unholy": 1
+    },
+    "set": "THE_LOST_CITY",
+    "text": "<b>战吼：</b>抽一张法力值消耗小于或等于（3）点的<b>亡语</b>随从牌。<b>延系：</b>其法力值消耗变为（0）点。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Grafit",
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 117427,
+    "elite": true,
+    "flavor": "第11天。我们被阴了！安布拉和诅咒教派早有勾结，密谋动乱。她和高阶教徒赫雷恩用暗影魔法复活了一支亡灵恐龙大军！托尔托拉保佑，失落之城的命运全靠我们了。",
+    "id": "TLC_433",
+    "mechanics": [
+      "QUEST"
+    ],
+    "name": "恐怖再起",
+    "rarity": "LEGENDARY",
+    "runeCost": {
+      "blood": 1,
+      "frost": 0,
+      "unholy": 1
+    },
+    "set": "THE_LOST_CITY",
+    "text": "<b>任务：</b>消耗15份<b>残骸</b>。<b>奖励：</b>泰拉克斯，魔骸暴龙。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Jason Kang",
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 117430,
+    "flavor": "死亡自会找到出路。",
+    "id": "TLC_434",
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "古生物秘术",
+    "rarity": "RARE",
+    "runeCost": {
+      "blood": 0,
+      "frost": 0,
+      "unholy": 1
+    },
+    "set": "THE_LOST_CITY",
+    "spellSchool": "SHADOW",
+    "text": "<b>发现</b>一张亡灵牌。消耗5份<b>残骸</b>，改为保留全部三张牌。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Grafit",
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 117431,
+    "flavor": "走迷宫很简单。只要贴着左手边的墙一直走，而且别被恐龙吃掉就好了！",
+    "id": "TLC_435",
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "地窟地图",
+    "rarity": "COMMON",
+    "runeCost": {
+      "blood": 0,
+      "frost": 2,
+      "unholy": 0
+    },
+    "set": "THE_LOST_CITY",
+    "text": "<b>发现</b>一张冰霜符文牌，如果你在本回合中使用该牌，再从其余选项中选择一张。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Slawomir Maniak",
+    "attack": 4,
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 117434,
+    "flavor": "真的很诡翼。",
+    "health": 3,
+    "id": "TLC_436",
+    "mechanics": [
+      "LIFESTEAL",
+      "RUSH"
+    ],
+    "name": "重生的翼手龙",
+    "race": "UNDEAD",
+    "races": [
+      "UNDEAD",
+      "BEAST"
+    ],
+    "rarity": "EPIC",
+    "set": "THE_LOST_CITY",
+    "text": "<b><b>突袭</b>。吸血</b>\n消耗<b>残骸</b>而非法力值。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Patrik Bjorkstrom",
+    "attack": 1,
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 117562,
+    "flavor": "他的兄弟紫私被逐出了聚落。",
+    "health": 2,
+    "id": "TLC_438",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "紫色珍鳃鱼人",
+    "race": "MURLOC",
+    "races": [
+      "MURLOC"
+    ],
+    "rarity": "RARE",
+    "set": "THE_LOST_CITY",
+    "text": "<b>战吼：</b>从你的牌库中随机施放一个法力值消耗小于或等于（2）点的法术<i>（尽可能以本随从为目标）</i>。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Timur Shevtsov",
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 117604,
+    "flavor": "“等着吧，看我的焦油狂潮！！等……等一会再说。”",
+    "id": "TLC_439",
+    "name": "焦油狂潮",
+    "rarity": "EPIC",
+    "runeCost": {
+      "blood": 0,
+      "frost": 1,
+      "unholy": 1
+    },
+    "set": "THE_LOST_CITY",
+    "text": "对所有敌方随从造成$2点伤害。下个回合，敌方随从牌的法力值消耗增加（2）点。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Grafit",
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 117622,
+    "flavor": "你疯了吗？别激冻。",
+    "id": "TLC_440",
+    "name": "封冻沉眠",
+    "rarity": "RARE",
+    "runeCost": {
+      "blood": 0,
+      "frost": 2,
+      "unholy": 0
+    },
+    "set": "THE_LOST_CITY",
+    "spellSchool": "FROST",
+    "text": "造成$4点伤害并抽一张牌。<b>延系：</b>再抽一张。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Ramzy Kamen",
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 117664,
+    "flavor": "结队就对了。",
+    "id": "TLC_441",
+    "name": "整备团队",
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "text": "使一个友方随从和具有相同类型的其他友方随从获得+1/+2。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Melvin Chan",
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 117665,
+    "flavor": "是的，这条路线直通拉特维亚。你能在水下屏气多久呢？",
+    "id": "TLC_442",
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "淹没的地图",
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "text": "<b>发现</b>一张鱼人牌，如果你在本回合中使用该牌，再从其余选项中选择一张。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Timur Shevtsov",
+    "attack": 1,
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 117666,
+    "flavor": "“不是我不想养宠物。我不想养这种宠物。”",
+    "health": 1,
+    "id": "TLC_443",
+    "mechanics": [
+      "DEATHRATTLE",
+      "REBORN"
+    ],
+    "name": "不情愿的饲养员",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "TAUNT"
+    ],
+    "set": "THE_LOST_CITY",
+    "text": "<b>复生</b>。<b>亡语：</b>召唤一只2/2并具有<b>嘲讽</b>的亡灵野兽。",
+    "type": "MINION"
+  },
+  {
+    "artist": "James Ryman",
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 117679,
+    "flavor": "“……当时我给他贴了+12攻击力和<b>风怒</b>——你大概不信——他竟然没死。”",
+    "id": "TLC_444",
+    "name": "嘉沃顿的故事",
+    "rarity": "RARE",
+    "set": "THE_LOST_CITY",
+    "text": "使一个随从获得三项随机<b>额外效果</b>。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Edgar Hidalgo",
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 117827,
+    "elite": true,
+    "flavor": "第7天。今天很惨！脚下的地面开裂，我们直接栽进了裂隙！邪能干扰了我的感官，迷雾里到处都是魔化的野兽。好在安布拉用魔法驱散了它们，我们这才逃了出来。",
+    "id": "TLC_446",
+    "mechanics": [
+      "QUEST"
+    ],
+    "name": "逃离邪能地窟",
+    "rarity": "LEGENDARY",
+    "set": "THE_LOST_CITY",
+    "text": "<b>任务：</b>使用6张<b>临时</b>牌。<b>奖励：</b>邪能地窟裂隙。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Grafit",
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 117830,
+    "flavor": "一雾降一物。",
+    "id": "TLC_447",
+    "name": "烧蚀毒雾",
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "spellSchool": "FEL",
+    "text": "消灭一个敌方随从。<b>延系：</b>对所有随从造成$2点伤害。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "BOSi Studio",
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 117837,
+    "flavor": "过敏的症状可不是临时的。",
+    "health": 2,
+    "id": "TLC_449",
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "血瓣群系",
+    "rarity": "RARE",
+    "set": "THE_LOST_CITY",
+    "text": "<b>发现</b>一张<b>临时</b>的法力值消耗为（1）的随从牌。",
+    "type": "LOCATION"
+  },
+  {
+    "artist": "Mike Sass",
+    "attack": 2,
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 117890,
+    "flavor": "在山洞里说话会有回响……会有回响……回响……在本回合可以重复使用……",
+    "health": 3,
+    "id": "TLC_450",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "洞穴专家",
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "text": "<b>战吼：</b>你的下一张<b>临时</b>牌的法力值消耗减少（2）点。",
+    "type": "MINION"
+  },
+  {
+    "artist": "BOSi Studio",
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 0,
+    "dbfId": 117892,
+    "flavor": "随从是临时的，诅咒是永久的。",
+    "id": "TLC_451",
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "咒怨之墓",
+    "rarity": "EPIC",
+    "set": "THE_LOST_CITY",
+    "spellSchool": "FEL",
+    "text": "从你的牌库中<b>发现</b>另一张牌，将其变为<b>临时</b>卡牌。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Mooncolony",
+    "attack": 6,
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 117956,
+    "elite": true,
+    "flavor": "看看这张泰坦考据图吧。",
+    "hasDiamondSkin": true,
+    "health": 6,
+    "id": "TLC_452",
+    "name": "泰坦考据学家欧斯克",
+    "rarity": "LEGENDARY",
+    "referencedTags": [
+      "TITAN"
+    ],
+    "set": "THE_LOST_CITY",
+    "text": "在你的手牌中时，\n随机获得一项<b>泰坦</b>技能。该技能每回合都会改变。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Matt Dixon",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 118182,
+    "flavor": "小龟伊普和他的朋友踩踩前来游览安戈洛的诸般盛景。第一站：邪能地窟！",
+    "health": 6,
+    "id": "TLC_454",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "鳞皮科多兽",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "text": "<b>战吼：</b>消灭攻击力最低的敌方随从。<b>延系：</b>改为消灭攻击力最高的敌方随从。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mooncolony",
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 118183,
+    "elite": true,
+    "flavor": "第9天。迎接我们的不是温暖的怀抱，而是冰冷的长矛。好在埃舒头领体谅我们，屏退了卫兵。有个泰坦考据学家听说了伊莉斯的专业能力，把她请到了图书馆。而安布拉又在城里消失了……",
+    "id": "TLC_460",
+    "mechanics": [
+      "QUEST"
+    ],
+    "name": "禁忌序列",
+    "rarity": "LEGENDARY",
+    "referencedTags": [
+      "DISCOVER"
+    ],
+    "set": "THE_LOST_CITY",
+    "text": "<b>任务：</b><b>发现</b>7张牌。<b>奖励：</b>源生之石。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Topdog Entertainment",
+    "attack": 1,
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 118192,
+    "flavor": "“稍等，我得把这只超巨摩天龙装进包包里。”",
+    "health": 1,
+    "id": "TLC_461",
+    "mechanics": [
+      "BATTLECRY",
+      "DISCOVER"
+    ],
+    "name": "拾荒清道夫",
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "text": "<b>战吼：</b><b>发现</b>一张法力值消耗等同于你剩余法力水晶数量的卡牌。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Jakub Kasper",
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 118199,
+    "flavor": "始祖龟的寿命太长了，他们甚至能挖到原本就属于属于自己的古代神器！",
+    "id": "TLC_462",
+    "name": "出土神器",
+    "rarity": "EPIC",
+    "referencedTags": [
+      "DISCOVER"
+    ],
+    "set": "THE_LOST_CITY",
+    "text": "随机召唤一个法力值消耗为（2）的随从。如果你在本回合中<b><b>发现</b>过</b>，改为随机召唤一个法力值消耗为（4）的随从。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Juan Calle",
+    "attack": 7,
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 118210,
+    "elite": true,
+    "flavor": "做好准备！<i>（上回合使用恶魔或野兽牌就可以了。）</i>",
+    "hasDiamondSkin": true,
+    "health": 7,
+    "id": "TLC_463",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "雷兹迪尔",
+    "race": "DEMON",
+    "races": [
+      "DEMON",
+      "BEAST"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "THE_LOST_CITY",
+    "text": "<b>战吼：</b>随机弃掉一张手牌。<b>延系：</b>改为对手的一张手牌。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Vika Yarova",
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 118225,
+    "flavor": "看到顶上的那部分了吗？那就是山顶。",
+    "id": "TLC_464",
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "登山地图",
+    "rarity": "RARE",
+    "set": "THE_LOST_CITY",
+    "text": "<b>发现</b>一张你未使用过的类型的随从牌，如果你在本回合中使用该牌，再从其余选项中选择一张。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Melvin Chan",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 118241,
+    "flavor": "“哇，这个人伸着脑袋，刚好能装进我的嘴里。”",
+    "health": 2,
+    "howToEarnGolden": "可以在<i>安戈洛龟途</i>奖励路线中获得该奖励。",
+    "id": "TLC_465",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "绞缠血藤",
+    "rarity": "RARE",
+    "set": "THE_LOST_CITY",
+    "text": "<b>亡语：</b>使一个随机友方随从获得一项随机<b>额外效果</b>以及此<b>亡语</b>。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Matt Dixon",
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 118243,
+    "flavor": "哇哦，始祖龟的故事美化得太过了。",
+    "id": "TLC_466",
+    "name": "拉卡利的故事",
+    "rarity": "RARE",
+    "set": "THE_LOST_CITY",
+    "text": "在你的回合结束时，弃一张牌并用3/2的小鬼填满你的面板。持续3回合。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Kevin Sidharta",
+    "attack": 0,
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 118277,
+    "flavor": "嘘……",
+    "health": 8,
+    "id": "TLC_467",
+    "mechanics": [
+      "DEATHRATTLE",
+      "TAUNT"
+    ],
+    "name": "低语之石",
+    "rarity": "EPIC",
+    "set": "THE_LOST_CITY",
+    "text": "<b>嘲讽</b>。<b>亡语：</b>随机获取2张邪能法术牌。这些牌会消耗生命值，而非法力值。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Dmitry Bolotov",
+    "attack": 2,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 118279,
+    "flavor": "丛林有风险，焦油需谨慎。",
+    "health": 4,
+    "howToEarn": "打开<i>安戈洛龟途</i>卡牌包后可解锁。",
+    "howToEarnGolden": "打开<i>安戈洛龟途</i>金色包后可解锁。",
+    "id": "TLC_468",
+    "mechanics": [
+      "DEATHRATTLE",
+      "POISONOUS",
+      "TAUNT"
+    ],
+    "name": "黏团焦油",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "text": "<b>剧毒</b>。<b>嘲讽</b>。<b>亡语：</b>召唤一个1/2并具有<b>剧毒</b>的黏团，以及一个1/2并具有<b>嘲讽</b>的黏团。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Ian Ameling",
+    "attack": 4,
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 118282,
+    "flavor": "唇下再留一撮小胡子就更棒了。",
+    "health": 3,
+    "id": "TLC_469",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "坑道恐怪",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "text": "<b>亡语：</b>随机获取两张<b>临时</b>的法力值消耗为（2）的随从牌。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Danny Beck",
+    "cardClass": "PALADIN",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 119587,
+    "flavor": "#祝福",
+    "id": "TLC_477",
+    "name": "蛇颈龙骑手的祝福",
+    "rarity": "EPIC",
+    "referencedTags": [
+      "DEATHRATTLE"
+    ],
+    "set": "THE_LOST_CITY",
+    "spellSchool": "HOLY",
+    "text": "使一个友方随从获得+4/+4和“<b>亡语：</b>随机召唤一个法力值消耗为（4）的随从。”",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Vlad Botos",
+    "attack": 2,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 119637,
+    "durability": 0,
+    "flavor": "……还有曾曾曾远祖的斧头",
+    "health": 2,
+    "id": "TLC_478",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "远祖之斧",
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "text": "在你的英雄攻击后，对所有随从造成1点伤害。",
+    "type": "WEAPON"
+  },
+  {
+    "artist": "Vlad Botos",
+    "attack": 2,
+    "cardClass": "WARLOCK",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 119789,
+    "flavor": "哦，别怕，阿烂不会咬人的。",
+    "health": 8,
+    "id": "TLC_479",
+    "mechanics": [
+      "DEATHRATTLE",
+      "TAUNT"
+    ],
+    "name": "死烂巨口",
+    "rarity": "RARE",
+    "set": "THE_LOST_CITY",
+    "text": "<b>嘲讽</b>。<b>亡语：</b>随机召唤一只邪能野兽。",
+    "type": "MINION"
+  },
+  {
+    "artist": "James Ryman",
+    "attack": 8,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 9,
+    "dbfId": 119809,
+    "elite": true,
+    "flavor": "究竟有多少命丧，才成就了山中之王？",
+    "health": 7,
+    "id": "TLC_480",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "克罗格，环形山之王",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "THE_LOST_CITY",
+    "text": "在你的回合结束时，将所有敌方随从的攻击力和生命值变为1。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Edgar Hidalgo",
+    "attack": 3,
+    "cardClass": "SHAMAN",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 120344,
+    "flavor": "你不能只要火的炽烈，不要火的余烬。",
+    "health": 4,
+    "id": "TLC_482",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "熔爪巨龙",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL",
+      "DRAGON"
+    ],
+    "rarity": "EPIC",
+    "referencedTags": [
+      "DEATHRATTLE"
+    ],
+    "set": "THE_LOST_CITY",
+    "text": "<b>战吼：</b>召唤两个2/1的炽烈烬火。<b>延系：</b>触发你的炽烈烬火的\n<b>亡语</b>。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Timur Shevtsov",
+    "attack": 2,
+    "cardClass": "MAGE",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 120582,
+    "flavor": "都跟他讲过三次了——推！",
+    "health": 4,
+    "id": "TLC_483",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "宝库闯入者",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "DISCOVER"
+    ],
+    "set": "THE_LOST_CITY",
+    "text": "在你<b>发现</b>一张卡牌后，使其法力值消耗减少（1）点。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Alex Stone",
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 117222,
+    "elite": true,
+    "flavor": "第2天。山里的第一夜有点难受，唉，年纪大了。总觉得有人在监视我们，昨天夜里我绝对看到了什么奇怪的亮光。本打算早餐时问问安布拉，可她一直没露面。",
+    "id": "TLC_513",
+    "mechanics": [
+      "QUEST"
+    ],
+    "name": "暗中设伏",
+    "rarity": "LEGENDARY",
+    "set": "THE_LOST_CITY",
+    "text": "<b>任务：</b>将卡牌洗入你的牌库，总计5次。<b>奖励：</b>暮影大师。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Zoltan Boros",
+    "attack": 1,
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 117691,
+    "flavor": "“只要你肯出钱，始祖龟自然会出力。”",
+    "health": 2,
+    "id": "TLC_514",
+    "mechanics": [
+      "BATTLECRY",
+      "DISCOVER"
+    ],
+    "name": "传奇商贩",
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "text": "<b>战吼：</b><b>发现</b>一张<b>传说</b>随从牌。将其余两张洗入你的牌库。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Daniil Kudriavtsev",
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 117697,
+    "flavor": "究竟是隐甲龟的侦查技艺确实精湛？还是说诅咒教派离谱过于离谱，把他们的机密地图到处乱丢？",
+    "id": "TLC_515",
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "异教地图",
+    "rarity": "RARE",
+    "set": "THE_LOST_CITY",
+    "spellSchool": "SHADOW",
+    "text": "从你的牌库中<b>发现</b>一张牌，如果你在本回合中使用该牌，再从其余选项中选择一张。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Luca Zontini",
+    "attack": 5,
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 117698,
+    "flavor": "尼在干神磨。",
+    "health": 4,
+    "id": "TLC_516",
+    "mechanics": [
+      "BATTLECRY",
+      "COMBO"
+    ],
+    "name": "尼斐塞特武器匠",
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "text": "<b>战吼：</b>随机获取一张另一职业的武器牌。<b>连击：</b>使其获得+2攻击力。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Timur Shevtsov",
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 117699,
+    "flavor": "漂亮的回旋踢！",
+    "id": "TLC_517",
+    "name": "一脚踢飞",
+    "rarity": "EPIC",
+    "set": "THE_LOST_CITY",
+    "text": "对一个随从造成$1点伤害<i>（你每将卡牌洗入牌库一次都会提升）</i>。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Ramzy Kamen",
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 117700,
+    "flavor": "“招了吧，不然我就让你身败名裂。”",
+    "id": "TLC_518",
+    "name": "审讯",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "STEALTH"
+    ],
+    "set": "THE_LOST_CITY",
+    "text": "将三张3/3并具有<b>潜行</b>和<b>抽到时召唤</b>的忍者洗入你的牌库。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Gabor Szikszai",
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 118580,
+    "flavor": "啊，难怪你们都灭绝了。",
+    "id": "TLC_519",
+    "name": "潜踪掠食",
+    "rarity": "RARE",
+    "referencedTags": [
+      "POISONOUS",
+      "STEALTH"
+    ],
+    "set": "THE_LOST_CITY",
+    "spellSchool": "SHADOW",
+    "text": "召唤一只1/1并具有<b>潜行</b>和<b>剧毒</b>的喷毒龙。<b>延系：</b>重复一次。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Luca Zontini",
+    "attack": 5,
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 117702,
+    "flavor": "追踪进化融合怪的专家。",
+    "health": 5,
+    "id": "TLC_520",
+    "mechanics": [
+      "RUSH"
+    ],
+    "name": "灌林追踪者",
+    "rarity": "EPIC",
+    "set": "THE_LOST_CITY",
+    "text": "<b>突袭</b>\n你每将牌洗入你的牌库一次，本牌的法力值消耗便减少（1）点。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Danny Beck",
+    "attack": 2,
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 117703,
+    "flavor": "“我看到了安布拉的亡灵大军。我……我就在上面好了。”",
+    "health": 3,
+    "id": "TLC_521",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "高空眼线",
+    "rarity": "RARE",
+    "set": "THE_LOST_CITY",
+    "text": "<b>战吼：</b>检视敌方牌库中的三张牌，选择一张置于其牌库顶。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Timur Shevtsov",
+    "attack": 6,
+    "cardClass": "ROGUE",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 119532,
+    "elite": true,
+    "flavor": "据说奥普就长这个样子。我们会进一步确认他的形象——如果我们有机会见到他的话。",
+    "health": 4,
+    "id": "TLC_522",
+    "mechanics": [
+      "BATTLECRY",
+      "DEATHRATTLE",
+      "STEALTH"
+    ],
+    "name": "潜踪大师奥普",
+    "rarity": "LEGENDARY",
+    "referencedTags": [
+      "COMBO"
+    ],
+    "set": "THE_LOST_CITY",
+    "text": "<b><b>潜行</b>。</b><b>战吼，连击，亡语：</b>施放刀扇。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Ivo Campelo da Silva",
+    "attack": 6,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 117714,
+    "flavor": "他太纠结了。起飞时总会纠成一个结。",
+    "health": 6,
+    "id": "TLC_600",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "乘风浮龙",
+    "race": "DRAGON",
+    "races": [
+      "DRAGON"
+    ],
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "targetingArrowText": "造成5点伤害。",
+    "text": "<b>战吼：</b>造成5点伤害，获得5点护甲值。<b>延系：</b>法力值消耗减少（3）点。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Grafit",
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 117715,
+    "flavor": "转向胜利！",
+    "id": "TLC_601",
+    "name": "龟甲旋风",
+    "rarity": "RARE",
+    "set": "THE_LOST_CITY",
+    "text": "消耗最多5点护甲值。每消耗一点，对所有随从造成$1点伤害。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Zoltan Boros",
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 117716,
+    "elite": true,
+    "flavor": "第8天。成功了！入夜时分，我们走到一处发光的隧道，入口只有两个瞌睡的托维尔人看守。我们悄悄走过隧道，直接来到了失落之城的核心地带！同胞们一定会用温暖的怀抱迎接我们。",
+    "id": "TLC_602",
+    "mechanics": [
+      "QUEST",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "走进失落之城",
+    "rarity": "LEGENDARY",
+    "set": "THE_LOST_CITY",
+    "text": "<b>任务：</b>存活10个回合。<b>奖励：</b>拉特维厄斯，城市之眼。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Adam Byrne",
+    "attack": 1,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 117719,
+    "flavor": "“呱呱呱！”",
+    "health": 2,
+    "howToEarnGolden": "可以在<i>安戈洛龟途</i>奖励路线中获得该奖励。",
+    "id": "TLC_603",
+    "mechanics": [
+      "BATTLECRY",
+      "DEATHRATTLE"
+    ],
+    "name": "栉龙",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "text": "<b>战吼：</b>抽一张牌。<b>亡语：</b>弃掉该牌。",
+    "type": "MINION"
+  },
+  {
+    "artist": "AJ Nazzaro",
+    "attack": 1,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 117733,
+    "flavor": "后面肯定有什么好东西，不然他们为什么要在这里放一道瀑布呢？",
+    "health": 12,
+    "id": "TLC_605",
+    "mechanics": [
+      "LIFESTEAL",
+      "TAUNT"
+    ],
+    "name": "焦油暴君",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "text": "<b>嘲讽</b>。<b>吸血</b>\n在你对手的回合拥有+6攻击力。",
+    "type": "MINION"
+  },
+  {
+    "artist": "James Ryman",
+    "attack": 3,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 117771,
+    "flavor": "现在只需要给龟壳喷上一层蓝漆！",
+    "health": 3,
+    "id": "TLC_606",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "拉特维亚护甲师",
+    "rarity": "RARE",
+    "set": "THE_LOST_CITY",
+    "targetingArrowText": "对一个敌方随从造成2点伤害。",
+    "text": "<b>战吼：</b>对一个敌方随从造成2点伤害。如果该随从死亡，获得5点护甲值。",
+    "type": "MINION"
+  },
+  {
+    "artist": "BOSi Studio",
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 117835,
+    "flavor": "堡垒异常强固——富含维生素和矿物质！",
+    "id": "TLC_620",
+    "mechanics": [
+      "AFFECTED_BY_SPELL_POWER"
+    ],
+    "name": "强固",
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "text": "获得3点护甲值。对一个敌方随从造成等同于你护甲值的伤害。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Zoltan Boros",
+    "attack": 4,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 117916,
+    "flavor": "我还是不明白为什么他拿着把剑。他主要的任务明明是观察。",
+    "health": 7,
+    "id": "TLC_621",
+    "mechanics": [
+      "DEATHRATTLE",
+      "TAUNT"
+    ],
+    "name": "固执的守护者",
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "text": "<b>嘲讽</b>。<b>亡语：</b>摧毁你牌库顶的三张牌。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Kevin Sidharta",
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 117917,
+    "flavor": "千百年来，正是这些0/6的<b>嘲讽</b>随从挡住了入侵者。",
+    "id": "TLC_622",
+    "name": "城防守卫",
+    "rarity": "EPIC",
+    "referencedTags": [
+      "TAUNT"
+    ],
+    "set": "THE_LOST_CITY",
+    "text": "召唤两个0/6并具有<b>嘲讽</b>的守卫。守卫在受到伤害时会获得+1攻击力。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Stefano Spagnuolo",
+    "attack": 1,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 117918,
+    "flavor": "*锵* *锵* *锵* *嗷呜！*",
+    "health": 4,
+    "id": "TLC_623",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "石雕工匠",
+    "rarity": "EPIC",
+    "set": "THE_LOST_CITY",
+    "text": "在你的回合结束时，随机使一个受伤的友方随从获得+2/+2。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mooncolony",
+    "attack": 5,
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 117919,
+    "elite": true,
+    "flavor": "当然啦，把安戈洛交给始祖龟，泰坦们完全放心。娜博亚留在这里只是一道<i>保险</i>。",
+    "health": 7,
+    "id": "TLC_624",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "观察者娜博亚",
+    "rarity": "LEGENDARY",
+    "referencedTags": [
+      "RUSH"
+    ],
+    "set": "THE_LOST_CITY",
+    "text": "<b>战吼：</b>召唤你受伤的随从的复制，使复制获得<b>突袭</b>。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Vlad Botos",
+    "attack": 2,
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 117869,
+    "flavor": "堪称癫蜂之作！",
+    "health": 7,
+    "id": "TLC_630",
+    "mechanics": [
+      "RUSH",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "格里什异种虫",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "EPIC",
+    "set": "THE_LOST_CITY",
+    "text": "<b>突袭</b>。每当本随从受到伤害，获取一张法力值消耗为（1）的格里什毒刺虫。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Felideus Bubastis",
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 117871,
+    "elite": true,
+    "flavor": "第4天。很遗憾，本以为是失落之城入口的那个洞其实是异种虫的巢穴！我们逃出来的时候，跑得比地精穿了火箭靴还快。我实在不喜欢虫子。",
+    "id": "TLC_631",
+    "mechanics": [
+      "QUEST",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "放出巨虫",
+    "rarity": "LEGENDARY",
+    "set": "THE_LOST_CITY",
+    "text": "<b>任务：</b>在你的回合对敌人造成刚好2点伤害，总计12次。<b>奖励：</b>格里什巨虫。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Ivan Fomin",
+    "cardClass": "WARRIOR",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 117874,
+    "flavor": "“……当时对面足有七个随从，可它还是砸中了敌方英雄的脸！”",
+    "id": "TLC_632",
+    "name": "萨弗拉斯的故事",
+    "rarity": "RARE",
+    "set": "THE_LOST_CITY",
+    "spellSchool": "FIRE",
+    "text": "将你的英雄技能替换为“随机对一个敌人造成8点伤害。”使用两次后，换回原技能。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Tanamaes Leejierasaes",
+    "attack": 5,
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 117950,
+    "flavor": "要是没有质保部门帮忙捉虫，始祖龟一族早就完蛋了。",
+    "health": 3,
+    "id": "TLC_633",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "害虫克星",
+    "rarity": "RARE",
+    "set": "THE_LOST_CITY",
+    "targetingArrowText": "对一个具有随从类型的敌人造成6点伤害。",
+    "text": "<b>战吼：</b>对一个具有随从类型的敌方随从造成6点伤害。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Grafit",
+    "attack": 8,
+    "cardClass": "DEATHKNIGHT",
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 117231,
+    "elite": true,
+    "flavor": "“高！”——阶教徒赫雷恩",
+    "hasDiamondSkin": true,
+    "health": 6,
+    "id": "TLC_810",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "高阶教徒赫雷恩",
+    "rarity": "LEGENDARY",
+    "referencedTags": [
+      "DEATHRATTLE"
+    ],
+    "set": "THE_LOST_CITY",
+    "text": "<b>战吼：</b>从你的牌库中召唤两个<b>亡语</b>随从，并使其互相攻击！",
+    "type": "MINION"
+  },
+  {
+    "artist": "Brian Despain",
+    "attack": 1,
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 117232,
+    "elite": true,
+    "flavor": "能对你的生命产生重大影响。",
+    "health": 6,
+    "id": "TLC_811",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "阿凯欧斯",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "LEGENDARY",
+    "set": "THE_LOST_CITY",
+    "text": "每当另一个友方随从攻击时，将其生命值变为与本随从相同。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Sergey Tsvelykh",
+    "attack": 3,
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 117312,
+    "flavor": "墓晨林地里到处都是难以决断的牧师。",
+    "health": 4,
+    "id": "TLC_814",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "暮光治愈者",
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "text": "<b>亡语：</b>随机获取神圣和暗影法术牌各一张。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Studio Hive",
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 117316,
+    "flavor": "维护一株虚空芽需要多少墓晨林地的时光？",
+    "id": "TLC_815",
+    "name": "墓晨虚空芽",
+    "rarity": "RARE",
+    "referencedTags": [
+      "TAUNT"
+    ],
+    "set": "THE_LOST_CITY",
+    "spellSchool": "SHADOW",
+    "text": "随机召唤一个法力值消耗为（4）的随从并使其获得<b>嘲讽</b>。<b>延系：</b>重复一次。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Studio Hive",
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 117317,
+    "flavor": "太神了！它自己就能帮自己光合作用！",
+    "id": "TLC_816",
+    "name": "墓晨太阳花",
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "spellSchool": "HOLY",
+    "text": "抽两张牌。<b>延系：</b>本牌法力值消耗减少（2）点。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "BOSi Studio",
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 117544,
+    "elite": true,
+    "flavor": "第6天。今天我们来到了一片林地，神圣和暗影的魔法在此激战。林地中心有两个巨大的元素，就像是同一枚硬币的两面。希望我们还有机会回到这里，期待这片饱受摧残的土地还能恢复平和。",
+    "id": "TLC_817",
+    "mechanics": [
+      "QUEST"
+    ],
+    "name": "寻求平衡",
+    "rarity": "LEGENDARY",
+    "set": "THE_LOST_CITY",
+    "text": "<b>任务：</b>施放4个神圣法术。<b>奖励：</b>生命之息。<b>任务：</b>施放4个暗影法术。<b>奖励：</b>死亡之触。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Felideus Bubastis",
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 117557,
+    "flavor": "这样的泥浴能让你感到重获新生。",
+    "id": "TLC_818",
+    "name": "轮回转生",
+    "rarity": "EPIC",
+    "referencedTags": [
+      "REBORN"
+    ],
+    "set": "THE_LOST_CITY",
+    "spellSchool": "SHADOW",
+    "text": "复活法力值消耗为1，2，3的随从各一个，使其获得<b>复生</b>。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Tee Fuyuan",
+    "attack": 4,
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 6,
+    "dbfId": 117563,
+    "flavor": "一旦她转入小调，虚空和神圣之间就不存在什么平衡了。",
+    "health": 7,
+    "id": "TLC_819",
+    "name": "林歌海妖",
+    "race": "NAGA",
+    "races": [
+      "NAGA"
+    ],
+    "rarity": "EPIC",
+    "referencedTags": [
+      "LIFESTEAL"
+    ],
+    "set": "THE_LOST_CITY",
+    "text": "<b>吸血</b>。如果你在本回合中使用过神圣和暗影法术牌，本牌的法力值消耗为（1）点。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Ursula Dorada",
+    "attack": 2,
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 117565,
+    "flavor": "这家伙辅修了邪能地窟生物学，颇具文艺复兴气质。",
+    "health": 1,
+    "id": "TLC_820",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "林地生态学者",
+    "rarity": "RARE",
+    "set": "THE_LOST_CITY",
+    "text": "<b>亡语：</b>获取一张法力值消耗为（1）的神圣法术牌，该牌可以使一个随从获得+2或-2生命值。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Patrik Bjorkstrom",
+    "attack": 6,
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 117566,
+    "flavor": "暗影会制裁你！",
+    "health": 7,
+    "id": "TLC_821",
+    "mechanics": [
+      "LIFESTEAL",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "枯萎之影",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL"
+    ],
+    "rarity": "RARE",
+    "set": "THE_LOST_CITY",
+    "text": "<b>吸血</b>。每当你治疗一个敌人，本随从攻击该敌人。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Matt Dixon",
+    "attack": 2,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 117574,
+    "flavor": "“不吃完这些绿叶子不许出去玩。”",
+    "health": 3,
+    "id": "TLC_822",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "恐龙保育师",
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "text": "在你的回合结束时，随机使你手牌中一张野兽牌的法力值消耗减少（1）点。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Mauricio Herrera",
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 117580,
+    "flavor": "鸭妈妈的第四只小鸭子在安戈洛迷路了。",
+    "id": "TLC_823",
+    "name": "恐惧畏缩",
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "text": "对一个随从造成$3点伤害。在本回合中，你使用的下一张野兽牌法力值消耗减少（2）点。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Ramzy Kamen",
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 117596,
+    "flavor": "偶也不知道这个图案指向哪里！",
+    "id": "TLC_824",
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "奇异的地图",
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "text": "<b>发现</b>一张攻击力为奇数的野兽牌，如果你在本回合中使用该牌，再从其余选项中选择一张。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Brian Despain",
+    "attack": 5,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 4,
+    "dbfId": 117598,
+    "flavor": "雌性暴掠龙的体型比雄性大30%，攻击性更是高了100%。",
+    "health": 4,
+    "id": "TLC_825",
+    "name": "暴掠龙女王",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "EPIC",
+    "set": "THE_LOST_CITY",
+    "targetingArrowText": "造成等同于本随从攻击力的伤害。",
+    "text": "<b>延系：</b>对一个敌方随从造成等同于本随从攻击力的伤害。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Topdog Entertainment",
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 117599,
+    "flavor": "“……而且，那十张迅猛龙全都在牌库顶！”",
+    "id": "TLC_826",
+    "name": "卡纳莎的故事",
+    "rarity": "RARE",
+    "referencedTags": [
+      "BATTLECRY"
+    ],
+    "set": "THE_LOST_CITY",
+    "text": "将十张法力值消耗为（1）的3/2的迅猛龙洗入你的牌库，这些迅猛龙具有“<b>战吼：</b>抽一张牌。”",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Tanamaes Leejierasaes",
+    "attack": 0,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 117600,
+    "flavor": "他还在长身体呢:)",
+    "health": 5,
+    "id": "TLC_827",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "食草剑龙",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "RARE",
+    "set": "THE_LOST_CITY",
+    "text": "在你的回合结束时，获得+1攻击力<i>（即便在手牌或牌库中）</i>。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Edgar Hidalgo",
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 117602,
+    "flavor": "不是每个人都能成为伟大的恐龙学家，但伟大的恐龙学家可能来自世界的每个角落。",
+    "id": "TLC_828",
+    "name": "顶级恐龙学",
+    "rarity": "EPIC",
+    "set": "THE_LOST_CITY",
+    "text": "使你手牌，牌库和战场上的所有野兽获得+2/+2。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "L. Lullabi & I. Campelo da Silva",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 7,
+    "dbfId": 117610,
+    "flavor": "贪图食物时，你就不是你了。",
+    "health": 3,
+    "howToEarnGolden": "购买<i>安戈洛龟途</i>炉石通行证后开放解锁。",
+    "id": "TLC_829",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "饥饿的魔暴龙",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "EPIC",
+    "set": "THE_LOST_CITY",
+    "targetingArrowText": "消灭一个随从。",
+    "text": "<b>战吼：</b>消灭一个随从。<b>延系：</b>获得被消灭随从的属性值。",
+    "type": "MINION"
+  },
+  {
+    "artist": "L. Lullabi & T. Shevtsov",
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 117672,
+    "elite": true,
+    "flavor": "第1天。探险开始了！我和伊莉斯·逐星在环形山外围集合，同行的还有一个叫安布拉的始祖龟，还有个好奇的小侏儒叫尼利。进入丛林之后，我们发现了一个大脚印。我从没见过这么大的脚印！",
+    "id": "TLC_830",
+    "mechanics": [
+      "QUEST"
+    ],
+    "name": "食物链",
+    "rarity": "LEGENDARY",
+    "set": "THE_LOST_CITY",
+    "text": "<b>任务：</b>使用攻击力为1，3，5，7的野兽牌各一张。<b>奖励：</b>绍克。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Vika Yarova",
+    "attack": 0,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 117674,
+    "flavor": "你打蛋，蛋就打你。",
+    "health": 3,
+    "howToEarnGolden": "可以在<i>安戈洛龟途</i>奖励路线中获得该奖励。",
+    "id": "TLC_831",
+    "mechanics": [
+      "DEATHRATTLE"
+    ],
+    "name": "翼手龙蛋",
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "text": "<b>亡语：</b>召唤一只3/3并会从所有其他随从处\n偷取1点生命值的翼手龙。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Studio Hive",
+    "attack": 2,
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 117813,
+    "durability": 0,
+    "flavor": "把你的脏爪子拿开！",
+    "health": 2,
+    "id": "TLC_833",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "昆虫利爪",
+    "rarity": "RARE",
+    "referencedTags": [
+      "RUSH"
+    ],
+    "set": "THE_LOST_CITY",
+    "text": "在你的英雄攻击后，召唤一只2/1并具有<b>突袭</b>的异种虫幼体。",
+    "type": "WEAPON"
+  },
+  {
+    "artist": "Stefano Spagnuolo",
+    "cardClass": "PRIEST",
+    "collectible": true,
+    "cost": 10,
+    "dbfId": 120593,
+    "flavor": "“很久很久以前……好吧，不如直接讲结局吧？”",
+    "id": "TLC_835",
+    "name": "阿玛拉的故事",
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "text": "将你英雄的生命值变为40。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Anzka Nguyen",
+    "attack": 2,
+    "cardClass": "HUNTER",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 121029,
+    "elite": true,
+    "flavor": "尼利，尼利，环形山的尼利！强壮又有力！哦吼哦吼哦吼！！那棵树要注意！",
+    "hasDiamondSkin": true,
+    "health": 5,
+    "id": "TLC_836",
+    "mechanics": [
+      "TRIGGER_VISUAL"
+    ],
+    "name": "环形山的尼利",
+    "rarity": "LEGENDARY",
+    "set": "THE_LOST_CITY",
+    "text": "每当你使用一张法力值消耗为（1）的随从牌，使其属性值翻倍。每当你施放一个法力值消耗为（1）的法术，施放两次。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Juan Calle",
+    "attack": 2,
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 119754,
+    "flavor": "“这张牌好无聊啊。”“不，我掘得很好。”",
+    "health": 4,
+    "id": "TLC_840",
+    "mechanics": [
+      "STEALTH",
+      "TRIGGER_VISUAL"
+    ],
+    "name": "格里什掘洞虫",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "text": "<b>潜行</b>。在本随从攻击后，对敌方英雄造成2点伤害。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Sergey Tsvelykh",
+    "attack": 7,
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 8,
+    "dbfId": 119755,
+    "elite": true,
+    "flavor": "拧盖子。盖子。盖子。盖子。盖子。盖子！",
+    "health": 7,
+    "id": "TLC_841",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "昆虫学家托鲁",
+    "rarity": "LEGENDARY",
+    "set": "THE_LOST_CITY",
+    "text": "<b>战吼：</b>将你手牌中的每张随从牌分别放入法力值消耗为（1）的0/1的标本罐。打破罐子即可放出随从！",
+    "type": "MINION"
+  },
+  {
+    "artist": "James Ryman",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 3,
+    "dbfId": 122318,
+    "flavor": "翔龙今日多云，局部地区有任务奖励。",
+    "health": 3,
+    "howToEarnGolden": "可以在<i>安戈洛龟途</i>奖励路线中获得该奖励。",
+    "id": "TLC_888",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "云端翔龙",
+    "race": "ELEMENTAL",
+    "races": [
+      "ELEMENTAL",
+      "DRAGON"
+    ],
+    "rarity": "RARE",
+    "set": "THE_LOST_CITY",
+    "text": "<b>战吼：</b>获取你手牌中另一张元素牌或龙牌的一张复制。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Sergey Tsvelykh",
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 1,
+    "dbfId": 117684,
+    "flavor": "地图本身完美，只是这个地点你永远永远永远都不会去。",
+    "id": "TLC_900",
+    "mechanics": [
+      "DISCOVER"
+    ],
+    "name": "虫巢地图",
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "text": "<b>发现</b>一张邪能法术牌，如果你在本回合中使用该牌，再从其余选项中选择一张。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Sergey Tsvelykh",
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 117685,
+    "flavor": "臭气弹，发射！",
+    "id": "TLC_901",
+    "name": "烟雾熏蒸",
+    "rarity": "EPIC",
+    "set": "THE_LOST_CITY",
+    "spellSchool": "FEL",
+    "text": "对一个随从及所有相同类型的其他随从造成$3点伤害。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Tanamaes Leejierasaes",
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 117686,
+    "flavor": "别动我的异种虫！",
+    "id": "TLC_902",
+    "name": "虫害侵扰",
+    "rarity": "RARE",
+    "referencedTags": [
+      "RUSH"
+    ],
+    "set": "THE_LOST_CITY",
+    "text": "获取两张法力值消耗为（1）的格里什毒刺虫。毒刺虫可以造成$2点伤害并召唤一只2/1具有<b>突袭</b>的异种虫幼体。",
+    "type": "SPELL"
+  },
+  {
+    "artist": "Brian Despain",
+    "attack": 5,
+    "cardClass": "DEMONHUNTER",
+    "collectible": true,
+    "cost": 5,
+    "dbfId": 117687,
+    "flavor": "蛰，女王陛下。",
+    "health": 2,
+    "id": "TLC_903",
+    "mechanics": [
+      "RUSH"
+    ],
+    "name": "异种虫女王",
+    "race": "BEAST",
+    "races": [
+      "BEAST"
+    ],
+    "rarity": "COMMON",
+    "set": "THE_LOST_CITY",
+    "text": "<b>突袭</b>。<b>延系：</b>在本回合中，使你的英雄获得+5攻击力。",
+    "type": "MINION"
+  },
+  {
+    "artist": "Stefano Spagnuolo",
+    "attack": 3,
+    "cardClass": "NEUTRAL",
+    "collectible": true,
+    "cost": 2,
+    "dbfId": 118177,
+    "flavor": "别管什么任务了。我们最新的任务就是先保证他的安全。",
+    "health": 2,
+    "id": "TLC_987",
+    "mechanics": [
+      "BATTLECRY"
+    ],
+    "name": "任务助理",
+    "rarity": "COMMON",
+    "referencedTags": [
+      "QUEST"
+    ],
+    "set": "THE_LOST_CITY",
+    "targetingArrowText": "对一个敌方随从造成3点伤害。",
+    "text": "<b>战吼：</b>如果你在本局对战中使用过<b>任务</b>牌，对一个敌方随从造成3点伤害。",
+    "type": "MINION"
+  }
+]

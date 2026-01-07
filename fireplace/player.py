@@ -278,6 +278,10 @@ class Player(Entity, TargetableByAuras):
         # 套牌外恶魔追踪 - 深暗领域（2024年11月）
         self.demons_not_started_in_deck_played = []  # 本局对战中使用过的套牌外恶魔ID列表
 
+        # 套牌外卡牌追踪 - 失落之城（2025年7月）
+        # 用于 DINO_409 科技恐龙等卡牌
+        self.cards_not_started_in_deck_played = []  # 本局对战中使用过的所有套牌外卡牌ID列表
+
 
         # 本回合伤害追踪 - 深暗领域（2024年11月）
         self.damage_taken_this_turn = 0  # 本回合英雄受到的伤害总量
@@ -290,6 +294,18 @@ class Player(Entity, TargetableByAuras):
         self.imbue_level = 0  # 当前 Imbue 等级（0=未激活，1=初始，2+=升级）
         self.original_hero_power = None  # 保存原始英雄技能（用于恢复）
         self.imbued_hero_power_id = None  # 当前 Imbued 英雄技能的ID
+
+        # 任务追踪 - 失落之城（2025年7月）
+        # 用于 TLC_987 任务助理等卡牌
+        self.quest_played = False  # 本局对战中是否打出过任务牌
+
+        # Kindred 双倍触发机制 - 失落之城（2025年7月）
+        # 用于 TLC_251 蛮鱼挑战者等卡牌
+        self.kindred_double_trigger = False  # 下一个延系效果是否触发两次
+
+        # 洗牌追踪机制 - 失落之城（2025年7月）
+        # 用于 TLC_517 一脚踢飞、TLC_520 灌林追踪者等卡牌
+        self.cards_shuffled_into_deck = 0  # 本局对战中洗入牌库的卡牌次数
 
 
 

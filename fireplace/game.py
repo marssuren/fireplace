@@ -367,6 +367,10 @@ class BaseGame(Entity):
             self.current_player.cards_played_last_turn = self.current_player.cards_played_this_turn_ids.copy()
             self.current_player.cards_played_this_turn_ids = []
 
+        # 清除本回合从地图发现的卡牌记录（用于失落之城地图卡牌机制）- 失落之城（2025年7月）
+        if hasattr(self.current_player, 'map_discovered_cards_this_turn'):
+            self.current_player.map_discovered_cards_this_turn = []
+
         # Extra turn
         if self.next_players:
             next_player = self.next_players.pop(0)
