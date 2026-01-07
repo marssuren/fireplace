@@ -273,7 +273,25 @@ class Player(Entity, TargetableByAuras):
 
         # 星舰发射历史 - 深暗领域�?024�?1月）
         # 用于 SC_400 吉姆·雷诺（重新发射所有星舰）
-        # 存储每次发射的星舰的完整快照：{id, accumulated_atk, accumulated_health, keywords, pieces}n        # �������ħ׷�� - �����2024��11�£�n        self.demons_not_started_in_deck_played = []  # ���ֶ�ս��ʹ�ù����������ħID�б�n        # ���غ��˺�׷�� - �����2024��11�£�n        self.damage_taken_this_turn = 0  # ���غ�Ӣ���ܵ����˺�����
+        # 存储每次发射的星舰的完整快照：{id, accumulated_atk, accumulated_health, keywords, pieces}
+
+        # 套牌外恶魔追踪 - 深暗领域（2024年11月）
+        self.demons_not_started_in_deck_played = []  # 本局对战中使用过的套牌外恶魔ID列表
+
+
+        # 本回合伤害追踪 - 深暗领域（2024年11月）
+        self.damage_taken_this_turn = 0  # 本回合英雄受到的伤害总量
+
+        # 友方随从死亡追踪 - 深入翡翠梦境（2025年3月）
+        self.friendly_minions_died_this_game = 0  # 本局对战中死亡的友方随从数量（用于EDR_941星涌术、EDR_430艾森娜等卡牌）
+        self.minions_died_this_turn = []  # 本回合死亡的友方随从列表（用于EDR_491荆棘大德鲁伊等卡牌）
+
+        # Imbue 机制 - 深入翡翠梦境（2025年3月）
+        self.imbue_level = 0  # 当前 Imbue 等级（0=未激活，1=初始，2+=升级）
+        self.original_hero_power = None  # 保存原始英雄技能（用于恢复）
+        self.imbued_hero_power_id = None  # 当前 Imbued 英雄技能的ID
+
+
 
 
 

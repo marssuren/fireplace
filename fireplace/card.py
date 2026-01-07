@@ -1424,6 +1424,8 @@ class Minion(Character):
         elif value == Zone.GRAVEYARD and self.zone == Zone.PLAY:
             self.controller.minions_killed_this_turn += 1
             self.controller.minions_killed_this_game += 1
+            # 追踪友方随从死亡（用于EDR_941星涌术、EDR_430艾森娜等卡牌）
+            self.controller.friendly_minions_died_this_game += 1
 
         if self.zone == Zone.PLAY:
             self.log("%r is removed from the field", self)

@@ -89,6 +89,27 @@ STARSHIP_HEALTH = -60  # 星舰累积的生命值
 STARSHIP_PIECES_COUNT = -61  # 星舰包含的组件数量
 STARSHIP_LAUNCHED_THIS_GAME = -62  # 本局对战中是否发射过星舰
 
+# Imbue 机制 - 深入翡翠梦境（2025年3月）
+IMBUE = -63  # 标记卡牌具有 Imbue 效果
+IMBUE_LEVEL = -64  # 当前 Imbue 等级（0=未激活，1=初始，2+=升级）
+IMBUED_HERO_POWER = -65  # 标记英雄技能是否为 Imbued 版本
+
+# Dark Gift 机制 - 深入翡翠梦境（2025年3月）
+DARK_GIFT = -66  # 标记随从具有黑暗之赐效果
+DARK_GIFT_BONUS = -67  # 存储黑暗之赐的奖励效果ID
+DARK_GIFT_SUMMON_COPY = -68  # 标记随从打出时召唤2/2复制
+DARK_GIFT_TO_DECK_TOP = -69  # 标记随从需要置于牌库顶
+
+# 变形费用修改机制 - 深入翡翠梦境（2025年3月）
+TRANSFORM_COST_MODIFIER = -70  # 标记随从变形时费用修改量（用于胆大的魔荚人）
+
+# Kindred 机制 - 失落之城（2025年7月）
+KINDRED = -71  # 标记卡牌具有 Kindred 效果
+KINDRED_ACTIVE = -72  # 标记 Kindred 效果是否激活（上回合打出过同类型/学派）
+
+# Map Cards 机制 - 失落之城（2025年7月）
+MAP_DISCOVERED_THIS_TURN = -73  # 标记本回合从地图发现的卡牌ID（用于触发二次发现）
+
 
 
 

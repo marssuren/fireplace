@@ -605,6 +605,19 @@ class Death(GameAction):
                     # 检查是否为星舰组件
                     if card.tags.get(STARSHIP_PIECE):
                         self._handle_starship_piece_death(card)
+                
+                # 本回合死亡随从追踪 - 深入翡翠梦境（2025年3月）
+                # 用于 EDR_491 荆棘大德鲁伊等卡牌
+                if card.type == CardType.MINION and card.controller:
+                    # 将死亡的随从添加到本回合死亡列表
+                    # 存储随从的完整信息，包括亡语
+                    card.controller.minions_died_this_turn.append({
+                        'id': card.id,
+                        'card': card,  # 保存卡牌引用以便获取亡语
+                        'atk': card.atk,
+                        'health': card.health,
+                        'has_deathrattle': card.has_deathrattle
+                    })
 
         for card in cards:
             if not card.dead:
@@ -629,6 +642,9 @@ class EndTurn(GameAction):
         self.broadcast(source, EventListener.ON, player)
         if player.extra_end_turn_effect:
             self.broadcast(source, EventListener.ON, player)
+
+        # 清空本回合死亡随从列表 - 深入翡翠梦境（2025年3月）
+        player.minions_died_this_turn = []
 
         source.game._end_turn()
 
@@ -2506,6 +2522,26 @@ class Morph(TargetedAction):
             source.game.queue_actions(source, [Summon(target.controller, card)])
             # 返回新召唤的随从
             return card
+        
+        # 检查目标是否有变形费用修改（用于 EDR_529 胆大的魔荚人）
+        # 如果目标有 TRANSFORM_COST_MODIFIER 标签，修改变形目标的费用
+        cost_modifier = target.tags.get(enums.TRANSFORM_COST_MODIFIER, 0)
+        if cost_modifier != 0 and hasattr(card, 'cost'):
+            # 计算新费用
+            new_cost = card.cost + cost_modifier
+            # 如果费用改变了，重新生成对应费用的随从
+            if new_cost != card.cost and new_cost >= 0:
+                log_info("transform_cost_modified", target=target, old_cost=card.cost, new_cost=new_cost)
+                # 重新生成一个新费用的随从
+                from .dsl.random_picker import RandomMinion
+                # 保存原卡牌的控制者
+                controller = card.controller
+                # 生成新的随从
+                new_card = RandomMinion(cost=new_cost).pick(source.game, source)
+                if new_card:
+                    new_card = source.controller.card(new_card, source)
+                    new_card.controller = controller
+                    card = new_card
         
         target_zone = target.zone
         if card.zone != target_zone:
