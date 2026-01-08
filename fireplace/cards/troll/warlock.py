@@ -50,7 +50,7 @@ class TRL_257:
     在一个友方随从 死亡后，对敌方英雄造成2点伤害。"""
 
     # After a friendly minion dies, deal 2 damage to the enemy hero.
-    events = Death(FRIENDLY_MINIONS).on(Hit(FRIENDLY_HERO, 2))
+    events = Death(FRIENDLY_MINIONS).on(Hit(ENEMY_HERO, 2))
 
 
 class TRL_551:

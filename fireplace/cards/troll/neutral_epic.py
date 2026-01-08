@@ -31,8 +31,8 @@ class TRL_527:
     # [x]<b>Battlecry:</b> Give each player a copy of a random card from their opponent's
     # deck.
     play = (
-        Give(CONTROLLER, ExactCopy(RANDOM(FRIENDLY_DECK))),
-        Give(OPPONENT, ExactCopy(RANDOM(ENEMY_DECK))),
+        Give(CONTROLLER, ExactCopy(RANDOM(ENEMY_DECK))),
+        Give(OPPONENT, ExactCopy(RANDOM(FRIENDLY_DECK))),
     )
 
 
