@@ -68,11 +68,11 @@ class GIL_622:
 
 class GIL_623:
     """Witchwood Grizzly / 女巫森林灰熊
-    嘲讽。战吼： 你的对手每有一张手牌，本随从便失去1点生命值。"""
+    嘲讽。战吼： 你的对手每有一张手牌,本随从便失去1点生命值。"""
 
     # [x]<b>Taunt</b> <b>Battlecry:</b> Lose 1 Health for each card in your opponent's
     # hand.
-    play = Buff(SELF, "GIL_623e") * Count(ENEMY_HERO)
+    play = Buff(SELF, "GIL_623e") * Count(ENEMY_HAND)
 
 
 GIL_623e = buff(health=-1)

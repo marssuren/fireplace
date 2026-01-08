@@ -100,8 +100,8 @@ class GIL_653:
     """Woodcutter's Axe / 樵夫之斧
     亡语：随机使一个友方随从获得+2/+1。"""
 
-    # <b>Deathrattle:</b> Give +2/+1 to a random friendly <b>Rush</b> minion.
+    # <b>Deathrattle:</b> Give +2/+1 to a random friendly minion.
     deathrattle = Buff(RANDOM_FRIENDLY_MINION, "GIL_653e")
 
 
-GIL_653e = buff(+2, +1, rush=True)
+GIL_653e = buff(+2, +1)

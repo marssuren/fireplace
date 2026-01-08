@@ -150,8 +150,8 @@ class GIL_667:
     """Rotten Applebaum / 腐烂的苹果树
     嘲讽。亡语：为你的英雄恢复#6点生命值。"""
 
-    # <b>Taunt</b> <b>Deathrattle:</b> Restore 4 Health to your hero.
-    deathrattle = Heal(FRIENDLY_HERO, 4)
+    # <b>Taunt</b> <b>Deathrattle:</b> Restore 6 Health to your hero.
+    deathrattle = Heal(FRIENDLY_HERO, 6)
 
 
 class GIL_683:
