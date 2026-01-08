@@ -71,7 +71,7 @@ class ICC_055:
     吸血 对一个随从造成 $3点伤害。"""
 
     requirements = {PlayReq.REQ_MINION_TARGET: 0, PlayReq.REQ_TARGET_TO_PLAY: 0}
-    play = Hit(TARGET, 2)
+    play = Hit(TARGET, 3)
 
 
 class ICC_206:

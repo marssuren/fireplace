@@ -118,7 +118,7 @@ class ICC_853:
     """Prince Valanar / 瓦拉纳王子
     战吼：如果你的牌库里没有法力值消耗为（4）的牌，则获得吸血和嘲讽。"""
 
-    play = Find(FRIENDLY_DECK + (COST == 2)) | (Taunt(SELF), GiveLifesteal(SELF))
+    play = Find(FRIENDLY_DECK + (COST == 4)) | (Taunt(SELF), GiveLifesteal(SELF))
 
 
 class ICC_854:
