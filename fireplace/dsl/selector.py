@@ -791,3 +791,9 @@ def SAME_RACE(entity1, entity2):
 SAME_RACE_TARGET = FuncSelector(
     lambda entites, source: [e for e in entites if SAME_RACE(e, source.target)]
 )
+
+# 奇数/偶数费用选择器 (Odd/Even Cost Selectors)
+# 用于选择奇数或偶数费用的卡牌
+# 例如：Thaddius, Monstrosity (NX2_033) 使用这些选择器来减费
+ODD_COST = FilterSelector(lambda entity, source: getattr(entity, "cost", 0) % 2 == 1)
+EVEN_COST = FilterSelector(lambda entity, source: getattr(entity, "cost", 0) % 2 == 0)
