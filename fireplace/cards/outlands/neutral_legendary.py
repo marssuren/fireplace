@@ -28,14 +28,14 @@ class BT_255:
     """Kael'thas Sunstrider / 凯尔萨斯·逐日者
     在每回合中，你每施放三个法术，第三个法术的法力值消耗为（1）点。"""
 
-    # Every third spell you cast each turn costs (0).
+    # Every third spell you cast each turn costs (1).
     update = (Count(CARDS_PLAYED_THIS_TURN + SPELL) % 3 == 2) & (
         Refresh(FRIENDLY_HAND + SPELL, buff="BT_255e")
     )
 
 
 class BT_255e:
-    cost = SET(0)
+    cost = SET(1)
 
 
 class BT_735:

@@ -41,13 +41,13 @@ class BT_305:
     休眠2回合。唤醒时，使你手牌中的所有随从牌获得+2/+2。"""
 
     # <b>Dormant</b> for 2 turns. When this awakens, give all minions in your
-    # hand +2/+1.
+    # hand +2/+2.
     tags = {GameTag.DORMANT: True}
     dormant_turns = 2
     awaken = Buff(FRIENDLY_HAND, "BT_305e")
 
 
-BT_305e = buff(+2, +1)
+BT_305e = buff(+2, +2)
 
 
 class BT_307:

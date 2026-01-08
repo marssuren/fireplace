@@ -60,7 +60,7 @@ class BT_136ta:
     play = Summon(CONTROLLER, "BT_136tt1")
 
 
-class BT_136ta:
+class BT_136tb:
     play = Summon(CONTROLLER, "BT_136tt2")
 
 

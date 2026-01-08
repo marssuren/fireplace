@@ -125,10 +125,10 @@ class BT_213:
     """Scavenger's Ingenuity / 拾荒者的智慧
     抽一张野兽牌。使其获得+3/+3。"""
 
-    # Draw a Beast. Give it +2/+2.
+    # Draw a Beast. Give it +3/+3.
     play = ForceDraw(RANDOM(FRIENDLY_DECK + BEAST)).then(
         Buff(ForceDraw.TARGET, "BT_213e")
     )
 
 
-BT_213e = buff(+2, +2)
+BT_213e = buff(+3, +3)

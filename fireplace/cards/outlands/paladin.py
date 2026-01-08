@@ -116,12 +116,12 @@ class BT_292:
     """Hand of A'dal / 阿达尔之手
     使一个随从获得+2/+1。 抽一张牌。"""
 
-    # Give a minion +2/+2. Draw a card.
+    # Give a minion +2/+1. Draw a card.
     requirements = {PlayReq.REQ_MINION_TARGET: 0, PlayReq.REQ_TARGET_TO_PLAY: 0}
     play = Buff(TARGET, "BT_292e"), Draw(CONTROLLER)
 
 
-BT_292e = buff(+2, +2)
+BT_292e = buff(+2, +1)
 
 
 ##
