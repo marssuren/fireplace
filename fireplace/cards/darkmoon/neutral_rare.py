@@ -118,18 +118,13 @@ class YOP_024:
     choose = ("YOP_024a", "YOP_024b")
     
     def play(self):
-        # 生成两张随机法术牌并存储
-        # 这些法术将被两个选项共享
-        spells = [
-            self.controller.card(self.game.random.choice(self.game.db.filter(
-                type=CardType.SPELL, collectible=True
-            ))),
-            self.controller.card(self.game.random.choice(self.game.db.filter(
-                type=CardType.SPELL, collectible=True
-            )))
-        ]
+        # 生成两张随机法术牌
+        # 使用 RandomSpell() 选择器
+        spell1 = self.controller.card(RandomSpell().evaluate(self), source=self)
+        spell2 = self.controller.card(RandomSpell().evaluate(self), source=self)
+        
         # 将法术存储到卡牌上，供选项使用
-        self.stored_spells = spells
+        self.stored_spells = [spell1, spell2]
         return []
 
 

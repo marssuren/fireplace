@@ -48,7 +48,6 @@ class DMF_074:
     """Silas Darkmoon (希拉斯·暗月)
     Battlecry: Choose a direction to rotate all minions."""
     # 7费 4/4 - 战吼：选择一个方向旋转所有随从
-    # 旋转是相对于发动者的视角
     
     choose = ("DMF_074a", "DMF_074b")
 
@@ -56,33 +55,19 @@ class DMF_074:
 class DMF_074a:
     """Rotate Left (逆时针旋转)"""
     
-    def play(self):
-        # 逆时针旋转（从发动者视角）：
-        # - 发动者的随从：向右移动一个位置
-        # - 对手的随从：向左移动一个位置
-        #
-        # 示例：
-        # 初始: 发动者[A][B][C]  对手[D][E]
-        # 结果: 发动者[D][A][B]  对手[E][C]
-        
-        from ..actions import RotateMinions
-        return RotateMinions(False)  # False = counterclockwise
+    # 逆时针旋转：
+    # - 发动者的随从：向右移动一个位置
+    # - 对手的随从：向左移动一个位置
+    play = RotateMinions(False)  # False = counterclockwise
 
 
 class DMF_074b:
     """Rotate Right (顺时针旋转)"""
     
-    def play(self):
-        # 顺时针旋转（从发动者视角）：
-        # - 发动者的随从：向左移动一个位置
-        # - 对手的随从：向右移动一个位置
-        #
-        # 示例：
-        # 初始: 发动者[A][B][C]  对手[D][E]
-        # 结果: 发动者[B][C][E]  对手[A][D]
-        
-        from ..actions import RotateMinions
-        return RotateMinions(True)  # True = clockwise
+    # 顺时针旋转：
+    # - 发动者的随从：向左移动一个位置
+    # - 对手的随从：向右移动一个位置
+    play = RotateMinions(True)  # True = clockwise
 
 
 class DMF_188:

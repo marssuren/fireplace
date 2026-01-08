@@ -62,14 +62,14 @@ class DMF_089:
     }
     
     def play(self):
-        # 从牌库中找一个随从
-        deck_minions = [card for card in self.controller.deck if card.type == CardType.MINION]
-        if not deck_minions:
+        # 从牌库中随机召唤一个随从
+        # 使用 RANDOM 选择器而非 Python random
+        minions_in_deck = [card for card in self.controller.deck if card.type == CardType.MINION]
+        if not minions_in_deck:
             return
         
-        # 随机选择一个
-        import random
-        minion = random.choice(deck_minions)
+        # 使用 fireplace 的随机系统
+        minion = self.game.random.choice(minions_in_deck)
         
         # 召唤该随从
         yield Summon(CONTROLLER, minion)
@@ -77,9 +77,6 @@ class DMF_089:
         # 检查随从是否成功召唤到场上
         if minion.zone != Zone.PLAY:
             return
-        
-        # 给随从添加一个临时buff，标记它需要攻击后死亡
-        yield Buff(minion, "DMF_089e")
         
         # 强制该随从攻击敌方英雄
         enemy_hero = self.controller.opponent.hero
