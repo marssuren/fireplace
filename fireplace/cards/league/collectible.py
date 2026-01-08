@@ -423,7 +423,7 @@ class LOE_027:
     """Sacred Trial / 审判
     奥秘：在你的对手使用一张随从牌后，如果他控制至少三个其他随从，则将其消灭。"""
 
-    secret = Play(OPPONENT, MINION | HERO).after(
+    secret = Play(OPPONENT, MINION).after(
         (Count(ENEMY_MINIONS) >= 4) & (Reveal(SELF), Destroy(Play.CARD))
     )
 

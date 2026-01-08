@@ -214,9 +214,14 @@ class LOEA05_02:
     被动 敌方随从的法力值消耗增加（2）点，在你的回合开始时切换。"""
 
     # Hearthstone implements Scarvash's Hero Power with LOEA05_02(h) which
-    # switches every turn between LOEA05_02a and LOEA05_03. We don't need
-    # to do that, we implement it as a Summon every turn instead.
-    pass
+    # switches every turn between LOEA05_02a and LOEA05_03.
+    # 实现说明：通过回合数奇偶判断来切换效果
+    # 奇数回合：增加随从费用，偶数回合：增加法术费用
+    update = (
+        (Attr(CONTROLLER, GameTag.TURN) % 2 == 1)
+        & Refresh(ENEMY_HAND + MINION, {GameTag.COST: +2})
+        | Refresh(ENEMY_HAND + SPELL, {GameTag.COST: +2})
+    )
 
 
 class LOEA05_02a:
@@ -224,7 +229,16 @@ class LOEA05_02a:
 
 
 class LOEA05_02h:
-    pass
+    """Trogg Hate Minions! (Heroic) / 穴居人讨厌随从！（英雄）
+    被动 敌方随从的法力值消耗变为（11）点，在你的回合开始时切换。"""
+
+    # 英雄难度：将费用设置为 11，基本无法使用
+    # 奇数回合：随从费用变为 11，偶数回合：法术费用变为 11
+    update = (
+        (Attr(CONTROLLER, GameTag.TURN) % 2 == 1)
+        & Refresh(ENEMY_HAND + MINION, {GameTag.COST: SET(11)})
+        | Refresh(ENEMY_HAND + SPELL, {GameTag.COST: SET(11)})
+    )
 
 
 class LOEA05_02ha:
