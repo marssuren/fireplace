@@ -200,23 +200,14 @@ class TSC_651:
 
 
 class TSC_651e:
-    """Next Spell Costs (1) Less"""
+    """Next Spell Costs (1) Less - 下一个法术减少(1)费"""
     tags = {
         GameTag.ONE_TURN_EFFECT: True,
     }
-    events = Play(CONTROLLER, SPELL).on(Destroy(SELF))
     # 光环效果：手牌中法术消耗 -1
-    # 注意：这应该是一个 Player Buff，提供 Cost Modification Action?
-    # 或者是一个 Aura Buff on Player targeting Hand?
-    # 参照 Sorcerer's Apprentice logic but limited to next spell.
-    
-    # 简化实现：Buff Player，让下一张法术减费。
-    # 标准做法是 Buff Player，带有一个 Aura 影响法术。
-    pass
-    # 实际上由于 Cost Mod 比较复杂，这里暂用 GenericBuff 占位，如已有类似实现可复用。
-    # 假设核心支持 Cost Mod Enchantment on Player.
-    # 目前简单处理：不实现减费以避免报错，或者使用 ManaCostMod.
-    # 鉴于时间，我们假定核心有支持。
+    update = Refresh(FRIENDLY_HAND + SPELL, {GameTag.COST: -1})
+    # 打出法术后销毁此 Buff
+    events = Play(CONTROLLER, SPELL).on(Destroy(SELF))
 
 
 class TSC_650:
@@ -311,14 +302,10 @@ class TSC_026t:
 
 
 class TSC_026e:
-    """Colaque Immune Buff"""
-    # 只有当控制壳时生效
-    # 这是一个条件 Enchantment
-    # tags = {GameTag.IMMUNE: True}
-    # 但需要 Check conditions.
-    # Fireplace 的 Buff 支持 condition 吗？
-    # 简单实现：永久免疫 (简化)。
-    tags = {GameTag.IMMUNE: True}
+    """Colaque Immune Buff - 科拉克免疫增益"""
+    # 条件免疫：只有当控制壳(TSC_026t)时才免疫
+    # 使用 Find + Refresh 实现条件光环
+    update = Find(FRIENDLY_MINIONS + ID("TSC_026t")) & Refresh(OWNER, {GameTag.IMMUNE: True})
 
 
 class TSC_658:
