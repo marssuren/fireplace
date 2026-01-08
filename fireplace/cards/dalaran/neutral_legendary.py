@@ -11,7 +11,8 @@ class DAL_546:
 
     # <b>Battlecry:</b> Add a copy of each of your other <b>Battlecry</b>
     # minions_to_your_hand.
-    play = Give(CONTROLLER, Copy(FRIENDLY_HAND + BATTLECRY + MINION))
+    # 注：复制场上的其他战吼随从，不包括自己
+    play = Give(CONTROLLER, Copy(FRIENDLY_MINIONS - SELF + BATTLECRY))
 
 
 class DAL_554:

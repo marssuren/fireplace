@@ -75,7 +75,7 @@ class DAL_371:
 
 class DAL_373:
     """Rapid Fire / 急速射击
-    双生法术 造成$2点伤害。"""
+    双生法术 造成$1点伤害。"""
 
     # <b>Twinspell</b> Deal $1 damage.
     requirements = {

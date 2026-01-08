@@ -92,9 +92,14 @@ class DAL_727:
     从你的牌库中抽取法力值消耗最低的随从牌，使其获得+2/+2。"""
 
     # Draw the lowest Cost minion from your deck. Give it +2/+2.
-    play = ForceDraw(LOWEST_ATK(FRIENDLY_DECK + MINION)).then(
-        Buff(ForceDraw.TARGET, "DAL_727e")
-    )
+    # 注：选择费用最低的随从（如果有多个同费用，随机选择一个）
+    def play(self):
+        minions = self.controller.deck.filter(type=CardType.MINION)
+        if minions:
+            lowest_cost_minion = min(minions, key=lambda c: c.cost)
+            yield ForceDraw(lowest_cost_minion).then(
+                Buff(ForceDraw.TARGET, "DAL_727e")
+            )
 
 
 DAL_727e = buff(+2, +2)
