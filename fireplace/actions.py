@@ -4229,3 +4229,98 @@ class SplitCard(GameAction):
 
         return half1, half2
 
+
+class RotateMinions(GameAction):
+    """
+    旋转所有随从的位置
+    用于 DMF_074 (希拉斯·暗月)
+    
+    顺时针旋转：
+    - 发动者的随从：向左移动一个位置（最左边的移到对手场上最右边）
+    - 对手的随从：向右移动一个位置（最右边的移到发动者场上最左边）
+    
+    逆时针旋转：
+    - 发动者的随从：向右移动一个位置（最右边的移到对手场上最左边）
+    - 对手的随从：向左移动一个位置（最左边的移到发动者场上最右边）
+    """
+    
+    CLOCKWISE = BoolArg()  # True = 顺时针, False = 逆时针
+    
+    def do(self, source, clockwise):
+        """
+        执行随从旋转
+        
+        Args:
+            source: 施放者
+            clockwise: True = 顺时针旋转, False = 逆时针旋转
+        """
+        game = source.game
+        
+        # 获取双方场上的随从
+        friendly_minions = list(source.controller.field)
+        enemy_minions = list(source.controller.opponent.field)
+        
+        if not friendly_minions and not enemy_minions:
+            # 没有随从,不执行任何操作
+            return
+        
+        if clockwise:
+            # 顺时针旋转
+            if friendly_minions:
+                # 发动者的随从向左移动（最左边的移到对手场上最右边）
+                leftmost = friendly_minions[0]
+                # 将最左边的随从移到对手场上
+                leftmost.controller = source.controller.opponent
+                # 移除并重新添加以调整位置
+                leftmost.zone = Zone.SETASIDE
+                leftmost.zone = Zone.PLAY
+                # 将其他随从向左移动
+                for i in range(1, len(friendly_minions)):
+                    minion = friendly_minions[i]
+                    minion.zone = Zone.SETASIDE
+                    minion.zone = Zone.PLAY
+            
+            if enemy_minions:
+                # 对手的随从向右移动（最右边的移到发动者场上最左边）
+                rightmost = enemy_minions[-1]
+                # 将最右边的随从移到发动者场上
+                rightmost.controller = source.controller
+                # 移除并重新添加以调整位置
+                rightmost.zone = Zone.SETASIDE
+                rightmost.zone = Zone.PLAY
+                # 将其他随从向右移动
+                for i in range(len(enemy_minions) - 1):
+                    minion = enemy_minions[i]
+                    minion.zone = Zone.SETASIDE
+                    minion.zone = Zone.PLAY
+        else:
+            # 逆时针旋转
+            if friendly_minions:
+                # 发动者的随从向右移动（最右边的移到对手场上最左边）
+                rightmost = friendly_minions[-1]
+                # 将最右边的随从移到对手场上
+                rightmost.controller = source.controller.opponent
+                # 移除并重新添加以调整位置
+                rightmost.zone = Zone.SETASIDE
+                rightmost.zone = Zone.PLAY
+                # 将其他随从向右移动
+                for i in range(len(friendly_minions) - 1):
+                    minion = friendly_minions[i]
+                    minion.zone = Zone.SETASIDE
+                    minion.zone = Zone.PLAY
+            
+            if enemy_minions:
+                # 对手的随从向左移动（最左边的移到发动者场上最右边）
+                leftmost = enemy_minions[0]
+                # 将最左边的随从移到发动者场上
+                leftmost.controller = source.controller
+                # 移除并重新添加以调整位置
+                leftmost.zone = Zone.SETASIDE
+                leftmost.zone = Zone.PLAY
+                # 将其他随从向左移动
+                for i in range(1, len(enemy_minions)):
+                    minion = enemy_minions[i]
+                    minion.zone = Zone.SETASIDE
+                    minion.zone = Zone.PLAY
+        
+        game.manager.action(self, source)
