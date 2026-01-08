@@ -71,7 +71,7 @@ class UNG_910:
     对一个随从造成$3点伤害，并对其相邻的随从 造成$1点伤害。"""
 
     requirements = {PlayReq.REQ_MINION_TARGET: 0, PlayReq.REQ_TARGET_TO_PLAY: 0}
-    play = Hit(TARGET, 2), Hit(TARGET_ADJACENT, 1)
+    play = Hit(TARGET, 3), Hit(TARGET_ADJACENT, 1)
 
 
 class UNG_916:
@@ -100,7 +100,7 @@ class UNG_917t1:
     activate = Buff(TARGET, "UNG_917e")
 
 
-UNG_917e = buff(+2, +2)
+UNG_917e = buff(+3, +3)
 
 
 class UNG_920:

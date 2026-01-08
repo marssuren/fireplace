@@ -61,7 +61,7 @@ class UNG_084:
     战吼：造成3点伤害。"""
 
     requirements = {PlayReq.REQ_NONSELF_TARGET: 0, PlayReq.REQ_TARGET_IF_AVAILABLE: 0}
-    play = Hit(TARGET, 2)
+    play = Hit(TARGET, 3)
 
 
 class UNG_205:
