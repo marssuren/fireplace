@@ -232,9 +232,9 @@ class TLC_460t:
         
         if cards:
             # 施放发现的法术
-            # 注意：这里需要处理目标选择等问题
-            # 简化实现：直接施放（如果需要目标，由玩家选择）
-            yield Play(CONTROLLER, cards[0])
+            # 使用 CastSpell action 会自动处理目标选择（随机目标）
+            # 参考 whizbang/tokens.py 的 LOOT_506 实现
+            yield CastSpell(cards[0])
 
 
 class TLC_452t:

@@ -385,9 +385,8 @@ class TLC_433e:
     
     监听残骸消耗事件，更新任务进度
     """
-    # 监听残骸消耗事件
-    # 注意：这需要核心引擎支持 SpendCorpses 事件
-    # 这里我们使用简化实现，监听 GameTag.CORPSES 的变化
+    # 监听残骸消耗事件（核心引擎已完整支持 SpendCorpses 事件）
+    # SpendCorpses 在 actions.py 中实现，包括事件广播和追踪机制
     
     events = SpendCorpses(CONTROLLER).after(
         lambda self, source, amount: [

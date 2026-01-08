@@ -380,15 +380,12 @@ class TLC_836:
             lambda self, source, card: Buff(card, "TLC_836e")
         ),
         # 监听施放1费法术，再次施放
+        # CastSpell 会自动处理目标选择（随机目标）
+        # 参考 titans/neutral_legendary.py 的 TTN_092 实现
         Play(CONTROLLER, SPELL + (COST == 1)).after(
-            lambda self, source, card: (
-                # 如果法术有目标，需要重新选择目标
-                # 这里简化处理：直接再次施放（使用相同目标）
-                card.requirements and PlayReq.REQ_TARGET_TO_PLAY in card.requirements
-                and card.target
-                and [CastSpell(card, card.target)]
-                or [CastSpell(card)]
-            )
+            lambda self, source, card: [
+                CastSpell(card)
+            ]
         )
     ]
 
