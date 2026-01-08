@@ -121,13 +121,13 @@ class LOOT_017:
     """Dark Pact / 黑暗契约
     消灭一个友方随从。为你的英雄恢复#8点生命值。"""
 
-    # Destroy a friendly minion. Restore #4 Health to your hero.
+    # Destroy a friendly minion. Restore #8 Health to your hero.
     requirements = {
         PlayReq.REQ_FRIENDLY_TARGET: 0,
         PlayReq.REQ_TARGET_TO_PLAY: 0,
         PlayReq.REQ_MINION_TARGET: 0,
     }
-    play = Destroy(TARGET), Heal(FRIENDLY_HERO, 4)
+    play = Destroy(TARGET), Heal(FRIENDLY_HERO, 8)
 
 
 class LOOT_043:
@@ -189,4 +189,4 @@ class LOOT_420:
     在你的回合开始时，从你的手牌中召唤一个 恶魔。"""
 
     # At the start of your turn, summon a Demon from your hand.
-    events = OWN_TURN_BEGIN.on(Give(CONTROLLER, RandomDemon()))
+    events = OWN_TURN_BEGIN.on(Summon(CONTROLLER, RANDOM(FRIENDLY_HAND + DEMON)))

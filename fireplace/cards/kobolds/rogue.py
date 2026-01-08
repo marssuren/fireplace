@@ -54,7 +54,7 @@ class LOOT_211:
         PlayReq.REQ_MINION_TARGET: 0,
         PlayReq.REQ_FRIENDLY_TARGET: 0,
     }
-    combo = ForceDraw(RANDOM(FRIENDLY_DECK + MINION))
+    combo = ForceDraw(RANDOM(FRIENDLY_DECK + MINION)) * 2
 
 
 class LOOT_412:
@@ -140,7 +140,7 @@ class LOOT_503t:
     }
     play = Destroy(RANDOM_ENEMY_MINION * 2)
     progress_total = 3
-    reward = Morph(SELF, "LOOT_503t")
+    reward = Morph(SELF, "LOOT_503t2")
 
     class Hand:
         events = Play(CONTROLLER, DEATHRATTLE).after(AddProgress(SELF, Play.CARD))

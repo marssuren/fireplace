@@ -82,7 +82,8 @@ class LOOT_064:
     reward = Morph(SELF, "LOOT_064t1")
 
     class Hand:
-        events = Play(CONTROLLER, DEATHRATTLE).after(AddProgress(SELF, Play.CARD))
+        # 过载3个法力水晶后升级
+        events = Overload(CONTROLLER).on(AddProgress(SELF, CONTROLLER, Overload.AMOUNT))
 
 
 class LOOT_064t1:
@@ -99,7 +100,8 @@ class LOOT_064t1:
     reward = Morph(SELF, "LOOT_064t2")
 
     class Hand:
-        events = Play(CONTROLLER, DEATHRATTLE).after(AddProgress(SELF, Play.CARD))
+        # 过载3个法力水晶后升级
+        events = Overload(CONTROLLER).on(AddProgress(SELF, CONTROLLER, Overload.AMOUNT))
 
 
 class LOOT_064t2:
