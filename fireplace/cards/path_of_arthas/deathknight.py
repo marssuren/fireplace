@@ -73,8 +73,13 @@ class RLK_018t:
 
 class RLK_056:
     """邪恶狂热 (Unholy Frenzy)
-    选择一个敌方随从，使你的所有随从攻击该随从。再次召唤死亡的友方随从。
-    (Wait, checklist says: 选择一个敌方随从，使你的所有随从攻击该随从。再次召唤死亡的友方随从。)
+    选择一个敌方随从,使你的所有随从攻击该随从。再次召唤死亡的友方随从。
+    
+    实现说明:
+    - 记录攻击前的友方随从列表
+    - 让所有友方随从攻击目标
+    - 攻击后检查哪些随从死亡
+    - 重新召唤死亡的随从
     """
     requirements = {
         PlayReq.REQ_TARGET_TO_PLAY: 0,
@@ -83,21 +88,24 @@ class RLK_056:
     }
     
     def play(self):
-        # 记录当前场上的友方随从
-        initial_friendlies = list(self.controller.field)
+        # 记录当前场上的友方随从(记录ID和引用)
+        initial_friendlies = [(m, m.id) for m in list(self.controller.field)]
         
         # 让所有友方随从攻击目标
-        # 注意：需要强制攻击，无视嘲讽等
-        for minion in initial_friendlies:
-            # 只有能攻击的随从才攻击（或者强制攻击？）
-            # 炉石机制通常是强制攻击
-            yield Attack(minion, TARGET)
+        for minion, minion_id in initial_friendlies:
+            # 检查随从是否还在场上(可能在之前的攻击中死亡)
+            if minion.zone == Zone.PLAY:
+                yield Attack(minion, TARGET)
         
-        # 再次召唤在此过程中死亡的友方随从
-        # 需要追踪在本次 Sequence 中死亡的随从
-        # 简单实现：检查 initial_friendlies 中哪些死掉了
-        # Step 2: Resurrect them.
-        pass # TODO: 需要更复杂的事件追踪，甚至可能要在 Attack 序列后处理
+        # 攻击序列完成后,检查哪些随从死亡了
+        # 通过比较初始列表和当前场上的随从来确定
+        current_field_ids = {m.id for m in self.controller.field}
+        dead_minions = [minion_id for minion, minion_id in initial_friendlies 
+                       if minion_id not in current_field_ids]
+        
+        # 重新召唤死亡的友方随从
+        for minion_id in dead_minions:
+            yield Summon(CONTROLLER, minion_id)
 
 
 class RLK_057:
@@ -120,13 +128,34 @@ class RLK_057t:
 
 class RLK_066:
     """鲜血魔术师 (Hematurge)
-    战吼：消耗一份残骸，发现一张鲜血符文牌。
+    战吼:消耗一份残骸,发现一张鲜血符文牌。
+    
+    鲜血符文牌定义:任何 runeCost.blood >= 1 的死亡骑士卡牌
     """
     def play(self):
         if self.controller.corpses >= 1:
             yield SpendCorpses(CONTROLLER, 1)
-            # 发现鲜血符文牌 (简化为DK牌)
-            yield Discover(CONTROLLER, RandomSpell(card_class=CardClass.DEATHKNIGHT))
+            # 发现鲜血符文牌 (runeCost.blood >= 1 的死亡骑士卡牌)
+            # 使用 RandomCardGenerator 生成符合条件的卡牌池
+            def is_blood_rune_card(card):
+                # 检查是否为死亡骑士卡牌
+                if card.card_class != CardClass.DEATHKNIGHT:
+                    return False
+                # 检查是否有鲜血符文要求
+                if hasattr(card.data, 'runeCost'):
+                    rune_cost = card.data.runeCost
+                    if isinstance(rune_cost, dict) and rune_cost.get('blood', 0) >= 1:
+                        return True
+                return False
+            
+            yield GenericChoice(
+                CONTROLLER,
+                cards=RandomCardGenerator(
+                    CONTROLLER,
+                    card_filter=is_blood_rune_card,
+                    count=3
+                )
+            )
 
 
 class RLK_083:
@@ -158,13 +187,13 @@ class RLK_711e:
 
 
 class RLK_712:
-    """活力分流 (Blood Tap) (Checklist Name)
-    使你手牌中的所有随从牌获得+1/+1。消耗3份残骸，再获得+1/+1。
+    """活力分流 (Blood Tap)
+    使你手牌中的所有随从牌获得+1/+1。消耗2份残骸,再获得+1/+1。
     """
     def play(self):
         yield Buff(FRIENDLY_HAND + MINION, "RLK_712e")
-        if self.controller.corpses >= 3:
-            yield SpendCorpses(CONTROLLER, 3)
+        if self.controller.corpses >= 2:
+            yield SpendCorpses(CONTROLLER, 2)
             yield Buff(FRIENDLY_HAND + MINION, "RLK_712e")
 
 class RLK_712e:
@@ -219,11 +248,11 @@ class RLK_512:
 
 class RLK_731:
     """黑暗堕落者新兵 (Darkfallen Neophyte)
-    战吼：消耗一份残骸，使你手牌中的所有随从牌获得+2攻击力。
+    战吼:消耗2份残骸,使你手牌中的所有随从牌获得+2攻击力。
     Wait, checklist was RLK_731: "战吼：消耗一份残骸..."
     """
     play = (
-        SpendCorpses(CONTROLLER, 1),
+        SpendCorpses(CONTROLLER, 2),
         Buff(FRIENDLY_HAND + MINION, "RLK_731e")
     )
 
@@ -298,15 +327,15 @@ class RLK_740:
 
 class RLK_745:
     """恶毒恐魔 (Malignant Horror)
-    复生。在你的回合结束时，消耗一份残骸，召唤一个本随从的复制。
+    复生。在你的回合结束时,消耗4份残骸,召唤一个本随从的复制。
     """
     tags = {GameTag.REBORN: True}
     
     events = OwnTurnEnds(CONTROLLER).on(
         lambda self: (
-            SpendCorpses(CONTROLLER, 1) &
+            SpendCorpses(CONTROLLER, 4) &
             Summon(CONTROLLER, ExactCopy(SELF))
-        ) if self.controller.corpses >= 1 else None
+        ) if self.controller.corpses >= 4 else None
     )
 
 
@@ -369,8 +398,12 @@ class RLK_063:
     """冰霜巨龙之怒 (Frostwyrm's Fury)
     造成5点伤害，冻结所有敌方随从。召唤一条5/5的冰霜巨龙。
     """
+    requirements = {
+        PlayReq.REQ_TARGET_TO_PLAY: 0
+    }
+    
     play = (
-        Hit(TARGET, 5), # Note: Checklist says "Deal 5 damage", usually targetable
+        Hit(TARGET, 5),
         Freeze(ENEMY_MINIONS),
         Summon(CONTROLLER, "RLK_063t")
     )
