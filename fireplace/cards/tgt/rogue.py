@@ -12,7 +12,7 @@ class AT_028:
     combo = Buff(SELF, "AT_028e")
 
 
-AT_028e = buff(atk=3)
+AT_028e = buff(atk=4)
 
 
 class AT_029:
@@ -66,7 +66,7 @@ class AT_033:
     """Burgle / 剽窃
     随机获取3张（你对手职业的）卡牌。"""
 
-    play = Give(CONTROLLER, RandomCollectible(card_class=ENEMY_CLASS)) * 2
+    play = Give(CONTROLLER, RandomCollectible(card_class=ENEMY_CLASS)) * 3
 
 
 class AT_035:

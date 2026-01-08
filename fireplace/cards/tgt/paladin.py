@@ -12,7 +12,7 @@ class AT_075:
     update = Refresh(FRIENDLY + ID("CS2_101t"), buff="AT_075e")
 
 
-AT_075e = buff(atk=1)
+AT_075e = buff(atk=2)
 
 
 class AT_076:

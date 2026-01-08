@@ -47,7 +47,7 @@ class AT_001:
     对一个随从造成$25点伤害。"""
 
     requirements = {PlayReq.REQ_MINION_TARGET: 0, PlayReq.REQ_TARGET_TO_PLAY: 0}
-    play = Hit(TARGET, 8)
+    play = Hit(TARGET, 25)
 
 
 class AT_004:

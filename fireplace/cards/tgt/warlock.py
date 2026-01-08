@@ -23,7 +23,7 @@ class AT_021:
     events = Discard(FRIENDLY).on(Buff(SELF, "AT_021e"))
 
 
-AT_021e = buff(+1, +1)
+AT_021e = buff(atk=2, health=1)
 
 
 class AT_023:
