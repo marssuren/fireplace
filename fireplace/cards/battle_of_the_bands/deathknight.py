@@ -47,11 +47,13 @@ class ETC_533:
     """Mosh Pit - 狂欢舞台
     2费 地标
     消耗3份残骸,使一个友方随从获得复生。
+
+    官方数据确认：2费，2耐久度
     """
     tags = {
         GameTag.CARDTYPE: CardType.LOCATION,
         GameTag.COST: 2,
-        GameTag.HEALTH: 3,  # 假设耐久度为3
+        GameTag.HEALTH: 2,
     }
     requirements = {
         PlayReq.REQ_TARGET_TO_PLAY: 0,
@@ -211,15 +213,79 @@ class ETC_210:
         GameTag.COST: 10,
         GameTag.LIFESTEAL: True,
     }
-    # Base effect: Deal 5 damage to all enemies, summon 2 3/3 Souls
-    # This is a simplified implementation - the actual random improvement based on corpses
-    # would require custom logic that tracks corpses spent throughout the game
-    play = Hit(ENEMY_CHARACTERS, 5) & Summon(CONTROLLER, "ETC_210t") * 2
+    
+    def play(self):
+        """
+        打出效果：造成伤害并召唤灵魂
+        
+        基础效果：造成6点伤害，召唤3个2/2灵魂
+        动态提升：每消耗1个残骸，随机提升以下参数之一：
+        - 伤害值（初始6）
+        - 召唤数量（初始3，上限7）
+        - 灵魂攻击力（初始2）
+        - 灵魂生命值（初始2）
+        
+        提升机制：基于 player.total_corpses_spent（本局对战中累积消耗的残骸总数）
+        """
+        # 基础数值
+        base_damage = 6
+        base_soul_count = 3
+        base_soul_atk = 2
+        base_soul_health = 2
+        
+        # 根据消耗的残骸总数进行随机提升
+        total_spent = self.controller.total_corpses_spent
+        
+        # 初始化提升值
+        damage_bonus = 0
+        soul_count_bonus = 0
+        soul_atk_bonus = 0
+        soul_health_bonus = 0
+        
+        # 每消耗1个残骸，随机提升一个参数
+        for _ in range(total_spent):
+            stat = self.game.random.choice(['damage', 'count', 'atk', 'health'])
+            if stat == 'damage':
+                damage_bonus += 1
+            elif stat == 'count':
+                # 召唤数量上限为7
+                if base_soul_count + soul_count_bonus < 7:
+                    soul_count_bonus += 1
+            elif stat == 'atk':
+                soul_atk_bonus += 1
+            elif stat == 'health':
+                soul_health_bonus += 1
+        
+        # 计算最终数值
+        final_damage = base_damage + damage_bonus
+        final_soul_count = base_soul_count + soul_count_bonus
+        final_soul_atk = base_soul_atk + soul_atk_bonus
+        final_soul_health = base_soul_health + soul_health_bonus
+        
+        # 造成伤害（吸血效果由 LIFESTEAL 标签自动处理）
+        yield Hit(ENEMY_CHARACTERS, final_damage)
+        
+        # 召唤灵魂
+        for _ in range(final_soul_count):
+            soul = yield Summon(CONTROLLER, "ETC_210t")
+            if soul:
+                # 设置灵魂的攻击力和生命值
+                yield Buff(soul[0], "ETC_210e", atk=final_soul_atk - 1, max_health=final_soul_health - 1)
+
+
+class ETC_210e:
+    """通灵最强音灵魂增益 / Climactic Necrotic Explosion Soul Buff
+    
+    动态增益：根据消耗的残骸数量提升灵魂属性
+    """
+    # 基础属性由 Buff action 的 atk 和 max_health 参数动态设置
+    pass
 
 
 class ETC_210t:
     """灵魂 / Soul"""
     tags = {
-        GameTag.ATK: 3,
-        GameTag.HEALTH: 3,
+        GameTag.ATK: 1,  # 基础1攻（会被 buff 提升到实际值）
+        GameTag.HEALTH: 1,  # 基础1血（会被 buff 提升到实际值）
     }
+

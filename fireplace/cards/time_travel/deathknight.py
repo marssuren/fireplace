@@ -2,7 +2,7 @@
 穿越时间流 - DEATH KNIGHT
 """
 from ..utils import *
-from .rewind_helpers import create_rewind_point
+from .rewind_helpers import execute_with_rewind, mark_card_rewind
 
 
 # COMMON
@@ -86,33 +86,37 @@ class TIME_610:
     """昨日之影 - Shadows of Yesterday
     6费 法术 - 暗影学派 - 亡灵符文x2
     **回溯**。召唤四个3/2暗影。它们每个分别获得两个随机**奖励效果**。
-    
+
     Rewind. Summon four 3/2 Shades. They each gain two random Bonus Effects.
     """
     requirements = {}
-    
+
     def play(self):
-        # 1. 创建回溯点（快照）
-        create_rewind_point(self.game)
-        
-        # 2. 召唤四个3/2暗影
-        # 暗影Token定义在 tokens.py 中
-        for _ in range(4):
-            minion = yield Summon(CONTROLLER, "TIME_610t")
-            
-            # 3. 每个暗影获得两个随机奖励效果
-            if minion:
-                # 随机选择2个不同的奖励效果
-                bonus_effects = self.game.random.sample([
-                    "TIME_610e1",  # +2/+2
-                    "TIME_610e2",  # 突袭
-                    "TIME_610e3",  # 嘲讽
-                    "TIME_610e4",  # 圣盾
-                    "TIME_610e5",  # 吸血
-                ], 2)
-                
-                for effect in bonus_effects:
-                    yield Buff(minion[0], effect)
+        # 标记卡牌具有回溯能力
+        mark_card_rewind(self, rewind_count=1)
+
+        # 定义卡牌效果
+        def effect():
+            # 召唤四个3/2暗影
+            for _ in range(4):
+                minion = yield Summon(CONTROLLER, "TIME_610t")
+
+                # 每个暗影获得两个随机奖励效果
+                if minion:
+                    # 随机选择2个不同的奖励效果
+                    bonus_effects = self.game.random.sample([
+                        "TIME_610e1",  # +2/+2
+                        "TIME_610e2",  # 突袭
+                        "TIME_610e3",  # 嘲讽
+                        "TIME_610e4",  # 圣盾
+                        "TIME_610e5",  # 吸血
+                    ], 2)
+
+                    for buff_id in bonus_effects:
+                        yield Buff(minion[0], buff_id)
+
+        # 使用 Rewind 包装器执行效果
+        yield from execute_with_rewind(self, effect)
 
 
 class TIME_614:

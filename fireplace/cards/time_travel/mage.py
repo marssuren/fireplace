@@ -2,7 +2,7 @@
 穿越时间流 - MAGE
 """
 from ..utils import *
-from .rewind_helpers import create_rewind_point
+from .rewind_helpers import execute_with_rewind, mark_card_rewind
 
 
 # COMMON
@@ -16,19 +16,27 @@ class TIME_006:
     requirements = {}
     
     def play(self):
-        # 召唤第一个0/4嘲讽随从
-        yield Summon(self.controller, "TIME_006t")
-        
-        # 检查手牌中是否有龙
-        has_dragon = False
-        for card in self.controller.hand:
-            if card.race == Race.DRAGON:
-                has_dragon = True
-                break
-        
-        # 如果有龙，再召唤一个
-        if has_dragon:
+        # 标记卡牌具有回溯能力
+        mark_card_rewind(self, rewind_count=1)
+
+        # 定义卡牌效果
+        def effect():
+            # 召唤第一个0/4嘲讽随从
             yield Summon(self.controller, "TIME_006t")
+
+            # 检查手牌中是否有龙
+            has_dragon = False
+            for card in self.controller.hand:
+                if card.race == Race.DRAGON:
+                    has_dragon = True
+                    break
+
+            # 如果有龙，再召唤一个
+            if has_dragon:
+                yield Summon(self.controller, "TIME_006t")
+
+        # 使用 Rewind 包装器执行效果
+        yield from execute_with_rewind(self, effect)
 
 
 class TIME_855:
@@ -71,14 +79,15 @@ class TIME_000:
     requirements = {}
     
     def play(self):
-        # 1. 创建回溯点
-        create_rewind_point(self.game)
         
-        # 2. 随机获取一张随从牌并减少3费
+        # 随机获取一张随从牌并减少3费
         card = yield Give(self.controller, RandomMinion())
         if card:
             yield Buff(card, "TIME_000e")
 
+
+        # 使用 Rewind 包装器执行效果
+        yield from execute_with_rewind(self, effect)
 
 class TIME_000e:
     """半稳定的传送门 - 减少3费"""

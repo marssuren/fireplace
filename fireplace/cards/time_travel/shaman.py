@@ -2,7 +2,7 @@
 穿越时间流 - SHAMAN
 """
 from ..utils import *
-from .rewind_helpers import create_rewind_point
+from .rewind_helpers import execute_with_rewind, mark_card_rewind
 
 
 # COMMON
@@ -23,6 +23,11 @@ class TIME_212:
     }
     
     def play(self):
+        # 标记卡牌具有回溯能力
+        mark_card_rewind(self, rewind_count=1)
+
+        # 定义卡牌效果
+        def effect():
         # 对友方随从造成2点伤害
         yield Hit(TARGET, 2)
         
@@ -203,10 +208,8 @@ class TIME_014:
     requirements = {}
     
     def play(self):
-        # 1. 创建回溯点
-        create_rewind_point(self.game)
         
-        # 2. 随机召唤总计12费的随从
+        # 随机召唤总计12费的随从
         remaining_mana = 12
         
         while remaining_mana > 0 and len(self.controller.field) < 7:
@@ -236,9 +239,12 @@ class TIME_014:
                 # 如果无法召唤，退出循环
                 break
         
-        # 3. 过载3点
+        # 过载3点
         yield Overload(self.controller, 3)
 
+
+        # 使用 Rewind 包装器执行效果
+        yield from execute_with_rewind(self, effect)
 
 class TIME_217:
     """雷鸫 - Stormrook

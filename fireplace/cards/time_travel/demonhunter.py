@@ -2,7 +2,7 @@
 穿越时间流 - DEMONHUNTER
 """
 from ..utils import *
-from .rewind_helpers import create_rewind_point
+from .rewind_helpers import execute_with_rewind, mark_card_rewind
 
 
 # COMMON
@@ -11,20 +11,24 @@ class TIME_441:
     """永世裂痕 - Aeon Rend
     4费 法术 - 邪能学派
     <b>回溯</b>。随机对两个敌人造成$4点伤害。
-    
+
     Rewind. Deal 4 damage to two random enemies.
     """
     requirements = {}
-    
-    def play(self):
-        # 创建回溯点（快照游戏状态）
-        create_rewind_point(self.game)
-        
-        # 随机对两个敌人造成4点伤害
-        # 注意：可能对同一个敌人造成两次伤害
-        for _ in range(2):
-            yield Hit(RANDOM_ENEMY_CHARACTER, 4)
 
+    def play(self):
+        # 标记卡牌具有回溯能力
+        mark_card_rewind(self, rewind_count=1)
+
+        # 定义卡牌效果
+        def effect():
+            # 随机对两个敌人造成4点伤害
+            # 注意：可能对同一个敌人造成两次伤害
+            for _ in range(2):
+                yield Hit(RANDOM_ENEMY_CHARACTER, 4)
+
+        # 使用 Rewind 包装器执行效果
+        yield from execute_with_rewind(self, effect)
 
 class TIME_444:
     """迷时战刃 - Time-Lost Glaive

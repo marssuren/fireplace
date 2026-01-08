@@ -47,14 +47,8 @@ class ETC_074:
     }
     
     def play(self):
-        # 发现对手使用过的卡牌
-        # 需要获取对手打出过的记录列表
-        # Fireplace Game对象有 history? 或者 controller.opponent.cards_played_this_game (但只含本局)
-        # 题目说 "played this game"
-        # 假设 list(self.controller.opponent.cards_played_this_game) 可用
-        # 我们需要从中筛选并发现
-        
-        # 获取对手打出的所有卡牌ID
+        # 发现对手在本局对战中使用过的卡牌
+        # 使用 Player.cards_played_this_game 追踪系统
         opponent_cards = [c.id for c in self.controller.opponent.cards_played_this_game]
         
         if opponent_cards:
@@ -98,17 +92,14 @@ class JAM_020:
     def play(self):
         target = self.target
         is_enemy = target.controller != self.controller
-        
+
         # 移回手牌
         yield Bounce(target)
-        
+
         # 如果是敌方，增加费用
+        # Bounce 后 target 引用仍然有效，可以直接 Buff
+        # 参考：OG_080c (Bloodthistle Toxin) 使用相同模式
         if is_enemy:
-            # Bounce 后 target 变成了 Card 对象 (在手牌中)
-            # 需要找到那张卡。BounceAction 通常会更新 target 为手牌中的卡吗？
-            # Fireplace Bounce 实现：move to HAND.
-            # 此时 target 引用应该仍然指向 Entity，但 Zone 变了。
-            # 直接 Buff 即可。
             yield Buff(target, "JAM_020e")
 
 class JAM_020e:
@@ -231,28 +222,22 @@ class ETC_076:
     
     def play(self):
         target = self.target
-        # 记录属性
+        # 记录目标的当前属性（包含增益和受伤状态）
+        # 参考：nathria/priest.py REV_248 - "with its stats" 使用当前属性
+        # - atk: 当前攻击力（包含增益）
+        # - health: 当前生命值（如果受伤，复制品也保持相同生命值）
         atk = target.atk
-        health = target.health # 受伤状态？通常是当前生命值上限？还是当前生命值？
-        # "With its stats". Usually means Current Stats (Buffed).
-        # But Health is usually Max Health? 
-        # If I bounce a 3/1 damaged (originally 3/3), token is 3/1 or 3/3?
-        # Usually copies Max Health.
-        max_health = target.max_health
-        
+        health = target.health
+
         # 移回手牌
         yield Bounce(target)
-        
-        # 召唤舞者
-        # ID: ETC_076t
+
+        # 召唤舞者，具有目标的属性和突袭
         token = yield Summon(CONTROLLER, "ETC_076t")
         if token:
-            # 应用属性
-            # 如果直接 Summon，属性是基础属性
-            # 需要 Buff 到目标属性
-            # 或者使用 Morph? 不，是召唤新随从
-            yield Buff(token, "ETC_076e", atk=atk, max_health=max_health)
-            # 设置当前生命值为 max_health (默认即满血)
+            # 设置舞者的属性为目标的当前属性
+            token.atk = atk
+            token.max_health = health  # 使用当前生命值作为最大生命值
 
 class ETC_076t:
     """Dancer - 舞者"""
@@ -270,16 +255,16 @@ class ETC_076e:
 class ETC_518:
     """Record Scratcher - 搓盘机
     3费 2/2 武器
-    亡语：复原2个法力水晶。（装备期间，使用连击牌以提升此效果！）
+    亡语：复原1个法力水晶。（装备期间，使用连击牌以提升此效果！）
+
+    官方数据确认：基础复原1个法力水晶，每打出连击牌+1
     """
-    # 基础是复原2个? 描述说 "复原 1 个... 提升效果"。
-    # 假设基础是1。
     tags = {
         GameTag.ATK: 2,
         GameTag.HEALTH: 2,
         GameTag.COST: 3,
         GameTag.CARDTYPE: CardType.WEAPON,
-        GameTag.TAG_SCRIPT_DATA_NUM_1: 1, # 计数器
+        GameTag.TAG_SCRIPT_DATA_NUM_1: 1, # 计数器：复原的法力水晶数量
     }
     
     # 亡语：复原 X 个水晶
@@ -317,19 +302,20 @@ class ETC_079:
             yield Buff(m, "ETC_079e")
 
 class ETC_079e:
+    """本回合费用为1
+
+    实现方式：
+    - 使用 COST_SET 设置费用为1（而不是增加）
+    - 使用 OwnTurnEnd 事件在回合结束时销毁此 Buff
+
+    参考：
+    - VAC_524e2 (paradise/mage.py) - 使用 COST_SET 设置费用
+    - DMF_111e (darkmoon/warlock.py) - 使用 OwnTurnEnd 实现本回合有效
+    """
     tags = {
-        GameTag.COST: 1, # 设置为1? 还是减少? "Set Cost to 1".
-        # Fireplace Buff 默认为增加属性。
-        # 如果要 SET 属性，需要特殊 Action 或 ChangeCost Buff
-        # 使用 COST_SET Tag
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
         GameTag.COST_SET: 1,
     }
-    # 本回合有效：OneTurnEffect?
-    # Buff 默认是永久的。需要 ONE_TURN_EFFECT
-    # 但在手牌中的 Buff 通常不会自动消失，除非是光环?
-    # 描述 "This turn, they cost (1)". 
-    # 这意味着回合结束恢复。
-    # 需要在回合结束时移除 Buff。
     events = OwnTurnEnd(CONTROLLER).on(Destroy(SELF))
 
 class ETC_078:
@@ -344,14 +330,12 @@ class ETC_078:
     }
     
     def play(self):
-        # 随机麦克风 ID 列表 (假设)
-        mics = ["ETC_078t", "ETC_078t2", "ETC_078t3"] # 假设有多个，或者只有一个通用麦克风
-        # 这里为了简化，假设只有一个麦克风 ID
+        # 官方数据确认：只有一个通用的麦克风武器 (1/2)
         mic_id = "ETC_078t"
-        
+
         # 我方装备
         yield Equip(CONTROLLER, mic_id)
-        
+
         # 敌方装备
         yield Equip(OPPONENT, mic_id)
         
@@ -371,16 +355,24 @@ class ETC_078t:
     }
 
 class ETC_078e:
-    """Glass Jaw - 受到伤害+1"""
-    # 这是一个施加在武器上的 Buff，使得英雄受到伤害+1
-    # 需要 Hero 受到伤害时触发？
-    # 或者 Buff 提供一个光环：Player Tag DAMAGE_MULTIPLIER?
-    # 或者 Event: Damage(OPPONENT_HERO).on(Hit(OPPONENT_HERO, 1))?
-    # 这会造成连锁反应。
-    # 更好的方式：Wait for damage, increase amount?
-    # Fireplace 可能不支持直接修改伤害量。
-    # 使用简单逻辑：当英雄受到伤害时，额外造成1点。
-    events = Damage(OWNER).on(Hit(OWNER, 1))
+    """Glass Jaw - 玻璃下巴
+    使装备此武器的英雄的对手受到的所有伤害增加1点
+
+    实现方式：
+    - 这是一个施加在对手武器上的 Buff
+    - 监听武器拥有者（OWNER）受到伤害的 Predamage 事件
+    - 拦截原始伤害，取消后施加增加1点的伤害
+
+    参考：ETC_084 (邪弦竖琴) 使用 Predamage 事件拦截并修改伤害
+    """
+    # OWNER 是装备此 buff 的武器的拥有者（对手英雄）
+    # 当对手英雄即将受到伤害时，增加1点伤害
+    events = Predamage(OWNER).on(
+        lambda self, source, target, amount: [
+            Predamage(target, 0),           # 取消原始伤害
+            Hit(target, amount + 1)         # 施加增加后的伤害（原始+1）
+        ]
+    )
 
 class JAM_019:
     """Rhythmdancer Risa - 踏韵舞者丽萨
@@ -403,15 +395,3 @@ class JAM_019e:
     tags = {
         GameTag.COST_SET: 1, # 永久变为1? 描述未说"本回合"。
     }
-
-class ETC_074:
-    """Mixtape - 串烧磁带
-    1费法术 发现一张你的对手在本局对战中使用过的牌的复制。
-    """
-    tags = {
-        GameTag.CARDTYPE: CardType.SPELL,
-        GameTag.COST: 1,
-    }
-    def play(self):
-        # 简单发现逻辑
-        yield Discover(CONTROLLER, RandomCard(card_list=lambda: [c.id for c in self.controller.opponent.cards_played_this_game]))

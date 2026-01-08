@@ -2,7 +2,7 @@
 穿越时间流 - 中立 - EPIC
 """
 from ..utils import *
-from .rewind_helpers import create_rewind_point
+from .rewind_helpers import execute_with_rewind, mark_card_rewind
 
 
 class TIME_004:
@@ -14,12 +14,17 @@ class TIME_004:
     requirements = {}
     
     def play(self):
-        # 1. 创建回溯点（快照）
-        create_rewind_point(self.game)
-        
-        # 2. 随机对一个敌人造成7点伤害
-        yield Hit(RANDOM(ENEMY_CHARACTERS), 7)
+        # 标记卡牌具有回溯能力
+        mark_card_rewind(self, rewind_count=1)
 
+        # 定义卡牌效果
+        def effect():
+            # 随机对一个敌人造成7点伤害
+            yield Hit(RANDOM(ENEMY_CHARACTERS), 7)
+
+
+        # 使用 Rewind 包装器执行效果
+        yield from execute_with_rewind(self, effect)
 
 class TIME_041:
     """未来主义先祖 - Futuristic Forefather

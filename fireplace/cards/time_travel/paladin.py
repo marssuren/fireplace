@@ -2,7 +2,7 @@
 穿越时间流 - PALADIN
 """
 from ..utils import *
-from .rewind_helpers import create_rewind_point
+from .rewind_helpers import execute_with_rewind, mark_card_rewind
 
 
 # COMMON
@@ -18,6 +18,11 @@ class TIME_015:
     requirements = {}
     
     def play(self):
+        # 标记卡牌具有回溯能力
+        mark_card_rewind(self, rewind_count=1)
+
+        # 定义卡牌效果
+        def effect():
         # 为英雄恢复3点生命值
         yield Heal(FRIENDLY_HERO, 3)
         
@@ -143,10 +148,8 @@ class TIME_018:
     requirements = {}
     
     def play(self):
-        # 1. 创建回溯点
-        create_rewind_point(self.game)
         
-        # 2. 随机获取2张神圣法术牌并累计法力值消耗
+        # 随机获取2张神圣法术牌并累计法力值消耗
         total_cost = 0
         for _ in range(2):
             # Give action 返回的是一个列表
@@ -161,10 +164,13 @@ class TIME_018:
                 card = cards[0] if isinstance(cards, list) else cards
                 total_cost += card.cost
         
-        # 3. 为英雄恢复等同于法力值消耗的生命值
+        # 为英雄恢复等同于法力值消耗的生命值
         if total_cost > 0:
             yield Heal(FRIENDLY_HERO, total_cost)
 
+
+        # 使用 Rewind 包装器执行效果
+        yield from execute_with_rewind(self, effect)
 
 class TIME_044:
     """过去的诺莫瑞根 - Past Gnomeregan

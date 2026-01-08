@@ -2,7 +2,7 @@
 穿越时间流 - 中立 - RARE
 """
 from ..utils import *
-from .rewind_helpers import create_rewind_point
+from .rewind_helpers import execute_with_rewind, mark_card_rewind
 
 
 class TIME_003:
@@ -19,8 +19,11 @@ class TIME_003:
     requirements = {}
     
     def play(self):
-        # 创建回溯点
-        create_rewind_point(self.game)
+        # 标记卡牌具有回溯能力
+        mark_card_rewind(self, rewind_count=1)
+
+        # 定义卡牌效果
+        def effect():
         
         # 抽一张牌
         drawn_cards = yield Draw(self.controller)
@@ -31,6 +34,9 @@ class TIME_003:
                 if card.zone == Zone.HAND and card.type == CardType.MINION:
                     yield Buff(card, "TIME_003e")
 
+
+        # 使用 Rewind 包装器执行效果
+        yield from execute_with_rewind(self, effect)
 
 class TIME_003e:
     """传送门卫士 - +2/+2增益"""

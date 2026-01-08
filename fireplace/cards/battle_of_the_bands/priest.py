@@ -303,8 +303,7 @@ class ETC_316:
         PlayReq.REQ_ENEMY_TARGET: 0,
         PlayReq.REQ_MINION_TARGET: 0,
         PlayReq.REQ_TARGET_TO_PLAY: 0,
-        # 需要至少2个敌方随从才能发挥完全效果，但1个也能打（打不出只能选1个）
-        # REQ_MINIMUM_ENEMY_MINIONS: 2 ?
+        PlayReq.REQ_MINIMUM_ENEMY_MINIONS: 2,  # 官方确认：需要至少2个敌方随从
     }
     
     def play(self):

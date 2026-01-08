@@ -2,7 +2,7 @@
 穿越时间流 - 中立 - COMMON
 """
 from ..utils import *
-from .rewind_helpers import create_rewind_point
+from .rewind_helpers import execute_with_rewind, mark_card_rewind
 
 
 class TIME_002:
@@ -14,13 +14,18 @@ class TIME_002:
     requirements = {}
     
     def play(self):
-        # 创建回溯点
-        create_rewind_point(self.game)
-        
-        # 随机获取2张职业法术
-        for _ in range(2):
+        # 标记卡牌具有回溯能力
+        mark_card_rewind(self, rewind_count=1)
+
+        # 定义卡牌效果
+        def effect():
+            # 随机获取2张职业法术
+            for _ in range(2):
             yield Give(self.controller, RandomSpell(card_class=self.controller.hero.card_class))
 
+
+        # 使用 Rewind 包装器执行效果
+        yield from execute_with_rewind(self, effect)
 
 class TIME_035:
     """时间机器 - Time Machine

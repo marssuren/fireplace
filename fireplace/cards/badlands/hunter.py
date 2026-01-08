@@ -135,7 +135,11 @@ class DEEP_001:
 
 class DEEP_001e:
     """属性交换增益"""
-    pass
+    def __init__(self, tags, data):
+        super().__init__(tags, data)
+        # 从 data 中获取动态设置的属性值
+        self.atk = data.get('atk', 0)
+        self.max_health = data.get('max_health', 0)
 
 
 class WW_809:

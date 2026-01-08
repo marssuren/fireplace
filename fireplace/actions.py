@@ -1278,6 +1278,7 @@ class SpendCorpses(GameAction):
         source.game.manager.game_action(self, source, player, amount)
         self.broadcast(source, EventListener.ON, player, amount)
         player.corpses -= amount
+        player.total_corpses_spent += amount  # 累积消耗的残骸总数（用于ETC_210等卡牌）
         return True
 
 
@@ -1575,6 +1576,19 @@ class SecretChoice(GenericChoice):
             # 为选择添加秘密标记，供游戏管理器使用
             self.secret = True
         return result
+
+
+class RewindChoice(GenericChoice):
+    """
+    Rewind 选择（Rewind Choice）- 穿越时间流（2025年11月）
+
+    让玩家在看到卡牌效果后，选择是否回溯并重新执行：
+    - 选项1：接受结果（Accept）- 保留当前效果，继续游戏
+    - 选项2：重新来过（Retry）- 回溯到快照，使用新的随机种子重新执行
+
+    这是 Rewind 机制的核心实现，给予玩家/AI 对随机结果的控制权。
+    """
+    pass
 
 
 class DiscoverWithPendingGuess(GenericChoice):
@@ -2251,6 +2265,10 @@ class GainArmor(TargetedAction):
         # 追踪本回合获得的护甲（如果目标是英雄）
         if target.type == CardType.HERO and hasattr(target.controller, 'armor_gained_this_turn'):
             target.controller.armor_gained_this_turn += amount
+            
+        # 追踪本局对战中获得的护甲总量（如果目标是英雄）- 奥特兰克的决裂（2021年12月）
+        if target.type == CardType.HERO and hasattr(target.controller, 'armor_gained_this_game'):
+            target.controller.armor_gained_this_game += amount
             
         source.game.manager.targeted_action(self, source, target, amount)
         self.broadcast(source, EventListener.ON, target, amount)

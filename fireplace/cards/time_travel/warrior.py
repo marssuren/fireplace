@@ -2,7 +2,7 @@
 穿越时间流 - WARRIOR
 """
 from ..utils import *
-from .rewind_helpers import create_rewind_point
+from .rewind_helpers import execute_with_rewind, mark_card_rewind
 
 
 # COMMON
@@ -23,6 +23,11 @@ class TIME_715:
         cost_mod = lambda self, i: -len(self.controller.opponent.field)
     
     def play(self):
+        # 标记卡牌具有回溯能力
+        mark_card_rewind(self, rewind_count=1)
+
+        # 定义卡牌效果
+        def effect():
         # 抽两张牌
         yield Draw(self.controller)
         yield Draw(self.controller)
@@ -89,20 +94,21 @@ class TIME_034:
     双方都装备随机武器，但你的武器会获得+1/+1加成。
     """
     def play(self):
-        # 1. 创建回溯点
-        create_rewind_point(self.game)
         
-        # 2. 双方玩家各装备一把随机武器
+        # 双方玩家各装备一把随机武器
         # 为己方装备随机武器
         yield Equip(self.controller, RandomWeapon())
         
         # 为对手装备随机武器
         yield Equip(self.controller.opponent, RandomWeapon())
         
-        # 3. 给己方武器+1/+1
+        # 给己方武器+1/+1
         if self.controller.hero.weapon:
             yield Buff(self.controller.hero.weapon, "TIME_034e")
 
+
+        # 使用 Rewind 包装器执行效果
+        yield from execute_with_rewind(self, effect)
 
 class TIME_034e:
     """现场播报员 - 武器+1/+1"""

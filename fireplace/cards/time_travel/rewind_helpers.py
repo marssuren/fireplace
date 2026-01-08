@@ -7,6 +7,7 @@ Rewind 机制说明：
 - 每张卡牌可以有不同的 Rewind 次数（1次、2次、3次等）
 """
 from ...enums import REWIND, REWIND_COUNT, REWIND_AVAILABLE
+from ...actions import RewindChoice
 
 
 def mark_card_rewind(card, rewind_count=1):
@@ -109,3 +110,44 @@ def rewind_game(game):
     game.random.setstate(new_state)
 
     return True
+
+
+def execute_with_rewind(card, effect_generator):
+    """
+    执行带有 Rewind 功能的卡牌效果
+
+    正确实现方案：
+    - 第一步：创建游戏快照
+    - 第二步：执行卡牌效果
+    - 第三步：暂停游戏，让玩家/AI 选择是否回溯
+      - 选项1：接受结果（继续游戏）
+      - 选项2：重新来过（回溯并重新执行）
+
+    这是正确的 Rewind 机制实现，给予玩家/AI 对随机结果的控制权。
+
+    Args:
+        card: 卡牌对象
+        effect_generator: 卡牌效果的生成器函数（必须是可调用对象）
+
+    Yields:
+        卡牌效果的动作
+    """
+    # 1. 创建回溯点（保存游戏快照）
+    create_rewind_point(card.game)
+
+    # 2. 执行卡牌效果
+    for action in effect_generator():
+        yield action
+
+    # 3. 如果可以回溯，让玩家选择
+    if check_can_rewind(card):
+        # 创建两个选项卡牌
+        accept_option = card.controller.card("REWIND_ACCEPT", source=card)
+        retry_option = card.controller.card("REWIND_RETRY", source=card)
+
+        # 将必要信息存储到 retry 选项中
+        retry_option.original_card = card
+        retry_option.effect_generator = effect_generator
+
+        # 让玩家选择：接受结果 or 重新来过
+        yield RewindChoice(card.controller, [accept_option, retry_option])

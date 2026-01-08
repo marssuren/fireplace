@@ -2,7 +2,7 @@
 穿越时间流 - DRUID
 """
 from ..utils import *
-from .rewind_helpers import create_rewind_point
+from .rewind_helpers import execute_with_rewind, mark_card_rewind
 
 
 # COMMON
@@ -17,14 +17,22 @@ class TIME_023:
     requirements = {}
     
     def play(self):
-        # 抽取牌库底的两张牌
-        # 牌库底的牌是 deck[-1] 和 deck[-2]
-        if len(self.controller.deck) > 0:
-            # 先抽倒数第一张
-            yield Draw(self.controller, self.controller.deck[-1])
-        if len(self.controller.deck) > 0:
-            # 再抽倒数第一张（原来的倒数第二张）
-            yield Draw(self.controller, self.controller.deck[-1])
+        # 标记卡牌具有回溯能力
+        mark_card_rewind(self, rewind_count=1)
+
+        # 定义卡牌效果
+        def effect():
+            # 抽取牌库底的两张牌
+            # 牌库底的牌是 deck[-1] 和 deck[-2]
+            if len(self.controller.deck) > 0:
+                # 先抽倒数第一张
+                yield Draw(self.controller, self.controller.deck[-1])
+            if len(self.controller.deck) > 0:
+                # 再抽倒数第一张（原来的倒数第二张）
+                yield Draw(self.controller, self.controller.deck[-1])
+
+        # 使用 Rewind 包装器执行效果
+        yield from execute_with_rewind(self, effect)
 
 
 class TIME_033:
@@ -37,14 +45,15 @@ class TIME_033:
     requirements = {}
     
     def play(self):
-        # 1. 创建回溯点
-        create_rewind_point(self.game)
         
-        # 2. 随机施放2个自然法术
+        # 随机施放2个自然法术
         # 参考 whizbang/mage.py 的 CastSpell(RandomSpell()) 实现
         for _ in range(2):
             yield CastSpell(RandomSpell(spell_school=SpellSchool.NATURE))
 
+
+        # 使用 Rewind 包装器执行效果
+        yield from execute_with_rewind(self, effect)
 
 class TIME_702:
     """潮起潮落 - Ebb and Flow

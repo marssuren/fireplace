@@ -245,20 +245,15 @@ class ETC_413:
     def play(self):
         # Give Attack + Immune
         yield Buff(FRIENDLY_HERO, "ETC_413e")
-        # Attack each enemy minion
-        # Store targets first to avoid issues if board changes?
-        # Attack action handles sequence.
-        # But we must iterate.
-        enemies = self.controller.opponent.field
-        # We need to force attacks. 
-        # Attack(FRIENDLY_HERO, target) 
+
+        # 攻击所有敌方随从
+        # 参考：
+        # - badlands/hunter.py WW_815 - 使用 list() 存储目标快照
+        # - nathria/warrior.py REV_934 - 使用 can_attack() 检查
+        enemies = list(self.controller.opponent.field)
         for enemy in enemies:
-             # Check if hero can attack (not frozen etc? Spell forces it usually)
-             # And enemy is valid target (not stealth?)
-             # "Attack each enemy minion" usually bypasses standard declaring attack checks for target validity?
-             # No, standard rules usually apply unless "Force Attack".
-             # Fireplace Attack Action initiates combat.
-             yield Attack(FRIENDLY_HERO, enemy)
+            if self.controller.hero.can_attack() and enemy.zone == Zone.PLAY:
+                yield Attack(FRIENDLY_HERO, enemy)
 
 class ETC_413e:
     tags = {GameTag.ATK: 2, GameTag.IMMUNE: True, GameTag.CARDTYPE: CardType.ENCHANTMENT}

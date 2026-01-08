@@ -3,7 +3,7 @@
 穿越时间流 - HUNTER
 """
 from ..utils import *
-from .rewind_helpers import create_rewind_point
+from .rewind_helpers import execute_with_rewind, mark_card_rewind
 
 
 # COMMON
@@ -54,20 +54,25 @@ class TIME_602:
     """虫洞 - Wormhole
     3费 法术
     **回溯**。随机召唤一只法力值消耗为（3）的野兽并使其攻击随机敌人。
-    
+
     Rewind. Summon a random 3-Cost Beast. It attacks a random enemy.
     """
     # Mechanics: REWIND
     def play(self):
-        # 1. 创建回溯点（快照）
-        create_rewind_point(self.game)
-        
-        # 2. 召唤一只随机3费野兽
-        minion = yield Summon(self.controller, RandomMinion(cost=3, race=Race.BEAST))
-        
-        # 3. 使其攻击随机敌人
-        if minion and ENEMY_CHARACTERS:
-            yield Attack(minion[0], RANDOM(ENEMY_CHARACTERS))
+        # 标记卡牌具有回溯能力
+        mark_card_rewind(self, rewind_count=1)
+
+        # 定义卡牌效果
+        def effect():
+            # 召唤一只随机3费野兽
+            minion = yield Summon(self.controller, RandomMinion(cost=3, race=Race.BEAST))
+
+            # 使其攻击随机敌人
+            if minion and ENEMY_CHARACTERS:
+                yield Attack(minion[0], RANDOM(ENEMY_CHARACTERS))
+
+        # 使用 Rewind 包装器执行效果
+        yield from execute_with_rewind(self, effect)
 
 
 class TIME_606:

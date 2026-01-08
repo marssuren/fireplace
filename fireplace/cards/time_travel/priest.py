@@ -2,7 +2,7 @@
 穿越时间流 - PRIEST
 """
 from ..utils import *
-from .rewind_helpers import create_rewind_point
+from .rewind_helpers import execute_with_rewind, mark_card_rewind
 
 
 # COMMON
@@ -16,11 +16,19 @@ class TIME_037:
     requirements = {}
     
     def play(self):
-        # 抽一张随从牌
-        yield ForceDraw(RANDOM(FRIENDLY_DECK + MINION))
-        
-        # 给手牌中的所有随从+2生命值
-        yield Buff(FRIENDLY_HAND + MINION, "TIME_037e")
+        # 标记卡牌具有回溯能力
+        mark_card_rewind(self, rewind_count=1)
+
+        # 定义卡牌效果
+        def effect():
+            # 抽一张随从牌
+            yield ForceDraw(RANDOM(FRIENDLY_DECK + MINION))
+
+            # 给手牌中的所有随从+2生命值
+            yield Buff(FRIENDLY_HAND + MINION, "TIME_037e")
+
+        # 使用 Rewind 包装器执行效果
+        yield from execute_with_rewind(self, effect)
 
 
 class TIME_037e:
@@ -54,21 +62,22 @@ class TIME_433:
     requirements = {}
     
     def play(self):
-        # 1. 创建回溯点
-        create_rewind_point(self.game)
-        
-        # 2. 沉默并消灭一个随机敌方随从
-        # 先获取所有敌方随从
-        enemy_minions = list(self.controller.opponent.field)
-        
-        if enemy_minions:
-            # 随机选择一个敌方随从
-            target = self.game.random.choice(enemy_minions)
-            
-            # 沉默并消灭同一个目标
-            yield Silence(target)
-            yield Destroy(target)
+        # 定义卡牌效果
+        def effect():
+            # 沉默并消灭一个随机敌方随从
+            # 先获取所有敌方随从
+            enemy_minions = list(self.controller.opponent.field)
 
+            if enemy_minions:
+                # 随机选择一个敌方随从
+                target = self.game.random.choice(enemy_minions)
+
+                # 沉默并消灭同一个目标
+                yield Silence(target)
+                yield Destroy(target)
+
+        # 使用 Rewind 包装器执行效果
+        yield from execute_with_rewind(self, effect)
 
 # RARE
 

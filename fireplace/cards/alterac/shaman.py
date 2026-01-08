@@ -191,30 +191,33 @@ class AV_258:
     def play(self):
         """让玩家选择两个元素召唤"""
         # 第一次选择
-        yield GenericChoice(CONTROLLER, [
+        first_choice = yield GenericChoice(CONTROLLER, [
             "AV_258t",   # 火焰元素
             "AV_258t2",  # 冰霜元素
             "AV_258t3",  # 自然元素
             "AV_258t4",  # 闪电元素
         ])
+        
+        if not first_choice:
+            return
 
         # 召唤第一个选择的元素
-        if self.controller.choice:
-            first_choice = self.controller.choice.cards[0]
-            yield Summon(CONTROLLER, first_choice)
-
-            # 第二次选择（排除第一次选择的元素）
-            remaining_elements = [
-                e for e in ["AV_258t", "AV_258t2", "AV_258t3", "AV_258t4"]
-                if e != first_choice.id
-            ]
-
-            yield GenericChoice(CONTROLLER, remaining_elements)
-
-            # 召唤第二个选择的元素
-            if self.controller.choice:
-                second_choice = self.controller.choice.cards[0]
-                yield Summon(CONTROLLER, second_choice)
+        first_card = first_choice[0] if isinstance(first_choice, list) else first_choice
+        yield Summon(CONTROLLER, first_card)
+        
+        # 第二次选择（排除第一次选择的元素）
+        all_elements = ["AV_258t", "AV_258t2", "AV_258t3", "AV_258t4"]
+        first_id = first_card.id if hasattr(first_card, 'id') else first_card
+        remaining_elements = [e for e in all_elements if e != first_id]
+        
+        second_choice = yield GenericChoice(CONTROLLER, remaining_elements)
+        
+        if not second_choice:
+            return
+        
+        # 召唤第二个选择的元素
+        second_card = second_choice[0] if isinstance(second_choice, list) else second_choice
+        yield Summon(CONTROLLER, second_card)
 
 
 class AV_258t:

@@ -150,19 +150,20 @@ class AV_657:
     duration = 3
 
     # 伪奥秘事件：每回合结束时消灭最低攻击力随从并召唤阴影魔
-    def pseudo_secret_effect(self):
-        """回合结束时的效果"""
-        if self.controller.field:
-            # 找到攻击力最低的随从
-            lowest_atk_minion = min(self.controller.field, key=lambda m: m.atk)
-            yield Destroy(lowest_atk_minion)
-        # 召唤阴影魔
-        yield Summon(CONTROLLER, "AV_657t")
-        # 递减持续时间
-        yield lambda: self.decrement_duration()
-
+    # 使用内联 lambda 处理复杂逻辑（查找最低攻击力随从）
     pseudo_secret = [
-        OwnTurnEnds(CONTROLLER).on(lambda self: self.pseudo_secret_effect())
+        OwnTurnEnds(CONTROLLER).on(
+            lambda self: [
+                # 如果场上有随从，消灭攻击力最低的随从
+                Destroy(min(self.controller.field, key=lambda m: m.atk))
+            ] if self.controller.field else []
+        ).then(
+            # 召唤阴影魔
+            Summon(CONTROLLER, "AV_657t")
+        ).then(
+            # 递减持续时间
+            lambda self: self.decrement_duration()
+        )
     ]
 
 

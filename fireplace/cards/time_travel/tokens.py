@@ -2,6 +2,48 @@
 穿越时间流 - TOKENS
 """
 from ..utils import *
+from .rewind_helpers import rewind_game, consume_rewind
+
+
+# ========================================
+# Rewind System Tokens
+# ========================================
+
+class REWIND_ACCEPT:
+    """接受结果 - Accept Result
+
+    Rewind 选择卡牌 - 选项1
+    玩家选择接受当前效果，不进行回溯
+    """
+    tags = {
+        GameTag.CARDTYPE: CardType.SPELL,
+        GameTag.COST: 0,
+    }
+
+    def play(self):
+        # 什么都不做，继续游戏
+        pass
+
+
+class REWIND_RETRY:
+    """重新来过 - Retry
+
+    Rewind 选择卡牌 - 选项2
+    玩家选择回溯到快照，使用新的随机种子重新执行效果
+    """
+    tags = {
+        GameTag.CARDTYPE: CardType.SPELL,
+        GameTag.COST: 0,
+    }
+
+    def play(self):
+        # 回溯并重新执行
+        if hasattr(self, 'original_card') and hasattr(self, 'effect_generator'):
+            if rewind_game(self.original_card.game):
+                consume_rewind(self.original_card)
+                # 重新执行效果
+                for action in self.effect_generator():
+                    yield action
 
 
 # ========================================

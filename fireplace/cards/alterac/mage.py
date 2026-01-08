@@ -147,7 +147,11 @@ class AV_284:
 class AV_284e:
     """巴琳达·石炉效果"""
     # 动态增加攻击力和生命值
-    pass
+    # 使用 tags 字典来处理动态数值
+    tags = {
+        GameTag.ATK: lambda self, i: self.atk,
+        GameTag.HEALTH: lambda self, i: self.max_health
+    }
 
 
 class AV_290:

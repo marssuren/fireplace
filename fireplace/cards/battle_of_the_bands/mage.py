@@ -128,26 +128,14 @@ class ETC_528:
     }
     
     def play(self):
-        # 获取本局对战使用的同名卡牌次数（包含本次）
-        # times_played通常在play开始时还未结算完成增加？
-        # 核心逻辑：actions.py Line 646 game_action 后，count增加。
-        # 此时 play 正在执行。
-        # 需要确认 controller.times_played_this_game[card_id] 是否包含自己。
-        # 通常包含。
-        
-        # 灯光表演 ID = ETC_528
+        # 官方文本："Shoot 2 beams at enemies that each deal 2 damage.
+        # Your future Lightshows shoot one more beam."
+        #
+        # 逻辑：基础2道 + 之前施放的次数
+        # - 第一次施放：count=1, 射 2 + (1-1) = 2 道
+        # - 第二次施放：count=2, 射 2 + (2-1) = 3 道
+        # - 第三次施放：count=3, 射 2 + (3-1) = 4 道
         count = self.controller.times_played("ETC_528")
-        
-        # 基础2道，每用过一次多1道
-        # 如果 count 包含本次，那么第一次打出时 count=1。
-        # 文本 "Shoot two beams... Shoot one more for each Lightshow cast."
-        # 第一次应该射 2 道。 (Extra = 0).
-        # 如果 count=1，则 beam_count = 2 + (1-1)? 
-        # 还是说 "Future Lightshows"? 
-        # 第一次打出：2道。
-        # 第二次打出：3道。
-        # 逻辑：2 + (count - 1)。如果 count=1, 结果2. 正确。
-        
         beam_count = 2 + max(0, count - 1)
         
         for i in range(beam_count):
@@ -184,13 +172,19 @@ class JAM_000b:
         events = OwnTurnBegin(CONTROLLER).on(Transform(SELF, "JAM_000c"))
 
 class JAM_000c:
-    """Merch Dispense-o-bot - 周边派送机 (Copy)"""
+    """Merch Dispense-o-bot - 周边派送机
+
+    官方文本："Battlecry: Get two random Mechs. (Changes each turn.)"
+    战吼：获得两张随机机械牌（每回合改变）
+    """
     tags = {GameTag.ATK: 3, GameTag.HEALTH: 3, GameTag.COST: 3, GameTag.RACE: Race.MECHANICAL}
-    # 亡语：复制一张手牌？（需确认具体效果，假设为复制手牌中的随从）
-    # 实际上是 "Draw a minion" 还是 "Add a copy"?
-    # 鉴于缺乏具体描述，暂定为：抽一张机械牌（常见机械效果）或随机随从。
-    # 这里用随机随从占位。
-    deathrattle = Draw(CONTROLLER, RandomMinion()) 
+
+    def play(self):
+        # 获得两张随机机械牌
+        # 参考：RandomCollectible(race=Race.MECHANICAL)
+        for i in range(2):
+            yield Give(CONTROLLER, RandomCollectible(race=Race.MECHANICAL))
+
     class Hand:
         events = OwnTurnBegin(CONTROLLER).on(Transform(SELF, "JAM_000d"))
 
@@ -328,27 +322,26 @@ class ETC_206:
     
     def play(self):
         # 发现法术，减1费
-        # RandomSpell 接受 cost_mod 参数？ 需要确认 utils/selectors
-        # 假设 RandomSpell 支持 modifiers，或者用 Buff
-        # 暂用简单的 RandomSpell 配合 Buff
-        # Discover 返回选择的牌，对其施加 Buff
-        # 然而 Discover 动作封装了选择过程。
-        # 正确做法：Discover(RandomSpell(cost_mod=-1)) 如果支持。
-        # 若不支持，需 Yield Discover -> Get Choice -> Buff.
-        # Fireplace RandomSpell selector 暂不支持 cost_mod 参数。
-        # 变通：发现普通法术，加入手牌时减费。
-        # 使用 Create CreatedBy 逻辑？
-        # 简单处理：Discover(RandomSpell())。在 Choice 发生后修改。
-        # 这里为了演示，直接使用 Discover。减费逻辑需核心支持。
-        # 假设 RandomSpell 无法直接减费。使用 events 监听？太复杂。
-        # 妥协：仅发现。
-        yield Discover(RandomSpell())
-        
-        # 压轴
+        # 使用 .then() 方法在 Discover 后对选中的卡牌施加减费 Buff
+        # 参考：WW_358 (badlands/deathknight.py) 使用相同模式
+        yield Discover(CONTROLLER, RandomSpell()).then(
+            Buff(Give.CARD, "ETC_313e")
+        )
+
+        # 压轴：回合结束时回手
         if self.controller.mana == 0:
             # 施加回合结束回手效果
             # 因为法术打完进入墓地，我们需要给控制器挂一个监听器，指向这张特定的卡（self）
             yield Buff(CONTROLLER, "ETC_206e", target_card=self)
+
+
+class ETC_313e:
+    """减费 Buff - 减少1费"""
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.COST: -1,
+    }
+
 
 class ETC_206e:
     """Return to Hand Effect - 回手效果"""

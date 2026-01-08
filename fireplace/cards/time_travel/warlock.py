@@ -2,7 +2,7 @@
 穿越时间流 - WARLOCK
 """
 from ..utils import *
-from .rewind_helpers import create_rewind_point
+from .rewind_helpers import execute_with_rewind, mark_card_rewind
 
 
 # COMMON
@@ -19,6 +19,11 @@ class TIME_025:
 	requirements = {}
 	
 	def play(self):
+        # 标记卡牌具有回溯能力
+        mark_card_rewind(self, rewind_count=1)
+
+        # 定义卡牌效果
+        def effect():
 		# 战吼：将2张时空撕裂洗入牌库
 		yield Shuffle(self.controller, "TIME_025t")
 		yield Shuffle(self.controller, "TIME_025t")
@@ -214,10 +219,8 @@ class TIME_008:
 	requirements = {}
 	
 	def play(self):
-		# 1. 创建回溯点
-		create_rewind_point(self.game)
 		
-		# 2. 双方各随机弃一张牌
+		# 双方各随机弃一张牌
 		# 己方弃牌
 		if self.controller.hand:
 			yield Discard(RANDOM(FRIENDLY_HAND))
@@ -226,6 +229,9 @@ class TIME_008:
 		if self.controller.opponent.hand:
 			yield Discard(RANDOM(ENEMY_HAND))
 
+
+        # 使用 Rewind 包装器执行效果
+        yield from execute_with_rewind(self, effect)
 
 class TIME_030:
 	"""裂解术 - Divergence

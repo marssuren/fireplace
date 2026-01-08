@@ -229,9 +229,14 @@ class WW_051:
 
 
 class WW_051t:
-    """亡命徒 - Outlaw"""
-    # 3/3随从
-    pass
+    """亡命徒 - Outlaw
+    3/3 随从
+    """
+    tags = {
+        GameTag.ATK: 3,
+        GameTag.HEALTH: 3,
+        GameTag.CARDTYPE: CardType.MINION
+    }
 
 
 class WW_051e:

@@ -2,7 +2,7 @@
 穿越时间流 - 中立 - LEGENDARY
 """
 from ..utils import *
-from .rewind_helpers import create_rewind_point
+from .rewind_helpers import execute_with_rewind, mark_card_rewind
 
 
 # ========================================
@@ -21,6 +21,11 @@ class TIME_024:
     - 参考 badlands 中的超高攻击力实现
     """
     def play(self):
+        # 标记卡牌具有回溯能力
+        mark_card_rewind(self, rewind_count=1)
+
+        # 定义卡牌效果
+        def effect():
         # 给自己添加buff，在下个回合开始时触发
         yield Buff(SELF, "TIME_024e")
 
@@ -70,14 +75,15 @@ class TIME_038:
         # 创建回溯点
         # 每次打出都会创建一个新的回溯点
         # 玩家可以选择回溯最多3次
-        # 回溯次数由卡牌数据中的 REWIND 标签控制
-        create_rewind_point(self.game)
         
         # 召唤2个随机传说随从
         yield Summon(CONTROLLER, RandomMinion(rarity=Rarity.LEGENDARY))
         yield Summon(CONTROLLER, RandomMinion(rarity=Rarity.LEGENDARY))
 
 
+
+        # 使用 Rewind 包装器执行效果
+        yield from execute_with_rewind(self, effect)
 
 # ========================================
 # TIME_063 - 时光之主诺兹多姆

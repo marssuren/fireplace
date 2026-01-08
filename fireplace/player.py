@@ -185,6 +185,8 @@ class Player(Entity, TargetableByAuras):
         
         # 残骸系统（死亡骑士专属资源）- 巫妖王的进军�?022�?2月）
         self.corpses = 0  # 当前残骸数量
+        self.total_corpses_spent = 0  # 本局对战中累积消耗的残骸总数（用于ETC_210通灵最强音等卡牌）
+
 
         # 追踪本局游戏使用过的流放牌数量（用于RLK_213等卡牌）
         self.outcast_cards_played_this_game = 0
@@ -201,6 +203,9 @@ class Player(Entity, TargetableByAuras):
         # 追踪本回合获得的护甲值和攻击力（用于"ETC_386 佐克·雾鼻"等卡牌）
         self.armor_gained_this_turn = 0
         self.attack_gained_this_turn = 0
+        
+        # 追踪本局对战中获得的护甲总量（用于"AV_145 加尔范上尉"等卡牌）- 奥特兰克的决裂（2021年12月）
+        self.armor_gained_this_game = 0
 
         # 追踪本局对战洗入对手牌库瘟疫
         self.plagues_shuffled_into_enemy = 0

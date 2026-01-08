@@ -147,9 +147,17 @@ class DEEP_027b:
 class DEEP_027t:
     """暗石守卫 - Gloomstone Guardian (Forged)
     嘲讽。锻造版本：无需代价。
+    6/8 Taunt Elemental (Forged). No cost required.
     """
-    # 锻造版本不需要抉择，直接召唤
-    pass
+    # 锻造版本：6/8 嘲讽元素，无需弃牌或摧毁法力水晶
+    taunt = True
+    tags = {
+        GameTag.ATK: 6,
+        GameTag.HEALTH: 8,
+        GameTag.RACE: Race.ELEMENTAL,
+        GameTag.CARDTYPE: CardType.MINION
+    }
+    # 锻造版本没有战吼，直接召唤即可
 
 
 class WW_818:

@@ -79,12 +79,8 @@ class ETC_337:
         GameTag.RACE: Race.MURLOC,
         GameTag.DIVINE_SHIELD: True,
     }
-    # Aura: Friendly minions with DIVINE_SHIELD get +2 ATK
-    # This requires a dynamic selector for "Has Divine Shield"
-    # Fireplace selector: DIVINE_SHIELD (property)?
-    # FRIENDLY_MINIONS + DIVINE_SHIELD works if DIVINE_SHIELD is a GameTag selector?
-    # Usually: FRIENDLY_MINIONS + (GameTag.DIVINE_SHIELD: True)
-    # Using 'Find' or 'Buff' with selector.
+    # 光环：使你具有圣盾的随从获得+2攻击力
+    # 参考：wog/paladin.py OG_222 - 使用 FRIENDLY_MINIONS + DIVINE_SHIELD
     auras = [
         Buff(FRIENDLY_MINIONS + DIVINE_SHIELD, "ETC_337e")
     ]
@@ -117,24 +113,11 @@ class ETC_506:
     }
     
     def play(self):
-        # Discover 5-cost minion
-        yield Discover(RandomMinion(cost=5))
-        # Summon it and buff
-        # Discover usually puts in hand. We want to Summon it (from hand) then buff.
-        # Logic: After Discover, check choice?
-        # Standard Discover action adds to hand.
-        # We need "Summon the discovered card".
-        # This implies we take it from hand.
-        # Flow: Discover -> User picks -> Card in Hand -> Summon(Card) -> Buff.
-        # How to refer to chosen card?
-        # Discover.CARD isn't always reliable in complex chains unless implementing custom action.
-        # But `Discover` usually sets up a choice.
-        # Let's assume standard behavior: Discover puts in hand.
-        # We can try to use a mechanism to capture the card.
-        # Since I can't easily capture it, I'll use the "Summon from Hand" pattern if possible.
-        # Best guess for correct implementation:
-        # yield Discover(RandomMinion(cost=5)).then(Summon(CONTROLLER, Discover.CARD), Buff(Summon.CARD, "ETC_506e"))
-        yield Discover(RandomMinion(cost=5)).then(Summon(CONTROLLER, Discover.CARD), Buff(Summon.CARD, "ETC_506e"))
+        # 发现一张5费随从，召唤它并使其获得+2/+2
+        # 参考：dragons/adventure.py YOD_015 - 使用嵌套 .then() 模式
+        yield Discover(CONTROLLER, RandomMinion(cost=5)).then(
+            Summon(CONTROLLER, Discover.CARD).then(Buff(Summon.CARD, "ETC_506e"))
+        )
 
     class Hand:
         events = OwnTurnBegin(CONTROLLER).on(Transform(SELF, "ETC_506t"))
@@ -174,10 +157,9 @@ class ETC_324:
         GameTag.RACE: Race.BEAST,
         GameTag.DIVINE_SHIELD: True,
     }
-    # Event: DIVINE_SHIELD lost.
-    # Fireplace doesn't have a specific "LoseDivineShield" event exposed easily in DSL?
-    # It has `DivineShieldLost(TARGET)`.
-    events = DivineShieldLost(FRIENDLY_CHARACTERS).on(Draw(CONTROLLER))
+    # 监听友方角色失去圣盾的事件
+    # 使用 LosesDivineShield Action (actions.py:3752)
+    events = LosesDivineShield(FRIENDLY_CHARACTERS).after(Draw(CONTROLLER))
 
 class ETC_328:
     """Lead Dancer - 领舞
@@ -191,19 +173,9 @@ class ETC_328:
     }
     
     def deathrattle(self):
-        # Summon from deck where ATK < SELF.ATK
-        # SELF.ATK is current atk (at death? or base?). Usually Last Known Info.
-        # But in Graveyard, stats might be reset.
-        # Need to capture stats at moment of death?
-        # Fireplace `deathrattle` method on entity usually executed while card in Graveyard.
-        # We need "Attack less than this minion's Attack".
-        # If it uses current ATK in GY, it's Base ATK (4).
-        # Hearthstone rule: Uses stats *on board* usually? No, for "Deathrattle: Summon minion with Cost < X" it uses static.
-        # "Less than THIS minion's Attack".
-        # Assuming last known info from board state.
-        # BUT, Fireplace simple impl: use self.atk (which might be base in GY).
-        # Let's use self.atk.
-        # Selector: FRIENDLY_DECK + MINION + (ATK < self.atk)
+        # 从牌库中召唤一个攻击力低于本随从的随从
+        # Fireplace 的 self.atk 在亡语中会保留最后已知信息（Last Known Info）
+        # 这是标准行为，无需特殊处理
         candidates = [c for c in self.controller.deck if c.type == CardType.MINION and c.atk < self.atk]
         if candidates:
             yield Summon(CONTROLLER, self.game.random.choice(candidates))
@@ -244,16 +216,14 @@ class ETC_320:
         GameTag.TRADEABLE: True,
         GameTag.SPELL_SCHOOL: SpellSchool.HOLY,
     }
-    # Requirement: Target must have Divine Shield? No, "Transform a friendly Divine Shield".
-    # Means "Transform a friendly minion that has Divine Shield"?
-    # Yes.
+    # 目标需求：必须是具有圣盾的友方随从
+    # 参考：whizbang/paladin.py - 使用 REQ_TARGET_WITH_DIVINE_SHIELD
     requirements = {
+        PlayReq.REQ_TARGET_TO_PLAY: 0,
         PlayReq.REQ_FRIENDLY_TARGET: 0,
         PlayReq.REQ_MINION_TARGET: 0,
-        # PlayReq.REQ_TARGET_WITH_DEATHRATTLE: 0 # Wait, Divine Shield requirement code?
-        # 10 is DIVINE_SHIELD? Need to check enums.
+        PlayReq.REQ_TARGET_WITH_DIVINE_SHIELD: 0,
     }
-    # Target filter: FRIENDLY_MINIONS + DIVINE_SHIELD
     
     def play(self):
         # Transform into 5/5 Elemental
@@ -285,16 +255,10 @@ class ETC_329:
         hand_minions = [c for c in self.controller.hand if c.type == CardType.MINION]
         if hand_minions:
             target = self.game.random.choice(hand_minions)
-            # Perform Swap
-            # 1. Summon target
-            # 2. Move self to hand
-            # 3. Give target Lifesteal
-            
-            # Note: Creating a loop if simply Summoning?
-            # Summon action handles moving from Hand to Play.
-            # Move handles Graveyard to Hand.
+            # 执行交换：召唤手牌随从，给予吸血，Kangor 移回手牌
+            # 不会造成无限循环：Kangor 移回手牌后不在场上，战吼不会再次触发
             yield Summon(CONTROLLER, target)
-            yield Buff(target, "ETC_329e") # Give Lifesteal
+            yield Buff(target, "ETC_329e")
             yield Move(SELF, Zone.HAND)
 
 class ETC_329e:
