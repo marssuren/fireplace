@@ -111,7 +111,7 @@ class FIR_939:
         # 给予黑暗之赐
         if self.controller.hand:
             discovered_card = self.controller.hand[-1]
-            apply_dark_gift(discovered_card)
+            yield apply_dark_gift(discovered_card)
 
 
 # RARE
@@ -175,7 +175,7 @@ class EDR_456:
             # 给予黑暗之赐
             if self.controller.hand:
                 discovered_card = self.controller.hand[-1]
-                apply_dark_gift(discovered_card)
+                yield apply_dark_gift(discovered_card)
 
 
 class EDR_531:

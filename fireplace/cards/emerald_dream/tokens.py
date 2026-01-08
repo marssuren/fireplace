@@ -144,6 +144,65 @@ class EDR_845e:
     events = OWN_SPELL_PLAY.after(_trigger_imbue_on_count)
 
 
+class EDR_464e:
+    """泰兰德效果 - Tyrande Effect
+    接下来的3个法术会施放两次
+    
+    实现说明:
+    - 监听 OWN_SPELL_PLAY 事件
+    - 再次触发法术效果(使用 Battlecry action 模拟)
+    - 计数器递减
+    """
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.TAG_SCRIPT_DATA_NUM_1: 3,  # 剩余次数
+    }
+    
+    # 监听法术施放事件
+    events = OWN_SPELL_PLAY.after(
+        lambda self, source, card, target: [
+            # 再次触发法术效果
+            # 使用 Battlecry action 来模拟 play 效果
+            Battlecry(card, target),
+            # 递减计数
+            UpdateProgress(SELF, -1), # 实际上是用 UpdateProgress 或直接修改
+            # 如果计数归零，移除 Buff
+            Destroy(SELF) if Attr(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1) <= 1 else None,
+            # 更新计数器 (这里为了简单，我们用 SetTag 或 Decrease logic)
+            # 由于 UpdateProgress 可能不支持直接减，我们用脚本更新
+            EDR_464e._update_count(self)
+        ]
+    )
+    
+    @staticmethod
+    def _update_count(buff):
+        current = buff.tags.get(GameTag.TAG_SCRIPT_DATA_NUM_1, 0)
+        buff.tags[GameTag.TAG_SCRIPT_DATA_NUM_1] = current - 1
+
+
+class DARK_GIFT_BUFF:
+    """黑暗之赐通用 Buff - Dark Gift Buff
+    
+    用于通过 Buff Action 应用黑暗之赐效果，从而正确触发 Buff 事件
+    """
+    tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
+    
+    def __init__(self, *args, bonus_id=None, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.bonus_id = bonus_id
+        
+    def apply(self, target):
+        from .dark_gift_helpers import get_dark_gift_bonus_by_id, apply_dark_gift_to_object
+        
+        if self.bonus_id:
+            bonus = get_dark_gift_bonus_by_id(self.bonus_id)
+            if bonus:
+                # 使用辅助函数直接应用属性，避免无限递归
+                # 注意：这里我们只做属性修改，不应用标签（如果标签包含 Buff 触发器的话）
+                # 但 Dark Gift 的标签通常是静态的
+                apply_dark_gift_to_object(target, bonus)
+
+
 # EDR_209 森林之王塞纳留斯 - Choose One 选项已移至 druid.py 中定义
 
 

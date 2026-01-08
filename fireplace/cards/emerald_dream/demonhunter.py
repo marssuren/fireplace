@@ -131,9 +131,9 @@ class EDR_882:
         option3 = self.controller.card(RandomCard(CONTROLLER, card_filter=demon_filter).id)
         
         # 应用黑暗之赐
-        apply_dark_gift(option1)
-        apply_dark_gift(option2)
-        apply_dark_gift(option3)
+        yield apply_dark_gift(option1)
+        yield apply_dark_gift(option2)
+        yield apply_dark_gift(option3)
         
         # 发现机制:选择一张加入手牌,其他两张洗入牌库
         yield GenericChoice(CONTROLLER, cards=[option1, option2, option3])

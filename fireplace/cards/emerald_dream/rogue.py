@@ -81,7 +81,7 @@ class EDR_528:
                 # 获取刚刚发现的牌
                 discovered_card = self.controller.hand[-1] if self.controller.hand else None
                 if discovered_card:
-                    apply_dark_gift(discovered_card)
+                    yield apply_dark_gift(discovered_card)
 
 
 class FIR_922:
@@ -219,7 +219,7 @@ class FIR_920:
         # 给予黑暗之赐
         discovered_card = self.controller.hand[-1] if self.controller.hand else None
         if discovered_card:
-            apply_dark_gift(discovered_card)
+            yield apply_dark_gift(discovered_card)
 
 
 # EPIC

@@ -18,19 +18,24 @@ class EDR_105:
     战吼:发现一张具有黑暗之赐的法力值消耗为(3)的随从牌。
     """
     def play(self):
-        # 发现一张3费随从牌,并应用黑暗之赐
-        # 使用标准的发现机制
-        yield GenericChoice(
-            CONTROLLER,
-            cards=RandomCardGenerator(
-                CONTROLLER,
-                card_filter=lambda c: c.type == CardType.MINION and c.cost == 3,
-                count=3
-            )
-        )
-        # 注意:黑暗之赐效果应该在发现后应用到选中的卡牌上
-        # 但由于发现机制的限制,这里使用简化实现
-        # 实际游戏中,黑暗之赐会在发现选项展示时就已经应用
+        # 优化实现: 在发现选项展示前应用 Dark Gift
+        # 创建3个带Dark Gift的3费随从选项
+        minion_filter = lambda c: (c.type == CardType.MINION and c.cost == 3)
+        
+        # 生成3个选项
+        # 注意：这里我们生成具体的卡牌实体，而不是使用 RandomCardGenerator 产生卡牌ID
+        # 这样我们可以对这些实体应用 Buff
+        option1 = self.controller.card(RandomCard(CONTROLLER, card_filter=minion_filter).id)
+        option2 = self.controller.card(RandomCard(CONTROLLER, card_filter=minion_filter).id)
+        option3 = self.controller.card(RandomCard(CONTROLLER, card_filter=minion_filter).id)
+        
+        # 应用黑暗之赐
+        yield apply_dark_gift(option1)
+        yield apply_dark_gift(option2)
+        yield apply_dark_gift(option3)
+        
+        # 发现机制
+        yield GenericChoice(CONTROLLER, cards=[option1, option2, option3])
 
 
 class EDR_254:

@@ -35,7 +35,7 @@ class EDR_102:
         if self.controller.hand:
             discovered_card = self.controller.hand[-1]
             # 应用黑暗之赐
-            apply_dark_gift(discovered_card)
+            yield apply_dark_gift(discovered_card)
 
 
 class EDR_469:

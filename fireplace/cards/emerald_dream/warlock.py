@@ -51,7 +51,7 @@ class EDR_488:
         # 给予黑暗之赐
         if self.controller.hand:
             discovered_card = self.controller.hand[-1]
-            apply_dark_gift(discovered_card)
+            yield apply_dark_gift(discovered_card)
 
 
 class EDR_494:
@@ -130,7 +130,7 @@ class FIR_924:
         # 给予黑暗之赐
         if self.controller.hand:
             discovered_card = self.controller.hand[-1]
-            apply_dark_gift(discovered_card)
+            yield apply_dark_gift(discovered_card)
             # 获取一张复制
             yield Give(CONTROLLER, discovered_card.id)
 
@@ -285,8 +285,8 @@ class EDR_491:
     
     实现说明:
     - 从 controller.minions_died_this_turn 列表获取本回合死亡的随从
-    - 将这些随从的亡语复制到自己身上
-    - 使用动态亡语机制
+    - 使用 CopyDeathrattleBuff 复制这些随从的亡语到自己身上
+    - 参考 SCH_162 (维克图斯) 的实现
     
     核心扩展:
     - ✅ Player.minions_died_this_turn 列表已添加
@@ -297,28 +297,20 @@ class EDR_491:
         # 获取本回合死亡的友方随从
         died_this_turn = getattr(self.controller, 'minions_died_this_turn', [])
         
-        # 收集所有亡语
+        # 找到有亡语的死亡随从
         if died_this_turn:
-            # 将死亡随从的信息存储到自己身上
-            if not hasattr(self, '_collected_deathrattles'):
-                self._collected_deathrattles = []
-            
             for minion_data in died_this_turn:
+                # 检查是否有亡语
                 if minion_data.get('has_deathrattle', False):
-                    # 保存死亡随从的信息
-                    self._collected_deathrattles.append(minion_data)
-    
-    @property
-    def deathrattle(self):
-        """动态亡语：触发所有收集的亡语"""
-        collected = getattr(self, '_collected_deathrattles', [])
-        if collected:
-            # 返回一个列表，包含所有收集的亡语效果
-            # 注意：这里简化实现，实际应该复制每个随从的具体亡语效果
-            # 由于无法直接复制亡语逻辑，我们标记此随从已收集亡语
-            # 具体亡语效果需要在运行时根据收集的随从ID动态执行
-            return [Buff(SELF, "EDR_491e_deathrattle")]
-        return []
+                    # 获取死亡随从的实体（如果还在墓地）
+                    minion_id = minion_data.get('id')
+                    minion_entity = minion_data.get('entity')
+                    
+                    # 如果实体存在且有亡语，复制亡语到自己身上
+                    if minion_entity and hasattr(minion_entity, 'has_deathrattle') and minion_entity.has_deathrattle:
+                        # 使用 CopyDeathrattleBuff 复制亡语
+                        # 参考 SCH_162 (维克图斯) 的实现
+                        yield CopyDeathrattleBuff(minion_entity, "EDR_491e")
 
 
 # LEGENDARY
@@ -362,7 +354,7 @@ class EDR_487:
             dark_gift_bonus = target.tags.get(DARK_GIFT_BONUS, None)
             if dark_gift_bonus:
                 # 将相同的黑暗之赐应用到瓦洛身上
-                apply_dark_gift(wallow, specific_gift=dark_gift_bonus)
+                yield apply_dark_gift(wallow, specific_gift=dark_gift_bonus)
 
 
 class EDR_489:
@@ -456,11 +448,11 @@ class EDR_483e:
             yield Destroy(buff)
 
 
-class EDR_491e_deathrattle:
-    """荆棘大德鲁伊亡语标记 - Archdruid of Thorns Deathrattle Marker
+class EDR_491e:
+    """荆棘大德鲁伊亡语复制 - Archdruid of Thorns Deathrattle Copy
     
-    标记此随从已获得本回合死亡随从的亡语
-    实际亡语效果在 EDR_491 的 @property deathrattle 中动态生成
+    由 CopyDeathrattleBuff 填充实际的亡语效果
+    参考 SCH_162e (维克图斯)
     """
     pass
 

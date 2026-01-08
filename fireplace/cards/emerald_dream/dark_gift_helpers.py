@@ -142,27 +142,19 @@ def get_available_dark_gifts(minion):
     return available if available else DARK_GIFT_BONUSES  # 如果没有可用的,返回全部
 
 
-def apply_dark_gift(minion, specific_gift=None):
+def get_dark_gift_bonus_by_id(bonus_id):
+    """根据ID获取Dark Gift奖励对象"""
+    return next((b for b in DARK_GIFT_BONUSES if b["id"] == bonus_id), None)
+
+
+def apply_dark_gift_to_object(minion, bonus):
     """
-    为随从应用随机的 Dark Gift 奖励效果
+    直接应用Dark Gift属性到对象（底层实现）
     
     Args:
-        minion: 随从卡牌对象
-        specific_gift: 可选,指定特定的Dark Gift ID
-    
-    Returns:
-        dict: 应用的奖励效果信息
+        minion: 目标对象
+        bonus: 奖励字典
     """
-    if specific_gift:
-        # 应用指定的Dark Gift
-        bonus = next((b for b in DARK_GIFT_BONUSES if b["id"] == specific_gift), None)
-        if not bonus:
-            raise ValueError(f"Unknown Dark Gift ID: {specific_gift}")
-    else:
-        # 获取可用的Dark Gift并随机选择
-        available_gifts = get_available_dark_gifts(minion)
-        bonus = random.choice(available_gifts)
-
     # 应用属性加成
     if bonus.get("atk", 0) != 0:
         minion.atk += bonus["atk"]
@@ -182,7 +174,34 @@ def apply_dark_gift(minion, specific_gift=None):
     minion.tags[DARK_GIFT] = True
     minion.tags[DARK_GIFT_BONUS] = bonus["id"]
 
-    return bonus
+
+def apply_dark_gift(minion, specific_gift=None):
+    """
+    为随从应用随机的 Dark Gift 奖励效果
+    
+    Args:
+        minion: 随从卡牌对象
+        specific_gift: 可选,指定特定的Dark Gift ID
+    
+    Returns:
+        Buff Action: 用于应用效果的 Action
+    """
+    from .tokens import DARK_GIFT_BUFF
+    from ...actions import Buff
+    
+    if specific_gift:
+        # 应用指定的Dark Gift
+        bonus = get_dark_gift_bonus_by_id(specific_gift)
+        if not bonus:
+            raise ValueError(f"Unknown Dark Gift ID: {specific_gift}")
+    else:
+        # 获取可用的Dark Gift并随机选择
+        available_gifts = get_available_dark_gifts(minion)
+        bonus = random.choice(available_gifts)
+    
+    # 返回 Buff Action
+    # 这会触发 Buff 应用事件，从而被 EDR_487 等卡牌监听到
+    return Buff(minion, "DARK_GIFT_BUFF", bonus_id=bonus["id"])
 
 
 def get_dark_gift_bonus_name(bonus_id):

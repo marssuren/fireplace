@@ -189,7 +189,7 @@ class EDR_856:
         if self.controller.hand:
             last_card = self.controller.hand[-1]
             if last_card.type == CardType.MINION:
-                apply_dark_gift(last_card)
+                yield apply_dark_gift(last_card)
 
 
 # ========================================

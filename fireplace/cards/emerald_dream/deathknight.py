@@ -33,7 +33,7 @@ class EDR_811:
             if self.controller.hand:
                 discovered_card = self.controller.hand[-1]
                 # 应用黑暗之赐
-                apply_dark_gift(discovered_card)
+                yield apply_dark_gift(discovered_card)
 
 
 class EDR_814:
@@ -91,7 +91,7 @@ class FIR_900:
         if self.controller.hand:
             discovered_card = self.controller.hand[-1]
             # 应用黑暗之赐
-            apply_dark_gift(discovered_card)
+            yield apply_dark_gift(discovered_card)
             # 减少2费
             yield Buff(discovered_card, "FIR_900e")
 

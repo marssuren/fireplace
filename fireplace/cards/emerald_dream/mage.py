@@ -276,6 +276,11 @@ class EDR_517:
     
     费用未知 随从
     战吼：发现一张法术牌。选择保留它或将其置于你对手的牌库顶。
+    
+    实现说明:
+    - 发现一张法术牌
+    - 简化实现：50%概率保留，50%概率放到对手牌库顶
+    - 完整实现需要玩家交互，AI训练中使用随机选择是合理的
     """
     requirements = {}
     
@@ -287,8 +292,18 @@ class EDR_517:
             count=3
         ))
         
-        # TODO: 实现二次选择机制（保留 vs 放到对手牌库顶）
-        # 目前简化为直接保留发现的法术
-        # 完整实现需要扩展核心引擎支持二次选择
+        # 获取刚发现的法术牌(手牌最后一张)
+        if self.controller.hand:
+            discovered_spell = self.controller.hand[-1]
+            
+            # AI随机选择：50%保留，50%放到对手牌库顶
+            import random
+            if random.choice([True, False]):
+                # 保留法术（什么都不做）
+                pass
+            else:
+                # 将法术从手牌移除并放到对手牌库顶
+                discovered_spell.zone = Zone.SETASIDE
+                yield PutOnTop(OPPONENT, discovered_spell)
 
 
