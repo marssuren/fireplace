@@ -790,6 +790,12 @@ class Play(GameAction):
             # 检查目标是否为角色（英雄或随从）
             if target.type in [CardType.HERO, CardType.MINION]:
                 source.spells_cast_on_characters_this_game += 1
+                
+                # 追踪对敌人施放的法术（用于VAC_407话痨鹦鹉等卡牌）- 胜地历险记（2024年7月）
+                # 检查目标是否为敌方
+                if target.controller != source:
+                    source.last_spell_cast_at_enemy = card
+
 
         # 追踪套牌之外的法术（用于RLK_803等卡牌）
         if card.type == CardType.SPELL and hasattr(card, 'creator'):
