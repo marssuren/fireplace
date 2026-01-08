@@ -65,7 +65,8 @@ class BOT_434:
 
 class BOT_434e:
     class Hand:
-        events = Play(CONTROLLER).after(
+        # 确保只监听随从牌的打出，而不是所有卡牌
+        events = Play(CONTROLLER, MINION).after(
             Morph(OWNER, Copy(Play.CARD)).then(Buff(Morph.CARD, "BOT_434e"))
         )
 

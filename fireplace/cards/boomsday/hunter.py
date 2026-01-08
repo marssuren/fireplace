@@ -94,12 +94,14 @@ class BOT_429:
     从你的牌库中召唤三个随从。他们会攻击敌方随从，然后死亡。"""
 
     # [x]Summon 3 minions from your deck. They attack enemy minions, then die.
+    # 如果场上没有敌方随从，召唤的随从会直接死亡而不攻击
     requirements = {
         PlayReq.REQ_NUM_MINION_SLOTS: 1,
     }
     play = (
         Summon(CONTROLLER, RANDOM(FRIENDLY_DECK + MINION)).then(
-            Attack(Summon.CARD, RANDOM_ENEMY_MINION), Destroy(Summon.CARD)
+            Find(ENEMY_MINIONS) & Attack(Summon.CARD, RANDOM_ENEMY_MINION),
+            Destroy(Summon.CARD)
         )
         * 3
     )

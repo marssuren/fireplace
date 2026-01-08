@@ -132,44 +132,148 @@ class BOT_238e:
 
 
 class BOT_238p:
+    """Dr. Boom 基础英雄技能
+    每回合结束时随机切换到5种英雄技能之一"""
     entourage = BOT_238.entourage
-    events = OWN_TURN_END.on(Summon(CONTROLLER, RandomEntourage()))
+    
+    # 回合结束时随机切换英雄技能
+    events = OWN_TURN_END.on(lambda self: self._switch_hero_power())
+    
+    def _switch_hero_power(self):
+        """随机切换到一个新的英雄技能"""
+        import random
+        controller = self.controller
+        
+        # 随机选择一个新的英雄技能（从5个中选择）
+        new_power_id = random.choice(self.entourage)
+        
+        # 创建新的英雄技能
+        new_power = controller.card(new_power_id, source=controller.hero)
+        
+        # 替换英雄技能
+        if controller.hero.power:
+            controller.hero.power.zone = Zone.GRAVEYARD
+        controller.hero.power = new_power
+        new_power.controller = controller
+        new_power.zone = Zone.PLAY
 
 
 class BOT_238p1:
+    """大红按钮 / Big Red Button
+    造成$3点伤害"""
     requirements = {
         PlayReq.REQ_TARGET_TO_PLAY: 0,
     }
     entourage = BOT_238.entourage
     activate = Hit(TARGET, 3)
-    events = OWN_TURN_END.on(Summon(CONTROLLER, RandomEntourage(exclude=SELF)))
+    
+    # 回合结束时切换英雄技能
+    events = OWN_TURN_END.on(lambda self: self._switch_hero_power())
+    
+    def _switch_hero_power(self):
+        """切换到另一个随机英雄技能（排除当前技能）"""
+        import random
+        controller = self.controller
+        
+        # 排除当前技能
+        available_powers = [p for p in self.entourage if p != self.id]
+        new_power_id = random.choice(available_powers)
+        
+        # 创建并替换英雄技能
+        new_power = controller.card(new_power_id, source=controller.hero)
+        if controller.hero.power:
+            controller.hero.power.zone = Zone.GRAVEYARD
+        controller.hero.power = new_power
+        new_power.controller = controller
+        new_power.zone = Zone.PLAY
 
 
 class BOT_238p2:
+    """轰炸装甲 / KABOOM!
+    获得7点护甲值"""
     entourage = BOT_238.entourage
     activate = GainArmor(FRIENDLY_HERO, 7)
-    events = OWN_TURN_END.on(Summon(CONTROLLER, RandomEntourage(exclude=SELF)))
+    
+    events = OWN_TURN_END.on(lambda self: self._switch_hero_power())
+    
+    def _switch_hero_power(self):
+        import random
+        controller = self.controller
+        available_powers = [p for p in self.entourage if p != self.id]
+        new_power_id = random.choice(available_powers)
+        new_power = controller.card(new_power_id, source=controller.hero)
+        if controller.hero.power:
+            controller.hero.power.zone = Zone.GRAVEYARD
+        controller.hero.power = new_power
+        new_power.controller = controller
+        new_power.zone = Zone.PLAY
 
 
 class BOT_238p3:
+    """炸弹投掷器 / Zap Cannon
+    对所有敌人造成$1点伤害"""
     entourage = BOT_238.entourage
     activate = Hit(ENEMY_CHARACTERS, 1)
-    events = OWN_TURN_END.on(Summon(CONTROLLER, RandomEntourage(exclude=SELF)))
+    
+    events = OWN_TURN_END.on(lambda self: self._switch_hero_power())
+    
+    def _switch_hero_power(self):
+        import random
+        controller = self.controller
+        available_powers = [p for p in self.entourage if p != self.id]
+        new_power_id = random.choice(available_powers)
+        new_power = controller.card(new_power_id, source=controller.hero)
+        if controller.hero.power:
+            controller.hero.power.zone = Zone.GRAVEYARD
+        controller.hero.power = new_power
+        new_power.controller = controller
+        new_power.zone = Zone.PLAY
 
 
 class BOT_238p4:
+    """交付无人机 / Delivery Drone
+    发现一张机械牌"""
     requirements = {
         PlayReq.REQ_HAND_NOT_FULL: 0,
     }
     entourage = BOT_238.entourage
     activate = DISCOVER(RandomMech())
-    events = OWN_TURN_END.on(Summon(CONTROLLER, RandomEntourage(exclude=SELF)))
+    
+    events = OWN_TURN_END.on(lambda self: self._switch_hero_power())
+    
+    def _switch_hero_power(self):
+        import random
+        controller = self.controller
+        available_powers = [p for p in self.entourage if p != self.id]
+        new_power_id = random.choice(available_powers)
+        new_power = controller.card(new_power_id, source=controller.hero)
+        if controller.hero.power:
+            controller.hero.power.zone = Zone.GRAVEYARD
+        controller.hero.power = new_power
+        new_power.controller = controller
+        new_power.zone = Zone.PLAY
 
 
 class BOT_238p6:
+    """微型机器人工厂 / Micro-Squad
+    召唤三个1/1的微型机器人"""
     requirements = {
         PlayReq.REQ_NUM_MINION_SLOTS: 1,
     }
     entourage = BOT_238.entourage
     activate = Summon(CONTROLLER, "BOT_312t") * 3
-    events = OWN_TURN_END.on(Summon(CONTROLLER, RandomEntourage(exclude=SELF)))
+    
+    events = OWN_TURN_END.on(lambda self: self._switch_hero_power())
+    
+    def _switch_hero_power(self):
+        import random
+        controller = self.controller
+        available_powers = [p for p in self.entourage if p != self.id]
+        new_power_id = random.choice(available_powers)
+        new_power = controller.card(new_power_id, source=controller.hero)
+        if controller.hero.power:
+            controller.hero.power.zone = Zone.GRAVEYARD
+        controller.hero.power = new_power
+        new_power.controller = controller
+        new_power.zone = Zone.PLAY
+
