@@ -52,15 +52,22 @@ class NX2_023:
         
         if not has_neutral:
             # 抽取每个随从类型（种族）的随从牌各一张
-            # 统计牌库中所有不同的种族
+            # 根据官方机制：双类型随从只满足其中一个类型要求
             drawn_races = set()
             for card in list(self.controller.deck):  # 使用list避免迭代时修改
-                if card.type == CardType.MINION and card.race != Race.INVALID and card.race not in drawn_races:
-                    yield ForceDraw(card)
-                    drawn_races.add(card.race)
-                    # 炉石传说中有14个种族，但牌库中不一定都有
-                    if len(drawn_races) >= 14:  # 所有可能的种族
-                        break
+                if card.type == CardType.MINION:
+                    # 获取该随从的所有种族
+                    card_races = getattr(card, 'races', [])
+                    if not card_races or Race.INVALID in card_races:
+                        continue
+                    
+                    # 检查该随从是否有我们还未抽取的种族
+                    # 双类型随从只满足其中一个类型（取第一个未抽取的）
+                    for race in card_races:
+                        if race != Race.INVALID and race not in drawn_races:
+                            yield ForceDraw(card)
+                            drawn_races.add(race)
+                            break  # 该随从只满足一个类型要求
 
 
 

@@ -36,8 +36,8 @@ class NX2_017:
     def play(self):
         # 基础伤害
         damage = 2
-        # 检查是否弃过牌（简化实现：检查弃牌堆）
-        if len(self.controller.graveyard.filter(discarded=True)) > 0:
+        # 检查是否弃过牌（使用 Player 的 has_discarded_this_game 属性）
+        if self.controller.has_discarded_this_game:
             damage += 1
         yield Hit(ALL_MINIONS, damage)
 
