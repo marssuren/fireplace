@@ -38,18 +38,27 @@ class SCH_351:
     """Jandice Barov / 詹迪斯·巴罗夫
     Battlecry: Summon two random 5-Cost minions. Secretly pick one that dies when it takes damage."""
 
-    # 战吼：召唤两个随机5费随从，随机选择一个添加"受伤即死"buff
-    # 注：原版需要玩家秘密选择，AI训练中使用随机选择是合理的实现
+    # 战吼：召唤两个随机5费随从，秘密选择一个添加"受伤即死"buff
+    # 完整实现：使用 GenericChoice 让玩家秘密选择
     def play(self):
         # 召唤两个随机5费随从
         yield Summon(CONTROLLER, RandomMinion(cost=5))
         yield Summon(CONTROLLER, RandomMinion(cost=5))
+        
         # 获取刚召唤的随从（最后两个友方随从）
         minions = list(self.controller.field)
         if len(minions) >= 2:
-            # 随机选择一个添加"受伤即死"buff
-            target = self.game.random_choice(minions[-2:])
-            yield Buff(target, "SCH_351e")
+            # 让玩家秘密选择一个添加"受伤即死"buff
+            # 使用 GenericChoice 让玩家从刚召唤的两个随从中选择
+            summoned_minions = minions[-2:]
+            choice = yield GenericChoice(
+                self.controller,
+                cards=summoned_minions
+            )
+            
+            if choice:
+                target = choice[0]
+                yield Buff(target, "SCH_351e")
 
 
 class SCH_351e:
@@ -69,26 +78,36 @@ class SCH_162:
     """Vectus / 维克图斯
     Battlecry: Summon two 1/1 Whelps. Each gains a Deathrattle from your minions that died this game."""
 
-    # 战吼：召唤两个1/1幼龙，每个随机获得一个本局死亡随从的亡语
-    # 注：原版需要玩家选择，AI训练中使用随机选择是合理的实现
+    # 战吼：召唤两个1/1幼龙，每个获得一个本局死亡随从的亡语
+    # 完整实现：使用 GenericChoice 让玩家选择要复制的亡语
     def play(self):
         # 召唤两个幼龙
         yield Summon(CONTROLLER, "SCH_162t")
         yield Summon(CONTROLLER, "SCH_162t")
+        
         # 获取本局死亡的友方随从中有亡语的随从
         dead_minions_with_deathrattle = [
             m for m in self.controller.graveyard
             if m.type == CardType.MINION and hasattr(m, 'deathrattle')
         ]
+        
         if dead_minions_with_deathrattle:
             # 获取刚召唤的两个幼龙
             whelps = [m for m in self.controller.field if m.id == "SCH_162t"][-2:]
+            
             for whelp in whelps:
-                # 随机选择一个死亡随从的亡语复制给幼龙
-                source = self.game.random_choice(dead_minions_with_deathrattle)
-                # 使用 CopyDeathrattleBuff 正确复制亡语效果
-                yield Retarget(whelp, source)
-                yield CopyDeathrattleBuff(source, "SCH_162e")
+                # 让玩家选择一个死亡随从的亡语复制给幼龙
+                # 使用 GenericChoice 让玩家从死亡的有亡语的随从中选择
+                choice = yield GenericChoice(
+                    self.controller,
+                    cards=dead_minions_with_deathrattle
+                )
+                
+                if choice:
+                    source = choice[0]
+                    # 使用 CopyDeathrattleBuff 正确复制亡语效果
+                    yield Retarget(whelp, source)
+                    yield CopyDeathrattleBuff(source, "SCH_162e")
 
 
 class SCH_162e:
@@ -119,15 +138,15 @@ class SCH_259:
     """Sphere of Sapience / 睿智法球
     At the start of your turn, look at your top card. You can put it on the bottom and lose 1 Durability."""
 
-    # 在你的回合开始时，查看你牌库顶的卡牌，并决定是否将其置底
-    # 完整实现：使用启发式规则自动决策是否置底（AI训练环境适配）
+    # 在你的回合开始时，查看你牌库顶的卡牌，并让玩家选择是否将其置底
+    # 完整实现：使用 GenericChoice 让玩家/AI 做出选择
     def _sphere_effect(self):
         """
-        睿智法球效果：查看牌库顶卡牌，决定是否置底
+        睿智法球效果：查看牌库顶卡牌，让玩家选择是否置底
         
-        启发式决策规则：
-        - 如果牌库顶卡牌费用 > 当前可用法力值 + 2，则置底并消耗1点耐久度
-        - 否则保留在牌库顶
+        选项：
+        1. 保留卡牌在牌库顶（不消耗耐久度）
+        2. 将卡牌置底并消耗1点耐久度
         """
         controller = self.controller
         deck = controller.deck
@@ -142,17 +161,37 @@ class SCH_259:
         # 显示牌库顶卡牌（Reveal效果）
         yield Reveal(top_card)
         
-        # 启发式决策：判断是否将卡牌置底
-        current_mana = controller.mana
-        card_cost = top_card.cost
+        # 让玩家选择：保留或置底
+        # 使用 GenericChoice 提供两个选项
+        choice = yield GenericChoice(controller, cards=[
+            "SCH_259t1",  # 保留在牌库顶
+            "SCH_259t2",  # 置底并消耗耐久度
+        ])
         
-        # 如果卡牌费用过高（超过当前法力值+2），则置底
-        # 这个规则模拟了玩家倾向于将当前无法使用的高费卡置底的行为
-        if card_cost > current_mana + 2:
-            # 将卡牌移到牌库底部
+        # 根据选择执行相应操作
+        if choice and choice[0] == "SCH_259t2":
+            # 选择了置底：将卡牌移到牌库底部
             deck.remove(top_card)
             deck.append(top_card)
             # 消耗1点耐久度
             yield Hit(SELF, 1)
+        # 如果选择了 SCH_259t1 或没有选择，则不做任何操作（保留在牌库顶）
     
     events = OWN_TURN_BEGIN.on(lambda self: self._sphere_effect())
+
+
+# 睿智法球的选项 Token
+class SCH_259t1:
+    """Keep on Top / 保留在牌库顶
+    Keep the card on top of your deck."""
+    # 这是一个选项卡牌，不需要实际效果
+    # 选择此选项时不执行任何操作
+    pass
+
+
+class SCH_259t2:
+    """Put on Bottom / 置于牌库底
+    Put the card on the bottom of your deck and lose 1 Durability."""
+    # 这是一个选项卡牌，不需要实际效果
+    # 选择此选项时会在 SCH_259._sphere_effect 中执行置底和消耗耐久度的操作
+    pass

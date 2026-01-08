@@ -47,8 +47,24 @@ class SCH_603:
     Outcast: Look at 3 cards in your opponent's hand. Shuffle one of them into their deck."""
 
     # 流放：检视对手的三张手牌，将其中一张洗入对手的牌库
-    # 注：原版效果需要玩家手动选择，但在 AI 训练中随机选择是合理的实现
-    outcast = Shuffle(OPPONENT, RANDOM(ENEMY_HAND))
+    # 完整实现：使用 GenericChoice 让玩家查看并选择
+    def play(self):
+        if self.outcast:
+            opponent_hand = list(self.controller.opponent.hand)
+            if opponent_hand:
+                # 随机选择最多3张牌让玩家查看
+                import random
+                cards_to_show = random.sample(opponent_hand, min(3, len(opponent_hand)))
+                
+                # 让玩家从这3张牌中选择一张洗入对手牌库
+                choice = yield GenericChoice(
+                    self.controller,
+                    cards=cards_to_show
+                )
+                
+                if choice:
+                    card_to_shuffle = choice[0]
+                    yield Shuffle(self.controller.opponent, card_to_shuffle)
 
 
 class SCH_705:
