@@ -191,17 +191,13 @@ class VAC_407:
     mechanics = [GameTag.BATTLECRY]
     
     def play(self):
-        # 获取上一张施放的法术
-        # 简化实现：找到上一张法术牌（假设它是对敌法术）
-        last_spell = None
-        for card in reversed(self.controller.cards_played_this_game):
-            if card.type == CardType.SPELL:
-                last_spell = card
-                break
+        # 获取上一张对敌人施放的法术
+        # 使用 Player 类中的 last_spell_cast_at_enemy 属性
+        # 这个属性在 Play action 中自动追踪对敌方角色施放的法术
+        last_spell = self.controller.last_spell_cast_at_enemy
         
         if last_spell:
             # 创建法术的复制并施放
-            # 如果法术需要目标，尝试选择随机敌人
             copy = self.controller.card(last_spell.id, self.controller)
             
             # 检查法术是否需要敌方目标
@@ -213,6 +209,7 @@ class VAC_407:
             else:
                 # 不需要目标或没有敌人
                 yield Play(CONTROLLER, copy)
+
 
 
 
