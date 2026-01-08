@@ -274,36 +274,34 @@ class EDR_517:
     """亢祖 - Q'onzu
     Battlecry: Discover a spell. Choose to keep it or put it on top of your opponent's deck.
     
-    费用未知 随从
+    3费 3/4 野兽 (法师传说随从)
     战吼：发现一张法术牌。选择保留它或将其置于你对手的牌库顶。
     
     实现说明:
-    - 发现一张法术牌
-    - 简化实现：50%概率保留，50%概率放到对手牌库顶
-    - 完整实现需要玩家交互，AI训练中使用随机选择是合理的
+    - 第一步: 发现一张法术牌 (从3张中选1张)
+    - 第二步: 选择保留它或放到对手牌库顶 (玩家/AI选择)
     """
     requirements = {}
     
     def play(self):
-        # 发现一张法术牌
-        yield GenericChoice(CONTROLLER, cards=RandomCardGenerator(
+        # 第一步: 发现一张法术牌
+        discovered = yield GenericChoice(CONTROLLER, cards=RandomCardGenerator(
             CONTROLLER,
             card_filter=lambda c: c.type == CardType.SPELL,
             count=3
         ))
         
-        # 获取刚发现的法术牌(手牌最后一张)
-        if self.controller.hand:
-            discovered_spell = self.controller.hand[-1]
+        # 如果成功发现了法术牌
+        if discovered:
+            # 第二步: 让玩家/AI选择保留或放到对手牌库顶
+            # 创建两个选项
+            choice = yield GenericChoice(CONTROLLER, cards=["EDR_517_keep", "EDR_517_topdeck"])
             
-            # AI随机选择：50%保留，50%放到对手牌库顶
-            import random
-            if random.choice([True, False]):
-                # 保留法术（什么都不做）
-                pass
-            else:
+            if choice and choice.id == "EDR_517_topdeck":
+                # 选择放到对手牌库顶
                 # 将法术从手牌移除并放到对手牌库顶
-                discovered_spell.zone = Zone.SETASIDE
-                yield PutOnTop(OPPONENT, discovered_spell)
+                discovered.zone = Zone.SETASIDE
+                yield PutOnTop(OPPONENT, discovered)
+            # 否则保留在手牌中(什么都不做)
 
 
