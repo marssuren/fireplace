@@ -1,11 +1,11 @@
 """
-纳斯利亚堡的谋杀案 (Murder at Castle Nathria)
-发布时间: 2022-08-02
+联盟暴风城 (United in Stormwind)
+发布时间: 2021-08-03
 
 【扩展包信息】
 - 类型: 扩展包 (Expansion)
-- 代码: NATHRIA (Murder at Castle Nathria)
-- 版本: 多头蛇年 (Year of the Hydra)
+- 代码: STORMWIND (United in Stormwind)
+- 版本: 狮鹫年 (Year of the Gryphon)
 
 【卡牌统计】
 可收集卡牌: 170张
@@ -17,16 +17,15 @@
 - 中立文件: neutral_common.py, neutral_rare.py, neutral_epic.py, neutral_legendary.py
 
 【核心机制】
-- 注能 (Infuse) - 友方随从死亡后升级
-- 地标 (Location) - 可使用的地点卡牌
-- 嫌疑人 (Suspects) - 传说随从
-- 谋杀悬疑主题
+- 任务线 (Questlines) 完结篇
+- 交易 (Tradeable) - 可用1费替换
+- 联盟主题
 
 【著名卡牌】
-- REV_514: 德纳修斯大帝 (Sire Denathrius) - 中立传说随从
-- REV_790: 地标系列
-- REV_246: 注能卡牌
-- REV_841: 嫌疑人系列
+- SW_028: 大法师瓦格斯 (Grand Magister Rommath) - 法师传说随从
+- SW_078: 加拉克隆德 (Garrosh Hellscream) - 战士传说随从
+- SW_313: 任务线完结
+- SW_451: 交易卡牌
 """
 
 from .demonhunter import *
