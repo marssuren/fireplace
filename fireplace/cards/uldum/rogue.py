@@ -64,7 +64,7 @@ class ULD_286:
         PlayReq.REQ_TARGET_TO_PLAY: 0,
         PlayReq.REQ_MINION_TARGET: 0,
     }
-    play = Shuffle(CONTROLLER, "ULD_286t")
+    play = Shuffle(CONTROLLER, "ULD_286t") * 3
 
 
 class ULD_286t:
@@ -99,7 +99,7 @@ class ULD_328:
     随机将另一职业的两张法术牌置入你的手牌。"""
 
     # Add 2 random spells from another class to_your hand.
-    play = Give(CONTROLLER, RandomSpell(card_class=ANOTHER_CLASS))
+    play = Give(CONTROLLER, RandomSpell(card_class=ANOTHER_CLASS)) * 2
 
 
 class ULD_715:
