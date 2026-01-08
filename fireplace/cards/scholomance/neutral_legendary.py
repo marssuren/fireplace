@@ -119,6 +119,40 @@ class SCH_259:
     """Sphere of Sapience / 睿智法球
     At the start of your turn, look at your top card. You can put it on the bottom and lose 1 Durability."""
 
-    # 在你的回合开始时，查看你牌库顶的卡牌
-    # 注：原版需要玩家交互选择是否置底，AI训练中简化为仅显示
-    events = OWN_TURN_BEGIN.on(Reveal(TOP(FRIENDLY_DECK)))
+    # 在你的回合开始时，查看你牌库顶的卡牌，并决定是否将其置底
+    # 完整实现：使用启发式规则自动决策是否置底（AI训练环境适配）
+    def _sphere_effect(self):
+        """
+        睿智法球效果：查看牌库顶卡牌，决定是否置底
+        
+        启发式决策规则：
+        - 如果牌库顶卡牌费用 > 当前可用法力值 + 2，则置底并消耗1点耐久度
+        - 否则保留在牌库顶
+        """
+        controller = self.controller
+        deck = controller.deck
+        
+        # 检查牌库是否为空
+        if not deck:
+            return
+        
+        # 获取牌库顶卡牌
+        top_card = deck[0]
+        
+        # 显示牌库顶卡牌（Reveal效果）
+        yield Reveal(top_card)
+        
+        # 启发式决策：判断是否将卡牌置底
+        current_mana = controller.mana
+        card_cost = top_card.cost
+        
+        # 如果卡牌费用过高（超过当前法力值+2），则置底
+        # 这个规则模拟了玩家倾向于将当前无法使用的高费卡置底的行为
+        if card_cost > current_mana + 2:
+            # 将卡牌移到牌库底部
+            deck.remove(top_card)
+            deck.append(top_card)
+            # 消耗1点耐久度
+            yield Hit(SELF, 1)
+    
+    events = OWN_TURN_BEGIN.on(lambda self: self._sphere_effect())
