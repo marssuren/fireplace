@@ -312,6 +312,14 @@ class Player(Entity, TargetableByAuras):
         # 用于 TLC_517 一脚踢飞、TLC_520 灌林追踪者等卡牌
         self.cards_shuffled_into_deck = 0  # 本局对战中洗入牌库的卡牌次数
 
+        # 对敌法术追踪 - 胜地历险记（2024年7月）
+        # 用于 VAC_407 话痨鹦鹉等卡牌
+        self.last_spell_cast_at_enemy = None  # 最后一张对敌人施放的法术（卡牌对象）
+
+        # 弃牌追踪 - Return to Naxxramas (重返纳克萨玛斯) - 2023年2月
+        # 用于 NX2_017 瘟疫爆发等卡牌
+        self.has_discarded_this_game = False  # 本局对战中是否弃过牌
+
 
 
 
