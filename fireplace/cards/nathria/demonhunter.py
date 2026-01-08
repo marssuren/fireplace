@@ -215,13 +215,13 @@ class REV_937:
                 yield CastSpell(relic_id)
         else:
             # 未注能：发现一个圣物并施放
-            # 使用 Discover 机制让玩家选择一个圣物，然后施放
+            # 创建三个圣物卡牌供选择
             cards = [self.controller.card(card_id) for card_id in relic_ids]
-            yield Discover(CONTROLLER, cards)
+            discovered = yield GenericChoice(CONTROLLER, cards)
+            
             # 施放选中的圣物
-            # 注：Discover 会将选中的卡牌放入手牌，这里需要从手牌中找到并施放
-            # 简化实现：直接从三个圣物中随机选择一个施放（AI训练中合理）
-            yield CastSpell(RANDOM(relic_ids))
+            if discovered:
+                yield CastSpell(discovered[0].id)
 
 
 class REV_942:

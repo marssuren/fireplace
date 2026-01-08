@@ -294,14 +294,20 @@ class REV_945:
     """
     def play(self):
         # 发现一个其他职业的奥秘
-        # 使用 GenericChoice 从所有奥秘中选择（排除自己的职业）
+        # 官方机制：从所有其他职业的奥秘中发现（展示3个选项）
         from hearthstone.enums import CardClass
-        # 获取所有其他职业的奥秘
-        other_classes = [c for c in CardClass if c != CardClass.NEUTRAL and c != self.controller.hero.card_class]
-        # 简化实现：从随机职业中发现奥秘
+        
+        # 获取所有有奥秘的职业（Hunter, Mage, Paladin, Rogue）
+        secret_classes = [CardClass.HUNTER, CardClass.MAGE, CardClass.PALADIN, CardClass.ROGUE]
+        
+        # 排除自己的职业
+        other_classes = [c for c in secret_classes if c != self.controller.hero.card_class]
+        
+        # 从其他职业的奥秘中发现
         if other_classes:
-            random_class = self.game.random.choice(other_classes)
-            yield Discover(CONTROLLER, RandomSpell(card_class=random_class, secret=True))
+            # 使用 Discover，它会自动从指定职业的奥秘中选择3个选项
+            # 通过传入多个职业，Discover 会从所有这些职业的奥秘池中随机选择
+            yield Discover(CONTROLLER, RandomSpell(card_class=other_classes, secret=True))
 
 
 class REV_956:

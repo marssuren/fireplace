@@ -112,12 +112,13 @@ to get copies of them.
     def play(self):
         opponent = self.controller.opponent
         
-        # 线索1：起始手牌
-        # 需要追踪对手的起始手牌（mulligan后的手牌）
-        # 简化：从对手当前手牌+已打出的卡中随机选择
-        starting_hand_pool = list(opponent.hand)
-        # 添加已打出的卡（可能是起始手牌）
-        starting_hand_pool.extend(opponent.cards_played_this_game[:3] if hasattr(opponent, 'cards_played_this_game') else [])
+        # 线索1：起始手牌（mulligan后的手牌）
+        # 使用 opponent.starting_hand 获取对手真实的起始手牌
+        starting_hand_pool = list(opponent.starting_hand) if hasattr(opponent, 'starting_hand') and opponent.starting_hand else []
+        
+        # 如果没有起始手牌记录（可能是测试环境），回退到当前手牌
+        if not starting_hand_pool:
+            starting_hand_pool = list(opponent.hand)
         
         if not starting_hand_pool:
             return  # 没有可选项，结束
