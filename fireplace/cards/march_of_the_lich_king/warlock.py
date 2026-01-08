@@ -9,29 +9,13 @@ class RLK_531:
     """
     def play(self):
         # 复活一个友方亡灵，并赋予复生
-        # 这里需要筛选已死亡的友方亡灵
-        # 简化：Summon(CONTROLLER, RANDOM(FRIENDLY + KILLED + MINION + UNDEAD))
-        # 然后 Buff 赋予复生
-        
-        # 1. 尝试复活
-        # 由于 Summon 返回的是列表，我们需要获取复活后的实体
-        # 使用自定义的 ResurrectWithBuff 逻辑或者手动用 events 监听
-        # 简单做法：Summon 后如果没有被取消，则获取该实体
-        
-        # 我们用一个临时变量捕获召唤的结果
-        # 但 fireplace DSL 并不直接支持赋值，除非在 generator 中
-        # 复活逻辑通常是：从 graveyard 找 -> 移动到 play -> 触发 summon
-        
         # 筛选死亡的友方亡灵
         dead_undead = self.controller.graveyard.filter(type=CardType.MINION, race=Race.UNDEAD)
         if dead_undead:
             # 随机选择一个
             target = self.controller.game.random.choice(dead_undead)
-            # 召唤它
+            # 召唤它并赋予复生
             # 注意：Summon 会把卡牌从坟场移回战场
-            # 我们需要赋予复生
-            # 召唤后立即 Buff
-            # 使用 queue_actions 确保顺序
             yield Summon(CONTROLLER, target)
             yield Buff(target, "RLK_531e")
 
