@@ -440,75 +440,91 @@ class TIME_042te:
 
 
 class TIME_609t1:
-	"""奥蕾莉亚 - Alleria Windrunner
-	3费 3/3
-	**战吼：**本回合中，你的英雄技能造成的伤害+1。
+	"""奥蕾莉亚 - Ranger Captain Alleria
+	3费 2/4 猎人随从
+	**战吼：发现**一张法术。如果你使用过希尔瓦娜斯或温蕾萨，每使用过一位，重复一次。
 	
-	Battlecry: Your Hero Power deals +1 damage this turn.
+	Battlecry: Discover a spell. If you've played Sylvanas or Vereesa, repeat for each.
 	
 	由游侠将军希尔瓦娜斯的Fabled机制添加到套牌中
+	
+	完整实现：
+	1. 基础效果：发现一张法术
+	2. 检查是否使用过 TIME_609 (Sylvanas) 或 TIME_609t2 (Vereesa)
+	3. 每使用过一位，额外发现一次
 	"""
 	tags = {
 		GameTag.BATTLECRY: True,
 	}
 	
 	def play(self):
-		# 给玩家添加buff，本回合英雄技能伤害+1
-		yield Buff(self.controller, "TIME_609t1e")
-
-
-class TIME_609t1e:
-	"""奥蕾莉亚效果 - Alleria Effect
-	
-	本回合英雄技能伤害+1
-	"""
-	tags = {
-		GameTag.TAG_ONE_TURN_EFFECT: True,
-	}
-	
-	# 这个效果需要在英雄技能造成伤害时增加1点
-	# 通常通过修改 SPELLPOWER 或者监听 Hit 事件实现
-	# 简化实现：给玩家+1法术伤害
-	update = lambda self, entity: (
-		entity == self.controller.hero.power and
-		[Buff(entity, "TIME_609t1e2")]
-	)
-
-
-class TIME_609t1e2:
-	"""奥蕾莉亚伤害增益"""
-	tags = {
-		GameTag.SPELLPOWER: 1,
-	}
+		# 基础效果：发现一张法术
+		yield Discover(self.controller, RandomSpell())
+		
+		# 检查是否使用过希尔瓦娜斯（TIME_609）或温蕾萨（TIME_609t2）
+		played_sylvanas = False
+		played_vereesa = False
+		
+		for card in self.controller.cards_played_this_game:
+			if card.id == "TIME_609":  # Ranger General Sylvanas
+				played_sylvanas = True
+			elif card.id == "TIME_609t2":  # Ranger Initiate Vereesa
+				played_vereesa = True
+		
+		# 每使用过一位，重复发现效果
+		if played_sylvanas:
+			yield Discover(self.controller, RandomSpell())
+		
+		if played_vereesa:
+			yield Discover(self.controller, RandomSpell())
 
 
 class TIME_609t2:
-	"""温蕾萨 - Vereesa Windrunner
-	3费 3/3
-	**战吼：**装备一把2/2的武器。
+	"""温蕾萨 - Ranger Initiate Vereesa
+	3费 2/4 猎人随从
+	**战吼：**使你牌库中的随从牌获得+1/+1。如果你使用过奥蕾莉亚或希尔瓦娜斯，每使用过一位，重复一次。
 	
-	Battlecry: Equip a 2/2 weapon.
+	Battlecry: Give minions in your deck +1/+1. If you've played Alleria or Sylvanas, repeat for each.
 	
 	由游侠将军希尔瓦娜斯的Fabled机制添加到套牌中
+	
+	完整实现：
+	1. 基础效果：给牌库中所有随从+1/+1
+	2. 检查是否使用过 TIME_609t1 (Alleria) 或 TIME_609 (Sylvanas)
+	3. 每使用过一位，重复buff效果
 	"""
 	tags = {
 		GameTag.BATTLECRY: True,
 	}
 	
 	def play(self):
-		# 装备一把2/2武器
-		yield Equip(self.controller, "TIME_609t2t")
+		# 基础效果：给牌库中所有随从+1/+1
+		yield Buff(FRIENDLY_DECK + MINION, "TIME_609t2e")
+		
+		# 检查是否使用过奥蕾莉亚（TIME_609t1）或希尔瓦娜斯（TIME_609）
+		played_alleria = False
+		played_sylvanas = False
+		
+		for card in self.controller.cards_played_this_game:
+			if card.id == "TIME_609t1":  # Ranger Captain Alleria
+				played_alleria = True
+			elif card.id == "TIME_609":  # Ranger General Sylvanas
+				played_sylvanas = True
+		
+		# 每使用过一位，重复buff效果
+		if played_alleria:
+			yield Buff(FRIENDLY_DECK + MINION, "TIME_609t2e")
+		
+		if played_sylvanas:
+			yield Buff(FRIENDLY_DECK + MINION, "TIME_609t2e")
 
 
-
-
-class TIME_609t2t:
-	"""温蕾萨的弓 - Vereesa's Bow
-	2/2 武器
-	
-	由温蕾萨生成的Token武器
+class TIME_609t2e:
+	"""温蕾萨增益 - Vereesa Buff
+	+1/+1
 	"""
-	pass
+	atk = 1
+	max_health = 1
 
 
 # ========================================
