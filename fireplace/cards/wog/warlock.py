@@ -57,7 +57,7 @@ class OG_116:
     """Spreading Madness / 狂乱传染
     造成$13点伤害，随机分配到所有角色身上。"""
 
-    play = Hit(RANDOM_CHARACTER, 1) * 9
+    play = Hit(RANDOM_CHARACTER, 1) * 13
 
 
 class OG_118:

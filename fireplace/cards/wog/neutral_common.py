@@ -16,17 +16,17 @@ class OG_283:
     """C'Thun's Chosen / 克苏恩的侍从
     圣盾，战吼：使你的克苏恩获得+3/+3（无论它在哪里）。"""
 
-    play = Buff(CTHUN, "OG_281e", atk=2, max_health=2)
+    play = Buff(CTHUN, "OG_281e", atk=3, max_health=3)
 
 
 class OG_284:
     """Twilight Geomancer / 暮光地卜师
     嘲讽。战吼：使你的克苏恩获得+1/+1和嘲讽（无论它在哪里）。"""
 
-    play = Buff(CTHUN, "OG_284e")
+    play = Buff(CTHUN, "OG_284e", atk=1, max_health=1)
 
 
-OG_284e = buff(taunt=True)
+OG_284e = buff(+1, +1, taunt=True)
 
 
 class OG_286:
