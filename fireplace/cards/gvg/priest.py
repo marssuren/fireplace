@@ -20,7 +20,7 @@ class GVG_011:
     play = Buff(TARGET, "GVG_011a")
 
 
-GVG_011a = buff(atk=-2)
+GVG_011a = buff(atk=-3)
 
 
 class GVG_014:

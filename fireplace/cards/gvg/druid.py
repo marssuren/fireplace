@@ -54,7 +54,25 @@ class GVG_035:
     """Malorne / 玛洛恩
     亡语：进入休眠状态。在2只友方野兽死亡后复活。"""
 
-    deathrattle = Shuffle(CONTROLLER, SELF)
+    # Caverns of Time 更新版本 (Patch 27.2.0.183876 - 2023年8月22日)
+    # 原版效果：亡语：将本随从洗入你的牌库
+    # 新版效果：亡语：进入休眠状态。在2只友方野兽死亡后复活
+    
+    def deathrattle(self):
+        # 召唤休眠的玛洛恩
+        yield Summon(CONTROLLER, "GVG_035t")
+
+
+class GVG_035t:
+    """休眠的玛洛恩 (Dormant Malorne)"""
+    
+    dormant = True
+    
+    # 监听友方野兽死亡
+    events = Death(FRIENDLY + BEAST).on(
+        UpdateProgress(SELF, 1),
+        If(Attr(SELF, GameTag.PROGRESS) >= 2, Awaken(SELF))
+    )
 
 
 class GVG_080:

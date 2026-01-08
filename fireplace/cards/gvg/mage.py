@@ -17,14 +17,14 @@ class GVG_004:
     战吼：如果你控制任何机械，则造成6点伤害，随机分配到所有敌人身上。"""
 
     powered_up = Find(FRIENDLY_MINIONS + MECH)
-    play = powered_up & Hit(RANDOM_ENEMY_CHARACTER, 1) * 4
+    play = powered_up & Hit(RANDOM_ENEMY_CHARACTER, 1) * 6
 
 
 class GVG_007:
     """Flame Leviathan / 烈焰巨兽
-    突袭。当你抽到该牌时，对所有除机械外的角色造成 2点伤害。"""
+    突袭。当你抽到该牌时，对所有除机械外的角色造成2点伤害。"""
 
-    draw = Hit(ALL_CHARACTERS, 2)
+    draw = Hit(ALL_CHARACTERS - MECH, 2)
 
 
 ##

@@ -19,7 +19,7 @@ class GVG_048:
     """Metaltooth Leaper / 金刚刃牙兽
     战吼：使你的其他机械获得+2攻击力。"""
 
-    play = Buff(RANDOM(FRIENDLY_MINIONS + MECH - SELF), "GVG_048e")
+    play = Buff(FRIENDLY_MINIONS + MECH - SELF, "GVG_048e")
 
 
 GVG_048e = buff(atk=2)
