@@ -18,17 +18,15 @@ class DRG_096:
 
 
 class DRG_096e:
+    atk = SET(5)
+    max_health = SET(5)
+
     class Hand:
         events = OWN_TURN_BEGIN.on(
             Morph(OWNER, RandomLegendaryMinion()).then(Buff(Morph.CARD, "DRG_096e"))
         )
 
     events = REMOVED_IN_PLAY
-
-
-class DRG_096e2:
-    atk = SET(5)
-    max_health = SET(5)
 
 
 class DRG_216:
@@ -90,7 +88,7 @@ class DRG_217:
     召唤两只2/3并具有嘲讽的幽灵狼。如果你已经祈求过两次，则使它们获得+3/+3。"""
 
     # Summon two 2/3 Spirit Wolves with <b>Taunt</b>. If you've <b>Invoked</b> twice, give
-    # them +2/+2.
+    # them +3/+3.
     requirements = {PlayReq.REQ_NUM_MINION_SLOTS: 1}
     powered_up = INVOKED_TWICE
     play = powered_up & (
@@ -98,7 +96,7 @@ class DRG_217:
     ) | (Summon(CONTROLLER, "DRG_217t") * 2)
 
 
-DRG_217e = buff(+2, +2)
+DRG_217e = buff(+3, +3)
 
 
 class DRG_219:

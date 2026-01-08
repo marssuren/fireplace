@@ -56,7 +56,7 @@ class DRG_256:
     在你使用你的英雄技能后，随机对一个敌人造成5点伤害。"""
 
     # After you use your Hero Power, deal 5 damage to a random enemy.
-    events = Activate(CONTROLLER, FRIENDLY_HERO_POWER).after(Hit(ENEMY_HERO, 5))
+    events = Activate(CONTROLLER, FRIENDLY_HERO_POWER).after(Hit(RANDOM_ENEMY_CHARACTER, 5))
 
 
 ##
@@ -89,13 +89,13 @@ class DRG_255:
     """Toxic Reinforcements / 病毒增援
     支线任务： 使用你的英雄技能三次。奖励：召唤三个2/1的麻风侏儒。"""
 
-    # [x]<b>Sidequest:</b> Use your Hero Power three times. <b>Reward:</b> Summon three 1/1
+    # [x]<b>Sidequest:</b> Use your Hero Power three times. <b>Reward:</b> Summon three 2/1
     # Leper Gnomes.
     progress_total = 3
     sidequest = Activate(CONTROLLER, FRIENDLY_HERO_POWER).after(
         AddProgress(SELF, FRIENDLY_HERO_POWER)
     )
-    reward = Summon(CONTROLLER, "DRG_251t") * 3
+    reward = Summon(CONTROLLER, "DRG_255t") * 3
 
 
 ##
