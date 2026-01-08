@@ -146,7 +146,7 @@ class TTN_845:
 class TTN_845_ShuffleCopies(TargetedAction):
     def do(self, source, target, card):
         copies = [card.copy(), card.copy()]
-        # 赋予“抽到时施放”效果的附魔
+        # 赋予"抽到时施放"效果的附魔
         # 我们需要模拟 "Casts When Drawn"。
         # 我们可以添加一个处理此逻辑的附魔，或者依赖 CastWhenDrawn 助手（如果我们能注入事件）。
         # 但向实例注入事件比较困难。
@@ -191,7 +191,7 @@ class TTN_842:
 
 class TTN_842e:
     # 逻辑：
-    # 1. 新回合 -> 重置“已触发”标记。
+    # 1. 新回合 -> 重置"已触发"标记。
     # 2. 抽牌 -> 如果是法术且未触发 -> 随机对敌人施放复制 -> 设置已触发。
     # 需要一个属性来追踪已触发状态。在附魔本身上使用一个 Tag?
     # 或者如果是有状态的，使用脚本变量?
@@ -225,33 +225,45 @@ class TTN_842e:
 class TTN_862:
     """翠绿之星阿古斯 - Argus, the Emerald Star
     <b>泰坦</b> 本随从左边的随从均拥有<b>突袭</b>，本随从右边的随从均拥有<b>吸血</b>。
+    
+    核心机制：
+    - 使用 LEFT_OF(SELF) 和 RIGHT_OF(SELF) 选择器分别选择左右两侧的随从
+    - 使用 Refresh 机制动态应用光环效果
+    - 左侧随从获得突袭 (RUSH)
+    - 右侧随从获得吸血 (LIFESTEAL)
+    - 参考火舌图腾 (EX1_565) 的实现模式
     """
     titan = True
-    # 左右随从的被动光环
-    # 由于 fireplace 原生不便支持“我左边”/“我右边”的选择器来实现光环，
-    # 我们通过简化脚本或注释其复杂性来实现。
-    # 然而，如果我们有“ZonePosition Update”钩子，我们可以近似或使用自定义更新逻辑。
-    #目前，我们将实现泰坦技能。
+    
+    # 位置光环：左侧随从获得突袭，右侧随从获得吸血
+    update = [
+        Refresh(LEFT_OF(SELF), buff="TTN_862e_left"),   # 左侧随从：突袭
+        Refresh(RIGHT_OF(SELF), buff="TTN_862e_right")  # 右侧随从：吸血
+    ]
     
     # 泰坦技能
     def titan_ability_1(self):
-        # 雕琢晶石：发现一张亡语随从牌，法力值消耗减少（3）点。
-        # 选择器：随机具有亡语的可收集随从牌。
-        # 注意：Discover 动作通常接受一个选择器。
+        """雕琢晶石：发现一张亡语随从牌，法力值消耗减少（3）点"""
         yield Discover(CONTROLLER, RandomCollectible(deathrattle=True, type=CardType.MINION)).then(
             Give(CONTROLLER, Discover.CARD),
             Buff(Give.CARD, "TTN_862t1e")
         )
 
     def titan_ability_2(self):
-        # 力量展现：使你手牌中的所有随从牌的法力值消耗减少（2）点。
+        """力量展现：使你手牌中的所有随从牌的法力值消耗减少（2）点"""
         yield Buff(FRIENDLY_HAND + MINION, "TTN_862t3e")
-        # 注意：输出显示 TTN_862t3e 是 "阿古斯的祝福"，带有减费文本。
-        # 它似乎与 "Show of Force" 技能 (TTN_862t2) 相关联。
 
     def titan_ability_3(self):
-        # 阿古尼特大军：召唤四个2/2并具有嘲讽的元素。
+        """阿古尼特大军：召唤四个2/2并具有嘲讽的元素"""
         yield Summon(CONTROLLER, "TTN_862t4") * 4
+
+class TTN_862e_left:
+    """阿古斯的祝福 (左侧) - 突袭"""
+    tags = {GameTag.RUSH: True}
+
+class TTN_862e_right:
+    """阿古斯的祝福 (右侧) - 吸血"""
+    tags = {GameTag.LIFESTEAL: True}
 
 class TTN_862t1e:
     """大地之晶 - Cost reduced by (3)"""
