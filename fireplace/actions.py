@@ -2057,6 +2057,8 @@ class Discard(TargetedAction):
         source.game.manager.targeted_action(self, source, target)
         if old_zone == Zone.HAND:
             target.tags[DISCARDED] = True
+            # 追踪本局对战中是否弃过牌（用于 NX2_017 瘟疫爆发等卡牌）
+            target.controller.has_discarded_this_game = True
             actions = target.get_actions("discard")
             source.game.cheat_action(target, actions)
 
