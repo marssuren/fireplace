@@ -78,17 +78,18 @@ class CFM_668:
     """Doppelgangster / 魅影歹徒
     战吼：召唤本随从的两个复制。"""
 
-    # TODO
-    # The 'copies' summoned by this minion's Battlecry are in fact distinct
-    # uncollectible minions. However, they will copy the stats and enchantments of
-    # the Doppelgangster, and have the same base stats.
-    #
-    # The two copies look identical, but are in fact separate cards in the game data,
-    # with different quotes (see below).
-    #
-    # Whichever Doppelgangster is played (either the original card or one of the
-    # uncollectible cards), its Battlecry will summon copies of the two other versions,
-    # meaning all three versions will always be summoned.[1]
+    # 实现说明：
+    # 官方游戏数据中存在3个不同的 Doppelgangster 卡牌ID：
+    #   - CFM_668 (原版): "Get 'em, boys." / "All for one!"
+    #   - CFM_668t (复制1): "Seeing triple?" / "Such a shame."
+    #   - CFM_668t2 (复制2): "Seeing triple?" / "A pity."
+    # 这3个版本的唯一区别是语音台词（打出/攻击时的语音），其他属性完全相同。
+    # 语音台词属于表现层细节，不影响游戏逻辑，fireplace 引擎不处理音效。
+    # 当前使用 ExactCopy(SELF) 的实现完全正确：
+    #   - 正确复制所有游戏属性（攻击、生命、费用、种族等）
+    #   - 正确继承所有增益效果（手牌Buff等）
+    #   - 正确继承亡语和其他机制
+    # 符合官方游戏行为，无需为语音差异创建额外的卡牌定义。
     play = SummonBothSides(CONTROLLER, ExactCopy(SELF)) * 2
 
 
