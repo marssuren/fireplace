@@ -214,9 +214,10 @@ class TOY_700:
     # - Hearthstone Wiki: https://hearthstone.wiki.gg/
     # - 社区数据挖掘 (2024年3月)
     #
-    # 【TODO】
-    # ✅ 所有功能已完整实现
-    # (可选) 如果 Copycat Deck 被重新启用,添加其实现
+    # 【实现状态】
+    # ✅ 所有11个实验套牌已完整实现
+    # 📝 注：Copycat Deck (第12个套牌) 在官方发布时因技术问题被禁用
+    #     如果官方未来重新启用，可在此基础上添加实现
     #
     # 这里保留基础定义作为占位符
     # 实际的套牌替换逻辑已在 Player.prepare_for_game() 中实现

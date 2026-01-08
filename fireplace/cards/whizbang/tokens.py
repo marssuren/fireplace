@@ -894,8 +894,10 @@ class TOY_604t:
 
 
 # ========================================
-# 其他常用 Token（待补充）
+# Token 定义完成
 # ========================================
 
-# TODO: 根据需要添加更多 Token 卡牌
+# 所有 Whizbang's Workshop 扩展包的 Token 卡牌已定义完成
+# 包含：Death Knight, Demon Hunter, Druid, Hunter, Mage, Paladin, 
+#       Priest, Rogue, Shaman, Warlock, Warrior 以及 Neutral Tokens
 
