@@ -325,15 +325,42 @@ def UpdateDynamicChooseOneOptions(card_selector):
             if hasattr(card_data, 'choose_cards') and card_data.choose_cards:
                 # 添加所有choose选项
                 for option_id in card_data.choose_cards:
-                    # 排除会变形卡牌的选项（如德鲁伊之爪）
-                    # 排除需要目标的选项（避免复杂性）
                     option_data = db.get(option_id)
                     if option_data:
-                        # 简单过滤：排除变形类选项
-                        if not hasattr(option_data.scripts, 'play') or not any(
-                            'Morph' in str(getattr(option_data.scripts.play, '__name__', ''))
-                            for _ in [1]  # 简化检查
-                        ):
+                        # 过滤掉不适合的选项：
+                        # 1. 需要目标的选项（检查requirements）
+                        # 2. 变形类选项（检查play方法中是否有Morph）
+                        
+                        # 检查是否需要目标
+                        has_target_req = False
+                        if hasattr(option_data, 'requirements'):
+                            reqs = option_data.requirements
+                            if reqs and any(req in reqs for req in [
+                                PlayReq.REQ_TARGET_TO_PLAY,
+                                PlayReq.REQ_TARGET_IF_AVAILABLE,
+                                PlayReq.REQ_MINION_TARGET,
+                                PlayReq.REQ_ENEMY_TARGET,
+                                PlayReq.REQ_FRIENDLY_TARGET,
+                                PlayReq.REQ_HERO_TARGET,
+                            ]):
+                                has_target_req = True
+                        
+                        # 检查是否为变形类选项
+                        is_morph_option = False
+                        if hasattr(option_data, 'scripts') and hasattr(option_data.scripts, 'play'):
+                            play_script = option_data.scripts.play
+                            # 检查play方法的源代码或名称中是否包含Morph
+                            if callable(play_script):
+                                import inspect
+                                try:
+                                    source_code = inspect.getsource(play_script)
+                                    if 'Morph' in source_code:
+                                        is_morph_option = True
+                                except:
+                                    pass
+                        
+                        # 只添加不需要目标且不是变形的选项
+                        if not has_target_req and not is_morph_option:
                             all_choose_options.append(option_id)
         
         # 随机选择2个不同的选项

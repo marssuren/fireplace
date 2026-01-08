@@ -950,3 +950,68 @@ class SC_414t:
                 import random
                 target = random.choice(enemies)
                 yield Hit(target, 5)
+
+
+# ========================================
+# Neutral Rare Tokens (补充)
+# ========================================
+
+class GDB_331t:
+    """分裂巨石 - Splitting Boulder
+    4/4 元素 Token
+    由GDB_331(分裂星岩)的亡语召唤
+    """
+    tags = {
+        GameTag.ATK: 4,
+        GameTag.HEALTH: 4,
+    }
+    race = Race.ELEMENTAL
+
+
+class GDB_862e:
+    """法力值消耗减少(3)点
+    由GDB_862(星系远征军)的亡语添加到获得的圣光法术上
+    """
+    tags = {
+        GameTag.COST: -3,
+    }
+
+
+class SC_010t:
+    """跳虫 - Zergling Token
+    1/1 Token
+    由SC_010(跳虫)的战吼召唤
+    
+    参考：Heroes of StarCraft 迷你包
+    """
+    tags = {
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1,
+    }
+
+
+class SC_401e:
+    """下一次星舰发射减2费
+    由SC_401(SCV)的战吼添加到玩家身上
+    
+    实现说明：
+    - 这个buff会在LaunchStarship action中被检查
+    - 发射星舰时减少2点费用
+    - 发射后自动移除此buff
+    """
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+    }
+    
+    # 这个buff需要在LaunchStarship action中实现减费逻辑
+    # 暂时标记，后续在核心action中处理
+
+
+class SC_783e:
+    """+2/+2增益
+    由SC_783(虚空辉光舰)的战吼添加（当费用为0时）
+    """
+    tags = {
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 2,
+    }

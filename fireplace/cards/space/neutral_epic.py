@@ -144,8 +144,10 @@ class GDB_341:
     
     Costs (1) less for each adjacent card played while in your hand.
     
-    参考: space/tokens.py - 星球碰撞机制和乘务员相邻检测
-    使用 zone_position 属性追踪手牌位置
+    实现说明：
+    - 使用Play action中已有的_hand_position_when_played属性追踪手牌位置
+    - 每次有牌被打出时，检查其打出前的位置是否与本牌相邻
+    - 如果相邻，增加减费计数器
     """
     race = Race.ELEMENTAL
     
@@ -153,8 +155,6 @@ class GDB_341:
         super().__init__(*args, **kwargs)
         # 追踪相邻牌被使用的次数
         self._adjacent_cards_played = 0
-        # 记录上一次检查时的手牌位置
-        self._last_position = None
     
     def cost_func(self, value):
         """动态费用计算"""
@@ -168,10 +168,10 @@ class GDB_341:
     def _check_adjacent_played(self, played_card):
         """检查被使用的牌是否与本牌相邻
         
-        使用 zone_position 属性来判断相邻关系:
-        - 在牌被打出前,记录其在手牌中的位置
+        使用Play action中记录的_hand_position_when_played属性：
+        - 在牌被打出前，Play action会记录其在手牌中的位置
         - 检查该位置是否与本牌相邻(位置差为1)
-        - 如果相邻,增加计数器
+        - 如果相邻，增加计数器
         """
         # 只在本牌在手牌中时触发
         if self.zone != Zone.HAND:
@@ -181,65 +181,17 @@ class GDB_341:
         my_position = self.zone_position
         
         # 获取被打出的牌之前在手牌中的位置
-        # 注意:牌被打出后已经不在手牌中了
-        # 我们需要从Play事件中获取牌打出前的位置信息
+        # Play action会在打出前记录_hand_position_when_played属性
+        played_position = getattr(played_card, '_hand_position_when_played', None)
         
-        # 方法1: 检查被打出的牌是否有记录的位置信息
-        played_position = getattr(played_card, '_hand_position_before_play', None)
-        
-        # 方法2: 如果没有记录,尝试从当前手牌推断
-        # 当一张牌被打出后,后面的牌位置会前移
-        # 所以我们检查当前相邻位置的牌是否是新的
-        if played_position is None:
-            # 简化处理:检查当前相邻位置
-            # 如果之前记录了位置,检查是否有牌从相邻位置消失
-            hand = list(self.controller.hand)
-            
-            # 检查左右相邻位置
-            for card in hand:
-                if card == self:
-                    continue
-                # 如果有牌的位置正好是 my_position ± 1
-                # 说明可能有相邻的牌被打出了
-                if abs(card.zone_position - my_position) == 1:
-                    # 这里无法准确判断,所以采用保守策略
-                    pass
-            
-            # 由于无法准确追踪,我们使用一个简化的方案:
-            # 检查打出的牌的ID是否在我们记录的"相邻牌列表"中
-            if not hasattr(self, '_adjacent_card_ids'):
-                self._adjacent_card_ids = set()
-            
-            # 更新相邻牌列表
-            self._update_adjacent_cards()
-            
-            # 如果打出的牌在相邻列表中,增加计数
-            if played_card.entity_id in self._adjacent_card_ids:
-                self._adjacent_cards_played += 1
-                # 从列表中移除
-                self._adjacent_card_ids.discard(played_card.entity_id)
-        else:
-            # 如果有记录的位置,直接检查是否相邻
+        if played_position is not None:
+            # 检查是否相邻(位置差为1)
             if abs(played_position - my_position) == 1:
                 self._adjacent_cards_played += 1
-    
-    def _update_adjacent_cards(self):
-        """更新相邻牌的ID列表"""
-        if not hasattr(self, '_adjacent_card_ids'):
-            self._adjacent_card_ids = set()
-        
-        # 清空并重新收集
-        self._adjacent_card_ids.clear()
-        
-        hand = list(self.controller.hand)
-        my_position = self.zone_position
-        
-        for card in hand:
-            if card == self:
-                continue
-            # 检查是否相邻(位置差为1)
-            if abs(card.zone_position - my_position) == 1:
-                self._adjacent_card_ids.add(card.entity_id)
+                log_info("red_giant_cost_reduced", 
+                        card=self, 
+                        played_card=played_card,
+                        reduction=self._adjacent_cards_played)
 
 
 class GDB_450:
