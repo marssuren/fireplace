@@ -233,7 +233,7 @@ class BRM_034:
 
     requirements = {PlayReq.REQ_TARGET_IF_AVAILABLE_AND_DRAGON_IN_HAND: 0}
     powered_up = HOLDING_DRAGON
-    play = powered_up & Hit(TARGET, 3)
+    play = powered_up & Hit(TARGET, 5)
 
 
 ##
