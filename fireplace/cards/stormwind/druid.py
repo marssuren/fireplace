@@ -397,8 +397,8 @@ class SW_447:
     战吼：你抽到的接下来3张法术牌会在抽到时施放。"""
     tags = {
         GameTag.ATK: 5,
-        GameTag.HEALTH: 7,
-        GameTag.COST: 7,
+        GameTag.HEALTH: 5,  # 修正：7 → 5
+        GameTag.COST: 8,    # 修正：7 → 8
     }
     
     play = Buff(CONTROLLER, "SW_447e")

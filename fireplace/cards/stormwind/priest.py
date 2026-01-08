@@ -260,9 +260,12 @@ class SW_444:
     
     def play(self):
         """如果本回合有英雄受伤，抽暗影法术"""
-        # 简化实现：检查英雄生命值是否低于最大值
-        if (self.controller.hero.damage > 0 or 
-            self.controller.opponent.hero.damage > 0):
+        # 检查本回合是否有任意英雄受到过伤害
+        # 使用已有的 damage_taken_this_turn 追踪系统（由 Hit action 自动维护）
+        player_damaged = getattr(self.controller, 'damage_taken_this_turn', 0) > 0
+        opponent_damaged = getattr(self.controller.opponent, 'damage_taken_this_turn', 0) > 0
+        
+        if player_damaged or opponent_damaged:
             yield ForceDraw(CONTROLLER, FRIENDLY_DECK + SPELL + SHADOW)
 
 

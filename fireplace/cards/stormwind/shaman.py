@@ -47,32 +47,34 @@ class DED_511:
     )
     
     def _transform_weapon(self):
-        """将武器变形为费用+1的武器"""
+        """将玩家装备的武器变形为费用+1的武器"""
+        # 检查玩家是否装备了武器
+        if not self.controller.weapon:
+            return
+        
         # 获取当前武器的费用
-        current_cost = self.cost
+        current_cost = self.controller.weapon.cost
         target_cost = current_cost + 1
         
-        # 随机选择一把费用为 target_cost 的武器
-        # 简化实现：从所有可收集武器中选择
-        from fireplace import cards
+        # 变形为费用+1的萨满或中立武器
+        # 根据官方数据，Suckerhook 应该只变形为萨满职业或中立武器
+        # 使用 RandomWeapon 辅助函数并添加费用和职业过滤
+        from ..dsl.random_picker import RandomWeapon
         
-        # 获取所有费用为 target_cost 的武器
-        all_weapons = [
-            card_id for card_id, card_class in cards.db.items()
-            if (hasattr(card_class, 'tags') and 
-                card_class.tags.get(GameTag.CARDTYPE) == CardType.WEAPON and
-                card_class.tags.get(GameTag.COST) == target_cost and
-                card_class.tags.get(GameTag.COLLECTIBLE, False))
-        ]
-        
-        if all_weapons:
-            # 随机选择一把武器
-            import random
-            new_weapon_id = random.choice(all_weapons)
+        # 尝试生成目标费用的武器（萨满+中立）
+        # RandomWeapon 会自动处理职业权重（中立1倍，职业4倍）
+        try:
+            new_weapon = RandomWeapon(
+                cost=target_cost,
+                card_class=CardClass.SHAMAN
+            ).pick(self.game, self)
             
-            # 销毁当前武器并装备新武器
-            yield Destroy(SELF)
-            yield Equip(CONTROLLER, new_weapon_id)
+            if new_weapon:
+                # 变形玩家装备的武器
+                yield Morph(FRIENDLY_WEAPON, new_weapon)
+        except:
+            # 如果没有找到合适的武器，保持当前武器不变
+            pass
 
 
 
