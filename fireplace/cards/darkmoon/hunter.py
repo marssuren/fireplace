@@ -104,7 +104,6 @@ class DMF_122:
         GameTag.COST: 1,
     }
     # 发现一张猎人奥秘牌
-    # TODO: 实现完整的发现奥秘机制
     play = DISCOVER(RandomCollectible(card_class=CardClass.HUNTER, secret=True))
 
 
@@ -236,8 +235,13 @@ class DMF_088:
         GameTag.COST: 4,
     }
     
-    # 在你的英雄政击后,发现一张猎人奥秘并施放
-    # TODO: 实现完整的 DiscoverAndCastSecret 机制
-    events = Attack(FRIENDLY_HERO).after(
-        DISCOVER(RandomCollectible(card_class=CardClass.HUNTER, secret=True))
-    )
+    # 在你的英雄攻击后,发现一张猎人奥秘并施放
+    def _discover_and_cast_secret(self, source, target):
+        """发现一张奥秘并自动施放"""
+        # 发现一张猎人奥秘
+        cards = yield DISCOVER(RandomCollectible(card_class=CardClass.HUNTER, secret=True))
+        if cards:
+            # 自动施放发现的奥秘
+            yield Summon(CONTROLLER, cards[0])
+    
+    events = Attack(FRIENDLY_HERO).after(_discover_and_cast_secret)

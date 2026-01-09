@@ -196,9 +196,26 @@ class DMF_224e_marker:
 
 class DMF_224e_tracker:
     """Expendable Performers Tracker"""
-    # TODO: 实现完整的追踪逻辑
-    # 暂时简化实现
-    pass
+    # 追踪本批次召唤的7个伊利达雷的死亡情况
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.summoned_count = 7  # 召唤的总数
+        self.died_count = 0      # 已死亡的数量
+    
+    # 监听带有标记的随从死亡
+    events = [
+        Death(FRIENDLY_MINIONS + Attr(GameTag.TAG_SCRIPT_DATA_NUM_1, 1)).on(
+            lambda self, source, target: setattr(self, 'died_count', getattr(self, 'died_count', 0) + 1)
+        ),
+        # 回合结束时检查是否全部死亡
+        OWN_TURN_END.on(
+            lambda self, player: (
+                [Summon(CONTROLLER, "DMF_224t") for _ in range(7)],
+                Destroy(SELF)
+            ) if getattr(self, 'died_count', 0) >= 7 else Destroy(SELF)
+        )
+    ]
 
 
 class DMF_225:
@@ -237,23 +254,46 @@ class DMF_249:
 
 class DMF_249e_card1:
     """Acrobatics Card 1 Marker"""
-    # TODO: 实现完整的追踪逻辑
+    # 标记第一张抽到的牌
     tags = {GameTag.TAG_SCRIPT_DATA_NUM_1: 1}
-    events = OWN_TURN_END.on(Destroy(SELF))
+    
+    # 打出时通知追踪器
+    events = [
+        Play(OWNER).on(
+            lambda self, source: setattr(self.controller, '_acrobatics_card1_played', True)
+        ),
+        OWN_TURN_END.on(Destroy(SELF))
+    ]
 
 
 class DMF_249e_card2:
     """Acrobatics Card 2 Marker"""
-    # TODO: 实现完整的追踪逻辑
+    # 标记第二张抽到的牌
     tags = {GameTag.TAG_SCRIPT_DATA_NUM_1: 2}
-    events = OWN_TURN_END.on(Destroy(SELF))
+    
+    # 打出时通知追踪器
+    events = [
+        Play(OWNER).on(
+            lambda self, source: setattr(self.controller, '_acrobatics_card2_played', True)
+        ),
+        OWN_TURN_END.on(Destroy(SELF))
+    ]
 
 
 class DMF_249e_tracker:
     """Acrobatics Tracker"""
-    # TODO: 实现完整的追踪逻辑
-    # 暂时简化实现
-    pass
+    # 追踪两张牌是否都打出
+    
+    # 回合结束时检查
+    events = OWN_TURN_END.on(
+        lambda self, player: (
+            [Draw(CONTROLLER) for _ in range(2)],
+            Destroy(SELF)
+        ) if (
+            getattr(player, '_acrobatics_card1_played', False) and 
+            getattr(player, '_acrobatics_card2_played', False)
+        ) else Destroy(SELF)
+    )
 
 
 class YOP_001:

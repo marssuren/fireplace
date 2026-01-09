@@ -292,6 +292,32 @@ class PlayReq(IntEnum):
 
 
 class BoardEnum(IntEnum):
+    """
+    游戏棋盘背景枚举 (Game Board / Battlefield)
+    
+    用途：
+    - 主要用于 Transfer Student (SCH_199) 卡牌，该卡牌会根据当前棋盘背景变形为不同效果
+    - 棋盘背景是炉石传说的装饰性功能，每个扩展包通常会有对应的棋盘皮肤
+    
+    Fireplace 引擎限制：
+    - Fireplace 是纯游戏逻辑模拟器，不处理 UI/视觉元素
+    - 无法自动检测玩家当前使用的棋盘皮肤
+    - GAME_SKIN 标签需要在游戏初始化时手动设置
+    - 如果未设置，Transfer Student 会使用默认效果（None 分支）
+    
+    所有棋盘枚举 (1-36)：
+    - 所有棋盘在官方游戏中都存在（通过 Hearthstone Wiki 确认）
+    - 枚举值已全部定义，可以在测试或特定场景中使用
+    - Transfer Student 的所有变形效果都已实现（SCH_199t ~ SCH_199t25）
+    
+    使用方法：
+    - 在创建游戏时设置：game.tags[GameTag.GAME_SKIN] = BoardEnum.SCHOLOMANCE
+    - Transfer Student 会根据 GAME_SKIN 标签自动变形
+    
+    参考：
+    - https://hearthstone.fandom.com/wiki/Battlefield
+    - fireplace/fireplace/cards/scholomance/transfer_student.py
+    """
     STORMWIND = 1
     ORGRIMMAR = 2
     PANDARIA = 3
@@ -316,15 +342,15 @@ class BoardEnum(IntEnum):
     ULDUM_CITY = 22
     DRAGONBLIGHT = 23
     OUTLAND = 24
-    # SCHOLOMANCE = 25
-    # DARKMOON_FAIRE = 26
-    # THE_BARRENS = 27
-    # UNITED_IN_STORMWIND = 28
-    # ALTERAC_VALLEY = 29
-    # THE_SUNKEN_CITY = 30
-    # REVENDRETH = 31
-    # MARCH_OF_THE_LICH_KING = 32
-    # FESTIVAL_OF_LEGENDS = 33
-    # TITANS = 34
-    # SHOWDOWN_IN_THE_BADLANDS = 35
-    # WHIZBANGS_WORKSHOP = 36
+    SCHOLOMANCE = 25
+    DARKMOON_FAIRE = 26
+    THE_BARRENS = 27
+    UNITED_IN_STORMWIND = 28
+    ALTERAC_VALLEY = 29
+    THE_SUNKEN_CITY = 30
+    REVENDRETH = 31
+    MARCH_OF_THE_LICH_KING = 32
+    FESTIVAL_OF_LEGENDS = 33
+    TITANS = 34
+    SHOWDOWN_IN_THE_BADLANDS = 35
+    WHIZBANGS_WORKSHOP = 36
