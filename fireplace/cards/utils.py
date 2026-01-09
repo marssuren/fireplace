@@ -15,7 +15,12 @@ from ..cards import db
 from ..dsl import *
 from ..entity import boolean_property
 from ..enums import PlayReq, BoardEnum
+from .. import enums  # 导入 fireplace 内部标签
 from ..events import *
+
+# 导入常用的 fireplace 内部标签
+ACTIVATIONS_THIS_TURN = enums.ACTIVATIONS_THIS_TURN
+LOCATION_COOLDOWN = enums.LOCATION_COOLDOWN
 
 
 # For buffs which are removed when the card is moved to play (eg. cost buffs)

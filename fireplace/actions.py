@@ -299,19 +299,19 @@ class Attack(GameAction):
             defender_health = defender.health
             if attacker_atk > defender_health:
                 # 先对目标造成伤害
-                source.game.queue_actions(attacker, [Hit(defender, attacker_atk)])
+                source.game.queue_actions(attacker, [Hit(defender, attacker_atk, trigger_lifesteal=True)])
                 # 溢出部分伤害命中敌方英雄
                 excess_damage = attacker_atk - defender_health
-                source.game.queue_actions(attacker, [Hit(defender.controller.hero, excess_damage)])
+                source.game.queue_actions(attacker, [Hit(defender.controller.hero, excess_damage, trigger_lifesteal=True)])
             else:
                 # 没有溢出，正常伤害
-                source.game.queue_actions(attacker, [Hit(defender, attacker_atk)])
+                source.game.queue_actions(attacker, [Hit(defender, attacker_atk, trigger_lifesteal=True)])
         else:
             # 正常攻击逻辑
-            source.game.queue_actions(attacker, [Hit(defender, attacker_atk)])
+            source.game.queue_actions(attacker, [Hit(defender, attacker_atk, trigger_lifesteal=True)])
         
         if def_atk:
-            source.game.queue_actions(defender, [Hit(attacker, def_atk)])
+            source.game.queue_actions(defender, [Hit(attacker, def_atk, trigger_lifesteal=True)])
 
         self.broadcast(source, EventListener.AFTER, attacker, defender)
 
@@ -560,7 +560,7 @@ class Death(GameAction):
                 
                 # 牌库注能机制（MAW_031 冥界侍从）
                 # 检查控制者是否有"牌库注能激活"标记
-                from ..enums import GameTag
+                from hearthstone.enums import GameTag
                 controller = card.controller
                 hero = controller.hero
                 
@@ -1855,7 +1855,54 @@ class Damage(TargetedAction):
                 actions = source.get_actions("honorable_kill")
                 if actions:
                     source.game.trigger(source, actions, event_args={'target': target})
+            
+            # 检查英雄是否死亡
+            # 如果目标是英雄且生命值 <= 0，立即检查游戏结束
+            # 这确保了即使在动作栈未清空的情况下，英雄死亡也能被正确检测
+            if target.type == CardType.HERO and target.health <= 0:
+                source.game.check_for_end_game()
         return amount
+
+
+class SetCurrentHealth(TargetedAction):
+    """
+    设置目标的当前生命值
+    用于英雄复活等机制（如 TIME_618 永时收割者哈斯克）
+    
+    注意：这会直接设置生命值，而不是治疗或造成伤害
+    实现方式：调整 damage 属性来达到目标生命值
+    """
+    TARGET = ActionArg()
+    AMOUNT = IntArg()
+    
+    def do(self, source, target, amount):
+        """
+        设置目标的当前生命值
+        
+        Args:
+            source: 动作来源
+            target: 目标角色（通常是英雄）
+            amount: 目标生命值
+        """
+        if not hasattr(target, 'max_health') or not hasattr(target, 'damage'):
+            log_info("target_cannot_have_health_set", source=source, target=target)
+            return
+        
+        # 计算需要调整的伤害值
+        # current_health = max_health - damage
+        # 要达到 amount 生命值，需要 damage = max_health - amount
+        target_damage = target.max_health - amount
+        
+        # 确保伤害值不为负数
+        target_damage = max(0, target_damage)
+        
+        log_info("set_current_health", source=source, target=target, old_health=target.health, new_health=amount)
+        source.game.manager.targeted_action(self, source, target, amount)
+        
+        # 设置新的伤害值
+        target.damage = target_damage
+        
+        self.broadcast(source, EventListener.ON, target, amount)
 
 
 class Deathrattle(TargetedAction):
@@ -1869,6 +1916,9 @@ class Deathrattle(TargetedAction):
 
         for entity in target.entities:
             source.game.manager.targeted_action(self, source, target)
+            # 检查实体是否有 deathrattles 属性（某些实体如 HeroPower 可能没有）
+            if not hasattr(entity, 'deathrattles'):
+                continue
             for deathrattle in entity.deathrattles:
                 if callable(deathrattle):
                     actions = deathrattle(entity)
@@ -2260,8 +2310,9 @@ class Fatigue(TargetedAction):
         target.fatigue_counter += 1
         log_info("fatigue_damage", target=target, amount=target.fatigue_counter)
         source.game.manager.targeted_action(self, source, target)
+        # 疲劳伤害不触发吸血效果
         return source.game.queue_actions(
-            source, [Hit(target.hero, target.fatigue_counter)]
+            source, [Hit(target.hero, target.fatigue_counter, trigger_lifesteal=False)]
         )
 
 
@@ -2436,6 +2487,48 @@ class Hit(TargetedAction):
     TARGET = ActionArg()
     AMOUNT = IntArg()
     TRIGGER_LIFESTEAL = BoolArg(default=True)
+    
+    def get_target_args(self, source, target):
+        """获取目标参数，处理可选的 trigger_lifesteal 参数"""
+        # 第一个参数是伤害量
+        amount_arg = self._args[1]
+        if isinstance(amount_arg, (int, float)):
+            # 直接提供的数值
+            amount = amount_arg
+        elif isinstance(amount_arg, LazyNum):
+            # LazyNum 类型
+            amount = amount_arg.evaluate(source)
+        elif isinstance(amount_arg, LazyValue):
+            # LazyValue 类型
+            amount = amount_arg.evaluate(source)
+        elif isinstance(amount_arg, Selector):
+            # Selector 类型
+            result = amount_arg.eval(source.game, source)
+            amount = result[0] if isinstance(result, list) and result else result
+        else:
+            # 其他情况，尝试使用 eval 方法
+            amount = self.eval(amount_arg, source)
+            if isinstance(amount, list):
+                amount = amount[0]
+        
+        # 第二个参数是可选的 trigger_lifesteal
+        if len(self._args) >= 3:
+            trigger_lifesteal = self._args[2]
+            if isinstance(trigger_lifesteal, bool):
+                # 直接提供的布尔值
+                pass
+            elif hasattr(trigger_lifesteal, 'evaluate'):
+                # LazyValue
+                trigger_lifesteal = trigger_lifesteal.evaluate(source)
+            else:
+                # 其他情况，使用默认值
+                trigger_lifesteal = True
+        else:
+            # 没有提供，使用默认值
+            trigger_lifesteal = True
+        
+        return [amount, trigger_lifesteal]
+
 
     def do(self, source, target, amount, trigger_lifesteal):
         # 检查"战吼无法伤害敌方英雄"限制（用于 TOY_501 Shudderblock）
@@ -2952,7 +3045,7 @@ class Summon(TargetedAction):
                 # 标记复生召唤 - 深暗领域（2024年11月）
                 # 用于 GDB_469 奥金尼亡语者等需要检测复生的卡牌
                 # 检查卡牌是否是通过 RebornCopy 创建的
-                from ..dsl.copy import RebornCopy
+                from .dsl.copy import RebornCopy
                 # 如果卡牌的 reborn 标签为 False 但原始实体有 reborn，说明是复生召唤
                 # 或者检查卡牌的生命值是否被设置为1（RebornCopy 的特征）
                 if card.type == CardType.MINION and hasattr(card, 'original_entity_id'):

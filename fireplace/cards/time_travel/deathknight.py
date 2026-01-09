@@ -249,9 +249,8 @@ class TIME_618:
     
     Battlecry: Give your hero "Deathrattle: Spend up to 20 Corpses to resurrect with that much Health."
     """
-    def play(self):
-        # 给英雄添加亡语buff
-        yield Buff(FRIENDLY_HERO, "TIME_618e")
+    # 给英雄添加亡语buff
+    play = Buff(FRIENDLY_HERO, "TIME_618e")
 
 
 class TIME_618e:
@@ -268,7 +267,6 @@ class TIME_618e:
         GameTag.DEATHRATTLE: True,
     }
     
-    @property
     def deathrattle(self):
         """
         动态亡语：根据当前残骸数量决定复活生命值
@@ -276,8 +274,11 @@ class TIME_618e:
         实现方式：
         1. 消耗残骸（最多20个）
         2. 使用 SetCurrentHealth 将英雄生命值设置为残骸数量
-        3. 由于英雄生命值 > 0，playstate 不会被设置为 LOSING
+        3. 英雄生命值 > 0 后，check_for_end_game 会检测到并不设置 LOSING
         4. 游戏继续进行
+        
+        注意：不能在这里直接设置 zone，会导致递归！
+        英雄的 zone 变化由 process_deaths 和 check_for_end_game 管理。
         """
         # 计算可以消耗的残骸数量（最多20个）
         corpses_to_spend = min(self.owner.controller.corpses, 20)
@@ -285,10 +286,10 @@ class TIME_618e:
         if corpses_to_spend > 0:
             return [
                 # 消耗残骸
-                SpendCorpses(CONTROLLER, corpses_to_spend),
+                SpendCorpses(self.owner.controller, corpses_to_spend),
                 # 将英雄生命值设置为残骸数量
                 # 这会将英雄从死亡状态救回（生命值从 <= 0 变为 > 0）
-                SetCurrentHealth(FRIENDLY_HERO, corpses_to_spend),
+                SetCurrentHealth(self.owner, corpses_to_spend),
             ]
         return []
 

@@ -28,11 +28,14 @@ class TIME_212:
 
         # 定义卡牌效果
         def effect():
-        # 对友方随从造成2点伤害
-        yield Hit(TARGET, 2)
+            # 对友方随从造成2点伤害
+            yield Hit(TARGET, 2)
+            
+            # 对随机敌方随从造成4点伤害
+            yield Hit(RANDOM_ENEMY_MINION, 4)
         
-        # 对随机敌方随从造成4点伤害
-        yield Hit(RANDOM_ENEMY_MINION, 4)
+        # 使用 Rewind 包装器执行效果
+        yield from execute_with_rewind(self, effect)
 
 
 class TIME_213:
@@ -130,7 +133,7 @@ class TIME_214:
             source.controller == self.controller and
             [
                 # 将伤害设置为0（取消伤害）
-                SetTag(target, {(GameTag.PREDAMAGE: 0})),
+                Predamage(target, 0),
                 # 给予 +2/+1
                 Buff(SELF, "TIME_214e")
             ]
@@ -271,7 +274,7 @@ class TIME_217:
             source.controller == self.controller and
             [
                 # 将伤害设置为0（取消伤害）
-                SetTag(target, {(GameTag.PREDAMAGE: 0})),
+                Predamage(target, 0),
                 # 召唤一个随机5费随从
                 Summon(CONTROLLER, RandomCollectible(card_type=CardType.MINION, cost=5))
             ]

@@ -1222,7 +1222,31 @@ class Hero(Character):
         return ret
 
     def _set_zone(self, value):
+        # 特殊处理：英雄移动到墓地时，先检查亡语复活
+        if value == Zone.GRAVEYARD and self.controller.hero is self:
+            if self.has_deathrattle:
+                # 触发亡语（可能会复活英雄）
+                from .actions import Deathrattle
+                self.game.queue_actions(self, [Deathrattle(self)])
+                # 刷新光环，让 SetCurrentHealth 等动作生效
+                self.game.refresh_auras()
+                
+                # 检查是否复活成功
+                if self.health > 0:
+                    # 复活成功！不移动到墓地，直接返回
+                    self.log("%r was resurrected by deathrattle with %i health, staying in PLAY", 
+                            self, self.health)
+                    return
+                else:
+                    # 仍然死亡，设置 LOSING 状态
+                    self.controller.playstate = PlayState.LOSING
+            else:
+                # 没有亡语，直接设置 LOSING
+                self.controller.playstate = PlayState.LOSING
+        
+        # 正常的 zone 设置流程
         super()._set_zone(value)
+        
         if value == Zone.PLAY:
             old_hero = self.controller.hero
             self.controller.hero = self
@@ -1230,22 +1254,6 @@ class Hero(Character):
                 self.controller.summon(self.data.hero_power)
             if old_hero:
                 old_hero.zone = Zone.GRAVEYARD
-        elif value == Zone.GRAVEYARD:
-            # 英雄进入墓地时的特殊处理
-            # 支持英雄亡语机制（如 TIME_618 永时收割者哈斯克）
-            if self.controller.hero is self:
-                # 先触发英雄的亡语（如果有）
-                # 亡语可能会复活英雄（通过 SetCurrentHealth）
-                if self.has_deathrattle:
-                    from .actions import Deathrattle
-                    self.game.queue_actions(self, [Deathrattle(self)])
-                    # 刷新光环，让 SetCurrentHealth 生效
-                    self.game.refresh_auras()
-                
-                # 亡语触发后，再次检查英雄是否真的死亡
-                # 如果英雄被复活（health > 0），则不设置 LOSING 状态
-                if self.health <= 0:
-                    self.controller.playstate = PlayState.LOSING
 
     def _hit(self, amount):
         amount = super()._hit(amount)
@@ -1679,7 +1687,7 @@ class PseudoSecret(Spell):
     
     示例：冰血要塞(Iceblood Garrison) - 奥特兰克的决裂
     """
-    spelltype = enums.SpellType.SPELL
+    spelltype = enums.SpellType.INVALID
     
     def __init__(self, data):
         super().__init__(data)

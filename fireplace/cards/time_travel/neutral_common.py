@@ -21,7 +21,7 @@ class TIME_002:
         def effect():
             # 随机获取2张职业法术
             for _ in range(2):
-            yield Give(self.controller, RandomSpell(card_class=self.controller.hero.card_class))
+                yield Give(self.controller, RandomSpell(card_class=self.controller.hero.card_class))
 
 
         # 使用 Rewind 包装器执行效果
@@ -247,28 +247,16 @@ class TIME_060:
     This minion takes double damage from all sources.
     
     实现说明：
-    - 使用预定伤害修改器（Predamage）
-    - 在伤害计算前将伤害值翻倍
-    - 参考类似机制的实现（如某些卡牌的伤害加成）
+    - 使用 Predamage 事件拦截对自己的伤害
+    - 将伤害值翻倍
+    - 参考 space/rogue.py 的 Predamage 用法
     """
-    # 使用预定伤害修改器
-    class Predamage:
-        """伤害翻倍修改器"""
-        def apply(self, source, target, amount):
-            """如果目标是自己，伤害翻倍"""
-            if target == source:
-                return amount * 2
-            return amount
-    
-    # 或者使用更简单的标签方式
-    # 通过添加一个特殊的buff来实现伤害翻倍
-    events = [
-        Predamage(SELF).on(
-            lambda self, source, target, amount: (
-                target == self and amount * 2 or amount
-            )
+    # 监听对自己的伤害，将伤害翻倍
+    events = Predamage(SELF).on(
+        lambda self, source, target, amount: (
+            Predamage(target, amount * 2)
         )
-    ]
+    )
 
 
 class TIME_062:

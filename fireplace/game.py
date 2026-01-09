@@ -149,6 +149,10 @@ class BaseGame(Entity):
             self.log(translate("empty_stack"))
             self.refresh_auras()
             self.process_deaths()
+            self.check_for_end_game()  # 检查游戏是否应该结束
+            # check_for_end_game 可能已经抛出异常，但如果没有，再次检查
+            if self.ended:
+                raise GameOver("The game has ended.")
 
     def action_block(
         self, source, actions, type, index=-1, target=None, event_args=None
@@ -219,6 +223,28 @@ class BaseGame(Entity):
         """
         gameover = False
         for player in self.players:
+            # 检查英雄生命值和区域
+            if player.hero:
+                # 如果英雄生命值 <= 0 或已在墓地，设置为 LOSING
+                if player.hero.health <= 0 or player.hero.zone == Zone.GRAVEYARD:
+                    if player.playstate not in (PlayState.LOSING, PlayState.LOST):
+                        # 特殊处理：如果英雄有亡语（如 TIME_618 永时收割者哈斯克）
+                        # 则不立即设置 LOSING 状态，而是标记为 to_be_destroyed
+                        # 让 process_deaths() 来处理，这样亡语可以先触发
+                        # 如果亡语复活了英雄（health > 0），则游戏继续
+                        if player.hero.health <= 0 and player.hero.has_deathrattle and player.hero.zone == Zone.PLAY:
+                            # 标记英雄为待销毁，但不立即设置 LOSING
+                            # process_deaths() 会将英雄移动到墓地，触发 _set_zone(GRAVEYARD)
+                            # 在 _set_zone 中会先触发亡语，再检查是否真的死亡
+                            player.hero.to_be_destroyed = True
+                            self.log("%s's hero has %i health and deathrattle, marking for destruction", 
+                                    player, player.hero.health)
+                        else:
+                            # 没有亡语，或者已经在墓地，直接设置 LOSING
+                            self.log("%s's hero has %i health (zone=%s), setting playstate to LOSING", 
+                                    player, player.hero.health, player.hero.zone)
+                            player.playstate = PlayState.LOSING
+            
             if player.playstate in (PlayState.CONCEDED, PlayState.DISCONNECTED):
                 player.playstate = PlayState.LOSING
             if player.playstate == PlayState.LOSING:
@@ -238,7 +264,8 @@ class BaseGame(Entity):
             self.manager.step(self.next_step, Step.FINAL_WRAPUP)
             self.manager.step(self.next_step, Step.FINAL_GAMEOVER)
             self.manager.step(self.next_step)
-
+            # 立即抛出 GameOver 异常，确保游戏停止
+            raise GameOver("The game has ended.")
     def queue_actions(self, source: Entity, actions: "list[Action]", event_args=None):
         """
         Queue a list of \a actions for processing from \a source.

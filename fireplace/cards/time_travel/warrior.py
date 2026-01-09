@@ -28,9 +28,12 @@ class TIME_715:
 
         # 定义卡牌效果
         def effect():
-        # 抽两张牌
-        yield Draw(self.controller)
-        yield Draw(self.controller)
+            # 抽两张牌
+            yield Draw(self.controller)
+            yield Draw(self.controller)
+        
+        # 使用 Rewind 包装器执行效果
+        yield from execute_with_rewind(self, effect)
 
 
 class TIME_750:

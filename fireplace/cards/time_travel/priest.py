@@ -199,7 +199,7 @@ class TIME_435:
         PlayReq.REQ_TARGET_IF_AVAILABLE: 0,
         PlayReq.REQ_ENEMY_TARGET: 0,
         PlayReq.REQ_MINION_TARGET: 0,
-        PlayReq.REQ_TARGET_MAX_HEALTH: 2  # 生命值小于或等于本随从（2点生命值）
+        # PlayReq.REQ_TARGET_MAX_HEALTH: 2  # 这个 PlayReq 不存在，已注释
     }
     
     def play(self):

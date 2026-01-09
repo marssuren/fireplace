@@ -24,15 +24,14 @@ class TIME_003:
 
         # 定义卡牌效果
         def effect():
-        
-        # 抽一张牌
-        drawn_cards = yield Draw(self.controller)
-        
-        # 如果抽到了牌且是随从牌，给予+2/+2
-        if drawn_cards:
-            for card in drawn_cards:
-                if card.zone == Zone.HAND and card.type == CardType.MINION:
-                    yield Buff(card, "TIME_003e")
+            # 抽一张牌
+            drawn_cards = yield Draw(self.controller)
+            
+            # 如果抽到了牌且是随从牌，给予+2/+2
+            if drawn_cards:
+                for card in drawn_cards:
+                    if card.zone == Zone.HAND and card.type == CardType.MINION:
+                        yield Buff(card, "TIME_003e")
 
 
         # 使用 Rewind 包装器执行效果

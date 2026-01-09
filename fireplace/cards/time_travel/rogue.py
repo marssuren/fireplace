@@ -23,9 +23,12 @@ class TIME_710:
 
         # 定义卡牌效果
         def effect():
-        # 连击效果：召唤自身的复制
-        if self.controller.combo:
-            yield Summon(self.controller, ExactCopy(SELF))
+            # 连击效果：召唤自身的复制
+            if self.controller.combo:
+                yield Summon(self.controller, ExactCopy(SELF))
+        
+        # 使用 Rewind 包装器执行效果
+        yield from execute_with_rewind(self, effect)
 
 
 class TIME_712:

@@ -281,14 +281,25 @@ class TIME_861e:
     # 监听法术打出事件
     # 当这张法术被打出时，减少计数器
     events = Play(OWNER).on(
-        lambda self, source: [
-            # 减少计数器
-            SetTag(CONTROLLER, {'toki_spells_remaining': max(0, self.controller.toki_spells_remaining - 1})),
+        lambda self, source: self._on_spell_played()
+    )
+    
+    def _on_spell_played(self):
+        """当标记的法术被打出时触发"""
+        actions = []
+        
+        # 减少计数器
+        if hasattr(self.controller, 'toki_spells_remaining'):
+            self.controller.toki_spells_remaining = max(0, self.controller.toki_spells_remaining - 1)
             
             # 检查是否所有法术都已打出
-            Find(self.controller.toki_spells_remaining == 0) & [
+            if self.controller.toki_spells_remaining == 0:
                 # 给予一张新的托奇
-                Give(CONTROLLER, "TIME_861"),
-            ]
-        ]
-    )
+                actions.append(Give(self.controller, "TIME_861"))
+                # 重置计数器
+                self.controller.toki_spells_remaining = 0
+        
+        # 移除这个buff（法术已经打出）
+        actions.append(Destroy(self))
+        
+        return actions

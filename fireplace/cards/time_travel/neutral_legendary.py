@@ -26,8 +26,11 @@ class TIME_024:
 
         # 定义卡牌效果
         def effect():
-        # 给自己添加buff，在下个回合开始时触发
-        yield Buff(SELF, "TIME_024e")
+            # 给自己添加buff，在下个回合开始时触发
+            yield Buff(SELF, "TIME_024e")
+        
+        # 使用 Rewind 包装器执行效果
+        yield from execute_with_rewind(self, effect)
 
 
 class TIME_024e:
@@ -170,17 +173,16 @@ class TIME_064:
     
     实现说明：
     - 使用 EXTRA_BATTLECRIES 和 EXTRA_DEATHRATTLES 标签
-    - 英雄技能双倍触发使用 HERO_POWER_DOUBLE 标签
-    - 回合结束效果双倍触发使用 EXTRA_END_TURN_EFFECT 标签
+    - TODO: 英雄技能和回合结束效果双倍触发需要额外实现
     - 参考 naxxramas/collectible.py 的双倍触发实现
     """
     # 使用 Aura 实现光环效果
     # 给控制者添加双倍触发效果
+    # 注意：目前只实现了战吼和亡语的双倍触发
+    # 英雄技能和回合结束效果的双倍触发需要通过其他机制实现
     update = Refresh(CONTROLLER, {
         GameTag.EXTRA_BATTLECRIES: True,
         GameTag.EXTRA_DEATHRATTLES: True,
-        GameTag.HERO_POWER_DOUBLE: True,
-        GameTag.EXTRA_END_TURN_EFFECT: True,
     })
 
 

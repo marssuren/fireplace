@@ -753,6 +753,15 @@ LAST_GIVEN = FuncSelector(
     )
 )
 
+# 最后抽取的卡牌选择器
+# 用于选择最近通过 Draw 动作抽取的卡牌
+# 通常在 Draw 动作后使用,例如: Draw(...) & Buff(LAST_DRAWN, "buff_id")
+LAST_DRAWN = FuncSelector(
+    lambda entities, source: (
+        [source.controller.hand[-1]] if source.controller.hand else []
+    )
+)
+
 # 最后打出的法术选择器
 # 用于选择最近打出的法术牌
 LAST_PLAYED_SPELL = FuncSelector(

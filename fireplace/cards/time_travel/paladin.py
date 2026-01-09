@@ -23,11 +23,11 @@ class TIME_015:
 
         # 定义卡牌效果
         def effect():
-        # 为英雄恢复3点生命值
-        yield Heal(FRIENDLY_HERO, 3)
-        
-        # 给英雄圣盾
-        yield Buff(FRIENDLY_HERO, "divine_shield")
+            # 为英雄恢复3点生命值
+            yield Heal(FRIENDLY_HERO, 3)
+            
+            # 给英雄圣盾
+            yield Buff(FRIENDLY_HERO, "divine_shield")
 
 
 class TIME_017:
