@@ -148,7 +148,7 @@ class SCH_513_tracker:
         Damage(FRIENDLY_HERO).on(SetAttr(CONTROLLER, "hero_health_changed", 1)),
         Heal(FRIENDLY_HERO).on(SetAttr(CONTROLLER, "hero_health_changed", 1)),
         # 回合开始时重置标记
-        TurnBegin(CONTROLLER).on(SetAttr(CONTROLLER, "hero_health_changed", 0))
+        OWN_TURN_BEGIN.on(SetAttr(CONTROLLER, "hero_health_changed", 0))
     ]
 
 

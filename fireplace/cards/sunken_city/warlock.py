@@ -109,7 +109,7 @@ class TSC_753:
 class TSC_753e:
     """Costs Health Instead of Mana"""
     tags = {
-        GameTag.COSTS_HEALTH: True,
+        GameTag.CARD_COSTS_HEALTH: True,
     }
 
 
@@ -158,8 +158,10 @@ class TID_718e:
         GameTag.TAG_SCRIPT_DATA_NUM_1: 3, # Counter
     }
     events = BeginTurn(OWNER).on(
-        SetTag(SELF, {GameTag.TAG_SCRIPT_DATA_NUM_1: Attr(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1}) - 1),
-        (Attr(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1) <= 0) & Discard(OWNER)
+        (
+            SetTag(SELF, {GameTag.TAG_SCRIPT_DATA_NUM_1: Attr(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1) - 1}),
+            (Attr(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1) <= 0) & Discard(OWNER)
+        )
     )
 
 
@@ -179,7 +181,7 @@ class TID_719:
 
 
 class TID_719e_Real:
-    update = Refresh(FRIENDLY_HAND, {GameTag.COSTS_HEALTH: True})
+    update = Refresh(FRIENDLY_HAND, {GameTag.CARD_COSTS_HEALTH: True})
 
 
 class TSC_959:
@@ -266,7 +268,7 @@ class TSC_039:
         GameTag.COST: 2,
         GameTag.CARDRACE: Race.MURLOC,
     }
-    play = PutOnBottom(CONTROLLER, "TSC_039t")
+    play = ShuffleIntoDeck(CONTROLLER, "TSC_039t", position='bottom')
 
 
 class TSC_039t:

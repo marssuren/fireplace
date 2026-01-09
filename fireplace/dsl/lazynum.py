@@ -235,3 +235,50 @@ class RandomNumber(LazyNum):
 
     def evaluate(self, source):
         return self.num(source.game.random.choice(self.choices))
+
+
+class EventArgument(LazyValue):
+    """
+    用于访问事件参数的 LazyValue 类
+    
+    可以通过两种方式使用:
+    1. 作为函数调用: EventArgument('amount') - 返回 event_args['amount']
+    2. 作为类属性: EventArgument.TARGET - 返回 event_args.get('target')
+    
+    示例:
+    - EventArgument('amount') - 获取事件参数中的 amount 值
+    - EventArgument.TARGET - 获取事件参数中的 target 对象
+    - EventArgument.CARD - 获取事件参数中的 card 对象
+    """
+    
+    def __init__(self, key=None):
+        """
+        Args:
+            key: 要访问的事件参数键名，如 'amount', 'target', 'card' 等
+        """
+        self.key = key
+    
+    def evaluate(self, source):
+        """
+        从 source 的 event_args 中获取指定键的值
+        
+        Args:
+            source: 事件源对象，应该有 event_args 属性
+            
+        Returns:
+            事件参数中的值，如果不存在则返回 None
+        """
+        if hasattr(source, 'event_args') and source.event_args and self.key:
+            return source.event_args.get(self.key)
+        return None
+    
+    def __repr__(self):
+        return f"EventArgument({self.key!r})"
+
+
+# 预定义常用的事件参数访问器
+EventArgument.TARGET = EventArgument('target')
+EventArgument.CARD = EventArgument('card')
+EventArgument.AMOUNT = EventArgument('amount')
+EventArgument.SPELL = EventArgument('spell')
+

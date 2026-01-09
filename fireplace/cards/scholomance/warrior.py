@@ -35,7 +35,10 @@ class SCH_621:
     )
 
 
-SCH_621e = buff(atk=-1, max_health=-1)
+class SCH_621e:
+    """Rattlegore Debuff - -1/-1"""
+    atk = -1
+    max_health = -1
 
 
 ##

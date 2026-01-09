@@ -10,12 +10,17 @@ and cast a <b>Secret</b> from
 another class.
     <b>奥秘：</b>在你的回合开始时，从其他职业的<b>奥秘</b>中<b>发现</b>一张并施放。
     """
-    # 发现并施放其他职业的奥秘
-    # 使用 DiscoverAndCastSecret 从非潜行者职业中选择
-    secret = OWN_TURN_BEGIN.on(
-        Reveal(SELF),
-        DiscoverAndCastSecret(CONTROLLER, RandomSecret(card_class=CardClass.NEUTRAL) | RandomSecret(exclude_class=CardClass.ROGUE))
-    )
+    secret = True
+    
+    def _trigger(self):
+        # 从其他职业的奥秘中发现一张并施放
+        # 使用 RandomCollectible 配合 secret=True 和 exclude_class
+        card = yield Discover(CONTROLLER, RandomCollectible(secret=True, exclude_class=CardClass.ROGUE))
+        if card:
+            yield CastSpell(card)
+        yield Reveal(SELF)
+    
+    events = OWN_TURN_BEGIN.on(_trigger)
 
 
 class MAW_019:
@@ -295,9 +300,7 @@ your opponent's hand to
  shuffle into their deck.
     <b>战吼：</b>如果你控制一个<b>奥秘</b>，选择对手手牌中的一张牌，将其洗回其牌库。
     """
-    requirements = {
-        PlayReq.REQ_TARGET_IF_AVAILABLE_AND_FRIENDLY_SECRET_EXISTS: 0,
-    }
+    # requirements 在 play 方法中检查
     
     def play(self):
         # 检查是否控制奥秘

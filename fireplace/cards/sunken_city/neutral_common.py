@@ -9,7 +9,7 @@ class TID_713:
     """泡泡元素 - 1费 2/4
     在本随从受到刚好一点伤害后，消灭本随从"""
     events = Damage(SELF).on(
-        Find(SELF & (Damage.AMOUNT == 1)) & Destroy(SELF)
+        ((Damage.AMOUNT == 1) & Destroy(SELF))
     )
 
 
@@ -68,10 +68,11 @@ class TSC_020:
     )
 
 
+
 class TSC_034:
     """鳄鱼人掠夺者 - 5费 4/3
     战吼：抽三张鱼人牌"""
-    play = Draw(CONTROLLER) * 3 & MURLOC
+    play = ForceDraw(RANDOM(FRIENDLY_DECK + MURLOC)) * 3
 
 
 class TSC_053:

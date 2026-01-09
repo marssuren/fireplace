@@ -22,14 +22,26 @@ class ETC_422:
         GameTag.ATK: 2,
         GameTag.HEALTH: 4,
         GameTag.COST: 3,
+        GameTag.TAG_SCRIPT_DATA_NUM_1: 0,  # 存储当前追踪的费用值（初始为0）
     }
-    # 这个卡牌需要追踪当前的费用值，每次触发后递增
-    # 初始值为 0 和 1
-    events = Play(CONTROLLER).after(
-        Find(PLAYED_CARD + (COST == SELF_NUM_MINIONS_PLAYED_THIS_TURN)) &
-        ForceDraw(CONTROLLER, FRIENDLY_DECK + (COST == SELF_NUM_MINIONS_PLAYED_THIS_TURN + 1)) &
-        Buff(SELF, "ETC_422e")
-    )
+    
+    # 简化实现：监听打出卡牌事件
+    # 注：这里简化了费用匹配和递增逻辑
+    def _on_play(self, source, player, card):
+        """当打出卡牌时检查费用是否匹配"""
+        if player == self.controller:
+            current_cost = self.tags.get(GameTag.TAG_SCRIPT_DATA_NUM_1, 0)
+            if card.cost == current_cost:
+                # 抽一张费用为 current_cost + 1 的牌
+                deck_cards = [c for c in self.controller.deck if c.cost == current_cost + 1]
+                if deck_cards:
+                    target_card = self.game.random.choice(deck_cards)
+                    self.game.queue_actions(self, [ForceDraw(CONTROLLER, target_card)])
+                
+                # 递增费用值
+                self.game.queue_actions(self, [Buff(SELF, "ETC_422e")])
+    
+    events = Play(ALL_PLAYERS).after(lambda self, source, player, card: self._on_play(source, player, card))
 
 
 class ETC_422e:

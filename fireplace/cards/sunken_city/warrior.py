@@ -16,8 +16,8 @@ class TID_715:
     """巨型剧斗 - 3费法术
     随机将一张巨型随从牌置入双方玩家的手牌。你的那张法力值消耗减少（2）点"""
     play = (
-        Give(CONTROLLER, RandomMinion(tag=GameTag.COLOSSAL)) &
-        Buff(LAST_GIVEN, "TID_715e") &
+        Give(CONTROLLER, RandomMinion(tag=GameTag.COLOSSAL)),
+        Buff(LAST_GIVEN, "TID_715e"),
         Give(OPPONENT, RandomMinion(tag=GameTag.COLOSSAL))
     )
 
@@ -37,8 +37,8 @@ class TSC_659:
     """海沟追猎者 - 9费 8/9
     战吼：随机攻击三个不同的敌人"""
     play = (
-        Attack(SELF, RANDOM(ALL_ENEMIES)) &
-        Attack(SELF, RANDOM(ALL_ENEMIES)) &
+        Attack(SELF, RANDOM(ALL_ENEMIES)),
+        Attack(SELF, RANDOM(ALL_ENEMIES)),
         Attack(SELF, RANDOM(ALL_ENEMIES))
     )
 
@@ -80,7 +80,7 @@ class TSC_940:
     """深海来客 - 3费法术
     使你牌库底五张牌的法力值消耗减少（3）点，然后探底"""
     play = (
-        Buff(FRIENDLY_DECK[-5:], "TSC_940e") &
+        Buff(FRIENDLY_DECK[-5:], "TSC_940e"),
         Dredge(CONTROLLER)
     )
 
@@ -100,9 +100,8 @@ class TSC_942:
     """黑曜石铸匠 - 2费 3/2
     战吼：探底。如果选中的是随从牌或武器牌，则使其获得+1/+1"""
     play = (
-        Dredge(CONTROLLER) &
-        Find(DREDGED_CARD + (MINION | WEAPON)) &
-        Buff(DREDGED_CARD, "TSC_942e")
+        Dredge(CONTROLLER),
+        Find(DREDGED_CARD + (MINION | WEAPON)) & Buff(DREDGED_CARD, "TSC_942e")
     )
 
 

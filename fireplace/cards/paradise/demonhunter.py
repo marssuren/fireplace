@@ -257,7 +257,7 @@ class VAC_501:
             # 检查是否是己方回合
             self.controller.current_player and [
                 # 取消对英雄的伤害
-                SetTag(Predamage.TARGET, {(GameTag.PREDAMAGE: 0})),
+                SetTag(Predamage.TARGET, {GameTag.PREDAMAGE: 0}),
                 # 对随机敌人造成相同伤害
                 Hit(RANDOM_ENEMY_CHARACTER, amount)
             ] or []

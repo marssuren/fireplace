@@ -418,7 +418,10 @@ class TOY_340t1:
     triggered = boolean_property("TOY_340_triggered")
 
     events = Play(CONTROLLER, SPELL).after(
-        Find(SELF + ~TRIGGERED) & (Buff(SELF, "TOY_340t"), SetAttr(SELF, "triggered", True))
+        lambda self, source: (
+            Buff(SELF, "TOY_340t"),
+            SetAttr(SELF, "triggered", True)
+        ) if not getattr(self, "triggered", False) else []
     )
 
 
@@ -469,7 +472,7 @@ class TOY_601t:
     """
     # 1/1/1 机械 Miniaturize Token
     # 与原卡相同的效果，但身材缩小
-    events = TurnEnd(CONTROLLER).on(
+    events = OWN_TURN_END.on(
         Summon(CONTROLLER, "TOY_601t1"),
         lambda self: self._attack_random_enemy()
     )

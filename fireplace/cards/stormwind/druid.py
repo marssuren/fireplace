@@ -49,36 +49,40 @@ class DED_002:
         """
         发现牌库中的一张牌，打出后抽出原版
         
-        实现逻辑：
+        实现逻辑:
         1. 发现牌库中的一张牌（自动创建复制）
-        2. 给发现的牌添加追踪 buff
-        3. buff 监听该牌被打出，然后从牌库抽出原版
+        2. 给玩家添加追踪 buff 来监听该牌被打出
         """
         # 发现牌库中的一张牌
-        yield GenericChoice(CONTROLLER, Discover(CONTROLLER, FRIENDLY_DECK))
+        discovered = yield Discover(CONTROLLER, FRIENDLY_DECK)
         
-        # 给发现的牌添加追踪 buff
-        # CARD 是发现得到的牌
-        yield Buff(CARD, "DED_002e")
+        if discovered:
+            # 记录发现的卡牌ID
+            card_id = discovered[0].id
+            # 给控制者添加追踪 buff
+            yield Buff(CONTROLLER, "DED_002e", discovered_card_id=card_id)
 
 
 class DED_002e:
     """月光指引追踪器"""
     def apply(self, target):
-        """记录原版卡牌的ID"""
-        # 保存原版卡牌的ID（发现的是复制，原版还在牌库）
-        self.original_card_id = target.id
+        """记录发现的卡牌ID"""
+        if hasattr(self, 'discovered_card_id'):
+            target.moonlit_guidance_card_id = self.discovered_card_id
     
-    # 监听该牌被打出
-    events = Play(CONTROLLER, SELF.owner).on(
-        # 从牌库中抽出同名卡牌
-        Find(FRIENDLY_DECK + ID(SELF.original_card_id)) &
-        ForceDraw(CONTROLLER, FRIENDLY_DECK + ID(SELF.original_card_id)) &
-        Destroy(SELF)
-    )
-    
-    # 回合结束时移除追踪器（只在本回合有效）
-    events = OWN_TURN_END.on(Destroy(SELF))
+    # 监听打出卡牌
+    events = [
+        Play(CONTROLLER).on(
+            lambda self: (
+                ForceDraw(CONTROLLER, FRIENDLY_DECK + ID(getattr(self.controller, 'moonlit_guidance_card_id', None)))
+                if hasattr(self.controller, 'moonlit_guidance_card_id') and Play.CARD.id == self.controller.moonlit_guidance_card_id
+                else None,
+                Destroy(SELF) if hasattr(self.controller, 'moonlit_guidance_card_id') and Play.CARD.id == self.controller.moonlit_guidance_card_id else None
+            )
+        ),
+        # 回合结束时移除追踪器（只在本回合有效）
+        OWN_TURN_END.on(Destroy(SELF))
+    ]
 
 
 
@@ -277,7 +281,7 @@ class SW_431e:
     """花园猎豹英雄攻击力"""
     tags = {
         GameTag.ATK: 3,
-        GameTag.ONE_TURN_EFFECT: True,
+        GameTag.TAG_ONE_TURN_EFFECT: True,
     }
 
 

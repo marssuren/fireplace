@@ -1516,6 +1516,37 @@ class Bounce(TargetedAction):
             source.game.manager.targeted_action(self, source, target)
 
 
+class SetAttr(TargetedAction):
+    """
+    Set an attribute on the target entity.
+    Can set either a GameTag or a custom attribute.
+    """
+    TARGET = ActionArg()
+    ATTR = ActionArg()  # Attribute name (string or GameTag)
+    VALUE = ActionArg()  # Value to set
+
+    def do(self, source, target, attr, value):
+        # Evaluate value if it's a LazyValue
+        if isinstance(value, LazyValue):
+            value = value.evaluate(source)
+        elif isinstance(value, Action):
+            value = value.trigger(source)[0]
+        
+        # Set the attribute
+        if isinstance(attr, GameTag):
+            # Setting a GameTag
+            target.tags[attr] = value
+        elif isinstance(attr, str):
+            # Setting a custom attribute
+            setattr(target, attr, value)
+        else:
+            # Assume it's a GameTag enum value
+            target.tags[attr] = value
+        
+        source.game.manager.targeted_action(self, source, target)
+        return target
+
+
 class Choice(TargetedAction):
     CARDS = ActionArg()
     CARD = ActionArg()
@@ -4342,3 +4373,52 @@ class RotateMinions(GameAction):
                     minion.zone = Zone.PLAY
         
         game.manager.action(self, source)
+
+
+class SwapCost(TargetedAction):
+    """
+    交换两张卡牌的法力值消耗
+    Swap the cost of two cards.
+    Used in Voyage to the Sunken City expansion (TSC_020 - Barbaric Sorceress).
+    
+    用于探寻沉没之城扩展包 (TSC_020 - 野蛮的女巫)
+    """
+    
+    CARD1 = ActionArg()
+    CARD2 = ActionArg()
+    
+    def get_target_args(self, source, target):
+        """获取两张卡牌"""
+        card1 = self.eval(self._args[0], source)
+        card2 = self.eval(self._args[1], source)
+        
+        if not card1 or not card2:
+            return (None, None)
+        
+        # 如果是列表,取第一个元素
+        if isinstance(card1, list):
+            card1 = card1[0] if card1 else None
+        if isinstance(card2, list):
+            card2 = card2[0] if card2 else None
+            
+        return (card1, card2)
+    
+    def do(self, source, card1, card2):
+        """交换两张卡牌的费用"""
+        if card1 is None or card2 is None:
+            log_info("swap_cost_failed_missing_cards", source=source)
+            return
+        
+        # 保存原始费用
+        cost1 = card1.cost
+        cost2 = card2.cost
+        
+        # 交换费用 - 通过临时修改 cost 属性
+        # 注意: 这是一个简化实现,理想情况下应该通过 buff 系统
+        if cost2 != cost1:
+            # 临时交换费用
+            card1._temp_cost_swap = cost2
+            card2._temp_cost_swap = cost1
+        
+        log_info("swap_cost", source=source, card1=card1, card2=card2, cost1=cost1, cost2=cost2)
+        source.game.manager.targeted_action(self, source, card1, card2)

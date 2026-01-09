@@ -86,7 +86,7 @@ class DED_514e:
     """仿冒猫猫效果"""
     # 监听对手打出卡牌
     events = Play(OPPONENT).on(
-        Give(CONTROLLER, Copy(Play.CARD)) & Destroy(SELF)
+        (Give(CONTROLLER, Copy(Play.CARD)), Destroy(SELF))
     )
 
 

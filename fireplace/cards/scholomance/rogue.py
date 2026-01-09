@@ -91,7 +91,7 @@ class SCH_305_tracker:
     3. 销毁这个buff
     """
 
-    events = TurnBegin(CONTROLLER).on(
+    events = OWN_TURN_BEGIN.on(
         # 1. 将当前手牌洗回牌库
         Shuffle(CONTROLLER, FRIENDLY_HAND),
         # 2. 从暂存区取回原来的手牌
@@ -116,9 +116,9 @@ class SCH_706_tracker:
     # 监听对手打出卡牌的事件
     events = [
         # 对手打出卡牌时，记录该卡牌
-        Play(OPPONENT, ALL_CARDS).on(Buff(SELF, "SCH_706_store", card_to_store=Play.CARD)),
+        Play(OPPONENT).on(Buff(SELF, "SCH_706_store", card_to_store=Play.CARD)),
         # 对手回合结束时，将所有记录的卡牌复制加入手牌并销毁buff
-        TurnEnd(OPPONENT).on(Buff(CONTROLLER, "SCH_706_restore"), Destroy(SELF))
+        EndTurn(OPPONENT).on(Buff(CONTROLLER, "SCH_706_restore"), Destroy(SELF))
     ]
 
 

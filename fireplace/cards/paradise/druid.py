@@ -109,7 +109,7 @@ class VAC_517:
         yield GenericChoice(CONTROLLER, Discover(CONTROLLER, RandomMinion(taunt=True)))
 
     # 在获得护甲后，重新开启地标
-    events = GainArmor(FRIENDLY_HERO).after(Refresh(SELF, {GameTag.COOLDOWN: -1}))
+    events = GainArmor(FRIENDLY_HERO).after(Refresh(SELF, {enums.LOCATION_COOLDOWN: -1}))
 
 
 class VAC_948:
@@ -163,7 +163,7 @@ class WORK_025b:
     play = Buff(TARGET, "WORK_025be")
 
 
-WORK_025be = buff(max_health=2)
+WORK_025be = buff(health=2)
 
 
 # EPIC

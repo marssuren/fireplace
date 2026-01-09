@@ -65,9 +65,9 @@ class TID_931:
         GameTag.CARDTYPE: CardType.SPELL,
         GameTag.COST: 2,
     }
-    play = (
-        Give(CONTROLLER, RandomSpell(card_class=Class.ANY - Class.ROGUE, cost=COST >= 5)),
-        Give(CONTROLLER, RandomSpell(card_class=Class.ANY - Class.ROGUE, cost=COST >= 5)),
+    play = lambda self, target: (
+        Give(CONTROLLER, RandomSpell(cost_min=5, exclude_class=CardClass.ROGUE)),
+        Give(CONTROLLER, RandomSpell(cost_min=5, exclude_class=CardClass.ROGUE)),
     )
 
 

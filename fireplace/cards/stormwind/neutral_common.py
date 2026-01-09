@@ -53,13 +53,16 @@ class SW_056:
 class SW_057:
     """包裹速递员 / Package Runner
     只有在你的手牌中至少有8张牌时才能攻击。"""
-    update = Refresh(SELF, {GameTag.CANNOT_ATTACK: Count(FRIENDLY_HAND) < 8})
+    update = Refresh(SELF, {GameTag.CANT_ATTACK: Count(FRIENDLY_HAND) < 8})
 
 
 class SW_059:
     """矿道工程师 / Deeprun Engineer
     战吼：发现一张机械牌。其法力值消耗减少（1）点。"""
-    play = GenericChoice(CONTROLLER, Discover(CONTROLLER, RandomCollectible(race=Race.MECHANICAL))) & Buff(CARD, "SW_059e")
+    def play(self):
+        discovered = yield Discover(CONTROLLER, RandomCollectible(race=Race.MECHANICAL))
+        if discovered:
+            yield Buff(discovered[0], "SW_059e")
 
 
 class SW_059e:

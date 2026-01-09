@@ -109,7 +109,7 @@ class JAM_008:
         GameTag.COST: 2,
     }
     play = (
-        Destroy(FRIENDLY_MINIONS + UNDEAD) &
+        Destroy(FRIENDLY_MINIONS + UNDEAD),
         Summon(CONTROLLER, Copy(FRIENDLY_MINIONS + UNDEAD + KILLED_THIS_TURN))
     )
 class ETC_424:
@@ -122,7 +122,7 @@ class ETC_424:
         PlayReq.REQ_TARGET_TO_PLAY: 0,
         PlayReq.REQ_MINION_TARGET: 0,
     }
-    play = CopyDeathrattles(TARGET, TARGET_ADJACENT)
+    play = CopyDeathrattleBuff(TARGET, TARGET_ADJACENT)
 class ETC_523:
     """死亡金属骑士 / Death Metal Knight
     <b>嘲讽</b>。在本回合中，如果你的英雄受到治疗，本牌改为消耗生命值而非法力值。"""
@@ -157,12 +157,12 @@ class ETC_428:
         GameTag.COST: 5,
     }
     requirements = {
-        PlayReq.REQ_CORPSE_COUNT: 5,
+        PlayReq.REQ_MINIMUM_CORPSES: 5,
     }
     play = (
-        SpendCorpses(5) &
-        CopyDeathrattle(SELF, RANDOM(FRIENDLY_MINIONS + KILLED_THIS_GAME)) &
-        Deathrattle(RANDOM(FRIENDLY_MINIONS + KILLED_THIS_GAME))
+        SpendCorpses(5),
+        CopyDeathrattleBuff(SELF, RANDOM(FRIENDLY_MINIONS + KILLED)),
+        Deathrattle(RANDOM(FRIENDLY_MINIONS + KILLED))
     )
 class ETC_522:
     """尖叫女妖 / Screaming Banshee
@@ -173,10 +173,9 @@ class ETC_522:
         GameTag.COST: 5,
         GameTag.LIFESTEAL: True,
     }
-    events = FRIENDLY_HERO_HEAL.on(
+    events = Heal(FRIENDLY_HERO).on(
         Summon(CONTROLLER, "ETC_522t").then(
-            SetAtk(Summon.CARD, Heal.AMOUNT),
-            SetHealth(Summon.CARD, Heal.AMOUNT)
+            Buff(Summon.CARD, "ETC_522e", atk=Heal.AMOUNT, max_health=Heal.AMOUNT)
         )
     )
 
@@ -187,6 +186,11 @@ class ETC_522t:
         GameTag.ATK: 1,
         GameTag.HEALTH: 1,
     }
+
+class ETC_522e:
+    """灵魂属性增益"""
+    tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
+
 class ETC_526:
     """凯吉·海德 / Cage Head
     <b>亡语：</b>召唤一只9/9并具有<b>冲锋</b>和<b>嘲讽</b>的凋零野猪。"""

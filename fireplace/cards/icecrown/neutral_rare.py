@@ -12,9 +12,9 @@ class ICC_018:
     play = (Find(FRIENDLY_WEAPON), Buff(
         SELF,
         "ICC_018e",
-        atk=ATK(FRIENDLY_WEAPON)),
-        max_health=CURRENT_DURABILITY(FRIENDLY_WEAPON),
-    )
+        atk=ATK(FRIENDLY_WEAPON),
+        max_health=CURRENT_DURABILITY(FRIENDLY_WEAPON)
+    ))
 
 
 class ICC_027:

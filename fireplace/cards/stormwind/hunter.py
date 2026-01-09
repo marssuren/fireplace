@@ -101,10 +101,10 @@ class SW_320:
                 yield Summon(CONTROLLER, "SW_320t")
             else:
                 # 没空位，加入手牌并+4/+4
-                yield Give(CONTROLLER, "SW_320t")
+                rat = yield Give(CONTROLLER, "SW_320t")
                 # 给刚加入手牌的老鼠+4/+4
-                # CARD 是刚加入手牌的卡牌
-                yield Buff(CARD, "SW_320e")
+                if rat:
+                    yield Buff(rat[0], "SW_320e")
 
 
 class SW_320t:
@@ -215,9 +215,9 @@ class SW_322e:
 class SW_322_reward1:
     """英雄技能可以指向随从"""
     # 修改英雄技能的目标要求
-    # 移除 REQ_HERO_TARGET 限制，允许指向随从
+    # 允许猎人英雄技能指向随从
     tags = {
-        GameTag.CAN_TARGET_MINIONS: True,
+        GameTag.STEADY_SHOT_CAN_TARGET: True,
     }
 
 
@@ -325,22 +325,20 @@ class SW_457:
             target.sw_457_beasts_died = 0
     
     # 监听友方野兽死亡
-    events = Death(FRIENDLY + MINION + BEAST).on(
-        lambda self: [
-            # 增加计数
-            setattr(self.controller, 'sw_457_beasts_died', 
-                   self.controller.sw_457_beasts_died + 1),
-            # 如果达到3个，触发效果
-            (
-                ForceDraw(CONTROLLER, FRIENDLY_DECK + MINION + BEAST) &
-                Buff(CARD, "SW_457e") &
-                Hit(SELF, 1)  # 失去1点耐久度
-            ) if self.controller.sw_457_beasts_died >= 3 else None,
+    def _on_beast_death(self):
+        # 增加计数
+        self.controller.sw_457_beasts_died += 1
+        
+        # 如果达到3个，触发效果
+        if self.controller.sw_457_beasts_died >= 3:
+            drawn = yield ForceDraw(CONTROLLER, FRIENDLY_DECK + MINION + BEAST)
+            if drawn:
+                yield Buff(drawn[0], "SW_457e")
+            yield Hit(SELF, 1)  # 失去1点耐久度
             # 重置计数
-            setattr(self.controller, 'sw_457_beasts_died', 0) 
-            if self.controller.sw_457_beasts_died >= 3 else None
-        ]
-    )
+            self.controller.sw_457_beasts_died = 0
+    
+    events = Death(FRIENDLY + MINION + BEAST).on(lambda self: self._on_beast_death())
 
 
 class SW_457e:
@@ -373,8 +371,8 @@ class SW_458e:
     }
     
     # 攻击时免疫
-    events = Attack(SELF.owner).on(
-        Buff(SELF.owner, "SW_458_immune")
+    events = Attack(OWNER).on(
+        Buff(OWNER, "SW_458_immune")
     )
     
     # 死亡时召唤公羊
@@ -385,7 +383,7 @@ class SW_458_immune:
     """攻击时免疫"""
     tags = {
         GameTag.IMMUNE: True,
-        GameTag.ONE_TURN_EFFECT: True,
+        GameTag.TAG_ONE_TURN_EFFECT: True,
     }
 
 

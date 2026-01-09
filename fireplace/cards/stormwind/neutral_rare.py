@@ -27,9 +27,10 @@ class SW_036:
     """双面投资者 / Two-Faced Investor
     在你的回合结束时，使你的一张手牌法力值消耗减少（1）点。（50%的几率改为消耗增加。）"""
     events = OWN_TURN_END.on(
-        Find(FRIENDLY_HAND) & (
-            Buff(RANDOM(FRIENDLY_HAND), "SW_036e_reduce") |
-            Buff(RANDOM(FRIENDLY_HAND), "SW_036e_increase")
+        lambda self: (
+            Find(FRIENDLY_HAND).eval(self.game, self) and [
+                Buff(RANDOM(FRIENDLY_HAND), "SW_036e_reduce" if self.game.random.random() < 0.5 else "SW_036e_increase")
+            ]
         )
     )
 

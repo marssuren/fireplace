@@ -14,8 +14,7 @@ class MAW_032:
 
 class MAW_032e:
     """Tight-Lipped Witness Aura - 无语的证人光环"""
-    from ..enums import CANT_BE_REVEALED
-    tags = {CANT_BE_REVEALED: True}
+    tags = {enums.CANT_BE_REVEALED: True}
 
 
 class REV_017:

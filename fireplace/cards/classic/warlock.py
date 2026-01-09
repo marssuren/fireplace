@@ -229,7 +229,7 @@ class EX1_596:
     对一个随从造成$2点伤害，如果该随从是友方恶魔，则改为使其获得+2/+2。"""
 
     requirements = {PlayReq.REQ_MINION_TARGET: 0, PlayReq.REQ_TARGET_TO_PLAY: 0}
-    play = (Find(TARGET + FRIENDLY + DEMON), Buff(TARGET, "EX1_596e")) | Hit(TARGET, 2)
+    play = Find(TARGET + FRIENDLY + DEMON) & Buff(TARGET, "EX1_596e") | Hit(TARGET, 2)
 
 
 EX1_596e = buff(+2, +2)

@@ -54,7 +54,9 @@ class NX2_037:
     )
 
     # 在敌方随从被冻结后，消灭它
-    events = Freeze(ENEMY_MINIONS).after(Destroy(Freeze.TARGET))
+    events = SetTags(ENEMY_MINIONS, (GameTag.FROZEN,)).after(
+        Destroy(SetTags.TARGET)
+    )
 
 
 

@@ -89,7 +89,7 @@ class REV_507:
     在本回合中，使你的英雄获得+3攻击力。选择一张你的手牌洗入你的牌库。
     """
     # 给英雄+3攻击力（本回合），然后选择一张手牌洗入牌库
-    requirements = {PlayReq.REQ_TARGET_TO_PLAY: 0, PlayReq.REQ_FRIENDLY_TARGET: 0, PlayReq.REQ_HAND_TARGET: 0}
+    requirements = {PlayReq.REQ_TARGET_TO_PLAY: 0, PlayReq.REQ_FRIENDLY_TARGET: 0}
 
     def play(self):
         # 给英雄+3攻击力（本回合结束时移除）
@@ -110,7 +110,7 @@ class REV_508:
     抽两张牌并使其法力值消耗降低（1）点。提升你此后的圣物效果。
     """
     # 圣物标签
-    tags = {GameTag.RELIC: True}
+    tags = {enums.RELIC: True}
 
     # 抽两张牌并减费，然后提升圣物等级
     def play(self):
@@ -169,7 +169,7 @@ class REV_511:
     战吼：选择一张你的手牌洗入你的牌库。
     """
     # 战吼：选择一张手牌洗入牌库
-    requirements = {PlayReq.REQ_TARGET_TO_PLAY: 0, PlayReq.REQ_FRIENDLY_TARGET: 0, PlayReq.REQ_HAND_TARGET: 0}
+    requirements = {PlayReq.REQ_TARGET_TO_PLAY: 0, PlayReq.REQ_FRIENDLY_TARGET: 0}
     play = Shuffle(CONTROLLER, TARGET)
 
 
@@ -179,7 +179,7 @@ class REV_834:
     随机对一个敌方随从造成$1点伤害，触发两次。提升你此后的圣物效果。
     """
     # 圣物标签
-    tags = {GameTag.RELIC: True}
+    tags = {enums.RELIC: True}
 
     # 随机对敌方随从造成伤害，然后提升圣物等级
     def play(self):
@@ -239,11 +239,11 @@ class REV_942e:
     下一个圣物施放两次
     """
     # 当施放圣物时，再次施放一次
-    # 使用 GameTag.RELIC 标签来判断是否为圣物
+    # 使用 enums.RELIC 标签来判断是否为圣物
     events = Play(CONTROLLER, SPELL).after(
         lambda self, source, card: (
-            CastSpell(card.id) if card.tags.get(GameTag.RELIC, False) else None,
-            Destroy(SELF) if card.tags.get(GameTag.RELIC, False) else None
+            CastSpell(card.id) if card.tags.get(enums.RELIC, False) else None,
+            Destroy(SELF) if card.tags.get(enums.RELIC, False) else None
         )
     ), TURN_END.on(Destroy(SELF))
 
@@ -254,7 +254,7 @@ class REV_943:
     召唤两个1/1的灵魂。提升你此后的圣物效果。
     """
     # 圣物标签
-    tags = {GameTag.RELIC: True}
+    tags = {enums.RELIC: True}
 
     # 召唤灵魂，然后提升圣物等级
     requirements = {PlayReq.REQ_NUM_MINION_SLOTS: 1}

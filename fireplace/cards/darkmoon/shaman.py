@@ -125,8 +125,9 @@ class DMF_700e:
     """+3攻击力"""
     tags = {
         GameTag.ATK: 3,
-        GameTag.ONE_TURN_EFFECT: True,
     }
+    # 回合结束时销毁此buff
+    events = OWN_TURN_END.on(Destroy(SELF))
 
 
 class DMF_701:

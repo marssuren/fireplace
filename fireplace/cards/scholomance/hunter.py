@@ -87,8 +87,8 @@ class SCH_300:
 
 class SCH_300e:
     """Carrion Studies Buff / 腐肉研习增益"""
-    update = Refresh(FRIENDLY_HAND + MINION + deathrattle, {GameTag.COST: -1})
-    events = Play(FRIENDLY + MINION + deathrattle).on(Destroy(SELF))
+    update = Refresh(FRIENDLY_HAND + MINION + DEATHRATTLE, {GameTag.COST: -1})
+    events = Play(FRIENDLY + MINION + DEATHRATTLE).on(Destroy(SELF))
 
 class SCH_604:
     """Overwhelm / 压制
@@ -101,7 +101,7 @@ class SCH_604:
     }
 
     # 1费 对一个随从造成2点伤害。你每控制一个野兽，便额外造成1点伤害
-    play = Hit(TARGET, 2 + Count(FRIENDLY_MINIONS + BEAST))
+    play = Hit(TARGET, Count(FRIENDLY_MINIONS + BEAST) + 2)
 
 
 class SCH_610:

@@ -10,11 +10,12 @@ class JAM_016:
     7费 4/7 恶魔
     嘲讽，吸血。在本局对战中，你每装备过一把武器，本牌的法力值消耗便减少（2）点。
     """
+    race = Race.DEMON
     tags = {
         GameTag.ATK: 4,
         GameTag.HEALTH: 7,
         GameTag.COST: 7,
-        GameTag.RACE: Race.DEMON,
+        
         GameTag.TAUNT: True,
         GameTag.LIFESTEAL: True,
     }
@@ -24,7 +25,7 @@ class JAM_016:
     # Fireplace `num_weapons_played_this_game` tracks played cards.
     # There is no global "times equipped" counter easily accessible.
     # We will use TIMES_PLAYED_THIS_GAME(card_type=WEAPON) proxy.
-    cost_mod = -2 * Count(FRIENDLY_HERO + TIMES_CARD_TYPE_PLAYED(CardType.WEAPON))
+    cost_mod = Count(FRIENDLY_HERO + TIMES_CARD_TYPE_PLAYED(CardType.WEAPON) * -2)
 
 class ETC_026:
     """Guitar Soloist - 吉他独演者
@@ -61,10 +62,11 @@ class ETC_411:
 
 class ETC_411t:
     """Illidari Initiate"""
+    race = Race.DEMON
     tags = {
         GameTag.ATK: 1, 
         GameTag.HEALTH: 1, 
-        GameTag.RACE: Race.DEMON, 
+         
         GameTag.RUSH: True
     }
 
@@ -118,7 +120,7 @@ class JAM_018:
     }
     
     class Hand:
-        events = OwnTurnBegin(CONTROLLER).on(Transform(SELF, "JAM_018a"))
+        events = OWN_TURN_BEGIN.on(Morph(SELF, "JAM_018a"))
         
     play = Hit(ALL_MINIONS, 3) # Default form if played (though usually transforms)
 
@@ -127,21 +129,21 @@ class JAM_018a:
     tags = {GameTag.CARDTYPE: CardType.SPELL, GameTag.COST: 5, GameTag.SPELL_SCHOOL: SpellSchool.FEL, GameTag.LIFESTEAL: True}
     play = Hit(ALL_MINIONS, 3)
     class Hand:
-        events = OwnTurnBegin(CONTROLLER).on(Transform(SELF, "JAM_018b"))
+        events = OWN_TURN_BEGIN.on(Morph(SELF, "JAM_018b"))
 
 class JAM_018b:
     """Emotional Rhapsody - 动情狂想曲 (Cost reduced)"""
     tags = {GameTag.CARDTYPE: CardType.SPELL, GameTag.COST: 2, GameTag.SPELL_SCHOOL: SpellSchool.FEL}
     play = Hit(ALL_MINIONS, 3)
     class Hand:
-        events = OwnTurnBegin(CONTROLLER).on(Transform(SELF, "JAM_018c"))
+        events = OWN_TURN_BEGIN.on(Morph(SELF, "JAM_018c"))
 
 class JAM_018c:
     """Resounding Rhapsody - 洪亮狂想曲 (Hit Enemy Hero)"""
     tags = {GameTag.CARDTYPE: CardType.SPELL, GameTag.COST: 5, GameTag.SPELL_SCHOOL: SpellSchool.FEL}
     play = Hit(ALL_MINIONS, 3), Hit(ENEMY_HERO, 3)
     class Hand:
-        events = OwnTurnBegin(CONTROLLER).on(Transform(SELF, "JAM_018d"))
+        events = OWN_TURN_BEGIN.on(Morph(SELF, "JAM_018d"))
 
 class JAM_018d:
     """Angsty Rhapsody - 焦虑狂想曲 (Finale: Enemies instead?)"""
@@ -153,7 +155,7 @@ class JAM_018d:
         else:
              yield Hit(ALL_MINIONS, 3)
     class Hand:
-        events = OwnTurnBegin(CONTROLLER).on(Transform(SELF, "JAM_018"))
+        events = OWN_TURN_BEGIN.on(Morph(SELF, "JAM_018"))
 
 
 class ETC_200:
@@ -182,11 +184,12 @@ class ETC_410:
     2费 1/1 纳迦
     突袭。战吼：在本回合中每有一个随从死亡，便获得+1/+1。
     """
+    race = Race.NAGA
     tags = {
         GameTag.ATK: 1,
         GameTag.HEALTH: 1,
         GameTag.COST: 2,
-        GameTag.RACE: Race.NAGA,
+        
         GameTag.RUSH: True,
     }
     
@@ -203,11 +206,12 @@ class ETC_398:
     2费 2/3 恶魔
     你的英雄拥有吸血。
     """
+    race = Race.DEMON
     tags = {
         GameTag.ATK: 2,
         GameTag.HEALTH: 3,
         GameTag.COST: 2,
-        GameTag.RACE: Race.DEMON,
+        
     }
     # Aura giving lifesteal to Hero
     auras = [Buff(FRIENDLY_HERO, "ETC_398e")]
@@ -257,20 +261,20 @@ class ETC_413:
 
 class ETC_413e:
     tags = {GameTag.ATK: 2, GameTag.IMMUNE: True, GameTag.CARDTYPE: CardType.ENCHANTMENT}
-    events = OwnTurnEnd(CONTROLLER).on(Destroy(SELF))
+    events = OWN_TURN_END.on(Destroy(SELF))
 
 class ETC_399:
     """Halveria Darkraven - 哈维利亚·墨鸦
     4费 4/3 恶魔
     突袭。在一个友方突袭随从攻击后，使你的随从获得+1攻击力。
     """
+    race = Race.DEMON
     tags = {
         GameTag.ATK: 4,
         GameTag.HEALTH: 3,
         GameTag.COST: 4,
-        GameTag.RACE: Race.DEMON,
+        
         GameTag.RUSH: True,
-        GameTag.LEGENDARY: True,
     }
     events = Attack(FRIENDLY_MINIONS + RUSH).after(Buff(FRIENDLY_MINIONS, "ETC_399e"))
 

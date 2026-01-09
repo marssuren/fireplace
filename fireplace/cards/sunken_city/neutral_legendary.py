@@ -95,7 +95,7 @@ class TSC_067:
 class TSC_641:
     """艾萨拉女王 - 5费 5/5
     战吼：如果你在本牌在你手中时施放过三个法术，选择一项远古圣物"""
-    powered_up = Count(Play(CONTROLLER, SPELL)) >= 3 & Buff(SELF, "TSC_641e")
+    powered_up = (Count(Play(CONTROLLER, SPELL)) >= 3) & Buff(SELF, "TSC_641e")
     play = (Find(SELF + POWERED_UP), GenericChoice(CONTROLLER, Discover(CONTROLLER, ["TSC_641t1", "TSC_641t2", "TSC_641t3", "TSC_641t4"])))
 
 
@@ -107,7 +107,7 @@ class TSC_641e:
 class TSC_649:
     """伊妮·积雷 - 5费 4/4
     战吼：选择一个友方机械，召唤一个它的具有突袭、风怒和圣盾的复制"""
-    play = Summon(CONTROLLER, ExactCopy(TARGET)) & Buff(LAST_SUMMONED, "TSC_649e")
+    play = (Summon(CONTROLLER, ExactCopy(TARGET)), Buff(LAST_SUMMONED, "TSC_649e"))
 
 
 class TSC_649e:

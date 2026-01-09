@@ -13,6 +13,7 @@ from ..actions import *
 from ..aura import Refresh
 from ..cards import db
 from ..dsl import *
+from ..entity import boolean_property
 from ..enums import PlayReq, BoardEnum
 from ..events import *
 

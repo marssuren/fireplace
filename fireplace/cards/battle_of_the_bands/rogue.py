@@ -5,11 +5,12 @@ class ETC_077:
     2费 3/2 机械
     连击：随机将一张连击牌置入你的手牌。
     """
+    race = Race.MECHANICAL
     tags = {
         GameTag.ATK: 3,
         GameTag.HEALTH: 2,
         GameTag.COST: 2,
-        GameTag.RACE: Race.MECH,
+        
         GameTag.COMBO: True,
     }
     # 连击：给予一张随机连击牌
@@ -73,7 +74,7 @@ class JAM_021:
         GameTag.COMBO: True,
     }
     # 连击：获得剧毒
-    combo = SetAttr(SELF, GameTag.POISONOUS, True)
+    combo = GivePoisonous(SELF)
 
 class JAM_020:
     """Tough Crowd - 挑剔的观众
@@ -112,11 +113,12 @@ class ETC_072:
     3费 3/3 机械
     连击：造成4点伤害，随机分配到所有敌人身上。
     """
+    race = Race.MECHANICAL
     tags = {
         GameTag.ATK: 3,
         GameTag.HEALTH: 3,
         GameTag.COST: 3,
-        GameTag.RACE: Race.MECH,
+        
         GameTag.COMBO: True,
     }
     # 连击：4点伤害随机分配
@@ -141,7 +143,7 @@ class ETC_717:
     # 切换逻辑 (悦耳 -> 刺耳)
     # 在手牌中，回合开始时变形
     class Hand:
-        events = OwnTurnBegin(CONTROLLER).on(Transform(SELF, "ETC_717t"))
+        events = OWN_TURN_BEGIN.on(Morph(SELF, "ETC_717t"))
 
 class ETC_717t:
     """Dissonant Hip Hop - 刺耳嘻哈
@@ -160,7 +162,7 @@ class ETC_717t:
         yield Buff(FRIENDLY_WEAPON, "ETC_717te")
 
     class Hand:
-        events = OwnTurnBegin(CONTROLLER).on(Transform(SELF, "ETC_717"))
+        events = OWN_TURN_BEGIN.on(Morph(SELF, "ETC_717"))
 
 class ETC_717e:
     tags = {GameTag.ATK: 3}
@@ -314,9 +316,9 @@ class ETC_079e:
     """
     tags = {
         GameTag.CARDTYPE: CardType.ENCHANTMENT,
-        GameTag.COST_SET: 1,
+        GameTag.COST: SET(1),
     }
-    events = OwnTurnEnd(CONTROLLER).on(Destroy(SELF))
+    events = OWN_TURN_END.on(Destroy(SELF))
 
 class ETC_078:
     """MC Blingtron - MC布林顿
@@ -393,5 +395,5 @@ class JAM_019:
 
 class JAM_019e:
     tags = {
-        GameTag.COST_SET: 1, # 永久变为1? 描述未说"本回合"。
+        GameTag.COST: SET(1), # 永久变为1? 描述未说"本回合"。
     }

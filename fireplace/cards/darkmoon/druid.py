@@ -30,7 +30,8 @@ class DMF_060:
         GameTag.COST: 7,
         GameTag.RUSH: True,
     }
-    cost_mod = COUNT(FRIENDLY_HERO + TIMES_SPELL_CAST_THIS_GAME)
+    # 你在本局对战中每施放一个法术,本牌的法力值消耗便减少(1)点
+    cost_mod = lambda self: -len([c for c in self.controller.cards_played_this_game if c.type == CardType.SPELL])
 
 
 class DMF_061:

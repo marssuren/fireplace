@@ -38,8 +38,8 @@ class SCH_614:
     Spellburst: Refresh your Mana Crystals.
     法术迸发：刷新你的法力水晶。"""
 
-    # 6费 5/4 传说 法术迸发：刷新你的法力水晶
-    spellburst = ManaThisTurn(CONTROLLER, FULL_MANA_CRYSTALS(CONTROLLER))
+    # 6费 5/4 传说 法术迸发:刷新你的法力水晶
+    spellburst = ManaThisTurn(CONTROLLER, Attr(CONTROLLER, GameTag.RESOURCES))
 
 
 ##

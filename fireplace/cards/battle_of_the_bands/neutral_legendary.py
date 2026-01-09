@@ -14,9 +14,10 @@ class ETC_080:
         GameTag.COST: 4,
     }
     # ETC Band Manager 需要特殊的套牌构筑机制
-    # 在构筑时选择3张牌，战吼时从这3张牌中发现一张
-    # 这需要在 CardDefs.xml 中定义特殊的 SIDEQUEST 机制
-    play = GenericChoice(CONTROLLER, DISCOVER(FRIENDLY_HERO + SIDEQUEST_CARDS))
+    # 在构筑时选择3张牌,战吼时从这3张牌中发现一张
+    # TODO: 实现 SIDEQUEST_CARDS 机制
+    # play = GenericChoice(CONTROLLER, DISCOVER(FRIENDLY_HERO + SIDEQUEST_CARDS))
+    pass  # 暂时简化实现
 class JAM_037:
     """精英牛头人歌王 / Elite Tauren Champion
     <b>压轴：</b>开启摇滚对决！玩家每回合必须消耗所有法力值，否则其英雄会受到8点<i>（或更高）</i>伤害！"""
@@ -36,7 +37,7 @@ class JAM_037e:
     """摇滚对决"""
     # 每回合结束时检查是否消耗了所有法力值
     events = TURN_END.on(
-        Find(OWNER + (USED_MANA < TOTAL_MANA)) & Hit(OWNER, 8)
+        Find(OWNER + (USED_MANA < MAX_MANA)) & Hit(OWNER, 8)
     )
 class JAM_036:
     """乐坛灾星玛加萨 / Magatha, Bane of Music
@@ -80,15 +81,17 @@ class ETC_409:
         GameTag.HEALTH: 6,
         GameTag.COST: 7,
     }
-    # 根据使用过的不同种族数量，随机获得额外效果
-    # 这需要计算本局对战中使用过的不同种族数量
-    play = Buff(SELF, "ETC_409e") * Count(FRIENDLY_HERO + UNIQUE_MINION_RACES_PLAYED_THIS_GAME)
+    # 根据使用过的不同种族数量,随机获得额外效果
+    # TODO: 实现 UNIQUE_MINION_RACES_PLAYED_THIS_GAME 选择器
+    # play = Buff(SELF, "ETC_409e") * Count(FRIENDLY_HERO + UNIQUE_MINION_RACES_PLAYED_THIS_GAME)
+    pass  # 暂时简化实现
 
 
 class ETC_409e:
     """随机额外效果"""
-    # 随机获得：冲锋、圣盾、嘲讽、吸血、风怒等效果之一
-    tags = RANDOM_BONUS_EFFECT
+    # 随机获得:冲锋、圣盾、嘲讽、吸血、风怒等效果之一
+    # TODO: 实现 RANDOM_BONUS_EFFECT
+    tags = {GameTag.ATK: 1, GameTag.HEALTH: 1}  # 暂时简化为 +1/+1
 class ETC_541:
     """盗版之王托尼 / Tony, King of Piracy
     <b>战吼：</b>将你的牌库替换成对手牌库的复制。<b>压轴：</b>抽一张牌。"""

@@ -64,7 +64,7 @@ class SCH_283:
     Battlecry: If you've used your Hero Power this turn, draw a card."""
 
     # 战吼：在本回合中，如果你使用过你的英雄技能，抽一张牌
-    play = (Find(FRIENDLY_HERO_POWER + USED_THIS_TURN), Draw(CONTROLLER))
+    play = Find(FRIENDLY_HERO_POWER + EXHAUSTED) & Draw(CONTROLLER)
 class SCH_708:
     """Sneaky Delinquent / 少年惯偷
     Stealth. Deathrattle: Add a 3/1 Ghost with Stealth to your hand."""
@@ -131,7 +131,7 @@ class SCH_605:
 
     # 同时对攻击目标相邻的随从造成伤害
     # 这个效果需要在攻击时触发，类似于"劈斩"效果
-    events = Attack(SELF).after(Hit(ADJACENT(ATK_TARGET), ATK(SELF)))
+    events = Attack(SELF).after(Hit(ADJACENT(ATTACK_TARGET), ATK(SELF)))
 
 class SCH_710:
     """Ogremancer / 食人魔巫术师

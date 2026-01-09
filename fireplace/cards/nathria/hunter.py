@@ -207,7 +207,7 @@ the minions next to
 class REV_352e:
     """Stonebound Gargon Infused - 石缚加尔贡注能"""
     # 攻击时对相邻随从造成伤害（类似CLEAVE）
-    events = Attack(OWNER).on(Hit(ADJACENT(DEFENDER), ATK(OWNER)))
+    events = Attack(OWNER).on(Hit(ADJACENT(Attack.DEFENDER), ATK(OWNER)))
 
 
 class MAW_009:
@@ -318,7 +318,7 @@ and then trigger it.
             # 复制亡语
             yield Buff(SELF, CopyDeathrattleBuff(card, "MAW_011e"))
             # 立即触发亡语
-            yield TriggerDeathrattle(SELF)
+            yield Deathrattle(SELF)
 
 
 class MAW_011e:

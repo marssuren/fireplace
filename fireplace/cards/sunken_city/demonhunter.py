@@ -204,7 +204,11 @@ class TSC_218:
         Attack(SELF).after(SetAttr(SELF, GameTag.IMMUNE, False)),
         # 施放法术后攻击生命值最低的敌人
         Play(CONTROLLER, SPELL).after(
-            Attack(SELF, ENEMY_CHARACTERS + LOWEST_HEALTH)
+            lambda self: (
+                self.game.opponent.characters and [
+                    Attack(SELF, min(self.game.opponent.characters, key=lambda x: x.health))
+                ]
+            )
         ),
     ]
 

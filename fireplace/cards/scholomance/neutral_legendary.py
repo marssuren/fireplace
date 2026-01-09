@@ -17,7 +17,11 @@ class SCH_428:
     Battlecry: Reorder your deck from the highest Cost card to the lowest Cost card."""
 
     # 战吼：将你的牌库中的卡牌按照法力值消耗从高到低重新排序
-    play = Reorder(FRIENDLY_DECK, ORDER_BY_COST_DESC)
+    def play(self):
+        # 将牌库按费用从高到低排序
+        if self.controller.deck:
+            # 使用 Python 的 sort，按费用降序
+            self.controller.deck.sort(key=lambda card: card.cost, reverse=True)
 
 class SCH_425:
     """Doctor Krastinov / 克拉斯迪诺夫博士
@@ -128,7 +132,24 @@ class SCH_717:
     Whenever your opponent draws a card, add a copy to your hand that costs (1)."""
 
     # 每当你的对手抽一张牌，将一张复制置入你的手牌，其法力值消耗为（1）点
-    events = Draw(OPPONENT).on(Give(CONTROLLER, Copy(Draw.CARD, cost=1)))
+    def _on_opponent_draw(self):
+        """对手抽牌时触发"""
+        # 获取对手抽的牌
+        drawn_card = Draw.CARD
+        
+        # 创建复制
+        copy = yield Give(CONTROLLER, drawn_card.id)
+        
+        if copy:
+            # 设置费用为1
+            yield Buff(copy[0], "SCH_717e")
+    
+    events = Draw(OPPONENT).on(lambda self: self._on_opponent_draw())
+
+
+class SCH_717e:
+    """Keymaster Alabaster Buff - Costs (1)"""
+    tags = {GameTag.COST: 1}
 
 
 ##

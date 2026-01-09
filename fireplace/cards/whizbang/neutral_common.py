@@ -84,7 +84,10 @@ class TOY_340:
     triggered = boolean_property("TOY_340_triggered")
 
     events = Play(CONTROLLER, SPELL).after(
-        Find(SELF + ~TRIGGERED) & (Buff(SELF, "TOY_340t"), SetAttr(SELF, "triggered", True))
+        lambda self, source: (
+            Buff(SELF, "TOY_340t"),
+            SetAttr(SELF, "triggered", True)
+        ) if not getattr(self, "triggered", False) else []
     )
 
 

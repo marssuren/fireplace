@@ -103,7 +103,9 @@ class DMF_122:
         GameTag.HEALTH: 1,
         GameTag.COST: 1,
     }
-    play = GenericChoice(CONTROLLER, Discover(CONTROLLER, cards=SECRET + HUNTER_CLASS))
+    # 发现一张猎人奥秘牌
+    # TODO: 实现完整的发现奥秘机制
+    play = DISCOVER(RandomCollectible(card_class=CardClass.HUNTER, secret=True))
 
 
 class YOP_028:
@@ -234,8 +236,8 @@ class DMF_088:
         GameTag.COST: 4,
     }
     
-    # 使用核心的 DiscoverAndCastSecret 动作
-    # 自动处理：重复检测、数量限制、发现、施放
+    # 在你的英雄政击后,发现一张猎人奥秘并施放
+    # TODO: 实现完整的 DiscoverAndCastSecret 机制
     events = Attack(FRIENDLY_HERO).after(
-        DiscoverAndCastSecret(CONTROLLER, cards=SECRET + HUNTER_CLASS)
+        DISCOVER(RandomCollectible(card_class=CardClass.HUNTER, secret=True))
     )

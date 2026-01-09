@@ -96,7 +96,8 @@ class DAL_577:
         PlayReq.REQ_TARGET_TO_PLAY: 0,
         PlayReq.REQ_MINION_TARGET: 0,
     }
-    play = (Find(TARGET + FROZEN), Hit(TARGET, 2)) | Freeze(TARGET)
+    # 如果目标已冻结,造成2点伤害,否则冻结目标
+    play = Find(TARGET + FROZEN) & Hit(TARGET, 2) | Freeze(TARGET)
 
 
 class DAL_577ts(DAL_577):

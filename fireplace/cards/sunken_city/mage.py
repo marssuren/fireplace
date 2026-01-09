@@ -9,7 +9,7 @@ class TID_707:
     """淹没的陨石 - 2费 2/2
     亡语：将两张法师奥术法术牌置入你的手牌。这些牌为临时牌"""
     deathrattle = (
-        Give(CONTROLLER, RandomSpell(card_class=CardClass.MAGE, spell_school=SpellSchool.ARCANE)) * 2 &
+        Give(CONTROLLER, RandomSpell(card_class=CardClass.MAGE, spell_school=SpellSchool.ARCANE)) * 2,
         Buff(LAST_GIVEN, "TID_707e")
     )
 
@@ -53,7 +53,7 @@ class TSC_054:
 class TSC_055:
     """海床传送口 - 3费法术
     抽一张机械牌。使你手牌中所有机械牌的法力值消耗减少（1）点"""
-    play = ForceDraw(RANDOM(FRIENDLY_DECK + MECH)) & Buff(FRIENDLY_HAND + MECH, "TSC_055e")
+    play = (ForceDraw(RANDOM(FRIENDLY_DECK + MECH)), Buff(FRIENDLY_HAND + MECH, "TSC_055e"))
 
 
 class TSC_055e:
@@ -75,7 +75,7 @@ class TSC_056e:
 class TSC_087:
     """指挥官西瓦拉 - 4费 3/5
     战吼：如果你在本牌在你手中时施放过三个法术，则将那些法术置回你的手牌"""
-    powered_up = Count(Play(CONTROLLER, SPELL)) >= 3 & Buff(SELF, "TSC_087e")
+    powered_up = (Count(Play(CONTROLLER, SPELL)) >= 3) & Buff(SELF, "TSC_087e")
     play = (Find(SELF + POWERED_UP), Give(CONTROLLER, Copy(LAST_PLAYED_SPELL))) * 3
 
 
@@ -95,7 +95,7 @@ class TSC_620:
 class TSC_642:
     """海沟勘测机 - 1费 2/1
     战吼：探底。如果选中的是机械牌，抽取这张牌"""
-    play = (Dredge(CONTROLLER), Find(DREDGED_CARD + MECH)) & ForceDraw(DREDGED_CARD)
+    play = (Dredge(CONTROLLER), (Find(DREDGED_CARD + MECH) & ForceDraw(DREDGED_CARD)))
 
 
 class TSC_643:
@@ -120,7 +120,7 @@ class TSC_948:
     """艾萨拉的恩赐 - 2费法术
     抽一张牌。如果你在本牌在你手中时使用过纳迦牌，再抽一张"""
     powered_up = Find(FRIENDLY_HAND + NAGA) & Buff(SELF, "TSC_948e")
-    play = (Draw(CONTROLLER), Find(SELF + POWERED_UP)) & Draw(CONTROLLER)
+    play = (Draw(CONTROLLER), (Find(SELF + POWERED_UP) & Draw(CONTROLLER)))
 
 
 class TSC_948e:

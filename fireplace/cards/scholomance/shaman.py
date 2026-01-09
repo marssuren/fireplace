@@ -35,9 +35,9 @@ class SCH_615:
     # 5费 5/5 亡语：召唤全部四个基础图腾。过载：（1）
     # 四个基础图腾：治疗图腾、灼热图腾、石爪图腾、空气之怒图腾
     deathrattle = (
-        Summon(CONTROLLER, "NEW1_009") +  # 治疗图腾
-        Summon(CONTROLLER, "NEW1_010") +  # 灼热图腾
-        Summon(CONTROLLER, "CS2_052") +   # 石爪图腾
+        Summon(CONTROLLER, "NEW1_009"),  # 治疗图腾
+        Summon(CONTROLLER, "NEW1_010"),  # 灼热图腾
+        Summon(CONTROLLER, "CS2_052"),   # 石爪图腾
         Summon(CONTROLLER, "CS2_050")     # 空气之怒图腾
     )
 

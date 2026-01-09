@@ -234,7 +234,7 @@ class REV_930:
     # 动态属性：受伤时+2攻击和冲锋
     # 使用 update 持续更新
     update = (
-        Refresh(SELF + DAMAGED, {GameTag.ATK: +2, GameTag.CHARGE: True}) |
+        Refresh(SELF + DAMAGED, {GameTag.ATK: +2, GameTag.CHARGE: True}),
         Refresh(SELF - DAMAGED, {GameTag.CHARGE: False})
     )
 

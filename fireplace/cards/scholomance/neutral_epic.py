@@ -61,11 +61,29 @@ class SCH_235:
     Shoot three missiles at random enemy minions that transform them into ones that cost (1) less."""
 
     # 向随机的敌方随从发射三枚飞弹，使其变形成为法力值消耗减少（1）点的随从
-    play = Morph(RANDOM(ENEMY_MINIONS) * 3, RandomMinion(cost=COST(MORPH_TARGET) - 1))
+    # 每次随机选择一个敌方随从并退化
+    def play(self):
+        for i in range(3):
+            yield Evolve(RANDOM(ENEMY_MINIONS), -1)
 
 class SCH_352:
     """Potion of Illusion / 幻象药水
     Add 1/1 copies of your minions to your hand. They cost (1)."""
 
     # 将你的随从的1/1复制置入你的手牌。这些复制的法力值消耗为（1）点
-    play = Give(CONTROLLER, Copy(FRIENDLY_MINIONS, atk=1, health=1, cost=1))
+    def play(self):
+        # 获取所有友方随从
+        minions = FRIENDLY_MINIONS.eval(self.game, self)
+        
+        for minion in minions:
+            # 创建复制
+            copy = yield Give(CONTROLLER, minion.id)
+            
+            if copy:
+                # 设置为1/1，费用为1
+                yield Buff(copy[0], "SCH_352e")
+
+
+class SCH_352e:
+    """Potion of Illusion Buff - 1/1 costs (1)"""
+    tags = {GameTag.ATK: 1, GameTag.HEALTH: 1, GameTag.COST: 1}

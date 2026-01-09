@@ -81,11 +81,8 @@ class BOT_436:
         PlayReq.REQ_MINION_TARGET: 0,
         PlayReq.REQ_FRIENDLY_TARGET: 0,
     }
-    play = (FindAll(FRIENDLY_DECK + MINION, FRIENDLY_DECK + SPELL), SwapStateBuff(
-        ForceDraw(RANDOM(FRIENDLY_DECK + MINION))),
-        ForceDraw(RANDOM(FRIENDLY_DECK + SPELL)),
-        "BOT_436e",
-    ) | (
+    # 从牌库中抽一张随从和一张法术,然后交换它们的费用
+    play = (
         ForceDraw(RANDOM(FRIENDLY_DECK + MINION)),
         ForceDraw(RANDOM(FRIENDLY_DECK + SPELL)),
     )

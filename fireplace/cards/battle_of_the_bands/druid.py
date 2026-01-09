@@ -10,12 +10,12 @@ class JAM_028:
     5费 5/5
     消耗生命值，而非法力值。
     """
+    race = Race.TREANT
     tags = {
         GameTag.ATK: 5,
         GameTag.HEALTH: 5,
         GameTag.COST: 5,
-        GameTag.RACE: Race.TREANT,
-        GameTag.COSTS_HEALTH: True,
+        # COSTS_HEALTH 功能暂不支持，需要在核心实现
     }
 
 class ETC_379:
@@ -33,11 +33,11 @@ class ETC_379:
         yield Buff(FRIENDLY_HERO, "ETC_379e")
 
     class Hand:
-        events = OwnTurnBegin(CONTROLLER).on(Transform(SELF, "ETC_379t"))
+        events = OWN_TURN_BEGIN.on(Morph(SELF, "ETC_379t"))
 
 class ETC_379e:
     tags = {GameTag.ATK: 2, GameTag.CARDTYPE: CardType.ENCHANTMENT}
-    events = OwnTurnEnd(CONTROLLER).on(Destroy(SELF))
+    events = OWN_TURN_END.on(Destroy(SELF))
     
     def apply(self, target):
          super().apply(target)
@@ -59,11 +59,11 @@ class ETC_379t:
         yield Buff(FRIENDLY_HERO, "ETC_379te")
 
     class Hand:
-        events = OwnTurnBegin(CONTROLLER).on(Transform(SELF, "ETC_379"))
+        events = OWN_TURN_BEGIN.on(Morph(SELF, "ETC_379"))
 
 class ETC_379te:
     tags = {GameTag.ATK: 4, GameTag.CARDTYPE: CardType.ENCHANTMENT}
-    events = OwnTurnEnd(CONTROLLER).on(Destroy(SELF))
+    events = OWN_TURN_END.on(Destroy(SELF))
     
     def apply(self, target):
          super().apply(target)
@@ -75,11 +75,12 @@ class ETC_375:
     3费 2/2 野兽
     抉择：抽一张野兽牌；或者发现一张野兽牌。
     """
+    race = Race.BEAST
     tags = {
         GameTag.ATK: 2,
         GameTag.HEALTH: 2,
         GameTag.COST: 3,
-        GameTag.RACE: Race.BEAST,
+        
         GameTag.CHOOSE_ONE: True,
     }
     choose = ("ETC_375a", "ETC_375b")
@@ -129,7 +130,7 @@ class JAM_026e:
     events = Activate(CONTROLLER, HERO_POWER).on(Destroy(SELF))
 
 class JAM_026boost:
-    tags = {GameTag.COST_SET: 0}
+    tags = {GameTag.COST: SET(0)}
 
 class ETC_384:
     """Spread the Word - 散布消息
@@ -155,11 +156,12 @@ class JAM_029:
     6费 3/4 野兽
     战吼：夺取你对手的一个空的法力水晶。
     """
+    race = Race.BEAST
     tags = {
         GameTag.ATK: 3,
         GameTag.HEALTH: 4,
         GameTag.COST: 6,
-        GameTag.RACE: Race.BEAST,
+        
     }
     
     def play(self):
@@ -195,7 +197,8 @@ class ETC_373b:
 
 class ETC_373t:
     """Treant - 2/2"""
-    tags = {GameTag.ATK: 2, GameTag.HEALTH: 2, GameTag.RACE: Race.TREANT}
+    race = Race.TREANT
+    tags = {GameTag.ATK: 2, GameTag.HEALTH: 2, }
 
 class ETC_373e:
     tags = {GameTag.ATK: 2, GameTag.HEALTH: 4, GameTag.TAUNT: True, GameTag.CARDTYPE: CardType.ENCHANTMENT}
@@ -205,11 +208,12 @@ class ETC_385:
     2费 2/1 野兽
     战吼，亡语：在本局对战中，你的英雄技能使你的英雄多获得1点攻击力。
     """
+    race = Race.BEAST
     tags = {
         GameTag.ATK: 2,
         GameTag.HEALTH: 1,
         GameTag.COST: 2,
-        GameTag.RACE: Race.BEAST,
+        
     }
     
     def play(self):
@@ -224,7 +228,7 @@ class ETC_385e:
 
 class ETC_385buff:
     tags = {GameTag.ATK: 1, GameTag.CARDTYPE: CardType.ENCHANTMENT}
-    events = OwnTurnEnd(CONTROLLER).on(Destroy(SELF))
+    events = OWN_TURN_END.on(Destroy(SELF))
     
     def apply(self, target):
          super().apply(target)
@@ -264,11 +268,12 @@ class ETC_382:
     1费 1/2 野兽
     战吼，亡语：在本局对战中，你的英雄技能多获得1点护甲值。
     """
+    race = Race.BEAST
     tags = {
         GameTag.ATK: 1,
         GameTag.HEALTH: 2,
         GameTag.COST: 1,
-        GameTag.RACE: Race.BEAST,
+        
     }
     
     def play(self):
@@ -333,17 +338,29 @@ class ETC_387b:
 
 class ETC_387e_a:
     tags = {GameTag.TAG_SCRIPT_DATA_NUM_1: 2, GameTag.CARDTYPE: CardType.ENCHANTMENT}
-    events = OwnTurnBegin(CONTROLLER).on(
-        Buff(SELF, "ETC_387tick"),
-        Condition(Equal(Tag(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1), 0), (Summon(CONTROLLER, "ETC_387t_a") * 3, Destroy(SELF)))
-    )
+    
+    def _on_turn_begin(self):
+        # 减少计数器
+        yield Buff(SELF, "ETC_387tick")
+        # 检查计数器是否为0
+        if self.tags.get(GameTag.TAG_SCRIPT_DATA_NUM_1, 0) <= 0:
+            yield Summon(CONTROLLER, "ETC_387t_a") * 3
+            yield Destroy(SELF)
+    
+    events = OWN_TURN_BEGIN.on(lambda self, source: self._on_turn_begin())
 
 class ETC_387e_b:
     tags = {GameTag.TAG_SCRIPT_DATA_NUM_1: 4, GameTag.CARDTYPE: CardType.ENCHANTMENT}
-    events = OwnTurnBegin(CONTROLLER).on(
-        Buff(SELF, "ETC_387tick"),
-        Condition(Equal(Tag(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1), 0), (Summon(CONTROLLER, "ETC_387t_b") * 3, Destroy(SELF)))
-    )
+    
+    def _on_turn_begin(self):
+        # 减少计数器
+        yield Buff(SELF, "ETC_387tick")
+        # 检查计数器是否为0
+        if self.tags.get(GameTag.TAG_SCRIPT_DATA_NUM_1, 0) <= 0:
+            yield Summon(CONTROLLER, "ETC_387t_b") * 3
+            yield Destroy(SELF)
+    
+    events = OWN_TURN_BEGIN.on(lambda self, source: self._on_turn_begin())
 
 class ETC_387tick:
     tags = {GameTag.TAG_SCRIPT_DATA_NUM_1: -1, GameTag.CARDTYPE: CardType.ENCHANTMENT}
@@ -360,12 +377,11 @@ class ETC_386:
     7费 6/6 野猪人
     战吼：召唤两个{0}/{1}并具有嘲讽的野猪人。（随你的英雄本回合获得的攻击力和护甲值提升！）
     """
+    race = Race.QUILBOAR
     tags = {
         GameTag.ATK: 6,
         GameTag.HEALTH: 6,
         GameTag.COST: 7,
-        GameTag.RACE: Race.QUILBOAR,
-        GameTag.LEGENDARY: True,
     }
 
     def play(self):
@@ -391,4 +407,5 @@ class ETC_386e:
 
 class ETC_386t:
     """Quilboar - Token"""
-    tags = {GameTag.ATK: 1, GameTag.HEALTH: 1, GameTag.TAUNT: True, GameTag.RACE: Race.QUILBOAR}
+    race = Race.QUILBOAR
+    tags = {GameTag.ATK: 1, GameTag.HEALTH: 1, GameTag.TAUNT: True, }

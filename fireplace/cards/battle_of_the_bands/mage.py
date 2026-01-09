@@ -6,11 +6,12 @@ class ETC_536:
     3费 4/3 机械
     亡语：复制你手牌中法力值消耗最高的法术牌。
     """
+    race = Race.MECHANICAL
     tags = {
         GameTag.ATK: 4,
         GameTag.HEALTH: 3,
         GameTag.COST: 3,
-        GameTag.RACE: Race.MECHANICAL,
+        
     }
     
     def deathrattle(self):
@@ -35,18 +36,19 @@ class JAM_001:
         GameTag.COST: 1,
     }
     # 回合结束：抽奥秘
-    events = OwnTurnEnd.on(Draw(CONTROLLER, RandomSpell(FRIENDLY_DECK + SECRET)))
+    events = OwnTurnEnd.on(Draw(CONTROLLER, FRIENDLY_DECK + SECRET))
 
 class ETC_029:
     """Keyboard Soloist - 键盘独演者
     4费 4/3 纳迦
     战吼：如果你没有控制其他随从，召唤两个1/2并具有法术伤害+1的扩音器。
     """
+    race = Race.NAGA
     tags = {
         GameTag.ATK: 4,
         GameTag.HEALTH: 3,
         GameTag.COST: 4,
-        GameTag.RACE: Race.NAGA,
+        
     }
     
     def play(self):
@@ -56,10 +58,11 @@ class ETC_029:
 
 class ETC_029t:
     """Speaker - 扩音器"""
+    race = Race.MECHANICAL
     tags = {
         GameTag.ATK: 1, 
         GameTag.HEALTH: 2, 
-        GameTag.RACE: Race.MECHANICAL,
+        
         GameTag.SPELLPOWER: 1
     }
 
@@ -107,8 +110,9 @@ class ETC_521:
 
 class ETC_521t:
     """Sound Construct - 音响元素"""
+    race = Race.ELEMENTAL
     tags = {
-        GameTag.RACE: Race.ELEMENTAL,
+        
         GameTag.ATK: 1, # 初始值，会被Buff覆盖
         GameTag.HEALTH: 1
     }
@@ -147,29 +151,32 @@ class JAM_000:
     在你的手牌中时会获得一项额外效果，该效果每回合都会改变。
     (需实现4种形态切换)
     """
+    race = Race.MECHANICAL
     tags = {
         GameTag.ATK: 3,
         GameTag.HEALTH: 3,
         GameTag.COST: 3,
-        GameTag.RACE: Race.MECHANICAL,
+        
     }
     # 变身逻辑：回合开始时变形为下一个形态
     class Hand:
-        events = OwnTurnBegin(CONTROLLER).on(Transform(SELF, "JAM_000a"))
+        events = OWN_TURN_BEGIN.on(Morph(SELF, "JAM_000a"))
 
 class JAM_000a:
     """Money Dispense-o-bot - 撒币派送机 (Coin)"""
-    tags = {GameTag.ATK: 3, GameTag.HEALTH: 3, GameTag.COST: 3, GameTag.RACE: Race.MECHANICAL}
+    race = Race.MECHANICAL
+    tags = {GameTag.ATK: 3, GameTag.HEALTH: 3, GameTag.COST: 3, }
     deathrattle = Give(CONTROLLER, "GAME_005") * 2 # 2个幸运币
     class Hand:
-        events = OwnTurnBegin(CONTROLLER).on(Transform(SELF, "JAM_000b"))
+        events = OWN_TURN_BEGIN.on(Morph(SELF, "JAM_000b"))
 
 class JAM_000b:
     """Mystery Dispense-o-bot - 神秘派送机 (Random Spell)"""
-    tags = {GameTag.ATK: 3, GameTag.HEALTH: 3, GameTag.COST: 3, GameTag.RACE: Race.MECHANICAL}
+    race = Race.MECHANICAL
+    tags = {GameTag.ATK: 3, GameTag.HEALTH: 3, GameTag.COST: 3, }
     deathrattle = Give(CONTROLLER, RandomSpell()) # 随机法术
     class Hand:
-        events = OwnTurnBegin(CONTROLLER).on(Transform(SELF, "JAM_000c"))
+        events = OWN_TURN_BEGIN.on(Morph(SELF, "JAM_000c"))
 
 class JAM_000c:
     """Merch Dispense-o-bot - 周边派送机
@@ -177,7 +184,8 @@ class JAM_000c:
     官方文本："Battlecry: Get two random Mechs. (Changes each turn.)"
     战吼：获得两张随机机械牌（每回合改变）
     """
-    tags = {GameTag.ATK: 3, GameTag.HEALTH: 3, GameTag.COST: 3, GameTag.RACE: Race.MECHANICAL}
+    race = Race.MECHANICAL
+    tags = {GameTag.ATK: 3, GameTag.HEALTH: 3, GameTag.COST: 3, }
 
     def play(self):
         # 获得两张随机机械牌
@@ -186,14 +194,15 @@ class JAM_000c:
             yield Give(CONTROLLER, RandomCollectible(race=Race.MECHANICAL))
 
     class Hand:
-        events = OwnTurnBegin(CONTROLLER).on(Transform(SELF, "JAM_000d"))
+        events = OWN_TURN_BEGIN.on(Morph(SELF, "JAM_000d"))
 
 class JAM_000d:
     """Melody Dispense-o-bot - 旋律派送机 (Divine Shield/Taunt?)"""
-    tags = {GameTag.ATK: 3, GameTag.HEALTH: 3, GameTag.COST: 3, GameTag.RACE: Race.MECHANICAL, 
+    race = Race.MECHANICAL
+    tags = {GameTag.ATK: 3, GameTag.HEALTH: 3, GameTag.COST: 3,  
             GameTag.DIVINE_SHIELD: True, GameTag.TAUNT: True}
     class Hand:
-        events = OwnTurnBegin(CONTROLLER).on(Transform(SELF, "JAM_000"))
+        events = OWN_TURN_BEGIN.on(Morph(SELF, "JAM_000"))
 
 
 class ETC_532:
@@ -272,11 +281,12 @@ class ETC_395:
     9费 8/8 (数据中Cost=9? 文本说0/1逻辑)
     战吼：将你手牌中的法术牌法力值消耗变为（0）点。在你使用其中一张后，其余的法力值消耗增加（1）点。
     """
+    race = Race.GNOME
     tags = {
         GameTag.ATK: 8,
         GameTag.HEALTH: 8,
         GameTag.COST: 9, # 遵循 inspect 结果
-        GameTag.RACE: Race.GNOME,
+        
     }
     
     def play(self):
@@ -290,7 +300,7 @@ class ETC_395:
 
 class ETC_395e:
     """Discounted - 减费"""
-    tags = {GameTag.COST_SET: 0}
+    tags = {GameTag.COST: SET(0)}
 
 class ETC_395_Manager:
     """DJ Manager - DJ效果管理器"""
@@ -330,9 +340,8 @@ class ETC_206:
 
         # 压轴：回合结束时回手
         if self.controller.mana == 0:
-            # 施加回合结束回手效果
-            # 因为法术打完进入墓地，我们需要给控制器挂一个监听器，指向这张特定的卡（self）
-            yield Buff(CONTROLLER, "ETC_206e", target_card=self)
+            # 给控制器添加一个回合结束时的效果
+            yield Buff(CONTROLLER, "ETC_206e")
 
 
 class ETC_313e:
@@ -347,14 +356,8 @@ class ETC_206e:
     """Return to Hand Effect - 回手效果"""
     tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
     
-    def __init__(self, target_card):
-        super().__init__()
-        self.target_card = target_card
-        
-    # 回合结束时
-    events = OwnTurnEnd(CONTROLLER).on(
-        # 将目标卡牌移回手牌
-        Move(Attr(SELF, "target_card"), Zone.HAND),
-        # 销毁 Buff
+    # 回合结束时将一张 ETC_206 加入手牌
+    events = OWN_TURN_END.on(
+        Give(CONTROLLER, "ETC_206"),
         Destroy(SELF)
     )

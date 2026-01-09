@@ -105,8 +105,8 @@ class SCH_158:
 
 class SCH_158e:
     """Demonic Studies Buff"""
-    update = Refresh(FRIENDLY_HAND + MINION + (RACE == Race.DEMON), {GameTag.COST: -1})
-    events = Play(FRIENDLY + MINION + (RACE == Race.DEMON)).on(Destroy(SELF))
+    update = Refresh(FRIENDLY_HAND + MINION + DEMON, {GameTag.COST: -1})
+    events = Play(FRIENDLY + MINION + DEMON).on(Destroy(SELF))
 
 
 class SCH_702:

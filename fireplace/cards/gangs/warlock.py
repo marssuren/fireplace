@@ -80,7 +80,15 @@ class CFM_611:
     使一个随从获得+3攻击力。如果该随从是恶魔，还会获得+3生命值。"""
 
     requirements = {PlayReq.REQ_MINION_TARGET: 0, PlayReq.REQ_TARGET_TO_PLAY: 0}
-    play = (Find(TARGET + DEMON), Buff(TARGET, "CFM_611e2")) | Buff(TARGET, "CFM_611e")
+    
+    def play(self):
+        # 检查目标是否为恶魔
+        if Race.DEMON in self.target.races:
+            # 恶魔:+3/+3
+            yield Buff(TARGET, "CFM_611e2")
+        else:
+            # 非恶魔:+3攻击力
+            yield Buff(TARGET, "CFM_611e")
 
 
 CFM_611e = buff(+3)

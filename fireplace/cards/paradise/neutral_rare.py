@@ -92,7 +92,7 @@ class VAC_936:
     # 监听自己攻击随从的事件
     # 在攻击后额外造成7倍攻击力的伤害
     events = Attack(SELF, MINION).after(
-        Hit(DEFENDER, ATK(SELF) * 7)
+        lambda self, source, attacker, defender: Hit(defender, attacker.atk * 7)
     )
 
 
@@ -125,6 +125,6 @@ class WORK_040e:
     }
     
     # 回合结束时移除卡牌
-    events = Turn(CONTROLLER).end.on(
+    events = OWN_TURN_END.on(
         Destroy(OWNER)
     )

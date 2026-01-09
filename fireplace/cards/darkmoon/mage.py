@@ -168,9 +168,9 @@ class DMF_105:
     }
     # 使用核心的 DiscoverAndCastSecret 动作
     # 自动处理：重复检测、数量限制、发现、施放
-    play = DiscoverAndCastSecret(CONTROLLER, cards=SECRET + MAGE_CLASS)
-    # 腐蚀版本：发现并施放2张奥秘
-    corrupt = DiscoverAndCastSecret(CONTROLLER, cards=SECRET + MAGE_CLASS) * 2
+    play = DiscoverAndCastSecret(CONTROLLER, cards=RandomCollectible(card_class=CardClass.MAGE, card_type=CardType.SPELL, secret=True))
+    # 腐蚀版本:发现并施放2张奥秘
+    corrupt = DiscoverAndCastSecret(CONTROLLER, cards=RandomCollectible(card_class=CardClass.MAGE, card_type=CardType.SPELL, secret=True)) * 2
 
 
 class DMF_107:
@@ -184,14 +184,16 @@ class DMF_107:
     }
     # 施放时给玩家添加追踪buff
     play = Buff(CONTROLLER, "DMF_107e")
+    
     # 在对手回合结束时检查是否受到伤害
-    secret = OppTurnEnd(CONTROLLER).on(
-        # 检查是否受到伤害（通过检查追踪buff的标记）
-        Find(~Attr(CONTROLLER, "dmf_107_damaged")) & (
-            Draw(CONTROLLER) * 3,
-            Reveal(SELF),
-        )
-    )
+    def secret_trigger(self):
+        # 检查是否受到伤害
+        if not getattr(self.controller, "dmf_107_damaged", False):
+            # 没有受到伤害,抽3张牌并揭示奥秘
+            yield Draw(CONTROLLER) * 3
+            yield Reveal(SELF)
+    
+    secret = EndTurn(OPPONENT).on(secret_trigger)
 
 
 class DMF_107e:
@@ -203,11 +205,17 @@ class DMF_107e:
         target.dmf_107_damaged = False
     
     # 监听友方英雄受到伤害的事件
+    def _reset_damage_flag(self):
+        self.owner.dmf_107_damaged = False
+    
+    def _set_damage_flag(self):
+        self.owner.dmf_107_damaged = True
+    
     events = [
-        # 对手回合开始时重置标记（设为 False）
-        OppTurnBegin(CONTROLLER).on(SetAttr(CONTROLLER, "dmf_107_damaged", False)),
-        # 受到伤害时设置标记（设为 True）
-        Damage(FRIENDLY_HERO).on(SetAttr(CONTROLLER, "dmf_107_damaged", True)),
+        # 对手回合开始时重置标记
+        BeginTurn(OPPONENT).on(_reset_damage_flag),
+        # 受到伤害时设置标记
+        Damage(FRIENDLY_HERO).on(_set_damage_flag),
     ]
 
 

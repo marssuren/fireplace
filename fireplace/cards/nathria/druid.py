@@ -188,7 +188,7 @@ class REV_333:
     """
     # Location地标：触发友方随从的亡语
     requirements = {PlayReq.REQ_TARGET_TO_PLAY: 0, PlayReq.REQ_FRIENDLY_TARGET: 0, PlayReq.REQ_MINION_TARGET: 0, PlayReq.REQ_TARGET_WITH_DEATHRATTLE: 0}
-    play = TriggerDeathrattle(TARGET)
+    play = Deathrattle(TARGET)
 
 
 class REV_336:

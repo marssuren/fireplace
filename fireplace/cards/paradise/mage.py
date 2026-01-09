@@ -277,7 +277,8 @@ class VAC_524e:
 
 class VAC_524e2:
     """法术费用设置为5"""
-    tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT, GameTag.COST_SET: 5}
+    tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
+    cost = SET(5)
 
 
 class WORK_063:
@@ -316,8 +317,9 @@ class WORK_063e:
     """费用设置效果"""
     tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
     
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, cost_set=0, **kwargs):
         super().__init__(*args, **kwargs)
-        # 使用 COST_SET 标签
-        if 'cost_set' in kwargs:
-            self.tags[GameTag.COST_SET] = kwargs['cost_set']
+        self._cost_set = cost_set
+    
+    def cost(self, i):
+        return self._cost_set

@@ -14,7 +14,7 @@ class TSC_052:
 class TSC_064:
     """蛇行死鳞纳迦 - 7费 5/9
     战吼：如果你在本牌在你手中时施放过三个法术，则对所有敌人造成3点伤害"""
-    powered_up = Count(Play(CONTROLLER, SPELL)) >= 3 & Buff(SELF, "TSC_064e")
+    powered_up = (Count(Play(CONTROLLER, SPELL)) >= 3) & Buff(SELF, "TSC_064e")
     play = (Find(SELF + POWERED_UP), Hit(ALL_ENEMIES, 3))
 
 

@@ -334,8 +334,8 @@ class VAC_938:
     Whenever another friendly Pirate attacks, give it +1/+1.
     """
     # 监听其他友方海盗攻击
-    events = Attack(FRIENDLY + PIRATE - SELF).on(
-        Buff(ATTACKER, "VAC_938e")
+    events = Attack(FRIENDLY + PIRATE - SELF).after(
+        lambda self, source, attacker, defender: Buff(attacker, "VAC_938e")
     )
 
 

@@ -6,14 +6,15 @@ class JAM_024:
     4费 2/5 元素
     过量治疗：随机使另一个友方随从获得+2/+2。
     """
+    race = Race.ELEMENTAL
     tags = {
         GameTag.ATK: 2,
         GameTag.HEALTH: 5,
         GameTag.COST: 4,
-        GameTag.RACE: Race.ELEMENTAL,
+        
     }
     # 过量治疗：Buff随机友方随从（排除自己）
-    overheal = Buff(RandomMinion(FRIENDLY_MINIONS - SELF), "JAM_024e")
+    overheal = Buff(RANDOM(FRIENDLY_MINIONS - SELF), "JAM_024e")
 
 class JAM_024e:
     tags = {GameTag.ATK: 2, GameTag.HEALTH: 2}
@@ -117,7 +118,7 @@ class ETC_312:
     )
 
 class ETC_312e:
-    tags = {GameTag.COST_SET: 0}
+    tags = {GameTag.COST: SET(0)}
 
 class ETC_338:
     """Power Chord: Synchronize - 真弦术：合
@@ -225,7 +226,7 @@ class ETC_314:
         yield Summon(CONTROLLER, "ETC_314t")
         
     class Hand:
-        events = OwnTurnBegin(CONTROLLER).on(Transform(SELF, "ETC_314t2"))
+        events = OWN_TURN_BEGIN.on(Morph(SELF, "ETC_314t2"))
 
 class ETC_314t2:
     """Dissonant Pop - 刺耳流行歌
@@ -241,7 +242,7 @@ class ETC_314t2:
         yield Summon(CONTROLLER, "ETC_314t3")
 
     class Hand:
-        events = OwnTurnBegin(CONTROLLER).on(Transform(SELF, "ETC_314"))
+        events = OWN_TURN_BEGIN.on(Morph(SELF, "ETC_314"))
 
 class ETC_314t:
     """Pop Star - 流行歌星 (6/6)"""
@@ -255,11 +256,12 @@ class JAM_023:
     2费 3/2 海盗
     战吼：获取你对手牌库顶的一张牌的复制。
     """
+    race = Race.PIRATE
     tags = {
         GameTag.ATK: 3,
         GameTag.HEALTH: 2,
         GameTag.COST: 2,
-        GameTag.RACE: Race.PIRATE,
+        
     }
     def play(self):
         # 对手牌库顶
@@ -391,16 +393,11 @@ class ETC_335e:
         Buff(FRIENDLY_HAND + SPELL, "ETC_335buff")
     ]
     
-    events = [
-        # 回合结束检查
-        OwnTurnEnd(CONTROLLER).on(
-            # 如果本回合没打过法术
-            Condition(
-                Equal(Attr(CONTROLLER, GameTag.NUM_SPELLS_PLAYED_THIS_TURN), 0),
-                Destroy(SELF)
-            )
-        )
-    ]
+    # 回合结束检查：如果本回合没打过法术，销毁自己
+    # 使用 Find 和 & 操作符实现条件判断
+    events = OWN_TURN_END.on(
+        (Attr(CONTROLLER, "spells_played_this_turn") == 0) & Destroy(SELF)
+    )
 
 # 减费效果 Buff
 class ETC_335buff:

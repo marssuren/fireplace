@@ -24,7 +24,7 @@ class NX2_028:
     [迷你扩展包]
     """
     events = Attack(FRIENDLY_HERO).after(
-        Armor(CONTROLLER, 4),
+        GainArmor(FRIENDLY_HERO, 4),
         Draw(CONTROLLER)
     )
 
@@ -41,7 +41,7 @@ class CastTrainingSession(TargetedAction):
 class NX2_029e:
     """训练课程增益 (Training Session Buff)"""
     # [x]本回合内
-    tags = {GameTag.ONE_TURN_EFFECT: True}
+    tags = {GameTag.TAG_ONE_TURN_EFFECT: True}
     # 如果你在本回合使用发现的牌，重复此效果
     events = Play(CONTROLLER, OWNER).after(CastTrainingSession(CONTROLLER, None))
 

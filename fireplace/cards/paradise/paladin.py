@@ -291,7 +291,7 @@ class VAC_507:
     
     # 光环效果：给玩家添加"低费法术施放两次"的标记
     auras = [
-        Buff(FRIENDLY_PLAYER, "VAC_507e")
+        Buff(CONTROLLER, "VAC_507e")
     ]
 
 

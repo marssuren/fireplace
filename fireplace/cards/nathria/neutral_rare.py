@@ -20,8 +20,7 @@ class MAW_031e:
     """Afterlife Attendant Aura - 冥界侍从光环"""
     # 标记：牌库中的 Infuse 卡也能充能
     # 核心的 Death action 会检查此标记（已完全实现）
-    from ..enums import GameTag
-    tags = {GameTag.CUSTOM_CARDTEXT: 1}
+    tags = {enums.CUSTOM_CARDTEXT: 1}
 
 
 class REV_016:

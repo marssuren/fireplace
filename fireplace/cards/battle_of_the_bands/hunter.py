@@ -15,7 +15,10 @@ class ETC_833:
         GameTag.HEALTH: 3,
         GameTag.COST: 2,
     }
-    events = Play(CONTROLLER, SPELL).after(Hit(LowestHealth(ENEMY_CHARACTERS), 1))
+    events = Play(CONTROLLER, SPELL).after(Hit(
+            RANDOM(ENEMY_CHARACTERS + (CURRENT_HEALTH == OpAttr(ENEMY_CHARACTERS, "health", min))),
+            1
+        ))
 
 class ETC_201:
     """Bunch of Bananas - 一串香蕉
@@ -49,11 +52,12 @@ class JAM_004:
     6费 3/6 野兽
     吸血，突袭。同时对其攻击目标相邻的随从造成伤害。
     """
+    race = Race.BEAST
     tags = {
         GameTag.ATK: 3,
         GameTag.HEALTH: 6,
         GameTag.COST: 6,
-        GameTag.RACE: Race.BEAST,
+        
         GameTag.LIFESTEAL: True,
         GameTag.RUSH: True,
     }
@@ -66,11 +70,12 @@ class ETC_831:
     1费 1/3 野兽
     压轴：你召唤的下一只野兽获得+1/+1。
     """
+    race = Race.BEAST
     tags = {
         GameTag.ATK: 1,
         GameTag.HEALTH: 3,
         GameTag.COST: 1,
-        GameTag.RACE: Race.BEAST,
+        
     }
     
     def play(self):
@@ -90,11 +95,12 @@ class ETC_840:
     10费 5/5 野兽
     突袭。每当本随从攻击时，抽一张野兽牌并获得其属性值。
     """
+    race = Race.BEAST
     tags = {
         GameTag.ATK: 5,
         GameTag.HEALTH: 6, # 5/6 stats commonly
         GameTag.COST: 10,
-        GameTag.RACE: Race.BEAST,
+        
         GameTag.RUSH: True,
     }
     
@@ -123,7 +129,8 @@ class ETC_207:
 
 class ETC_207t:
     """Monkey - 猴子"""
-    tags = {GameTag.ATK: 1, GameTag.HEALTH: 4, GameTag.TAUNT: True, GameTag.RACE: Race.BEAST}
+    race = Race.BEAST
+    tags = {GameTag.ATK: 1, GameTag.HEALTH: 4, GameTag.TAUNT: True, }
 
 class ETC_207t2:
     """Barrel of Monkeys (2 left)"""
@@ -175,7 +182,7 @@ class JAM_003:
     }
     # Check enemy mana at end of turn.
     # MANA(OPPONENT) gives current available mana.
-    secret = TurnEnd(OPPONENT).on(
+    secret = EndTurn(OPPONENT).on(
         (MANA(OPPONENT) == 0) & (Summon(CONTROLLER, RandomMinion(cost=3)))
     )
 
@@ -184,11 +191,12 @@ class ETC_028:
     4费 3/3 野兽
     战吼：如果你没有控制其他随从，发现并施放一个奥秘。
     """
+    race = Race.BEAST
     tags = {
         GameTag.ATK: 3,
         GameTag.HEALTH: 3,
         GameTag.COST: 4,
-        GameTag.RACE: Race.BEAST,
+        
     }
     
     def play(self):
@@ -224,13 +232,13 @@ class ETC_836:
     6费 10/10 野兽
     突袭。战吼：用香蕉填满你对手的手牌。
     """
+    race = Race.BEAST
     tags = {
         GameTag.ATK: 10,
         GameTag.HEALTH: 10,
         GameTag.COST: 6,
-        GameTag.RACE: Race.BEAST,
+        
         GameTag.RUSH: True,
-        GameTag.LEGENDARY: True,
     }
     
     def play(self):
@@ -249,6 +257,5 @@ class ETC_208:
         GameTag.COST: 10,
         GameTag.SPELL_SCHOOL: SpellSchool.NATURE,
         GameTag.TRADEABLE: True,
-        GameTag.LEGENDARY: True,
     }
     play = Summon(CONTROLLER, Copy(FRIENDLY_GRAVEYARD + BEAST + (COST >= 5)))

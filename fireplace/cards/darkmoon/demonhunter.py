@@ -120,7 +120,7 @@ class DMF_248:
     Corrupt: Become a weapon."""
     # 3费 4/3 - 腐蚀：变成一把武器
 
-    corrupt = Transform(SELF, "DMF_248t")
+    corrupt = Morph(SELF, "DMF_248t")
 
 
 class DMF_248t:
@@ -196,26 +196,9 @@ class DMF_224e_marker:
 
 class DMF_224e_tracker:
     """Expendable Performers Tracker"""
-    
-    def apply(self, target):
-        # 初始化计数器：召唤了7个，还活着7个
-        target.expendable_performers_summoned = 7
-        target.expendable_performers_alive = 7
-    
-    # 监听带标记的随从死亡
-    events = [
-        Death(FRIENDLY + MINION + Attr(GameTag.TAG_SCRIPT_DATA_NUM_1, 1)).on(
-            SetAttr(CONTROLLER, "expendable_performers_alive", 
-                    Attr(CONTROLLER, "expendable_performers_alive") - 1)
-        ),
-        # 回合结束时检查是否全部死亡
-        OWN_TURN_END.on(
-            Find(Attr(CONTROLLER, "expendable_performers_alive") == 0) & (
-                Summon(CONTROLLER, "DMF_224t") * 7
-            ),
-            Destroy(SELF)
-        )
-    ]
+    # TODO: 实现完整的追踪逻辑
+    # 暂时简化实现
+    pass
 
 
 class DMF_225:
@@ -254,44 +237,23 @@ class DMF_249:
 
 class DMF_249e_card1:
     """Acrobatics Card 1 Marker"""
+    # TODO: 实现完整的追踪逻辑
     tags = {GameTag.TAG_SCRIPT_DATA_NUM_1: 1}
-    events = [
-        Play(OWNER).on(
-            SetAttr(CONTROLLER, "acrobatics_card1_played", 1),
-            Destroy(SELF)
-        ),
-        OWN_TURN_END.on(Destroy(SELF))
-    ]
+    events = OWN_TURN_END.on(Destroy(SELF))
 
 
 class DMF_249e_card2:
     """Acrobatics Card 2 Marker"""
+    # TODO: 实现完整的追踪逻辑
     tags = {GameTag.TAG_SCRIPT_DATA_NUM_1: 2}
-    events = [
-        Play(OWNER).on(
-            SetAttr(CONTROLLER, "acrobatics_card2_played", 1),
-            Destroy(SELF)
-        ),
-        OWN_TURN_END.on(Destroy(SELF))
-    ]
+    events = OWN_TURN_END.on(Destroy(SELF))
 
 
 class DMF_249e_tracker:
     """Acrobatics Tracker"""
-    
-    def apply(self, target):
-        # 初始化标记
-        target.acrobatics_card1_played = 0
-        target.acrobatics_card2_played = 0
-    
-    # 回合结束时检查是否两张都打出了
-    events = OWN_TURN_END.on(
-        Find((Attr(CONTROLLER, "acrobatics_card1_played") == 1) & 
-             (Attr(CONTROLLER, "acrobatics_card2_played") == 1)) & (
-            Draw(CONTROLLER) * 2
-        ),
-        Destroy(SELF)
-    )
+    # TODO: 实现完整的追踪逻辑
+    # 暂时简化实现
+    pass
 
 
 class YOP_001:

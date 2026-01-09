@@ -477,6 +477,7 @@ HAS_DISCOVER = EnumSelector(GameTag.DISCOVER)
 LACKEY = EnumSelector(GameTag.MARK_OF_EVIL)
 LIBRAM = EnumSelector(GameTag.LIBRAM)
 OUTCAST = EnumSelector(GameTag.OUTCAST)
+POWERED_UP = EnumSelector(GameTag.POWERED_UP)  # 沉没之城扩展包 - 强化标记
 
 ALWAYS_WINS_BRAWLS = AttrValue(enums.ALWAYS_WINS_BRAWLS) == True
 KILLED_THIS_TURN = AttrValue(enums.KILLED_THIS_TURN) == True
@@ -486,8 +487,19 @@ EXHAUSTED = AttrValue(GameTag.EXHAUSTED) == True
 THE_TURN_SUMMONED = AttrValue(GameTag.NUM_TURNS_IN_PLAY) == 0
 TO_BE_DESTROYED = AttrValue("to_be_destroyed") == True
 
+# 职业选择器 (Class Selectors)
+DRUID = EnumSelector(CardClass.DRUID)
+HUNTER = EnumSelector(CardClass.HUNTER)
+MAGE = EnumSelector(CardClass.MAGE)
+PALADIN = EnumSelector(CardClass.PALADIN)
+PRIEST = EnumSelector(CardClass.PRIEST)
 ROGUE = EnumSelector(CardClass.ROGUE)
+SHAMAN = EnumSelector(CardClass.SHAMAN)
 WARLOCK = EnumSelector(CardClass.WARLOCK)
+WARRIOR = EnumSelector(CardClass.WARRIOR)
+DEATH_KNIGHT = EnumSelector(CardClass.DEATHKNIGHT)
+DEMON_HUNTER = EnumSelector(CardClass.DEMONHUNTER)
+
 
 IN_PLAY = EnumSelector(Zone.PLAY)
 IN_DECK = EnumSelector(Zone.DECK)
@@ -507,6 +519,7 @@ SPELL = EnumSelector(CardType.SPELL)
 SECRET = EnumSelector(GameTag.SECRET)
 QUEST = EnumSelector(GameTag.QUEST)
 HERO_POWER = EnumSelector(CardType.HERO_POWER)
+LOCATION = EnumSelector(CardType.LOCATION)  # 地标卡牌类型 (纳斯利亚堡扩展包)
 
 GALAKROND = EnumSelector(GameTag.GALAKROND_HERO_CARD)
 FRIENDLY_GALAKROND = GALAKROND + FRIENDLY
@@ -632,6 +645,7 @@ FRIENDLY_WEAPON = ALL_WEAPONS + FRIENDLY
 FRIENDLY_SECRETS = ALL_SECRETS + FRIENDLY
 FRIENDLY_QUEST = ALL_QUESTS + FRIENDLY
 FRIENDLY_HERO_POWER = ALL_HERO_POWERS + FRIENDLY
+FRIENDLY_GRAVEYARD = KILLED + FRIENDLY
 
 ENEMY_HAND = IN_HAND + ENEMY
 ENEMY_DECK = IN_DECK + ENEMY
@@ -643,6 +657,7 @@ ENEMY_WEAPON = ALL_WEAPONS + ENEMY
 ENEMY_SECRETS = ALL_SECRETS + ENEMY
 ENEMY_QUEST = ALL_QUESTS + ENEMY
 ENEMY_HERO_POWER = ALL_HERO_POWERS + ENEMY
+ENEMY_GRAVEYARD = KILLED + ENEMY
 
 RANDOM_MINION = RANDOM(ALL_MINIONS - DEAD)
 RANDOM_CHARACTER = RANDOM(ALL_CHARACTERS - DEAD)
@@ -653,6 +668,14 @@ RANDOM_OTHER_FRIENDLY_MINION = RANDOM(FRIENDLY_MINIONS - SELF)
 RANDOM_FRIENDLY_CHARACTER = RANDOM(FRIENDLY_CHARACTERS)
 RANDOM_ENEMY_MINION = RANDOM(ENEMY_MINIONS - DEAD)
 RANDOM_ENEMY_CHARACTER = RANDOM(ENEMY_CHARACTERS - DEAD)
+
+# 所有敌方角色 (英雄 + 随从)
+ALL_ENEMIES = ENEMY_CHARACTERS
+
+# 随机敌方角色 (RANDOM_ENEMY_CHARACTER 的别名)
+RANDOM_ENEMY = RANDOM(ENEMY_CHARACTERS - DEAD)
+
+
 
 DAMAGED_CHARACTERS = ALL_CHARACTERS + DAMAGED
 CTHUN = FRIENDLY + ID("OG_280")
@@ -711,6 +734,38 @@ CARDS_PLAYED_THIS_GAME = FuncSelector(
 
 STARTING_DECK = FuncSelector(lambda entities, source: source.controller.starting_deck)
 STARTING_HAND = FuncSelector(lambda entities, source: source.controller.starting_hand)
+
+# 最后召唤的随从选择器
+# 用于选择最近通过 Summon 动作召唤的随从
+# 通常在 Summon 动作后使用,例如: Summon(...) & Buff(LAST_SUMMONED, "buff_id")
+LAST_SUMMONED = FuncSelector(
+    lambda entities, source: (
+        [source.controller.field[-1]] if source.controller.field else []
+    )
+)
+
+# 最后给予的卡牌选择器
+# 用于选择最近通过 Give 动作给予的卡牌
+# 通常在 Give 动作后使用,例如: Give(...) & Buff(LAST_GIVEN, "buff_id")
+LAST_GIVEN = FuncSelector(
+    lambda entities, source: (
+        [source.controller.hand[-1]] if source.controller.hand else []
+    )
+)
+
+# 最后打出的法术选择器
+# 用于选择最近打出的法术牌
+LAST_PLAYED_SPELL = FuncSelector(
+    lambda entities, source: (
+        [source.controller.cards_played_this_turn[-1]] 
+        if source.controller.cards_played_this_turn 
+        and source.controller.cards_played_this_turn[-1].type == CardType.SPELL
+        else []
+    )
+)
+
+
+
 
 SPELL_DAMAGE = lambda amount: FuncSelector(
     lambda entities, source: source.controller.get_spell_damage(amount)
@@ -820,6 +875,13 @@ SPELLBURST_SPELL = FuncSelector(
     else []
 )
 
+# Spellburst: Access the card that triggered the Spellburst effect (more general than SPELLBURST_SPELL)
+SPELLBURST_CARD = FuncSelector(
+    lambda entities, source: [source.event_args.get('spell')] if (hasattr(source, 'event_args') and source.event_args and 'spell' in source.event_args) else (
+        [source.event_args.get('card')] if (hasattr(source, 'event_args') and source.event_args and 'card' in source.event_args) else []
+    )
+)
+
 # Corrupt: Access the card that triggered the Corrupt effect
 # 腐蚀机制：访问触发腐蚀效果的卡牌
 # 当手牌中的腐蚀卡牌被触发时，可以通过此选择器获取触发它的那张卡牌
@@ -838,6 +900,16 @@ TRADED_CARD = FuncSelector(
     if hasattr(source, 'event_args') and source.event_args and 'card' in source.event_args
     else []
 )
+
+# Dredge 机制选择器 (探寻沉没之城扩展包)
+# 用于访问 Dredge 动作选中并置于牌库顶部的卡牌
+# 通常在 Dredge 动作后使用,返回牌库顶部的卡牌
+DREDGED_CARD = FuncSelector(
+    lambda entities, source: (
+        [source.controller.deck[0]] if source.controller.deck else []
+    )
+)
+
 
 # Overheal 机制 - 获取过量治疗数值
 # 用于访问触发 Overheal 时的过量治疗数值
@@ -869,3 +941,52 @@ SAME_RACE_TARGET = FuncSelector(
 # 例如：Thaddius, Monstrosity (NX2_033) 使用这些选择器来减费
 ODD_COST = FilterSelector(lambda entity, source: getattr(entity, "cost", 0) % 2 == 1)
 EVEN_COST = FilterSelector(lambda entity, source: getattr(entity, "cost", 0) % 2 == 0)
+
+
+# 本局对战中特定卡牌的使用次数选择器
+# 用于统计特定卡牌ID在本局对战中被打出的次数
+# 例如: ETC_336 (Freebird) 使用此选择器来统计自身被打出的次数
+# 用法: TIMES_PLAYED_THIS_GAME("ETC_336") 返回一个 AttrValue,可以用于比较和计数
+class TimesPlayedThisGame(SelectorEntityValue):
+    """统计特定卡牌在本局对战中被打出的次数"""
+    
+    def __init__(self, card_id):
+        self.card_id = card_id
+    
+    def value(self, entity, source):
+        """返回指定卡牌在本局对战中被打出的次数"""
+        if not hasattr(source, 'controller'):
+            return 0
+        
+        # 统计 cards_played_this_game 中指定卡牌ID的数量
+        if hasattr(source.controller, 'cards_played_this_game'):
+            count = sum(
+                1 for card in source.controller.cards_played_this_game
+                if getattr(card, 'id', None) == self.card_id
+            )
+            return count
+        return 0
+    
+    def __repr__(self):
+        return f"TIMES_PLAYED_THIS_GAME({self.card_id!r})"
+
+
+def TIMES_PLAYED_THIS_GAME(card_id):
+    """
+    返回一个 SelectorEntityValue,表示指定卡牌在本局对战中被打出的次数
+    
+    参数:
+        card_id: 卡牌ID字符串,例如 "ETC_336"
+    
+    返回:
+        TimesPlayedThisGame 实例,可以用于比较操作
+    
+    示例:
+        # 统计 Freebird 被打出的次数
+        play = Buff(SELF, "ETC_336e") * Count(FRIENDLY_HERO + TIMES_PLAYED_THIS_GAME("ETC_336"))
+        
+        # 检查是否第一次打出
+        Find(FRIENDLY_HERO + TIMES_PLAYED_THIS_GAME("ETC_113") == 0) & Action(...)
+    """
+    return TimesPlayedThisGame(card_id)
+

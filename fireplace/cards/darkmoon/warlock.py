@@ -69,8 +69,8 @@ class DMF_115:
         GameTag.COST: 3,
     }
     play = (
-        DestroyManaCrystal(CONTROLLER),
-        DestroyManaCrystal(OPPONENT),
+        GainMana(CONTROLLER, -1),
+        GainMana(OPPONENT, -1),
     )
 
 

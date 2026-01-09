@@ -72,11 +72,12 @@ class ETC_337:
     4费 4/3 鱼人
     圣盾。你的圣盾随从拥有+2攻击力。
     """
+    race = Race.MURLOC
     tags = {
         GameTag.ATK: 4,
         GameTag.HEALTH: 3,
         GameTag.COST: 4,
-        GameTag.RACE: Race.MURLOC,
+        
         GameTag.DIVINE_SHIELD: True,
     }
     # 光环：使你具有圣盾的随从获得+2攻击力
@@ -93,11 +94,12 @@ class JAM_010:
     2费 0/4 图腾
     在你的回合结束时，召唤一个1/1的白银之手新兵。
     """
+    race = Race.TOTEM
     tags = {
         GameTag.ATK: 0,
         GameTag.HEALTH: 4,
         GameTag.COST: 2,
-        GameTag.RACE: Race.TOTEM,
+        
     }
     events = OwnTurnEnd.on(Summon(CONTROLLER, "CS2_101t"))
 
@@ -120,7 +122,7 @@ class ETC_506:
         )
 
     class Hand:
-        events = OwnTurnBegin(CONTROLLER).on(Transform(SELF, "ETC_506t"))
+        events = OWN_TURN_BEGIN.on(Morph(SELF, "ETC_506t"))
 
 class ETC_506t:
     """Dissonant Disco - 刺耳迪斯科
@@ -137,7 +139,7 @@ class ETC_506t:
         yield Discover(RandomMinion(cost=1)).then(Summon(CONTROLLER, Discover.CARD), Buff(Summon.CARD, "ETC_506te"))
 
     class Hand:
-        events = OwnTurnBegin(CONTROLLER).on(Transform(SELF, "ETC_506"))
+        events = OWN_TURN_BEGIN.on(Morph(SELF, "ETC_506"))
 
 class ETC_506e:
     tags = {GameTag.ATK: 1, GameTag.HEALTH: 1}
@@ -150,11 +152,12 @@ class ETC_324:
     4费 3/3 野兽
     圣盾。在一个友方角色失去圣盾后，抽一张牌。
     """
+    race = Race.BEAST
     tags = {
         GameTag.ATK: 3,
         GameTag.HEALTH: 3,
         GameTag.COST: 4,
-        GameTag.RACE: Race.BEAST,
+        
         GameTag.DIVINE_SHIELD: True,
     }
     # 监听友方角色失去圣盾的事件
@@ -185,11 +188,12 @@ class ETC_321:
     9费 3/6 机械
     嘲讽，圣盾。亡语：召唤三个1/2并具有嘲讽和圣盾的机械。
     """
+    race = Race.MECHANICAL
     tags = {
         GameTag.ATK: 3,
         GameTag.HEALTH: 6,
         GameTag.COST: 9,
-        GameTag.RACE: Race.MECHANICAL,
+        
         GameTag.TAUNT: True,
         GameTag.DIVINE_SHIELD: True,
     }
@@ -197,10 +201,11 @@ class ETC_321:
 
 class ETC_321t:
     """Annoy-o-Bot Fan - 吵吵粉丝"""
+    race = Race.MECHANICAL
     tags = {
         GameTag.ATK: 1, 
         GameTag.HEALTH: 2, 
-        GameTag.RACE: Race.MECHANICAL, 
+         
         GameTag.TAUNT: True, 
         GameTag.DIVINE_SHIELD: True
     }
@@ -217,12 +222,11 @@ class ETC_320:
         GameTag.SPELL_SCHOOL: SpellSchool.HOLY,
     }
     # 目标需求：必须是具有圣盾的友方随从
-    # 参考：whizbang/paladin.py - 使用 REQ_TARGET_WITH_DIVINE_SHIELD
+    # 注：圣盾检查在 play() 方法中进行
     requirements = {
         PlayReq.REQ_TARGET_TO_PLAY: 0,
         PlayReq.REQ_FRIENDLY_TARGET: 0,
         PlayReq.REQ_MINION_TARGET: 0,
-        PlayReq.REQ_TARGET_WITH_DIVINE_SHIELD: 0,
     }
     
     def play(self):
@@ -231,7 +235,8 @@ class ETC_320:
 
 class ETC_320t:
     """Spotlight Elemental - 光芒元素"""
-    tags = {GameTag.ATK: 5, GameTag.HEALTH: 5, GameTag.RACE: Race.ELEMENTAL}
+    race = Race.ELEMENTAL
+    tags = {GameTag.ATK: 5, GameTag.HEALTH: 5, }
 
 class ETC_329:
     """Kangor, Dancing King - 舞王坎格尔
@@ -243,7 +248,6 @@ class ETC_329:
         GameTag.HEALTH: 3,
         GameTag.COST: 5,
         GameTag.LIFESTEAL: True,
-        GameTag.LEGENDARY: True,
     }
     
     def deathrattle(self):
@@ -256,10 +260,10 @@ class ETC_329:
         if hand_minions:
             target = self.game.random.choice(hand_minions)
             # 执行交换：召唤手牌随从，给予吸血，Kangor 移回手牌
-            # 不会造成无限循环：Kangor 移回手牌后不在场上，战吼不会再次触发
-            yield Summon(CONTROLLER, target)
-            yield Buff(target, "ETC_329e")
-            yield Move(SELF, Zone.HAND)
+            # 使用 Bounce 将 Kangor 移回手牌（从墓地复活到手牌）
+            yield Give(CONTROLLER, self.id)  # 将 Kangor 加入手牌
+            yield Summon(CONTROLLER, target)  # 召唤手牌随从
+            yield Buff(target, "ETC_329e")  # 给予吸血
 
 class ETC_329e:
     tags = {GameTag.LIFESTEAL: True, GameTag.CARDTYPE: CardType.ENCHANTMENT}

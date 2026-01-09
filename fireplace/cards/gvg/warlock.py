@@ -29,7 +29,14 @@ class GVG_077:
     """Anima Golem / 心能魔像
     在每个回合结束时，如果本随从是你唯一的随从，则消灭 本随从。"""
 
-    events = TURN_END.on(Find(FRIENDLY_MINIONS - SELF) | Destroy(SELF))
+    def _check_and_destroy(self):
+        # 检查是否是唯一的随从
+        other_minions = [m for m in self.controller.field if m != self.owner]
+        if len(other_minions) == 0:
+            # 是唯一的随从,销毁自己
+            yield Destroy(SELF)
+    
+    events = TURN_END.on(_check_and_destroy)
 
 
 class GVG_100:
@@ -61,7 +68,15 @@ class GVG_019:
     对一个随从造成$5点伤害，如果该随从是友方恶魔，则改为使其获得+5/+5。"""
 
     requirements = {PlayReq.REQ_MINION_TARGET: 0, PlayReq.REQ_TARGET_TO_PLAY: 0}
-    play = (Find(TARGET + FRIENDLY + DEMON), Buff(TARGET, "GVG_019e")) | Hit(TARGET, 5)
+    
+    def play(self):
+        # 检查目标是否为友方恶魔
+        if self.target.controller == self.controller and Race.DEMON in self.target.races:
+            # 友方恶魔:+5/+5
+            yield Buff(TARGET, "GVG_019e")
+        else:
+            # 非友方恶魔:造成5点伤害
+            yield Hit(TARGET, 5)
 
 
 GVG_019e = buff(+5, +5)

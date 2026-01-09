@@ -158,7 +158,7 @@ class VAC_509t:
     
     # 攻击后冻结目标
     events = Attack(SELF).after(
-        Freeze(DEFENDER)
+        lambda self, source, attacker, defender: Freeze(defender)
     )
 
 

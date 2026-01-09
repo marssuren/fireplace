@@ -2,6 +2,8 @@
 # Hunter Tokens (Sidequest Rewards)
 # ========================================
 
+from ..utils import *
+
 
 class DRG_251t:
     """Gryphon / 狮鹫

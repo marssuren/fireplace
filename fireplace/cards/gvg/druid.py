@@ -68,11 +68,20 @@ class GVG_035t:
     
     dormant = True
     
+    def apply(self, target):
+        # 初始化进度计数器
+        target.malorne_progress = 0
+    
     # 监听友方野兽死亡
-    events = Death(FRIENDLY + BEAST).on(
-        UpdateProgress(SELF, 1),
-        If(Attr(SELF, GameTag.PROGRESS) >= 2, Awaken(SELF))
-    )
+    def _on_beast_death(self):
+        # 增加进度
+        self.owner.malorne_progress = getattr(self.owner, 'malorne_progress', 0) + 1
+        # 检查是否达到2
+        if self.owner.malorne_progress >= 2:
+            # 唤醒
+            self.owner.is_dormant = False
+    
+    events = Death(FRIENDLY + BEAST).on(_on_beast_death)
 
 
 class GVG_080:

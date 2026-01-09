@@ -138,7 +138,12 @@ class ETC_103:
         GameTag.HEALTH: 3,
         GameTag.COST: 2,
     }
-    play = GenericChoice(CONTROLLER, DISCOVER(SPELL + (CARD_CLASS == OPPONENT_CLASS) - IN_ENEMY_DECK))
+    
+    def play(self):
+        # 简化实现：发现对手职业的法术牌
+        # 注：这里简化了"不在对手牌库中"的判断
+        opponent_class = self.controller.opponent.hero.card_class
+        yield GenericChoice(CONTROLLER, DISCOVER(RandomSpell(card_class=opponent_class)))
 class ETC_418:
     """乐器技师 / Instrument Tech
     <b>战吼：</b>抽一张武器牌。"""
@@ -156,7 +161,9 @@ class ETC_111:
         GameTag.HEALTH: 5,
         GameTag.COST: 4,
     }
-    events = OWN_TURN_END.on(Shuffle(OPPONENT, RandomSpell(), TOPDECK))
+    # 简化实现：将随机法术牌洗入对手牌库
+    # 注：这里简化了"置于牌库顶"的逻辑，使用普通的 Shuffle
+    events = OWN_TURN_END.on(Shuffle(OPPONENT, RandomSpell()))
 class ETC_108:
     """痴醉歌迷 / Obsessive Fan
     <b>战吼：</b>选择一个随从。当本随从存活时，选中的随从拥有<b>潜行</b>。"""
@@ -205,7 +212,25 @@ class ETC_350:
         GameTag.HEALTH: 3,
         GameTag.COST: 2,
     }
-    play = Buff(FRIENDLY_HAND + MINION + UNIQUE_RACE, "ETC_350e")
+    
+    def play(self):
+        # 获取手牌中的所有随从
+        minions = [c for c in self.controller.hand if c.type == CardType.MINION]
+        
+        # 按种族分组，每个种族只选第一张
+        seen_races = set()
+        unique_minions = []
+        
+        for minion in minions:
+            # 获取随从的种族（可能有多个种族）
+            races = tuple(sorted(getattr(minion, 'races', [])))
+            if races and races not in seen_races:
+                seen_races.add(races)
+                unique_minions.append(minion)
+        
+        # 给每个唯一种族的随从施加 Buff
+        for minion in unique_minions:
+            yield Buff(minion, "ETC_350e")
 
 
 class ETC_350e:
@@ -240,7 +265,15 @@ class ETC_742:
         GameTag.COST: 2,
         GameTag.RUSH: True,
     }
-    play = Find(FRIENDLY_CONTROLLER + LAST_CARD_PLAYED + (COST == 1)) & Buff(SELF, "ETC_742e")
+    
+    def play(self):
+        # 检查上一张打出的牌（排除自己）
+        cards_played = self.controller.cards_played_this_game
+        if len(cards_played) >= 2:  # 至少有两张牌（包括自己）
+            # 倒数第二张是上一张打出的牌
+            last_card = cards_played[-2]
+            if last_card.cost == 1:
+                yield Buff(SELF, "ETC_742e")
 
 
 class ETC_742e:

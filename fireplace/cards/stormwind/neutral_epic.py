@@ -17,7 +17,7 @@ class SW_069:
     在你的回合结束时，从你的牌库中存储一张牌。亡语：将存储的牌加入你的手牌。"""
     events = OWN_TURN_END.on(
         Find(FRIENDLY_DECK) & (
-            Setaside(RANDOM(FRIENDLY_DECK)) & Buff(SELF, "SW_069e")
+            Setaside(RANDOM(FRIENDLY_DECK)), Buff(SELF, "SW_069e")
         )
     )
     deathrattle = lambda self: [Give(self.controller, card) for card in getattr(self, 'stored_cards', [])]
@@ -38,7 +38,7 @@ class SW_073:
     """奶酪商贩 / Cheesemonger
     每当你的对手施放一个法术时，将一张法力值消耗相同的随机法术牌置入你的手牌。"""
     events = CastSpell(OPPONENT).on(
-        Give(CONTROLLER, RandomSpell(cost=COST(CastSpell.CARD)))
+        lambda self: Give(CONTROLLER, RandomSpell(cost=COST(CastSpell.CARD)))
     )
 
 
@@ -99,7 +99,7 @@ class SW_077e:
     """监狱囚徒追踪器"""
     # 每次打出卡牌时增加计数
     events = Play(CONTROLLER).after(
-        Find(SELF.owner) & Buff(SELF.owner, "SW_077_counter")
+        Find(OWNER) & Buff(OWNER, "SW_077_counter")
     )
 
 

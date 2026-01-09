@@ -62,7 +62,7 @@ class SW_021:
         GameTag.COST: 2,
     }
     
-    deathrattle = Summon(CONTROLLER, Random(FRIENDLY_DECK + MINION))
+    deathrattle = Summon(CONTROLLER, RANDOM(FRIENDLY_DECK + MINION))
 
 
 class SW_023:
@@ -227,7 +227,7 @@ class SW_093e:
     """暴风城海盗增益"""
     tags = {
         GameTag.ATK: 2,
-        GameTag.ONE_TURN_EFFECT: True,
+        GameTag.TAG_ONE_TURN_EFFECT: True,
     }
 
 

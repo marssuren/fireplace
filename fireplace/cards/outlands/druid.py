@@ -94,7 +94,7 @@ class BT_130:
     获得两个空的法力水晶。"""
 
     # Gain two empty Mana_Crystals.
-    play = (AT_MAX_MANA(CONTROLLER), Give(CONTROLLER, "CS2_013t")) | GainEmptyMana(
+    play = AT_MAX_MANA(CONTROLLER) & Give(CONTROLLER, "CS2_013t") | GainEmptyMana(
         CONTROLLER, 2
     )
 

@@ -71,7 +71,7 @@ class DMF_237:
         GameTag.COST: 3,
     }
     events = Summon(CONTROLLER, MINION + (HEALTH == 1)).after(
-        Buff(EVENT_TARGET, "DMF_237e")
+        Buff(Summon.CARD, "DMF_237e")
     )
 
 
@@ -98,7 +98,7 @@ class DMF_240:
 class DMF_240e:
     """洛萨克森的祝福"""
     events = Summon(CONTROLLER, ID("CS2_101t")).after(  # Silver Hand Recruit
-        Buff(EVENT_TARGET, "DMF_240e2")
+        Buff(Summon.CARD, "DMF_240e2")
     )
 
 
@@ -118,7 +118,13 @@ class DMF_241:
         GameTag.HEALTH: 5,
         GameTag.COST: 8,
     }
-    play = Find(~(FRIENDLY_DECK + NEUTRAL)) & Buff(SELF, "DMF_241e")
+    # 检查牌库中是否没有中立牌
+    def play(self):
+        # 检查牌库中的中立牌数量
+        neutral_cards = [c for c in self.controller.deck if c.card_class == CardClass.NEUTRAL]
+        if len(neutral_cards) == 0:
+            # 没有中立牌,给予全部增益
+            yield Buff(SELF, "DMF_241e")
 
 
 class DMF_241e:

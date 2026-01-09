@@ -15,7 +15,7 @@ class ETC_087:
     }
     play = (
         SetTag(FRIENDLY_HERO, {GameTag.RESOURCES: 11}),
-        SetTag(FRIENDLY_HERO, {GameTag.HAND_SIZE_BASE: 11})
+        SetTag(FRIENDLY_HERO, {GameTag.MAXHANDSIZE: 11})
     )
 class ETC_110:
     """封面艺人 / Cover Artist
@@ -73,4 +73,4 @@ class ETC_349:
         GameTag.HEALTH: 5,
         GameTag.COST: 6,
     }
-    deathrattle = Summon(CONTROLLER, RandomMinion(cost=5, card_set=CardSet.WILD))
+    deathrattle = Summon(CONTROLLER, RandomMinion(cost=5))

@@ -18,12 +18,13 @@ class ETC_369:
 
 class ETC_369t:
     """Cold Elemental - 清冷元素"""
+    race = Race.ELEMENTAL
     tags = {
         GameTag.CARDTYPE: CardType.MINION,
         GameTag.COST: 3,
         GameTag.ATK: 3,
         GameTag.HEALTH: 3,
-        GameTag.RACE: Race.ELEMENTAL,
+        
         GameTag.TAUNT: True
     }
 
@@ -32,12 +33,13 @@ class ETC_359:
     1费 2/1 纳迦
     战吼：如果你有过载的法力水晶，从你的牌库中发现一张法术牌。
     """
+    race = Race.NAGA
     tags = {
         GameTag.CARDTYPE: CardType.MINION,
         GameTag.COST: 1,
         GameTag.ATK: 2,
         GameTag.HEALTH: 1,
-        GameTag.RACE: Race.NAGA,
+        
     }
 
     def play(self):
@@ -85,12 +87,13 @@ class ETC_357:
     4费 3/3 元素
     突袭，圣盾，嘲讽，风怒
     """
+    race = Race.ELEMENTAL
     tags = {
         GameTag.CARDTYPE: CardType.MINION,
         GameTag.COST: 4,
         GameTag.ATK: 3,
         GameTag.HEALTH: 3,
-        GameTag.RACE: Race.ELEMENTAL,
+        
         GameTag.RUSH: True,
         GameTag.DIVINE_SHIELD: True,
         GameTag.TAUNT: True,
@@ -116,8 +119,8 @@ class JAM_011:
 
 class JAM_011e:
     tags = {
-        GameTag.ATK_SET: 3,
-        GameTag.HEALTH_SET: 3,
+        GameTag.ATK: SET(3),
+        GameTag.HEALTH: SET(3),
     }
 
 class ETC_813:
@@ -130,27 +133,39 @@ class ETC_813:
         GameTag.COST: 3,
         GameTag.ATK: 3,
         GameTag.HEALTH: 2,
+        GameTag.TAG_SCRIPT_DATA_NUM_1: 1,  # 存储减费数量
     }
     
-    def __init__(self):
-        super().__init__()
-        self.reduction = 1
-        
-    def _improve(self, source, player, amount):
-        if player == self.controller:
-            self.reduction += amount 
-
-    events = Overload(ALL_PLAYERS).on(SideEffect(_improve))
+    # 监听过载事件，增加减费数量
+    # 注：简化实现，每次过载增加1点减费
+    events = Overload(CONTROLLER).on(
+        Buff(SELF, "ETC_813e")
+    )
     
     def deathrattle(self):
+        # 获取累积的减费数量
+        reduction = self.tags.get(GameTag.TAG_SCRIPT_DATA_NUM_1, 1)
+        
+        # 给手牌中的法术施加减费
         spells = [c for c in self.controller.hand if c.type == CardType.SPELL]
         if spells:
-            yield Buff(spells, "ETC_813_Discount", discount=self.reduction)
-        yield Buff(CONTROLLER, "ETC_813_Manager", discount=self.reduction)
+            for spell in spells:
+                yield Buff(spell, "ETC_813_Discount", discount=reduction)
+        
+        # 给控制器添加管理器，监听后续抽到的法术
+        yield Buff(CONTROLLER, "ETC_813_Manager", discount=reduction)
+
+class ETC_813e:
+    """增加减费数量"""
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.TAG_SCRIPT_DATA_NUM_1: 1,
+    }
 
 class ETC_813_Discount:
     tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
-    def __init__(self, discount):
+    
+    def __init__(self, discount=1):
         super().__init__()
         self.discount = discount
     
@@ -158,14 +173,17 @@ class ETC_813_Discount:
     def cost_mod(self):
         return -self.discount
         
+    # 使用法术后销毁此 Buff
     events = Play(CONTROLLER, SPELL).on(Destroy(SELF))
 
 class ETC_813_Manager:
     tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
-    def __init__(self, discount):
+    
+    def __init__(self, discount=1):
         super().__init__()
         self.discount = discount
 
+    # 抽到法术时施加减费，使用法术后销毁管理器
     events = [
         Draw(CONTROLLER, SPELL).on(
             Buff(Draw.CARD, "ETC_813_Discount", discount=Attr(SELF, "discount"))
@@ -182,21 +200,21 @@ class JAM_012:
         GameTag.HEALTH: 2,
     }
     class Hand:
-        events = OwnTurnBegin(CONTROLLER).on(Transform(SELF, "JAM_012a"))
+        events = OWN_TURN_BEGIN.on(Morph(SELF, "JAM_012a"))
 
 class JAM_012a: # Bluesy - Summon Totem
     tags = {GameTag.CARDTYPE: CardType.MINION, GameTag.COST: 3, GameTag.ATK: 3, GameTag.HEALTH: 2}
     def play(self):
         yield Summon(CONTROLLER, RandomBasicTotem())
     class Hand:
-        events = OwnTurnBegin(CONTROLLER).on(Transform(SELF, "JAM_012b"))
+        events = OWN_TURN_BEGIN.on(Morph(SELF, "JAM_012b"))
 
 class JAM_012b: # Loud - +2 Health, Taunt
     tags = {GameTag.CARDTYPE: CardType.MINION, GameTag.COST: 3, GameTag.ATK: 3, GameTag.HEALTH: 2}
     def play(self):
         yield Buff(SELF, "JAM_012be")
     class Hand:
-        events = OwnTurnBegin(CONTROLLER).on(Transform(SELF, "JAM_012c"))
+        events = OWN_TURN_BEGIN.on(Morph(SELF, "JAM_012c"))
 
 class JAM_012be:
     tags = {GameTag.HEALTH: 2, GameTag.TAUNT: True}
@@ -206,14 +224,14 @@ class JAM_012c: # Smooth - Deal 2
     def play(self):
         yield Hit(TARGET, 2)
     class Hand:
-        events = OwnTurnBegin(CONTROLLER).on(Transform(SELF, "JAM_012d"))
+        events = OWN_TURN_BEGIN.on(Morph(SELF, "JAM_012d"))
 
 class JAM_012d: # Jazzy - +1 Attack, Rush
     tags = {GameTag.CARDTYPE: CardType.MINION, GameTag.COST: 3, GameTag.ATK: 3, GameTag.HEALTH: 2}
     def play(self):
         yield Buff(SELF, "JAM_012de")
     class Hand:
-        events = OwnTurnBegin(CONTROLLER).on(Transform(SELF, "JAM_012"))
+        events = OWN_TURN_BEGIN.on(Morph(SELF, "JAM_012"))
 
 class JAM_012de:
     tags = {GameTag.ATK: 1, GameTag.RUSH: True}
@@ -228,17 +246,18 @@ class ETC_367e:
     tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
     events = [
         Play(CONTROLLER, MINION).on(Give(CONTROLLER, RandomSpell(card_class=CardClass.SHAMAN))),
-        OwnTurnEnd(CONTROLLER).on(Destroy(SELF))
+        OWN_TURN_END.on(Destroy(SELF))
     ]
 
 class ETC_358:
     """Saxophone Soloist"""
+    race = Race.MURLOC
     tags = {
         GameTag.CARDTYPE: CardType.MINION,
         GameTag.COST: 1,
         GameTag.ATK: 1,
         GameTag.HEALTH: 2,
-        GameTag.RACE: Race.MURLOC,
+        
     }
     def play(self):
         if len(self.controller.field) == 1:
@@ -263,11 +282,13 @@ class ETC_371e:
     """Inzah Manager"""
     tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
     
-    def _on_draw(self, action, player, card):
-        if card.overload > 0:
-            action.game.queue_actions(self, [Buff(card, "ETC_371_Discount")])
-            
-    events = Draw(CONTROLLER).on(SideEffect(_on_draw))
+    # 简化实现：监听抽牌事件，如果抽到的是过载卡牌，施加减费
+    # 注：这里使用 Draw.CARD 来获取抽到的卡牌
+    events = Draw(CONTROLLER).on(
+        # 检查抽到的卡牌是否有过载，如果有则施加减费
+        # 使用 Find 和 & 操作符实现条件判断
+        (Attr(Draw.CARD, "overload") > 0) & Buff(Draw.CARD, "ETC_371_Discount")
+    )
 
 class ETC_371_Discount:
     tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}

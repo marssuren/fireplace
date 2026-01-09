@@ -54,7 +54,7 @@ class SCH_353:
 
     # 2费 抽1张牌（受法术伤害加成影响）
     # 抽牌数 = 1 + 法术伤害
-    play = Draw(CONTROLLER) * (1 + CURRENT_SPELLPOWER(FRIENDLY_HERO))
+    play = Draw(CONTROLLER) * (Attr(CONTROLLER, GameTag.CURRENT_SPELLPOWER) + 1)
 
 
 class SCH_348:

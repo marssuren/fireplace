@@ -1,4 +1,19 @@
 from ..utils import *
+from ...actions import Action
+
+
+class TryDrawDredged(Action):
+    """尝试抽取探底后的牌(如果法力值足够)"""
+    def do(self, source, target=None):
+        controller = source.controller
+        if not controller.deck:
+            return
+            
+        top_card = controller.deck[0]
+        
+        # 检查费用
+        if controller.mana >= top_card.cost:
+            controller.game.queue_actions(source, [Draw(controller, top_card)])
 
 
 class TSC_654:
@@ -20,24 +35,6 @@ class TSC_654:
         # 这里需要自定义动作来检查和抽牌
         TryDrawDredged()
     )
-
-
-class TryDrawDredged(Action):
-    def do(self, source, target=None):
-        controller = source.controller
-        if not controller.deck:
-            return
-            
-        top_card = controller.deck[-1] # Fireplace deck[-1] is usually top? Or [0]? 
-        # In Fireplace, deck is list, usually pop() takes from end? 
-        # Helper Deck[0] is usually top. Let's verify standard usage.
-        # User snippet showed deck[0] as top.
-        
-        top_card = controller.deck[0]
-        
-        # 检查费用
-        if controller.mana >= top_card.cost:
-            controller.game.queue_actions(source, [Draw(controller, top_card)])
 
 
 class TID_001:
@@ -74,8 +71,16 @@ class TSC_653:
         GameTag.COST: 1,
         GameTag.CARDRACE: Race.BEAST,
     }
-    # 创建复制，Buff，然后放入牌库底部
-    deathrattle = PutOnBottom(CONTROLLER, Buff(Copy(SELF), "TSC_653e"))
+    
+    def deathrattle(self):
+        """创建复制，Buff，然后放入牌库底部"""
+        # 创建一个新的底层掠食鱼
+        yield ShuffleIntoDeck(CONTROLLER, "TSC_653", position='bottom')
+        # 给牌库底部的卡牌添加buff
+        if self.controller.deck:
+            bottom_card = self.controller.deck[-1]
+            if bottom_card.id == "TSC_653":
+                yield Buff(bottom_card, "TSC_653e")
 
 
 class TSC_653e:
@@ -120,7 +125,7 @@ class TSC_927:
         GameTag.CARDTYPE: CardType.SPELL,
         GameTag.COST: 1,
     }
-    play = Buff(FRIENDLY_HAND + MINION, "TSC_927e"), PutOnBottom(CONTROLLER, "TSC_927t")
+    play = Buff(FRIENDLY_HAND + MINION, "TSC_927e"), ShuffleIntoDeck(CONTROLLER, "TSC_927t", position='bottom')
 
 
 class TSC_927e:
@@ -138,7 +143,11 @@ class TSC_927t:
         GameTag.CARDTYPE: CardType.SPELL,
         GameTag.COST: 1,
     }
-    play = Buff(FRIENDLY_EX_SETASIDE + MINION, "TSC_927e")
+    play = (
+        Buff(FRIENDLY_HAND + MINION, "TSC_927e"),
+        Buff(FRIENDLY_DECK + MINION, "TSC_927e"),
+        Buff(FRIENDLY_MINIONS, "TSC_927e")
+    )
 
 
 class TID_000:
@@ -174,7 +183,17 @@ class TID_002:
         GameTag.HEALTH: 3,
         GameTag.COST: 3,
     }
-    play = (Find(FRIENDLY + SPELL + NATURE + PLAYED_THIS_TURN), Buff(FRIENDLY_MINIONS - SELF, "TID_002e"))
+    
+    def play(self):
+        """如果本回合施放过自然法术，使其他随从获得+1/+2"""
+        # 检查本回合是否施放过自然法术
+        nature_cast_this_turn = any(
+            card.type == CardType.SPELL and card.spell_school == SpellSchool.NATURE
+            for card in self.controller.cards_played_this_turn
+        )
+        
+        if nature_cast_this_turn:
+            yield Buff(FRIENDLY_MINIONS - SELF, "TID_002e")
 
 
 class TID_002e:
@@ -196,13 +215,25 @@ class TSC_651:
         PlayReq.REQ_MINION_TARGET: 0,
         PlayReq.REQ_TARGET_TO_PLAY: 0,
     }
-    play = Hit(TARGET, 4), Find(FRIENDLY + MINION + NAGA + PLAYED_THIS_TURN) & Buff(CONTROLLER, "TSC_651e")
+    
+    def play(self):
+        """造成4点伤害,如果本回合打出过娜迦,下一个法术减1费"""
+        yield Hit(TARGET, 4)
+        
+        # 检查本回合是否打出过娜迦
+        naga_played_this_turn = any(
+            card.type == CardType.MINION and Race.NAGA in card.races
+            for card in self.controller.cards_played_this_turn
+        )
+        
+        if naga_played_this_turn:
+            yield Buff(CONTROLLER, "TSC_651e")
 
 
 class TSC_651e:
     """Next Spell Costs (1) Less - 下一个法术减少(1)费"""
     tags = {
-        GameTag.ONE_TURN_EFFECT: True,
+        GameTag.TAG_ONE_TURN_EFFECT: True,
     }
     # 光环效果：手牌中法术消耗 -1
     update = Refresh(FRIENDLY_HAND + SPELL, {GameTag.COST: -1})

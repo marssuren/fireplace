@@ -175,7 +175,7 @@ class SW_039_reward:
     """一决胜负奖励 - 使抽到的牌法力值消耗减少（1）点"""
     # 每次抽牌时减费
     events = Draw(CONTROLLER).on(
-        Buff(CARD, "SW_039_cost_reduction")
+        Buff(Draw.CARD, "SW_039_cost_reduction")
     )
 
 
@@ -218,7 +218,7 @@ class SW_041:
 class SW_041e:
     """敏捷咒符效果"""
     events = OWN_TURN_BEGIN.on(
-        (Draw(CONTROLLER), Buff(CARD, "SW_041e2"), Destroy(SELF))
+        (Draw(CONTROLLER), Buff(Draw.CARD, "SW_041e2"), Destroy(SELF))
     )
 
 
@@ -249,10 +249,12 @@ class SW_043:
         GameTag.COST: 4,
     }
     
-    play = (
-        ForceDraw(CONTROLLER, FRIENDLY_DECK + SPELL + FEL) &
-        Buff(CARD, "SW_043e")
-    )
+    def play(self):
+        """抽一张邪能法术牌并减费"""
+        drawn = yield ForceDraw(CONTROLLER, FRIENDLY_DECK + SPELL + FEL)
+        
+        if drawn:
+            yield Buff(drawn[0], "SW_043e")
 
 
 class SW_043e:

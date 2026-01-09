@@ -168,7 +168,8 @@ class CS2_013:
     """Wild Growth / 野性成长
     获得一个空的法力水晶。"""
 
-    play = (AT_MAX_MANA(CONTROLLER), Give(CONTROLLER, "CS2_013t")) | GainEmptyMana(
+    # 如果已达到最大法力值,给予超额法力牌,否则获得空法力水晶
+    play = AT_MAX_MANA(CONTROLLER) & Give(CONTROLLER, "CS2_013t") | GainEmptyMana(
         CONTROLLER, 1
     )
 

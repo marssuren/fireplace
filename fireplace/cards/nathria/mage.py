@@ -22,7 +22,7 @@ class MAW_013:
     从游戏中移除一个随从。
     """
     requirements = {PlayReq.REQ_TARGET_TO_PLAY: 0, PlayReq.REQ_MINION_TARGET: 0}
-    play = Exile(TARGET)
+    play = (Silence(TARGET), Destroy(TARGET))
 
 
 class REV_505:

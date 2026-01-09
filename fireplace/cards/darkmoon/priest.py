@@ -19,7 +19,7 @@ class DMF_053:
     # 使用 fireplace 已有的 cards_drawn_this_turn 计数器
     # 检查本回合是否抽过至少3张牌
     play = Find(Attr(CONTROLLER, "cards_drawn_this_turn") >= 3) & GenericChoice(
-        CONTROLLER, Discover(CONTROLLER, cards=SPELL + PRIEST_CLASS)
+        CONTROLLER, Discover(CONTROLLER, cards=RandomCollectible(card_class=CardClass.PRIEST, card_type=CardType.SPELL))
     )
 
 
@@ -35,7 +35,7 @@ class DMF_056:
     # 使用 fireplace 已有的 damaged_this_turn 计数器
     # 检查英雄本回合是否受到过伤害
     play = Find(Attr(FRIENDLY_HERO, "damaged_this_turn") > 0) & GenericChoice(
-        CONTROLLER, Discover(CONTROLLER, cards=SPELL + PRIEST_CLASS)
+        CONTROLLER, Discover(CONTROLLER, cards=RandomCollectible(card_class=CardClass.PRIEST, card_type=CardType.SPELL))
     )
 
 
@@ -195,7 +195,7 @@ class DMF_186:
         GameTag.SPELL_SCHOOL: SpellSchool.SHADOW,
     }
     play = (
-        GenericChoice(CONTROLLER, Discover(CONTROLLER, cards=SPELL + PRIEST_CLASS)),
+        GenericChoice(CONTROLLER, Discover(CONTROLLER, cards=RandomCollectible(card_class=CardClass.PRIEST, card_type=CardType.SPELL))),
         Buff(CONTROLLER, "DMF_186e"),
     )
 

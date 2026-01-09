@@ -15,5 +15,7 @@ OWN_TURN_END = EndTurn(CONTROLLER)
 
 # 别名 - 为了兼容不同的命名风格
 Inspire = PlayHeroPower  # TGT expansion - Inspire mechanic
+OwnTurnBegin = OWN_TURN_BEGIN  # 驼峰命名别名
+OwnTurnEnd = OWN_TURN_END  # 驼峰命名别名
 
 SELF_DAMAGE = Damage(SELF)
