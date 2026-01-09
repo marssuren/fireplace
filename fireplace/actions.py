@@ -18,7 +18,7 @@ from .dsl.copy import Copy, RebornCopy
 from .dsl.random_picker import RandomMinion
 from .dsl.selector import SELF
 from .entity import Entity
-from .enums import DISCARDED
+from .enums import DISCARDED, EXTRA_BATTLECRIES
 from .exceptions import InvalidAction
 from .logging import log, log_info
 from .i18n import _ as translate
@@ -610,7 +610,7 @@ class Death(GameAction):
                         log_info("corpse_generated", player=card.controller, corpses=card.controller.corpses)
 
                 # 星舰机制：星舰组件死亡时，构筑或累积星舰 - 深暗领域（2024年11月）
-                from ..enums import STARSHIP_PIECE
+                from fireplace.enums import STARSHIP_PIECE
                 if card.type == CardType.MINION and card.controller:
                     # 检查是否为星舰组件
                     if card.tags.get(STARSHIP_PIECE):
@@ -1983,7 +1983,7 @@ class Battlecry(TargetedAction):
         
         # 检查玩家的所有 buff，统计 EXTRA_BATTLECRIES 的数量
         for buff in player.buffs:
-            if hasattr(buff, 'tags') and buff.tags.get(enums.EXTRA_BATTLECRIES):
+            if hasattr(buff, 'tags') and buff.tags.get(EXTRA_BATTLECRIES):
                 extra_count += 1
         
         # 检查随从的额外战吼（Spirit of the Shark）
