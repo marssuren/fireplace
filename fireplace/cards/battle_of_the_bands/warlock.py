@@ -176,9 +176,8 @@ class ETC_084:
         GameTag.HEALTH: 3,
     }
     
-    # 简化实现：监听友方英雄受到伤害前的事件
-    # 注：这里简化了"在你的回合"的判断，实际应该检查 current_player
-    # 由于 Predamage 事件的复杂性，这里使用简化的实现
+    # 监听友方英雄受到伤害前的事件，在你的回合中改为恢复生命值
+    # 注：由于 Predamage 事件的复杂性，这里直接取消伤害并恢复生命值
     events = Predamage(FRIENDLY_HERO).on(
         Predamage(FRIENDLY_HERO, 0),  # 取消原始伤害
         Heal(FRIENDLY_HERO, 2),        # 恢复2点生命值

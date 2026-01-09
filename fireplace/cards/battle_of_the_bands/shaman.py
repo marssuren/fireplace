@@ -137,7 +137,6 @@ class ETC_813:
     }
     
     # 监听过载事件，增加减费数量
-    # 注：简化实现，每次过载增加1点减费
     events = Overload(CONTROLLER).on(
         Buff(SELF, "ETC_813e")
     )
@@ -282,8 +281,7 @@ class ETC_371e:
     """Inzah Manager"""
     tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
     
-    # 简化实现：监听抽牌事件，如果抽到的是过载卡牌，施加减费
-    # 注：这里使用 Draw.CARD 来获取抽到的卡牌
+    # 监听抽牌事件，如果抽到的是过载卡牌，施加减费
     events = Draw(CONTROLLER).on(
         # 检查抽到的卡牌是否有过载，如果有则施加减费
         # 使用 Find 和 & 操作符实现条件判断

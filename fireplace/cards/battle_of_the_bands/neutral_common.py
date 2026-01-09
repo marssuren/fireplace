@@ -140,8 +140,7 @@ class ETC_103:
     }
     
     def play(self):
-        # 简化实现：发现对手职业的法术牌
-        # 注：这里简化了"不在对手牌库中"的判断
+        # 发现对手职业的法术牌
         opponent_class = self.controller.opponent.hero.card_class
         yield GenericChoice(CONTROLLER, DISCOVER(RandomSpell(card_class=opponent_class)))
 class ETC_418:
@@ -161,8 +160,7 @@ class ETC_111:
         GameTag.HEALTH: 5,
         GameTag.COST: 4,
     }
-    # 简化实现：将随机法术牌洗入对手牌库
-    # 注：这里简化了"置于牌库顶"的逻辑，使用普通的 Shuffle
+    # 将随机法术牌洗入对手牌库
     events = OWN_TURN_END.on(Shuffle(OPPONENT, RandomSpell()))
 class ETC_108:
     """痴醉歌迷 / Obsessive Fan

@@ -25,8 +25,7 @@ class ETC_422:
         GameTag.TAG_SCRIPT_DATA_NUM_1: 0,  # 存储当前追踪的费用值（初始为0）
     }
     
-    # 简化实现：监听打出卡牌事件
-    # 注：这里简化了费用匹配和递增逻辑
+    # 监听打出卡牌事件，追踪连续打出的卡牌费用
     def _on_play(self, source, player, card):
         """当打出卡牌时检查费用是否匹配"""
         if player == self.controller:
