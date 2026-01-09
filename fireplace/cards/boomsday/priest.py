@@ -20,7 +20,7 @@ class BOT_258:
 
     # <b>Deathrattle:</b> If you've cast any spells on this minion, resummon it.
     events = Play(CONTROLLER, SPELL, SELF).on(Buff(SELF, "BOT_258e"))
-    deathrattle = Actived(SELF) & Summon(CONTROLLER, "BOT_258")
+    deathrattle = (Actived(SELF), Summon(CONTROLLER, "BOT_258"))
 
 
 class BOT_258e:

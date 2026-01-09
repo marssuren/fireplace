@@ -8,14 +8,14 @@ from ..utils import *
 class TSC_052:
     """学校教师 - 4费 5/4
     战吼：将一张1/1的纳迦小学生置入你的手牌。发现一个法力值消耗小于或等于（3）点的法术，教会小学生"""
-    play = Give(CONTROLLER, "TSC_052t") & GenericChoice(CONTROLLER, Discover(CONTROLLER, RandomSpell(cost=3)))
+    play = (Give(CONTROLLER, "TSC_052t"), GenericChoice(CONTROLLER, Discover(CONTROLLER, RandomSpell(cost=3))))
 
 
 class TSC_064:
     """蛇行死鳞纳迦 - 7费 5/9
     战吼：如果你在本牌在你手中时施放过三个法术，则对所有敌人造成3点伤害"""
     powered_up = Count(Play(CONTROLLER, SPELL)) >= 3 & Buff(SELF, "TSC_064e")
-    play = Find(SELF + POWERED_UP) & Hit(ALL_ENEMIES, 3)
+    play = (Find(SELF + POWERED_UP), Hit(ALL_ENEMIES, 3))
 
 
 class TSC_064e:

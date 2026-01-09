@@ -17,22 +17,6 @@ from ..enums import PlayReq, BoardEnum
 from ..events import *
 
 
-# 星际争霸种族定义 - 深暗领域（2024年11月）
-# 由于 hearthstone.enums.Race 中没有星际争霸种族，我们在这里定义自定义种族常量
-# 这些值使用负数以避免与官方Race枚举冲突
-class StarCraftRace:
-    """星际争霸种族常量"""
-    ZERG = -100  # 异虫
-    TERRAN = -101  # 人类
-    PROTOSS = -102  # 神族
-
-# 为了方便使用，将星际争霸种族添加到Race命名空间
-# 注意：这是一个临时解决方案，直到官方添加这些种族
-Race.ZERG = StarCraftRace.ZERG
-Race.TERRAN = StarCraftRace.TERRAN
-Race.PROTOSS = StarCraftRace.PROTOSS
-
-
 # For buffs which are removed when the card is moved to play (eg. cost buffs)
 # This needs to be Summon, because of Summon from the hand
 REMOVED_IN_PLAY = Summon(ALL_PLAYERS, OWNER).after(Destroy(SELF))
@@ -45,6 +29,7 @@ SetTag = lambda target, tag: SetTags(target, (tag,))
 UnsetTag = lambda target, tag: UnsetTags(target, (tag,))
 
 Freeze = lambda target: SetTag(target, GameTag.FROZEN)
+Unfreeze = lambda target: UnsetTag(target, GameTag.FROZEN)
 Stealth = lambda target: SetTag(target, GameTag.STEALTH)
 Unstealth = lambda target: UnsetTag(target, GameTag.STEALTH)
 Taunt = lambda target: SetTag(target, GameTag.TAUNT)
@@ -56,6 +41,14 @@ GiveLifesteal = lambda target: SetTag(target, GameTag.LIFESTEAL)
 GiveRush = lambda target: SetTag(target, GameTag.RUSH)
 GiveReborn = lambda target: SetTag(target, GameTag.REBORN)
 
+# GiveControl - 将随从的控制权交给指定玩家
+# 这是 Steal 的反向操作
+def GiveControl(minion, player):
+    """将随从的控制权交给指定玩家"""
+    from ..actions import Steal
+    return Steal(minion, player)
+
+
 
 CLEAVE = Hit(TARGET_ADJACENT, ATK(SELF))
 COINFLIP = RandomNumber(0, 1) == 1
@@ -66,12 +59,86 @@ FULL_HAND = Count(FRIENDLY_HAND) == Attr(CONTROLLER, GameTag.MAXHANDSIZE)
 HOLDING_DRAGON = Find(FRIENDLY_HAND + DRAGON - SELF)
 ELEMENTAL_PLAYED_LAST_TURN = Attr(CONTROLLER, "elemental_played_last_turn") > 0
 TIMES_SPELL_PLAYED_THIS_GAME = Count(CARDS_PLAYED_THIS_GAME + SPELL)
+
+# TIMES_CARD_TYPE_PLAYED - 计算本局打出特定类型卡牌的次数
+def TIMES_CARD_TYPE_PLAYED(card_type):
+    """返回本局打出特定类型卡牌的次数"""
+    from hearthstone.enums import CardType
+    return Count(CARDS_PLAYED_THIS_GAME + EnumSelector(card_type))
+
+# FRENZY - 暴怒选择器（贫瘠之地扩展包）
+FRENZY = GameTag.FRENZY
+
+# FRIENDLY_HERO_HEALED_THIS_TURN - 友方英雄本回合是否被治疗过
+FRIENDLY_HERO_HEALED_THIS_TURN = Attr(FRIENDLY_HERO, "healed_this_turn") > 0
+
+# SPELL_SCHOOL - 法术学派选择器函数
+def SPELL_SCHOOL(school):
+    """返回一个选择器，用于筛选特定法术学派的卡牌"""
+    from ..dsl.selector import FuncSelector
+    return FuncSelector(
+        lambda entities, src: [
+            e for e in entities 
+            if hasattr(e, 'spell_school') and e.spell_school == school
+        ]
+    )
 TIMES_SECRETS_PLAYED_THIS_GAME = Count(CARDS_PLAYED_THIS_GAME + SECRET)
 MANA_SPENT_ON_SPELLS_THIS_GAME = lambda player: player.spent_mana_on_spells_this_game
 
 DISCOVER = lambda *args: Discover(CONTROLLER, *args).then(
     Give(CONTROLLER, Discover.CARD)
 )
+
+# Excess - 计算超量伤害
+# 例如：对一个3血的随从造成6点伤害，超量伤害为3
+def Excess(target, damage):
+    """返回超量伤害值（伤害 - 目标当前生命值）"""
+    from ..dsl.lazynum import LazyNum
+    
+    class ExcessDamage(LazyNum):
+        def evaluate(self, source):
+            if hasattr(target, 'health'):
+                return max(0, damage - target.health)
+            return 0
+    
+    return ExcessDamage()
+
+# HeroPower - 获取英雄技能的伤害值
+def HeroPower(player):
+    """返回玩家英雄技能的伤害值"""
+    from ..dsl.lazynum import LazyNum
+    
+    class HeroPowerDamage(LazyNum):
+        def evaluate(self, source):
+            # 基础英雄技能伤害通常是1（法师火球术）
+            # 加上任何额外的英雄技能伤害加成
+            base_damage = 1
+            bonus = getattr(player.controller if hasattr(player, 'controller') else player, 'hero_power_damage_bonus', 0)
+            return base_damage + bonus
+    
+    return HeroPowerDamage()
+
+# EventValue - 获取事件触发时的数值（例如暴怒时受到的伤害）
+def EventValue():
+    """返回事件触发时的数值"""
+    from ..dsl.lazynum import LazyNum
+    
+    class EventValueNum(LazyNum):
+        def evaluate(self, source):
+            # 对于暴怒（Frenzy）事件，返回受到的伤害值
+            # 这个值通常存储在事件上下文中
+            if hasattr(source, 'event_value'):
+                return source.event_value
+            # 默认返回0
+            return 0
+    
+    return EventValueNum()
+
+# Equip - 装备武器（Summon 的别名，用于武器）
+Equip = Summon
+
+# RandomHeroPower - 随机英雄技能
+RandomHeroPower = lambda: RandomCollectible(type=CardType.HERO_POWER)
 
 BASIC_HERO_POWERS = [
     "HERO_01bp",
@@ -203,7 +270,7 @@ def MAGNETIC(buff):
         }
         magnetic = MAGNETIC("TTN_087e")
     """
-    from . import enums
+    from .. import enums
     from hearthstone.enums import Race
     
     # 定义一个选择器函数，在运行时检查卡牌的 MAGNETIC_TARGET_RACES 标签

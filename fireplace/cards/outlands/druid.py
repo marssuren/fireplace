@@ -53,7 +53,7 @@ class BT_136t:
     # <b>Taunt</b> <b>Choose One -</b> Summon a 9/9 Fungal Giant with
     # <b>Taunt</b>; or <b>Rush</b>.
     choose = ("BT_136ta", "BT_136tb")
-    play = ChooseBoth(CONTROLLER) & Summon(CONTROLLER, "BT_136tt3")
+    play = (ChooseBoth(CONTROLLER), Summon(CONTROLLER, "BT_136tt3"))
 
 
 class BT_136ta:
@@ -94,7 +94,7 @@ class BT_130:
     获得两个空的法力水晶。"""
 
     # Gain two empty Mana_Crystals.
-    play = AT_MAX_MANA(CONTROLLER) & Give(CONTROLLER, "CS2_013t") | GainEmptyMana(
+    play = (AT_MAX_MANA(CONTROLLER), Give(CONTROLLER, "CS2_013t")) | GainEmptyMana(
         CONTROLLER, 2
     )
 

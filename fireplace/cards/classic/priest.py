@@ -272,8 +272,8 @@ class EX1_345:
     随机将你对手的牌库中的一张随从牌的复制置入战场。"""
 
     requirements = {PlayReq.REQ_NUM_MINION_SLOTS: 1}
-    play = Find(ENEMY_DECK + MINION) & Summon(
-        CONTROLLER, Copy(RANDOM(ENEMY_DECK + MINION))
+    play = (Find(ENEMY_DECK + MINION), Summon(
+        CONTROLLER, Copy(RANDOM(ENEMY_DECK + MINION)))
     ) | Summon(CONTROLLER, "EX1_345t")
 
 

@@ -15,7 +15,7 @@ class DEEP_023:
         GameTag.ATK: 0,
         GameTag.HEALTH: 2,
         GameTag.COST: 2,
-        GameTag.RACE: Race.ELEMENTAL,
+        GameTag.CARDRACE: Race.ELEMENTAL,
         GameTag.STEALTH: True,
     }
 
@@ -151,7 +151,7 @@ class DEEP_024:
         GameTag.ATK: 4,
         GameTag.HEALTH: 4,
         GameTag.COST: 5,
-        GameTag.RACE: Race.ELEMENTAL,
+        GameTag.CARDRACE: Race.ELEMENTAL,
         GameTag.LIFESTEAL: True,
     }
 
@@ -175,7 +175,7 @@ class DEEP_024t:
         GameTag.ATK: 4,
         GameTag.HEALTH: 4,
         GameTag.COST: 5,
-        GameTag.RACE: Race.ELEMENTAL,
+        GameTag.CARDRACE: Race.ELEMENTAL,
         GameTag.LIFESTEAL: True,
     }
 

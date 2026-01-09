@@ -47,7 +47,7 @@ class WW_806t:
         GameTag.ATK: 1,
         GameTag.HEALTH: 1,
         GameTag.STEALTH: True,
-        GameTag.RACE: Race.BEAST,
+        GameTag.CARDRACE: Race.BEAST,
     }
 
 
@@ -57,7 +57,7 @@ class WW_807:
     亡语：抽一张野兽牌。使你手牌中的随从获得+1/+1。
     """
     deathrattle = (
-        ForceDraw(CONTROLLER, FRIENDLY_DECK + BEAST) &
+        ForceDraw(CONTROLLER, FRIENDLY_DECK + BEAST),
         Buff(FRIENDLY_HAND + MINION, "WW_807e")
     )
 
@@ -84,7 +84,7 @@ class WW_808e:
     tags = {
         GameTag.IMMUNE: True,
     }
-    events = OwnTurnEnds(CONTROLLER).on(Destroy(SELF))
+    events = OWN_TURN_END.on(Destroy(SELF))
 
 
 # RARE
@@ -208,7 +208,7 @@ class WW_810t:
     tags = {
         GameTag.ATK: 1,
         GameTag.HEALTH: 1,
-        GameTag.RACE: Race.BEAST,
+        GameTag.CARDRACE: Race.BEAST,
     }
 
 
@@ -304,4 +304,4 @@ class WW_815e:
     tags = {
         GameTag.IMMUNE: True,
     }
-    events = OwnTurnEnds(CONTROLLER).on(Destroy(SELF))
+    events = OWN_TURN_END.on(Destroy(SELF))

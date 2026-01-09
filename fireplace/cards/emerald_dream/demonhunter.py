@@ -365,7 +365,7 @@ class EDR_493:
             # Morph后需要重新获取卡牌引用(通过手牌位置)
             # 由于Morph会替换卡牌,我们需要在Morph后立即应用buff
             # 使用SetTag直接设置属性以保留原始数值
-            yield SetTag(minion, GameTag.COST, original_cost)
-            yield SetTag(minion, GameTag.ATK, original_atk)
-            yield SetTag(minion, GameTag.HEALTH, original_health)
-            yield SetTag(minion, GameTag.DAMAGE, 0)  # 重置伤害
+            yield SetTag(minion, {GameTag.COST: original_cost})
+            yield SetTag(minion, {GameTag.ATK: original_atk})
+            yield SetTag(minion, {GameTag.HEALTH: original_health})
+            yield SetTag(minion, {GameTag.DAMAGE: 0})  # 重置伤害

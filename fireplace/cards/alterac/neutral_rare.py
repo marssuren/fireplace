@@ -9,7 +9,7 @@ from ..utils import *
 class AV_112:
     """雪盲鹰身人 / Snowblind Harpy
     战吼：如果你的手牌中有冰霜法术，获得5点护甲值。"""
-    play = Find(FRIENDLY_HAND + SPELL + FROST) & GainArmor(FRIENDLY_HERO, 5)
+    play = (Find(FRIENDLY_HAND + SPELL + FROST), GainArmor(FRIENDLY_HERO, 5))
 
 
 class AV_134:
@@ -57,8 +57,8 @@ class AV_137:
 class ONY_002:
     """全需勇士 / Gear Grubber
     嘲讽 如果你在回合结束时有未使用的法力水晶，本牌的法力值消耗减少（1）点。"""
-    events = OwnTurnEnds(CONTROLLER).on(
-        Find(CONTROLLER + (MANA - USED_MANA > 0)) & Buff(SELF, "ONY_002e")
+    events = OWN_TURN_END.on(
+        lambda self, source: Buff(self, "ONY_002e") if source.mana - source.used_mana > 0 else None
     )
 
 

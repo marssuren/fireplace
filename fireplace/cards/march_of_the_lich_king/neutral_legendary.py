@@ -52,7 +52,7 @@ class RLK_591:
 class RLK_591e:
     """白骨领主霜语增益 - 第一张牌0费 (Frostwhisper's Blessing)"""
     # 回合开始时重置标记
-    events = OwnTurnBegin(CONTROLLER).on(
+    events = OWN_TURN_BEGIN.on(
         SetAttr(CONTROLLER, "frostwhisper_first_card_played", False)
     )
 
@@ -71,7 +71,7 @@ class RLK_591e2:
         target.frostwhisper_turns_remaining = 3
 
     # 每回合开始时减少倒计时
-    events = OwnTurnBegin(CONTROLLER).on(
+    events = OWN_TURN_BEGIN.on(
         lambda self, entity: (
             setattr(entity, "frostwhisper_turns_remaining",
                    getattr(entity, "frostwhisper_turns_remaining", 3) - 1),

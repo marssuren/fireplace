@@ -146,7 +146,7 @@ class SW_039e:
     """一决胜负追踪器"""
     # 在回合开始时重置本回合抽牌计数
     events = [
-        OwnTurnBegins(CONTROLLER).on(
+        OWN_TURN_BEGIN.on(
             Buff(CONTROLLER, "SW_039_turn_tracker")
         ),
         # 每次抽牌时检查进度
@@ -167,7 +167,7 @@ class SW_039_turn_tracker:
             from ..enums import QUESTLINE_PROGRESS
             questlines[0].tags[QUESTLINE_PROGRESS] = 0
     
-    events = OwnTurnEnds(CONTROLLER).on(Destroy(SELF))
+    events = OWN_TURN_END.on(Destroy(SELF))
 
 
 
@@ -217,8 +217,8 @@ class SW_041:
 
 class SW_041e:
     """敏捷咒符效果"""
-    events = OwnTurnBegins(CONTROLLER).on(
-        Draw(CONTROLLER) & Buff(CARD, "SW_041e2") & Destroy(SELF)
+    events = OWN_TURN_BEGIN.on(
+        (Draw(CONTROLLER), Buff(CARD, "SW_041e2"), Destroy(SELF))
     )
 
 

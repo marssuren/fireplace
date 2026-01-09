@@ -124,7 +124,7 @@ class WW_322:
     def play(self):
         # 发掘一个宝藏，并使其法力值消耗为0
         yield Excavate(CONTROLLER).then(
-            SetTag(Give.CARD, GameTag.COST, 0)
+            SetTag(Give.CARD, {GameTag.COST: 0})
         )
 
 
@@ -165,7 +165,7 @@ class WW_368t:
     health = 1
     race = Race.UNDEAD
     tags = {GameTag.RUSH: True}
-    events = OwnTurnEnd(CONTROLLER).on(Destroy(SELF))
+    events = OWN_TURN_END.on(Destroy(SELF))
 
 
 # EPIC
@@ -221,9 +221,9 @@ class WW_357:
     
     events = [
         # 回合结束时获得5份残骸
-        OwnTurnEnd(CONTROLLER).on(GainCorpses(CONTROLLER, 5)),
+        OWN_TURN_END.on(GainCorpses(CONTROLLER, 5)),
         # 回合开始时消耗5份残骸，英雄获得+5生命值
-        OwnTurnBegin(CONTROLLER).on(
+        OWN_TURN_BEGIN.on(
             Find(Attr(CONTROLLER, GameTag.CORPSES) >= 5) &
             SpendCorpses(CONTROLLER, 5) &
             Buff(FRIENDLY_HERO, "WW_357e")

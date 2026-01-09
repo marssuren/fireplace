@@ -24,7 +24,7 @@ class GIL_188:
     # [x]<b>Choose One -</b> Transform into a 4/2 with <b>Rush</b>; or a 2/4 with
     # <b>Taunt</b>.
     choose = ("GIL_188a", "GIL_188b")
-    play = ChooseBoth(CONTROLLER) & Morph(SELF, "GIL_188t3")
+    play = (ChooseBoth(CONTROLLER), Morph(SELF, "GIL_188t3"))
 
 
 class GIL_188a:

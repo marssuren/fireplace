@@ -85,7 +85,7 @@ class BAR_062:
     Battlecry: If you control a Murloc, gain +1/+1.
     战吼：如果你控制一个鱼人，获得+1/+1。
     """
-    play = Find(FRIENDLY_MINIONS + MURLOC) & Buff(SELF, "BAR_062e")
+    play = (Find(FRIENDLY_MINIONS + MURLOC), Buff(SELF, "BAR_062e"))
 
 
 class BAR_062e:
@@ -102,7 +102,7 @@ class BAR_063:
     """
     events = Summon(CONTROLLER, MURLOC).after(
         Buff(Summon.CARD, "BAR_063e"),
-        SetTag(Summon.CARD, GameTag.RUSH, True),
+        SetTag(Summon.CARD, {GameTag.RUSH: True}),
     )
 
 
@@ -159,9 +159,14 @@ class BAR_074:
     Can't attack. After your opponent draws a card, it costs (1) more (up to 10).
     无法攻击。在你的对手抽一张牌后，使其法力值消耗增加（1）点（最多为10点）。
     """
-    events = Draw(OPPONENT).after(
-        Buff(Draw.CARDS, "BAR_074e")
-    )
+    def _on_opponent_draw(self, source, cards):
+        """对手抽牌后，增加费用"""
+        if cards:
+            for card in cards:
+                if card:
+                    yield Buff(card, "BAR_074e")
+    
+    events = Draw(OPPONENT).after(_on_opponent_draw)
 
 
 class BAR_074e:
@@ -184,7 +189,7 @@ class BAR_743:
     Taunt. Battlecry: If you're holding a Nature spell, gain +2 Health.
     嘲讽。战吼：如果你的手牌中有自然法术，获得+2生命值。
     """
-    play = Find(FRIENDLY_HAND + SPELL + NATURE) & Buff(SELF, "BAR_743e")
+    play = (Find(FRIENDLY_HAND + SPELL + NATURE), Buff(SELF, "BAR_743e"))
 
 
 class BAR_743e:

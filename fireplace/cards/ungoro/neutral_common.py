@@ -118,4 +118,4 @@ class UNG_937:
     """Primalfin Lookout / 蛮鱼斥候
     战吼：如果你控制着其他鱼人，发现一张鱼人牌。"""
 
-    play = Find(FRIENDLY_MINIONS + MURLOC - SELF) & DISCOVER(RandomMurloc())
+    play = (Find(FRIENDLY_MINIONS + MURLOC - SELF), DISCOVER(RandomMurloc()))

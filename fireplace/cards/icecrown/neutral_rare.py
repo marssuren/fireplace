@@ -9,10 +9,10 @@ class ICC_018:
     """Phantom Freebooter / 幻影海盗
     战吼： 获得等同于你的武器属性的属性值。"""
 
-    play = Find(FRIENDLY_WEAPON) & Buff(
+    play = (Find(FRIENDLY_WEAPON), Buff(
         SELF,
         "ICC_018e",
-        atk=ATK(FRIENDLY_WEAPON),
+        atk=ATK(FRIENDLY_WEAPON)),
         max_health=CURRENT_DURABILITY(FRIENDLY_WEAPON),
     )
 

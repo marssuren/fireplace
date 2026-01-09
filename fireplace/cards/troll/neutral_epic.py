@@ -54,7 +54,7 @@ class TRL_530:
 
     # <b>Battlecry:</b> If you control a_<b>Secret</b>, play a <b>Secret</b> from_your
     # deck.
-    play = Find(FRIENDLY_SECRETS) & Summon(CONTROLLER, RANDOM(FRIENDLY_DECK + SECRET))
+    play = (Find(FRIENDLY_SECRETS), Summon(CONTROLLER, RANDOM(FRIENDLY_DECK + SECRET)))
 
 
 class TRL_532:
@@ -72,7 +72,7 @@ class TRL_533:
     战吼：如果你控制一个被冻结的随从，便获得8点护甲值。"""
 
     # <b>Battlecry:</b> If you control a_<b>Frozen</b> minion, gain 8_Armor.
-    play = Find(FRIENDLY_MINIONS + FROZEN) & GainArmor(FRIENDLY_HERO, 8)
+    play = (Find(FRIENDLY_MINIONS + FROZEN), GainArmor(FRIENDLY_HERO, 8))
 
 
 class TRL_535:

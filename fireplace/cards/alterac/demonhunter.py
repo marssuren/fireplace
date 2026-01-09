@@ -70,7 +70,7 @@ class AV_264:
 
 class AV_264e:
     """清算咒符效果"""
-    events = OwnTurnBegins(CONTROLLER).on(
+    events = OWN_TURN_BEGIN.on(
         Find(FRIENDLY_HAND + DEMON) & Summon(CONTROLLER, RANDOM(FRIENDLY_HAND + DEMON)) & Destroy(SELF)
     )
 
@@ -97,8 +97,11 @@ class AV_267:
 
 class AV_269:
     """侧翼合击 / Flanking Strike
-    召唤一个4/2并具有突袭的恶魔。如果它在本回合中死亡，再召唤一个。"""
-    play = Summon(CONTROLLER, "AV_269t") & Buff(CONTROLLER, "AV_269e")
+    召唤一个4/2并具有突袭的恶魔。如果它在本回合中死亡,再召唤一个。"""
+    def play(self):
+        """召唤恶魔并添加追踪器"""
+        yield Summon(CONTROLLER, "AV_269t")
+        yield Buff(CONTROLLER, "AV_269e")
 
 
 class AV_269t:
@@ -112,8 +115,7 @@ class AV_269e:
     events = Death(FRIENDLY + MINION + ID("AV_269t")).on(
         lambda self: (
             self.owner.turn_played == self.game.turn and
-            Summon(CONTROLLER, "AV_269t") &
-            Destroy(SELF)
+            (Summon(CONTROLLER, "AV_269t"), Destroy(SELF))
         ) or None
     )
 
@@ -136,7 +138,7 @@ class AV_661:
     update = Refresh(FRIENDLY_MINIONS, {GameTag.ATK: +1})
     
     # 回合结束时递减持续时间
-    events = OwnTurnEnds(CONTROLLER).on(
+    events = OWN_TURN_END.on(
         lambda self: self.decrement_duration()
     )
 
@@ -151,7 +153,7 @@ class ONY_014:
 class ONY_014e:
     """敏锐反应增益"""
     tags = {GameTag.ATK: 1}
-    events = OwnTurnEnds(CONTROLLER).on(Destroy(SELF))
+    events = OWN_TURN_END.on(Destroy(SELF))
 
 
 class ONY_016:

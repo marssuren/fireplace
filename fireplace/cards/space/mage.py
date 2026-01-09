@@ -183,7 +183,7 @@ class GDB_134:
     
     # 回合结束时随机对一个敌人造成3点伤害
     events = [
-        OwnTurnEnd(CONTROLLER).on(
+        OWN_TURN_END.on(
             Hit(RANDOM_ENEMY_CHARACTER, 3)
         ),
         # 法术迸发:召唤一个阿肯飞翼驾驶员
@@ -404,7 +404,7 @@ class GDB_136e:
             ]
         ),
         # 回合结束时移除
-        OwnTurnEnd(CONTROLLER).on(Destroy(SELF))
+        OWN_TURN_END.on(Destroy(SELF))
     ]
 
 

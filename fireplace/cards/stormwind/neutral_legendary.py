@@ -120,7 +120,7 @@ class SW_079a_tracker:
         target.dungar_turns_remaining = 2
         target.dungar_cards_to_draw = 1
     
-    events = OwnTurnBegins(CONTROLLER).on(
+    events = OWN_TURN_BEGIN.on(
         lambda self: [
             # 减少回合计数
             setattr(self.owner, 'dungar_turns_remaining', self.owner.dungar_turns_remaining - 1),
@@ -140,7 +140,7 @@ class SW_079b_tracker:
         target.dungar_turns_remaining = 3
         target.dungar_cards_to_draw = 2
     
-    events = OwnTurnBegins(CONTROLLER).on(
+    events = OWN_TURN_BEGIN.on(
         lambda self: [
             setattr(self.owner, 'dungar_turns_remaining', self.owner.dungar_turns_remaining - 1),
             (
@@ -158,7 +158,7 @@ class SW_079c_tracker:
         target.dungar_turns_remaining = 4
         target.dungar_cards_to_draw = 3
     
-    events = OwnTurnBegins(CONTROLLER).on(
+    events = OWN_TURN_BEGIN.on(
         lambda self: [
             setattr(self.owner, 'dungar_turns_remaining', self.owner.dungar_turns_remaining - 1),
             (
@@ -175,10 +175,10 @@ class SW_080:
     """考内留斯·罗姆 / Cornelius Roame
     在每个玩家回合的开始和结束时，抽一张牌。"""
     events = [
-        OwnTurnBegins(CONTROLLER).on(Draw(CONTROLLER)),
-        OwnTurnEnds(CONTROLLER).on(Draw(CONTROLLER)),
-        OwnTurnBegins(OPPONENT).on(Draw(CONTROLLER)),
-        OwnTurnEnds(OPPONENT).on(Draw(CONTROLLER))
+        OWN_TURN_BEGIN.on(Draw(CONTROLLER)),
+        OWN_TURN_END.on(Draw(CONTROLLER)),
+        BeginTurn(OPPONENT).on(Draw(CONTROLLER)),
+        EndTurn(OPPONENT).on(Draw(CONTROLLER))
     ]
 
 
@@ -188,14 +188,14 @@ class SW_081:
     play = (
         # 抽一张突袭随从，获得突袭
         Find(FRIENDLY_DECK + MINION + RUSH) & (
-            Draw(CONTROLLER, TARGET) & SetTag(SELF, {GameTag.RUSH: True})
+            (Draw(CONTROLLER, TARGET), SetTag(SELF, {GameTag.RUSH: True}))
         ) &
         # 抽一张嘲讽随从，获得嘲讽
         Find(FRIENDLY_DECK + MINION + TAUNT) & (
-            Draw(CONTROLLER, TARGET) & SetTag(SELF, {GameTag.TAUNT: True})
+            (Draw(CONTROLLER, TARGET), SetTag(SELF, {GameTag.TAUNT: True}))
         ) &
         # 抽一张圣盾随从，获得圣盾
         Find(FRIENDLY_DECK + MINION + DIVINE_SHIELD) & (
-            Draw(CONTROLLER, TARGET) & SetTag(SELF, {GameTag.DIVINE_SHIELD: True})
+            (Draw(CONTROLLER, TARGET), SetTag(SELF, {GameTag.DIVINE_SHIELD: True}))
         )
     )

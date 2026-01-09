@@ -331,7 +331,7 @@ class RLK_745:
     """
     tags = {GameTag.REBORN: True}
     
-    events = OwnTurnEnds(CONTROLLER).on(
+    events = OWN_TURN_END.on(
         lambda self: (
             SpendCorpses(CONTROLLER, 4) &
             Summon(CONTROLLER, ExactCopy(SELF))
@@ -363,7 +363,7 @@ class RLK_730:
 class RLK_730e:
     """感染"""
     tags = {GameTag.LIFESTEAL: True}
-    events = OwnTurnEnds(CONTROLLER).on(Hit(OWNER, 2))
+    events = OWN_TURN_END.on(Hit(OWNER, 2))
 
 
 class RLK_086:

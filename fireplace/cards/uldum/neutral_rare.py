@@ -10,7 +10,7 @@ class ULD_157:
     战吼：如果你控制一个任务，抽一张牌。"""
 
     # <b>Battlecry:</b> If you control a <b>Quest</b>, draw a card.
-    play = Find(FRIENDLY_QUEST) & Draw(CONTROLLER)
+    play = (Find(FRIENDLY_QUEST), Draw(CONTROLLER))
 
 
 class ULD_180:
@@ -18,8 +18,7 @@ class ULD_180:
     在你的回合开始时，本随从有50%的几率陷入沉睡。"""
 
     # At the start of your turn, this has a 50% chance to_fall asleep.
-    events = OWN_TURN_BEGIN.on(
-        COINFLIP & SetTags(SELF, {GameTag.NUM_TURNS_IN_PLAY: -1})
+    events = OWN_TURN_BEGIN.on((COINFLIP , SetTags(SELF, {GameTag.NUM_TURNS_IN_PLAY: -1}))
     )
 
 

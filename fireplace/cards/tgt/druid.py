@@ -57,7 +57,7 @@ class AT_042:
     抉择：变形成为2/1并具有冲锋；或者变形成为3/2并具有潜行。"""
 
     choose = ("AT_042a", "AT_042b")
-    play = ChooseBoth(CONTROLLER) & Morph(SELF, "OG_044c")
+    play = (ChooseBoth(CONTROLLER), Morph(SELF, "OG_044c"))
 
 
 class AT_042a:

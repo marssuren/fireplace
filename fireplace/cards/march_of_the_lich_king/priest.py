@@ -107,7 +107,7 @@ class RLK_823e:
             Buff(Play.CARD, "RLK_823e2")
         ),
         # 回合结束时移除
-        OwnTurnEnds(CONTROLLER).on(Destroy(SELF))
+        OWN_TURN_END.on(Destroy(SELF))
     )
 
 

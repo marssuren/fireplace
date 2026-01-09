@@ -381,7 +381,7 @@ class GDB_448e:
             ] if not self.used_this_turn else None
         ),
         # 回合开始时重置标记
-        OwnTurnBegin(CONTROLLER).on(
+        OWN_TURN_BEGIN.on(
             lambda self, source: setattr(self, 'used_this_turn', False)
         )
     ]

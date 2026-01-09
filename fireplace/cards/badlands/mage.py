@@ -14,7 +14,7 @@ class DEEP_004:
         GameTag.ATK: 5,
         GameTag.HEALTH: 5,
         GameTag.COST: 5,
-        GameTag.RACE: Race.ELEMENTAL,
+        GameTag.CARDRACE: Race.ELEMENTAL,
     }
 
     # 每施放一个法术，减少（1）点法力值消耗
@@ -47,7 +47,7 @@ class WW_424:
         GameTag.ATK: 3,
         GameTag.HEALTH: 2,
         GameTag.COST: 4,
-        GameTag.RACE: Race.ELEMENTAL,
+        GameTag.CARDRACE: Race.ELEMENTAL,
     }
 
     requirements = {
@@ -162,7 +162,7 @@ class WW_425e:
     # 当这张牌被使用时，再次触发其战吼效果
     events = [
         Play(OWNER, SELF).after(Battlecry(Play.CARD, Play.TARGET)),
-        OwnTurnEnds(CONTROLLER).on(Destroy(SELF))
+        OWN_TURN_END.on(Destroy(SELF))
     ]
 
 
@@ -243,7 +243,7 @@ class WW_429:
         GameTag.ATK: 6,
         GameTag.HEALTH: 5,
         GameTag.COST: 5,
-        GameTag.RACE: Race.ELEMENTAL,
+        GameTag.CARDRACE: Race.ELEMENTAL,
         GameTag.ELITE: True,
     }
 
@@ -291,7 +291,7 @@ class DEEP_002t:
         GameTag.ATK: 4,
         GameTag.HEALTH: 2,
         GameTag.COST: 3,
-        GameTag.RACE: Race.ELEMENTAL,
+        GameTag.CARDRACE: Race.ELEMENTAL,
         GameTag.CHARGE: True,
     }
 
@@ -304,7 +304,7 @@ class DEEP_002t2:
         GameTag.ATK: 2,
         GameTag.HEALTH: 4,
         GameTag.COST: 3,
-        GameTag.RACE: Race.ELEMENTAL,
+        GameTag.CARDRACE: Race.ELEMENTAL,
         GameTag.AURA: True,
     }
 
@@ -319,6 +319,6 @@ class DEEP_002t3:
         GameTag.ATK: 4,
         GameTag.HEALTH: 4,
         GameTag.COST: 3,
-        GameTag.RACE: Race.ELEMENTAL,
+        GameTag.CARDRACE: Race.ELEMENTAL,
         GameTag.TAUNT: True,
     }

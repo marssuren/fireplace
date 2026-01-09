@@ -156,7 +156,7 @@ class SW_048:
     
     # 监听友方随从失去圣盾
     events = LosesDivineShield(FRIENDLY + MINION).on(
-        Buff(FRIENDLY_HAND + MINION, "SW_048e") & Hit(SELF, 1)
+        (Buff(FRIENDLY_HAND + MINION, "SW_048e"), Hit(SELF, 1))
     )
 
 
@@ -322,7 +322,7 @@ class SW_315:
         GameTag.COST: 3,
     }
     
-    play = ForceDraw(CONTROLLER, FRIENDLY_DECK + MINION) & Buff(FRIENDLY_HAND + MINION, "SW_315e")
+    play = (ForceDraw(CONTROLLER, FRIENDLY_DECK + MINION), Buff(FRIENDLY_HAND + MINION, "SW_315e"))
 
 
 class SW_315e:

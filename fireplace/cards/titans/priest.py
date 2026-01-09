@@ -118,7 +118,7 @@ class TTN_401:
         GameTag.ATK: 1,
         GameTag.HEALTH: 2,
         GameTag.COST: 1,
-        GameTag.RACE: Race.MECHANICAL,
+        GameTag.CARDRACE: Race.MECHANICAL,
     }
 
     # 每召唤一个其他星界自动机时，获得+1/+1
@@ -194,7 +194,7 @@ class YOG_300:
         GameTag.ATK: 1,
         GameTag.HEALTH: 3,
         GameTag.COST: 1,
-        GameTag.RACE: Race.UNDEAD,
+        GameTag.CARDRACE: Race.UNDEAD,
     }
 
     play = Buff(CONTROLLER, "YOG_300e")
@@ -331,7 +331,7 @@ class YOG_520:
         GameTag.HEALTH: 5,
         GameTag.COST: 3,
         GameTag.LEGENDARY: True,
-        GameTag.RACE: Race.UNDEAD,
+        GameTag.CARDRACE: Race.UNDEAD,
     }
 
     # 友方亡灵死亡时触发

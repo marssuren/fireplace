@@ -34,7 +34,7 @@ ICC_047e = buff(+2, +2)
 
 class ICC_047t2:
     deathrattle = Buff(ALL_MINIONS, "ICC_047e"), Hit(ALL_MINIONS, 3)
-    play = ChooseBoth(CONTROLLER) & Morph(SELF, "ICC_051t3")
+    play = (ChooseBoth(CONTROLLER), Morph(SELF, "ICC_051t3"))
 
 
 class ICC_051:

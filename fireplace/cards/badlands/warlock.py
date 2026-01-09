@@ -70,21 +70,24 @@ class WW_042:
 
 
 class WW_441:
-    """锅炉燃料 - Furnace Fuel
+    """锅炉燃料 / Furnace Fuel
     当本牌被使用、弃掉或摧毁时，抽两张牌。
-    When this is played, discarded, or destroyed, draw 2 cards.
-    """
+    When this is played, discarded, or destroyed, draw 2 cards."""
     # Type: SPELL | Cost: 3 | Rarity: COMMON
     # 使用时抽牌
     def play(self):
         yield Draw(CONTROLLER) * 2
     
     # 被弃掉或从手牌摧毁时抽牌
-    # 注意：需要处理三种情况：使用(play)、弃掉(Discard)、手牌摧毁(Destroy)
-    events = (
+    # 需要处理两种情况：弃掉(Discard)、手牌摧毁(Destroy)
+    # 监听 Destroy 事件，检查卡牌是否在手牌区域
+    events = [
         Discard(CONTROLLER, SELF).after(Draw(CONTROLLER) * 2),
-        Destroy(CONTROLLER, SELF).in_hand().after(Draw(CONTROLLER) * 2)
-    )
+        # 监听这张牌被摧毁，如果在手牌中则抽牌
+        lambda self: Destroy(SELF).on(
+            lambda: Draw(CONTROLLER) * 2 if self.zone == Zone.HAND else None
+        )
+    ]
 
 
 # ========== RARE CARDS ==========

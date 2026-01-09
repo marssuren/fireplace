@@ -306,7 +306,7 @@ class GDB_138e2:
     }
     
     # 回合结束时，返回神性圣契到手牌
-    events = OwnTurnEnd(CONTROLLER).on(
+    events = OWN_TURN_END.on(
         lambda self, source: Give(CONTROLLER, self.spell_id) if hasattr(self, 'spell_id') else None,
         Destroy(SELF)
     )
@@ -343,7 +343,7 @@ class GDB_140e:
     ]
     
     # 每个回合结束时减少计数
-    events = OwnTurnEnd(CONTROLLER).on(
+    events = OWN_TURN_END.on(
         lambda self, source: [
             setattr(self, 'turns_remaining', self.turns_remaining - 1),
             Destroy(SELF) if self.turns_remaining <= 0 else None

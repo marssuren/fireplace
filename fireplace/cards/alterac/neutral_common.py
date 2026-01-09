@@ -56,7 +56,7 @@ class AV_124t:
 class AV_125:
     """塔楼中士 / Tower Sergeant
     战吼：如果你控制至少2个其他随从，获得+2/+2。"""
-    play = Find(FRIENDLY_MINIONS - SELF, count=2) & Buff(SELF, "AV_125e")
+    play = (Find(FRIENDLY_MINIONS - SELF, count=2), Buff(SELF, "AV_125e"))
 
 
 class AV_125e:
@@ -68,7 +68,7 @@ class AV_125e:
 class AV_126:
     """碉堡中士 / Bunker Sergeant
     战吼：如果你的对手控制2个或更多随从，对所有敌方随从造成1点伤害。"""
-    play = Find(ENEMY_MINIONS, count=2) & Hit(ENEMY_MINIONS, 1)
+    play = (Find(ENEMY_MINIONS, count=2), Hit(ENEMY_MINIONS, 1))
 
 
 class AV_127:
@@ -158,7 +158,7 @@ class AV_238:
 class AV_256:
     """反射工程师 / Reflecto Engineer
     战吼：交换双方玩家手牌中所有随从的攻击力和生命值。"""
-    play = Buff(FRIENDLY_HAND + MINION, "AV_256e") | Buff(ENEMY_HAND + MINION, "AV_256e")
+    play = (Buff(FRIENDLY_HAND + MINION, "AV_256e"), Buff(ENEMY_HAND + MINION, "AV_256e"))
 
 
 class AV_256e:
@@ -209,7 +209,7 @@ class AV_704:
 class ONY_001:
     """奥妮克希亚守卫 / Onyxian Warder
     战吼：如果你的手牌中有龙，召唤两个2/1并具有突袭的雏龙。"""
-    play = Find(FRIENDLY_HAND + DRAGON) & Summon(CONTROLLER, "ONY_001t") * 2
+    play = (Find(FRIENDLY_HAND + DRAGON), Summon(CONTROLLER, "ONY_001t")) * 2
 
 
 class ONY_001t:

@@ -51,7 +51,7 @@ class TSC_017:
     """巫婆纳迦 - 4费 4/4
     战吼：如果你在本牌在你手中时施放过法术，造成3点伤害"""
     powered_up = Find(FRIENDLY_HAND + SPELL) & Buff(SELF, "TSC_017e")
-    play = Find(SELF + POWERED_UP) & Hit(TARGET, 3)
+    play = (Find(SELF + POWERED_UP), Hit(TARGET, 3))
 
 
 class TSC_017e:
@@ -146,7 +146,7 @@ class TSC_909:
 class TSC_911:
     """挖掘专家 - 4费 3/6
     战吼：探底。选中的牌法力值消耗减少（1）点"""
-    play = Dredge(CONTROLLER) & Buff(DREDGED_CARD, "TSC_911e")
+    play = (Dredge(CONTROLLER), Buff(DREDGED_CARD, "TSC_911e"))
 
 
 class TSC_911e:

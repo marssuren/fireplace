@@ -40,7 +40,7 @@ class OG_315:
     """Bloodsail Cultist / 血帆教徒
     战吼：如果你控制着其他海盗，使你的武器获得+1/+1。"""
 
-    play = Find(FRIENDLY_MINIONS + PIRATE - SELF) & Buff(FRIENDLY_WEAPON, "OG_315e")
+    play = (Find(FRIENDLY_MINIONS + PIRATE - SELF), Buff(FRIENDLY_WEAPON, "OG_315e"))
 
 
 OG_315e = buff(+1, +1)

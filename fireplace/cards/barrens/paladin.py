@@ -47,7 +47,7 @@ class BAR_876:
     Battlecry: If you control a Secret, draw a minion.
     战吼：如果你控制一个奥秘，抽一张随从牌。
     """
-    play = Find(FRIENDLY_SECRETS) & ForceDraw(RANDOM(FRIENDLY_DECK + MINION))
+    play = (Find(FRIENDLY_SECRETS), ForceDraw(RANDOM(FRIENDLY_DECK + MINION)))
 
 
 class BAR_878:
@@ -185,7 +185,7 @@ class WC_033:
     """
     secret = Attack(ENEMY + MINION).on(
         Reveal(SELF),
-        SetTag(Attack.ATTACKER, GameTag.ATK, 1),
+        SetTag(Attack.ATTACKER, {GameTag.ATK: 1}),
         SetCurrentHealth(Attack.ATTACKER, 1),
     )
 

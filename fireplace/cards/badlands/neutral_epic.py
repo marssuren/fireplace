@@ -63,9 +63,14 @@ class WW_351:
     Battlecry: Draw a Beast. It costs (3) less.
     战吼：抽一张野兽牌，其法力值消耗减少（3）点。
     """
-    play = ForceDraw(CONTROLLER, FRIENDLY_DECK + BEAST).then(
-        Find(Draw.CARDS + BEAST) & Buff(Draw.CARDS, "WW_351e")
-    )
+    def play(self):
+        # 抽一张野兽牌
+        cards = yield ForceDraw(CONTROLLER, FRIENDLY_DECK + BEAST)
+        # 给抽到的野兽牌减费
+        if cards:
+            for card in cards:
+                if card:
+                    yield Buff(card, "WW_351e")
 
 
 class WW_351e:

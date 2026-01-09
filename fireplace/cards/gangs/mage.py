@@ -28,7 +28,7 @@ class CFM_671:
     """Cryomancer / 凛风巫师
     战吼：如果有敌人被冻结，便获得+2/+2。"""
 
-    play = Find(ENEMY + FROZEN) & Buff(CONTROLLER, "CFM_671e")
+    play = (Find(ENEMY + FROZEN), Buff(CONTROLLER, "CFM_671e"))
 
 
 CFM_671e = buff(+2, +2)

@@ -31,7 +31,7 @@ class UNG_101:
     抉择：变形成为5/3并具有潜行；或者变形成为3/5并具有嘲讽。"""
 
     choose = ("UNG_101a", "UNG_101b")
-    play = ChooseBoth(CONTROLLER) & Morph(SELF, "UNG_101t3")
+    play = (ChooseBoth(CONTROLLER), Morph(SELF, "UNG_101t3"))
 
 
 class UNG_101a:

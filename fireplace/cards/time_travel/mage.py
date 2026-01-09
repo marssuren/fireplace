@@ -283,8 +283,7 @@ class TIME_861e:
     events = Play(OWNER).on(
         lambda self, source: [
             # 减少计数器
-            SetTag(CONTROLLER, 'toki_spells_remaining', 
-                   max(0, self.controller.toki_spells_remaining - 1)),
+            SetTag(CONTROLLER, {'toki_spells_remaining': max(0, self.controller.toki_spells_remaining - 1})),
             
             # 检查是否所有法术都已打出
             Find(self.controller.toki_spells_remaining == 0) & [

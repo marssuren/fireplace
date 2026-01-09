@@ -44,7 +44,7 @@ class DMF_111e:
         GameTag.ATK: 3,
         GameTag.LIFESTEAL: True,
     }
-    events = OwnTurnEnd(CONTROLLER).on(Destroy(SELF))
+    events = OWN_TURN_END.on(Destroy(SELF))
 
 
 class DMF_114:
@@ -106,7 +106,7 @@ class DMF_533t:
         GameTag.ATK: 3,
         GameTag.HEALTH: 2,
         GameTag.COST: 2,
-        GameTag.RACE: Race.DEMON,
+        GameTag.CARDRACE: Race.DEMON,
     }
 
 

@@ -10,7 +10,7 @@ class BOT_419:
     战吼：如果你控制一个树人，发现一张法术牌。"""
 
     # <b>Battlecry:</b> If you control a Treant, <b>Discover</b> a spell.
-    play = Find(FRIENDLY_MINIONS + TREANT) & DISCOVER(RandomSpell())
+    play = (Find(FRIENDLY_MINIONS + TREANT), DISCOVER(RandomSpell()))
 
 
 class BOT_422:

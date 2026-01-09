@@ -35,7 +35,7 @@ class TID_744:
 class TID_744e:
     """无法打出"""
     tags = {GameTag.CANT_PLAY: True}
-    events = OwnTurnBegin(CONTROLLER).on(Destroy(SELF))
+    events = OWN_TURN_BEGIN.on(Destroy(SELF))
 
 
 class TSC_065:
@@ -56,7 +56,7 @@ class TSC_826:
     """重钳执行者 - 3费 3/4
     战吼：如果你在本牌在你手中时施放过法术，抽一张纳迦牌"""
     powered_up = Find(FRIENDLY_HAND + SPELL) & Buff(SELF, "TSC_826e")
-    play = Find(SELF + POWERED_UP) & ForceDraw(RANDOM(FRIENDLY_DECK + NAGA))
+    play = (Find(SELF + POWERED_UP), ForceDraw(RANDOM(FRIENDLY_DECK + NAGA)))
 
 
 class TSC_826e:
@@ -74,7 +74,7 @@ class TSC_827:
 class TSC_827e:
     """临时攻击力增益"""
     tags = {GameTag.ATK: 1}
-    events = OwnTurnBegin(CONTROLLER).on(Destroy(SELF))
+    events = OWN_TURN_BEGIN.on(Destroy(SELF))
 
 
 class TSC_960:

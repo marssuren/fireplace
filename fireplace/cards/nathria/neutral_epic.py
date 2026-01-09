@@ -154,7 +154,7 @@ class REV_960e:
     # 对手抽牌时受到伤害，对手回合结束时移除
     events = [
         Draw(OPPONENT).after(lambda self, source, player, card: Hit(ENEMY_HERO, 2)),
-        OwnTurnEnd(OPPONENT).on(Destroy(SELF))
+        EndTurn(OPPONENT).on(Destroy(SELF))
     ]
 
 

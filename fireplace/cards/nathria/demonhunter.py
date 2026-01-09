@@ -55,10 +55,10 @@ class MAW_014e:
     限制玩家只能打出最左边和最右边的牌
     """
     # 在对手的回合开始时，禁用中间的手牌
-    events = OwnTurnBegin(OPPONENT).on(
+    events = BeginTurn(OPPONENT).on(
         # 给除了最左和最右之外的所有手牌添加"不能打出"标记
         Buff(ENEMY_HAND - (ENEMY_HAND[0] | ENEMY_HAND[-1]), "MAW_014e2")
-    ), OwnTurnEnd(OPPONENT).on(Destroy(SELF))
+    ), EndTurn(OPPONENT).on(Destroy(SELF))
 
 
 class MAW_014e2:

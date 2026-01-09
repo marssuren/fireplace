@@ -61,7 +61,7 @@ class GVG_019:
     对一个随从造成$5点伤害，如果该随从是友方恶魔，则改为使其获得+5/+5。"""
 
     requirements = {PlayReq.REQ_MINION_TARGET: 0, PlayReq.REQ_TARGET_TO_PLAY: 0}
-    play = Find(TARGET + FRIENDLY + DEMON) & Buff(TARGET, "GVG_019e") | Hit(TARGET, 5)
+    play = (Find(TARGET + FRIENDLY + DEMON), Buff(TARGET, "GVG_019e")) | Hit(TARGET, 5)
 
 
 GVG_019e = buff(+5, +5)

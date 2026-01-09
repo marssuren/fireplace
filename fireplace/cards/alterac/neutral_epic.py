@@ -32,9 +32,9 @@ class AV_138:
 class AV_139:
     """憎恶军官 / Abominable Lieutenant
     在你的回合结束时，吞食一个随机敌方随从并获得其属性值。"""
-    events = OwnTurnEnds(CONTROLLER).on(
+    events = OWN_TURN_END.on(
         Find(ENEMY_MINIONS) & (
-            Buff(SELF, "AV_139e", atk=ATK(RANDOM_ENEMY_MINION), health=CURRENT_HEALTH(RANDOM_ENEMY_MINION)) &
+            Buff(SELF, "AV_139e", atk=ATK(RANDOM_ENEMY_MINION), health=CURRENT_HEALTH(RANDOM_ENEMY_MINION)),
             Destroy(RANDOM_ENEMY_MINION)
         )
     )

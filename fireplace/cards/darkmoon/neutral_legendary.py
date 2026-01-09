@@ -112,6 +112,6 @@ class YOP_035:
     
     events = Predamage(SELF).on(
         lambda self, source, target, amount: [
-            SetTag(target, (GameTag.PREDAMAGE, min(amount, 1)))
+            SetTag(target, {(GameTag.PREDAMAGE: min(amount, 1})))
         ]
     )

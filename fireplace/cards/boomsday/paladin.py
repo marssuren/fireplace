@@ -81,8 +81,8 @@ class BOT_436:
         PlayReq.REQ_MINION_TARGET: 0,
         PlayReq.REQ_FRIENDLY_TARGET: 0,
     }
-    play = FindAll(FRIENDLY_DECK + MINION, FRIENDLY_DECK + SPELL) & SwapStateBuff(
-        ForceDraw(RANDOM(FRIENDLY_DECK + MINION)),
+    play = (FindAll(FRIENDLY_DECK + MINION, FRIENDLY_DECK + SPELL), SwapStateBuff(
+        ForceDraw(RANDOM(FRIENDLY_DECK + MINION))),
         ForceDraw(RANDOM(FRIENDLY_DECK + SPELL)),
         "BOT_436e",
     ) | (

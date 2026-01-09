@@ -180,13 +180,16 @@ class BAR_735:
 
 
 class WC_013:
-    """Devout Dungeoneer - 虔诚地下城历险家
+    """虚诚地下城历险家 - Devout Dungeoneer
     Battlecry: Draw a spell. If it's a Holy spell, reduce its Cost by (2).
     战吼：抽一张法术牌。如果是神圣法术，使其法力值消耗减少（2）点。
     """
-    play = Draw(CONTROLLER).then(
-        Find(Draw.CARDS + SPELL + HOLY) & Buff(Draw.CARDS, "WC_013e")
-    )
+    def play(self):
+        cards = yield ForceDraw(CONTROLLER, FRIENDLY_DECK + SPELL)
+        if cards:
+            for card in cards:
+                if card and card.spell_school == SpellSchool.HOLY:
+                    yield Buff(card, "WC_013e")
 
 
 class WC_013e:
@@ -196,14 +199,14 @@ class WC_013e:
 
 
 class WC_014:
-    """Against All Odds - 除奇致胜
+    """除奇致胜 - Against All Odds
     Destroy ALL odd-Attack minions.
     摧毁所有攻击力为奇数的随从。
     """
     requirements = {
         PlayReq.REQ_MINION_TARGET: 0,
     }
-    play = Destroy(ALL_MINIONS + ODD_ATK)
+    play = Destroy(FuncSelector(lambda entities, src: [e for e in entities if e.atk % 2 == 1]) + ALL_MINIONS)
 
 
 class WC_803:

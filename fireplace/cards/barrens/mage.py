@@ -62,12 +62,16 @@ class BAR_542:
     requirements = {
         PlayReq.REQ_MINION_TARGET: 0,
     }
-    play = (
-        Draw(CONTROLLER),
-        Find(Draw.CARDS + SPELL) & FillMana(CONTROLLER, 2),
-        Draw(CONTROLLER),
-        Find(Draw.CARDS + SPELL) & FillMana(CONTROLLER, 2),
-    )
+    def play(self):
+        # 抽第一张牌
+        cards1 = yield Draw(CONTROLLER)
+        if cards1 and any(c.type == CardType.SPELL for c in cards1 if c):
+            yield FillMana(CONTROLLER, 2)
+        
+        # 抽第二张牌
+        cards2 = yield Draw(CONTROLLER)
+        if cards2 and any(c.type == CardType.SPELL for c in cards2 if c):
+            yield FillMana(CONTROLLER, 2)
 
 
 class BAR_544:
@@ -158,9 +162,13 @@ class WC_805:
     Battlecry: Draw a spell. If it's a Frost spell, summon two 1/1 Elementals that Freeze.
     战吼：抽一张法术牌。如果是冰霜法术，召唤两个1/1会冻结的元素。
     """
-    play = Draw(CONTROLLER).then(
-        Find(Draw.CARDS + SPELL + FROST) & Summon(CONTROLLER, "WC_805t") * 2
-    )
+    def play(self):
+        cards = yield ForceDraw(CONTROLLER, FRIENDLY_DECK + SPELL)
+        if cards:
+            for card in cards:
+                if card and card.spell_school == SpellSchool.FROST:
+                    yield Summon(CONTROLLER, "WC_805t") * 2
+                    break
 
 
 class WC_806:

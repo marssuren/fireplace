@@ -16,13 +16,13 @@ class AV_108:
 class AV_109:
     """凝冰护盾 / Frozen Buckler
     获得10点护甲值。在你的下个回合开始时，失去5点护甲值。"""
-    play = GainArmor(FRIENDLY_HERO, 10) & Buff(FRIENDLY_HERO, "AV_109e")
+    play = (GainArmor(FRIENDLY_HERO, 10), Buff(FRIENDLY_HERO, "AV_109e"))
 
 
 class AV_109e:
     """凝冰护盾效果"""
-    events = OwnTurnBegins(CONTROLLER).on(
-        GainArmor(FRIENDLY_HERO, -5) & Destroy(SELF)
+    events = OWN_TURN_BEGIN.on(
+        (GainArmor(FRIENDLY_HERO, -5), Destroy(SELF))
     )
 
 
@@ -37,7 +37,7 @@ class AV_119e:
     update = Refresh(FRIENDLY_HAND + MINION, {
         GameTag.COST: lambda self, i: max(1, self.cost - 2)
     })
-    events = OwnTurnEnds(CONTROLLER).on(Destroy(SELF))
+    events = OWN_TURN_END.on(Destroy(SELF))
 
 
 class AV_145:
@@ -46,7 +46,7 @@ class AV_145:
     def play(self):
         """检查护甲值获得"""
         if self.controller.armor_gained_this_game >= 15:
-            yield Buff(SELF, "AV_145e") & SetTag(SELF, {GameTag.CHARGE: True})
+            yield (Buff(SELF, "AV_145e"), SetTag(SELF, {GameTag.CHARGE: True}))
 
 
 class AV_145e:
@@ -64,7 +64,7 @@ class AV_321:
 class AV_322:
     """冰雪围困 / Snowed In
     消灭一个受伤的随从。冻结所有其他随从。"""
-    play = Destroy(TARGET) & Freeze(ALL_MINIONS - TARGET)
+    play = (Destroy(TARGET), Freeze(ALL_MINIONS - TARGET))
 
 
 class AV_323:
@@ -96,7 +96,7 @@ class AV_660:
     
     # 伪奥秘事件：每回合结束时触发
     pseudo_secret = [
-        OwnTurnEnds(CONTROLLER).on(
+        OWN_TURN_END.on(
             Hit(ALL_MINIONS, 1)
         ).then(
             # 递减持续时间
@@ -117,7 +117,7 @@ class ONY_023e:
         GameTag.ATK: 10,
         GameTag.CANNOT_ATTACK_HEROES: True
     }
-    events = OwnTurnEnds(CONTROLLER).on(Destroy(SELF))
+    events = OWN_TURN_END.on(Destroy(SELF))
 
 
 class ONY_024:
@@ -129,7 +129,7 @@ class ONY_024:
 class ONY_025:
     """铁肩冲撞 / Shoulder Check
     可交易 使一个随从获得+2/+1和突袭。"""
-    play = Buff(TARGET, "ONY_025e") & SetTag(TARGET, {GameTag.RUSH: True})
+    play = (Buff(TARGET, "ONY_025e"), SetTag(TARGET, {GameTag.RUSH: True}))
 
 
 class ONY_025e:

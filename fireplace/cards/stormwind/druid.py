@@ -78,7 +78,7 @@ class DED_002e:
     )
     
     # 回合结束时移除追踪器（只在本回合有效）
-    events = OwnTurnEnds(CONTROLLER).on(Destroy(SELF))
+    events = OWN_TURN_END.on(Destroy(SELF))
 
 
 

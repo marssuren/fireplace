@@ -87,7 +87,7 @@ class AT_065:
     """King's Defender / 国王护卫者
     战吼：如果你控制任何具有嘲讽的随从，便获得+1耐久度。"""
 
-    play = Find(FRIENDLY_MINIONS + TAUNT) & Buff(SELF, "AT_065e")
+    play = (Find(FRIENDLY_MINIONS + TAUNT), Buff(SELF, "AT_065e"))
 
 
 AT_065e = buff(health=1)

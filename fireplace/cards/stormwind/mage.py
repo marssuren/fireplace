@@ -170,7 +170,7 @@ class SW_108:
         PlayReq.REQ_MINION_TARGET: 0,
     }
     
-    play = Hit(TARGET, 2) & Give(CONTROLLER, "SW_108t")
+    play = (Hit(TARGET, 2), Give(CONTROLLER, "SW_108t"))
 
 
 class SW_108t:
@@ -439,7 +439,7 @@ class SW_462e:
         # 监听施放火焰法术后移除
         CastSpell(CONTROLLER, SPELL + FIRE).on(Destroy(SELF)),
         # 回合结束时移除
-        OwnTurnEnds(CONTROLLER).on(Destroy(SELF)),
+        OWN_TURN_END.on(Destroy(SELF)),
     ]
 
 

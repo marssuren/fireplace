@@ -26,7 +26,7 @@ class DED_524:
 class SW_036:
     """双面投资者 / Two-Faced Investor
     在你的回合结束时，使你的一张手牌法力值消耗减少（1）点。（50%的几率改为消耗增加。）"""
-    events = OwnTurnEnds(CONTROLLER).on(
+    events = OWN_TURN_END.on(
         Find(FRIENDLY_HAND) & (
             Buff(RANDOM(FRIENDLY_HAND), "SW_036e_reduce") |
             Buff(RANDOM(FRIENDLY_HAND), "SW_036e_increase")
@@ -66,6 +66,6 @@ class SW_306:
 class SW_400:
     """被困的女巫 / Entrapped Sorceress
     战吼：如果你控制一个任务，发现一张法术牌。"""
-    play = Find(FRIENDLY_SECRETS + QUEST) & GenericChoice(
-        CONTROLLER, Discover(CONTROLLER, RandomSpell())
+    play = (Find(FRIENDLY_SECRETS + QUEST), GenericChoice(
+        CONTROLLER, Discover(CONTROLLER, RandomSpell()))
     )

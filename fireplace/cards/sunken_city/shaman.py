@@ -21,7 +21,7 @@ class TSC_631t:
         GameTag.ATK: 1,
         GameTag.HEALTH: 1,
         GameTag.COST: 1,
-        GameTag.RACE: Race.BEAST,
+        GameTag.CARDRACE: Race.BEAST,
         GameTag.RUSH: True,
     }
     auras = [
@@ -83,7 +83,7 @@ class TSC_922:
         GameTag.ATK: 0,
         GameTag.HEALTH: 3,
         GameTag.COST: 2,
-        GameTag.RACE: Race.TOTEM,
+        GameTag.CARDRACE: Race.TOTEM,
     }
     events = Summon(CONTROLLER, MINION + (COST == 1)).after(Buff(Summon.CARD, "TSC_922e"))
 
@@ -104,7 +104,7 @@ class TID_004:
         GameTag.ATK: 3,
         GameTag.HEALTH: 2,
         GameTag.COST: 3,
-        GameTag.RACE: Race.MURLOC,
+        GameTag.CARDRACE: Race.MURLOC,
     }
     # 使用带计数器的Buff
     play = Buff(CONTROLLER, "TID_004e")
@@ -120,8 +120,8 @@ class TID_004e:
     
     # 监听打出事件
     events = Play(CONTROLLER, MURLOC).on(
-        # 减少计数: SetTag(SELF, TAG, Attr(SELF, TAG) - 1)
-        SetTag(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1, Attr(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1) - 1),
+        # 减少计数: SetTag(SELF, {TAG: Attr(SELF, TAG}) - 1)
+        SetTag(SELF, {GameTag.TAG_SCRIPT_DATA_NUM_1: Attr(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1}) - 1),
         # 如果计数归零，销毁自身
         (Attr(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1) <= 0) & Destroy(SELF)
     )
@@ -137,7 +137,7 @@ class TSC_633:
         GameTag.HEALTH: 5,
         GameTag.COST: 3,
     }
-    events = OwnTurnEnd(CONTROLLER).on(Give(CONTROLLER, "TSC_631t"))
+    events = OWN_TURN_END.on(Give(CONTROLLER, "TSC_631t"))
 
 
 class TSC_635:
@@ -149,7 +149,7 @@ class TSC_635:
         GameTag.ATK: 3,
         GameTag.HEALTH: 4,
         GameTag.COST: 3,
-        GameTag.RACE: Race.ELEMENTAL,
+        GameTag.CARDRACE: Race.ELEMENTAL,
         GameTag.SPELLPOWER: 2,
     }
     # Aura: Nature spells cost -1
@@ -167,7 +167,7 @@ class TID_003:
         GameTag.ATK: 4,
         GameTag.HEALTH: 4,
         GameTag.COST: 4,
-        GameTag.RACE: Race.MURLOC,
+        GameTag.CARDRACE: Race.MURLOC,
     }
     
     def play(self):
@@ -214,7 +214,7 @@ class TID_005t:
         GameTag.HEALTH: 4,
         GameTag.COST: 5,
         GameTag.RUSH: True,
-        GameTag.RACE: Race.ELEMENTAL,
+        GameTag.CARDRACE: Race.ELEMENTAL,
     }
 
 
@@ -264,7 +264,7 @@ class TSC_639:
         GameTag.ATK: 3,
         GameTag.HEALTH: 5,
         GameTag.COST: 7,
-        GameTag.RACE: Race.BEAST,
+        GameTag.CARDRACE: Race.BEAST,
         GameTag.COLOSSAL: 3,
         GameTag.TAUNT: True,
     }
@@ -279,7 +279,7 @@ class TSC_639t:
         GameTag.ATK: 2,
         GameTag.HEALTH: 2,
         GameTag.COST: 2,
-        GameTag.RACE: Race.BEAST,
+        GameTag.CARDRACE: Race.BEAST,
     }
 
 
@@ -292,7 +292,7 @@ class TSC_648:
         GameTag.ATK: 3,
         GameTag.HEALTH: 4,
         GameTag.COST: 5,
-        GameTag.RACE: Race.NAGA, 
+        GameTag.CARDRACE: Race.NAGA, 
     }
     
     def play(self):
@@ -325,5 +325,5 @@ class TSC_648t:
         GameTag.ATK: 3,
         GameTag.HEALTH: 3,
         GameTag.COST: 3,
-        GameTag.RACE: Race.ELEMENTAL,
+        GameTag.CARDRACE: Race.ELEMENTAL,
     }

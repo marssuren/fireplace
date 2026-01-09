@@ -38,7 +38,7 @@ class TTN_722t:
     tags = {
         GameTag.ATK: 3,
         GameTag.HEALTH: 3,
-        GameTag.RACE: Race.ELEMENTAL,
+        GameTag.CARDRACE: Race.ELEMENTAL,
         GameTag.RUSH: True,
     }
 
@@ -78,7 +78,7 @@ class TTN_833:
         GameTag.COST: 2,
     }
 
-    events = OwnTurnEnd(CONTROLLER).on(
+    events = OWN_TURN_END.on(
         Buff(RANDOM(FRIENDLY_HAND + (GameTag.OVERLOAD > 0)), "TTN_833e")
     )
 
@@ -122,7 +122,7 @@ class YOG_524:
         GameTag.ATK: 1,
         GameTag.HEALTH: 2,
         GameTag.COST: 1,
-        GameTag.RACE: Race.BEAST,
+        GameTag.CARDRACE: Race.BEAST,
     }
 
     play = Give(CONTROLLER, RandomCollectible(overload=True))
@@ -186,7 +186,7 @@ class TTN_727:
         GameTag.ATK: 6,
         GameTag.HEALTH: 6,
         GameTag.COST: 7,
-        GameTag.RACE: Race.DRAGON,
+        GameTag.CARDRACE: Race.DRAGON,
         GameTag.RUSH: True,
     }
 
@@ -212,7 +212,7 @@ class TTN_727t:
     tags = {
         GameTag.ATK: 3,
         GameTag.HEALTH: 1,
-        GameTag.RACE: Race.DRAGON,
+        GameTag.CARDRACE: Race.DRAGON,
     }
 
 
@@ -304,7 +304,7 @@ class TTN_801:
         GameTag.ATK: 3,
         GameTag.HEALTH: 5,
         GameTag.COST: 4,
-        GameTag.RACE: Race.ELEMENTAL,
+        GameTag.CARDRACE: Race.ELEMENTAL,
     }
 
     events = Play(CONTROLLER, SPELL + NATURE).after(
@@ -317,7 +317,7 @@ class TTN_801t:
     tags = {
         GameTag.ATK: 4,
         GameTag.HEALTH: 2,
-        GameTag.RACE: Race.ELEMENTAL,
+        GameTag.CARDRACE: Race.ELEMENTAL,
     }
 
 
@@ -327,7 +327,7 @@ class TTN_801_FORGED:
         GameTag.ATK: 3,
         GameTag.HEALTH: 5,
         GameTag.COST: 4,
-        GameTag.RACE: Race.ELEMENTAL,
+        GameTag.CARDRACE: Race.ELEMENTAL,
     }
 
     events = Play(CONTROLLER, SPELL + NATURE).after(
@@ -340,7 +340,7 @@ class TTN_801t_FORGED:
     tags = {
         GameTag.ATK: 4,
         GameTag.HEALTH: 2,
-        GameTag.RACE: Race.ELEMENTAL,
+        GameTag.CARDRACE: Race.ELEMENTAL,
         GameTag.RUSH: True,
     }
 
@@ -366,7 +366,7 @@ class TTN_830e:
     tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
 
     # 下个回合开始时激活减费效果
-    events = OwnTurnBegin(CONTROLLER).on(
+    events = OWN_TURN_BEGIN.on(
         Buff(CONTROLLER, "TTN_830e2"),
         Destroy(SELF)
     )
@@ -430,7 +430,7 @@ class TTN_800e:
 
     # 每回合开始时重置标记
     events = [
-        OwnTurnBegin(CONTROLLER).on(SetTag(SELF, {GameTag.TAG_SCRIPT_DATA_NUM_1: 0})),
+        OWN_TURN_BEGIN.on(SetTag(SELF, {GameTag.TAG_SCRIPT_DATA_NUM_1: 0})),
         # 监听法术施放，设置标记
         Play(CONTROLLER, SPELL).on(SetTag(SELF, {GameTag.TAG_SCRIPT_DATA_NUM_1: 1}))
     ]

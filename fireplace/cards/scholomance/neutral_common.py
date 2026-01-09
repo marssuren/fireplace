@@ -64,7 +64,7 @@ class SCH_283:
     Battlecry: If you've used your Hero Power this turn, draw a card."""
 
     # 战吼：在本回合中，如果你使用过你的英雄技能，抽一张牌
-    play = Find(FRIENDLY_HERO_POWER + USED_THIS_TURN) & Draw(CONTROLLER)
+    play = (Find(FRIENDLY_HERO_POWER + USED_THIS_TURN), Draw(CONTROLLER))
 class SCH_708:
     """Sneaky Delinquent / 少年惯偷
     Stealth. Deathrattle: Add a 3/1 Ghost with Stealth to your hand."""
@@ -182,7 +182,7 @@ class SCH_530:
     Battlecry: If you have Spell Damage, summon a copy of this."""
 
     # 战吼：如果你拥有法术伤害，召唤一个本随从的复制
-    play = Find(FRIENDLY_MINIONS + SPELLPOWER) & Summon(CONTROLLER, ExactCopy(SELF))
+    play = (Find(FRIENDLY_MINIONS + SPELLPOWER), Summon(CONTROLLER, ExactCopy(SELF)))
 
 class SCH_711:
     """Plagued Protodrake / 魔疫始祖幼龙

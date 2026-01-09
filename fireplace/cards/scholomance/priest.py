@@ -118,7 +118,7 @@ class SCH_136e:
     """Power Word: Feast Buff / 真言术：盛增益"""
     atk = 2
     max_health = 2
-    events = OwnTurnEnds(CONTROLLER).on(FullHeal(OWNER))
+    events = OWN_TURN_END.on(FullHeal(OWNER))
 
 
 class SCH_512:
@@ -183,7 +183,7 @@ class SCH_159_tracker:
     3. 销毁这个buff
     """
 
-    events = OwnTurnEnds(CONTROLLER).on(
+    events = OWN_TURN_END.on(
         # 1. 清空当前手牌（对手手牌的复制）
         Discard(FRIENDLY_HAND),
         # 2. 从暂存区取回原来的手牌

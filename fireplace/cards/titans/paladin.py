@@ -36,7 +36,7 @@ class TTN_854:
 class TTN_854e:
     """发明家的光环效果"""
     auras = [Buff(FRIENDLY_HAND + MECHANICAL, "TTN_854e2")]
-    events = OwnTurnEnd(CONTROLLER).on(
+    events = OWN_TURN_END.on(
         UpdateProgress(SELF, 1),
         If(Attr(SELF, GameTag.PROGRESS) >= 2, Destroy(SELF))
     )
@@ -50,7 +50,7 @@ class TTN_907:
     """星界翔龙 - Astral Serpent
     在你的回合结束时，如果本随从未攻击，抽两张牌。
     """
-    events = OwnTurnEnd(CONTROLLER).on(
+    events = OWN_TURN_END.on(
         If(Attr(SELF, GameTag.NUM_ATTACKS_THIS_TURN) == 0, Draw(CONTROLLER) * 2)
     )
 
@@ -237,7 +237,7 @@ class TTN_856:
     """阿米图斯的信徒 - Disciple of Amitus
     在你的回合结束时，召唤一个2/2的土灵。在本局对战中你每召唤过一个其他土灵，这个土灵获得+2/+2。
     """
-    events = OwnTurnEnd(CONTROLLER).on(Summon(CONTROLLER, "TTN_900t"))
+    events = OWN_TURN_END.on(Summon(CONTROLLER, "TTN_900t"))
 
 
 # LEGENDARY

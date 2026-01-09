@@ -391,8 +391,7 @@ class TLC_433e:
     events = SpendCorpses(CONTROLLER).after(
         lambda self, source, amount: [
             # 更新任务进度
-            SetTag(CONTROLLER, GameTag.QUEST_PROGRESS, 
-                   min(self.controller.quest_progress + amount, self.controller.quest_target)),
+            SetTag(CONTROLLER, {GameTag.QUEST_PROGRESS: min(self.controller.quest_progress + amount, self.controller.quest_target})),
             
             # 检查是否完成任务
             Find(self.controller.quest_progress >= self.controller.quest_target) & [

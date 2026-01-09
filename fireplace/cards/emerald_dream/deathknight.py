@@ -151,7 +151,7 @@ class EDR_815:
         lambda self, source, target: target.controller == self.controller.opponent and self.controller.corpses >= 2,
         lambda self, source, target: [
             # 消耗2残骸
-            SetTag(CONTROLLER, GameTag.CORPSES, self.controller.corpses - 2),
+            SetTag(CONTROLLER, {GameTag.CORPSES: self.controller.corpses - 2}),
             # 造成3点伤害
             Hit(target, 3)
         ]

@@ -70,19 +70,19 @@ class DEEP_022:
         # 获取一张其他职业的金色海盗牌
         pirate = RandomCollectible(card_class=ANOTHER_CLASS, race=Race.PIRATE).evaluate(self)
         if pirate:
-            yield Give(CONTROLLER, pirate).then(SetTag(Give.CARD, GameTag.PREMIUM))
+            yield Give(CONTROLLER, pirate).then(SetTag(Give.CARD, {GameTag.PREMIUM: True}))
 
         # 获取一张其他职业的金色元素牌
         elemental = RandomCollectible(card_class=ANOTHER_CLASS, race=Race.ELEMENTAL).evaluate(self)
         if elemental:
-            yield Give(CONTROLLER, elemental).then(SetTag(Give.CARD, GameTag.PREMIUM))
+            yield Give(CONTROLLER, elemental).then(SetTag(Give.CARD, {GameTag.PREMIUM: True}))
 
 
 class WW_363:
     """押注猎手 - Bounty Wrangler
     快枪或连击：获取一张幸运币。
     """
-    # Type: MINION | Cost: 3 | Rarity: RARE | Stats: 3/3 | Mechanics: COMBO, QUICKDRAW
+    # Type: MINION | Cost: 3 | Rarity: RARE | Stats: 3/3 | Mechanics: COMBO: QUICKDRAW
     
     def play(self):
         # 快枪或连击：满足任一条件即可获得幸运币

@@ -203,7 +203,7 @@ class DMF_186:
 class DMF_186e:
     """手牌法术减费"""
     update = Refresh(FRIENDLY_HAND + SPELL, {GameTag.COST: -1})
-    events = OwnTurnEnd(CONTROLLER).on(Destroy(SELF))
+    events = OWN_TURN_END.on(Destroy(SELF))
 
 
 class DMF_187:

@@ -42,7 +42,7 @@ class AV_147:
 
     # 伪奥秘事件：每回合结束时抽奥秘并减费
     pseudo_secret = [
-        OwnTurnEnds(CONTROLLER).on(
+        OWN_TURN_END.on(
             Find(FRIENDLY_DECK + SECRET) &
             Draw(CONTROLLER, RANDOM(FRIENDLY_DECK + SECRET)).then(
                 lambda card: Buff(card, "AV_147e")
@@ -63,21 +63,16 @@ class AV_147e:
 class AV_224:
     """触发陷阱 / Spring the Trap
     对一个随从造成3点伤害，并从你的牌库中施放一张奥秘牌。荣誉消灭：施放2张。"""
-    play = Hit(TARGET, 3)
+    # 普通情况：造成伤害并施放1张奥秘
+    play = (
+        Hit(TARGET, 3),
+        Find(FRIENDLY_DECK + SECRET) & CastSpell(RANDOM(FRIENDLY_DECK + SECRET))
+    )
 
     # 荣誉消灭：施放2张奥秘
     honorable_kill = (
-        Find(FRIENDLY_DECK + SECRET) &
-        CastSpell(RANDOM(FRIENDLY_DECK + SECRET)) &
-        Find(FRIENDLY_DECK + SECRET) &
-        CastSpell(RANDOM(FRIENDLY_DECK + SECRET))
-    )
-
-    # 普通情况：施放1张奥秘
-    play = (
-        Hit(TARGET, 3) &
-        Find(FRIENDLY_DECK + SECRET) &
-        CastSpell(RANDOM(FRIENDLY_DECK + SECRET))
+        Find(FRIENDLY_DECK + SECRET) & CastSpell(RANDOM(FRIENDLY_DECK + SECRET)),
+        Find(FRIENDLY_DECK + SECRET) & CastSpell(RANDOM(FRIENDLY_DECK + SECRET))
     )
 
 
@@ -86,8 +81,7 @@ class AV_226:
     奥秘：当你的对手施放一个法术时，将其移回他的手牌。该牌的法力值消耗增加（1）点。"""
     secret = (
         Play(OPPONENT, SPELL).on(
-            Bounce(Play.CARD) &
-            Buff(Play.CARD, "AV_226e")
+            (Bounce(Play.CARD), Buff(Play.CARD, "AV_226e"))
         )
     )
 
@@ -139,7 +133,7 @@ class AV_334e:
 class AV_335:
     """驯羊师 / Ram Tamer
     战吼：如果你控制一张奥秘牌，便获得+1/+1和潜行。"""
-    powered_up = Find(FRIENDLY_SECRET)
+    powered_up = Find(FRIENDLY_SECRETS)
     play = powered_up & Buff(SELF, "AV_335e")
 
 
@@ -196,7 +190,7 @@ class AV_336_tracker:
             )
         ),
         # 回合结束时移除追踪器
-        OwnTurnEnds(CONTROLLER).on(Destroy(SELF))
+        OWN_TURN_END.on(Destroy(SELF))
     ]
 
     def _trigger_summon(self, controller):

@@ -5,11 +5,16 @@ from ..utils import *
 class BAR_042:
     """Primordial Protector - 始生保护者
     Battlecry: Draw your highest Cost spell. Summon a random minion with the same Cost.
-    战吼：抽你牌库中法力值消耗最高的法术牌。召唤一个法力值消耗相同的随机随从。
+    战吼：抽你牌库中法力值消耗最高的法术牌。召唤一个法力值消耗相同的随从。
     """
-    play = ForceDraw(TOP(FRIENDLY_DECK + SPELL, COST)).then(
-        Summon(CONTROLLER, RandomMinion(cost=COST(Draw.CARDS)))
-    )
+    def play(self):
+        # 抽取费用最高的法术牌
+        cards = yield ForceDraw(CONTROLLER, TOP(FRIENDLY_DECK + SPELL, COST))
+        if cards:
+            for card in cards:
+                if card:
+                    # 召唤一个相同费用的随机随从
+                    yield Summon(CONTROLLER, RandomMinion(cost=card.cost))
 
 
 class BAR_073:

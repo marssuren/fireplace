@@ -15,7 +15,7 @@ class DED_521:
 class SW_069:
     """热情的柜员 / Enthusiastic Banker
     在你的回合结束时，从你的牌库中存储一张牌。亡语：将存储的牌加入你的手牌。"""
-    events = OwnTurnEnds(CONTROLLER).on(
+    events = OWN_TURN_END.on(
         Find(FRIENDLY_DECK) & (
             Setaside(RANDOM(FRIENDLY_DECK)) & Buff(SELF, "SW_069e")
         )
@@ -55,7 +55,7 @@ class SW_075:
         GameTag.ATK: 1,
         GameTag.HEALTH: 1,
         GameTag.COST: 1,
-        GameTag.RACE: Race.BEAST,
+        GameTag.CARDRACE: Race.BEAST,
     }
     
     def deathrattle(self):

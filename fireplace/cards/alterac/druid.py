@@ -10,7 +10,7 @@ class AV_205:
     """森林之王的古树 / Guff Runetotem
     战吼：你的法力值上限变为20点。获得一个空的法力水晶。"""
     play = (
-        SetTag(FRIENDLY_HERO, {GameTag.RESOURCES: 20}) &
+        SetTag(FRIENDLY_HERO, {GameTag.RESOURCES: 20}),
         GainMana(CONTROLLER, 1)
     )
 
@@ -62,7 +62,7 @@ class AV_291:
 class AV_292:
     """野性之心 / Heart of the Wild
     使一个随从获得+2/+2，然后使你的野兽获得+1/+1。"""
-    play = Buff(TARGET, "AV_292e") & Buff(FRIENDLY_MINIONS + BEAST, "AV_292e2")
+    play = (Buff(TARGET, "AV_292e"), Buff(FRIENDLY_MINIONS + BEAST, "AV_292e2"))
 
 
 class AV_292e:
@@ -101,7 +101,7 @@ class AV_294:
 class AV_294e:
     """怒爪精锐增益"""
     tags = {GameTag.ATK: 1}
-    events = OwnTurnEnds(CONTROLLER).on(Destroy(SELF))
+    events = OWN_TURN_END.on(Destroy(SELF))
 
 
 class AV_295:
@@ -150,7 +150,7 @@ class AV_360:
     
     # 伪奥秘事件：每回合结束时召唤狼
     pseudo_secret = [
-        OwnTurnEnds(CONTROLLER).on(
+        OWN_TURN_END.on(
             Summon(CONTROLLER, "AV_211t")
         ).then(
             lambda self: self.decrement_duration()

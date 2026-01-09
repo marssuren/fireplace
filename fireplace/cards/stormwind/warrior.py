@@ -17,7 +17,7 @@ class DED_518:
         PlayReq.REQ_MINION_TARGET: 0,
     }
     
-    play = Hit(TARGET, 3) & Hit(ALL_MINIONS - TARGET, 1)
+    play = (Hit(TARGET, 3), Hit(ALL_MINIONS - TARGET, 1))
 
 
 class DED_519:
@@ -92,7 +92,7 @@ class SW_024:
     }
     
     # 回合结束时自动攻击
-    events = OwnTurnEnds(CONTROLLER).on(
+    events = OWN_TURN_END.on(
         lambda self: self._auto_attack()
     )
     
@@ -207,7 +207,7 @@ class SW_030:
         GameTag.COST: 3,
     }
     
-    events = OwnTurnEnds(CONTROLLER).on(GainArmor(FRIENDLY_HERO, 3))
+    events = OWN_TURN_END.on(GainArmor(FRIENDLY_HERO, 3))
 
 
 class SW_093:
@@ -217,7 +217,7 @@ class SW_093:
         GameTag.ATK: 3,
         GameTag.HEALTH: 3,
         GameTag.COST: 3,
-        GameTag.RACE: Race.PIRATE,
+        GameTag.CARDRACE: Race.PIRATE,
     }
     
     play = Buff(FRIENDLY_HERO, "SW_093e")
@@ -273,5 +273,5 @@ class SW_097t2:
         GameTag.ATK: 2,
         GameTag.HEALTH: 1,
         GameTag.COST: 1,
-        GameTag.RACE: Race.MECHANICAL,
+        GameTag.CARDRACE: Race.MECHANICAL,
     }

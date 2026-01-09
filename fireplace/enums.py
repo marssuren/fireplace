@@ -40,6 +40,8 @@ TITAN_ABILITY_USED_2 = -102 # 泰坦技能2是否已使用
 TITAN_ABILITY_USED_3 = -103 # 泰坦技能3是否已使用
 SPELL_DOUBLE_CAST = -41  # 下一个法术施放两次（Solar Eclipse等）
 NUM_SECRETS_REVEALED = -42  # 本局对战中触发的友方奥秘次数
+HONORABLE_KILL = -79  # 荣誉消灭效果（奥特兰克扩展包）
+ALWAYS_WINS_BRAWLS = -80  # 总是赢得绝命乱斗（决战荒芜之地扩展包）
 
 # Questline（任务线）机制 - 暴风城（2021年8月）
 QUESTLINE_STAGE = -43  # 任务线当前阶段（1/2/3）
@@ -118,6 +120,9 @@ REWIND_AVAILABLE = -76  # 标记卡牌当前是否可以 Rewind
 # Fabled 机制 - 穿越时间流（2025年11月）
 FABLED = -77  # 标记卡牌为 Fabled 传说卡牌
 FABLED_CARDS = -78  # 存储 Fabled 卡牌附带的额外卡牌ID列表
+
+# 自然法术伤害加成 - 贫瘠之地（2021年3月）
+NATURE_SPELL_DAMAGE = -81  # 自然法术伤害加成（用于布鲁坎等卡牌）
 
 
 

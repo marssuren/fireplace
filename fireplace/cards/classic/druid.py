@@ -10,7 +10,7 @@ class EX1_165:
     抉择：变形成为7/6并具有突袭；或者变形成为4/9并具有嘲讽。"""
 
     choose = ("EX1_165a", "EX1_165b")
-    play = ChooseBoth(CONTROLLER) & Morph(SELF, "OG_044a")
+    play = (ChooseBoth(CONTROLLER), Morph(SELF, "OG_044a"))
 
 
 class EX1_165a:
@@ -168,7 +168,7 @@ class CS2_013:
     """Wild Growth / 野性成长
     获得一个空的法力水晶。"""
 
-    play = AT_MAX_MANA(CONTROLLER) & Give(CONTROLLER, "CS2_013t") | GainEmptyMana(
+    play = (AT_MAX_MANA(CONTROLLER), Give(CONTROLLER, "CS2_013t")) | GainEmptyMana(
         CONTROLLER, 1
     )
 

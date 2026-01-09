@@ -34,7 +34,7 @@ class ICC_252:
         PlayReq.REQ_FROZEN_TARGET: 0,
         PlayReq.REQ_MINION_TARGET: 0,
     }
-    play = Find(ENEMY + FROZEN) & Draw(CONTROLLER)
+    play = (Find(ENEMY + FROZEN), Draw(CONTROLLER))
 
 
 class ICC_838:

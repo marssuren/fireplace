@@ -643,7 +643,7 @@ class FIR_846t3e:
     }
     # 回合结束时移除免疫
     events = OWN_TURN_END.on(
-        lambda self: [SetTag(self.owner, GameTag.IMMUNE, False)]
+        lambda self: [SetTag(self.owner, {GameTag.IMMUNE: False})]
     )
 
 
@@ -656,7 +656,7 @@ class FIR_846t4:
         GameTag.ATK: 14,
         GameTag.HEALTH: 12,
         GameTag.CARDTYPE: CardType.MINION,
-        GameTag.RACE: Race.DRAGON,
+        GameTag.CARDRACE: Race.DRAGON,
     }
 
 
@@ -1203,7 +1203,7 @@ class EDR_SHAMAN_HP_TOKEN:
     """
     tags = {
         GameTag.CARDTYPE: CardType.MINION,
-        GameTag.RACE: Race.TOTEM,
+        GameTag.CARDRACE: Race.TOTEM,
     }
 
 
@@ -1328,7 +1328,7 @@ class EDR_490t:
         GameTag.HEALTH: 6,
         GameTag.TAUNT: True,
         GameTag.CANT_ATTACK: True,
-        GameTag.RACE: Race.DEMON,
+        GameTag.CARDRACE: Race.DEMON,
     }
 
  

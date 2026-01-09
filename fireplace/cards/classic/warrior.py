@@ -157,8 +157,8 @@ class EX1_407:
     随机选择一个随从，消灭除了该随从外的所有其他随从。"""
 
     requirements = {PlayReq.REQ_MINIMUM_TOTAL_MINIONS: 2}
-    play = Find(ALL_MINIONS + ALWAYS_WINS_BRAWLS) & Destroy(
-        ALL_MINIONS - RANDOM(ALL_MINIONS + ALWAYS_WINS_BRAWLS)
+    play = (Find(ALL_MINIONS + ALWAYS_WINS_BRAWLS), Destroy(
+        ALL_MINIONS - RANDOM(ALL_MINIONS + ALWAYS_WINS_BRAWLS))
     ) | Destroy(ALL_MINIONS - RANDOM_MINION)
 
 
@@ -175,7 +175,7 @@ class EX1_409:
     """Upgrade! / 升级
     如果你装备着武器，使其获得+1/+1。否则装备一把1/3的武器。"""
 
-    play = Find(FRIENDLY_WEAPON) & Buff(FRIENDLY_WEAPON, "EX1_409e") | Summon(
+    play = (Find(FRIENDLY_WEAPON), Buff(FRIENDLY_WEAPON, "EX1_409e")) | Summon(
         CONTROLLER, "EX1_409t"
     )
 

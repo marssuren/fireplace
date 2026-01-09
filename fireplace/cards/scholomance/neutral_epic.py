@@ -50,7 +50,7 @@ class SCH_522:
     Battlecry: Summon a random minion with Cost equal to your weapon's Attack."""
 
     # 战吼：召唤一个随机的法力值消耗等于你的武器的攻击力的随从
-    play = Find(FRIENDLY_WEAPON) & Summon(CONTROLLER, RandomMinion(cost=ATK(FRIENDLY_WEAPON)))
+    play = (Find(FRIENDLY_WEAPON), Summon(CONTROLLER, RandomMinion(cost=ATK(FRIENDLY_WEAPON))))
 
 
 ##

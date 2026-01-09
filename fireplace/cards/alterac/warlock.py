@@ -54,7 +54,7 @@ class AV_285t:
     """邪能狂潮（可重复） / Full-Blown Evil (Repeatable)
     造成$5点伤害，随机分配到所有敌方随从身上。在本回合可重复使用。"""
     play = Hit(RANDOM_ENEMY_MINION * 5, 1), Give(CONTROLLER, "AV_285t")
-    events = OwnTurnEnds(CONTROLLER).on(Destroy(SELF))
+    events = OWN_TURN_END.on(Destroy(SELF))
 
 
 class AV_286:
@@ -90,10 +90,15 @@ class AV_308:
 class AV_312:
     """祭祀召唤师 / Sacrificial Summoner
     战吼：消灭一个友方随从。从你的牌库中召唤一个法力值消耗多(1)点的随从。"""
-    play = (
-        Destroy(TARGET) &
-        Summon(CONTROLLER, RANDOM(FRIENDLY_DECK + MINION + (COST == Cost(TARGET) + 1)))
-    )
+    def play(self):
+        """消灭目标并召唤费用+1的随从"""
+        if self.target:
+            target_cost = self.target.cost
+            yield Destroy(self.target)
+            # 从牌库中找到费用为target_cost+1的随从
+            minions = [m for m in self.controller.deck if m.type == CardType.MINION and m.cost == target_cost + 1]
+            if minions:
+                yield Summon(CONTROLLER, self.game.random.choice(minions))
 
 
 class AV_313:
@@ -113,8 +118,8 @@ class AV_316:
     """恐惧巫妖塔姆辛 / Dreadlich Tamsin
     战吼：对所有随从造成3点伤害。将3张"裂隙"洗入你的牌库。抽3张牌。"""
     play = (
-        Hit(ALL_MINIONS, 3) &
-        Shuffle(CONTROLLER, "AV_277t") * 3 &
+        Hit(ALL_MINIONS, 3),
+        Shuffle(CONTROLLER, "AV_277t") * 3,
         Draw(CONTROLLER) * 3
     )
 
@@ -152,7 +157,7 @@ class AV_657:
     # 伪奥秘事件：每回合结束时消灭最低攻击力随从并召唤阴影魔
     # 使用内联 lambda 处理复杂逻辑（查找最低攻击力随从）
     pseudo_secret = [
-        OwnTurnEnds(CONTROLLER).on(
+        OWN_TURN_END.on(
             lambda self: [
                 # 如果场上有随从，消灭攻击力最低的随从
                 Destroy(min(self.controller.field, key=lambda m: m.atk))
@@ -211,6 +216,6 @@ class ONY_035:
     """死亡之翼的后裔 / Spawn of Deathwing
     战吼：消灭一个随机敌方随从。弃一张随机手牌。"""
     play = (
-        Destroy(RANDOM_ENEMY_MINION) &
+        Destroy(RANDOM_ENEMY_MINION),
         Discard(RANDOM(FRIENDLY_HAND))
     )

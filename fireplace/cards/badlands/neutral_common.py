@@ -78,7 +78,7 @@ class WW_391:
     At the end of your turn, draw a card.
     """
     # 1/2 在你的回合结束时，抽一张牌
-    events = OwnTurnEnd(CONTROLLER).on(Draw(CONTROLLER))
+    events = OWN_TURN_END.on(Draw(CONTROLLER))
 
 
 class WW_397:
@@ -208,7 +208,7 @@ class WW_827:
     At the end of your turn, get a 1/2 Whelp with Taunt.
     """
     # 2/3 在你的回合结束时，获取一个1/2并具有嘲讽的雏龙
-    events = OwnTurnEnd(CONTROLLER).on(Give(CONTROLLER, "WW_827t"))
+    events = OWN_TURN_END.on(Give(CONTROLLER, "WW_827t"))
 
 
 class WW_900:

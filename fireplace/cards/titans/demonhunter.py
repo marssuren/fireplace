@@ -54,7 +54,7 @@ class YOG_401:
     play = Buff(CONTROLLER, "YOG_401e")
 
 class YOG_401e:
-    events = OwnTurnBegin(CONTROLLER).on(Draw(CONTROLLER, 3), Destroy(SELF))
+    events = OWN_TURN_BEGIN.on(Draw(CONTROLLER, 3), Destroy(SELF))
 
 
 class YOG_402:
@@ -176,7 +176,7 @@ class TTN_866:
     # 强制攻击：Attack(Source, Target)。源攻击目标。
     # 敌方随从攻击本随从。
     # 事件循环遍历敌方随从。
-    events = OwnTurnEnd(CONTROLLER).on(
+    events = OWN_TURN_END.on(
         Foreach(ENEMY_MINIONS, Attack(Foreach.CARD, SELF))
     )
 
@@ -203,7 +203,7 @@ class TTN_842e:
         # 在每个回合开始时重置? 文本说 "your turn"。"First spell you draw EACH turn" (通常意味着你的每个回合)。
         # 英文: "cast a copy of the first spell you draw each turn".
         # 让我们假设是拥有者的回合。
-        OwnTurnBegin(CONTROLLER).on(SetTag(SELF, {GameTag.POWERED_UP: False})),
+        OWN_TURN_BEGIN.on(SetTag(SELF, {GameTag.POWERED_UP: False})),
         
         Draw(CONTROLLER).on(
             If(And(

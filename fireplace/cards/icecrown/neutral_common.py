@@ -9,7 +9,7 @@ class ICC_019:
     """Skelemancer / 骷髅法师
     亡语：如果此时是你对手的回合，则召唤一个8/8的骷髅。"""
 
-    deathrattle = CurrentPlayer(OPPONENT) & Summon(CONTROLLER, "ICC_019t")
+    deathrattle = (CurrentPlayer(OPPONENT), Summon(CONTROLLER, "ICC_019t"))
 
 
 class ICC_026:
@@ -53,7 +53,7 @@ class ICC_067:
     """Vryghoul / 维库食尸鬼
     亡语：如果此时是你对手的回合，则召唤一个2/2的食尸鬼。"""
 
-    deathrattle = CurrentPlayer(OPPONENT) & Summon(CONTROLLER, "ICC_900t")
+    deathrattle = (CurrentPlayer(OPPONENT), Summon(CONTROLLER, "ICC_900t"))
 
 
 class ICC_092:

@@ -9,7 +9,7 @@ class ICC_034:
     """Arrogant Crusader / 傲慢的十字军
     亡语：如果此时是你对手的回合，则召唤一个2/2的食尸鬼。"""
 
-    deathrattle = CurrentPlayer(OPPONENT) & Summon(CONTROLLER, "ICC_900t")
+    deathrattle = (CurrentPlayer(OPPONENT), Summon(CONTROLLER, "ICC_900t"))
 
 
 class ICC_245:

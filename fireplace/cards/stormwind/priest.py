@@ -102,7 +102,7 @@ class SW_012:
     
     # 监听施放暗影法术
     events = CastSpell(CONTROLLER, SPELL + SHADOW).after(
-        Hit(ENEMY_CHARACTERS, 1) & Hit(SELF, 1)
+        (Hit(ENEMY_CHARACTERS, 1), Hit(SELF, 1))
     )
 
 
@@ -245,7 +245,7 @@ class SW_443t:
         GameTag.ATK: 4,
         GameTag.HEALTH: 7,
         GameTag.COST: 7,
-        GameTag.RACE: Race.BEAST,
+        GameTag.CARDRACE: Race.BEAST,
     }
 
 

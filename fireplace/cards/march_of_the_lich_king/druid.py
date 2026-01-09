@@ -125,7 +125,7 @@ class RLK_656:
 
 class RLK_656e:
     """壳质护板增益 (Chitinous Plating Buff)"""
-    events = OwnTurnBegin(CONTROLLER).on(
+    events = OWN_TURN_BEGIN.on(
         Armor(CONTROLLER, 4),
         Destroy(SELF)  # 触发后移除buff
     )

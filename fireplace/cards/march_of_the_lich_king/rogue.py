@@ -106,7 +106,7 @@ class RLK_571:
     在你的回合结束时，随机将一份药剂置入你的手牌。
     机制: TRIGGER_VISUAL
     """
-    events = OwnTurnEnds(CONTROLLER).on(
+    events = OWN_TURN_END.on(
         Give(CONTROLLER, RandomPotion())
     )
 

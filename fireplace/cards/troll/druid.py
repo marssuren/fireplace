@@ -64,7 +64,7 @@ class TRL_343:
 
     # <b>Choose One - </b>Transform into one of Loti's four dinosaur forms.
     choose = ("TRL_343at2", "TRL_343bt2", "TRL_343ct2", "TRL_343dt2")
-    play = ChooseBoth(CONTROLLER) & Morph(SELF, "TRL_343et1")
+    play = (ChooseBoth(CONTROLLER), Morph(SELF, "TRL_343et1"))
 
 
 class TRL_343at2:

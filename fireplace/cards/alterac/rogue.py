@@ -20,16 +20,20 @@ class AV_201e:
 class AV_402:
     """脑叶切除器 / The Lobotomizer
     荣誉消灭：获得对手牌库顶的一张牌的复制。"""
-    honorable_kill = Give(CONTROLLER, Copy(ENEMY_DECK.top(1)))
+    def honorable_kill(self):
+        """获得对手牌库顶的一张牌的复制"""
+        if self.controller.opponent.deck:
+            top_card = self.controller.opponent.deck[-1]  # 牌库顶是列表的最后一个元素
+            yield Give(CONTROLLER, Copy(top_card))
 
 
 class AV_601:
     """被遗忘的中尉 / Forsaken Lieutenant
     潜行。在你使用一张亡语随从后，变形成为它的2/2复制，并具有突袭。"""
     events = Play(CONTROLLER, MINION + DEATHRATTLE).after(
-        Morph(SELF, Copy(Play.CARD)) &
-        SetTag(SELF, {GameTag.ATK: 2, GameTag.HEALTH: 2}) &
-        SetTag(SELF, {GameTag.RUSH: True})
+        (Morph(SELF, Copy(Play.CARD)),
+         SetTag(SELF, {GameTag.ATK: 2, GameTag.HEALTH: 2}),
+         SetTag(SELF, {GameTag.RUSH: True}))
     )
 
 
@@ -38,9 +42,9 @@ class AV_710:
     发现一张其他职业的亡语随从牌。其法力值消耗减少（2）点。"""
     play = GenericChoice(CONTROLLER, Discover(
         CONTROLLER,
-        RandomCollectible(card_class=CardClass.NEUTRAL, type=CardType.MINION, mechanics=[GameTag.DEATHRATTLE]) |
+        # 从非潜行者职业的亡语随从中发现（包括中立）
         RandomCollectible(card_class=~CardClass.ROGUE, type=CardType.MINION, mechanics=[GameTag.DEATHRATTLE])
-    )) & Buff(GenericChoice.CARD, "AV_710e")
+    )).then(lambda card: Buff(card, "AV_710e"))
 
 
 class AV_710e:
@@ -61,14 +65,18 @@ class ONY_032:
 class AV_711:
     """双面间谍 / Double Agent
     战吼：如果你的手牌中有其他职业的牌，召唤一个本随从的复制。"""
-    powered_up = Find(FRIENDLY_HAND + (~CARD_CLASS(CardClass.ROGUE)))
+    powered_up = Find(FRIENDLY_HAND + FuncSelector(
+        lambda entities, src: [e for e in entities if hasattr(e, 'card_class') and e.card_class != CardClass.ROGUE and e.card_class != CardClass.NEUTRAL]
+    ))
     play = powered_up & Summon(CONTROLLER, ExactCopy(SELF))
 
 
 class ONY_030:
     """军情七处走私者 / SI:7 Smuggler
     战吼：如果你的手牌中有其他职业的牌，抽两张牌。"""
-    powered_up = Find(FRIENDLY_HAND + (~CARD_CLASS(CardClass.ROGUE)))
+    powered_up = Find(FRIENDLY_HAND + FuncSelector(
+        lambda entities, src: [e for e in entities if hasattr(e, 'card_class') and e.card_class != CardClass.ROGUE and e.card_class != CardClass.NEUTRAL]
+    ))
     play = powered_up & (Draw(CONTROLLER) * 2)
 
 
@@ -81,7 +89,7 @@ class ONY_031:
 class ONY_031e:
     """烟幕效果"""
     tags = {GameTag.STEALTH: True}
-    events = OwnTurnBegins(CONTROLLER).on(Destroy(SELF))
+    events = OWN_TURN_BEGIN.on(Destroy(SELF))
 
 
 class AV_298:
@@ -105,7 +113,7 @@ class AV_400e:
     tags = {GameTag.EXTRA_DEATHRATTLES: 1}
     turns_remaining = 3
 
-    events = OwnTurnEnds(CONTROLLER).on(
+    events = OWN_TURN_END.on(
         lambda self: (
             setattr(self, 'turns_remaining', self.turns_remaining - 1),
             self.turns_remaining <= 0 and Destroy(SELF)
@@ -189,7 +197,7 @@ class AV_203:
     """暗影工匠斯卡布斯 / Shadowcrafter Scabbs
     战吼：将所有随从移回其拥有者的手牌。召唤两个4/2并具有潜行的暗影。"""
     play = (
-        Bounce(ALL_MINIONS) &
+        Bounce(ALL_MINIONS),
         Summon(CONTROLLER, "AV_203t") * 2
     )
 

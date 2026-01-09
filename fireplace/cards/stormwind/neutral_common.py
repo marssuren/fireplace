@@ -10,7 +10,7 @@ class DED_523:
     """葛拉卡蟹杀手 / Golakka Glutton
     战吼：消灭一个野兽并获得+1/+1。"""
     play = Find(ENEMY_MINIONS + BEAST) & (
-        Destroy(TARGET) & Buff(SELF, "DED_523e")
+        (Destroy(TARGET), Buff(SELF, "DED_523e"))
     )
 
 
@@ -70,7 +70,7 @@ class SW_059e:
 class SW_060:
     """卖花女郎 / Florist
     在你的回合结束时，使你手牌中一张自然法术牌的法力值消耗减少（1）点。"""
-    events = OwnTurnEnds(CONTROLLER).on(
+    events = OWN_TURN_END.on(
         Find(FRIENDLY_HAND + SPELL + NATURE) & Buff(RANDOM(FRIENDLY_HAND + SPELL + NATURE), "SW_060e")
     )
 
@@ -116,7 +116,7 @@ class SW_066:
 class SW_067:
     """监狱守卫 / Stockades Guard
     战吼：使一个友方随从获得嘲讽。"""
-    play = Find(FRIENDLY_MINIONS) & SetTag(TARGET, {GameTag.TAUNT: True})
+    play = (Find(FRIENDLY_MINIONS), SetTag(TARGET, {GameTag.TAUNT: True}))
 
 
 class SW_068:
@@ -129,7 +129,7 @@ class SW_071:
     """雄狮卫士 / Lion's Guard
     战吼：如果你的生命值小于或等于15点，获得+2/+4和嘲讽。"""
     play = Find(FRIENDLY_HERO + (CURRENT_HEALTH <= 15)) & (
-        Buff(SELF, "SW_071e") & SetTag(SELF, {GameTag.TAUNT: True})
+        (Buff(SELF, "SW_071e"), SetTag(SELF, {GameTag.TAUNT: True}))
     )
 
 
@@ -171,7 +171,7 @@ class SW_307e:
 class SW_319:
     """农夫 / Peasant
     在你的回合开始时，抽一张牌。"""
-    events = OwnTurnBegins(CONTROLLER).on(Draw(CONTROLLER))
+    events = OWN_TURN_BEGIN.on(Draw(CONTROLLER))
 
 
 class SW_418:

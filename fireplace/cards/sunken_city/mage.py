@@ -16,7 +16,7 @@ class TID_707:
 
 class TID_707e:
     """临时标记"""
-    events = OwnTurnEnd(CONTROLLER).on(Discard(OWNER))
+    events = OWN_TURN_END.on(Discard(OWNER))
 
 
 class TID_708:
@@ -76,7 +76,7 @@ class TSC_087:
     """指挥官西瓦拉 - 4费 3/5
     战吼：如果你在本牌在你手中时施放过三个法术，则将那些法术置回你的手牌"""
     powered_up = Count(Play(CONTROLLER, SPELL)) >= 3 & Buff(SELF, "TSC_087e")
-    play = Find(SELF + POWERED_UP) & Give(CONTROLLER, Copy(LAST_PLAYED_SPELL)) * 3
+    play = (Find(SELF + POWERED_UP), Give(CONTROLLER, Copy(LAST_PLAYED_SPELL))) * 3
 
 
 class TSC_087e:
@@ -88,21 +88,21 @@ class TSC_620:
     """恶鞭海妖 - 4费 2/5
     在你使用一张纳迦牌后，复原两个法力水晶（然后切换至法术牌）"""
     events = Play(CONTROLLER, NAGA).after(
-        GainMana(CONTROLLER, 2) & Morph(SELF, "TSC_620t")
+        (GainMana(CONTROLLER, 2), Morph(SELF, "TSC_620t"))
     )
 
 
 class TSC_642:
     """海沟勘测机 - 1费 2/1
     战吼：探底。如果选中的是机械牌，抽取这张牌"""
-    play = Dredge(CONTROLLER) & Find(DREDGED_CARD + MECH) & ForceDraw(DREDGED_CARD)
+    play = (Dredge(CONTROLLER), Find(DREDGED_CARD + MECH)) & ForceDraw(DREDGED_CARD)
 
 
 class TSC_643:
     """法术卷积者 - 2费 2/3
     战吼：如果你在本牌在你手中时施放过法术，发现一张法术牌"""
     powered_up = Find(FRIENDLY_HAND + SPELL) & Buff(SELF, "TSC_643e")
-    play = Find(SELF + POWERED_UP) & GenericChoice(CONTROLLER, Discover(CONTROLLER, RandomSpell()))
+    play = (Find(SELF + POWERED_UP), GenericChoice(CONTROLLER, Discover(CONTROLLER, RandomSpell())))
 
 
 class TSC_643e:
@@ -120,7 +120,7 @@ class TSC_948:
     """艾萨拉的恩赐 - 2费法术
     抽一张牌。如果你在本牌在你手中时使用过纳迦牌，再抽一张"""
     powered_up = Find(FRIENDLY_HAND + NAGA) & Buff(SELF, "TSC_948e")
-    play = Draw(CONTROLLER) & Find(SELF + POWERED_UP) & Draw(CONTROLLER)
+    play = (Draw(CONTROLLER), Find(SELF + POWERED_UP)) & Draw(CONTROLLER)
 
 
 class TSC_948e:

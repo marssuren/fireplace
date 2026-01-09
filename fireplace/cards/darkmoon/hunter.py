@@ -152,7 +152,7 @@ class DMF_086t:
         GameTag.ATK: 3,
         GameTag.HEALTH: 3,
         GameTag.COST: 3,
-        GameTag.RACE: Race.BEAST,
+        GameTag.CARDRACE: Race.BEAST,
     }
 
 
@@ -193,7 +193,7 @@ class DMF_123:
         GameTag.COST: 3,
         GameTag.SECRET: True,
     }
-    secret = OwnTurnBegin(CONTROLLER).on(
+    secret = OWN_TURN_BEGIN.on(
         Find(Count(FRIENDLY_MINIONS) >= 2) & (
             Summon(CONTROLLER, RandomEntourage()),
             Reveal(SELF),

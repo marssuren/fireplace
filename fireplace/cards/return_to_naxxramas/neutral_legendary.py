@@ -12,7 +12,7 @@ class NX2_033:
     play = SetAttr(SELF, "thaddius_odd_mode", True)
 
     # 回合开始时切换极性
-    events = OwnTurnBegin(CONTROLLER).on(
+    events = OWN_TURN_BEGIN.on(
         SetAttr(SELF, "thaddius_odd_mode", lambda self, entity: not getattr(entity, "thaddius_odd_mode", True))
     )
 

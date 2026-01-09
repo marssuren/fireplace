@@ -3,7 +3,7 @@ from abc import ABCMeta, abstractmethod
 from enum import IntEnum
 from typing import Any, Callable, Iterable, List, Optional, Set, Union
 
-from hearthstone.enums import CardClass, CardType, GameTag, Race, Rarity, Zone
+from hearthstone.enums import CardClass, CardType, GameTag, Race, Rarity, SpellSchool, Zone
 
 from .. import enums
 from ..entity import BaseEntity
@@ -127,6 +127,7 @@ ARMOR = AttrValue(GameTag.ARMOR)
 ATK = AttrValue(GameTag.ATK)
 CONTROLLER = AttrValue(GameTag.CONTROLLER)
 MAX_HEALTH = AttrValue(GameTag.HEALTH)
+HEALTH = MAX_HEALTH  # Alias for MAX_HEALTH
 CURRENT_HEALTH = AttrValue("health")
 CURRENT_DURABILITY = AttrValue("durability")
 MIN_HEALTH = AttrValue(GameTag.HEALTH_MINIMUM)
@@ -475,6 +476,7 @@ CHOOSE_ONE = EnumSelector(GameTag.CHOOSE_ONE)
 HAS_DISCOVER = EnumSelector(GameTag.DISCOVER)
 LACKEY = EnumSelector(GameTag.MARK_OF_EVIL)
 LIBRAM = EnumSelector(GameTag.LIBRAM)
+OUTCAST = EnumSelector(GameTag.OUTCAST)
 
 ALWAYS_WINS_BRAWLS = AttrValue(enums.ALWAYS_WINS_BRAWLS) == True
 KILLED_THIS_TURN = AttrValue(enums.KILLED_THIS_TURN) == True
@@ -517,22 +519,92 @@ MURLOC = EnumSelector(Race.MURLOC)
 PIRATE = EnumSelector(Race.PIRATE)
 TOTEM = EnumSelector(Race.TOTEM)
 ELEMENTAL = EnumSelector(Race.ELEMENTAL)
+UNDEAD = EnumSelector(Race.UNDEAD)
 TREANT = FuncSelector(
     lambda entities, src: [
         e for e in entities if getattr(e, "name_enUS", "").endswith("Treant")
     ]
 )  # Race.`TREANT` is not defined yet.
 
-# StarCraft种族选择器 (Heroes of StarCraft Mini-set)
-# 这些种族在hearthstone.enums.Race中定义
+
+# StarCraft Races (Heroes of StarCraft Mini-set)
 ZERG = EnumSelector(Race.ZERG)
-PROTOSS = EnumSelector(Race.PROTOSS)
 TERRAN = EnumSelector(Race.TERRAN)
+PROTOSS = EnumSelector(Race.PROTOSS)
+
+# NAGA race (Voyage to the Sunken City expansion)
+NAGA = EnumSelector(Race.NAGA)
+
+# OGRE race (used in Badlands expansion)
+OGRE = FuncSelector(
+    lambda entities, src: [
+        e for e in entities if "Ogre" in getattr(e, "name_enUS", "") or "食人魔" in getattr(e, "name", "")
+    ]
+)  # OGRE is not a Race enum, using name matching
+
+# Position selectors
+def LEFTMOST(selector):
+    """Return the leftmost entity from the selector results"""
+    from ..dsl.selector import FuncSelector
+    return FuncSelector(
+        lambda entities, src: [selector.eval(entities, src)[0]] if selector.eval(entities, src) else []
+    )
+
+def RIGHTMOST(selector):
+    """Return the rightmost entity from the selector results"""
+    from ..dsl.selector import FuncSelector
+    return FuncSelector(
+        lambda entities, src: [selector.eval(entities, src)[-1]] if selector.eval(entities, src) else []
+    )
+
 
 COMMON = EnumSelector(Rarity.COMMON)
 RARE = EnumSelector(Rarity.RARE)
 EPIC = EnumSelector(Rarity.EPIC)
 LEGENDARY = EnumSelector(Rarity.LEGENDARY)
+
+# Spell Schools (Forged in the Barrens expansion)
+ARCANE = EnumSelector(SpellSchool.ARCANE)
+FIRE = EnumSelector(SpellSchool.FIRE)
+FROST = EnumSelector(SpellSchool.FROST)
+NATURE = EnumSelector(SpellSchool.NATURE)
+HOLY = EnumSelector(SpellSchool.HOLY)
+SHADOW = EnumSelector(SpellSchool.SHADOW)
+FEL = EnumSelector(SpellSchool.FEL)
+
+# Tag-based attribute selectors
+ACTIVATIONS_THIS_TURN = Attr(SELF, enums.ACTIVATIONS_THIS_TURN)
+CREATOR = Attr(SELF, GameTag.CREATOR)
+# CONTROLLER_CLASS - Get the class of the controller (for RandomCollectible filters)
+CONTROLLER_CLASS = lambda: None  # Placeholder, will be evaluated at runtime
+
+# Deck position selectors
+def TOP(selector, sort_key=None):
+    """Return the top card(s) from the selector results, optionally sorted by a key"""
+    if sort_key is not None:
+        # If a sort key is provided, return the card with the highest value
+        # This is used for things like "draw your highest cost spell"
+        from ..dsl.selector import FuncSelector
+        return FuncSelector(
+            lambda entities, src: sorted(
+                selector.eval(entities, src) if isinstance(selector, Selector) else entities,
+                key=lambda e: getattr(e, sort_key.lower() if isinstance(sort_key, str) else 'cost', 0),
+                reverse=True
+            )[:1]
+        )
+    # If no sort key, just return the first card
+    return selector[0] if isinstance(selector, Selector) else selector
+
+# Additional common selectors
+SUMMONED = IN_PLAY  # Cards that have been summoned
+PLAYED = IN_PLAY  # Cards that have been played
+ANOTHER_CLASS = FuncSelector(lambda entities, src: entities)  # Placeholder for another class filter
+WATCHPOST = FuncSelector(lambda entities, src: [e for e in entities if 'Watch Post' in getattr(e, 'name', '')])  # Watch Post minions
+PARENT_CARD = Attr(SELF, GameTag.PARENT_CARD)  # Parent card reference
+HEALED_THIS_TURN = lambda player: Attr(player, "healed_this_turn")  # Amount healed this turn
+DRAWN_THIS_TURN = FuncSelector(lambda entities, src: [e for e in entities if getattr(e, 'drawn_this_turn', False)])  # Cards drawn this turn
+CARDS_PLAYED_THIS_TURN = lambda player: Attr(player, "cards_played_this_turn")  # Cards played this turn
+ELEMENTAL_PLAYED_LAST_TURN = lambda player: Attr(player, "elemental_played_last_turn")  # Elemental played last turn
 
 ALL_PLAYERS = IN_PLAY + PLAYER
 ALL_HEROES = IN_PLAY + HERO

@@ -143,7 +143,7 @@ class TTN_744:
 
 class TTN_744e:
     tags = {GameTag.CANT_PLAY: True}
-    events = OwnTurnEnd(CONTROLLER).on(Destroy(SELF))
+    events = OWN_TURN_END.on(Destroy(SELF))
 
 
 class YOG_513:

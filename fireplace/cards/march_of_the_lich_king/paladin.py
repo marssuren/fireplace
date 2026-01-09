@@ -13,7 +13,7 @@ class RLK_527:
 class RLK_527e:
     """时空守卫增益 (Timewarden Buff)"""
     # 在下个回合结束时移除
-    events = OwnTurnEnds(CONTROLLER).after(Destroy(SELF))
+    events = OWN_TURN_END.after(Destroy(SELF))
     update = Summon(CONTROLLER, DRAGON).after(Buff(Summon.CARD, "RLK_527e2"))
 
 
@@ -87,7 +87,7 @@ class RLK_918e:
 class RLK_918e2:
     """英雄攻击力增益 (Hero Attack Buff)"""
     tags = {GameTag.ATK: 2}
-    events = OwnTurnEnds(CONTROLLER).on(Destroy(SELF))
+    events = OWN_TURN_END.on(Destroy(SELF))
 
 
 class RLK_919:
@@ -112,7 +112,7 @@ class RLK_919e:
         # 初始化剩余回合数为2（双方各1回合）
         target.anachronos_turns_remaining = 2
     
-    events = OwnTurnBegins(CONTROLLER).on(
+    events = OWN_TURN_BEGIN.on(
         lambda self: [
             # 减少剩余回合数
             setattr(self.owner, 'anachronos_turns_remaining', self.owner.anachronos_turns_remaining - 1),
@@ -176,7 +176,7 @@ class RLK_923e:
     +3攻击力
     """
     tags = {GameTag.ATK: 3}
-    events = OwnTurnEnds(CONTROLLER).on(Destroy(SELF))
+    events = OWN_TURN_END.on(Destroy(SELF))
 
 
 class RLK_923e2:
@@ -184,7 +184,7 @@ class RLK_923e2:
     +3攻击力和吸血
     """
     tags = {GameTag.ATK: 3, GameTag.LIFESTEAL: True}
-    events = OwnTurnEnds(CONTROLLER).on(Destroy(SELF))
+    events = OWN_TURN_END.on(Destroy(SELF))
 
 
 class RLK_924:
@@ -220,7 +220,7 @@ class RLK_927e:
             Buff(Play.CARD, "RLK_927e2")
         ).then(Destroy(SELF)),
         # 回合结束时移除buff
-        OwnTurnEnds(CONTROLLER).on(Destroy(SELF))
+        OWN_TURN_END.on(Destroy(SELF))
     )
 
 

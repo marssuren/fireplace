@@ -434,8 +434,7 @@ class TLC_460e:
     events = GenericChoice(CONTROLLER).after(
         lambda self, source: [
             # 更新任务进度
-            SetTag(CONTROLLER, GameTag.QUEST_PROGRESS, 
-                   min(self.controller.quest_progress + 1, self.controller.quest_target)),
+            SetTag(CONTROLLER, {GameTag.QUEST_PROGRESS: min(self.controller.quest_progress + 1, self.controller.quest_target})),
             
             # 检查是否完成任务
             Find(self.controller.quest_progress >= self.controller.quest_target) & [

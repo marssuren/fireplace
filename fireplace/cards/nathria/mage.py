@@ -121,7 +121,7 @@ class REV_504e:
     """Solid Alibi Effect - 脱罪力证效果"""
     # 限制英雄每次只受到1点伤害
     max_health_damage = 1
-    events = OwnTurnBegin(CONTROLLER).on(Destroy(SELF))
+    events = OWN_TURN_BEGIN.on(Destroy(SELF))
 
 
 class REV_513:
@@ -137,7 +137,7 @@ all enemies.
         if len(self.controller.secrets) > 0:
             yield Hit(ENEMY_CHARACTERS, 2)
 
-    events = OwnTurnEnd(CONTROLLER).on(_trigger_if_has_secret)
+    events = OWN_TURN_END.on(_trigger_if_has_secret)
 
 
 class REV_840:

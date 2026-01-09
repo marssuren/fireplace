@@ -377,7 +377,7 @@ class NEW1_018:
     """Bloodsail Raider / 血帆袭击者
     战吼： 获得等同于你的武器攻击力的攻击力。"""
 
-    play = Find(FRIENDLY_WEAPON) & Buff(SELF, "NEW1_018e", atk=ATK(FRIENDLY_WEAPON))
+    play = (Find(FRIENDLY_WEAPON), Buff(SELF, "NEW1_018e", atk=ATK(FRIENDLY_WEAPON)))
 
 
 class NEW1_022:

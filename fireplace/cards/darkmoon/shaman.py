@@ -15,11 +15,11 @@ class DMF_703:
         GameTag.ATK: 0,
         GameTag.HEALTH: 4,
         GameTag.COST: 3,
-        GameTag.RACE: Race.TOTEM,
+        GameTag.CARDRACE: Race.TOTEM,
     }
     
     # 回合结束时，给所有其他图腾+1/+1
-    events = OwnTurnEnd(CONTROLLER).on(
+    events = OWN_TURN_END.on(
         Buff(FRIENDLY_MINIONS + TOTEM - SELF, "DMF_703e"),  # 战场上的其他图腾
         Buff(FRIENDLY_HAND + TOTEM, "DMF_703e"),             # 手牌中的图腾
         Buff(FRIENDLY_DECK + TOTEM, "DMF_703e"),             # 牌库中的图腾

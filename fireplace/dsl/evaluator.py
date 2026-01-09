@@ -141,6 +141,29 @@ class Dead(Evaluator):
         return False
 
 
+class Alive(Evaluator):
+    """
+    Evaluates to True if every target in \a selector is alive (not dead)
+    """
+
+    def __init__(self, selector):
+        super().__init__()
+        self.selector = selector
+
+    def check(self, source):
+        from .selector import Selector
+
+        if isinstance(self.selector, Selector):
+            entities = self.selector.eval(source.game, source)
+        else:
+            entity = self.selector.evaluate(source)
+            entities = [entity] if entity else []
+        for target in entities:
+            if target.dead:
+                return False
+        return True
+
+
 class Find(Evaluator):
     """
     Evaluates to True if \a selector has a match.

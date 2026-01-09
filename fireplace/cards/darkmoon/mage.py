@@ -25,7 +25,7 @@ class DMF_100t:
         GameTag.ATK: 1,
         GameTag.HEALTH: 2,
         GameTag.COST: 1,
-        GameTag.RACE: Race.ELEMENTAL,
+        GameTag.CARDRACE: Race.ELEMENTAL,
     }
 
 
@@ -58,7 +58,7 @@ class DMF_102:
     # 入场时给控制者添加追踪buff
     play = Buff(CONTROLLER, "DMF_102e")
     # 每回合开始时重新添加buff（如果随从还在场）
-    events = OwnTurnBegin(CONTROLLER).on(Buff(CONTROLLER, "DMF_102e"))
+    events = OWN_TURN_BEGIN.on(Buff(CONTROLLER, "DMF_102e"))
 
 
 class DMF_102e:
@@ -80,7 +80,7 @@ class DMF_106:
         GameTag.HEALTH: 4,
         GameTag.COST: 4,
     }
-    play = Find(FRIENDLY_SECRETS) & Summon(CONTROLLER, ExactCopy(SELF))
+    play = (Find(FRIENDLY_SECRETS), Summon(CONTROLLER, ExactCopy(SELF)))
 
 
 class DMF_109:
@@ -153,7 +153,7 @@ class DMF_104t:
         GameTag.ATK: 8,
         GameTag.HEALTH: 8,
         GameTag.COST: 8,
-        GameTag.RACE: Race.ELEMENTAL,
+        GameTag.CARDRACE: Race.ELEMENTAL,
     }
 
 

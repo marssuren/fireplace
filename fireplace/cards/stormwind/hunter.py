@@ -133,7 +133,7 @@ class SW_321:
         PlayReq.REQ_TARGET_TO_PLAY: 0,
     }
     
-    play = Hit(TARGET, 3) & Buff(FRIENDLY_HERO, "SW_321e")
+    play = (Hit(TARGET, 3), Buff(FRIENDLY_HERO, "SW_321e"))
 
 
 class SW_321e:

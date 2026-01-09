@@ -42,7 +42,7 @@ class DED_511:
     }
     
     # 回合结束时变形武器
-    events = OwnTurnEnds(CONTROLLER).on(
+    events = OWN_TURN_END.on(
         lambda self: self._transform_weapon()
     )
     
@@ -214,7 +214,7 @@ class SW_032:
         GameTag.COST: 3,
     }
     
-    play = Buff(FRIENDLY_HAND + ELEMENTAL, "SW_032e") & Buff(FRIENDLY_DECK + ELEMENTAL, "SW_032e")
+    play = (Buff(FRIENDLY_HAND + ELEMENTAL, "SW_032e"), Buff(FRIENDLY_DECK + ELEMENTAL, "SW_032e"))
 
 
 class SW_032e:
@@ -364,7 +364,7 @@ class SW_115e:
                         pass
     
     # 回合结束时重置
-    events_turn_end = OwnTurnEnds(CONTROLLER).on(
+    events_turn_end = OWN_TURN_END.on(
         lambda self: setattr(self.controller, 'bolner_first_battlecry_this_turn', None)
     )
 

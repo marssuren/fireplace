@@ -55,7 +55,7 @@ class ICC_314t5:
     requirements = {
         PlayReq.REQ_TARGET_TO_PLAY: 0,
     }
-    play = Find(TARGET + ENEMY) & Hit(TARGET, 5) | Heal(TARGET, 5)
+    play = (Find(TARGET + ENEMY), Hit(TARGET, 5)) | Heal(TARGET, 5)
 
 
 class ICC_314t6:

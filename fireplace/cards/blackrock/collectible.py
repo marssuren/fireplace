@@ -49,7 +49,7 @@ class BRM_010:
     抉择：变形成为5/2的随从；或者变形成为2/5的随从。"""
 
     choose = ("BRM_010a", "BRM_010b")
-    play = ChooseBoth(CONTROLLER) & Morph(SELF, "OG_044b")
+    play = (ChooseBoth(CONTROLLER), Morph(SELF, "OG_044b"))
 
 
 class BRM_010a:

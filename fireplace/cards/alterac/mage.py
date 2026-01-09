@@ -104,7 +104,7 @@ class AV_282:
     """堆雪人 / Build a Snowman
     召唤两个2/3的雪人。冻结两个随机敌方随从。"""
     play = (
-        Summon(CONTROLLER, "AV_282t") * 2 &
+        Summon(CONTROLLER, "AV_282t") * 2,
         Freeze(RANDOM_ENEMY_MINION) * 2
     )
 
@@ -165,7 +165,7 @@ class AV_290:
 
     # 伪奥秘事件：每回合结束时造成伤害
     pseudo_secret = [
-        OwnTurnEnds(CONTROLLER).on(
+        OWN_TURN_END.on(
             Hit(ENEMY_MINIONS, 1)
         ).then(
             lambda self: self.decrement_duration()

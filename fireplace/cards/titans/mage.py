@@ -15,7 +15,7 @@ class TTN_077:
         GameTag.ATK: 2,
         GameTag.HEALTH: 3,
         GameTag.COST: 2,
-        GameTag.RACE: Race.MECHANICAL,
+        GameTag.CARDRACE: Race.MECHANICAL,
         GameTag.MAGNETIC: True,
     }
     
@@ -40,7 +40,7 @@ class TTN_095:
         GameTag.ATK: 2,
         GameTag.HEALTH: 2,
         GameTag.COST: 2,
-        GameTag.RACE: Race.ELEMENTAL,
+        GameTag.CARDRACE: Race.ELEMENTAL,
     }
     
     play = Buff(CONTROLLER, "TTN_095e")
@@ -109,7 +109,7 @@ class YOG_519:
         GameTag.ATK: 7,
         GameTag.HEALTH: 4,
         GameTag.COST: 5,
-        GameTag.RACE: Race.ELEMENTAL,
+        GameTag.CARDRACE: Race.ELEMENTAL,
     }
     
     def play(self):
@@ -128,7 +128,7 @@ class TTN_475:
         GameTag.ATK: 4,
         GameTag.HEALTH: 4,
         GameTag.COST: 4,
-        GameTag.RACE: Race.ELEMENTAL,
+        GameTag.CARDRACE: Race.ELEMENTAL,
     }
     
     def play(self):
@@ -177,7 +177,7 @@ class TTN_478:
         GameTag.ATK: 3,
         GameTag.HEALTH: 4,
         GameTag.COST: 4,
-        GameTag.RACE: Race.MECHANICAL,
+        GameTag.CARDRACE: Race.MECHANICAL,
     }
     
     def play(self):
@@ -268,7 +268,7 @@ class TTN_480t:
     tags = {
         GameTag.ATK: 4,
         GameTag.HEALTH: 5,
-        GameTag.RACE: Race.ELEMENTAL,
+        GameTag.CARDRACE: Race.ELEMENTAL,
     }
     def play(self):
         # 随机额外效果（嘲讽、冲锋、圣盾等）
@@ -300,7 +300,7 @@ class TTN_071:
         GameTag.HEALTH: 6,
         GameTag.COST: 6,
         GameTag.LEGENDARY: True,
-        GameTag.RACE: Race.DRAGON,
+        GameTag.CARDRACE: Race.DRAGON,
     }
     
     @property

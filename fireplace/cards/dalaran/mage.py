@@ -96,7 +96,7 @@ class DAL_577:
         PlayReq.REQ_TARGET_TO_PLAY: 0,
         PlayReq.REQ_MINION_TARGET: 0,
     }
-    play = Find(TARGET + FROZEN) & Hit(TARGET, 2) | Freeze(TARGET)
+    play = (Find(TARGET + FROZEN), Hit(TARGET, 2)) | Freeze(TARGET)
 
 
 class DAL_577ts(DAL_577):

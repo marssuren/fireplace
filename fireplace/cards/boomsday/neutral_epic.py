@@ -25,7 +25,7 @@ class BOT_296:
     嘲讽，战吼：如果你有十个法力水晶，获得+10攻击力。"""
 
     # [x]<b>Taunt</b> <b>Battlecry:</b> If you have 10 Mana Crystals, gain +10 Attack.
-    play = AT_MAX_MANA(CONTROLLER) & Buff(SELF, "BOT_296e")
+    play = (AT_MAX_MANA(CONTROLLER), Buff(SELF, "BOT_296e"))
 
 
 BOT_296e = buff(atk=10)

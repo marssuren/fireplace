@@ -69,7 +69,7 @@ class GIL_905:
     战吼：如果在本回合中有一个随从死亡，获得剧毒。"""
 
     # <b>Battlecry:</b> If a minion died this turn, gain <b>Poisonous</b>.
-    play = Find(KILLED_THIS_TURN) & GivePoisonous(SELF)
+    play = (Find(KILLED_THIS_TURN), GivePoisonous(SELF))
 
 
 ##

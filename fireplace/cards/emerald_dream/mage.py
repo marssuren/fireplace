@@ -201,7 +201,7 @@ class FIR_911:
     
     class Hand:
         # 每回合开始时增加持有回合数
-        events = OwnTurnBegin(CONTROLLER).on(
+        events = OWN_TURN_BEGIN.on(
             lambda self: [
                 # 增加持有回合数
                 Buff(SELF, "FIR_911e"),

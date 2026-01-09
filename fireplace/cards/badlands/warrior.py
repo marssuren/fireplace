@@ -102,20 +102,16 @@ class WW_347e:
 # RARE
 
 class DEEP_010:
-    """余震 - Aftershocks
+    """余震 / Aftershocks
     对所有随从造成$1点伤害，造成三次。如果你在上个回合施放过法术，则法力值消耗减少（2）点。
-    Deal $1 damage to all minions, three times. Costs (2) less if you cast a spell last turn.
-    """
+    Deal $1 damage to all minions, three times. Costs (2) less if you cast a spell last turn."""
     # Type: SPELL | Cost: 4 | Rarity: RARE | School: NATURE
     def play(self):
         for _ in range(3):
             yield Hit(ALL_MINIONS, 1)
     
-    class Hand:
-        # 检查上回合是否施放过法术，减少费用
-        update = Refresh(SELF, {
-            GameTag.COST: (CONTROLLER.spells_played_last_turn > 0) & -2
-        })
+    # 检查上回合是否施放过法术，减少费用
+    cost_mod = lambda self, i: -2 if getattr(self.controller, 'spells_played_last_turn', 0) > 0 else 0
 
 
 class WW_346:

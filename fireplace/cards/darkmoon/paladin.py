@@ -222,7 +222,7 @@ class DMF_238t:
         GameTag.ATK: 6,
         GameTag.HEALTH: 6,
         GameTag.COST: 6,
-        GameTag.RACE: Race.ELEMENTAL,
+        GameTag.CARDRACE: Race.ELEMENTAL,
         GameTag.TAUNT: True,
     }
 

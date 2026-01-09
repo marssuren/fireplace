@@ -72,7 +72,7 @@ class TSC_653:
         GameTag.ATK: 1,
         GameTag.HEALTH: 3,
         GameTag.COST: 1,
-        GameTag.RACE: Race.BEAST,
+        GameTag.CARDRACE: Race.BEAST,
     }
     # 创建复制，Buff，然后放入牌库底部
     deathrattle = PutOnBottom(CONTROLLER, Buff(Copy(SELF), "TSC_653e"))
@@ -152,7 +152,7 @@ class TID_000:
         GameTag.COST: 2,
     }
     # 检查未使用的法力水晶 (Current Mana > 0)
-    events = OwnTurnEnd(CONTROLLER).on(
+    events = OWN_TURN_END.on(
         (MANA(CONTROLLER) > 0) & Buff(SELF, "TID_000e")
     )
 
@@ -174,7 +174,7 @@ class TID_002:
         GameTag.HEALTH: 3,
         GameTag.COST: 3,
     }
-    play = Find(FRIENDLY + SPELL + NATURE + PLAYED_THIS_TURN) & Buff(FRIENDLY_MINIONS - SELF, "TID_002e")
+    play = (Find(FRIENDLY + SPELL + NATURE + PLAYED_THIS_TURN), Buff(FRIENDLY_MINIONS - SELF, "TID_002e"))
 
 
 class TID_002e:
@@ -228,7 +228,7 @@ class TSC_650t:
         GameTag.HEALTH: 3,
         GameTag.COST: 3, # Guess cost
         GameTag.RUSH: True,
-        GameTag.RACE: Race.BEAST,
+        GameTag.CARDRACE: Race.BEAST,
     }
 
 
@@ -255,7 +255,7 @@ class TSC_652t:
     tags = {
         GameTag.COST: 1,
         GameTag.TAUNT: True,
-        GameTag.RACE: Race.ELEMENTAL # Usually Plant is elemental or treant? It says "Plant". No race implied or Treant? 
+        GameTag.CARDRACE: Race.ELEMENTAL # Usually Plant is elemental or treant? It says "Plant". No race implied or Treant? 
         # Check race later.
     }
 
@@ -269,7 +269,7 @@ class TSC_026:
         GameTag.ATK: 6,
         GameTag.HEALTH: 5,
         GameTag.COST: 7,
-        GameTag.RACE: Race.BEAST,
+        GameTag.CARDRACE: Race.BEAST,
         GameTag.COLOSSAL: 1,
     }
     colossal_appendages = ["TSC_026t"]
@@ -297,7 +297,7 @@ class TSC_026t:
         GameTag.HEALTH: 8,
         GameTag.COST: 5,
         GameTag.TAUNT: True,
-        GameTag.RACE: Race.BEAST,
+        GameTag.CARDRACE: Race.BEAST,
     }
 
 
@@ -317,7 +317,7 @@ class TSC_658:
         GameTag.ATK: 4,
         GameTag.HEALTH: 5,
         GameTag.COST: 7,
-        GameTag.RACE: Race.NAGA,
+        GameTag.CARDRACE: Race.NAGA,
     }
     
     def play(self):

@@ -71,6 +71,16 @@ class EventListener:
 
     def __repr__(self):
         return "<EventListener %r>" % (self.trigger)
+    
+    def then(self, *actions):
+        """
+        链式添加后续动作
+        用于在事件触发后执行额外的动作
+        """
+        if not isinstance(self.actions, tuple):
+            self.actions = (self.actions,)
+        self.actions = self.actions + actions
+        return self
 
 
 class ActionMeta(type):

@@ -21,7 +21,7 @@ class SCH_337:
     在你的回合结束时，召唤两个3/3的恶棍，攻击随机敌人。"""
 
     # 8费 6/8 在你的回合结束时，召唤两个3/3的恶棍，攻击随机敌人
-    events = OwnTurnEnds(CONTROLLER).on(Summon(CONTROLLER, "SCH_337t") * 2)
+    events = OWN_TURN_END.on(Summon(CONTROLLER, "SCH_337t") * 2)
 
 
 class SCH_621:

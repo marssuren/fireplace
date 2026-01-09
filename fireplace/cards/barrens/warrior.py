@@ -131,22 +131,29 @@ class BAR_844:
 class BAR_845:
     """Rancor - 仇怨累积
     Deal $2 damage to all minions. Gain 2 Armor for each destroyed.
-    对所有随从造成$2点伤害。每有一个随从被摧毁，便获得2点护甲值。
+    对所有随从造成$2点伤害。每有一个随从被摧毁,便获得2点护甲值。
     """
     requirements = {
         PlayReq.REQ_MINION_TARGET: 0,
     }
-    play = Hit(ALL_MINIONS, 2).then(
-        GainArmor(FRIENDLY_HERO, 2 * Count(Dead(Hit.TARGETS)))
-    )
+    def play(self):
+        # 记录造成伤害前场上的随从
+        minions_before = list(self.game.board)
+        yield Hit(ALL_MINIONS, 2)
+        # 计算死亡的随从数量
+        minions_after = list(self.game.board)
+        killed_count = len(minions_before) - len(minions_after)
+        # 获得相应的护甲
+        if killed_count > 0:
+            yield GainArmor(FRIENDLY_HERO, 2 * killed_count)
 
 
 class BAR_846:
     """Mor'shan Elite - 莫尔杉精锐
     Taunt. Battlecry: If your hero attacked this turn, summon a copy of this.
-    嘲讽。战吼：如果你的英雄在本回合中攻击过，召唤一个该随从的复制。
+    嘲讽。战吼:如果你的英雄在本回合中攻击过,召唤一个该随从的复制。
     """
-    powered_up = ATTACKED_THIS_TURN(FRIENDLY_HERO) > 0
+    powered_up = Attr(FRIENDLY_HERO, GameTag.NUM_ATTACKS_THIS_TURN) > 0
     play = powered_up & Summon(CONTROLLER, Copy(SELF))
 
 

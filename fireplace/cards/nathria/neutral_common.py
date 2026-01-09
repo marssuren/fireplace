@@ -194,7 +194,7 @@ class REV_378e:
     # 对手的随从+1费
     update = Refresh(ENEMY_HAND + MINION, buff="REV_378e2")
     # 对手回合开始时移除
-    events = OwnTurnBegin(OPPONENT).on(Destroy(SELF))
+    events = BeginTurn(OPPONENT).on(Destroy(SELF))
 
 
 class REV_378e2:

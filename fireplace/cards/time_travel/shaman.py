@@ -130,7 +130,7 @@ class TIME_214:
             source.controller == self.controller and
             [
                 # 将伤害设置为0（取消伤害）
-                SetTag(target, (GameTag.PREDAMAGE, 0)),
+                SetTag(target, {(GameTag.PREDAMAGE: 0})),
                 # 给予 +2/+1
                 Buff(SELF, "TIME_214e")
             ]
@@ -271,7 +271,7 @@ class TIME_217:
             source.controller == self.controller and
             [
                 # 将伤害设置为0（取消伤害）
-                SetTag(target, (GameTag.PREDAMAGE, 0)),
+                SetTag(target, {(GameTag.PREDAMAGE: 0})),
                 # 召唤一个随机5费随从
                 Summon(CONTROLLER, RandomCollectible(card_type=CardType.MINION, cost=5))
             ]

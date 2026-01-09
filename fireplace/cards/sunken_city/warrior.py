@@ -9,7 +9,7 @@ class TID_714:
     """火成熔岩吞食者 - 4费 3/5
     嘲讽。战吼：探底。获得等同于选中的牌的法力值消耗的护甲值"""
     tags = {GameTag.TAUNT: True}
-    play = Dredge(CONTROLLER) & GainArmor(CONTROLLER, COST(DREDGED_CARD))
+    play = (Dredge(CONTROLLER), GainArmor(CONTROLLER, COST(DREDGED_CARD)))
 
 
 class TID_715:
@@ -30,7 +30,7 @@ class TID_715e:
 class TID_716:
     """潮汐亡魂 - 8费 5/8
     战吼：造成5点伤害。获得8点护甲值"""
-    play = Hit(TARGET, 5) & GainArmor(CONTROLLER, 8)
+    play = (Hit(TARGET, 5), GainArmor(CONTROLLER, 8))
 
 
 class TSC_659:
@@ -62,7 +62,7 @@ class TSC_917:
     """黑鳞蛮兵 - 7费 5/6
     嘲讽。战吼：如果你装备着武器，召唤一个5/6并具有突袭的纳迦"""
     tags = {GameTag.TAUNT: True}
-    play = Find(FRIENDLY_WEAPON) & Summon(CONTROLLER, "TSC_917t")
+    play = (Find(FRIENDLY_WEAPON), Summon(CONTROLLER, "TSC_917t"))
 
 
 class TSC_939:
@@ -93,7 +93,7 @@ class TSC_940e:
 class TSC_941:
     """保卫城市 - 2费法术
     获得3点护甲值。召唤一个2/3并具有嘲讽的纳迦"""
-    play = GainArmor(CONTROLLER, 3) & Summon(CONTROLLER, "TSC_941t")
+    play = (GainArmor(CONTROLLER, 3), Summon(CONTROLLER, "TSC_941t"))
 
 
 class TSC_942:
@@ -114,7 +114,7 @@ class TSC_942e:
 class TSC_943:
     """艾什凡女勋爵 - 5费 5/5
     战吼：使你手牌，牌库和战场上的所有武器获得+1/+1"""
-    play = Buff(FRIENDLY_HAND + WEAPON, "TSC_943e") & Buff(FRIENDLY_DECK + WEAPON, "TSC_943e") & Buff(FRIENDLY_WEAPON, "TSC_943e")
+    play = (Buff(FRIENDLY_HAND + WEAPON, "TSC_943e"), Buff(FRIENDLY_DECK + WEAPON, "TSC_943e"), Buff(FRIENDLY_WEAPON, "TSC_943e"))
 
 
 class TSC_943e:

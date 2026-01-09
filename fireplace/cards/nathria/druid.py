@@ -16,7 +16,7 @@ class MAW_024:
 class MAW_024e:
     """Dew Process Effect - 私法程序效果"""
     # 回合开始时额外抽一张牌
-    events = OwnTurnBegin(CONTROLLER).on(Draw(CONTROLLER))
+    events = OWN_TURN_BEGIN.on(Draw(CONTROLLER))
 
 
 class MAW_025:

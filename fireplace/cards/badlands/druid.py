@@ -37,7 +37,7 @@ class DEEP_028t:
         GameTag.ATK: 3,
         GameTag.HEALTH: 7,
         GameTag.TAUNT: True,
-        GameTag.RACE: Race.ELEMENTAL,
+        GameTag.CARDRACE: Race.ELEMENTAL,
     }
 
 
@@ -154,7 +154,7 @@ class DEEP_027t:
     tags = {
         GameTag.ATK: 6,
         GameTag.HEALTH: 8,
-        GameTag.RACE: Race.ELEMENTAL,
+        GameTag.CARDRACE: Race.ELEMENTAL,
         GameTag.CARDTYPE: CardType.MINION
     }
     # 锻造版本没有战吼，直接召唤即可
@@ -280,7 +280,7 @@ class WW_824t:
     }
     
     # 地标的被动效果：回合结束时召唤龙
-    events = OwnTurnEnd(CONTROLLER).on(
+    events = OWN_TURN_END.on(
         Summon(CONTROLLER, RandomDragon())
     )
 

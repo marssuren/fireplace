@@ -101,11 +101,10 @@ class BAR_045:
     Battlecry: If you played an Elemental last turn, gain Rush and Windfury.
     战吼：如果你在上个回合打出过元素，获得突袭和风怒。
     """
-    powered_up = ELEMENTAL_PLAYED_LAST_TURN(CONTROLLER) > 0
-    play = powered_up & (
-        SetTag(SELF, GameTag.RUSH, True),
-        SetTag(SELF, GameTag.WINDFURY, True),
-    )
+    def play(self):
+        if getattr(self.controller, 'elemental_played_last_turn', 0) > 0:
+            yield SetTag(SELF, {GameTag.RUSH: True})
+            yield SetTag(SELF, {GameTag.WINDFURY: True})
 
 
 class BAR_048:
@@ -135,14 +134,14 @@ class BAR_751:
 class BAR_848:
     """Lilypad Lurker - 荷塘潜伏者
     Battlecry: If you played an Elemental last turn, transform an enemy minion into a 0/1 Frog with Taunt.
-    战吼：如果你在上个回合打出过元素，将一个敌方随从变形成为一个0/1并具有嘲讽的青蛙。
+    战吼:如果你在上个回合打出过元素,将一个敌方随从变形成为一个0/1并具有嘲讽的青蛙。
     """
     requirements = {
         PlayReq.REQ_TARGET_IF_AVAILABLE: 0,
         PlayReq.REQ_MINION_TARGET: 0,
         PlayReq.REQ_ENEMY_TARGET: 0,
     }
-    powered_up = ELEMENTAL_PLAYED_LAST_TURN(CONTROLLER) > 0
+    powered_up = ELEMENTAL_PLAYED_LAST_TURN
     play = powered_up & Morph(TARGET, "hexfrog")
 
 
@@ -159,10 +158,10 @@ class BAR_860:
 class WC_005:
     """Primal Dungeoneer - 原初地下城历险家
     Battlecry: Draw a spell. If it's a Nature spell, also draw an Elemental.
-    战吼：抽一张法术牌。如果是自然法术，同时抽一张元素牌。
+    战吼:抽一张法术牌。如果是自然法术,同时抽一张元素牌。
     """
     play = Draw(CONTROLLER).then(
-        Find(Draw.CARDS + SPELL + NATURE) & ForceDraw(RANDOM(FRIENDLY_DECK + ELEMENTAL))
+        Find(Draw.CARD + SPELL + NATURE) & ForceDraw(RANDOM(FRIENDLY_DECK + ELEMENTAL))
     )
 
 

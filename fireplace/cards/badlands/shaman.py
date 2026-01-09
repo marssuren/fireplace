@@ -226,19 +226,28 @@ class WW_010:
 class WW_010t:
     """九蛙法杖 - Staff of the Nine Frogs
     在你的英雄攻击后，召唤一只1/1并具有嘲讽的青蛙。（每只青蛙都比上一只更大！）
-    After your hero attacks, summon a 1/1 Frog with Taunt. (Each Frog is bigger than the last!)
-    """
+    After your hero attacks, summon a 1/1 Frog with Taunt. (Each Frog is bigger than the last!)"""
     # Type: WEAPON | Cost: 5 | Attack: 2 | Durability: 9
     # 每次英雄攻击后召唤的青蛙会递增（1/1, 2/2, 3/3...）
     # 使用武器的progress属性追踪青蛙大小
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if not hasattr(self, 'progress'):
+            self.progress = 0
+    
+    def trigger_after_hero_attack(self):
+        """英雄攻击后触发"""
+        # 增加计数
+        self.progress += 1
+        # 召唤青蛙，大小为 progress / progress
+        frog = yield Summon(CONTROLLER, "WW_010t2")
+        if frog:
+            # 设置青蛙的属性
+            yield Buff(frog, "WW_010t2e", atk=self.progress, max_health=self.progress)
+    
     events = Attack(FRIENDLY_HERO).after(
-        # 召唤青蛙，大小为 (progress + 1) / (progress + 1)
-        Summon(CONTROLLER, "WW_010t2"),
-        # 给召唤的青蛙设置属性
-        SetAttr(Summon.CARD, "atk", Attr(SELF, "progress") + 1),
-        SetAttr(Summon.CARD, "max_health", Attr(SELF, "progress") + 1),
-        # 增加progress计数
-        AddProgress(SELF, SELF, 1)
+        lambda self: self.trigger_after_hero_attack()
     )
 
 
@@ -252,6 +261,12 @@ class WW_010t2:
         GameTag.TAUNT: True,
         GameTag.CARDRACE: Race.BEAST
     }
+
+
+class WW_010t2e:
+    """青蛙属性增益"""
+    # 动态设置的属性增益
+    pass
 
 
 

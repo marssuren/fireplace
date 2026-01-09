@@ -12,7 +12,7 @@ class AV_266:
     """寒风 / Windchill
     冻结一个随从。抽一张牌。"""
     requirements = {PlayReq.REQ_TARGET_TO_PLAY: 0, PlayReq.REQ_MINION_TARGET: 0}
-    play = Freeze(TARGET) + Draw(CONTROLLER)
+    play = (Freeze(TARGET), Draw(CONTROLLER))
 
 
 # ========== 2费法术 ==========
@@ -20,7 +20,7 @@ class AV_266:
 class ONY_013:
     """凛冽寒冷 / Bracing Cold
     为你的英雄恢复5点生命值。使你手牌中一张随机法术牌的法力值消耗减少（2）点。"""
-    play = Heal(FRIENDLY_HERO, 5) + Buff(RANDOM(FRIENDLY_HAND + SPELL), "ONY_013e")
+    play = (Heal(FRIENDLY_HERO, 5), Buff(RANDOM(FRIENDLY_HAND + SPELL), "ONY_013e"))
 
 
 class ONY_013e:
@@ -39,7 +39,7 @@ class AV_259:
 class AV_259e:
     """冰霜刺咬效果 - 下一个法术+2费"""
     events = Play(OPPONENT, SPELL).on(
-        Buff(Play.CARD, "AV_259e2") & Destroy(SELF)
+        (Buff(Play.CARD, "AV_259e2"), Destroy(SELF))
     )
 
 
@@ -116,7 +116,7 @@ class AV_268ps:
 
     # 伪奥秘事件：每回合结束时召唤元素并递减持续时间
     pseudo_secret = [
-        OwnTurnEnds(CONTROLLER).on(
+        OWN_TURN_END.on(
             Summon(CONTROLLER, "AV_268t")
         ).then(
             lambda self: self.decrement_duration()
@@ -143,8 +143,8 @@ class ONY_011:
 class AV_107:
     """冰川化 / Glaciate
     发现一张法力值消耗为（8）的随从牌。召唤它并使其冻结。"""
-    play = GenericChoice(CONTROLLER, Discover(CONTROLLER, RandomMinion(cost=8))) + (
-        Summon(CONTROLLER, Copy(GenericChoice.CARD)) + Freeze(Summon.CARD)
+    play = GenericChoice(CONTROLLER, Discover(CONTROLLER, RandomMinion(cost=8))).then(
+        lambda card: (Summon(CONTROLLER, Copy(card)), Freeze(Summon.CARD))
     )
 
 
@@ -159,8 +159,8 @@ class AV_260:
 class AV_251:
     """狡诈的雪怪哥布林 / Cheaty Snobold
     在一个敌人被冻结后，对其造成3点伤害。"""
-    events = Freeze(ENEMY).after(
-        Hit(Freeze.TARGET, 3)
+    events = SetTags(ENEMY, (GameTag.FROZEN,)).after(
+        Hit(SetTags.TARGET, 3)
     )
 
 

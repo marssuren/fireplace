@@ -64,7 +64,7 @@ class DMF_229e_tracker:
             Buff(FRIENDLY_HERO, "DMF_229e_hero"),
             Destroy(SELF)
         ),
-        OwnTurnEnds(CONTROLLER).on(Destroy(SELF))
+        OWN_TURN_END.on(Destroy(SELF))
     ]
 
 
@@ -209,7 +209,7 @@ class DMF_224e_tracker:
                     Attr(CONTROLLER, "expendable_performers_alive") - 1)
         ),
         # 回合结束时检查是否全部死亡
-        OwnTurnEnds(CONTROLLER).on(
+        OWN_TURN_END.on(
             Find(Attr(CONTROLLER, "expendable_performers_alive") == 0) & (
                 Summon(CONTROLLER, "DMF_224t") * 7
             ),
@@ -235,7 +235,7 @@ class DMF_225:
 class DMF_225e_temporary:
     """Temporary Copy Marker"""
     # 临时复制标记，回合结束时移除
-    events = OwnTurnEnds(CONTROLLER).on(Discard(OWNER))
+    events = OWN_TURN_END.on(Discard(OWNER))
 
 
 class DMF_249:
@@ -260,7 +260,7 @@ class DMF_249e_card1:
             SetAttr(CONTROLLER, "acrobatics_card1_played", 1),
             Destroy(SELF)
         ),
-        OwnTurnEnds(CONTROLLER).on(Destroy(SELF))
+        OWN_TURN_END.on(Destroy(SELF))
     ]
 
 
@@ -272,7 +272,7 @@ class DMF_249e_card2:
             SetAttr(CONTROLLER, "acrobatics_card2_played", 1),
             Destroy(SELF)
         ),
-        OwnTurnEnds(CONTROLLER).on(Destroy(SELF))
+        OWN_TURN_END.on(Destroy(SELF))
     ]
 
 
@@ -285,7 +285,7 @@ class DMF_249e_tracker:
         target.acrobatics_card2_played = 0
     
     # 回合结束时检查是否两张都打出了
-    events = OwnTurnEnds(CONTROLLER).on(
+    events = OWN_TURN_END.on(
         Find((Attr(CONTROLLER, "acrobatics_card1_played") == 1) & 
              (Attr(CONTROLLER, "acrobatics_card2_played") == 1)) & (
             Draw(CONTROLLER) * 2

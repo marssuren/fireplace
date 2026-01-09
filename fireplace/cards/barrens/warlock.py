@@ -18,14 +18,22 @@ class BAR_910:
 class BAR_911:
     """Soul Rend - 灵魂撕裂
     Deal $5 damage to all minions. Destroy a card in your deck for each killed.
-    对所有随从造成$5点伤害。每有一个随从死亡，便摧毁你牌库中的一张牌。
+    对所有随从造成$5点伤害。每有一个随从死亡,便摧毁你牌库中的一张牌。
     """
     requirements = {
         PlayReq.REQ_MINION_TARGET: 0,
     }
-    play = Hit(ALL_MINIONS, 5).then(
-        Destroy(RANDOM(FRIENDLY_DECK)) * Count(Dead(Hit.TARGETS))
-    )
+    def play(self):
+        # 记录造成伤害前场上的随从
+        minions_before = list(self.game.board)
+        yield Hit(ALL_MINIONS, 5)
+        # 计算死亡的随从数量
+        minions_after = list(self.game.board)
+        killed_count = len(minions_before) - len(minions_after)
+        # 摧毁相应数量的牌库卡牌
+        for _ in range(killed_count):
+            if self.controller.deck:
+                yield Destroy(RANDOM(FRIENDLY_DECK))
 
 
 class BAR_912:
@@ -165,9 +173,12 @@ class BAR_919t:
     tags = {
         GameTag.DORMANT: True,
     }
-    events = OWN_TURN_BEGIN.on(
-        Summon(CONTROLLER, "BAR_919t2") * (7 - Count(FRIENDLY_MINIONS))
-    )
+    def events(self):
+        def summon_imps(self):
+            count = 7 - len(self.controller.field)
+            for _ in range(count):
+                yield Summon(CONTROLLER, "BAR_919t2")
+        return OWN_TURN_BEGIN.on(summon_imps)
 
 
 class WC_021:
@@ -202,10 +213,10 @@ class WC_023:
     你每回合抽的第一张牌用生命值而非法力值来支付其费用。
     """
     events = (
-        OWN_TURN_BEGIN.on(SetTag(SELF, enums.ACTIVATIONS_THIS_TURN, 0)),
+        OWN_TURN_BEGIN.on(SetTag(SELF, {enums.ACTIVATIONS_THIS_TURN: 0})),
         Draw(CONTROLLER).after(
-            (Count(SELF + (ACTIVATIONS_THIS_TURN == 0))) & (
-                Buff(Draw.CARDS, "WC_023e"),
+            Find(SELF + (ACTIVATIONS_THIS_TURN == 0)) & (
+                Buff(Draw.CARD, "WC_023e"),
                 AddProgress(SELF, SELF, 1, "activations_this_turn"),
             )
         ),

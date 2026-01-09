@@ -18,7 +18,7 @@ class TRL_349:
     战吼：如果你装备着武器，发现一张 法术牌。"""
 
     # <b>Battlecry:</b> If you have a weapon equipped, <b>Discover</b> a spell.
-    play = Find(FRIENDLY_WEAPON) & DISCOVER(RandomSpell())
+    play = (Find(FRIENDLY_WEAPON), DISCOVER(RandomSpell()))
 
 
 class TRL_900:
@@ -114,7 +114,7 @@ class TRL_111:
     战吼：如果你控制一个野兽，便获得+1耐久度。"""
 
     # [x]<b>Battlecry:</b> If you control a Beast, gain +1 Durability.
-    play = Find(FRIENDLY_MINIONS + BEAST) & Buff(SELF, "TRL_111e1")
+    play = (Find(FRIENDLY_MINIONS + BEAST), Buff(SELF, "TRL_111e1"))
 
 
 TRL_111e1 = buff(health=1)

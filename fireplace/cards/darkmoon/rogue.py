@@ -114,7 +114,7 @@ class DMF_517e:
     tags = {
         GameTag.COST: SET(1),
     }
-    events = OwnTurnEnd(CONTROLLER).on(Destroy(SELF))
+    events = OWN_TURN_END.on(Destroy(SELF))
 
 
 ##
@@ -164,7 +164,7 @@ class DMF_518e:
     tags = {
         GameTag.IMMUNE: True,
     }
-    events = OwnTurnBegin(CONTROLLER).on(Destroy(SELF))
+    events = OWN_TURN_BEGIN.on(Destroy(SELF))
 
 
 class DMF_519:
@@ -188,7 +188,7 @@ class DMF_519t:
         GameTag.ATK: 2,
         GameTag.HEALTH: 2,
         GameTag.COST: 2,
-        GameTag.RACE: Race.PIRATE,
+        GameTag.CARDRACE: Race.PIRATE,
     }
 
 

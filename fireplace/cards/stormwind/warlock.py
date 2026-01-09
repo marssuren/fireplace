@@ -64,7 +64,7 @@ class DED_504t:
         GameTag.ATK: 1,
         GameTag.HEALTH: 1,
         GameTag.COST: 1,
-        GameTag.RACE: Race.DEMON,
+        GameTag.CARDRACE: Race.DEMON,
     }
 
 
@@ -176,7 +176,7 @@ class SW_085t:
         GameTag.ATK: 1,
         GameTag.HEALTH: 1,
         GameTag.COST: 3,
-        GameTag.RACE: Race.DEMON,
+        GameTag.CARDRACE: Race.DEMON,
         GameTag.TAUNT: True,
     }
 
@@ -230,7 +230,7 @@ class SW_087t:
         GameTag.ATK: 1,
         GameTag.HEALTH: 1,
         GameTag.COST: 4,
-        GameTag.RACE: Race.DEMON,
+        GameTag.CARDRACE: Race.DEMON,
     }
     # 无尽：死亡时召唤自己
     deathrattle = Summon(CONTROLLER, "SW_087t")
@@ -247,7 +247,7 @@ class SW_088:
         PlayReq.REQ_TARGET_TO_PLAY: 0,
     }
     
-    play = Hit(TARGET, 3) & Summon(CONTROLLER, "SW_088t") * 2
+    play = (Hit(TARGET, 3), Summon(CONTROLLER, "SW_088t") * 2)
 
 
 class SW_088t:
@@ -256,7 +256,7 @@ class SW_088t:
         GameTag.ATK: 1,
         GameTag.HEALTH: 3,
         GameTag.COST: 1,
-        GameTag.RACE: Race.DEMON,
+        GameTag.CARDRACE: Race.DEMON,
         GameTag.TAUNT: True,
     }
 
@@ -365,12 +365,12 @@ class SW_091e:
             target.sw_091_damage_this_turn = 0
     
     # 监听回合开始，重置计数
-    events_turn_start = OwnTurnBegins(CONTROLLER).on(
+    events_turn_start = OWN_TURN_BEGIN.on(
         lambda self: setattr(self.controller, 'sw_091_damage_this_turn', 0)
     )
     
     # 监听受到伤害（使用已有的 damage_taken_this_turn）
-    events_turn_end = OwnTurnEnds(CONTROLLER).on(
+    events_turn_end = OWN_TURN_END.on(
         lambda self: self._check_damage()
     )
     
@@ -425,7 +425,7 @@ class SW_092:
         GameTag.ATK: 8,
         GameTag.HEALTH: 6,
         GameTag.COST: 8,
-        GameTag.RACE: Race.DEMON,
+        GameTag.CARDRACE: Race.DEMON,
     }
     
     @property

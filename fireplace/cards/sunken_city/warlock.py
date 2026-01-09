@@ -34,7 +34,7 @@ class TSC_614:
         GameTag.ATK: 3,
         GameTag.HEALTH: 2,
         GameTag.COST: 2,
-        GameTag.RACE: Race.MURLOC,
+        GameTag.CARDRACE: Race.MURLOC,
     }
     deathrattle = Buff(FRIENDLY_HAND + MURLOC, "TSC_614e")
 
@@ -95,7 +95,7 @@ class TSC_753:
         GameTag.ATK: 3,
         GameTag.HEALTH: 4,
         GameTag.COST: 3,
-        GameTag.RACE: Race.MURLOC,
+        GameTag.CARDRACE: Race.MURLOC,
     }
     
     def play(self):
@@ -122,7 +122,7 @@ class TSC_955:
         GameTag.ATK: 2,
         GameTag.HEALTH: 3,
         GameTag.COST: 3,
-        GameTag.RACE: Race.NAGA,
+        GameTag.CARDRACE: Race.NAGA,
     }
     play = GiveAbyssalCurse(SELF, OPPONENT)
 
@@ -157,8 +157,8 @@ class TID_718e:
     tags = {
         GameTag.TAG_SCRIPT_DATA_NUM_1: 3, # Counter
     }
-    events = OwnTurnBegin(OWNER).on(
-        SetTag(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1, Attr(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1) - 1),
+    events = BeginTurn(OWNER).on(
+        SetTag(SELF, {GameTag.TAG_SCRIPT_DATA_NUM_1: Attr(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1}) - 1),
         (Attr(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1) <= 0) & Discard(OWNER)
     )
 
@@ -172,7 +172,7 @@ class TID_719:
         GameTag.ATK: 7,
         GameTag.HEALTH: 7,
         GameTag.COST: 5,
-        GameTag.RACE: Race.DEMON,
+        GameTag.CARDRACE: Race.DEMON,
     }
     play = Hit(FRIENDLY_HERO, 5)
     auras = [Buff(SELF, "TID_719e_Real")] 
@@ -220,7 +220,7 @@ class TSC_962:
         GameTag.ATK: 7,
         GameTag.HEALTH: 4,
         GameTag.COST: 8,
-        GameTag.RACE: Race.MURLOC,
+        GameTag.CARDRACE: Race.MURLOC,
         GameTag.COLOSSAL: 1,
     }
     colossal_appendages = ["TSC_962t"]
@@ -250,7 +250,7 @@ class TSC_962t:
         GameTag.ATK: 4,
         GameTag.HEALTH: 7,
         GameTag.COST: 4,
-        GameTag.RACE: Race.MURLOC,
+        GameTag.CARDRACE: Race.MURLOC,
         GameTag.TAUNT: True,
     }
 
@@ -264,7 +264,7 @@ class TSC_039:
         GameTag.ATK: 2,
         GameTag.HEALTH: 3,
         GameTag.COST: 2,
-        GameTag.RACE: Race.MURLOC,
+        GameTag.CARDRACE: Race.MURLOC,
     }
     play = PutOnBottom(CONTROLLER, "TSC_039t")
 
@@ -278,7 +278,7 @@ class TSC_039t:
         GameTag.ATK: 2,
         GameTag.HEALTH: 3,
         GameTag.COST: 2,
-        GameTag.RACE: Race.MURLOC,
+        GameTag.CARDRACE: Race.MURLOC,
     }
     # "Give your murlocs +1/+1" usually implies everywhere?
     # Or just board/hand?
@@ -306,6 +306,6 @@ class TSC_950t:
         GameTag.TAG_SCRIPT_DATA_NUM_1: 0, # Damage amount set at creation
     }
     class Hand:
-        events = OwnTurnBegin(CONTROLLER).on(
+        events = OWN_TURN_BEGIN.on(
             Hit(FRIENDLY_HERO, Attr(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1))
         )

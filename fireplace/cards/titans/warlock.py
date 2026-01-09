@@ -71,7 +71,7 @@ class TTN_486e:
         GameTag.CARDTYPE: CardType.ENCHANTMENT,
     }
     # 在你的下个回合开始时移除
-    events = OwnTurnBegin(CONTROLLER).on(Destroy(SELF))
+    events = OWN_TURN_BEGIN.on(Destroy(SELF))
 
 
 class YOG_517:
@@ -84,7 +84,7 @@ class YOG_517:
         GameTag.COST: 3,
     }
     
-    events = OwnTurnEnd(CONTROLLER).on(Give(CONTROLLER, "YOG_517t"))
+    events = OWN_TURN_END.on(Give(CONTROLLER, "YOG_517t"))
 
 
 class YOG_517t:
@@ -222,7 +222,7 @@ class TTN_490t2:
     tags = {
         GameTag.ATK: 3,
         GameTag.HEALTH: 4,  # +2生命值
-        GameTag.RACE: Race.DEMON,
+        GameTag.CARDRACE: Race.DEMON,
         GameTag.TAUNT: True,
     }
 
@@ -267,7 +267,7 @@ class YOG_503e:
     update = Refresh(OPPONENT, {enums.MINIONS_COST_HEALTH: True})
     
     # 在对手的回合结束时移除效果
-    events = OwnTurnEnd(OPPONENT).on(Destroy(SELF))
+    events = EndTurn(OPPONENT).on(Destroy(SELF))
 
 
 # EPIC
@@ -401,7 +401,7 @@ class TTN_960e:
     }
     
     # 每回合开始时召唤两个小鬼
-    events = OwnTurnBegin(CONTROLLER).on(
+    events = OWN_TURN_BEGIN.on(
         Summon(CONTROLLER, "TTN_960t") * 2
     )
 
@@ -411,5 +411,5 @@ class TTN_960t:
     tags = {
         GameTag.ATK: 3,
         GameTag.HEALTH: 2,
-        GameTag.RACE: Race.DEMON,
+        GameTag.CARDRACE: Race.DEMON,
     }

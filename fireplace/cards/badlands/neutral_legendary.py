@@ -10,7 +10,7 @@ class DEEP_036:
     嘲讽 亡语：使你手牌和牌库中的所有元素牌属性值翻倍。
     """
     # 亡语：使手牌和牌库中的所有元素牌属性值翻倍
-    deathrattle = Buff(FRIENDLY_HAND + ELEMENTAL, "DEEP_036e") + Buff(FRIENDLY_DECK + ELEMENTAL, "DEEP_036e")
+    deathrattle = (Buff(FRIENDLY_HAND + ELEMENTAL, "DEEP_036e"), Buff(FRIENDLY_DECK + ELEMENTAL, "DEEP_036e"))
 
 
 class DEEP_036e:
@@ -101,8 +101,8 @@ class WW_379e:
     """弗林特·枪臂追踪增益 - 标记这张牌是弗林特给的"""
     # 当这张特定的牌被使用时，重复弗林特的效果
     events = Play(CONTROLLER, SELF).after(
-        Give(CONTROLLER, RandomCollectible(referencedTags=[GameTag.QUICKDRAW])) &
-        Buff(Give.CARD, "WW_379e")  # 给新获取的牌也施加追踪增益，实现连锁效果
+        (Give(CONTROLLER, RandomCollectible(referencedTags=[GameTag.QUICKDRAW])),
+         Buff(Give.CARD, "WW_379e"))  # 给新获取的牌也施加追踪增益，实现连锁效果
     )
 
 
@@ -124,7 +124,7 @@ class WW_421t:
     """帮派头领普德临时追踪增益"""
     # 当召唤食人魔时，给予风怒
     events = Summon(CONTROLLER, MINION + OGRE).after(
-        Buff(Summon.CARD, "WW_421e") & Destroy(SELF)
+        (Buff(Summon.CARD, "WW_421e"), Destroy(SELF))
     )
 
 
@@ -142,6 +142,6 @@ class WW_440:
     嘲讽 亡语：从你的牌库中召唤一个元素和一只野兽。
     """
     # 亡语：从牌库中召唤一个元素和一只野兽
-    deathrattle = Recruit(ELEMENTAL) + Recruit(BEAST)
+    deathrattle = (Recruit(ELEMENTAL), Recruit(BEAST))
 
 

@@ -52,7 +52,7 @@ class TTN_081t:
         GameTag.ATK: 4,
         GameTag.HEALTH: 1,
         GameTag.COST: 1,
-        GameTag.RACE: Race.BEAST,
+        GameTag.CARDRACE: Race.BEAST,
     }
 
 
@@ -232,7 +232,7 @@ class YOG_506:
         GameTag.ATK: 5,
         GameTag.HEALTH: 4,
         GameTag.COST: 5,
-        GameTag.RACE: Race.BEAST,
+        GameTag.CARDRACE: Race.BEAST,
         GameTag.RUSH: True,
     }
     
@@ -249,7 +249,7 @@ class YOG_506t:
     tags = {
         GameTag.ATK: 1,
         GameTag.HEALTH: 1,
-        GameTag.RACE: Race.BEAST,
+        GameTag.CARDRACE: Race.BEAST,
     }
 
 
@@ -268,7 +268,7 @@ class TTN_087:
         GameTag.ATK: 3,
         GameTag.HEALTH: 1,
         GameTag.COST: 2,
-        GameTag.RACE: Race.MECHANICAL,
+        GameTag.CARDRACE: Race.MECHANICAL,
         GameTag.MAGNETIC: True,
         GameTag.RUSH: True,
     }

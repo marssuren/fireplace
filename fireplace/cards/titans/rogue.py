@@ -32,7 +32,7 @@ class TTN_921:
         GameTag.ATK: 4,
         GameTag.HEALTH: 3,
         GameTag.COST: 3,
-        GameTag.RACE: Race.MECHANICAL,
+        GameTag.CARDRACE: Race.MECHANICAL,
     }
     magnetic = MAGNETIC("TTN_921e")
     events = Attack(SELF).on(Give(CONTROLLER, THE_COIN))
@@ -55,7 +55,7 @@ class TTN_923:
         GameTag.ATK: 3,
         GameTag.HEALTH: 4,
         GameTag.COST: 3,
-        GameTag.RACE: Race.MECHANICAL,
+        GameTag.CARDRACE: Race.MECHANICAL,
     }
     magnetic = MAGNETIC("TTN_923e")
     stealth = True
@@ -91,7 +91,7 @@ class YOG_527:
         GameTag.ATK: 4,
         GameTag.HEALTH: 4,
         GameTag.COST: 4,
-        GameTag.RACE: Race.MECHANICAL,
+        GameTag.CARDRACE: Race.MECHANICAL,
     }
     requirements = {PlayReq.REQ_TARGET_IF_AVAILABLE: 0}
     powered_up = Find(FRIENDLY_MINIONS + MECHANICAL - SELF)
@@ -208,7 +208,7 @@ class TTN_730:
         GameTag.ATK: 3,
         GameTag.HEALTH: 2,
         GameTag.COST: 4,
-        GameTag.RACE: Race.MECHANICAL,
+        GameTag.CARDRACE: Race.MECHANICAL,
     }
     events = OWN_TURN_END.on(Summon(CONTROLLER, ExactCopy(SELF)))
     forge = "TTN_730t"
@@ -241,7 +241,7 @@ class TTN_721:
         GameTag.ATK: 3,
         GameTag.HEALTH: 5,
         GameTag.COST: 6,
-        GameTag.RACE: Race.MECHANICAL,
+        GameTag.CARDRACE: Race.MECHANICAL,
     }
     titan = True
 
@@ -318,7 +318,7 @@ class TTN_920:
         GameTag.ATK: 2,
         GameTag.HEALTH: 5,
         GameTag.COST: 3,
-        GameTag.RACE: Race.MECHANICAL,
+        GameTag.CARDRACE: Race.MECHANICAL,
     }
     events = Play(CONTROLLER, MECHANICAL).on(
         Give(CONTROLLER, RANDOM(["TTN_920t5", "TTN_920t6", "TTN_920t7",

@@ -9,7 +9,7 @@ class ICC_062:
     """Mountainfire Armor / 熔甲卫士
     亡语：如果此时是你对手的回合，则获得 6点护甲值。"""
 
-    deathrattle = CurrentPlayer(OPPONENT) & GainArmor(FRIENDLY_HERO, 6)
+    deathrattle = (CurrentPlayer(OPPONENT), GainArmor(FRIENDLY_HERO, 6))
 
 
 class ICC_238:

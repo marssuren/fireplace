@@ -135,7 +135,7 @@ class RLK_706:
 class RLK_706e:
     """莫格莱尼的诅咒 (Mograine's Curse)"""
     # 每回合结束时对敌方英雄造成3点伤害
-    events = OwnTurnEnd(CONTROLLER).on(Hit(ENEMY_HERO, 3))
+    events = OWN_TURN_END.on(Hit(ENEMY_HERO, 3))
 
 
 class RLK_741:

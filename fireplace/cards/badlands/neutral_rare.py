@@ -28,26 +28,26 @@ class WW_002:
 
 
 class WW_003:
-    """悬赏公告栏 - Bounty Board
+    """悬赏公告栏 / Bounty Board
     你的发掘，快枪，可交易和传说牌的法力值消耗减少（1）点。
-    Your Excavate, Quickdraw, Tradeable, and Legendary cards cost (1) less.
-    """
+    Your Excavate, Quickdraw, Tradeable, and Legendary cards cost (1) less."""
     # Type: MINION | Cost: 3 | Rarity: RARE | Stats: 0/5
     # 光环：发掘、快枪、可交易和传说牌费用-1
-    class Hand:
-        # 发掘牌：拥有 EXCAVATE 机制的牌
-        # 快枪牌：拥有 QUICKDRAW 机制的牌
-        # 可交易牌：拥有 TRADEABLE 标签的牌
-        # 传说牌：稀有度为 LEGENDARY 的牌
-        update = Refresh(
-            FRIENDLY_HAND + (
-                (Attr(ALL_CARDS, GameTag.EXCAVATE) == True) |
-                (Attr(ALL_CARDS, GameTag.QUICKDRAW) == True) |
-                (Attr(ALL_CARDS, GameTag.TRADEABLE) == True) |
-                (Attr(ALL_CARDS, GameTag.RARITY) == Rarity.LEGENDARY)
-            ),
-            {GameTag.COST: -1}
-        )
+    
+    # 使用 update 属性实现光环效果
+    update = Refresh(
+        FRIENDLY_HAND + (
+            # 发掘牌（拥有 EXCAVATE 标签）
+            FuncSelector(lambda entities, src: [e for e in entities if getattr(e, 'excavate', False)]) |
+            # 快枪牌（拥有 QUICKDRAW 标签）
+            FuncSelector(lambda entities, src: [e for e in entities if e.tags.get(GameTag.QUICKDRAW, False)]) |
+            # 可交易牌（拥有 TRADEABLE 标签）
+            FuncSelector(lambda entities, src: [e for e in entities if e.tags.get(GameTag.TRADEABLE, False)]) |
+            # 传说牌（稀有度为 LEGENDARY）
+            LEGENDARY
+        ),
+        {GameTag.COST: -1}
+    )
 
 
 class WW_332:
@@ -104,6 +104,6 @@ class WW_419e:
         GameTag.CARDTYPE: CardType.ENCHANTMENT
     }
     # 回合结束时移除
-    events = OwnTurnEnd(CONTROLLER).on(Destroy(SELF))
+    events = OWN_TURN_END.on(Destroy(SELF))
 
 

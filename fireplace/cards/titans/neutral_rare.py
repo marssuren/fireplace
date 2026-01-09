@@ -52,7 +52,7 @@ class TTN_718:
         GameTag.ATK: 3,
         GameTag.HEALTH: 2,
         GameTag.COST: 2,
-        GameTag.RACE: Race.DRAGON,
+        GameTag.CARDRACE: Race.DRAGON,
     }
 
     def play(self):

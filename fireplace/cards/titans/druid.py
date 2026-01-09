@@ -27,11 +27,11 @@ class TTN_950t:
     tags = {
         GameTag.ATK: 1,
         GameTag.HEALTH: 1,
-        GameTag.RACE: Race.TREANT,
+        GameTag.CARDRACE: Race.TREANT,
         GameTag.TAG_SCRIPT_DATA_NUM_1: 2,  # 成长计数器
     }
     
-    events = OwnTurnBegin(CONTROLLER).on(
+    events = OWN_TURN_BEGIN.on(
         Buff(SELF, "TTN_950tick"),
         Condition(
             Equal(Tag(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1), 0),
@@ -53,7 +53,7 @@ class TTN_950t2:
     tags = {
         GameTag.ATK: 2,
         GameTag.HEALTH: 2,
-        GameTag.RACE: Race.TREANT,
+        GameTag.CARDRACE: Race.TREANT,
     }
 
 
@@ -148,7 +148,7 @@ class YOG_403t:
     tags = {
         GameTag.ATK: 2,
         GameTag.HEALTH: 2,
-        GameTag.RACE: Race.TREANT,
+        GameTag.CARDRACE: Race.TREANT,
     }
 
 
@@ -202,7 +202,7 @@ class TTN_930e:
         GameTag.CARDTYPE: CardType.ENCHANTMENT
     }
     
-    events = OwnTurnBegin(CONTROLLER).on(
+    events = OWN_TURN_BEGIN.on(
         Buff(SELF, "TTN_930tick"),
         Condition(
             Equal(Tag(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1), 0),
@@ -319,7 +319,7 @@ class YOG_529b:
 class YOG_529e_atk:
     """攻击力增益"""
     tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
-    events = OwnTurnEnd(CONTROLLER).on(Destroy(SELF))
+    events = OWN_TURN_END.on(Destroy(SELF))
     
     def apply(self, target):
         super().apply(target)
@@ -394,7 +394,7 @@ class TTN_926t:
     tags = {
         GameTag.ATK: 2,
         GameTag.HEALTH: 2,
-        GameTag.RACE: Race.TREANT,
+        GameTag.CARDRACE: Race.TREANT,
     }
 
 

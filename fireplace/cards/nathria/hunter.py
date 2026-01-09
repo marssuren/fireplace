@@ -299,7 +299,7 @@ to the enemy hero.
 
     events = [
         Play(OPPONENT).after(_on_opponent_play),
-        OwnTurnBegin(CONTROLLER).on(_reset_counter)
+        OWN_TURN_BEGIN.on(_reset_counter)
     ]
 
 

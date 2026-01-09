@@ -123,7 +123,7 @@ class DEEP_013:
 
 class DEEP_013e:
     """延迟伤害效果"""
-    events = OwnTurnBegin(CONTROLLER).on(
+    events = OWN_TURN_BEGIN.on(
         Hit(ALL_MINIONS, 2),
         Destroy(SELF)
     )
@@ -172,7 +172,7 @@ class WW_407:
 class WW_407e:
     """英雄+3攻击力"""
     tags = {GameTag.ATK: 3}
-    events = OwnTurnEnd(CONTROLLER).on(Destroy(SELF))
+    events = OWN_TURN_END.on(Destroy(SELF))
 
 
 class WW_409:

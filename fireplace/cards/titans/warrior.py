@@ -30,7 +30,7 @@ class TTN_468:
         GameTag.ATK: 3,
         GameTag.HEALTH: 3,
         GameTag.COST: 3,
-        GameTag.RACE: Race.ELEMENTAL,
+        GameTag.CARDRACE: Race.ELEMENTAL,
     }
     
     def play(self):
@@ -289,7 +289,7 @@ class TTN_471:
         GameTag.ATK: 1,
         GameTag.HEALTH: 3,
         GameTag.COST: 2,
-        GameTag.RACE: Race.MECHANICAL,
+        GameTag.CARDRACE: Race.MECHANICAL,
         GameTag.MAGNETIC: True,
     }
     
@@ -373,7 +373,7 @@ class TTN_415e:
     }
     
     # 在回合结束时移除免疫
-    events = OwnTurnEnd(CONTROLLER).on(Destroy(SELF))
+    events = OWN_TURN_END.on(Destroy(SELF))
 
 
 class TTN_415te:
@@ -394,7 +394,7 @@ class TTN_415t2e:
     }
     
     # 在回合结束时移除
-    events = OwnTurnEnd(CONTROLLER).on(Destroy(SELF))
+    events = OWN_TURN_END.on(Destroy(SELF))
 
 
 class TTN_415t3e:
@@ -440,7 +440,7 @@ class TTN_811e2:
     }
     
     # 在回合结束时移除临时攻击力
-    events = OwnTurnEnd(CONTROLLER).on(Destroy(SELF))
+    events = OWN_TURN_END.on(Destroy(SELF))
 
 
 class YOG_500:

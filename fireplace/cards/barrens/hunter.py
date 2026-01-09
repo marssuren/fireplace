@@ -7,11 +7,18 @@ class BAR_030:
     Battlecry: Discover a Beast, Secret, or weapon.
     战吼：发现一张野兽、奥秘或武器牌。
     """
-    play = DISCOVER(
-        RandomCollectible(card_class=CardClass.HUNTER, type=CardType.MINION, race=Race.BEAST)
-        | RandomCollectible(card_class=CardClass.HUNTER, type=CardType.SPELL, secret=True)
-        | RandomCollectible(card_class=CardClass.HUNTER, type=CardType.WEAPON)
-    )
+    def play(self):
+        # 创建三个选项：野兽、奥秘、武器
+        options = []
+        # 添加一个猎人野兽
+        options.append(RandomCollectible(card_class=CardClass.HUNTER, type=CardType.MINION, race=Race.BEAST))
+        # 添加一个猎人奥秘
+        options.append(RandomCollectible(card_class=CardClass.HUNTER, type=CardType.SPELL, secret=True))
+        # 添加一个猎人武器
+        options.append(RandomCollectible(card_class=CardClass.HUNTER, type=CardType.WEAPON))
+        
+        # 让玩家从三个选项中选择一个
+        yield GenericChoice(CONTROLLER, options)
 
 
 class BAR_031:
@@ -164,7 +171,7 @@ class WC_007:
         PlayReq.REQ_FRIENDLY_TARGET: 0,
         PlayReq.REQ_TARGET_WITH_RACE: Race.BEAST,
     }
-    play = SetTag(TARGET, GameTag.POISONOUS, True)
+    play = SetTag(TARGET, {GameTag.POISONOUS: True})
 
 
 class WC_008:

@@ -10,8 +10,9 @@ class BAR_316:
     requirements = {
         PlayReq.REQ_TARGET_TO_PLAY: 0,
     }
-    powered_up = DRAWN_THIS_TURN(SELF)
-    play = powered_up & Hit(TARGET, 4) | Hit(TARGET, 2)
+    def play(self):
+        damage = 4 if getattr(self, 'drawn_this_turn', False) else 2
+        yield Hit(self.target, damage)
 
 
 class BAR_317:
@@ -113,8 +114,8 @@ class BAR_321e:
         GameTag.ATK: 1,
     }
     events = (
-        Attack(FRIENDLY_HERO).on(SetTag(FRIENDLY_HERO, GameTag.CANT_BE_DAMAGED, True)),
-        Attack(FRIENDLY_HERO).after(SetTag(FRIENDLY_HERO, GameTag.CANT_BE_DAMAGED, False)),
+        Attack(FRIENDLY_HERO).on(SetTag(FRIENDLY_HERO, {GameTag.CANT_BE_DAMAGED: True})),
+        Attack(FRIENDLY_HERO).after(SetTag(FRIENDLY_HERO, {GameTag.CANT_BE_DAMAGED: False})),
     )
 
 
@@ -123,9 +124,10 @@ class BAR_322:
     After you play a Poison, gain +1 Durability.
     在你打出一张药膏牌后，获得+1耐久度。
     """
-    events = Play(CONTROLLER, SPELL + (ID.startswith("BAR_") & ID.contains("Poison"))).after(
-        Buff(SELF, "BAR_322e")
-    )
+    events = Play(CONTROLLER, FuncSelector(lambda entities, src: [
+        e for e in entities 
+        if e.type == CardType.SPELL and 'Poison' in e.id
+    ])).after(Buff(SELF, "BAR_322e"))
 
 
 class BAR_322e:
@@ -182,7 +184,7 @@ class WC_015:
     Stealth. Has Poisonous while you have no other minions.
     潜行。当你没有其他随从时，具有剧毒。
     """
-    update = -Find(FRIENDLY_MINIONS - SELF) & SetTag(SELF, GameTag.POISONOUS, True)
+    update = -Find(FRIENDLY_MINIONS - SELF) & SetTag(SELF, {GameTag.POISONOUS: True})
 
 
 class WC_016:
@@ -224,9 +226,14 @@ class WC_017:
     requirements = {
         PlayReq.REQ_MINION_TARGET: 0,
     }
-    play = (
-        Morph(RANDOM(FRIENDLY_HAND + MINION), RandomMinion(race=Race.PIRATE) | RandomMinion(stealth=True)),
-        Morph(RANDOM(ENEMY_HAND + MINION), RandomMinion(race=Race.PIRATE) | RandomMinion(stealth=True)),
-    )
+    def play(self):
+        import random
+        # 随机选择海盗或潜行随从
+        choice = random.choice([
+            RandomMinion(race=Race.PIRATE),
+            RandomMinion(stealth=True)
+        ])
+        yield Morph(RANDOM(FRIENDLY_HAND + MINION), choice)
+        yield Morph(RANDOM(ENEMY_HAND + MINION), choice)
 
 

@@ -48,10 +48,17 @@ class BAR_080:
         PlayReq.REQ_TARGET_IF_AVAILABLE: 0,
         PlayReq.REQ_MINION_TARGET: 0,
     }
-    play = (
-        Bounce(TARGET),
-        Summon(TARGET.controller, RANDOM(TARGET.controller.hand + MINION)),
-    )
+    def play(self):
+        if self.target:
+            # 将目标随从弹回手牌
+            yield Bounce(self.target)
+            # 从目标拥有者的手牌中召唤一个随机随从
+            owner = self.target.controller
+            hand_minions = [c for c in owner.hand if c.type == CardType.MINION]
+            if hand_minions:
+                import random
+                minion = random.choice(hand_minions)
+                yield Summon(owner, minion)
 
 
 class BAR_721:
@@ -100,6 +107,6 @@ class WC_035:
         Give(CONTROLLER, RandomID("DREAM_01", "DREAM_02", "DREAM_03", "DREAM_04", "DREAM_05")),
         AddProgress(SELF, SELF, 1),
     )
-    reward = SetTag(SELF, GameTag.DORMANT, False)
+    reward = SetTag(SELF, {GameTag.DORMANT: False})
 
 

@@ -360,7 +360,7 @@ class SW_311:
         GameTag.COST: 2,
     }
     
-    play = Hit(ENEMY_HERO, 2) & Shuffle(CONTROLLER, "SW_311t") * 3
+    play = (Hit(ENEMY_HERO, 2), Shuffle(CONTROLLER, "SW_311t") * 3)
 
 
 class SW_311t:

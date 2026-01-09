@@ -9,7 +9,7 @@ class TID_074:
     """上古海怪杀手 - 3费 3/3
     战吼：如果你在本牌在你手中时施放过三个法术，造成5点伤害"""
     powered_up = Count(Play(CONTROLLER, SPELL)) >= 3 & Buff(SELF, "TID_074e")
-    play = Find(SELF + POWERED_UP) & Hit(TARGET, 5)
+    play = (Find(SELF + POWERED_UP), Hit(TARGET, 5))
 
 
 class TID_074e:
@@ -26,14 +26,14 @@ class TID_075:
 class TID_099:
     """K9-0型机械狗 - 2费 2/3
     战吼：探底。如果选中的是法力值消耗为（1）的随从牌，则召唤它"""
-    play = Dredge(CONTROLLER) & Find(DREDGED_CARD + MINION + (COST == 1)) & Summon(CONTROLLER, DREDGED_CARD)
+    play = (Dredge(CONTROLLER), Find(DREDGED_CARD + MINION + (COST == 1))) & Summon(CONTROLLER, DREDGED_CARD)
 
 
 class TSC_023:
     """倒刺捕网 - 1费法术
     对一个敌人造成2点伤害。如果你在本牌在你手中时使用过纳迦牌，则再选择一个目标"""
     powered_up = Find(FRIENDLY_HAND + NAGA) & Buff(SELF, "TSC_023e")
-    play = Hit(TARGET, 2) & Find(SELF + POWERED_UP) & Hit(TARGET, 2)
+    play = (Hit(TARGET, 2), Find(SELF + POWERED_UP)) & Hit(TARGET, 2)
 
 
 class TSC_023e:
@@ -60,7 +60,7 @@ class TSC_071:
     """双弓积骇纳迦 - 4费 4/4
     战吼：如果你在本牌在你手中时施放过法术，你的下一个法术会施放两次"""
     powered_up = Find(FRIENDLY_HAND + SPELL) & Buff(SELF, "TSC_071e")
-    play = Find(SELF + POWERED_UP) & Buff(CONTROLLER, "TSC_071e2")
+    play = (Find(SELF + POWERED_UP), Buff(CONTROLLER, "TSC_071e2"))
 
 
 class TSC_071e:
@@ -118,7 +118,7 @@ class TSC_946:
 class TSC_946e:
     """法术剧毒"""
     update = Refresh(FRIENDLY_HAND + SPELL, {GameTag.POISONOUS: True})
-    events = OwnTurnEnd(CONTROLLER).on(Destroy(SELF))
+    events = OWN_TURN_END.on(Destroy(SELF))
 
 
 class TSC_947:

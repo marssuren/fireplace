@@ -77,7 +77,7 @@ class TTN_716:
         GameTag.ATK: 4,
         GameTag.HEALTH: 5,
         GameTag.COST: 6,
-        GameTag.RACE: Race.MECHANICAL,
+        GameTag.CARDRACE: Race.MECHANICAL,
     }
 
     def play(self):
@@ -261,8 +261,7 @@ class TTN_751trait5:
     """特质：免疫 - Your hero is Immune while attacking"""
     # 攻击时英雄免疫
     events = [
-        Attack(FRIENDLY_HERO).on(SetTag(FRIENDLY_HERO, GameTag.IMMUNE)),
-        Attack(FRIENDLY_HERO).after(UnsetTag(FRIENDLY_HERO, GameTag.IMMUNE))
+        Attack(FRIENDLY_HERO).on(SetTag(FRIENDLY_HERO, {GameTag.IMMUNE)): Attack(FRIENDLY_HERO}).after(UnsetTag(FRIENDLY_HERO, GameTag.IMMUNE))
     ]
 
 

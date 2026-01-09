@@ -94,7 +94,7 @@ class SC_756:
     在你的回合结束时，召唤四个4/1的拦截机并使其攻击随机敌人。
     """
     # 在回合结束时召唤四个拦截机
-    events = OwnTurnEnd(CONTROLLER).on(
+    events = OWN_TURN_END.on(
         Summon(CONTROLLER, "SC_756t") * 4
     )
 
@@ -179,7 +179,7 @@ class GDB_855e:
         GameTag.CARDTYPE: CardType.ENCHANTMENT
     }
     # 回合结束时移除
-    events = OwnTurnEnd(CONTROLLER).on(Destroy(SELF))
+    events = OWN_TURN_END.on(Destroy(SELF))
 
 
 class SC_763:

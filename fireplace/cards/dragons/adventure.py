@@ -346,7 +346,7 @@ class YOD_030:
     战吼：如果你控制一个任务，则将一张幸运币置入你的手牌。"""
 
     # [x]<b>Battlecry:</b> If you control a <b>Quest</b>, add a Coin to your hand.
-    play = Find(FRIENDLY_QUEST) & Give(CONTROLLER, THE_COIN)
+    play = (Find(FRIENDLY_QUEST), Give(CONTROLLER, THE_COIN))
 
 
 class YOD_032:

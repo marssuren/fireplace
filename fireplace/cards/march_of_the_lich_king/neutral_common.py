@@ -37,7 +37,7 @@ class RLK_113:
     亡语：如果此时是你对手的回合，则对你的对手造成3点伤害。
     机制: DEATHRATTLE
     """
-    deathrattle = Find(CURRENT_PLAYER == OPPONENT) & Hit(ENEMY_HERO, 3)
+    deathrattle = (Find(CURRENT_PLAYER == OPPONENT), Hit(ENEMY_HERO, 3))
 
 
 class RLK_117:
@@ -70,7 +70,7 @@ class RLK_123:
     """
     requirements = {PlayReq.REQ_TARGET_IF_AVAILABLE: 0}
     powered_up = lambda self: self.controller.undead_died_last_turn
-    play = Find(SELF_POWERED_UP) & Hit(TARGET, 2)
+    play = (Find(SELF_POWERED_UP), Hit(TARGET, 2))
 
 
 class RLK_218:
@@ -87,7 +87,7 @@ class RLK_218e:
     在本回合中，你的法术不能以英雄为目标。
     """
     update = Refresh(FRIENDLY + SPELL, {GameTag.CANT_TARGET_HEROES: True})
-    events = OwnTurnEnds(CONTROLLER).on(Destroy(SELF))
+    events = OWN_TURN_END.on(Destroy(SELF))
 
 
 class RLK_219:
@@ -209,7 +209,7 @@ class RLK_915:
     """
     requirements = {PlayReq.REQ_TARGET_IF_AVAILABLE: 0}
     powered_up = Find(FRIENDLY_HAND + DRAGON)
-    play = Find(SELF_POWERED_UP) & Hit(TARGET, 3)
+    play = (Find(SELF_POWERED_UP), Hit(TARGET, 3))
 
 
 class RLK_926:
@@ -217,7 +217,7 @@ class RLK_926:
     在你的回合结束时，对你的英雄造成2点伤害。
     机制: TRIGGER_VISUAL
     """
-    events = OwnTurnEnds(CONTROLLER).on(Hit(FRIENDLY_HERO, 2))
+    events = OWN_TURN_END.on(Hit(FRIENDLY_HERO, 2))
 
 
 class RLK_955:

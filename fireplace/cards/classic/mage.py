@@ -127,7 +127,7 @@ class CS2_031:
     冻结一个角色，如果该角色已被冻结，则改为对其造成$4点伤害。"""
 
     requirements = {PlayReq.REQ_TARGET_TO_PLAY: 0}
-    play = Find(TARGET + FROZEN) & Hit(TARGET, 4) | Freeze(TARGET)
+    play = (Find(TARGET + FROZEN), Hit(TARGET, 4)) | Freeze(TARGET)
 
 
 class CS2_032:

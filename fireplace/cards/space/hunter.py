@@ -255,7 +255,7 @@ class GDB_843e:
         GameTag.CARDTYPE: CardType.ENCHANTMENT
     }
     # 回合结束时移除
-    events = OwnTurnEnd(CONTROLLER).on(Destroy(SELF))
+    events = OWN_TURN_END.on(Destroy(SELF))
 
 
 # LEGENDARY
@@ -275,7 +275,7 @@ class GDB_842:
         yield SetTag(SELF, {GameTag.DORMANT: 5})
     
     # 在回合结束时，摧毁右侧随从以提前苏醒
-    events = OwnTurnEnd(CONTROLLER).on(
+    events = OWN_TURN_END.on(
         lambda self, source: DestroyRightMinionToAwaken(self)
     )
 
