@@ -247,7 +247,7 @@ class WW_822:
     
     def play(self):
         # 计算手牌中的龙牌数量
-        dragon_count = len([c for c in self.controller.hand if Race.DRAGON in c.races])
+        dragon_count = len([c for c in self.controller.hand if hasattr(c, 'races') and Race.DRAGON in c.races])
         # 召唤对应数量的复制
         if dragon_count > 0:
             yield Summon(CONTROLLER, ExactCopy(SELF)) * dragon_count
