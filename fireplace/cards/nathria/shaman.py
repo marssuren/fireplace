@@ -13,17 +13,17 @@ Summon all 4 instead.
     # 注意：这里的注能条件是"3 Totems"，意味着需要3个图腾死亡
     infuse = 3
     
-    # 基础图腾列表
-    BASIC_TOTEMS = ["CS2_050", "CS2_051", "CS2_052", "NEW1_009"]
-    
     def play(self):
+        # 基础图腾列表
+        basic_totems = ["CS2_050", "CS2_051", "CS2_052", "NEW1_009"]
+        
         if self.infused:
             # 注能后：召唤全部4个基础图腾
-            for totem_id in self.BASIC_TOTEMS:
+            for totem_id in basic_totems:
                 yield Summon(CONTROLLER, totem_id)
         else:
             # 未注能：选择一个基础图腾并召唤
-            choice = yield GenericChoice(CONTROLLER, self.BASIC_TOTEMS)
+            choice = yield GenericChoice(CONTROLLER, basic_totems)
             if choice:
                 yield Summon(CONTROLLER, choice[0])
 
@@ -115,11 +115,8 @@ class REV_917:
     After your hero attacks, summon a random basic Totem.
     在你的英雄攻击后，召唤一个随机的基础图腾。
     """
-    # 基础图腾列表
-    BASIC_TOTEMS = ["CS2_050", "CS2_051", "CS2_052", "NEW1_009"]
-    
     events = Attack(FRIENDLY_HERO).after(
-        Summon(CONTROLLER, RandomID(BASIC_TOTEMS))
+        Summon(CONTROLLER, RandomID(["CS2_050", "CS2_051", "CS2_052", "NEW1_009"]))
     )
 
 

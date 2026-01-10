@@ -84,8 +84,8 @@ class WORK_009:
 class WORK_009e:
     """吸血效果"""
     tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
         GameTag.LIFESTEAL: True,
-        GameTag.CARDTYPE: CardType.ENCHANTMENT
     }
 
 

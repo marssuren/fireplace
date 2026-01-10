@@ -982,13 +982,13 @@ class TimesPlayedThisGame(SelectorEntityValue):
 
 def TIMES_PLAYED_THIS_GAME(card_id):
     """
-    返回一个 SelectorEntityValue,表示指定卡牌在本局对战中被打出的次数
+    返回一个 Selector,表示指定卡牌在本局对战中被打出的次数
     
     参数:
         card_id: 卡牌ID字符串,例如 "ETC_336"
     
     返回:
-        TimesPlayedThisGame 实例,可以用于比较操作
+        FuncSelector 实例,可以与其他选择器组合
     
     示例:
         # 统计 Freebird 被打出的次数
@@ -997,5 +997,20 @@ def TIMES_PLAYED_THIS_GAME(card_id):
         # 检查是否第一次打出
         Find(FRIENDLY_HERO + TIMES_PLAYED_THIS_GAME("ETC_113") == 0) & Action(...)
     """
-    return TimesPlayedThisGame(card_id)
+    def count_plays(entities, source):
+        """统计指定卡牌ID在本局对战中被打出的次数"""
+        if not hasattr(source, 'controller'):
+            return []
+        
+        # 统计 cards_played_this_game 中指定卡牌ID的数量
+        if hasattr(source.controller, 'cards_played_this_game'):
+            count = sum(
+                1 for card in source.controller.cards_played_this_game
+                if getattr(card, 'id', None) == card_id
+            )
+            # 返回一个包含计数的列表（模拟实体列表）
+            return [source] * count if count > 0 else []
+        return []
+    
+    return FuncSelector(count_plays)
 

@@ -79,13 +79,19 @@ class TIME_047:
     # 使用光环系统实现动态减费
     class Hand:
         """手牌光环：根据敌方英雄受伤次数减费"""
-        def cost_func(self, entity, source):
-            """计算动态费用"""
+        def cost_func(self, i):
+            """计算动态费用
+            
+            参数:
+                i: 当前费用值
+            返回:
+                调整后的费用值
+            """
             # 获取敌方英雄本回合受伤次数
-            opponent_hero = source.controller.opponent.hero
+            opponent_hero = self.owner.controller.opponent.hero
             damage_count = getattr(opponent_hero, 'times_damaged_this_turn', 0)
             # 每次受伤减1费，最低0费
-            return max(0, source._cost - damage_count)
+            return max(0, i - damage_count)
         
         update = Refresh(SELF, {GameTag.COST: cost_func})
 

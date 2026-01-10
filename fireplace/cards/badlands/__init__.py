@@ -45,3 +45,4 @@ from .neutral_rare import *
 from .neutral_epic import *
 from .neutral_legendary import *
 from .excavate import *
+from .tokens import *

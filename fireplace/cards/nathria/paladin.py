@@ -88,7 +88,7 @@ and <b>Taunt</b>.
     # 这里检查目标是否是白银之手新兵
     def play(self):
         # 检查目标是否是白银之手新兵
-        if TARGET and TARGET.card_id == "CS2_101t":
+        if self.target and self.target.card_id == "CS2_101t":
             # 给目标+3/+3和嘲讽
             yield Buff(TARGET, "REV_842e")
 

@@ -95,6 +95,46 @@ DISCOVER = lambda *args: Discover(CONTROLLER, *args).then(
     Give(CONTROLLER, Discover.CARD)
 )
 
+# RandomTarget - 从选择器中随机选择一个或多个目标
+def RandomTarget(selector, count=1):
+    """
+    从选择器中随机选择目标
+    
+    参数:
+        selector: 目标选择器（例如 ENEMY_MINIONS）
+        count: 要选择的目标数量，默认为1
+    
+    返回:
+        一个 action，在执行时返回随机选择的目标列表
+    
+    用法:
+        target = yield RandomTarget(ENEMY_MINIONS)
+        targets = yield RandomTarget(ENEMY_MINIONS, count=2)
+    """
+    from ..dsl.evaluator import Evaluator
+    
+    class RandomTargetAction(Evaluator):
+        def __init__(self, selector, count=1):
+            self.selector = selector
+            self.count = count
+        
+        def trigger(self, source):
+            # 评估选择器获取所有可能的目标
+            entities = self.selector.eval(source.game, source)
+            if not entities:
+                return []
+            
+            # 随机选择指定数量的目标
+            import random
+            selected_count = min(self.count, len(entities))
+            selected = random.sample(entities, selected_count)
+            
+            # 返回选择的目标
+            return selected if self.count > 1 else (selected if selected else [])
+    
+    return RandomTargetAction(selector, count)
+
+
 # Excess - 计算超量伤害
 # 例如：对一个3血的随从造成6点伤害，超量伤害为3
 def Excess(target, damage):

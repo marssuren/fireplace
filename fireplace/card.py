@@ -1,6 +1,7 @@
 from .i18n import _ as translate, translate_zone
 import re
 from itertools import chain
+from importlib import import_module
 from typing import TYPE_CHECKING
 
 from hearthstone.enums import (
@@ -34,6 +35,36 @@ THE_COIN = "GAME_005"
 
 
 def Card(id):
+    # 尝试从数据库获取卡牌数据
+    if id not in cards.db:
+        # 如果卡牌不在数据库中，检查是否是 enchantment
+        # Enchantment 通常以 'e', 'e2', 'e3' 等结尾
+        if id.endswith('e') or id.endswith('e2') or id.endswith('e3') or 'e' in id[-3:]:
+            # 直接从模块中查找 enchantment 定义，而不通过 get_script_definition
+            # 因为 get_script_definition 会尝试访问 db[id]
+            script_def = None
+            for cardset in cards.CARD_SETS:
+                module = import_module("fireplace.cards.%s" % (cardset))
+                if hasattr(module, id):
+                    script_def = getattr(module, id)
+                    break
+            
+            if script_def:
+                # 动态创建 enchantment 数据
+                from hearthstone import cardxml
+                data = cardxml.CardXML(id)
+                # 设置 CARDTYPE 标签而不是直接设置 type 属性
+                data.tags[GameTag.CARDTYPE] = CardType.ENCHANTMENT
+                # 合并脚本定义
+                data = cards.db.merge(id, data, script_def)
+                cards.db[id] = data
+            else:
+                # 如果找不到脚本定义，抛出错误
+                raise KeyError(f"Enchantment {id} not found in database or scripts")
+        else:
+            # 不是 enchantment，正常抛出错误
+            raise KeyError(f"Card {id} not found in database")
+    
     data = cards.db[id]
     subclass = {
         CardType.HERO: Hero,
@@ -1520,7 +1551,7 @@ class Spell(PlayableCard):
             
             # 检查是否有针对特定法术学派的伤害加成
             # 用于"普瑞斯托的炎术师"等卡牌
-            spell_school = self.spell_school
+            spell_school = getattr(self, 'spell_school', None)
             if spell_school:
                 for entity in self.controller.live_entities:
                     # 检查是否有针对该法术学派的伤害加成
