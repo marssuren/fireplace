@@ -242,14 +242,26 @@ costs (2) less.
     }
     
     def play(self):
+        # 保存目标引用
+        target = self.target
+        
         # 造成3点伤害
-        yield Hit(TARGET, 3)
+        yield Hit(target, 3)
         
         # 检查目标是否死亡
-        if TARGET.dead or TARGET.to_be_destroyed:
-            # 使用通用的"下一张卡减费"机制
-            from fireplace.dsl.next_card_cost import NextCardCostReduction
-            yield Buff(FRIENDLY_HERO, NextCardCostReduction(amount=2))
+        if target and (target.dead or target.to_be_destroyed):
+            # 给玩家添加减费buff
+            yield Buff(FRIENDLY_HERO, "REV_939e")
+
+
+class REV_939e:
+    """Serrated Bone Spike Buff - 下一张卡减费2点"""
+    class Hand:
+        """手牌减费效果"""
+        cost = -2
+    
+    # 打出卡牌后移除此效果
+    events = Play(CONTROLLER).after(Destroy(SELF))
 
 
 class REV_940:
