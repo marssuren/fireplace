@@ -26,7 +26,7 @@ class DMF_124:
     def corrupt(self):
         # 每次腐蚀都给予 +1/+1
         # 注意：不设置 corrupted 标志，所以可以重复腐蚀
-        return Buff(SELF, "DMF_124e")
+        return [Buff(SELF, "DMF_124e")]
 
 
 class DMF_124e:
@@ -47,10 +47,10 @@ class DMF_163:
         if hasattr(self, 'corrupted') and self.corrupted:
             # 已腐蚀：填满战场（最多7个随从）
             available_slots = 7 - len(self.controller.field)
-            return Summon(CONTROLLER, ExactCopy(SELF)) * available_slots
+            yield Summon(CONTROLLER, ExactCopy(SELF)) * available_slots
         else:
             # 未腐蚀：召唤2个复制
-            return Summon(CONTROLLER, ExactCopy(SELF)) * 2
+            yield Summon(CONTROLLER, ExactCopy(SELF)) * 2
     
     # 腐蚀效果：标记为已腐蚀
     corrupt = Buff(SELF, "DMF_163e")

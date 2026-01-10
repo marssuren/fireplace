@@ -267,7 +267,7 @@ class FIR_958:
         # 根据回合决定伤害量
         damage = 4 if is_opponent_turn else 1
         
-        return Hit(ENEMY_CHARACTERS, damage)
+        return [Hit(ENEMY_CHARACTERS, damage)]
 
 
 # ========================================

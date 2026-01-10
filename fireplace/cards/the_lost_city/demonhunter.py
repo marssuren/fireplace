@@ -405,7 +405,7 @@ class TLC_841e:
         """动态亡语：召唤罐子中包含的随从"""
         if hasattr(self.owner, '_contained_minion_id'):
             minion_id = self.owner._contained_minion_id
-            return Summon(CONTROLLER, minion_id)
+            return [Summon(CONTROLLER, minion_id)]
         return None
 
 

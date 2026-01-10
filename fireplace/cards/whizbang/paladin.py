@@ -306,7 +306,7 @@ class TOY_808e:
         self.turns_remaining -= 1
         if self.turns_remaining <= 0:
             # 移除自己
-            return Destroy(SELF)
+            return [Destroy(SELF)]
         return []
 
 

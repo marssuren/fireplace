@@ -245,7 +245,7 @@ class TOY_822e:
             # 施放存储的法术
             # 不指定目标，让法术根据自身的要求选择目标
             # 如果法术需要目标，引擎会自动选择随机有效目标
-            return CastSpell(self.spell_id)
+            return [CastSpell(self.spell_id)]
         return None
 
 
@@ -358,7 +358,7 @@ class TOY_830e:
         """动态生成亡语效果：召唤5费随从，并给它添加召唤3费的亡语"""
         if hasattr(self, 'minion_5_id') and self.minion_5_id:
             # 召唤5费随从，然后给它添加亡语
-            return Summon(CONTROLLER, self.minion_5_id).then(
+            return [Summon(CONTROLLER, self.minion_5_id).then(
                 # 如果有3费随从，给召唤的5费随从添加亡语
                 Find(self.minion_3_id) & Buff(
                     Summon.CARD, 
@@ -366,7 +366,7 @@ class TOY_830e:
                     minion_3_id=self.minion_3_id, 
                     minion_1_id=self.minion_1_id
                 ) if self.minion_3_id else None
-            )
+            )]
         return None
 
 
@@ -384,14 +384,14 @@ class TOY_830e2:
         """动态生成亡语效果：召唤3费随从，并给它添加召唤1费的亡语"""
         if hasattr(self, 'minion_3_id') and self.minion_3_id:
             # 召唤3费随从，然后给它添加亡语
-            return Summon(CONTROLLER, self.minion_3_id).then(
+            return [Summon(CONTROLLER, self.minion_3_id).then(
                 # 如果有1费随从，给召唤的3费随从添加亡语
                 Find(self.minion_1_id) & Buff(
                     Summon.CARD, 
                     "TOY_830e3", 
                     minion_1_id=self.minion_1_id
                 ) if self.minion_1_id else None
-            )
+            )]
         return None
 
 
@@ -407,7 +407,7 @@ class TOY_830e3:
     def deathrattle(self):
         """动态生成亡语效果：召唤1费随从（最后一层，不再添加亡语）"""
         if hasattr(self, 'minion_1_id') and self.minion_1_id:
-            return Summon(CONTROLLER, self.minion_1_id)
+            return [Summon(CONTROLLER, self.minion_1_id)]
         return None
 
 

@@ -943,7 +943,7 @@ class VAC_321t:
         """抽到时造成伤害"""
         # 使用实例属性，如果不存在则使用类属性默认值
         damage = getattr(self, 'eruption_damage', 1)
-        return Hit(ENEMY_CHARACTERS, damage)
+        return [Hit(ENEMY_CHARACTERS, damage)]
 
 
 # VAC_955 - Gorgonzormu Tokens

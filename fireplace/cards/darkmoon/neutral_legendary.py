@@ -91,7 +91,7 @@ class DMF_254:
     # 10?6/6 - 游戏开始时：分裂成碎片。战吼：随机对所有敌方角色造成总共30点伤?
     
     def play(self):
-        return Hit(RANDOM(ENEMY_CHARACTERS), 1) * 30
+        yield Hit(RANDOM(ENEMY_CHARACTERS), 1) * 30
 
 
 class YOP_018:
@@ -100,7 +100,7 @@ class YOP_018:
     # 5?4/5 - 战吼：发现一张任意职业的双职业法术。法术迸发：再获取一张该法术的复?
     
     def play(self):
-        return GenericChoice(CONTROLLER, RandomSpell(multi_class=True) * 3)
+        yield GenericChoice(CONTROLLER, RandomSpell(multi_class=True) * 3)
     
     spellburst = Give(CONTROLLER, Copy(SPELLBURST_CARD))
 
@@ -112,6 +112,7 @@ class YOP_035:
     
     events = Predamage(SELF).on(
         lambda self, source, target, amount: [
-            SetAttr(target, GameTag.PREDAMAGE, min(amount, 1))
+            SetAttr(target, GameTag.PREDAMAGE, min(amount, 1))
+
         ]
     )

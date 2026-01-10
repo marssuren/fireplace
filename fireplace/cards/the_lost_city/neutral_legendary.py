@@ -115,7 +115,7 @@ class DINO_430:
                 break
         
         if beast_id:
-            return Summon(CONTROLLER, beast_id)
+            return [Summon(CONTROLLER, beast_id)]
         else:
             # 如果没有发现野兽，返回空操作
             return []

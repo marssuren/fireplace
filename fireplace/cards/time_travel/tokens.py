@@ -73,7 +73,7 @@ class TIME_704t:
         
         if spell_id:
             # 施放该法术
-            return CastSpell(spell_id)
+            return [CastSpell(spell_id)]
         return []
 
 

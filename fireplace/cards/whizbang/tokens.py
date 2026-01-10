@@ -225,7 +225,7 @@ class TOY_312t:
         
         if target and target.zone == Zone.GRAVEYARD:
             if source.atk == self._last_target_health:
-                return Draw(CONTROLLER)
+                return [Draw(CONTROLLER)]
         
         return []
     

@@ -177,7 +177,7 @@ class TOY_651:
         """获得护甲时触发"""
         if not self.triggered_this_turn:
             self.triggered_this_turn = True
-            return Summon(CONTROLLER, ExactCopy(SELF))
+            return [Summon(CONTROLLER, ExactCopy(SELF))]
         return []
     
     events = [

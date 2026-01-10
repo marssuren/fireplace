@@ -90,12 +90,12 @@ class DMF_231:
     def play(self):
         hand = self.controller.hand
         if not hand:
-            return []
+            return
 
         leftmost = hand[0]
         rightmost = hand[-1]
 
-        return Give(CONTROLLER, Copy(leftmost) + Copy(rightmost))
+        yield Give(CONTROLLER, Copy(leftmost) + Copy(rightmost))
 
 
 class DMF_247:

@@ -267,6 +267,23 @@ class BaseCard(BaseEntity):
             Zone.SETASIDE: self.game.setaside,
         }
         if caches.get(self.old_zone) is not None:
+            # 添加详细的诊断日志
+            if self not in caches[self.old_zone]:
+                self.logger.error(
+                    f"[ZONE_BUG] Card {self.id} ({self.entity_id}) not in expected cache!\n"
+                    f"  Card name: {getattr(self, 'name', 'Unknown')}\n"
+                    f"  Old zone: {self.old_zone} ({translate_zone(self.old_zone)})\n"
+                    f"  New zone: {value} ({translate_zone(value)})\n"
+                    f"  Current zone: {self.zone}\n"
+                    f"  Cache size: {len(caches[self.old_zone])}\n"
+                    f"  Card in cache: {self in caches[self.old_zone]}\n"
+                    f"  Cache contents: {[c.id for c in caches[self.old_zone]]}\n"
+                    f"  Controller: {self.controller.name if hasattr(self, 'controller') else 'None'}"
+                )
+                # 检查卡牌是否在其他缓存中
+                for zone_name, cache in caches.items():
+                    if self in cache:
+                        self.logger.error(f"  -> Found in {zone_name} ({translate_zone(zone_name)}) instead!")
             caches[self.old_zone].remove(self)
         if caches.get(value) is not None:
             if hasattr(self, "_summon_index") and self._summon_index is not None:

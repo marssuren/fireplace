@@ -147,10 +147,10 @@ class DMF_174:
         # 检查是否已腐蚀（通过检查是否有腐蚀buff）
         if hasattr(self, 'corrupted') and self.corrupted:
             # 已腐蚀：造成伤害
-            return Hit(TARGET, 4)
+            yield Hit(TARGET, 4)
         else:
             # 未腐蚀：恢复生命
-            return Heal(TARGET, 4)
+            yield Heal(TARGET, 4)
     
     # 腐蚀效果：标记为已腐蚀
     corrupt = Buff(SELF, "DMF_174e")
@@ -307,4 +307,4 @@ class YOP_029:
         # 获取当前剩余法力值
         mana = self.controller.mana
         # 发现一张费用等于剩余法力的卡牌
-        return GenericChoice(CONTROLLER, RandomCollectible(cost=mana) * 3)
+        yield GenericChoice(CONTROLLER, RandomCollectible(cost=mana) * 3)

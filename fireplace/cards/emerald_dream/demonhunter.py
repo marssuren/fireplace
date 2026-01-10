@@ -102,7 +102,7 @@ class EDR_841:
     @property
     def deathrattle(self):
         dreadseed_tokens = ["EDR_840t1", "EDR_840t2", "EDR_840t3"]
-        return Summon(CONTROLLER, random.choice(dreadseed_tokens))
+        return [Summon(CONTROLLER, random.choice(dreadseed_tokens))]
 
 
 class EDR_882:
@@ -321,7 +321,7 @@ class EDR_421:
             if buff.id == "EDR_421e":
                 damage += 1
         
-        return Hit(ENEMY_CHARACTERS, damage)
+        return [Hit(ENEMY_CHARACTERS, damage)]
 
 
 class EDR_421e:

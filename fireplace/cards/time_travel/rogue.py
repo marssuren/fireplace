@@ -226,7 +226,7 @@ class TIME_876:
                 # 随机选择一个随从并变形
                 import random
                 target = random.choice(opponent_minions)
-                return Morph(SELF, target.id)
+                return [Morph(SELF, target.id)]
             
             return []
 

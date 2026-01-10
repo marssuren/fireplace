@@ -128,7 +128,7 @@ class MIS_303:
         # 获取刚施放的法术费用
         spell_cost = card.cost
         # 随机施放一个费用为 (spell_cost + 1) 的法术
-        return CastSpell(RandomSpell(cost=spell_cost + 1))
+        return [CastSpell(RandomSpell(cost=spell_cost + 1))]
     
     events = OWN_SPELL_PLAY.after(OWN_SPELL_PLAY_TRIGGER)
 

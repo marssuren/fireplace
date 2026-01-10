@@ -59,7 +59,7 @@ class TOY_312:
             # 检查是否恰好致命：攻击力 == 目标原生命值
             if source.atk == self._last_target_health:
                 # 触发抽牌
-                return Draw(CONTROLLER)
+                return [Draw(CONTROLLER)]
         
         return []
     

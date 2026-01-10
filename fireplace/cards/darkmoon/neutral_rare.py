@@ -138,8 +138,7 @@ class YOP_024a:
         if hasattr(parent, 'stored_spells'):
             spells = parent.stored_spells
             # 让玩家选择一张
-            return GenericChoice(CONTROLLER, spells)
-        return []
+            yield GenericChoice(CONTROLLER, spells)
 
 
 class YOP_024b:
