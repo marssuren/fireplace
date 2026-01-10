@@ -57,21 +57,17 @@ class DED_511:
         target_cost = current_cost + 1
         
         # 变形为费用+1的萨满或中立武器
-        # 根据官方数据，Suckerhook 应该只变形为萨满职业或中立武器
-        # 使用 RandomWeapon 辅助函数并添加费用和职业过滤
-        from ..dsl.random_picker import RandomWeapon
-        
-        # 尝试生成目标费用的武器（萨满+中立）
-        # RandomWeapon 会自动处理职业权重（中立1倍，职业4倍）
+        # 使用 RandomCollectible 获取目标费用的武器
         try:
-            new_weapon = RandomWeapon(
-                cost=target_cost,
-                card_class=CardClass.SHAMAN
-            ).pick(self.game, self)
-            
-            if new_weapon:
-                # 变形玩家装备的武器
-                yield Morph(FRIENDLY_WEAPON, new_weapon)
+            # 变形玩家装备的武器
+            yield Morph(
+                FRIENDLY_WEAPON, 
+                RandomCollectible(
+                    type=CardType.WEAPON,
+                    cost=target_cost,
+                    card_class=CardClass.SHAMAN
+                )
+            )
         except:
             # 如果没有找到合适的武器，保持当前武器不变
             pass

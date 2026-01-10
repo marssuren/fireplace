@@ -27,32 +27,34 @@ class DEEP_037:
     # 使用 FindDuplicates 评估器检查无重复套牌
     powered_up = -FindDuplicates(FRIENDLY_DECK)
 
-    class DiscoverAndSummonAction(MultipleChoice):
-        """发现一个元素并召唤，将其他的置入手牌"""
-        PLAYER = ActionArg()
-
-        def _discover(self):
-            """生成3个随机元素随从"""
-            cards = []
-            for _ in range(3):
-                card = self.source.controller.card(
-                    RandomCollectible(type=CardType.MINION, race=Race.ELEMENTAL).pick(self.source)
-                )
-                cards.append(card)
-            return cards
-
-        def choose(self, card):
-            # 召唤被选中的元素
-            yield Summon(self.PLAYER, card)
-
-            # 将其他未被选中的元素置入手牌
-            for c in self.cards:
-                if c != card:
-                    yield Give(self.PLAYER, c)
-
     def play(self):
         if self.powered_up:
-            yield self.DiscoverAndSummonAction(CONTROLLER)
+            # 从卡牌数据库中获取所有可收集的元素随从
+            from ..cards import db
+            elemental_cards = db.filter(
+                type=CardType.MINION,
+                race=Race.ELEMENTAL,
+                collectible=True
+            )
+            
+            if len(elemental_cards) >= 3:
+                # 随机选择3张元素随从
+                import random
+                selected_ids = random.sample(elemental_cards, 3)
+                
+                # 让玩家从3张中选择1张
+                discovered = yield GenericChoice(CONTROLLER, cards=selected_ids)
+                
+                if discovered:
+                    chosen_id = discovered[0]
+                    
+                    # 召唤被选中的元素
+                    yield Summon(CONTROLLER, chosen_id)
+                    
+                    # 将其他未被选中的元素置入手牌
+                    for card_id in selected_ids:
+                        if card_id != chosen_id:
+                            yield Give(CONTROLLER, card_id)
 
 
 class WW_0700:
@@ -90,11 +92,13 @@ class WW_379:
     """
     def play(self):
         # 随机获取一张快枪牌
-        card = RandomCollectible(referencedTags=[GameTag.QUICKDRAW]).pick(self)
-        yield Give(CONTROLLER, card)
-
-        # 给获取的牌施加一个追踪增益，标记这是弗林特给的牌
-        yield Buff(card, "WW_379e")
+        # Give 动作会返回给予的卡牌列表
+        cards = yield Give(CONTROLLER, RandomCollectible(referencedTags=[GameTag.QUICKDRAW]))
+        
+        # 给获取的牌添加追踪 Buff，实现连锁效果
+        if cards:
+            for card in cards:
+                yield Buff(card, "WW_379e")
 
 
 class WW_379e:
