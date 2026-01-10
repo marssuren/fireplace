@@ -413,6 +413,12 @@ class PlayableCard(BaseCard, Entity, TargetableByAuras):
         """
         if not self.data.scripts.powered_up:
             return False
+        
+        # 如果 powered_up 是一个函数（lambda），直接调用
+        if callable(self.data.scripts.powered_up):
+            return self.data.scripts.powered_up(self)
+        
+        # 否则，它是一个脚本列表
         for script in self.data.scripts.powered_up:
             if not script.check(self):
                 return False
@@ -904,7 +910,7 @@ class LiveEntity(PlayableCard, Entity):
     secret_deathrattle = int_property("secret_deathrattle")
     atk = int_property("atk")
     cant_be_damaged = boolean_property("cant_be_damaged")
-    immune_while_attacking = slot_property("immune_while_attacking")
+    immune_while_attacking = boolean_property("immune_while_attacking")
     incoming_damage_multiplier = int_property("incoming_damage_multiplier")
     max_health = int_property("max_health")
     poisonous = boolean_property("poisonous")
@@ -1824,7 +1830,14 @@ class Enchantment(BaseCard):
 
     def _getattr(self, attr, i):
         i += getattr(self, "_" + attr, 0)
-        return getattr(self.data.scripts, attr, lambda s, x: x)(self, i)
+        script_attr = getattr(self.data.scripts, attr, lambda s, x: x)
+        if not callable(script_attr):
+            raise TypeError(
+                f"Buff '{self.id}' has invalid '{attr}' definition. "
+                f"Expected a function but got {type(script_attr).__name__}: {script_attr}. "
+                f"Use 'tags = {{GameTag.{attr.upper()}: {script_attr}}}' instead of '{attr} = {script_attr}'."
+            )
+        return script_attr(self, i)
 
     def _set_zone(self, zone):
         if zone == Zone.PLAY:
@@ -1867,6 +1880,9 @@ class Weapon(rules.WeaponRules, LiveEntity):
     def __init__(self, *args):
         super().__init__(*args)
         self.damage = 0
+        # 从卡牌数据中读取初始耐久度
+        from hearthstone.enums import GameTag
+        self._max_durability = self.data.tags.get(GameTag.DURABILITY, 0)
 
     def dump(self):
         data = super().dump()
@@ -1879,6 +1895,11 @@ class Weapon(rules.WeaponRules, LiveEntity):
 
     @property
     def max_durability(self):
+        if not hasattr(self, '_max_durability'):
+            raise AttributeError(
+                f"Weapon '{self.id}' (zone={self.zone}) does not have _max_durability initialized. "
+                f"This weapon may not have been properly created."
+            )
         ret = self._max_durability
         ret += self._getattr("max_health", 0)
         return max(0, ret)

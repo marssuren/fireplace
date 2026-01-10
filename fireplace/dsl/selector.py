@@ -67,8 +67,30 @@ class EnumSelector(Selector):
         self.tag_enum = tag_enum
 
     def eval(self, entities, source):
-        if not self.tag_enum or not hasattr(self.tag_enum, "test"):
-            raise RuntimeError("Unsupported enum type {}".format(str(self.tag_enum)))
+        if not self.tag_enum:
+            raise RuntimeError("Unsupported enum type: None")
+        
+        # 导入需要的枚举类型
+        from hearthstone.enums import Race, Rarity, SpellSchool
+        
+        # 根据枚举类型选择正确的属性名
+        if isinstance(self.tag_enum, Race):
+            # Race 比较特殊，实体有 races 列表属性
+            return [e for e in entities 
+                    if hasattr(e, 'races') and self.tag_enum in e.races]
+        elif isinstance(self.tag_enum, Rarity):
+            return [e for e in entities 
+                    if hasattr(e, 'rarity') and e.rarity == self.tag_enum]
+        elif isinstance(self.tag_enum, SpellSchool):
+            return [e for e in entities 
+                    if hasattr(e, 'spell_school') and e.spell_school == self.tag_enum]
+        
+        # 原有逻辑：期望枚举有 test 方法（但实际上没有任何枚举有这个方法）
+        if not hasattr(self.tag_enum, "test"):
+            raise RuntimeError(
+                f"Unsupported enum type {type(self.tag_enum).__name__}.{self.tag_enum.name}. "
+                f"EnumSelector does not know how to filter entities by this enum type."
+            )
         return [e for e in entities if self.tag_enum.test(e, source)]
 
     def __repr__(self):
@@ -234,6 +256,9 @@ class SetOpSelector(Selector):
     def __init__(self, op: Callable, left: Selector, right: SelectorLike):
         if isinstance(right, LazyValue):
             right = LazyValueSelector(right)
+        elif callable(right) and not isinstance(right, Selector):
+            # 如果right是一个函数但不是Selector，包装成FuncSelector
+            right = FuncSelector(right)
         self.op = op
         self.left = left
         self.right = right
@@ -322,6 +347,14 @@ class BoardPositionSelector(Selector):
     def __init__(self, direction: Direction, child: SelectorLike):
         if isinstance(child, LazyValue):
             child = LazyValueSelector(child)
+        elif not isinstance(child, Selector):
+            # 如果 child 是一个实体（如 Minion），将其包装成选择器
+            if hasattr(child, 'entity_id'):
+                # 这是一个实体，创建一个返回该实体的选择器
+                child = FuncSelector(lambda entities, source, c=child: [c])
+            else:
+                # 不知道是什么，尝试包装
+                child = FuncSelector(lambda entities, source, c=child: [c] if c else [])
         self.child = child
         self.direction = direction
 

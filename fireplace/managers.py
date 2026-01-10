@@ -254,6 +254,7 @@ CARD_ATTRIBUTE_MAP = {
     GameTag.SHOULDEXITCOMBAT: "should_exit_combat",
     GameTag.STEADY_SHOT_CAN_TARGET: "steady_shot_can_target",
     GameTag.SILENCED: "silenced",
+    GameTag.SPELL_SCHOOL: "spell_school",
     GameTag.SPELLPOWER: "spellpower",
     GameTag.SPELLPOWER_DOUBLE: "spellpower_double",
     GameTag.SPELLS_COST_HEALTH: "spells_cost_health",

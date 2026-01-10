@@ -1268,6 +1268,14 @@ class Overload(GameAction):
     AMOUNT = IntArg()
 
     def do(self, source, player, amount):
+        # 评估选择器获取实际的玩家对象
+        from ..dsl.selector import Selector
+        if isinstance(player, Selector):
+            players = player.eval(source.game, source)
+            if not players:
+                return
+            player = players[0]
+        
         if player.cant_overload:
             log_info("cannot_overload", source=source, player=player)
             return
@@ -1287,6 +1295,14 @@ class SpendCorpses(GameAction):
     AMOUNT = IntArg()
 
     def do(self, source, player, amount):
+        # 评估选择器获取实际的玩家对象
+        from ..dsl.selector import Selector
+        if isinstance(player, Selector):
+            players = player.eval(source.game, source)
+            if not players:
+                return False
+            player = players[0]
+        
         if player.corpses < amount:
             log_info("insufficient_corpses", source=source, player=player, required=amount, available=player.corpses)
             return False
@@ -1307,6 +1323,14 @@ class GainCorpses(GameAction):
     AMOUNT = IntArg()
 
     def do(self, source, player, amount):
+        # 评估选择器获取实际的玩家对象
+        from ..dsl.selector import Selector
+        if isinstance(player, Selector):
+            players = player.eval(source.game, source)
+            if not players:
+                return
+            player = players[0]
+        
         log_info("gains_corpses", source=source, player=player, amount=amount)
         source.game.manager.game_action(self, source, player, amount)
         self.broadcast(source, EventListener.ON, player, amount)
@@ -1571,6 +1595,16 @@ class Choice(TargetedAction):
         return [cards]
 
     def do(self, source, player, cards):
+        # 如果 cards 是选择器，先评估它
+        if isinstance(cards, Selector):
+            cards = cards.eval(source.game, source)
+        elif isinstance(cards, LazyValue):
+            cards = cards.evaluate(source)
+        
+        # 确保 cards 是列表
+        if not isinstance(cards, list):
+            cards = list(cards) if hasattr(cards, '__iter__') else [cards]
+        
         if len(cards) == 0:
             return
         log_info("choice_from", player=player, cards=cards)
@@ -2531,6 +2565,10 @@ class Hit(TargetedAction):
 
 
     def do(self, source, target, amount, trigger_lifesteal):
+        # 检查 target 是否有效
+        if target is None:
+            return 0
+        
         # 检查"战吼无法伤害敌方英雄"限制（用于 TOY_501 Shudderblock）
         # 如果源卡牌的控制者有此 buff，且目标是敌方英雄，则跳过伤害
         if target.type == CardType.HERO and target.controller != source.controller:
@@ -2827,6 +2865,10 @@ class SetTags(TargetedAction):
     TAGS = ActionArg()
 
     def do(self, source, target, tags):
+        # 检查 target 是否有效
+        if target is None:
+            return
+        
         if isinstance(tags, dict):
             for tag, value in tags.items():
                 target.tags[tag] = _eval_card(source, value)[0]
@@ -4230,6 +4272,14 @@ class Excavate(GameAction):
     
     def do(self, source, controller):
         from fireplace.cards.badlands.excavate import TIER_1_IDS, TIER_2_IDS, TIER_3_IDS, TIER_4_IDS
+        
+        # 评估选择器获取实际的玩家对象
+        from ..dsl.selector import Selector
+        if isinstance(controller, Selector):
+            players = controller.eval(source.game, source)
+            if not players:
+                return
+            controller = players[0]
         
         # Broadcast ON event (before excavate)
         source.game.manager.game_action(self, source, controller)
