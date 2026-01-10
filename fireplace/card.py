@@ -387,7 +387,22 @@ class PlayableCard(BaseCard, Entity, TargetableByAuras):
         if self.zone == Zone.HAND and self.game.turn > 0:
             mod = self.data.scripts.cost_mod
             if mod is not None:
-                r = mod.evaluate(self)
+                # cost_mod 可以是两种形式：
+                # 1. lambda 函数：lambda self, i: value 或 lambda self: value
+                # 2. 带 evaluate 方法的对象（如 LazyNum, Evaluator）
+                if callable(mod):
+                    # 如果是函数，直接调用
+                    # 尝试使用两个参数调用（新API）
+                    try:
+                        r = mod(self, 0)
+                    except TypeError:
+                        # 如果失败，尝试使用一个参数调用（旧API）
+                        r = mod(self)
+                elif hasattr(mod, 'evaluate'):
+                    # 如果有 evaluate 方法，调用它
+                    r = mod.evaluate(self)
+                else:
+                    r = None
                 # evaluate() can return None if it's an Evaluator (Crush)
                 if r:
                     ret += r
