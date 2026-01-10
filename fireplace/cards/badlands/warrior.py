@@ -50,7 +50,7 @@ class DEEP_019:
 class DEEP_019e:
     """休眠1回合"""
     events = OWN_TURN_BEGIN.on(
-        SetTag(OWNER, GameTag.DORMANT, False),
+        SetTags(OWNER, {GameTag.DORMANT: False}),
         Destroy(SELF)
     )
 
