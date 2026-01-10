@@ -71,26 +71,7 @@ class REV_021:
     # 光环效果：检查本回合打出的随从数量
     # 如果下一个随从是第三个，则费用为0
     class Hand:
-        def cost_mod(self, source, game):
-            # 获取控制者本回合已打出的随从数量
-            controller = source.controller
-            minions_played = controller.minions_played_this_turn
-            
-            # 如果下一个是第三个随从（已打出2个）
-            if minions_played == 2:
-                return -source.cost
-            
-            # 如果下一个是第六个随从（已打出5个）
-            if minions_played == 5:
-                return -source.cost
-            
-            # 如果下一个是第九个随从（已打出8个）
-            if minions_played == 8:
-                return -source.cost
-            
-            return 0
-
-
+        cost_mod = lambda self, i: -self.cost if (self.type == CardType.MINION and self.controller.minions_played_this_turn == 2) else 0
 class REV_022:
     """Murloc Holmes - 摩洛克·福尔摩斯
     [x]<b>Battlecry:</b> Solve 3 Clues 

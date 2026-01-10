@@ -139,7 +139,10 @@ in your hand +1 Health.
 
 class REV_338e:
     """Dredger Staff Buff - 泥仆员工增益"""
-    health = 1
+    tags = {
+        GameTag.HEALTH: 1,
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+    }
 
 
 class REV_351:
@@ -202,7 +205,10 @@ class REV_378e:
 
 class REV_378e2:
     """Forensic Duster Cost Increase - 涂粉取证师费用增加"""
-    cost = 1
+    tags = {
+        GameTag.COST: 1,
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+    }
 
 
 class REV_837:
@@ -216,7 +222,10 @@ class REV_837:
 
 class REV_837e:
     """Muck Plumber Aura - 淤泥水管工光环"""
-    cost = 2
+    tags = {
+        GameTag.COST: 2,
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+    }
 
 
 class REV_839:
@@ -229,7 +238,10 @@ class REV_839:
 
 class REV_839e:
     """Sinstone Totem Buff - 罪碑图腾增益"""
-    health = 1
+    tags = {
+        GameTag.HEALTH: 1,
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+    }
 
 
 class REV_841:
@@ -332,8 +344,8 @@ class REV_956e:
     tags = {
         GameTag.CARDTYPE: CardType.ENCHANTMENT,
         GameTag.ATK: 2,
+        GameTag.HEALTH: 2,
     }
-    health = 2
 
 
 class REV_957:
@@ -354,8 +366,4 @@ class REV_957:
     
     class Hand:
         # 在手牌中时，如果已注能则费用变为0
-        def cost_mod(self, source, game):
-            if source.infused:
-                return -source.cost
-
-
+        cost_mod = lambda self, i: -self.cost if self.infused else 0

@@ -37,12 +37,7 @@ class NX2_011:
     
     class Hand:
         # 如果已注能，费用变为1
-        def cost_mod(self, source, game):
-            if source.infused:
-                return -(source.cost - 1)
-
-
-
+        cost_mod = lambda self, i: -(self.cost - 1) if self.infused else 0
 class NX2_012:
     """斜掠 (Rake)
     在本回合中，使你的英雄获得+2攻击力。对一个随从造成等同于你的英雄攻击力的伤害。

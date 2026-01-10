@@ -34,10 +34,7 @@ class RLK_651:
 
     class Hand:
         # 根据护甲值减费
-        def cost_mod(self, source, game):
-            return -source.controller.hero.armor
-
-
+        cost_mod = lambda self, i: -self.controller.hero.armor
 class RLK_652:
     """无尽虫群 (Unending Swarm)
     复活所有法力值消耗小于或等于（2）点的友方随从。

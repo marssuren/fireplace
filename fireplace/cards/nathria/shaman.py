@@ -102,12 +102,7 @@ class REV_838:
     你在本局对战中每召唤一个图腾，其法力值消耗便减少（1）点。
     """
     class Hand:
-        def cost_mod(self, source, game):
-            # 本局游戏召唤的图腾数量
-            # 使用核心已有的 times_totem_summoned_this_game 属性
-            if hasattr(source.controller, 'times_totem_summoned_this_game'):
-                return -source.controller.times_totem_summoned_this_game
-            return 0
+        cost_mod = lambda self, i: -self.controller.times_totem_summoned_this_game if hasattr(self.controller, 'times_totem_summoned_this_game') else 0
 
 
 class REV_917:

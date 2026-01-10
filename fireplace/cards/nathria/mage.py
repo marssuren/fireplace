@@ -69,10 +69,7 @@ class MAW_101:
     Costs (3) less for each <b>Secret</b> you control.
     你每控制一个<b>奥秘</b>，本牌的法力值消耗便减少（3）点。
     """
-    def cost_mod(self, source, game):
-        # 计算己方场上的奥秘数量
-        secret_count = len([s for s in source.controller.secrets if s.zone == Zone.SECRET])
-        return -3 * secret_count
+    cost_mod = lambda self, i: -3 * len([s for s in self.controller.secrets if s.zone == Zone.SECRET])
 
 
 # ========== 奥秘卡牌 ==========

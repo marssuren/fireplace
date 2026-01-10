@@ -58,12 +58,7 @@ class MAW_020:
     tags = {GameTag.RUSH: True}
     
     class Hand:
-        def cost_mod(self, source, game):
-            # 本回合打出的卡牌数量
-            cards_played = source.controller.cards_played_this_turn
-            return -cards_played
-
-
+        cost_mod = lambda self, i: -self.controller.cards_played_this_turn
 class REV_750:
     """Sinstone Graveyard - 罪碑坟场
     [x]Summon a 1/1 Ghost.
