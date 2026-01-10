@@ -13,18 +13,19 @@ class VAC_304:
     mechanics = [GameTag.BATTLECRY]
     
     # 在手牌中追踪施放的法术
-    # 使用自定义属性追踪
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.spells_cast_while_holding = []
-    
     class Hand:
         """在手牌中监听法术施放"""
         # 监听玩家施放法术
         def on_spell_played(self, source, card):
             """当玩家施放法术时记录"""
-            if len(self.spells_cast_while_holding) < 3:
-                self.spells_cast_while_holding.append(card.id)
+            # 使用 getattr 安全地获取列表
+            spells = getattr(self, 'spells_cast_while_holding', None)
+            if spells is None:
+                spells = []
+                setattr(self, 'spells_cast_while_holding', spells)
+            
+            if len(spells) < 3:
+                spells.append(card.id)
         
         events = Play(CONTROLLER, SPELL).after(
             lambda self, source, card: self.on_spell_played(source, card)
@@ -32,12 +33,14 @@ class VAC_304:
     
     def play(self):
         # 检查是否施放过3个法术
-        if len(self.spells_cast_while_holding) >= 3:
+        spells = getattr(self, 'spells_cast_while_holding', [])
+        if len(spells) >= 3:
             # 从施放过的法术中发现一张
             # 取前3张作为发现选项
-            spell_ids = self.spells_cast_while_holding[:3]
+            spell_ids = spells[:3]
             cards = [self.controller.card(spell_id) for spell_id in spell_ids]
             yield GenericChoice(CONTROLLER, cards)
+
 
 
 # ========== VAC_327 - 冰冷整脊师 ==========

@@ -102,7 +102,7 @@ class BAR_063:
     """
     events = Summon(CONTROLLER, MURLOC).after(
         Buff(Summon.CARD, "BAR_063e"),
-        SetTag(Summon.CARD, {GameTag.RUSH: True}),
+        SetTag(Summon.CARD, GameTag.RUSH),
     )
 
 
@@ -231,7 +231,10 @@ class WC_027:
     Deathrattle: Summon a 2/2 Adventurer with a random bonus effect.
     亡语：召唤一个2/2并具有随机奖励效果的冒险者。
     """
-    deathrattle = Summon(CONTROLLER, RandomID("WC_027t", "WC_027t2", "WC_027t3", "WC_027t4"))
+    deathrattle = Summon(CONTROLLER, RandomID(
+        "WC_034t", "WC_034t2", "WC_034t3", "WC_034t4",
+        "WC_034t5", "WC_034t6", "WC_034t7", "WC_034t8"
+    ))
 
 
 class WC_028:
@@ -240,7 +243,10 @@ class WC_028:
     在你的回合结束时，将一个2/2并具有随机奖励效果的冒险者置入你的手牌。
     """
     events = OWN_TURN_END.on(
-        Give(CONTROLLER, RandomID("WC_028t", "WC_028t2", "WC_028t3", "WC_028t4"))
+        Give(CONTROLLER, RandomID(
+            "WC_034t", "WC_034t2", "WC_034t3", "WC_034t4",
+            "WC_034t5", "WC_034t6", "WC_034t7", "WC_034t8"
+        ))
     )
 
 

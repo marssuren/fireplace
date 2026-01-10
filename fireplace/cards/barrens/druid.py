@@ -119,7 +119,7 @@ class BAR_537:
     The first Taunt minion you play each turn costs (2) less.
     你每回合打出的第一张嘲讽随从牌的法力值消耗减少（2）点。
     """
-    events = OWN_TURN_BEGIN.on(SetTag(SELF, {enums.ACTIVATIONS_THIS_TURN: 0}))
+    events = OWN_TURN_BEGIN.on(SetTag(SELF, enums.ACTIVATIONS_THIS_TURN, 0))
     update = (
         Find(SELF + (ACTIVATIONS_THIS_TURN == 0))
         & Refresh(FRIENDLY_HAND + MINION + TAUNT, {GameTag.COST: -2})
@@ -162,7 +162,7 @@ class BAR_540:
     """
     events = Death(FRIENDLY + MINION + TAUNT).on(
         Summon(CONTROLLER, Copy(Death.ENTITY)).then(
-            SetTag(Summon.CARD, {GameTag.TAUNT: False})
+            SetTag(Summon.CARD, GameTag.TAUNT, False)
         )
     )
 

@@ -42,7 +42,7 @@ class DEEP_019:
     def activate(self):
         # 召唤复制并设置为休眠
         yield Summon(CONTROLLER, ExactCopy(TARGET)).then(
-            SetTag(Summon.CARD, {GameTag.DORMANT: True}),
+            SetTag(Summon.CARD, GameTag.DORMANT),
             Buff(Summon.CARD, "DEEP_019e")
         )
 
@@ -50,7 +50,7 @@ class DEEP_019:
 class DEEP_019e:
     """休眠1回合"""
     events = OWN_TURN_BEGIN.on(
-        SetTag(OWNER, {GameTag.DORMANT: False}),
+        SetTag(OWNER, GameTag.DORMANT, False),
         Destroy(SELF)
     )
 

@@ -226,6 +226,6 @@ class TLC_624:
         for minion in damaged_minions:
             # 召唤复制并给予突袭
             yield Summon(CONTROLLER, ExactCopy(minion)).then(
-                SetTag(Summon.CARD, {GameTag.RUSH: True})
+                SetTag(Summon.CARD, GameTag.RUSH)
             )
 
