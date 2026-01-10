@@ -37,7 +37,7 @@ class RLK_113:
     亡语：如果此时是你对手的回合，则对你的对手造成3点伤害。
     机制: DEATHRATTLE
     """
-    deathrattle = (Find(CURRENT_PLAYER == OPPONENT), Hit(ENEMY_HERO, 3))
+    deathrattle = (CurrentPlayer(OPPONENT), Hit(ENEMY_HERO, 3))
 
 
 class RLK_117:

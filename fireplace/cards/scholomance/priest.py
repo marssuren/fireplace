@@ -167,11 +167,11 @@ class SCH_140_tracker:
     events = [
         # 自己回合内英雄受到伤害
         Damage(FRIENDLY_HERO).on(
-            Find(CURRENT_PLAYER == CONTROLLER) & SetAttr(CONTROLLER, "hero_health_change_count", Attr(CONTROLLER, "hero_health_change_count") + 1)
+            CurrentPlayer(CONTROLLER) & SetAttr(CONTROLLER, "hero_health_change_count", Attr(CONTROLLER, "hero_health_change_count") + 1)
         ),
         # 自己回合内英雄受到治疗
         Heal(FRIENDLY_HERO).on(
-            Find(CURRENT_PLAYER == CONTROLLER) & SetAttr(CONTROLLER, "hero_health_change_count", Attr(CONTROLLER, "hero_health_change_count") + 1)
+            CurrentPlayer(CONTROLLER) & SetAttr(CONTROLLER, "hero_health_change_count", Attr(CONTROLLER, "hero_health_change_count") + 1)
         )
     ]
 
