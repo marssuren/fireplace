@@ -113,7 +113,7 @@ class SW_065:
     """熊猫人进口商 / Pandaren Importer
     战吼：发现一张不在你初始牌组中的法术牌。"""
     # 发现一张不在初始牌组中的法术
-    play = GenericChoice(CONTROLLER, Discover(CONTROLLER, RandomSpell()))
+    play = Discover(CONTROLLER, RandomSpell())
 
 
 class SW_066:

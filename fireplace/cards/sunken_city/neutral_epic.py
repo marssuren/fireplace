@@ -8,7 +8,7 @@ from ..utils import *
 class TSC_052:
     """学校教师 - 4费 5/4
     战吼：将一张1/1的纳迦小学生置入你的手牌。发现一个法力值消耗小于或等于（3）点的法术，教会小学生"""
-    play = (Give(CONTROLLER, "TSC_052t"), GenericChoice(CONTROLLER, Discover(CONTROLLER, RandomSpell(cost=3))))
+    play = (Give(CONTROLLER, "TSC_052t"), Discover(CONTROLLER, RandomSpell(cost=3)))
 
 
 class TSC_064:
@@ -43,9 +43,9 @@ class TSC_069:
     
     # 根据目标随从的种族发现相同种族的随从
     play = lambda self, target: (
-        GenericChoice(CONTROLLER, Discover(CONTROLLER, RandomMinion(race=target.race)))
+        Discover(CONTROLLER, RandomMinion(race=target.race))
         if target and hasattr(target, 'race') and target.race
-        else GenericChoice(CONTROLLER, Discover(CONTROLLER, RandomMinion()))
+        else Discover(CONTROLLER, RandomMinion())
     )
 
 

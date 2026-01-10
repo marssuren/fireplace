@@ -109,7 +109,7 @@ class TSC_641:
     powered_up = lambda self: self.spells_cast_while_holding >= 3
     
     play = lambda self: (
-        GenericChoice(CONTROLLER, Discover(CONTROLLER, ["TSC_641t1", "TSC_641t2", "TSC_641t3", "TSC_641t4"]))
+        Discover(CONTROLLER, ["TSC_641t1", "TSC_641t2", "TSC_641t3", "TSC_641t4"])
         if self.powered_up else []
     )
 

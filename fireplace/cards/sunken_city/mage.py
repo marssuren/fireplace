@@ -117,7 +117,7 @@ class TSC_643:
     """法术卷积者 - 2费 2/3
     战吼：如果你在本牌在你手中时施放过法术，发现一张法术牌"""
     powered_up = Find(FRIENDLY_HAND + SPELL) & Buff(SELF, "TSC_643e")
-    play = (Find(SELF + POWERED_UP), GenericChoice(CONTROLLER, Discover(CONTROLLER, RandomSpell())))
+    play = (Find(SELF + POWERED_UP), Discover(CONTROLLER, RandomSpell()))
 
 
 class TSC_643e:

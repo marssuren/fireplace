@@ -453,7 +453,7 @@ class GDB_874e:
     Player enchantment: Discover a spell at start of next turn
     """
     events = OWN_TURN_BEGIN.on(
-        GenericChoice(CONTROLLER, Discover(CONTROLLER, RandomSpell())),
+        Discover(CONTROLLER, RandomSpell()),
         Destroy(SELF)
     )
 

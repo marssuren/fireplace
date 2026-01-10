@@ -287,7 +287,7 @@ class SW_052t:
     }
     
     # 发现一张随机牌
-    play = GenericChoice(CONTROLLER, Discover(CONTROLLER, RandomCollectible()))
+    play = Discover(CONTROLLER, RandomCollectible())
 
 
 class SW_052t2:
@@ -300,7 +300,7 @@ class SW_052t2:
     
     def play(self):
         """发现一张牌并减费"""
-        discovered = yield GenericChoice(CONTROLLER, Discover(CONTROLLER, RandomCollectible()))
+        discovered = yield Discover(CONTROLLER, RandomCollectible())
         if discovered:
             yield Buff(discovered, "SW_052t2e")
 
@@ -320,7 +320,7 @@ class SW_052t3:
     
     def play(self):
         """发现一张牌并减费2点"""
-        discovered = yield GenericChoice(CONTROLLER, Discover(CONTROLLER, RandomCollectible()))
+        discovered = yield Discover(CONTROLLER, RandomCollectible())
         if discovered:
             yield Buff(discovered, "SW_052t3e")
 

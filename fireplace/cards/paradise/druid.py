@@ -109,7 +109,7 @@ class VAC_517:
     """
     def activate(self):
         # 发现一张嘲讽随从
-        yield GenericChoice(CONTROLLER, Discover(CONTROLLER, RandomMinion(taunt=True)))
+        yield Discover(CONTROLLER, RandomMinion(taunt=True))
 
     # 在获得护甲后，重新开启地标
     events = GainArmor(FRIENDLY_HERO).after(Refresh(SELF, {enums.LOCATION_COOLDOWN: -1}))

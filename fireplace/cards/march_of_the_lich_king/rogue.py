@@ -84,8 +84,8 @@ class RLK_569:
     """
     def play(self):
         # 发现2次药剂
-        yield GenericChoice(CONTROLLER, Discover(CONTROLLER, RandomPotion()))
-        yield GenericChoice(CONTROLLER, Discover(CONTROLLER, RandomPotion()))
+        yield Discover(CONTROLLER, RandomPotion())
+        yield Discover(CONTROLLER, RandomPotion())
 
 
 class RLK_570:

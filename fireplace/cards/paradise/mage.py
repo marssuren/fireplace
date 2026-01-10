@@ -57,7 +57,7 @@ class VAC_522:
     """
     def activate(self):
         # 发现一张3费以下的法术牌
-        yield GenericChoice(CONTROLLER, Discover(CONTROLLER, RandomSpell(cost_max=3)))
+        yield Discover(CONTROLLER, RandomSpell(cost_max=3))
     
     # 施放法术后重新开启地标
     events = Play(CONTROLLER, SPELL).after(

@@ -130,15 +130,15 @@ class SW_433:
     
     def questline_reward_1(self):
         """阶段1奖励：从牌库中发现一张牌"""
-        return [GenericChoice(CONTROLLER, Discover(CONTROLLER, FRIENDLY_DECK))]
+        return [Discover(CONTROLLER, FRIENDLY_DECK)]
     
     def questline_reward_2(self):
         """阶段2奖励：从牌库中发现一张牌"""
-        return [GenericChoice(CONTROLLER, Discover(CONTROLLER, FRIENDLY_DECK))]
+        return [Discover(CONTROLLER, FRIENDLY_DECK)]
     
     def questline_reward_3(self):
         """阶段3奖励：从牌库中发现一张牌"""
-        return [GenericChoice(CONTROLLER, Discover(CONTROLLER, FRIENDLY_DECK))]
+        return [Discover(CONTROLLER, FRIENDLY_DECK)]
 
 
 class SW_433e:

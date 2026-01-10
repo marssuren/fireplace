@@ -48,7 +48,7 @@ class TSC_660:
     巨型+1。战吼：发现三个海盗来构成奈利的船员团队"""
     colossal_appendages = ["TSC_660t"]
     play = (
-        GenericChoice(CONTROLLER, Discover(CONTROLLER, RandomMinion(race=Race.PIRATE))) * 3
+        Discover(CONTROLLER, RandomMinion(race=Race.PIRATE)) * 3
     )
 
 

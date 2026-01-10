@@ -29,7 +29,7 @@ class SW_045:
     """拍卖师亚克森 / Auctioneer Jaxon
     每当你交易时，从你的牌库中发现一张牌来抽取。"""
     events = Trade(CONTROLLER).on(
-        GenericChoice(CONTROLLER, Discover(CONTROLLER, FRIENDLY_DECK))
+        Discover(CONTROLLER, FRIENDLY_DECK)
     )
 
 

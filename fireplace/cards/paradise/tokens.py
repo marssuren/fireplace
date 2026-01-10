@@ -796,14 +796,14 @@ class VAC_523t:
         ]
         
         # 第一次选择
-        first_choice = yield GenericChoice(CONTROLLER, Discover(CONTROLLER, effect_options))
+        first_choice = yield Discover(CONTROLLER, effect_options)
         
         if first_choice:
             first_effect_id = first_choice[0].id
             
             # 第二次选择（从剩余的效果中选择）
             remaining_effects = [e for e in effect_options if e != first_effect_id]
-            second_choice = yield GenericChoice(CONTROLLER, Discover(CONTROLLER, remaining_effects))
+            second_choice = yield Discover(CONTROLLER, remaining_effects)
             
             if second_choice:
                 second_effect_id = second_choice[0].id

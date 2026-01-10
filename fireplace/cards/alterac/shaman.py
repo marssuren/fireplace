@@ -146,7 +146,7 @@ class ONY_011:
 class AV_107:
     """冰川化 / Glaciate
     发现一张法力值消耗为（8）的随从牌。召唤它并使其冻结。"""
-    play = GenericChoice(CONTROLLER, Discover(CONTROLLER, RandomMinion(cost=8))).then(
+    play = Discover(CONTROLLER, RandomMinion(cost=8)).then(
         lambda card: (Summon(CONTROLLER, Copy(card)), Freeze(Summon.CARD))
     )
 

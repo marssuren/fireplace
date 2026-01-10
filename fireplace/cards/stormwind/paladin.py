@@ -198,7 +198,7 @@ class SW_049:
         options.append(divine_shield_minions)
         
         # 发现
-        yield GenericChoice(CONTROLLER, Discover(CONTROLLER, options))
+        yield Discover(CONTROLLER, options)
 
 
 class SW_305:

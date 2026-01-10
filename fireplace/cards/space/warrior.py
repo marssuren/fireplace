@@ -88,12 +88,12 @@ class GDB_227:
     """
     def play(self):
         # 第一次发现法术牌
-        yield GenericChoice(CONTROLLER, Discover(CONTROLLER, RandomSpell()))
+        yield Discover(CONTROLLER, RandomSpell())
 
         # 如果有至少2点护甲值，消耗2点护甲值并再发现一张
         if self.controller.hero.armor >= 2:
             yield GainArmor(FRIENDLY_HERO, -2)
-            yield GenericChoice(CONTROLLER, Discover(CONTROLLER, RandomSpell()))
+            yield Discover(CONTROLLER, RandomSpell())
 
 
 class GDB_229:
