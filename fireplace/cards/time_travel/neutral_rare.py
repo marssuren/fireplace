@@ -39,8 +39,11 @@ class TIME_003:
 
 class TIME_003e:
     """传送门卫士 - +2/+2增益"""
-    atk = 2
-    max_health = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 2,
+    }
 
 
 class TIME_051:

@@ -57,8 +57,11 @@ class ONY_012:
 
 class ONY_012e:
     """灵魂坐骑增益"""
-    atk = 1
-    max_health = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 2,
+    }
     spellpower = 1
     deathrattle = Summon(CONTROLLER, "ONY_012t")
 

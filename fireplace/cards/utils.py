@@ -311,7 +311,7 @@ def MAGNETIC(buff):
         magnetic = MAGNETIC("BOT_020e")
         
         # 特殊磁力（需要在tags中设置 MAGNETIC_TARGET_RACES）
-        tags = {
+    tags = {
             enums.MAGNETIC_TARGET_RACES: [Race.MECHANICAL, Race.BEAST]
         }
         magnetic = MAGNETIC("TTN_087e")
@@ -326,21 +326,22 @@ def MAGNETIC(buff):
         
         if allowed_races is None:
             # 默认：只能吸附在机械上
-            return RIGHT_OF(source) + MECH
+            # 使用 SELF 选择器而不是 source 实体
+            return RIGHT_OF(SELF) + MECH
         else:
             # 自定义种族列表
             # 构建种族过滤器
             def race_filter(card):
                 return any(race in card.races for race in allowed_races)
             
-            return RIGHT_OF(source).filter(race_filter)
+            return RIGHT_OF(SELF).filter(race_filter)
     
     # 返回磁力动作
     # 注意：这里需要使用延迟求值，因为需要在运行时获取 source
     return lambda source: (
         Find(magnetic_target_selector(source)) & (
-            Buff(RIGHT_OF(source), buff, atk=ATK(source), max_health=CURRENT_HEALTH(source), source_card_id=source.id),
-            Remove(source),
+            Buff(RIGHT_OF(SELF), buff, atk=ATK(SELF), max_health=CURRENT_HEALTH(SELF), source_card_id=source.id),
+            Remove(SELF),
         )
     ).trigger(source)
 

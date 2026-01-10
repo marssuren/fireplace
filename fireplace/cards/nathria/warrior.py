@@ -30,8 +30,11 @@ class MAW_028:
 
 class MAW_028e:
     """Mawsworn Bailiff Buff - 渊誓者法警增益"""
-    atk = 4
-    max_health = 4
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 4,
+        GameTag.HEALTH: 4,
+    }
 
 
 class MAW_029:
@@ -50,8 +53,11 @@ class MAW_029:
 
 class MAW_029e:
     """Weapons Expert Buff - 武器专家增益"""
-    atk = 1
-    max_health = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1,
+    }
 
 
 class REV_006:
@@ -157,8 +163,11 @@ your hand +1/+1.
 
 class REV_332e:
     """Anima Extractor Buff - 心能提取者增益"""
-    atk = 1
-    max_health = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1,
+    }
 
 
 class REV_334:
@@ -191,8 +200,11 @@ class REV_334t:
 
 class REV_334e:
     """Burden of Pride Buff - 骄傲罪责增益"""
-    atk = 1
-    max_health = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1,
+    }
 
 
 class REV_337:
@@ -289,14 +301,20 @@ give your damaged minions
 
 class REV_933e:
     """Imbued Axe Buff - 灌能战斧增益"""
-    atk = 1
-    max_health = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 2,
+    }
 
 
 class REV_933e2:
     """Imbued Axe Infused Buff - 灌能战斧注能增益"""
-    atk = 2
-    max_health = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 2,
+    }
 
 
 class REV_934:
@@ -323,8 +341,11 @@ for each damaged minion,
 
 class REV_934e:
     """Decimator Olgra Buff - 屠戮者奥格拉增益"""
-    atk = 1
-    max_health = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1,
+    }
 
 
 class REV_990:
@@ -349,6 +370,9 @@ minion and give it
 
 class REV_990e:
     """Sanguine Depths Buff - 赤红深渊增益"""
-    atk = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+    }
 
 

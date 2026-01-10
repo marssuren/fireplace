@@ -22,9 +22,12 @@ class WORK_002:
 
 class WORK_002e:
     """忙碌机器人增益效果"""
-    tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
-    atk = 1
-    max_health = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1,
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+    }
 
 
 class VAC_921:
@@ -96,9 +99,12 @@ class VAC_915:
 
 class VAC_915e:
     """大力扣杀增益效果"""
-    tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
-    atk = 4
-    max_health = 4
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 4,
+        GameTag.HEALTH: 4,
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+    }
 
 
 # ========== RARE ==========

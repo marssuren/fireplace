@@ -21,8 +21,11 @@ Recruits +1/+1.
 
 class MAW_015e:
     """Jury Duty Buff - 陪审义务增益"""
-    atk = 1
-    max_health = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1,
+    }
 
 
 class MAW_016:
@@ -88,16 +91,19 @@ and <b>Taunt</b>.
     # 这里检查目标是否是白银之手新兵
     def play(self):
         # 检查目标是否是白银之手新兵
-        if self.target and self.target.card_id == "CS2_101t":
+        if self.target and self.target.id == "CS2_101t":
             # 给目标+3/+3和嘲讽
             yield Buff(TARGET, "REV_842e")
 
 
 class REV_842e:
     """Promotion Buff - 晋升增益"""
-    atk = 3
-    max_health = 3
-    tags = {GameTag.TAUNT: True}
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 3,
+        GameTag.HEALTH: 3,
+        GameTag.TAUNT: True,
+    }
 
 
 class REV_947:
@@ -129,7 +135,7 @@ class REV_948:
         
         if card:
             # 找出牌库中所有同名卡牌（包括刚发现的这张）
-            cards_to_draw = [c for c in list(self.controller.deck) if c.card_id == card.card_id]
+            cards_to_draw = [c for c in list(self.controller.deck) if c.id == card.id]
             
             # 使用 Draw action 抽出所有同名卡牌
             # 这会触发所有抽牌相关的逻辑和事件
@@ -168,8 +174,11 @@ damage to enemy minions.
 
 class REV_950e:
     """Divine Toll Buff - 圣洁鸣钟增益"""
-    atk = 2
-    max_health = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 2,
+    }
 
 
 class REV_951:
@@ -235,8 +244,11 @@ class REV_955e:
 
 class REV_955e2:
     """Stewart the Steward Buff - 执事者斯图尔特增益"""
-    atk = 3
-    max_health = 3
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 3,
+        GameTag.HEALTH: 3,
+    }
     # 亡语：递归触发相同效果
     def deathrattle(self):
         yield Buff(FRIENDLY_HERO, "REV_955e")
@@ -266,8 +278,11 @@ and <b>Divine Shield</b>.
 
 class REV_958e:
     """Buffet Biggun Buff - 餐会巨仆增益"""
-    atk = 2
-    tags = {GameTag.DIVINE_SHIELD: True}
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+        GameTag.DIVINE_SHIELD: True,
+    }
 
 
 class REV_961:

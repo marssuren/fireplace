@@ -167,13 +167,16 @@ class TIME_449e:
     """绵延传承 - 英雄攻击力增益"""
     tags = {
         GameTag.TAG_ONE_TURN_EFFECT: True,
+        GameTag.ATK: 4,
     }
-    atk = 4
 
 
 class TIME_449e2:
     """绵延传承 - 手牌随从攻击力增益"""
-    atk = 4
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 4,
+    }
     events = REMOVED_IN_PLAY
 
 

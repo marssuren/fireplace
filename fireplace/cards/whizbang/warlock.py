@@ -311,9 +311,9 @@ class TOY_915e:
     tags = {
         GameTag.CARDTYPE: CardType.ENCHANTMENT,
         GameTag.TAG_ONE_TURN_EFFECT: True,
-        GameTag.IMMUNE: True
+        GameTag.IMMUNE: True,
+        GameTag.ATK: 2,
     }
-    atk = 2
 
 
 class TOY_916e:

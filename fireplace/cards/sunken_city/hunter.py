@@ -8,8 +8,23 @@ from ..utils import *
 class TID_074:
     """上古海怪杀手 - 3费 3/3
     战吼：如果你在本牌在你手中时施放过三个法术，造成5点伤害"""
-    powered_up = (Count(Play(CONTROLLER, SPELL)) >= 3) & Buff(SELF, "TID_074e")
-    play = (Find(SELF + POWERED_UP), Hit(TARGET, 5))
+    requirements = {PlayReq.REQ_TARGET_IF_AVAILABLE: 0}
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.spells_cast_while_holding = 0
+    
+    class Hand:
+        events = Play(CONTROLLER, SPELL).after(
+            lambda self, source, card: setattr(self, 'spells_cast_while_holding', 
+                                               getattr(self, 'spells_cast_while_holding', 0) + 1)
+        )
+    
+    powered_up = lambda self: self.spells_cast_while_holding >= 3
+    
+    play = lambda self: (
+        Hit(TARGET, 5) if self.powered_up else []
+    )
 
 
 class TID_074e:

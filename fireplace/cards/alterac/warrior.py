@@ -51,8 +51,11 @@ class AV_145:
 
 class AV_145e:
     """加尔范上尉增益"""
-    atk = 3
-    max_health = 3
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 3,
+        GameTag.HEALTH: 3,
+    }
 
 
 class AV_321:
@@ -134,5 +137,8 @@ class ONY_025:
 
 class ONY_025e:
     """铁肩冲撞增益"""
-    atk = 2
-    max_health = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 1,
+    }

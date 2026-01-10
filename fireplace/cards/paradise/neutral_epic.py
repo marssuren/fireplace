@@ -136,12 +136,13 @@ class WORK_042:
     }
     
     def play(self):
-        if TARGET:
+        target = self.target
+        if target:
             # 记录被消灭的随从ID
-            minion_id = TARGET.id
+            minion_id = target.id
             
             # 消灭目标
-            yield Destroy(TARGET)
+            yield Destroy(target)
             
             # 给自己添加一个buff，存储随从ID
             # 使用 kwargs 传递自定义属性

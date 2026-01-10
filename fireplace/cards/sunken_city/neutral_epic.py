@@ -14,8 +14,22 @@ class TSC_052:
 class TSC_064:
     """蛇行死鳞纳迦 - 7费 5/9
     战吼：如果你在本牌在你手中时施放过三个法术，则对所有敌人造成3点伤害"""
-    powered_up = (Count(Play(CONTROLLER, SPELL)) >= 3) & Buff(SELF, "TSC_064e")
-    play = (Find(SELF + POWERED_UP), Hit(ALL_ENEMIES, 3))
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.spells_cast_while_holding = 0
+    
+    class Hand:
+        events = Play(CONTROLLER, SPELL).after(
+            lambda self, source, card: setattr(self, 'spells_cast_while_holding', 
+                                               getattr(self, 'spells_cast_while_holding', 0) + 1)
+        )
+    
+    powered_up = lambda self: self.spells_cast_while_holding >= 3
+    
+    play = lambda self: (
+        Hit(ALL_ENEMIES, 3) if self.powered_up else []
+    )
 
 
 class TSC_064e:

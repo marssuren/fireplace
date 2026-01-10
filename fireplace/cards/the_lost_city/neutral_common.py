@@ -28,10 +28,10 @@ class DINO_419:
 
 class DINO_419e:
     """饲草助手增益 - Herbivore Assistant Buff"""
-    atk = 2
-    max_health = 2
     tags = {
         GameTag.RUSH: True,
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 2,
     }
 
 
@@ -264,8 +264,11 @@ class TLC_253:
 
 class TLC_253e:
     """石化食人魔增益 - Petrified Ogre Buff"""
-    atk = 2
-    max_health = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 2,
+    }
 
 
 # TLC_256 - 沼地蛇颈龙

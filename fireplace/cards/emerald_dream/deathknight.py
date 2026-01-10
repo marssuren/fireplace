@@ -69,7 +69,10 @@ class EDR_816:
 
 class EDR_816e:
     """怪异魔蚊增益 - Monstrous Mosquito Buff"""
-    atk = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+    }
 
 
 class FIR_900:
@@ -263,7 +266,10 @@ class EDR_812:
 
 class EDR_812e1:
     """畸怪符文剑攻击增益 - Grotesque Runeblade Attack"""
-    atk = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+    }
 
 
 class EDR_812e2:
@@ -466,10 +472,10 @@ class EDR_270e:
 
 class FIR_908e:
     """火炭变色龙增益 - Charred Chameleon Buff"""
-    atk = 1
-    max_health = 2
     tags = {
         GameTag.RUSH: True,
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 2,
     }
 
 
@@ -490,5 +496,8 @@ class EDR_271e:
 
 class FIR_906e:
     """过热增益 - Overheat Buff"""
-    atk = 1
-    max_health = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1,
+    }

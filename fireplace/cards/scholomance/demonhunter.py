@@ -109,7 +109,10 @@ class SCH_704:
 
 class SCH_704e:
     """Soulshard Lapidary Buff"""
-    atk = 5
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 5,
+    }
     events = TURN_END.on(Destroy(SELF))
 
 

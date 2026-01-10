@@ -37,7 +37,10 @@ class RLK_916:
 
 class RLK_916e:
     """胆大的幼龙增益 (Daring Drake Buff)"""
-    atk = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+    }
     health = 1
 
 
@@ -81,7 +84,10 @@ class RLK_918:
 
 class RLK_918e:
     """为了奎尔萨拉斯增益 (For Quel'Thalas Buff)"""
-    atk = 3
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 3,
+    }
 
 
 class RLK_918e2:
@@ -152,8 +158,11 @@ class RLK_922:
 
 class RLK_922e:
     """鲜血圣印增益 (Seal of Blood Buff)"""
-    tags = {GameTag.DIVINE_SHIELD: True}
-    atk = 3
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 3,
+        GameTag.DIVINE_SHIELD: True,
+    }
     health = 3
 
 

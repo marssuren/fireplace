@@ -18,8 +18,11 @@ class MAW_021:
 
 class MAW_021e:
     """Clear Conscience Buff - 问心无愧增益"""
-    atk = 2
-    max_health = 3
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 3,
+    }
     
     # 在对手回合中获得 Elusive（无法被法术或英雄技能指定）
     def _update_elusive(self, source):
@@ -149,7 +152,7 @@ class REV_246:
 
 class REV_246e:
     """Mysterious Visitor Buff - 神秘访客减费"""
-    cost = -3
+    tags = {GameTag.COST: -3}
 
 
 class REV_247:
@@ -215,7 +218,10 @@ class REV_248:
 
 class REV_248e:
     """Boon of the Ascended Buff - 晋升者之赐增益"""
-    max_health = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.HEALTH: 2,
+    }
 
 
 class REV_248t:
@@ -324,7 +330,10 @@ class REV_290:
 
 class REV_290e:
     """Cathedral of Atonement Buff - 赎罪教堂增益"""
-    atk = 2
-    max_health = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 1,
+    }
 
 

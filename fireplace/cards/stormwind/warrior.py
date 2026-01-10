@@ -120,8 +120,11 @@ class SW_024:
 
 class SW_024e:
     """洛萨增益"""
-    atk = 3
-    max_health = 3
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 3,
+        GameTag.HEALTH: 3,
+    }
 
 
 class SW_027:

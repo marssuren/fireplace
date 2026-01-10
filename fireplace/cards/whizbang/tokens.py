@@ -737,7 +737,10 @@ class MIS_706e:
     """短刀增益 - Knife Buff
     +1 Attack
     """
-    atk = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+    }
 
 
 # ========================================

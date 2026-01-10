@@ -373,12 +373,18 @@ class EDR_254e:
 
 class EDR_470e:
     """+2生命值"""
-    max_health = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.HEALTH: 2,
+    }
 
 
 class EDR_495e:
     """-2攻击力"""
-    atk = -2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: -2,
+    }
 
 
 class EDR_572e:
@@ -388,8 +394,11 @@ class EDR_572e:
 
 class EDR_849e1:
     """+1/+1"""
-    atk = 1
-    max_health = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1,
+    }
 
 
 class EDR_849e2:
@@ -414,5 +423,8 @@ class EDR_849e5:
 
 class EDR_889e:
     """+1/+1"""
-    atk = 1
-    max_health = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1,
+    }

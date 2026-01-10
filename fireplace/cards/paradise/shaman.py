@@ -79,9 +79,12 @@ class WORK_011:
 
 class WORK_011e:
     """饮水图腾增益效果"""
-    tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
-    atk = 1
-    max_health = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1,
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+    }
 
 
 # ========== RARE ==========
@@ -352,6 +355,9 @@ class WORK_013:
 
 class WORK_013e:
     """湍流元素特布勒斯增益效果"""
-    tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
-    atk = 1
-    max_health = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1,
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+    }

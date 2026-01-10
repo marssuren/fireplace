@@ -132,7 +132,10 @@ class RLK_824:
 
 class RLK_824e:
     """肢体商贩增益 (Arms Dealer Buff)"""
-    atk = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+    }
 
 
 class RLK_833:
@@ -235,7 +238,10 @@ class RLK_955:
 
 class RLK_955e:
     """银月城军备官增益 (Silvermoon Armorer Buff)"""
-    atk = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+    }
     health = 2
 
 

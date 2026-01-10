@@ -88,7 +88,7 @@ class TIME_047:
                 调整后的费用值
             """
             # 获取敌方英雄本回合受伤次数
-            opponent_hero = self.owner.controller.opponent.hero
+            opponent_hero = self.controller.opponent.hero
             damage_count = getattr(opponent_hero, 'times_damaged_this_turn', 0)
             # 每次受伤减1费，最低0费
             return max(0, i - damage_count)
@@ -313,8 +313,11 @@ class TIME_100:
 
 class TIME_100e:
     """沙漏侍者 - +1/+1增益"""
-    atk = 1
-    max_health = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1,
+    }
 
 
 class TIME_101:
@@ -355,7 +358,10 @@ class TIME_428:
 
 class TIME_428e:
     """昨日鱼人 - +1生命值"""
-    max_health = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.HEALTH: 1,
+    }
 
 
 class TIME_434:

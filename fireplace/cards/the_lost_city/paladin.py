@@ -68,8 +68,11 @@ class DINO_405e:
 
 class DINO_405e2:
     """+2/+2"""
-    atk = 2
-    max_health = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 2,
+    }
 
 
 class TLC_428:
@@ -166,8 +169,11 @@ class TLC_441:
 
 class TLC_441e:
     """+1/+2"""
-    atk = 1
-    max_health = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 2,
+    }
 
 
 class TLC_442:
@@ -538,9 +544,12 @@ class TLC_477:
 
 class TLC_477e:
     """+4/+4和亡语"""
-    atk = 4
-    max_health = 4
-    tags = {GameTag.DEATHRATTLE: True}
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 4,
+        GameTag.HEALTH: 4,
+        GameTag.DEATHRATTLE: True,
+    }
     
     deathrattle = Summon(CONTROLLER, RandomMinion(cost=4))
 

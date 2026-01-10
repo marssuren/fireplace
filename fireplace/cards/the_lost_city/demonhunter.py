@@ -174,8 +174,8 @@ class TLC_903e:
     """异种虫女王增益 - Silithid Queen Buff"""
     tags = {
         GameTag.TAG_ONE_TURN_EFFECT: True,
+        GameTag.ATK: 5,
     }
-    atk = 5
 
 
 # RARE

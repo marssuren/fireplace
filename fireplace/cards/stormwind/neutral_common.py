@@ -16,8 +16,11 @@ class DED_523:
 
 class DED_523e:
     """葛拉卡蟹杀手增益"""
-    atk = 1
-    max_health = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1,
+    }
 
 
 class SW_006:
@@ -34,8 +37,11 @@ class SW_054:
 
 class SW_054e:
     """暴风城卫兵增益"""
-    atk = 1
-    max_health = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1,
+    }
 
 
 class SW_055:
@@ -138,8 +144,11 @@ class SW_071:
 
 class SW_071e:
     """雄狮卫士增益"""
-    atk = 2
-    max_health = 4
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 4,
+    }
 
 
 class SW_072:
@@ -167,8 +176,11 @@ class SW_307:
 
 class SW_307e:
     """旅行商人增益"""
-    atk = 1
-    max_health = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1,
+    }
 
 
 class SW_319:

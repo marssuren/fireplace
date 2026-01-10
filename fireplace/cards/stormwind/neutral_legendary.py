@@ -59,12 +59,15 @@ class SW_079:
         # 使自己休眠
         self.dormant = True
         
+        # 创建选择卡牌对象
+        choices = [
+            self.controller.card("SW_079a", self),  # 短途：2回合后苏醒，抽1张牌
+            self.controller.card("SW_079b", self),  # 中途：3回合后苏醒，抽2张牌
+            self.controller.card("SW_079c", self),  # 长途：4回合后苏醒，抽3张牌
+        ]
+        
         # 让玩家选择飞行路线
-        yield GenericChoice(CONTROLLER, [
-            "SW_079a",  # 短途：2回合后苏醒，抽1张牌
-            "SW_079b",  # 中途：3回合后苏醒，抽2张牌
-            "SW_079c",  # 长途：4回合后苏醒，抽3张牌
-        ])
+        yield GenericChoice(CONTROLLER, choices)
 
 
 class SW_079a:

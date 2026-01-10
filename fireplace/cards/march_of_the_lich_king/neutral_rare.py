@@ -85,7 +85,10 @@ class RLK_957:
 
 class RLK_957e:
     """哀嚎的女妖增益 (Wailing Banshee Buff)"""
-    atk = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+    }
     health = 1
 
 

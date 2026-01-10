@@ -90,7 +90,10 @@ class AV_326:
 
 class AV_326e:
     """光辉晶簇增益"""
-    atk = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+    }
 
 
 class AV_328:
@@ -124,7 +127,10 @@ class AV_329:
 
 class AV_329e:
     """祝福增益"""
-    max_health = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.HEALTH: 2,
+    }
 
     def apply(self, target):
         """使攻击力等同于生命值"""
@@ -184,4 +190,7 @@ class AV_664e:
 
 class AV_664e2:
     """雷矛救援站生命值增益"""
-    max_health = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.HEALTH: 2,
+    }

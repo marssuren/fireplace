@@ -79,7 +79,10 @@ Beast, give it <b>Rush</b>.
 
 class REV_362e:
     """Castle Kennels Buff - 城堡狗舍攻击加成"""
-    atk = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+    }
 
 
 class REV_362e2:
@@ -184,7 +187,10 @@ class REV_350t:
 
 class REV_350e:
     """Frenzied Fangs Buff - 狂暴利齿强化"""
-    atk = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+    }
     health = 2
 
 
@@ -230,7 +236,10 @@ Gain <b>Rush</b>.
 
 class MAW_009e:
     """Shadehound Buff - 影犬强化"""
-    atk = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+    }
     health = 2
 
 

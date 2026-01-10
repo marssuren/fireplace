@@ -100,7 +100,10 @@ class REV_507:
 
 class REV_507e:
     """Dispose of Evidence Buff - 处理证据增益"""
-    atk = 3
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 3,
+    }
     events = TURN_END.on(Destroy(SELF))
 
 

@@ -32,12 +32,18 @@ minion and gain its stats.
     }
     
     def play(self):
-        targets = [TARGET]
+        # 评估主目标
+        main_target = self.target
+        if not main_target:
+            return
+        
+        targets = [main_target]
         
         # 如果已注能，添加相邻随从
         if self.infused:
-            adjacent = ADJACENT(TARGET).eval(self.game, self)
-            targets.extend(adjacent)
+            adjacent = ADJACENT(main_target).eval(self.game, self)
+            if adjacent:
+                targets.extend(adjacent)
         
         # 吞噬所有目标
         total_atk = 0

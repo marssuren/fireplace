@@ -72,9 +72,12 @@ class WORK_024t:
 
 class WORK_024te:
     """熊的增益效果"""
-    tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
-    atk = 1
-    max_health = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1,
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+    }
 
 
 # Hunter Tokens
@@ -177,9 +180,12 @@ class VAC_921t:
 
 class VAC_921te:
     """防晒霜增益效果"""
-    tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
-    atk = 1
-    max_health = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 2,
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+    }
 
 
 class VAC_916t:
@@ -235,9 +241,9 @@ class VAC_923te:
     """圣沙泽尔地标增益效果"""
     tags = {
         GameTag.RUSH: True,
-        GameTag.CARDTYPE: CardType.ENCHANTMENT
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 3,
     }
-    atk = 3
 
 
 # Priest Tokens
@@ -295,9 +301,12 @@ class WORK_017t:
 
 class WORK_017te:
     """吉尔尼斯宣传单 - 属性减益"""
-    tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
-    atk = -2
-    max_health = -2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: -2,
+        GameTag.HEALTH: -2,
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+    }
 
 
 # Warlock Tokens

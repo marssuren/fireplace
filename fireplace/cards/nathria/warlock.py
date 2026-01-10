@@ -181,8 +181,11 @@ class REV_371:
 
 class REV_371e:
     """Vile Library Buff - 邪恶图书馆增益"""
-    atk = 1
-    max_health = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1,
+    }
 
 
 class REV_372:
@@ -273,8 +276,7 @@ class REV_374:
 
 class REV_374e:
     """Shadowborn Effect - 影裔魔效果"""
-    class Hand:
-        cost = -3
+    tags = {GameTag.COST: -3}
 
 
 class REV_835:
@@ -308,7 +310,10 @@ Imps +2/+2.
 
 class REV_835e:
     """Imp King Rafaam Buff - 小鬼大王拉法姆增益"""
-    atk = 2
-    max_health = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 2,
+    }
 
 

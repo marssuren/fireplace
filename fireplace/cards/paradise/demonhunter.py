@@ -46,9 +46,9 @@ class VAC_927e:
     """狂飙邪魔攻击力 Buff"""
     tags = {
         GameTag.CARDTYPE: CardType.ENCHANTMENT,
-        GameTag.TAG_ONE_TURN_EFFECT: True  # 本回合结束时移除
+        GameTag.TAG_ONE_TURN_EFFECT: True,  # 本回合结束时移除
+        GameTag.ATK: 1,
     }
-    atk = 1
 
 
 class VAC_930:
@@ -67,9 +67,9 @@ class VAC_930e:
     """全地形虚空猎犬攻击力 Buff"""
     tags = {
         GameTag.CARDTYPE: CardType.ENCHANTMENT,
-        GameTag.TAG_ONE_TURN_EFFECT: True  # 本回合结束时移除
+        GameTag.TAG_ONE_TURN_EFFECT: True,  # 本回合结束时移除
+        GameTag.ATK: 5,
     }
-    atk = 5
 
 
 class WORK_015:
@@ -159,18 +159,18 @@ class VAC_931e:
     """生死一线攻击力减少 Buff"""
     tags = {
         GameTag.CARDTYPE: CardType.ENCHANTMENT,
-        GameTag.TAG_ONE_TURN_EFFECT: True
+        GameTag.TAG_ONE_TURN_EFFECT: True,
+        GameTag.ATK: -4,
     }
-    atk = -4
 
 
 class VAC_931e2:
     """生死一线攻击力增加 Buff"""
     tags = {
         GameTag.CARDTYPE: CardType.ENCHANTMENT,
-        GameTag.TAG_ONE_TURN_EFFECT: True
+        GameTag.TAG_ONE_TURN_EFFECT: True,
+        GameTag.ATK: 4,
     }
-    atk = 4
 
 
 class WORK_014:

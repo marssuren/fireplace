@@ -47,9 +47,9 @@ class WW_333:
     每当你的手牌少于三张，随机获取一张鱼人牌。
     """
     events = [
-        Play(CONTROLLER).after(lambda self: self._check_hand()),
-        Draw(CONTROLLER).after(lambda self: self._check_hand()),
-        Discard(CONTROLLER).after(lambda self: self._check_hand()),
+        Play(CONTROLLER).after(lambda self, source, *args: self._check_hand()),
+        Draw(CONTROLLER).after(lambda self, source, *args: self._check_hand()),
+        Discard(CONTROLLER).after(lambda self, source, *args: self._check_hand()),
     ]
 
     def _check_hand(self):

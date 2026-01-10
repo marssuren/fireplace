@@ -417,8 +417,11 @@ class SW_411:
 
 class SW_411e:
     """军情七处线人增益"""
-    atk = 1
-    max_health = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1,
+    }
 
 
 class SW_412:

@@ -216,8 +216,11 @@ class TIME_871:
 
 class TIME_871e:
     """后世之嗣 - +2/+2"""
-    atk = 2
-    max_health = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 2,
+    }
 
 
 # LEGENDARY
@@ -302,7 +305,10 @@ class TIME_850:
 
 class TIME_850e:
     """血斗士洛戈什 - +5/+5"""
-    atk = 5
-    max_health = 5
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 5,
+        GameTag.HEALTH: 5,
+    }
 
 

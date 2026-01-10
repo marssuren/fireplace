@@ -45,7 +45,10 @@ class AV_136t:
 
 class AV_136te:
     """护甲碎片增益"""
-    max_health = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.HEALTH: 2,
+    }
 
 
 class AV_137:

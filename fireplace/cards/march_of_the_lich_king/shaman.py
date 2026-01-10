@@ -20,7 +20,10 @@ class RLK_550e:
 
 class RLK_550e2:
     """腐鳃增益 (Rotgill Buff)"""
-    atk = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+    }
     health = 1
 
 

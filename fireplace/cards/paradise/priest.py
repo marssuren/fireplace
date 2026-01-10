@@ -112,9 +112,12 @@ class WORK_017:
 
 class WORK_017e:
     """银月城宣传单 - 永久属性增益"""
-    tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
-    atk = 2
-    max_health = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 2,
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+    }
 
 
 class WORK_017e2:

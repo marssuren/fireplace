@@ -291,9 +291,9 @@ class TOY_513e:
     """
     tags = {
         GameTag.CARDTYPE: CardType.ENCHANTMENT,
-        GameTag.TAG_ONE_TURN_EFFECT: True
+        GameTag.TAG_ONE_TURN_EFFECT: True,
+        GameTag.ATK: 1,
     }
-    atk = 1
 
 
 class TOY_513e2:
@@ -328,8 +328,11 @@ class TOY_877e:
     """星空祈愿增益 - Wish Upon a Star Buff
     +2/+3
     """
-    atk = 2
-    max_health = 3
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 3,
+    }
 
 
 class TOY_501e:

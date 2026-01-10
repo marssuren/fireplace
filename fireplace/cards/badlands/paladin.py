@@ -72,7 +72,10 @@ class WW_342:
 
 class WW_342e:
     """+1攻击"""
-    atk = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+    }
 
 
 # RARE

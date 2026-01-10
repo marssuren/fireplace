@@ -89,8 +89,11 @@ class WORK_005:
 
 class WORK_005e:
     """快刀快递增益效果"""
-    tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
-    atk = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+    }
     durability = 2
 
 

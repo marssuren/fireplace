@@ -28,9 +28,9 @@ class DINO_417e:
     
     +1攻击力和突袭，回合结束时死亡
     """
-    atk = 1
     tags = {
         GameTag.RUSH: True,
+        GameTag.ATK: 1,
     }
     
     # 回合结束时死亡

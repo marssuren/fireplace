@@ -355,8 +355,11 @@ class TLC_110:
 
 class TLC_110e:
     """城市首脑埃舒增益 - +2/+2"""
-    atk = 2
-    max_health = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 2,
+    }
 
 
 # ========================================

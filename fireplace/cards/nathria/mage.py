@@ -208,7 +208,10 @@ class REV_515:
 
 class REV_515e:
     """Orion Buff - 俄里翁强化"""
-    atk = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+    }
     health = 2
 
 

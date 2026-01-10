@@ -72,8 +72,11 @@ class TIME_213:
 
 class TIME_213e:
     """始源监督者 - +1/+1"""
-    atk = 1
-    max_health = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1,
+    }
 
 
 class TIME_218:
@@ -102,8 +105,8 @@ class TIME_218e:
     """静电震击 - 英雄+1攻击"""
     tags = {
         GameTag.TAG_ONE_TURN_EFFECT: True,
+        GameTag.ATK: 1,
     }
-    atk = 1
 
 
 # RARE
@@ -143,8 +146,11 @@ class TIME_214:
 
 class TIME_214e:
     """时流亡魂 - +2/+1"""
-    atk = 2
-    max_health = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 1,
+    }
 
 
 class TIME_215:

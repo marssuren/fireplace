@@ -74,9 +74,12 @@ class WORK_050:
 
 class WORK_050e:
     """安戈洛宣传单增益效果"""
-    tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
-    atk = 2
-    max_health = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 2,
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+    }
 
 
 # RARE

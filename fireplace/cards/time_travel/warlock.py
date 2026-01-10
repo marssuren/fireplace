@@ -117,8 +117,11 @@ class TIME_026:
 
 class TIME_026e:
     """续连熵能 - +1/+1"""
-    atk = 1
-    max_health = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1,
+    }
 
 
 class TIME_028:
@@ -154,8 +157,11 @@ class TIME_028:
 
 class TIME_028e:
     """破命之龙 - +3/+3"""
-    atk = 3
-    max_health = 3
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 3,
+        GameTag.HEALTH: 3,
+    }
 
 
 class TIME_031:
@@ -309,9 +315,12 @@ class TIME_030e:
     这个 buff 用于减少随从的属性。
     由于 fireplace 的 buff 系统限制，我们在应用后手动设置属性值。
     """
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 0,
+        GameTag.HEALTH: 0,
+    }
     # 默认值为0，实际值在 play 方法中动态设置
-    atk = 0
-    max_health = 0
 
 
 # LEGENDARY

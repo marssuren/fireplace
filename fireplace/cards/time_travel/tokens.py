@@ -158,7 +158,10 @@ class TIME_610t:
 
 class TIME_610e1:
 	"""奖励效果：+2/+2"""
-	atk = 2
+	tags = {
+	    GameTag.CARDTYPE: CardType.ENCHANTMENT,
+	    GameTag.ATK: 2,
+	}
 	health = 2
 
 
@@ -435,8 +438,11 @@ class TIME_042t:
 
 class TIME_042te:
 	"""无穷香蕉增益 - Infinite Banana Buff"""
-	atk = 2
-	max_health = 2
+	tags = {
+	    GameTag.CARDTYPE: CardType.ENCHANTMENT,
+	    GameTag.ATK: 2,
+	    GameTag.HEALTH: 2,
+	}
 
 
 class TIME_609t1:
@@ -523,8 +529,11 @@ class TIME_609t2e:
 	"""温蕾萨增益 - Vereesa Buff
 	+1/+1
 	"""
-	atk = 1
-	max_health = 1
+	tags = {
+	    GameTag.CARDTYPE: CardType.ENCHANTMENT,
+	    GameTag.ATK: 1,
+	    GameTag.HEALTH: 1,
+	}
 
 
 # ========================================
@@ -652,7 +661,10 @@ class TIME_209t:
 
 class TIME_209te:
 	"""高山之王的战锤 - 永久+2攻击力"""
-	atk = 2
+	tags = {
+	    GameTag.CARDTYPE: CardType.ENCHANTMENT,
+	    GameTag.ATK: 2,
+	}
 
 
 # ========================================

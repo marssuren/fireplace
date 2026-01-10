@@ -17,8 +17,11 @@ class NX2_010:
 
 class NX2_010e:
     """死亡甲虫增益 (Death Beetle Buff)"""
-    tags = {GameTag.CHARGE: True}
-    atk = 4
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 4,
+        GameTag.CHARGE: True,
+    }
     health = 4
 
 

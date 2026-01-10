@@ -31,7 +31,10 @@ class RLK_814:
 
 class RLK_814e:
     """异教水晶工匠增益 (Crystalsmith Cultist Buff)"""
-    atk = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+    }
     health = 1
 
 

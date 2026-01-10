@@ -164,7 +164,10 @@ class SW_422a:
 
 class SW_422e:
     """播种施肥增益"""
-    atk = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+    }
 
 
 class SW_422b:
@@ -345,7 +348,10 @@ class SW_436:
 
 class SW_436e:
     """柳魔锐爪兽增益"""
-    atk = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+    }
 
 
 class SW_437:

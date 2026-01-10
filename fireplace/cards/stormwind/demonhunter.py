@@ -309,8 +309,11 @@ class SW_451:
 
 class SW_451e:
     """魔变鱼人增益"""
-    atk = 2
-    max_health = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 2,
+    }
 
 
 class SW_452:

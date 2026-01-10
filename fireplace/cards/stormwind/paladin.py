@@ -140,8 +140,11 @@ class SW_047:
 
 class SW_047e:
     """大领主弗塔根增益"""
-    atk = 5
-    max_health = 5
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 5,
+        GameTag.HEALTH: 5,
+    }
 
 
 class SW_048:
@@ -162,8 +165,11 @@ class SW_048:
 
 class SW_048e:
     """棱彩珠宝工具增益"""
-    atk = 1
-    max_health = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1,
+    }
 
 
 class SW_049:
@@ -327,8 +333,11 @@ class SW_315:
 
 class SW_315e:
     """联盟旗手增益"""
-    atk = 1
-    max_health = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1,
+    }
 
 
 class SW_316:

@@ -129,7 +129,10 @@ class TLC_516:
 
 class TLC_516e:
     """武器+2攻击力"""
-    atk = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+    }
 
 
 class TLC_518:
@@ -478,9 +481,12 @@ class TLC_513t:
 
 class TLC_513te:
     """+2/+2和潜行"""
-    atk = 2
-    max_health = 2
-    tags = {GameTag.STEALTH: True}
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 2,
+        GameTag.STEALTH: True,
+    }
 
 
 # ========================================

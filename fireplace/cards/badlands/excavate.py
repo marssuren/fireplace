@@ -109,8 +109,11 @@ class DEEP_999t1:
 
 class DEEP_999t1e:
     """+2/+2 增益"""
-    atk = 2
-    max_health = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 2,
+    }
 
 
 # ========================================
@@ -170,8 +173,11 @@ class WW_001t8:
 
 class WW_001t8e:
     """+1/+2 增益"""
-    atk = 1
-    max_health = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 2,
+    }
 
 
 class WW_001t9:
@@ -309,8 +315,11 @@ class DEEP_999t4:
 
 class DEEP_999t4e:
     """+3/+3 增益"""
-    atk = 3
-    max_health = 3
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 3,
+        GameTag.HEALTH: 3,
+    }
 
 
 class DEEP_999t5:
@@ -399,9 +408,13 @@ class WW_001t26:
 
 class WW_001t26e:
     """+2/+2，复生和吸血"""
-    atk = 2
-    max_health = 2
-    tags = {GameTag.REBORN: True, GameTag.LIFESTEAL: True}
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 2,
+        GameTag.REBORN: True,
+        GameTag.LIFESTEAL: True
+    }
 
 
 class WW_001t27:

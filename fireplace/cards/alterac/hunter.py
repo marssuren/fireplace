@@ -101,8 +101,11 @@ class AV_244:
 
 class AV_244e:
     """嗜血者增益"""
-    atk = 1
-    max_health = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1,
+    }
 
 
 class AV_333:
@@ -139,9 +142,12 @@ class AV_335:
 
 class AV_335e:
     """驯羊师增益"""
-    atk = 1
-    max_health = 1
-    tags = {GameTag.STEALTH: True}
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1,
+        GameTag.STEALTH: True
+    }
 
 
 class AV_336:

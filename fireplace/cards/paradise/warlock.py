@@ -275,9 +275,12 @@ class VAC_944:
 
 class VAC_944e:
     """咒怨纪念品效果"""
-    tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
-    atk = 3
-    max_health = 3
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 3,
+        GameTag.HEALTH: 3,
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+    }
 
     # 在回合开始时对友方英雄造成3点伤害
     events = OWN_TURN_BEGIN.on(

@@ -116,8 +116,11 @@ class SCH_136:
 
 class SCH_136e:
     """Power Word: Feast Buff / 真言术：盛增益"""
-    atk = 2
-    max_health = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 2,
+    }
     events = OWN_TURN_END.on(FullHeal(OWNER))
 
 

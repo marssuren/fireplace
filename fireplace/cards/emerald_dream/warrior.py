@@ -355,14 +355,20 @@ class EDR_468e:
     """捣蛋狂魔增益 - Eggbasher Buff
     +4 攻击力
     """
-    atk = 4
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 4,
+    }
 
 
 class EDR_570be:
     """凶险梦魇增益 - Ominous Nightmares Buff
     +2/+2
     """
-    atk = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+    }
     health = 2
 
 
@@ -382,7 +388,10 @@ class FIR_928e:
     - 在3个回合后消灭该随从
     - 使用回合计数器追踪
     """
-    atk = 3
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 3,
+    }
     health = 3
 
     # 监听回合开始事件，计数3个回合后消灭（双方回合都计数）
@@ -409,7 +418,10 @@ class FIR_956e:
     """龙龟增益 - Dragon Turtle Buff
     本回合+3攻击力
     """
-    atk = 3
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 3,
+    }
     # 回合结束时移除
     events = OWN_TURN_END.on(Destroy(SELF))
 
@@ -439,7 +451,10 @@ class EDR_471e:
     """托尔托拉增益 - Tortolla Buff
     +1 攻击力
     """
-    atk = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+    }
 
 
 # ========================================

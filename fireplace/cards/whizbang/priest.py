@@ -334,8 +334,11 @@ class TOY_384e:
     """净化之力增益 - Purified Strength Buff
     +1/+2
     """
-    atk = 1
-    max_health = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 2,
+    }
 
 
 class MIS_919e:

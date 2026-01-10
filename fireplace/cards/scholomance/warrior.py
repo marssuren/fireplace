@@ -37,8 +37,11 @@ class SCH_621:
 
 class SCH_621e:
     """Rattlegore Debuff - -1/-1"""
-    atk = -1
-    max_health = -1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: -1,
+        GameTag.HEALTH: -1,
+    }
 
 
 ##

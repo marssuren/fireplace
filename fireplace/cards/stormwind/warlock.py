@@ -195,8 +195,11 @@ class SW_086:
 
 class SW_086e:
     """阴暗的酒保增益"""
-    atk = 2
-    max_health = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 2,
+    }
 
 
 class SW_087:

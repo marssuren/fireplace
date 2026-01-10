@@ -95,8 +95,23 @@ class TSC_067:
 class TSC_641:
     """艾萨拉女王 - 5费 5/5
     战吼：如果你在本牌在你手中时施放过三个法术，选择一项远古圣物"""
-    powered_up = (Count(Play(CONTROLLER, SPELL)) >= 3) & Buff(SELF, "TSC_641e")
-    play = (Find(SELF + POWERED_UP), GenericChoice(CONTROLLER, Discover(CONTROLLER, ["TSC_641t1", "TSC_641t2", "TSC_641t3", "TSC_641t4"])))
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.spells_cast_while_holding = 0
+    
+    class Hand:
+        events = Play(CONTROLLER, SPELL).after(
+            lambda self, source, card: setattr(self, 'spells_cast_while_holding', 
+                                               getattr(self, 'spells_cast_while_holding', 0) + 1)
+        )
+    
+    powered_up = lambda self: self.spells_cast_while_holding >= 3
+    
+    play = lambda self: (
+        GenericChoice(CONTROLLER, Discover(CONTROLLER, ["TSC_641t1", "TSC_641t2", "TSC_641t3", "TSC_641t4"]))
+        if self.powered_up else []
+    )
 
 
 class TSC_641e:

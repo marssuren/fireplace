@@ -63,8 +63,11 @@ class AV_142t:
 
 class AV_142te:
     """+2/+2增益"""
-    atk = 2
-    max_health = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 2,
+    }
 
 
 class AV_143:

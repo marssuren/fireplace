@@ -27,8 +27,11 @@ class DINO_406:
 
 class DINO_406e:
     """喷吐火焰增益"""
-    atk = 1
-    max_health = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1,
+    }
 
 
 class TLC_222:
@@ -63,8 +66,11 @@ class TLC_222:
 
 class TLC_222e:
     """火鹰飞翔增益"""
-    atk = 2
-    max_health = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 2,
+    }
 
 
 class TLC_224:

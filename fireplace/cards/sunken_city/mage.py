@@ -75,8 +75,23 @@ class TSC_056e:
 class TSC_087:
     """指挥官西瓦拉 - 4费 3/5
     战吼：如果你在本牌在你手中时施放过三个法术，则将那些法术置回你的手牌"""
-    powered_up = (Count(Play(CONTROLLER, SPELL)) >= 3) & Buff(SELF, "TSC_087e")
-    play = (Find(SELF + POWERED_UP), Give(CONTROLLER, Copy(LAST_PLAYED_SPELL))) * 3
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.spells_cast_while_holding = []
+    
+    class Hand:
+        events = Play(CONTROLLER, SPELL).after(
+            lambda self, source, card: self.spells_cast_while_holding.append(card.id) 
+                if len(getattr(self, 'spells_cast_while_holding', [])) < 3 else None
+        )
+    
+    powered_up = lambda self: len(self.spells_cast_while_holding) >= 3
+    
+    play = lambda self: (
+        [Give(CONTROLLER, spell_id) for spell_id in self.spells_cast_while_holding[:3]]
+        if self.powered_up else []
+    )
 
 
 class TSC_087e:

@@ -20,7 +20,10 @@ class AV_121:
 
 class AV_121e:
     """侏儒列兵增益"""
-    atk = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+    }
 
 
 class AV_122:
@@ -61,8 +64,11 @@ class AV_125:
 
 class AV_125e:
     """塔楼中士增益"""
-    atk = 2
-    max_health = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 2,
+    }
 
 
 class AV_126:
@@ -79,8 +85,11 @@ class AV_127:
 
 class AV_127e:
     """冰雪亡魂增益"""
-    atk = 2
-    max_health = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 2,
+    }
 
 
 class AV_129:
@@ -91,7 +100,10 @@ class AV_129:
 
 class AV_129e:
     """血卫士增益"""
-    atk = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+    }
 
 
 class AV_130:
@@ -102,8 +114,11 @@ class AV_130:
 
 class AV_130e:
     """军团士兵增益"""
-    atk = 2
-    max_health = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 2,
+    }
 
 
 class AV_131:
@@ -115,8 +130,11 @@ class AV_131:
 
 class AV_131e:
     """骑士队长增益"""
-    atk = 3
-    max_health = 3
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 3,
+        GameTag.HEALTH: 3,
+    }
 
 
 class AV_132:
@@ -196,8 +214,11 @@ class AV_401:
 
 class AV_401e:
     """雷矛军需官增益"""
-    atk = 1
-    max_health = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1,
+    }
 
 
 class AV_704:

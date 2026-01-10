@@ -431,7 +431,10 @@ class TLC_820ta:
 
 class TLC_820tae:
 	"""+2生命值"""
-	max_health = 2
+	tags = {
+	    GameTag.CARDTYPE: CardType.ENCHANTMENT,
+	    GameTag.HEALTH: 2,
+	}
 
 
 class TLC_820tb:
@@ -453,7 +456,10 @@ class TLC_820tb:
 
 class TLC_820tbe:
 	"""-2生命值"""
-	max_health = -2
+	tags = {
+	    GameTag.CARDTYPE: CardType.ENCHANTMENT,
+	    GameTag.HEALTH: -2,
+	}
 
 
 
@@ -512,9 +518,12 @@ class TLC_513t:
 
 class TLC_513te:
     """+2/+2和潜行 - Shadowmaster Buff"""
-    atk = 2
-    max_health = 2
-    tags = {GameTag.STEALTH: True}
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 2,
+        GameTag.STEALTH: True,
+    }
 
 
 # ========================================

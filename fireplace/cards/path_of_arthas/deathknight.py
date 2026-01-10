@@ -36,7 +36,10 @@ class RLK_110:
 
 class RLK_110e:
     """破霜者增益 (+1攻击)"""
-    atk = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+    }
 
 
 class RLK_516:
@@ -198,7 +201,10 @@ class RLK_712:
 
 class RLK_712e:
     """活力分流增益 (+1/+1)"""
-    atk = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+    }
     health = 1
 
 
@@ -258,7 +264,10 @@ class RLK_731:
 
 class RLK_731e:
     """黑暗堕落者增益 (+2攻击)"""
-    atk = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+    }
 
 
 class RLK_062:

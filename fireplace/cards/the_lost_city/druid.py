@@ -31,8 +31,11 @@ class DINO_130e:
     
     +1/+1
     """
-    atk = 1
-    max_health = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1,
+    }
 
 
 class TLC_230:
@@ -87,7 +90,10 @@ class TLC_231e:
     
     +5生命值
     """
-    max_health = 5
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.HEALTH: 5,
+    }
 
 
 class TLC_237:
@@ -133,8 +139,11 @@ class DINO_421e:
     
     +3/+3
     """
-    atk = 3
-    max_health = 3
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 3,
+        GameTag.HEALTH: 3,
+    }
 
 
 class DINO_432:
@@ -217,10 +226,10 @@ class TLC_233e:
     
     +1/+2和嘲讽
     """
-    atk = 1
-    max_health = 2
     tags = {
         GameTag.TAUNT: True,
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 2,
     }
 
 

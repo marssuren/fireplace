@@ -55,9 +55,12 @@ class VAC_446:
 
 class VAC_446e:
     """挂机的阿凯增益效果"""
-    tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
-    atk = 2
-    max_health = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 2,
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+    }
 
 
 # ========== VAC_702 - 经理马林 ==========

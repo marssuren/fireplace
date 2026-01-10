@@ -149,9 +149,11 @@ class SCH_138:
 
 class SCH_138e:
     """Blessing of Authority Buff"""
-    atk = 8
-    max_health = 8
-    tags = {GameTag.CANNOT_ATTACK_HEROES: True}
+    tags = {
+        GameTag.ATK: 8,
+        GameTag.HEALTH: 8,
+        GameTag.CANNOT_ATTACK_HEROES: True
+    }
     events = TURN_END.on(Destroy(SELF))
 
 

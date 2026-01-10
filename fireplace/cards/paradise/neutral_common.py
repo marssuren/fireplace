@@ -59,9 +59,11 @@ class VAC_327:
 
 class VAC_327e:
     """冰冷整脊师增益效果"""
-    tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
-    atk = 3
-    max_health = 3
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 3,
+        GameTag.HEALTH: 3
+    }
 
 
 # ========== VAC_406 - 困倦的岛民 ==========
@@ -341,9 +343,11 @@ class VAC_938:
 
 class VAC_938e:
     """粗暴的猢狲增益效果"""
-    tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
-    atk = 1
-    max_health = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1
+    }
 
 
 # ========== VAC_946 - 可怕的主厨 ==========
@@ -390,16 +394,20 @@ class VAC_947:
 
 class VAC_947e:
     """波池造浪者负面效果"""
-    tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
-    atk = -1
-    max_health = -1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: -1,
+        GameTag.HEALTH: -1
+    }
 
 
 class VAC_947e2:
     """波池造浪者正面效果"""
-    tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
-    atk = 1
-    max_health = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1
+    }
 
 
 # ========== VAC_956 - XB-931型家政机 ==========

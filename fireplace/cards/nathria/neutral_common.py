@@ -158,7 +158,10 @@ class REV_351:
 
 class REV_351e:
     """Roosting Gargoyle Buff - 栖巢石像鬼增益"""
-    atk = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+    }
 
 
 class REV_375:
@@ -326,7 +329,10 @@ class REV_956:
 
 class REV_956e:
     """Priest of the Deceased Buff - 亡者牧师增益"""
-    atk = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+    }
     health = 2
 
 

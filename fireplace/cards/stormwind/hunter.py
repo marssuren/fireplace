@@ -77,8 +77,11 @@ class DED_009:
 
 class DED_009e:
     """狗狗饼干增益"""
-    atk = 2
-    max_health = 3
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 3,
+    }
 
 
 class SW_320:
@@ -118,8 +121,11 @@ class SW_320t:
 
 class SW_320e:
     """硕鼠成群增益"""
-    atk = 4
-    max_health = 4
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 4,
+        GameTag.HEALTH: 4,
+    }
 
 
 class SW_321:
@@ -343,8 +349,11 @@ class SW_457:
 
 class SW_457e:
     """制皮工具增益"""
-    atk = 1
-    max_health = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1,
+    }
 
 
 class SW_458:
@@ -413,8 +422,11 @@ class SW_459:
 
 class SW_459e:
     """暴风城吹笛人增益"""
-    atk = 1
-    max_health = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1,
+    }
 
 
 class SW_460:

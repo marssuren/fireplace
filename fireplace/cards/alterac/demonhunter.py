@@ -46,7 +46,10 @@ class AV_261:
 
 class AV_261e:
     """擎旗奔行者增益"""
-    atk = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+    }
 
 
 class AV_262:
@@ -58,8 +61,11 @@ class AV_262:
 
 class AV_262e:
     """锁链守望者增益"""
-    atk = 1
-    max_health = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 2,
+    }
 
 
 class AV_264:

@@ -78,7 +78,10 @@ class TIME_041:
 
 class TIME_041e:
     """未来主义先祖 - +4生命值"""
-    max_health = 4
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.HEALTH: 4,
+    }
 
 
 

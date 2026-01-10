@@ -50,21 +50,30 @@ class NX2_005:
 
 class NX2_005e1:
     """连击增益 (Combo Buff)"""
-    atk = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+    }
     health = 2
 
 
 
 class NX2_005e2:
     """注能增益 (Infused Buff)"""
-    atk = 3
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 3,
+    }
     health = 3
 
 
 
 class NX2_005e3:
     """法力渴求增益 (Manathirst Buff)"""
-    atk = 4
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 4,
+    }
     health = 4
 
 
@@ -75,7 +84,10 @@ class NX2_005e_combo:
 
 
 class NX2_005e_infuse:
-    atk = 3
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 3,
+    }
     health = 3
     
 

@@ -141,8 +141,11 @@ class TLC_254:
 
 class TLC_254e:
     """讲故事的始祖龟增益 - Storytelling Tortollan Buff"""
-    atk = 1
-    max_health = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1,
+    }
 
 
 # TLC_255 - 水晶养护工

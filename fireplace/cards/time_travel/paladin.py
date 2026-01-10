@@ -78,8 +78,11 @@ class TIME_016:
 
 class TIME_016e:
     """耀眼创意 - +5/+5"""
-    atk = 5
-    max_health = 5
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 5,
+        GameTag.HEALTH: 5,
+    }
 
 
 class TIME_019:
@@ -197,8 +200,11 @@ class TIME_044:
 
 class TIME_044e:
     """过去的诺莫瑞根 - +2/+1"""
-    atk = 2
-    max_health = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 1,
+    }
 
 
 # LEGENDARY

@@ -156,7 +156,10 @@ class TIME_711:
 
 class TIME_711e:
     """闪回 - +1攻击力"""
-    atk = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+    }
 
 
 # EPIC

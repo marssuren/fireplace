@@ -64,8 +64,11 @@ class WW_807:
 
 class WW_807e:
     """+1/+1 增益"""
-    atk = 1
-    max_health = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1,
+    }
 
 
 class WW_808:
@@ -174,8 +177,11 @@ class WW_810:
 
 class WW_810e:
     """+3/+3 增益"""
-    atk = 3
-    max_health = 3
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 3,
+        GameTag.HEALTH: 3,
+    }
 
 
 class WW_810e_taunt:
@@ -230,8 +236,11 @@ class WW_811:
 
 class WW_811e:
     """+1/+1 和亡语增益"""
-    atk = 1
-    max_health = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1,
+    }
     deathrattle = Give(CONTROLLER, "WW_811")
 
 

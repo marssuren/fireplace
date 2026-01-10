@@ -130,7 +130,7 @@ class REV_313:
 
 class REV_313e:
     """Planted Evidence Buff - 安插证据减费"""
-    cost = -2
+    tags = {GameTag.COST: -2}
     events = TURN_END.on(Destroy(SELF))
 
 
@@ -178,7 +178,7 @@ class REV_319:
 
 class REV_319e:
     """Sesselie Buff - 瑟赛莉减费"""
-    cost = -8
+    tags = {GameTag.COST: -8}
 
 
 class REV_333:
@@ -225,8 +225,7 @@ class REV_365:
 class REV_307t:
     """Treant - 树人
     2/2 token"""
-    # Token: 2/2 树人（属性在CardDefs.xml中定义）
-    pass
+    tags = {GameTag.CARDTYPE: CardType.MINION}
 
 
 class REV_310e:
@@ -238,21 +237,18 @@ class REV_310e:
 class REV_314t:
     """Whelp - 雏龙
     3/3 Rush token"""
-    # Token: 3/3突袭雏龙（属性在CardDefs.xml中定义）
-    pass
+    tags = {GameTag.CARDTYPE: CardType.MINION, GameTag.RUSH: True}
 
 
 class REV_336t:
     """Treant - 树人
     2/2 token"""
-    # Token: 2/2 树人（属性在CardDefs.xml中定义）
-    pass
+    tags = {GameTag.CARDTYPE: CardType.MINION}
 
 
 class REV_336t2:
     """Ancient - 古树
     5/5 token"""
-    # Token: 5/5 古树（属性在CardDefs.xml中定义）
-    pass
+    tags = {GameTag.CARDTYPE: CardType.MINION}
 
 

@@ -269,7 +269,10 @@ class TLC_827:
 
 class TLC_827e:
     """食草剑龙增益 - Herbivore Stegosaurus Buff"""
-    atk = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+    }
 
 
 # EPIC
@@ -313,8 +316,11 @@ class TLC_828:
 
 class TLC_828e:
     """顶级恐龙学增益 - Top-Tier Dinosaurology Buff"""
-    atk = 2
-    max_health = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 2,
+    }
 
 
 # LEGENDARY

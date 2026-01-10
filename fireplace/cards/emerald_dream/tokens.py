@@ -314,7 +314,10 @@ class EDR_840t2:
 
 class EDR_840t2e:
     """猎犬恐魇种英雄增益 - Hound Dreadseed Hero Buff"""
-    atk = 3
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 3,
+    }
     # 回合结束时移除
     events = OWN_TURN_END.on(
         lambda self: [Destroy(SELF)]
@@ -367,8 +370,11 @@ class EDR_261e:
     """两栖之灵增益 - Amphibian's Spirit Buff
     +2/+2 和传递性亡语
     """
-    atk = 2
-    max_health = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 2,
+    }
     
     @property
     def deathrattle(self):
@@ -635,11 +641,11 @@ class FIR_846t3:
 
 class FIR_846t3e:
     """+5/+5 和本回合免疫"""
-    atk = 5
-    max_health = 5
     tags = {
         GameTag.IMMUNE: True,
         GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 5,
+        GameTag.HEALTH: 5,
     }
     # 回合结束时移除免疫
     events = OWN_TURN_END.on(

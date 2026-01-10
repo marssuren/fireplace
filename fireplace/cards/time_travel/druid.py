@@ -152,8 +152,11 @@ class TIME_703:
 
 class TIME_703e:
     """濒危的渡渡鸟 - +5/+5"""
-    atk = 5
-    max_health = 5
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 5,
+        GameTag.HEALTH: 5,
+    }
 
 
 class TIME_730:
@@ -195,8 +198,11 @@ class TIME_730:
 
 class TIME_730e:
     """卡多雷培育师 - +5/+5"""
-    atk = 5
-    max_health = 5
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 5,
+        GameTag.HEALTH: 5,
+    }
 
 
 # EPIC

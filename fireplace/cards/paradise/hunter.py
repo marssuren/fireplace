@@ -108,9 +108,12 @@ class VAC_408:
 
 class VAC_408e:
     """观赏鸟类增益效果"""
-    tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
-    atk = 2
-    max_health = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 1,
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+    }
 
 
 class VAC_409:
@@ -258,9 +261,12 @@ class VAC_413:
 
 class VAC_413e:
     """园林护卫者基利增益效果"""
-    tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
-    atk = 2
-    max_health = 3
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+        GameTag.HEALTH: 3,
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+    }
 
 
 class VAC_415:

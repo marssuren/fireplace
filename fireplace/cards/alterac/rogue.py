@@ -14,7 +14,10 @@ class AV_201:
 
 class AV_201e:
     """冷牙雪人增益"""
-    atk = 3
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 3,
+    }
 
 
 class AV_402:

@@ -33,7 +33,10 @@ class TIME_037:
 
 class TIME_037e:
     """白鸽学徒 - +2生命值"""
-    max_health = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.HEALTH: 2,
+    }
 
 
 class TIME_431:
@@ -136,7 +139,10 @@ class TIME_447:
 
 class TIME_447e:
     """真言术：障 - +2生命值"""
-    max_health = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.HEALTH: 2,
+    }
 
 
 # EPIC

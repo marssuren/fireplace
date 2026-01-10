@@ -208,8 +208,13 @@ class YOG_510:
 
 class YOG_510e:
     """安保增强"""
-    tags = {GameTag.ATK: SetTag.SET, GameTag.HEALTH: SetTag.SET, GameTag.COST: SetTag.SET}
-    atk = 5
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 5,
+        GameTag.ATK: SetTag.SET,
+        GameTag.HEALTH: SetTag.SET,
+        GameTag.COST: SetTag.SET,
+    }
     health = 5
     cost = 5
 
@@ -313,14 +318,23 @@ class TTN_858:
 
 class TTN_858t1e:
     """镇压附魔 - 攻击力和生命值变为2"""
-    tags = {GameTag.ATK: SetTag.SET, GameTag.HEALTH: SetTag.SET}
-    atk = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+        GameTag.ATK: SetTag.SET,
+        GameTag.HEALTH: SetTag.SET,
+    }
     health = 2
 
 class TTN_858t2e:
     """强化附魔 - 攻击力、生命值和法力值变为2"""
-    tags = {GameTag.ATK: SetTag.SET, GameTag.HEALTH: SetTag.SET, GameTag.COST: SetTag.SET}
-    atk = 2
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 2,
+        GameTag.ATK: SetTag.SET,
+        GameTag.HEALTH: SetTag.SET,
+        GameTag.COST: SetTag.SET,
+    }
     health = 2
     cost = 2
 

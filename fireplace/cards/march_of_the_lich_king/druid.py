@@ -108,7 +108,10 @@ class RLK_655e:
 
 class RLK_655e2:
     """枯萎增益 (Wither Buff)"""
-    atk = 1
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+        GameTag.ATK: 1,
+    }
     health = 1
 
 
