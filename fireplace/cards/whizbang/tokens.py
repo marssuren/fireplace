@@ -128,19 +128,18 @@ class TOY_645t:
         yield Draw(CONTROLLER)
     
     class Hand:
-        # 继续监听英雄攻击事件
-        # 当英雄再攻击2次后，升级为 TOY_645t1
-        events = Attack(FRIENDLY_HERO).after(
-            Find(Attr(SELF, "times_hero_attacked") >= 1) & Morph(SELF, "TOY_645t1")
-        )
+        # 追踪英雄攻击次数并在达到2次时升级
+        def on_hero_attack(self):
+            # 增加攻击次数
+            current = getattr(self, "times_hero_attacked", 0)
+            self.times_hero_attacked = current + 1
+            
+            # 如果达到2次,升级
+            if self.times_hero_attacked >= 2:
+                yield Morph(SELF, "TOY_645t1")
         
-        def __init__(self, *args, **kwargs):
-            super().__init__(*args, **kwargs)
-            self.times_hero_attacked = 0
-        
-        # 追踪英雄攻击次数
         events = Attack(FRIENDLY_HERO).after(
-            lambda self: setattr(self, "times_hero_attacked", getattr(self, "times_hero_attacked", 0) + 1)
+            lambda self: self.on_hero_attack()
         )
 
 

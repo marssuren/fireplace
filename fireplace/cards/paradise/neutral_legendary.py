@@ -82,7 +82,7 @@ class VAC_702:
     
     def play(self):
         # 让玩家选择一个宝藏
-        treasures = [self.controller.card(tid) for tid in self.TREASURES]
+        treasures = [self.controller.card(tid) for tid in self.__class__.TREASURES]
         chosen = yield GenericChoice(CONTROLLER, treasures)
         
         if chosen:
@@ -90,7 +90,7 @@ class VAC_702:
             yield Give(CONTROLLER, chosen[0].id)
             
             # 将其余3个宝藏洗入牌库
-            for treasure_id in self.TREASURES:
+            for treasure_id in self.__class__.TREASURES:
                 if treasure_id != chosen[0].id:
                     yield Shuffle(CONTROLLER, treasure_id)
 
@@ -129,7 +129,7 @@ class VAC_959:
     
     def play(self):
         # 发现一个护符 (只显示真品)
-        real_amulets = [pair[0] for pair in self.AMULETS]
+        real_amulets = [pair[0] for pair in self.__class__.AMULETS]
         cards = [self.controller.card(aid) for aid in real_amulets]
         discovered = yield GenericChoice(CONTROLLER, cards)
         
@@ -139,7 +139,7 @@ class VAC_959:
             yield Give(CONTROLLER, chosen_id)
             
             # 找到对应的假货给对手
-            for real, fake in self.AMULETS:
+            for real, fake in self.__class__.AMULETS:
                 if real == chosen_id:
                     yield Give(OPPONENT, fake)
                     break
@@ -236,11 +236,11 @@ class WORK_027:
             
             # 根据选择的路线获取卡池
             if tour_id == "WORK_027t1":
-                card_pool = self.EXTRAVAGANT_TOUR
+                card_pool = self.__class__.EXTRAVAGANT_TOUR
             elif tour_id == "WORK_027t2":
-                card_pool = self.HECTIC_TOUR
+                card_pool = self.__class__.HECTIC_TOUR
             else:
-                card_pool = self.MODEST_TOUR
+                card_pool = self.__class__.MODEST_TOUR
             
             # 从卡池中随机获取2张卡牌
             selected_cards = self.game.random.sample(card_pool, min(2, len(card_pool)))

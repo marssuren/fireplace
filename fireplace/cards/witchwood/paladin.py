@@ -107,7 +107,7 @@ class GIL_596:
     在你的英雄攻击后，你的所有随从获得+1/+1。"""
 
     # After your hero attacks, give your minions +1/+1.
-    events = events = Attack(FRIENDLY_HERO).after(Buff(FRIENDLY_MINIONS, "GIL_596e"))
+    events = Attack(FRIENDLY_HERO).after(Buff(FRIENDLY_MINIONS, "GIL_596e"))
 
 
 GIL_596e = buff(+1, +1)

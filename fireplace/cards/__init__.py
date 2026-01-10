@@ -252,6 +252,11 @@ class CardDB(dict[str, cardxml.CardXML]):
         if "exclude" in kwargs:
             exclude = [card.id for card in kwargs.pop("exclude")]
             cards = [card for card in cards if card.id not in exclude]
+        
+        # 特殊处理: tag 参数用于过滤具有特定 GameTag 的卡牌
+        if "tag" in kwargs:
+            tag = kwargs.pop("tag")
+            cards = [card for card in cards if tag in card.tags and card.tags[tag]]
 
         for attr, value in kwargs.items():
             if value is not None:
