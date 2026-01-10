@@ -68,24 +68,27 @@ class GDB_728:
     }
     
     def play(self):
+        # 定义抽圣契牌的辅助函数
+        def draw_libram():
+            """抽一张圣契牌"""
+            # 从牌库中找到所有圣契牌
+            librams = [card for card in self.controller.deck if card.tags.get(GameTag.LIBRAM, False)]
+            if librams:
+                # 随机抽一张
+                import random
+                libram = random.choice(librams)
+                yield Draw(CONTROLLER, libram)
+        
         # 战吼：抽一张圣契牌
-        yield from self._draw_libram()
+        yield from draw_libram()
     
     # 法术迸发：抽一张圣契牌
-    events = OWN_SPELL_PLAY.on(
-        lambda self, source: self._draw_libram(),
-        SetTag(SELF, {GameTag.SPELLBURST: False})
+    # 注意：spellburst 现在已经在 scriptnames 中，会被正确提取
+    spellburst = lambda self: (
+        Draw(CONTROLLER, self.game.random.choice([c for c in self.controller.deck if c.tags.get(GameTag.LIBRAM, False)]))
+        if [c for c in self.controller.deck if c.tags.get(GameTag.LIBRAM, False)]
+        else None
     )
-    
-    def _draw_libram(self):
-        """抽一张圣契牌"""
-        # 从牌库中找到所有圣契牌
-        librams = [card for card in self.controller.deck if card.tags.get(GameTag.LIBRAM, False)]
-        if librams:
-            # 随机抽一张
-            import random
-            libram = random.choice(librams)
-            yield Draw(CONTROLLER, libram)
 
 
 class SC_404:
@@ -161,35 +164,36 @@ class GDB_462:
     Discover a Draenei. If you played an adjacent card this turn, Discover another.
     """
     def play(self):
+        # 定义检查相邻牌的辅助函数
+        def played_adjacent_card():
+            """检查本回合是否打出过与本牌相邻的牌
+            
+            相邻指的是在手牌中位置相邻（位置差为1）
+            """
+            # 获取本牌在打出前的手牌位置
+            my_position = None
+            for card, position in self.controller.cards_played_this_turn_with_position:
+                if card == self:
+                    my_position = position
+                    break
+            
+            if my_position is None:
+                return False
+            
+            # 检查本回合打出的其他牌是否与本牌相邻
+            for card, position in self.controller.cards_played_this_turn_with_position:
+                if card != self and abs(position - my_position) == 1:
+                    return True
+            
+            return False
+        
         # 发现一张德莱尼牌
         yield Discover(CONTROLLER, RandomMinion(race=Race.DRAENEI))
         
         # 检查是否打出过相邻的牌
-        if self._played_adjacent_card():
+        if played_adjacent_card():
             # 再发现一张
             yield Discover(CONTROLLER, RandomMinion(race=Race.DRAENEI))
-    
-    def _played_adjacent_card(self):
-        """检查本回合是否打出过与本牌相邻的牌
-        
-        相邻指的是在手牌中位置相邻（位置差为1）
-        """
-        # 获取本牌在打出前的手牌位置
-        my_position = None
-        for card, position in self.controller.cards_played_this_turn_with_position:
-            if card == self:
-                my_position = position
-                break
-        
-        if my_position is None:
-            return False
-        
-        # 检查本回合打出的其他牌是否与本牌相邻
-        for card, position in self.controller.cards_played_this_turn_with_position:
-            if card != self and abs(position - my_position) == 1:
-                return True
-        
-        return False
 
 
 class GDB_726:

@@ -119,29 +119,30 @@ class SW_050:
     
     def play(self):
         """打出变装大师，如果还在伪装中则揭示身份"""
+        # 定义揭示身份的辅助函数
+        def reveal_identity():
+            """揭示真实身份"""
+            controller = self.controller
+            
+            # 恢复原始英雄
+            if hasattr(controller, 'maestra_original_hero_id'):
+                from ..actions import ReplaceHero
+                
+                # 使用ReplaceHero动作恢复原始英雄
+                yield ReplaceHero(controller, controller.maestra_original_hero_id)
+                delattr(controller, 'maestra_original_hero_id')
+            
+            # 标记伪装已结束
+            if hasattr(controller, 'maestra_disguise_active'):
+                delattr(controller, 'maestra_disguise_active')
+            
+            # 移除监听器
+            if hasattr(controller, 'maestra_reveal_listener'):
+                delattr(controller, 'maestra_reveal_listener')
+        
         # 如果还在伪装中，恢复真实身份
         if hasattr(self.controller, 'maestra_disguise_active'):
-            yield from self._reveal_identity()
-    
-    def _reveal_identity(self):
-        """揭示真实身份"""
-        controller = self.controller
-        
-        # 恢复原始英雄
-        if hasattr(controller, 'maestra_original_hero_id'):
-            from ..actions import ReplaceHero
-            
-            # 使用ReplaceHero动作恢复原始英雄
-            yield ReplaceHero(controller, controller.maestra_original_hero_id)
-            delattr(controller, 'maestra_original_hero_id')
-        
-        # 标记伪装已结束
-        if hasattr(controller, 'maestra_disguise_active'):
-            delattr(controller, 'maestra_disguise_active')
-        
-        # 移除监听器
-        if hasattr(controller, 'maestra_reveal_listener'):
-            delattr(controller, 'maestra_reveal_listener')
+            yield from reveal_identity()
     
     @staticmethod
     def apply_disguise(player):

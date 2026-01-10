@@ -79,21 +79,33 @@ class TOY_642:
     lifesteal = True
     
     def play(self):
+        # 定义造成伤害的辅助函数
+        def deal_damage():
+            """对生命值最低的敌人造成2点伤害"""
+            enemies = ENEMY_CHARACTERS.eval(self.game, self)
+            if enemies:
+                # 找到生命值最低的敌人
+                min_health = min(e.health for e in enemies)
+                targets = [e for e in enemies if e.health == min_health]
+                if targets:
+                    yield Hit(targets[0], 2)
+        
         # 对生命值最低的敌人造成2点伤害
-        yield self._deal_damage()
+        yield deal_damage()
     
     def deathrattle(self):
-        yield self._deal_damage()
-    
-    def _deal_damage(self):
-        """对生命值最低的敌人造成2点伤害"""
-        enemies = ENEMY_CHARACTERS.eval(self.game, self)
-        if enemies:
-            # 找到生命值最低的敌人
-            min_health = min(e.health for e in enemies)
-            targets = [e for e in enemies if e.health == min_health]
-            if targets:
-                yield Hit(targets[0], 2)
+        # 定义造成伤害的辅助函数（deathrattle 也需要）
+        def deal_damage():
+            """对生命值最低的敌人造成2点伤害"""
+            enemies = ENEMY_CHARACTERS.eval(self.game, self)
+            if enemies:
+                # 找到生命值最低的敌人
+                min_health = min(e.health for e in enemies)
+                targets = [e for e in enemies if e.health == min_health]
+                if targets:
+                    yield Hit(targets[0], 2)
+        
+        yield deal_damage()
 
 
 class TOY_643:
@@ -294,22 +306,33 @@ class TOY_913:
     # 初版恶魔猎手卡牌指的是"外域的灰烬"（BLACK_TEMPLE）扩展包的恶魔猎手卡牌
     
     def play(self):
+        # 定义获取初版卡牌的辅助函数
+        def get_first_edition_card():
+            """获取一张初版恶魔猎手卡牌"""
+            # 初版恶魔猎手卡牌来自 BLACK_TEMPLE 扩展包
+            # 使用 RandomCollectible 过滤
+            yield Give(CONTROLLER, RandomCollectible(
+                card_class=CardClass.DEMONHUNTER,
+                card_set=CardSet.BLACK_TEMPLE
+            ))
+        
         # 战吼：获取一张初版恶魔猎手卡牌
-        yield self._get_first_edition_card()
+        yield get_first_edition_card()
         
         # 流放：再获取一张
         if self.outcast:
-            yield self._get_first_edition_card()
+            yield get_first_edition_card()
     
     def deathrattle(self):
+        # 定义获取初版卡牌的辅助函数（deathrattle 也需要）
+        def get_first_edition_card():
+            """获取一张初版恶魔猎手卡牌"""
+            # 初版恶魔猎手卡牌来自 BLACK_TEMPLE 扩展包
+            # 使用 RandomCollectible 过滤
+            yield Give(CONTROLLER, RandomCollectible(
+                card_class=CardClass.DEMONHUNTER,
+                card_set=CardSet.BLACK_TEMPLE
+            ))
+        
         # 亡语：获取一张初版恶魔猎手卡牌
-        yield self._get_first_edition_card()
-    
-    def _get_first_edition_card(self):
-        """获取一张初版恶魔猎手卡牌"""
-        # 初版恶魔猎手卡牌来自 BLACK_TEMPLE 扩展包
-        # 使用 RandomCollectible 过滤
-        yield Give(CONTROLLER, RandomCollectible(
-            card_class=CardClass.DEMONHUNTER,
-            card_set=CardSet.BLACK_TEMPLE
-        ))
+        yield get_first_edition_card()

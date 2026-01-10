@@ -112,6 +112,28 @@ to get copies of them.
     def play(self):
         opponent = self.controller.opponent
         
+        # 定义创建选项的辅助函数
+        def create_options(target, pool):
+            """创建3个选项：1个正确答案 + 2个干扰项"""
+            options = [target]
+            
+            # 从池中选择干扰项
+            other_cards = [c for c in pool if c != target]
+            if len(other_cards) >= 2:
+                decoys = self.game.random.sample(other_cards, 2)
+                options.extend(decoys)
+            elif len(other_cards) == 1:
+                options.append(other_cards[0])
+                # 如果只有1张其他卡，重复使用
+                options.append(self.game.random.choice(pool))
+            else:
+                # 如果没有其他卡，重复使用目标卡
+                options.extend([target, target])
+            
+            # 打乱顺序
+            self.game.random.shuffle(options)
+            return options
+        
         # 线索1：起始手牌（mulligan后的手牌）
         # 使用 opponent.starting_hand 获取对手真实的起始手牌
         starting_hand_pool = list(opponent.starting_hand) if hasattr(opponent, 'starting_hand') and opponent.starting_hand else []
@@ -125,7 +147,7 @@ to get copies of them.
         
         # 创建线索1的选项
         clue1_target = self.game.random.choice(starting_hand_pool)
-        clue1_options = self._create_options(clue1_target, starting_hand_pool)
+        clue1_options = create_options(clue1_target, starting_hand_pool)
         
         # 玩家猜测线索1
         choice1 = yield GenericChoice(CONTROLLER, clue1_options)
@@ -137,7 +159,7 @@ to get copies of them.
             return  # 没有手牌，结束
         
         clue2_target = self.game.random.choice(list(opponent.hand))
-        clue2_options = self._create_options(clue2_target, list(opponent.hand))
+        clue2_options = create_options(clue2_target, list(opponent.hand))
         
         # 玩家猜测线索2
         choice2 = yield GenericChoice(CONTROLLER, clue2_options)
@@ -149,7 +171,7 @@ to get copies of them.
             return  # 没有牌库，结束
         
         clue3_target = self.game.random.choice(list(opponent.deck))
-        clue3_options = self._create_options(clue3_target, list(opponent.deck))
+        clue3_options = create_options(clue3_target, list(opponent.deck))
         
         # 玩家猜测线索3
         choice3 = yield GenericChoice(CONTROLLER, clue3_options)
@@ -161,28 +183,6 @@ to get copies of them.
         yield Give(CONTROLLER, Copy(clue2_target))
         yield Give(CONTROLLER, Copy(clue3_target))
     
-    def _create_options(self, target, pool):
-        """创建3个选项：1个正确答案 + 2个干扰项"""
-        options = [target]
-        
-        # 从池中选择干扰项
-        other_cards = [c for c in pool if c != target]
-        if len(other_cards) >= 2:
-            decoys = self.game.random.sample(other_cards, 2)
-            options.extend(decoys)
-        elif len(other_cards) == 1:
-            options.append(other_cards[0])
-            # 如果只有1张其他卡，重复使用
-            options.append(self.game.random.choice(pool))
-        else:
-            # 如果没有其他卡，重复使用目标卡
-            options.extend([target, target])
-        
-        # 打乱顺序
-        self.game.random.shuffle(options)
-        return options
-
-
 class REV_238:
     """Theotar, the Mad Duke - 癫狂公爵西塔尔
     <b>Battlecry:</b> <b>Discover</b> a

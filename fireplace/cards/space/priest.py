@@ -322,27 +322,44 @@ class SC_762:
     race = Race.MECH
     
     def play(self):
+        # 定义获取星灵随从的辅助函数
+        def get_protoss_minions():
+            """随机获取两张星灵随从牌"""
+            # 获取所有星灵随从
+            protoss_minions = self.game.cards.filter(
+                type=CardType.MINION,
+                race=Race.PROTOSS,
+                collectible=True
+            )
+            
+            # 随机选择两张
+            for _ in range(2):
+                if protoss_minions:
+                    card = random.choice(protoss_minions)
+                    Give(self.controller, card).run()
+        
         # 随机获取两张星灵随从牌
-        self._get_protoss_minions()
+        get_protoss_minions()
     
     def deathrattle(self):
-        # 随机获取两张星灵随从牌
-        self._get_protoss_minions()
-    
-    def _get_protoss_minions(self):
-        """随机获取两张星灵随从牌"""
-        # 获取所有星灵随从
-        protoss_minions = self.game.cards.filter(
-            type=CardType.MINION,
-            race=Race.PROTOSS,
-            collectible=True
-        )
+        # 定义获取星灵随从的辅助函数（deathrattle 也需要）
+        def get_protoss_minions():
+            """随机获取两张星灵随从牌"""
+            # 获取所有星灵随从
+            protoss_minions = self.game.cards.filter(
+                type=CardType.MINION,
+                race=Race.PROTOSS,
+                collectible=True
+            )
+            
+            # 随机选择两张
+            for _ in range(2):
+                if protoss_minions:
+                    card = random.choice(protoss_minions)
+                    Give(self.controller, card).run()
         
-        # 随机选择两张
-        for _ in range(2):
-            if protoss_minions:
-                card = random.choice(protoss_minions)
-                Give(self.controller, card).run()
+        # 随机获取两张星灵随从牌
+        get_protoss_minions()
 
 
 # LEGENDARY

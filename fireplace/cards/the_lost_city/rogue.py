@@ -405,25 +405,36 @@ class TLC_522:
     }
     
     def play(self):
+        # 定义施放刀扇的辅助函数
+        def cast_fan_of_knives():
+            """施放刀扇效果"""
+            # 对所有敌方随从造成1点伤害
+            for minion in self.controller.opponent.field:
+                yield Hit(minion, 1)
+            
+            # 抽一张牌
+            yield Draw(CONTROLLER)
+        
         # 战吼:施放刀扇
-        yield from self._cast_fan_of_knives()
+        yield from cast_fan_of_knives()
         
         # 连击:施放刀扇
         if self.controller.combo:
-            yield from self._cast_fan_of_knives()
+            yield from cast_fan_of_knives()
     
     def deathrattle(self):
-        # 亡语:施放刀扇
-        yield from self._cast_fan_of_knives()
-    
-    def _cast_fan_of_knives(self):
-        """施放刀扇效果"""
-        # 对所有敌方随从造成1点伤害
-        for minion in self.controller.opponent.field:
-            yield Hit(minion, 1)
+        # 定义施放刀扇的辅助函数（deathrattle 也需要）
+        def cast_fan_of_knives():
+            """施放刀扇效果"""
+            # 对所有敌方随从造成1点伤害
+            for minion in self.controller.opponent.field:
+                yield Hit(minion, 1)
+            
+            # 抽一张牌
+            yield Draw(CONTROLLER)
         
-        # 抽一张牌
-        yield Draw(CONTROLLER)
+        # 亡语:施放刀扇
+        yield from cast_fan_of_knives()
 
 
 # ========================================

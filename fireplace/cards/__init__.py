@@ -89,6 +89,13 @@ class CardDB(dict[str, cardxml.CardXML]):
             "secret_deathrattles",
             "magnetic",
             "overkill",
+            # 新增：贫瘠之地及后续扩展的机制
+            "frenzy",          # 暴怒 - 贫瘠之地 (2021)
+            "spellburst",      # 法术迸发 - 通灵学园 (2020)
+            "honorable_kill",  # 荣誉击杀 - 奥特兰克 (2021)
+            "launch",          # 星舰发射 - 深暗领域 (2024)
+            "tradeable",       # 可交易 - 暴风城 (2021)
+            "forge",           # 锻造 - 巫妖王的进军 (2022)
         )
 
         for script in scriptnames:
