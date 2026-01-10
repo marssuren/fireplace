@@ -86,9 +86,16 @@ class CardList(list[T], Entity):
         )
 
 
-def random_draft(card_class: CardClass, exclude=[], include=[], game=None):
+def random_draft(card_class: CardClass, exclude=[], include=[], game=None, max_cards=None):
     """
-    Return a deck of 30 random cards for the \a card_class
+    Return a deck of random cards for the \a card_class
+    
+    Args:
+        card_class: 职业
+        exclude: 排除的卡牌ID列表
+        include: 必须包含的卡牌ID列表
+        game: 游戏对象(用于随机数生成)
+        max_cards: 套牌上限,None表示包含所有可收集卡牌(测试模式)
     """
     import random
     from . import cards
@@ -96,7 +103,6 @@ def random_draft(card_class: CardClass, exclude=[], include=[], game=None):
 
     deck = list(include)
     collection = []
-    # hero = card_class.default_hero
 
     for card in cards.db.keys():
         if card in exclude:
@@ -108,11 +114,19 @@ def random_draft(card_class: CardClass, exclude=[], include=[], game=None):
             # Heroes are collectible...
             continue
         if cls.card_class and cls.card_class not in [card_class, CardClass.NEUTRAL]:
-            # Play with more possibilities
             continue
         collection.append(cls)
 
-    while len(deck) < Deck.MAX_CARDS:
+    # 测试模式:添加所有可收集卡牌
+    if max_cards is None:
+        for card_cls in collection:
+            # 每张卡添加最大允许数量
+            for _ in range(card_cls.max_count_in_deck):
+                deck.append(card_cls.id)
+        return deck
+    
+    # 正常模式:限制为 max_cards 张
+    while len(deck) < max_cards:
         if game:
             card = game.random.choice(collection)
         else:
@@ -196,19 +210,33 @@ def weighted_card_choice(source, weights: List[int], card_sets: List[str], count
     return [source.controller.card(card, source=source) for card in chosen_cards]
 
 
-def setup_game():
+def setup_game(test_mode=False):
+    """
+    创建游戏
+    
+    Args:
+        test_mode: 测试模式,True时套牌包含所有可收集卡牌(用于测试fireplace引擎)
+    """
     from .game import Game
     from .player import Player
 
     card_class1 = random_class()
     card_class2 = random_class()
-    deck1 = random_draft(card_class1)
-    deck2 = random_draft(card_class2)
+    
+    # 测试模式:无限制套牌
+    max_cards = None if test_mode else 30
+    deck1 = random_draft(card_class1, max_cards=max_cards)
+    deck2 = random_draft(card_class2, max_cards=max_cards)
+    
+    if test_mode:
+        print(f"[测试模式] {card_class1.name} vs {card_class2.name}")
+        print(f"  P1套牌: {len(deck1)} 张卡")
+        print(f"  P2套牌: {len(deck2)} 张卡")
+    
     player1 = Player("Player1", deck1, card_class1.default_hero)
     player2 = Player("Player2", deck2, card_class2.default_hero)
 
     game = Game(players=(player1, player2))
-    game.start()
 
     return game
 
