@@ -113,6 +113,7 @@ class BaseCard(BaseEntity):
         # copy_group_id: 复制组ID，所有复制共享同一个组ID
         self.original_entity_id = None  # 如果是复制，记录原卡的 entity_id
         self.copy_group_id = None  # 复制组ID，用于追踪所有相关的复制
+        self.copied_from_opponent = False  # 标记是否从对手复制（用于牧师主题卡牌）
         
         # 纳迦施法计数机制 - 巫妖王的进军（2022年12月）
         # 追踪卡牌在手中时施放的法术数量（用于纳迦卡牌）
