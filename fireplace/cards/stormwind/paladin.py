@@ -261,18 +261,15 @@ class SW_313e:
     
     # 监听打出1费牌
     events = Play(CONTROLLER).after(
-        lambda self: [
-            # 记录打出的1费牌
-            self.controller.sw_313_one_cost_cards_played.add(Play.CARD.id)
-            if Play.CARD.cost == 1 else None,
+        lambda self, source, player, card, target: (
+            # 记录打出的1费牌(如果是1费)
+            self.controller.sw_313_one_cost_cards_played.add(card.id) if card.cost == 1 else None,
             # 检查是否达到3张不同的1费牌
             (
                 Find(FRIENDLY_SECRETS + ID("SW_313")) &
-                QuestlineProgress(FRIENDLY_SECRETS + ID("SW_313"), 3) &
-                # 重置计数
-                setattr(self.controller, 'sw_313_one_cost_cards_played', set())
-            ) if len(self.controller.sw_313_one_cost_cards_played) >= 3 else None
-        ]
+                QuestlineProgress(FRIENDLY_SECRETS + ID("SW_313"), 3)
+            ) if len(getattr(self.controller, 'sw_313_one_cost_cards_played', set())) >= 3 else None
+        ) or []
     )
 
 
