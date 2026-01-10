@@ -41,12 +41,13 @@ class TSC_069:
     战吼：选择一个友方随从，发现一张相同类型的随从牌"""
     requirements = {PlayReq.REQ_TARGET_IF_AVAILABLE: 0, PlayReq.REQ_FRIENDLY_TARGET: 0, PlayReq.REQ_MINION_TARGET: 0}
     
-    # 根据目标随从的种族发现相同种族的随从
-    play = lambda self, target: (
-        Discover(CONTROLLER, RandomMinion(race=target.race))
-        if target and hasattr(target, 'race') and target.race
-        else Discover(CONTROLLER, RandomMinion())
-    )
+    def play(self):
+        target = self.target
+        # 根据目标随从的种族发现相同种族的随从
+        if target and hasattr(target, 'race') and target.race:
+            yield Discover(CONTROLLER, RandomMinion(race=target.race))
+        else:
+            yield Discover(CONTROLLER, RandomMinion())
 
 
 class TSC_829:

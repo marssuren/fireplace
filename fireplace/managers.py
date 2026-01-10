@@ -285,6 +285,9 @@ CARD_ATTRIBUTE_MAP = {
     enums.COPIED_FROM_OPPONENT: "copied_from_opponent",  # 标记卡牌是从对手复制的
     enums.QUESTLINE_STAGE: "questline_stage",  # 任务线当前阶段
     enums.QUESTLINE_PROGRESS: "questline_progress",  # 任务线当前进度
+    enums.REWIND: "rewind",  # 标记卡牌具有 Rewind 效果
+    enums.REWIND_COUNT: "rewind_count",  # Rewind 剩余次数
+    enums.REWIND_AVAILABLE: "rewind_available",  # Rewind 是否可用
     GameTag.CARDTEXT_ENTITY_0: "cardtext_entity_0",
     GameTag.CARDTEXT_ENTITY_1: "cardtext_entity_1",
     GameTag.CARDTEXT_ENTITY_2: "cardtext_entity_2",

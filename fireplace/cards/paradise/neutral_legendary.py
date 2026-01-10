@@ -224,7 +224,7 @@ class WORK_027:
         # 让玩家选择旅行路线
         # 使用 GenericChoice 选择路线
         tour_options = [
-            self.controller.card("WORK_027t"),  # Extravagant Tour
+            self.controller.card("WORK_027t1"),  # Extravagant Tour
             self.controller.card("WORK_027t2"), # Hectic Tour
             self.controller.card("WORK_027t3"), # Modest Tour
         ]
@@ -235,7 +235,7 @@ class WORK_027:
             tour_id = chosen_tour[0].id
             
             # 根据选择的路线获取卡池
-            if tour_id == "WORK_027t":
+            if tour_id == "WORK_027t1":
                 card_pool = self.EXTRAVAGANT_TOUR
             elif tour_id == "WORK_027t2":
                 card_pool = self.HECTIC_TOUR

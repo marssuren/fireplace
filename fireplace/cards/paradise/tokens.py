@@ -1131,7 +1131,7 @@ class VAC_959t14:
 
 
 # WORK_027 - Dreamplanner Zephrys Tour Tokens
-class WORK_027t:
+class WORK_027t1:
     """奢华之旅 - Extravagant Tour"""
     # 占位符Token，用于选择界面
     pass
