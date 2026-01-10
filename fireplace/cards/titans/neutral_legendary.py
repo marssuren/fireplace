@@ -261,7 +261,8 @@ class TTN_751trait5:
     """特质：免疫 - Your hero is Immune while attacking"""
     # 攻击时英雄免疫
     events = [
-        Attack(FRIENDLY_HERO).on(SetTag(FRIENDLY_HERO, {GameTag.IMMUNE)): Attack(FRIENDLY_HERO}).after(UnsetTag(FRIENDLY_HERO, GameTag.IMMUNE))
+        Attack(FRIENDLY_HERO).on(SetTag(FRIENDLY_HERO, {GameTag.IMMUNE: True})),
+        Attack(FRIENDLY_HERO).after(UnsetTag(FRIENDLY_HERO, GameTag.IMMUNE))
     ]
 
 
