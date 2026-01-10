@@ -31,7 +31,24 @@ class TOY_804:
         yield Summon(CONTROLLER, "TOY_804t")
     
     
-    cost_mod = lambda self, i: -3 if SPELLPOWER(FRIENDLY_HERO).eval(self.game, self) > 0 else 0
+    def _cost_mod_impl(self, i):
+        """费用修正实现，带详细错误记录"""
+        try:
+            spellpower_result = SPELLPOWER(FRIENDLY_HERO).eval(self.game, self)
+            if spellpower_result is None:
+                print(f"[ERROR] TOY_804 cost_mod: SPELLPOWER returned None!")
+                print(f"  Card: {self}")
+                print(f"  Game: {self.game}")
+                print(f"  Hero: {self.controller.hero if hasattr(self, 'controller') else 'NO CONTROLLER'}")
+                return 0
+            return -3 if spellpower_result > 0 else 0
+        except Exception as e:
+            print(f"[ERROR] TOY_804 cost_mod exception: {e}")
+            import traceback
+            traceback.print_exc()
+            return 0
+    
+    cost_mod = lambda self, i: self._cost_mod_impl(i)
 
 
 class TOY_850:

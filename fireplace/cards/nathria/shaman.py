@@ -131,7 +131,7 @@ friendly minions instead.
         PlayReq.REQ_MINION_TARGET: 0,
     }
     
-    def play(self):
+    def play(self, target=None):
         if self.infused:
             # 注能后：变形所有友方随从
             for minion in list(FRIENDLY_MINIONS.eval(self.game, self)):
@@ -139,8 +139,8 @@ friendly minions instead.
                 yield Morph(minion, RandomMinion(cost=minion.cost + 2))
         else:
             # 未注能：变形目标
-            if TARGET:
-                yield Morph(TARGET, RandomMinion(cost=TARGET.cost + 2))
+            if target:
+                yield Morph(target, RandomMinion(cost=target.cost + 2))
 
 
 class REV_921:
@@ -216,26 +216,22 @@ class REV_935:
 summon a random basic 
 Totem. <b>Infuse (2):</b> 
 Summon two instead.
-    在你的回合结束时，召唤一个随机的基础图腾。<b>注能(2)：</b>改为召唤两个。
+    在你的回合结束时，召唤一个随机的基础图腾。<b>注能(2):</b>改为召唤两个。
     """
     infuse = 2
     
     # 基础图腾列表
     BASIC_TOTEMS = ["CS2_050", "CS2_051", "CS2_052", "NEW1_009"]
     
-    # 直接使用 DSL 语法，避免类属性访问问题
-    # 根据是否注能，召唤不同数量的图腾
-    # 但 DSL 不支持条件判断，所以仍需要自定义函数
-    def _summon_totems(self, source, player):
-        if player == self.controller:
-            # 根据是否注能，召唤不同数量的图腾
-            # 注意：这里的 self 是随从，不是 buff
-            count = 2 if self.infused else 1
-            # 直接使用常量列表
-            totems = ["CS2_050", "CS2_051", "CS2_052", "NEW1_009"]
-            for i in range(count):
-                totem_id = self.game.random.choice(totems)
-                yield Summon(CONTROLLER, totem_id)
+    def _summon_totems(self, source):
+        """在回合结束时召唤图腾"""
+        # 根据是否注能，召唤不同数量的图腾
+        count = 2 if self.infused else 1
+        # 基础图腾列表
+        totems = ["CS2_050", "CS2_051", "CS2_052", "NEW1_009"]
+        for i in range(count):
+            totem_id = self.game.random.choice(totems)
+            yield Summon(CONTROLLER, totem_id)
     
     events = OWN_TURN_END.on(_summon_totems)
 

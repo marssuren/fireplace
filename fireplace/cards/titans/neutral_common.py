@@ -298,5 +298,5 @@ class YOG_514:
         yield CastSpell(RandomSpell(cost=spell_cost))
 
         # 增加计数器
-        yield SetTag(CONTROLLER, {GameTag.TAG_SCRIPT_DATA_NUM_1: count + 1})
+        yield SetTags(CONTROLLER, {GameTag.TAG_SCRIPT_DATA_NUM_1: count + 1})
 

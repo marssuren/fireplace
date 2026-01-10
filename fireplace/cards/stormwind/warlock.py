@@ -61,6 +61,7 @@ class DED_504e:
 class DED_504t:
     """小鬼 / Imp"""
     tags = {
+        GameTag.CARDTYPE: CardType.MINION,
         GameTag.ATK: 1,
         GameTag.HEALTH: 1,
         GameTag.COST: 1,

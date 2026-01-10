@@ -622,14 +622,14 @@ class TLC_426_tracker:
     events = Summon(CONTROLLER, MINION + MURLOC).after(
         lambda self, source, target: [
             # 更新任务进度
-            SetTag(CONTROLLER, {GameTag.QUEST_PROGRESS: min(self.controller.quest_progress + 1, self.controller.quest_target})),
+            SetTags(CONTROLLER, {GameTag.QUEST_PROGRESS: min(self.controller.quest_progress + 1, self.controller.quest_target})),
             
             # 检查是否完成任务
             (self.controller.quest_progress + 1 >= self.controller.quest_target) and [
                 # 完成任务，给予奖励
                 Buff(CONTROLLER, "TLC_426e"),
                 # 重置任务进度（可重复任务）
-                SetTag(CONTROLLER, {GameTag.QUEST_PROGRESS: 0})
+                SetTags(CONTROLLER, {GameTag.QUEST_PROGRESS: 0})
             ]
         ]
     )

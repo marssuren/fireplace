@@ -176,7 +176,9 @@ class WW_433:
     """
     # 3/2 战吼：如果你手牌中有其他法力值消耗为3的牌，随机召唤一个法力值消耗为3的随从
     def play(self):
-        if Find(FRIENDLY_HAND - SELF + (Attr(ALL_CARDS, GameTag.COST) == 3)):
+        # 检查手牌中是否有其他费用为3的卡牌
+        other_3_cost_cards = [c for c in self.controller.hand if c != self and c.cost == 3]
+        if other_3_cost_cards:
             yield Summon(CONTROLLER, RandomMinion(cost=3))
 
 
@@ -237,7 +239,9 @@ class WW_901:
     """
     # 2/3 战吼：如果你手牌中有其他法力值消耗为2的牌，获取一张幸运币
     def play(self):
-        if Find(FRIENDLY_HAND - SELF + (Attr(ALL_CARDS, GameTag.COST) == 2)):
+        # 检查手牌中是否有其他费用为2的卡牌
+        other_2_cost_cards = [c for c in self.controller.hand if c != self and c.cost == 2]
+        if other_2_cost_cards:
             yield Give(CONTROLLER, "GAME_005")
 
 
@@ -249,7 +253,9 @@ class WW_906:
     requirements = {PlayReq.REQ_TARGET_IF_AVAILABLE: True}
 
     def play(self):
-        if Find(FRIENDLY_HAND - SELF + (Attr(ALL_CARDS, GameTag.COST) == 4)):
+        # 检查手牌中是否有其他费用为4的卡牌
+        other_4_cost_cards = [c for c in self.controller.hand if c != self and c.cost == 4]
+        if other_4_cost_cards:
             yield Hit(TARGET, 4)
 
 

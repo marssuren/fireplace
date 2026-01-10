@@ -120,6 +120,15 @@ def RandomTarget(selector, count=1):
         
         def trigger(self, source):
             # 评估选择器获取所有可能的目标
+            if self.selector is None:
+                print(f"[ERROR] RandomTargetAction.trigger: selector is None!")
+                print(f"  Source: {source}")
+                print(f"  Source type: {type(source)}")
+                print(f"  Count: {self.count}")
+                import traceback
+                traceback.print_stack()
+                return []
+            
             entities = self.selector.eval(source.game, source)
             if not entities:
                 return []

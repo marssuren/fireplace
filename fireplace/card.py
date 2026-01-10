@@ -1534,6 +1534,7 @@ class Spell(PlayableCard):
     def __init__(self, data):
         self.immune_to_spellpower = False
         self.receives_double_spelldamage_bonus = False
+        self._twinspell_copy = None
         super().__init__(data)
 
     @property
