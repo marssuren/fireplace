@@ -229,15 +229,8 @@ class TIME_890:
     
     # 费用减免：如果控制卡拉赞（地标），费用为0
     # 参考 badlands/priest.py 的 WW_387 实现
-    @property
-    def cost_mod(self):
-        """如果控制卡拉赞，费用减少10点（变为0费）"""
-        # 检查是否控制卡拉赞地标
-        # 卡拉赞的ID是 TIME_890t
-        for entity in self.controller.live_entities:
-            if entity.type == CardType.LOCATION and entity.id == "TIME_890t":
-                return -10
-        return 0
+    
+    cost_mod = lambda self, i: -10 if any(entity.type == CardType.LOCATION and entity.id == "TIME_890t" for entity in self.controller.live_entities) else 0
     
     def play(self):
         # 沉默并消灭所有其他随从

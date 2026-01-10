@@ -22,10 +22,7 @@ class RLK_590:
     用随机法术牌填满你的手牌。你每有一张其他手牌，本牌的法力值消耗便减少（1）点。
     """
     # 动态减费：每有一张其他手牌减少1费
-    def cost_mod(self, card, cost):
-        # 计算手牌中除了自己之外的卡牌数量
-        other_cards_in_hand = len([c for c in card.controller.hand if c != card])
-        return cost - other_cards_in_hand
+    cost_mod = lambda self, i: -len([c for c in self.controller.hand if c != self])
 
     # 战吼：用随机法术填满手牌
     def play(self):

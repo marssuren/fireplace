@@ -98,11 +98,7 @@ class ONY_031e:
 class AV_298:
     """野爪豺狼人 / Wildpaw Gnoll
     突袭。在本局对战中，每有一张非潜行者职业的牌加入你的手牌，本牌的法力值消耗便减少（1）点。"""
-    def cost_mod(self):
-        """根据本局对战中加入手牌的非潜行者职业牌数量减费"""
-        if not hasattr(self.controller, 'non_rogue_cards_added_to_hand'):
-            return 0
-        return -self.controller.non_rogue_cards_added_to_hand
+    cost_mod = lambda self, i: -getattr(self.controller, 'non_rogue_cards_added_to_hand', 0)
 
 
 class AV_400:

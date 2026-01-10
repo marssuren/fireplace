@@ -294,20 +294,8 @@ class TLC_436:
     
     # 消耗残骸而非法力值
     # 使用 cost_mod 实现动态费用计算（参考 TTN_459）
-    @property
-    def cost_mod(self):
-        """
-        动态费用修正：如果玩家有足够的残骸，费用变为0（因为会消耗残骸）
-        实际的残骸消耗在打出时处理
-        
-        注意：这需要核心引擎支持在打出时消耗残骸而非法力值
-        这里我们使用一个标记属性，核心引擎会检查此属性
-        """
-        # 如果有足够的残骸（5个），费用变为0
-        if self.controller.corpses >= self.cost:
-            return -self.cost
-        # 否则保持原费用（但无法打出，因为需要残骸）
-        return 0
+    
+    cost_mod = lambda self, i: -self.cost if self.controller.corpses >= self.cost else 0
     
     # 标记此卡牌消耗残骸而非法力值
     # 核心引擎会在打出时检查此属性

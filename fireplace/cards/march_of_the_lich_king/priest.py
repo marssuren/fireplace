@@ -125,11 +125,8 @@ class RLK_829:
     """
     play = Draw(CONTROLLER) * 2
     
-    def cost_mod(self):
-        # 如果上回合之后有友方亡灵死亡，费用为1
-        if self.controller.undead_died_last_turn:
-            return lambda self, i: 1
-        return lambda self, i: i
+    
+    cost_mod = lambda self, i: -(self.cost - 1) if self.controller.undead_died_last_turn else 0
 
 
 class RLK_832:

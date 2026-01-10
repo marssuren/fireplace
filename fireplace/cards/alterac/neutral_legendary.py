@@ -24,10 +24,7 @@ class AV_100:
 class AV_141t:
     """冰雪之王洛克霍拉 / Lokholar the Ice Lord
     突袭，风怒 如果你的生命值小于或等于15点，本牌的法力值消耗减少（5）点。"""
-    def cost_mod(self, i):
-        if self.controller.hero.health <= 15:
-            return -5
-        return 0
+    cost_mod = lambda self, i: -5 if self.controller.hero.health <= 15 else 0
 
 
 class AV_142t:

@@ -206,14 +206,7 @@ class RLK_659e:
 
     class Hand:
         # 修改随从的费用计算方式：费用变为0（因为用护甲支付）
-        def cost_mod(self, source, game):
-            if source.type == CardType.MINION:
-                # 检查是否有足够的护甲
-                if source.controller.hero.armor >= source.cost:
-                    return -source.cost
-                else:
-                    # 护甲不足，不减费（无法打出）
-                    return 0
+        cost_mod = lambda self, i: -self.cost if (self.type == CardType.MINION and self.controller.hero.armor >= self.cost) else 0
 
 
 class RLK_956:

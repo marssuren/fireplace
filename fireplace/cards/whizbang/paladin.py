@@ -35,13 +35,7 @@ class MIS_709:
     play = Hit(TARGET, 4)
     
     # 费用修正:如果本回合施放过圣光法术,费用为1
-    def cost_mod(self):
-        # 检查本回合是否施放过圣光法术
-        # 使用核心引擎的 spell_schools_played_this_turn 属性
-        if SpellSchool.HOLY in self.controller.spell_schools_played_this_turn:
-            # 费用变为1 (原费用4,减少3)
-            return -(self.cost - 1)
-        return 0
+    cost_mod = lambda self, i: -(self.cost - 1) if SpellSchool.HOLY in self.controller.spell_schools_played_this_turn else 0
 
 
 class TOY_810:
@@ -89,10 +83,7 @@ class MIS_918:
     # 本局对战中每施放一个圣光法术,费用减少1
     # 官方数据:Gigantify Costs (1) less for each Holy spell you've cast this game.
     
-    def cost_mod(self):
-        # 计算本局对战中施放的圣光法术数量
-        holy_spells_count = self.controller.spell_schools_played.count(SpellSchool.HOLY)
-        return -holy_spells_count
+    cost_mod = lambda self, i: -self.controller.spell_schools_played.count(SpellSchool.HOLY)
 
 
 class TOY_808:

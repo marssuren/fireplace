@@ -85,13 +85,8 @@ class TIME_022:
         GameTag.RUSH: True,
     }
     
-    def cost_mod(self, game):
-        """费用修正：如果场上有休眠随从，减少4费"""
-        # 检查场上是否有休眠的随从
-        for minion in game.board:
-            if minion.dormant:
-                return -4
-        return 0
+    
+    cost_mod = lambda self, i: -4 if any(minion.dormant for minion in self.game.board) else 0
 
 
 class TIME_443:

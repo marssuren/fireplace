@@ -237,11 +237,8 @@ class TTN_085:
         GameTag.SPELL_SCHOOL: SpellSchool.ARCANE,
     }
     
-    @property
-    def cost_mod(self):
-        # 每个不同派系减1费
-        spell_schools_count = len(getattr(self.controller, 'spell_schools_played_this_game', set()))
-        return -spell_schools_count
+    
+    cost_mod = lambda self, i: -len(getattr(self.controller, 'spell_schools_played_this_game', set()))
     
     play = Draw(CONTROLLER, 2)
 

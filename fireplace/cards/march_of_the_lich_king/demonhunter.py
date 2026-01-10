@@ -114,11 +114,7 @@ class RLK_213:
     """
     tags = {GameTag.RUSH: True}
 
-    def cost_mod(self):
-        # 减少等于本局游戏中使用过的流放牌数量的费用
-        return -self.controller.outcast_cards_played_this_game
-
-
+    cost_mod = lambda self, i: -self.controller.outcast_cards_played_this_game
 class RLK_214:
     """食魂者之镰 (Souleater's Scythe)
     对战开始时：吞食你套牌中3张不同的随从牌。留下灵魂，用以发现这些随从。

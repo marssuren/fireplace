@@ -147,12 +147,7 @@ class TSC_058:
     play = Hit(TARGET, 2)
     
     # 如果有追踪标记，费用为0
-    def cost_mod(self):
-        has_tracker = any(
-            buff.id == "TSC_058_tracker"
-            for buff in self.buffs
-        )
-        return -2 if has_tracker else 0
+    cost_mod = lambda self, i: -2 if any(buff.id == "TSC_058_tracker" for buff in self.buffs) else 0
 
 
 class TSC_058_tracker:

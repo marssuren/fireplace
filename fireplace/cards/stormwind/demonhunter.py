@@ -17,17 +17,7 @@ class DED_506:
     # 可交易在 CardDefs.xml 中定义
     play = Draw(CONTROLLER) * 3
     
-    @property
-    def cost_mod(self):
-        """
-        如果在本回合被抽到，则法力值消耗为（3）点
-        
-        使用 turn_drawn 属性（由 Draw action 自动设置）
-        如果 turn_drawn == 当前回合，则减少2费（5 -> 3）
-        """
-        if hasattr(self, 'turn_drawn') and self.turn_drawn == self.game.turn:
-            return -2  # 从5费减到3费
-        return 0
+    cost_mod = lambda self, i: -2 if (hasattr(self, 'turn_drawn') and self.turn_drawn == self.game.turn) else 0
 
 
 
@@ -92,10 +82,8 @@ class SW_037:
         GameTag.TAUNT: True,
     }
     
-    @property
-    def cost_mod(self):
-        """每抽一张牌减少1费"""
-        return -self.controller.cards_drawn_this_turn
+    
+    cost_mod = lambda self, i: -self.controller.cards_drawn_this_turn
 
 
 class SW_039:

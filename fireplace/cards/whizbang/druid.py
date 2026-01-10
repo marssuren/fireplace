@@ -30,12 +30,8 @@ class TOY_804:
         yield Summon(CONTROLLER, "TOY_804t")
         yield Summon(CONTROLLER, "TOY_804t")
     
-    @property
-    def cost_mod(self):
-        """如果你拥有法术伤害，费用减少3点"""
-        if SPELLPOWER(FRIENDLY_HERO).eval(self.game, self) > 0:
-            return -3
-        return 0
+    
+    cost_mod = lambda self, i: -3 if SPELLPOWER(FRIENDLY_HERO).eval(self.game, self) > 0 else 0
 
 
 class TOY_850:
@@ -319,12 +315,8 @@ class TOY_806e:
     """艾维娜的祝福 - 费用变为1"""
     tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
     
-    @property
-    def cost_mod(self):
-        """将费用设置为1"""
-        if hasattr(self, 'owner') and self.owner:
-            return 1 - self.owner.cost
-        return 0
+    
+    cost_mod = lambda self, i: 1 - self.owner.cost if (hasattr(self, 'owner') and self.owner) else 0
 
 
 class TOY_807:

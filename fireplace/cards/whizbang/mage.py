@@ -47,12 +47,7 @@ class TOY_037e:
     """找到了！ - 费用变为1"""
     tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
     
-    @property
-    def cost_mod(self):
-        """将费用设置为1"""
-        if hasattr(self, 'owner') and self.owner:
-            return 1 - self.owner.cost
-        return 0
+    cost_mod = lambda self, i: 1 - self.owner.cost if (hasattr(self, 'owner') and self.owner) else 0
 
 
 class TOY_370:

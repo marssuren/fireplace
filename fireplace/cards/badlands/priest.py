@@ -259,11 +259,8 @@ class WW_387:
         GameTag.TAUNT: True,
     }
 
-    @property
-    def cost_mod(self):
-        # 计算本局对战中使用过的1费卡牌数量
-        one_cost_played = sum(1 for card in self.controller.cards_played_this_game if card.cost == 1)
-        return -one_cost_played
+
+    cost_mod = lambda self, i: -sum(1 for card in self.controller.cards_played_this_game if card.cost == 1)
 
 
 class WW_393:

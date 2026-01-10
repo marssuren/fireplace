@@ -87,10 +87,7 @@ class TTN_841:
     在本回合中，使你的英雄获得+4攻击力。在本回合中你每抽一张牌，本牌的法力值消耗便 减少（1）点。
     """
     play = Buff(FRIENDLY_HERO, "TTN_841e")
-    @property
-    def cost_mod(self):
-         return -self.controller.cards_drawn_this_turn
-
+    cost_mod = lambda self, i: -self.controller.cards_drawn_this_turn
 class TTN_841e:
     tags = {GameTag.ATK: 4}
     events = TurnEnd(CONTROLLER).on(Destroy(SELF))

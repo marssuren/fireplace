@@ -138,32 +138,8 @@ class TSC_061:
     
     # 追踪神圣法术消耗的法力值
     # 统计本局游戏中打出的所有神圣法术实际支付的费用
-    def cost_mod(self):
-        """
-        计算费用减免
-        
-        遍历 cards_played_this_game，找出所有神圣法术，
-        累加它们实际支付的费用（存储在 card.tags.get(GameTag.COST_PAID, card.cost)）
-        """
-        total_mana_spent = 0
-        
-        for card in self.controller.cards_played_this_game:
-            # 检查是否是法术
-            if card.type != CardType.SPELL:
-                continue
-            
-            # 检查是否是神圣法术
-            spell_school = card.tags.get(GameTag.SPELL_SCHOOL)
-            if spell_school != SpellSchool.HOLY:
-                continue
-            
-            # 累加实际支付的费用
-            # 优先使用 COST_PAID（实际支付），否则使用 cost（基础费用）
-            mana_paid = card.tags.get(GameTag.COST_PAID, card.cost)
-            total_mana_spent += mana_paid
-        
-        # 返回负数表示减费
-        return -total_mana_spent
+    
+    cost_mod = lambda self, i: -sum(card.tags.get(GameTag.COST_PAID, card.cost) for card in self.controller.cards_played_this_game if card.type == CardType.SPELL and card.tags.get(GameTag.SPELL_SCHOOL) == SpellSchool.HOLY)
 
 
 

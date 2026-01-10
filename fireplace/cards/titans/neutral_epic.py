@@ -127,11 +127,8 @@ class TTN_924e:
         GameTag.CARDTYPE: CardType.ENCHANTMENT
     }
 
-    def cost_mod(self):
-        # 如果卡牌费用小于2，则将其提升到2
-        if self.owner.cost < 2:
-            return 2 - self.owner.cost
-        return 0
+
+    cost_mod = lambda self, i: 2 - self.owner.cost if self.owner.cost < 2 else 0
 
 
 class YOG_515:

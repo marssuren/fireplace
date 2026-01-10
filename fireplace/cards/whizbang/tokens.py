@@ -607,10 +607,7 @@ class MIS_918t:
     # 本局对战中每施放一个圣光法术,费用减少1
     # 官方数据:Gigantify Costs (1) less for each Holy spell you've cast this game.
     
-    def cost_mod(self):
-        # 计算本局对战中施放的圣光法术数量
-        holy_spells_count = self.controller.spell_schools_played.count(SpellSchool.HOLY)
-        return -holy_spells_count
+    cost_mod = lambda self, i: -self.controller.spell_schools_played.count(SpellSchool.HOLY)
 
 
 class TOY_716t:

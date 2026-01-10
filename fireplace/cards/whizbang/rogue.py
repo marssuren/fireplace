@@ -217,10 +217,7 @@ class TOY_519:
     # 9费法术
     # 效果：召唤两个随机4费随从，本回合每抽一张牌费用减少1
     
-    def cost_mod(self):
-        # 计算本回合抽牌数量
-        cards_drawn_this_turn = self.controller.cards_drawn_this_turn
-        return -cards_drawn_this_turn
+    cost_mod = lambda self, i: -self.controller.cards_drawn_this_turn
     
     def play(self):
         # 召唤两个随机4费随从

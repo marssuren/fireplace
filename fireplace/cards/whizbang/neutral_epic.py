@@ -101,12 +101,8 @@ class TOY_530:
     # 实现方式：需要在 Player 中添加全局抽牌计数器
     # 注意：这里使用的是本局游戏的总抽牌数，不是本回合的抽牌数
 
-    @property
-    def cost_mod(self):
-        """根据本局游戏抽牌数量减费"""
-        # 使用 controller 的全局计数器 cards_drawn_this_game
-        # 该计数器在 Player.__init__ 中初始化，在 Draw action 中更新
-        return -self.controller.cards_drawn_this_game
+
+    cost_mod = lambda self, i: -self.controller.cards_drawn_this_game
 
 
 class TOY_601:

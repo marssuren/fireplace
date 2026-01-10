@@ -229,14 +229,7 @@ class TLC_366:
         GameTag.RUSH: True,
     }
     
-    @property
-    def cost_mod(self):
-        """
-        延系效果：如果上回合打出过野兽，费用-2
-        """
-        if check_kindred_active(self.controller, card_type=CardType.MINION, race=Race.BEAST):
-            return -2
-        return 0
+    cost_mod = lambda self, i: -2 if check_kindred_active(self.controller, card_type=CardType.MINION, race=Race.BEAST) else 0
 
 
 class TLC_826:

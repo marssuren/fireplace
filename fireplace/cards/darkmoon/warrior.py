@@ -80,27 +80,8 @@ class DMF_528:
         GameTag.RUSH: True,
     }
     
-    def cost_mod(self):
-        """
-        计算唯一种族数量来减少费用
-        Count unique minion types among friendly minions
-        """
-        # 获取场上所有友方随从
-        friendly_minions = self.controller.field
-        
-        # 使用 set 来存储唯一的种族
-        unique_races = set()
-        
-        for minion in friendly_minions:
-            # 获取随从的所有种族
-            if hasattr(minion, 'races') and minion.races:
-                # 如果随从有种族，将所有种族添加到 set 中
-                for race in minion.races:
-                    unique_races.add(race)
-        
-        # 返回负数（减少费用）
-        # 每个唯一种族减少 1 费
-        return -len(unique_races)
+    
+    cost_mod = lambda self, i: -len(set(race for minion in self.controller.field if hasattr(minion, 'races') and minion.races for race in minion.races))
 
 
 class DMF_529:

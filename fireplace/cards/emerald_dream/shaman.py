@@ -76,12 +76,7 @@ class EDR_477:
         GameTag.TAUNT: True,
     }
     
-    @property
-    def cost_mod(self):
-        # 每使用一次英雄技能，费用减少1点
-        return -getattr(self.controller, 'times_hero_power_used_this_game', 0)
-
-
+    cost_mod = lambda self, i: -getattr(self.controller, 'times_hero_power_used_this_game', 0)
 class FIR_778:
     """毁灭化身 - Avatar of Destruction
     Taunt. Deathrattle: Deal 9 damage to all enemy minions.

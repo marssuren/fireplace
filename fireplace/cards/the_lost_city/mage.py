@@ -97,15 +97,8 @@ class DINO_409:
         GameTag.TAUNT: True,
     }
     
-    @property
-    def cost_mod(self):
-        """
-        动态费用修正：每打出一张套牌外卡牌，减少1费
-        """
-        # 检查玩家是否有追踪套牌外卡牌的属性
-        if hasattr(self.controller, 'cards_not_started_in_deck_played'):
-            return -len(self.controller.cards_not_started_in_deck_played)
-        return 0
+    
+    cost_mod = lambda self, i: -len(getattr(self.controller, 'cards_not_started_in_deck_played', []))
 
 
 class DINO_429:
@@ -199,15 +192,8 @@ class TLC_365:
         PlayReq.REQ_TARGET_TO_PLAY: 0,
     }
     
-    @property
-    def cost_mod(self):
-        """
-        动态费用修正：如果本回合发现过，费用变为0
-        """
-        # 检查玩家是否有本回合发现过的标记
-        if hasattr(self.controller, 'cards_discovered_this_turn') and self.controller.cards_discovered_this_turn > 0:
-            return -self.cost
-        return 0
+    
+    cost_mod = lambda self, i: -self.cost if (hasattr(self.controller, 'cards_discovered_this_turn') and self.controller.cards_discovered_this_turn > 0) else 0
     
     def play(self):
         # 造成3点伤害

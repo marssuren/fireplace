@@ -176,10 +176,7 @@ class TTN_459:
     reborn = True
     
     # 减费逻辑：本局对战中每洗入一张疫病牌到敌方牌库减少 (1) 点。
-    @property
-    def cost_mod(self):
-        return -self.controller.plagues_shuffled_into_enemy
-
+    cost_mod = lambda self, i: -self.controller.plagues_shuffled_into_enemy
 class TTN_459_Script:
      pass
 

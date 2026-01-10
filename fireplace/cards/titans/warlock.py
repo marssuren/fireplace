@@ -282,11 +282,8 @@ class TTN_462:
         GameTag.COST: 9,
     }
     
-    @property
-    def cost_mod(self):
-        # 获取在自己回合受到的伤害总量
-        damage_taken = getattr(self.controller, 'damage_taken_on_own_turn_this_game', 0)
-        return -damage_taken
+    
+    cost_mod = lambda self, i: -getattr(self.controller, 'damage_taken_on_own_turn_this_game', 0)
 
 
 class TTN_932:

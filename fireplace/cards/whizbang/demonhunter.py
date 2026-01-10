@@ -267,11 +267,7 @@ class TOY_652e:
     def max_health(self):
         return self._health_value - (self.owner.max_health if hasattr(self, 'owner') and self.owner else 0)
     
-    @property
-    def cost_mod(self):
-        return self._cost_value - (self.owner.cost if hasattr(self, 'owner') and self.owner else 0)
-
-
+    cost_mod = lambda self, i: self._cost_value - (self.owner.cost if hasattr(self, 'owner') and self.owner else 0)
 # LEGENDARY
 
 class TOY_647:

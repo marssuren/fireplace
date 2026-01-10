@@ -76,11 +76,8 @@ class ETC_356:
     def play(self):
         yield Hit(TARGET, 6)
 
-    @property
-    def cost_mod(self):
-        if self.controller.overloaded > 0 or self.controller.locked_mana > 0:
-            return -3
-        return 0
+
+    cost_mod = lambda self, i: -3 if (self.controller.overloaded > 0 or self.controller.locked_mana > 0) else 0
 
 class ETC_357:
     """Brass Elemental - 铜管元素
@@ -168,10 +165,7 @@ class ETC_813_Discount:
         super().__init__()
         self.discount = discount
     
-    @property
-    def cost_mod(self):
-        return -self.discount
-        
+    cost_mod = lambda self, i: -self.discount
     # 使用法术后销毁此 Buff
     events = Play(CONTROLLER, SPELL).on(Destroy(SELF))
 

@@ -35,10 +35,7 @@ class GDB_228:
     抽两张牌。你每控制一个德莱尼，本牌的法力值消耗便减少（1）点。
     """
     # 动态计算费用减免
-    def cost_mod(self):
-        # 计算场上德莱尼的数量
-        draenei_count = len([m for m in self.controller.field if hasattr(m, 'race') and m.race == Race.DRAENEI])
-        return -draenei_count
+    cost_mod = lambda self, i: -len([m for m in self.controller.field if hasattr(m, 'race') and m.race == Race.DRAENEI])
 
     def play(self):
         # 抽两张牌

@@ -143,11 +143,7 @@ class ETC_384:
         GameTag.SPELL_SCHOOL: SpellSchool.NATURE,
     }
     
-    @property
-    def cost_mod(self):
-        if self.controller.hero:
-            return -self.controller.hero.atk
-        return 0
+    cost_mod = lambda self, i: -self.controller.hero.atk if self.controller.hero else 0
 
     play = Draw(CONTROLLER) * 2
 
