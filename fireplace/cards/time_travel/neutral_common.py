@@ -277,7 +277,7 @@ class TIME_062:
         # 检查手牌中是否有龙
         has_dragon = False
         for card in self.controller.hand:
-            if card.race == Race.DRAGON:
+            if card.type == CardType.MINION and hasattr(card, 'race') and card.race == Race.DRAGON:
                 has_dragon = True
                 break
         
