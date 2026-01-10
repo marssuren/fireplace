@@ -46,7 +46,7 @@ class AV_145:
     def play(self):
         """检查护甲值获得"""
         if self.controller.armor_gained_this_game >= 15:
-            yield (Buff(SELF, "AV_145e"), SetTag(SELF, {GameTag.CHARGE: True}))
+            yield (Buff(SELF, "AV_145e"), SetTags(SELF, {GameTag.CHARGE: True}))
 
 
 class AV_145e:
@@ -132,7 +132,7 @@ class ONY_024:
 class ONY_025:
     """铁肩冲撞 / Shoulder Check
     可交易 使一个随从获得+2/+1和突袭。"""
-    play = (Buff(TARGET, "ONY_025e"), SetTag(TARGET, {GameTag.RUSH: True}))
+    play = (Buff(TARGET, "ONY_025e"), SetTags(TARGET, {GameTag.RUSH: True}))
 
 
 class ONY_025e:

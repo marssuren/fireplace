@@ -53,7 +53,7 @@ class EDR_469:
     # 在你使用英雄技能后唤醒
     events = Activate(CONTROLLER, HERO_POWER).after(
         lambda self: [
-            SetTag(SELF, {GameTag.DORMANT: False})
+            SetTags(SELF, {GameTag.DORMANT: False})
         ]
     )
 

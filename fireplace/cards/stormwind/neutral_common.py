@@ -125,7 +125,7 @@ class SW_066:
 class SW_067:
     """监狱守卫 / Stockades Guard
     战吼：使一个友方随从获得嘲讽。"""
-    play = (Find(FRIENDLY_MINIONS), SetTag(TARGET, {GameTag.TAUNT: True}))
+    play = (Find(FRIENDLY_MINIONS), SetTags(TARGET, {GameTag.TAUNT: True}))
 
 
 class SW_068:
@@ -138,7 +138,7 @@ class SW_071:
     """雄狮卫士 / Lion's Guard
     战吼：如果你的生命值小于或等于15点，获得+2/+4和嘲讽。"""
     play = Find(FRIENDLY_HERO + (CURRENT_HEALTH <= 15)) & (
-        (Buff(SELF, "SW_071e"), SetTag(SELF, {GameTag.TAUNT: True}))
+        (Buff(SELF, "SW_071e"), SetTags(SELF, {GameTag.TAUNT: True}))
     )
 
 

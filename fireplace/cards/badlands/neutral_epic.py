@@ -84,7 +84,7 @@ class WW_420:
     突袭。每当本随从攻击时，获得圣盾。（50%的几率改为获得吸血。）
     """
     events = Attack(SELF).on(
-        COINFLIP & SetTag(SELF, {GameTag.DIVINE_SHIELD: True}) | SetTag(SELF, {GameTag.LIFESTEAL: True})
+        COINFLIP & SetTags(SELF, {GameTag.DIVINE_SHIELD: True}) | SetTags(SELF, {GameTag.LIFESTEAL: True})
     )
 
 

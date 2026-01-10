@@ -14,8 +14,8 @@ class ETC_087:
         GameTag.COST: 2,
     }
     play = (
-        SetTag(FRIENDLY_HERO, {GameTag.RESOURCES: 11}),
-        SetTag(FRIENDLY_HERO, {GameTag.MAXHANDSIZE: 11})
+        SetTags(FRIENDLY_HERO, {GameTag.RESOURCES: 11}),
+        SetTags(FRIENDLY_HERO, {GameTag.MAXHANDSIZE: 11})
     )
 class ETC_110:
     """封面艺人 / Cover Artist
@@ -26,7 +26,7 @@ class ETC_110:
         GameTag.COST: 4,
     }
     requirements = {PlayReq.REQ_TARGET_IF_AVAILABLE: 0, PlayReq.REQ_MINION_TARGET: 0}
-    play = Morph(SELF, ExactCopy(TARGET)), SetTag(SELF, {GameTag.ATK: 3, GameTag.HEALTH: 3})
+    play = Morph(SELF, ExactCopy(TARGET)), SetTags(SELF, {GameTag.ATK: 3, GameTag.HEALTH: 3})
 class ETC_104:
     """人潮冲浪者 / Crowd Surfer
     <b>亡语：</b>使任意一个其他随从获得+1/+1和此<b>亡语</b>。"""

@@ -64,7 +64,7 @@ class ETC_533:
     # 地标激活效果:消耗3份残骸,使目标获得复生
     def activate(self):
         yield SpendCorpses(CONTROLLER, 3)
-        yield SetTag(TARGET, {GameTag.REBORN: True})
+        yield SetTags(TARGET, {GameTag.REBORN: True})
 
 
 class ETC_423:

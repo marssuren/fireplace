@@ -60,7 +60,7 @@ class TLC_246c:
     
     # 下回合开始时移除潜行
     events = OWN_TURN_BEGIN.on(
-        lambda self: SetTag(SELF, {GameTag.STEALTH: False})
+        lambda self: SetTags(SELF, {GameTag.STEALTH: False})
     )
 
 

@@ -283,7 +283,7 @@ class TTN_480t:
         # 随机选择一个buff
         # 注意：这里使用游戏随机数生成器以保证确定性
         effect = self.game.random.choice(keywords)
-        yield SetTag(self, {effect: True})
+        yield SetTags(self, {effect: True})
 
 
 # LEGENDARY
@@ -325,7 +325,7 @@ class TTN_075:
 
     def _update_multiplier(self):
         # 增加翻倍指数
-        yield SetTag(self, {
+        yield SetTags(self, {
             GameTag.TAG_SCRIPT_DATA_NUM_2: Attr(self, GameTag.TAG_SCRIPT_DATA_NUM_2) + 1
         })
     

@@ -159,7 +159,7 @@ class TID_718e:
     }
     events = BeginTurn(OWNER).on(
         (
-            SetTag(SELF, {GameTag.TAG_SCRIPT_DATA_NUM_1: Attr(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1) - 1}),
+            SetTags(SELF, {GameTag.TAG_SCRIPT_DATA_NUM_1: Attr(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1) - 1}),
             (Attr(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1) <= 0) & Discard(OWNER)
         )
     )

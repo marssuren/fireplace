@@ -233,7 +233,7 @@ class TTN_441:
         if target:
             # 变形为该随从的复制，然后设置为8/8
             yield Morph(SELF, Copy(target[0]))
-            yield SetTag(SELF, {GameTag.ATK: 8, GameTag.HEALTH: 8})
+            yield SetTags(SELF, {GameTag.ATK: 8, GameTag.HEALTH: 8})
 
 
 class TTN_485:

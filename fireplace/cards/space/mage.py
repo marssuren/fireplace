@@ -189,7 +189,7 @@ class GDB_134:
         # 法术迸发:召唤一个阿肯飞翼驾驶员
         OWN_SPELL_PLAY.on(
             Summon(CONTROLLER, "GDB_134"),
-            SetTag(SELF, {GameTag.SPELLBURST: False})
+            SetTags(SELF, {GameTag.SPELLBURST: False})
         )
     ]
 

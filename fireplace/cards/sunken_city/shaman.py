@@ -122,7 +122,7 @@ class TID_004e:
     events = Play(CONTROLLER, MURLOC).on(
         (
             # 减少计数: SetTag(SELF, {TAG: Attr(SELF, TAG) - 1})
-            SetTag(SELF, {GameTag.TAG_SCRIPT_DATA_NUM_1: Attr(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1) - 1}),
+            SetTags(SELF, {GameTag.TAG_SCRIPT_DATA_NUM_1: Attr(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1) - 1}),
             # 如果计数归零，销毁自身
             (Attr(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1) <= 0) & Destroy(SELF)
         )

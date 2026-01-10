@@ -126,7 +126,7 @@ class GDB_322:
     race = Race.BEAST
     
     events = SpellBurst(CONTROLLER).on(
-        SetTag(SELF, {GameTag.DIVINE_SHIELD: True})
+        SetTags(SELF, {GameTag.DIVINE_SHIELD: True})
     )
 
 

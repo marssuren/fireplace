@@ -71,7 +71,7 @@ class DED_009:
     play = Buff(TARGET, "DED_009e")
     
     # 交易后效果：使一个友方随从获得突袭
-    trade = Find(FRIENDLY_MINIONS) & SetTag(RANDOM(FRIENDLY_MINIONS), {GameTag.RUSH: True})
+    trade = Find(FRIENDLY_MINIONS) & SetTags(RANDOM(FRIENDLY_MINIONS), {GameTag.RUSH: True})
 
 
 

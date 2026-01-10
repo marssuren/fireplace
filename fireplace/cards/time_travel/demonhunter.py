@@ -223,7 +223,7 @@ class TIME_442:
         if TARGET:
             # 使目标休眠10000回合
             # 参考 space/hunter.py - GDB_450 的实现
-            yield SetTag(TARGET, {GameTag.DORMANT: 10000})
+            yield SetTags(TARGET, {GameTag.DORMANT: 10000})
             
             # 记录被监禁的随从ID（而不是引用，因为引用可能失效）
             self._imprisoned_minion_id = id(TARGET)
@@ -238,7 +238,7 @@ class TIME_442:
             if target.zone == Zone.PLAY and target.dormant:
                 # 唤醒随从（设置 DORMANT 为 0）
                 # 参考 the_lost_city/neutral_common.py - TLC_246 的实现
-                return [SetTag(target, {GameTag.DORMANT: 0})]
+                return [SetTags(target, {GameTag.DORMANT: 0})]
         return []
 
 

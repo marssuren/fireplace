@@ -10,7 +10,7 @@ class AV_205:
     """森林之王的古树 / Guff Runetotem
     战吼：你的法力值上限变为20点。获得一个空的法力水晶。"""
     play = (
-        SetTag(FRIENDLY_HERO, {GameTag.RESOURCES: 20}),
+        SetTags(FRIENDLY_HERO, {GameTag.RESOURCES: 20}),
         GainMana(CONTROLLER, 1)
     )
 

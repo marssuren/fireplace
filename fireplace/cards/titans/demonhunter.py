@@ -200,7 +200,7 @@ class TTN_842e:
         # 在每个回合开始时重置? 文本说 "your turn"。"First spell you draw EACH turn" (通常意味着你的每个回合)。
         # 英文: "cast a copy of the first spell you draw each turn".
         # 让我们假设是拥有者的回合。
-        OWN_TURN_BEGIN.on(SetTag(SELF, {GameTag.POWERED_UP: False})),
+        OWN_TURN_BEGIN.on(SetTags(SELF, {GameTag.POWERED_UP: False})),
         
         Draw(CONTROLLER).on(
             If(And(
@@ -212,7 +212,7 @@ class TTN_842e:
                    # 施放复制
                    CastSpell(CopyOf(Draw.CARD), TARGET=RANDOM(ENEMY_CHARACTERS)),
                    # 设置标记
-                   SetTag(SELF, {GameTag.POWERED_UP: True})
+                   SetTags(SELF, {GameTag.POWERED_UP: True})
                ]
             )
         )

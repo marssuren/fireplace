@@ -213,7 +213,7 @@ class GDB_454:
     # 法术迸发：沉默本随从
     events = OWN_SPELL_PLAY.on(
         lambda self, source: Silence(self).run(),
-        SetTag(SELF, {GameTag.SPELLBURST: False})
+        SetTags(SELF, {GameTag.SPELLBURST: False})
     )
     
     def deathrattle(self):

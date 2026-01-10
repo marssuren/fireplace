@@ -229,7 +229,7 @@ class TIME_057:
                     
                     # 使用SetTag直接设置费用为原始费用
                     # 这会覆盖所有费用修改效果
-                    yield SetTag(card, {GameTag.COST: original_cost})
+                    yield SetTags(card, {GameTag.COST: original_cost})
 
 
 class TIME_059:

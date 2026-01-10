@@ -234,7 +234,7 @@ class VAC_424:
         minion = yield Summon(CONTROLLER, RandomMinion(cost=2))
         if minion:
             # 给予圣盾
-            yield SetTag(minion[0], {GameTag.DIVINE_SHIELD: True})
+            yield SetTags(minion[0], {GameTag.DIVINE_SHIELD: True})
     
     events = Play(CONTROLLER, SPELL).after(_after_spell_cast)
 

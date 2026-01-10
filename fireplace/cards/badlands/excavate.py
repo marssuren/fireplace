@@ -24,7 +24,7 @@ class WW_359te:
     events = OWN_TURN_BEGIN.on(
         AddProgress(OWNER, OWNER, 1),
         (Count(OWNER) >= 3) & (
-            SetTag(OWNER, {GameTag.DORMANT: False}),
+            SetTags(OWNER, {GameTag.DORMANT: False}),
             Destroy(SELF)
         )
     )

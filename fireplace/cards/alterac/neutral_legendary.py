@@ -51,11 +51,11 @@ class AV_142t:
             if choice == "stats":
                 yield Buff(SELF, "AV_142te")
             elif choice == "rush":
-                yield SetTag(SELF, {GameTag.RUSH: True})
+                yield SetTags(SELF, {GameTag.RUSH: True})
             elif choice == "divine_shield":
-                yield SetTag(SELF, {GameTag.DIVINE_SHIELD: True})
+                yield SetTags(SELF, {GameTag.DIVINE_SHIELD: True})
             elif choice == "taunt":
-                yield SetTag(SELF, {GameTag.TAUNT: True})
+                yield SetTags(SELF, {GameTag.TAUNT: True})
 
 
 class AV_142te:

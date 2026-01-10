@@ -180,9 +180,9 @@ class TTN_731:
     在一回合中，在你抽第二张牌后，消灭本随从。
     """
     events = [
-        OWN_TURN_BEGIN.on(SetTag(SELF, {GameTag.TAG_SCRIPT_DATA_NUM_1: 0})),
+        OWN_TURN_BEGIN.on(SetTags(SELF, {GameTag.TAG_SCRIPT_DATA_NUM_1: 0})),
         Draw(CONTROLLER).on(
-            SetTag(SELF, {GameTag.TAG_SCRIPT_DATA_NUM_1: Tag(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1) + 1}),
+            SetTags(SELF, {GameTag.TAG_SCRIPT_DATA_NUM_1: Tag(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1) + 1}),
             If(
                 GreaterEqual(Tag(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1), 2),
                 Destroy(SELF)
@@ -230,7 +230,7 @@ class TTN_754:
     def play(self):
         if TARGET:
             # 记住被消灭的随从
-            yield SetTag(SELF, {GameTag.TAG_SCRIPT_DATA_ENT_1: ID(TARGET)})
+            yield SetTags(SELF, {GameTag.TAG_SCRIPT_DATA_ENT_1: ID(TARGET)})
             yield Destroy(TARGET)
 
     def deathrattle(self):

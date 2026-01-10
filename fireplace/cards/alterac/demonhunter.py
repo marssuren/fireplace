@@ -98,7 +98,7 @@ class AV_267:
             # 创建6/6复制
             yield Morph(SELF, Copy(demon))
             # 设置属性为6/6
-            yield SetTag(SELF, {GameTag.ATK: 6, GameTag.HEALTH: 6})
+            yield SetTags(SELF, {GameTag.ATK: 6, GameTag.HEALTH: 6})
 
 
 class AV_269:

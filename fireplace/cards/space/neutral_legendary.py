@@ -53,6 +53,7 @@ class GDB_131:
     tags = {
         GameTag.TAUNT: True,
         GameTag.DEATHRATTLE: True,
+        GameTag.DIVINE_SHIELD: True,
     }
     race = Race.DRAENEI
     
@@ -380,7 +381,7 @@ class SC_400:
                     # 应用关键词
                     for keyword, value in keywords.items():
                         if value:
-                            yield SetTag(starship, {keyword: value})
+                            yield SetTags(starship, {keyword: value})
                 
                 # 注意：重新发射不会再次触发组件的"发射时"效果
                 # 也不会增加 starships_launched_this_game 计数（因为这是重新发射，不是新发射）

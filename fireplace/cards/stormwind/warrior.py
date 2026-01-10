@@ -79,7 +79,7 @@ class SW_023:
     }
     
     # 给予嘲讽（强制敌方随从攻击它）
-    play = SetTag(TARGET, {GameTag.TAUNT: True})
+    play = SetTags(TARGET, {GameTag.TAUNT: True})
 
 
 class SW_024:

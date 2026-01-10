@@ -107,6 +107,6 @@ class WC_035:
         Give(CONTROLLER, RandomID("DREAM_01", "DREAM_02", "DREAM_03", "DREAM_04", "DREAM_05")),
         AddProgress(SELF, SELF, 1),
     )
-    reward = SetTag(SELF, {GameTag.DORMANT: False})
+    reward = SetTags(SELF, {GameTag.DORMANT: False})
 
 

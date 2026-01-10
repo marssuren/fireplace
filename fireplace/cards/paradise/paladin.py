@@ -120,7 +120,7 @@ class VAC_916:
     def play(self):
         # 给予圣盾
         if TARGET:
-            yield SetTag(TARGET, {GameTag.DIVINE_SHIELD: True})
+            yield SetTags(TARGET, {GameTag.DIVINE_SHIELD: True})
         
         # Drink Spell机制：返回2杯版本
         yield Give(CONTROLLER, "VAC_916t")

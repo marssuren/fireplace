@@ -35,8 +35,8 @@ class AV_601:
     潜行。在你使用一张亡语随从后，变形成为它的2/2复制，并具有突袭。"""
     events = Play(CONTROLLER, MINION + DEATHRATTLE).after(
         (Morph(SELF, Copy(Play.CARD)),
-         SetTag(SELF, {GameTag.ATK: 2, GameTag.HEALTH: 2}),
-         SetTag(SELF, {GameTag.RUSH: True}))
+         SetTags(SELF, {GameTag.ATK: 2, GameTag.HEALTH: 2}),
+         SetTags(SELF, {GameTag.RUSH: True}))
     )
 
 

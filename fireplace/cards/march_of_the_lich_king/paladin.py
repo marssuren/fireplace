@@ -105,7 +105,7 @@ class RLK_919:
     def play(self):
         # 将所有其他随从送入未来（休眠）
         for minion in ALL_MINIONS - SELF:
-            yield SetTag(minion, {GameTag.DORMANT: True})
+            yield SetTags(minion, {GameTag.DORMANT: True})
             # 2回合后唤醒
             yield Buff(minion, "RLK_919e")
 

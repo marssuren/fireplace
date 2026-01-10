@@ -196,7 +196,7 @@ class VAC_916t:
     def play(self):
         # 给予圣盾
         if TARGET:
-            yield SetTag(TARGET, {GameTag.DIVINE_SHIELD: True})
+            yield SetTags(TARGET, {GameTag.DIVINE_SHIELD: True})
         
         # 返回1杯版本
         yield Give(CONTROLLER, "VAC_916t2")
@@ -210,7 +210,7 @@ class VAC_916t2:
     def play(self):
         # 给予圣盾
         if TARGET:
-            yield SetTag(TARGET, {GameTag.DIVINE_SHIELD: True})
+            yield SetTags(TARGET, {GameTag.DIVINE_SHIELD: True})
         # 最后一次使用，不再返回手牌
 
 

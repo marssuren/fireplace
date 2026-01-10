@@ -134,7 +134,7 @@ class GDB_851:
         elif self.choice == "GDB_851b":
             # 使一个敌方随从休眠2回合
             # 参考nathria/druid.py MAW_026的实现
-            yield SetTag(self.target, {GameTag.DORMANT: 2})
+            yield SetTags(self.target, {GameTag.DORMANT: 2})
 
 
 class GDB_851a:
@@ -167,7 +167,7 @@ class GDB_855:
         OWN_SPELL_PLAY.on(
             Buff(FRIENDLY_HERO, "GDB_855e"),
             GainArmor(FRIENDLY_HERO, 8),
-            SetTag(SELF, {GameTag.SPELLBURST: False})
+            SetTags(SELF, {GameTag.SPELLBURST: False})
         )
     ]
 

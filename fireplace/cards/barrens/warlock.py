@@ -213,7 +213,7 @@ class WC_023:
     你每回合抽的第一张牌用生命值而非法力值来支付其费用。
     """
     events = (
-        OWN_TURN_BEGIN.on(SetTag(SELF, {enums.ACTIVATIONS_THIS_TURN: 0})),
+        OWN_TURN_BEGIN.on(SetTags(SELF, {enums.ACTIVATIONS_THIS_TURN: 0})),
         Draw(CONTROLLER).after(
             Find(SELF + (ACTIVATIONS_THIS_TURN == 0)) & (
                 Buff(Draw.CARD, "WC_023e"),

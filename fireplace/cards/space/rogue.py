@@ -156,7 +156,7 @@ class GDB_870:
     # 法术迸发：获得+2攻击力和潜行
     events = OWN_SPELL_PLAY.on(
         Buff(SELF, "GDB_870e"),
-        SetTag(SELF, {GameTag.SPELLBURST: False})
+        SetTags(SELF, {GameTag.SPELLBURST: False})
     )
 
 

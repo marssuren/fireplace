@@ -115,7 +115,7 @@ class TIME_058:
         if minion:
             # 设置休眠回合数为2
             # 参考 TIME_063 (DORMANT: 5) 和 TIME_442 (DORMANT: 10000) 的实现
-            yield SetTag(minion, {GameTag.DORMANT: 2})
+            yield SetTags(minion, {GameTag.DORMANT: 2})
 
 
 class TIME_720:

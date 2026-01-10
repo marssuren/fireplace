@@ -185,7 +185,7 @@ class WC_033:
     """
     secret = Attack(ENEMY + MINION).on(
         Reveal(SELF),
-        SetTag(Attack.ATTACKER, {GameTag.ATK: 1}),
+        SetTags(Attack.ATTACKER, {GameTag.ATK: 1}),
         SetCurrentHealth(Attack.ATTACKER, 1),
     )
 

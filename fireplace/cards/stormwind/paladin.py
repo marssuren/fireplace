@@ -214,7 +214,7 @@ class SW_305:
     def play(self):
         """如果攻击力>=4，获得突袭"""
         if self.atk >= 4:
-            yield SetTag(SELF, {GameTag.RUSH: True})
+            yield SetTags(SELF, {GameTag.RUSH: True})
 
 
 class SW_313:

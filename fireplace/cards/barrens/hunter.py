@@ -171,7 +171,7 @@ class WC_007:
         PlayReq.REQ_FRIENDLY_TARGET: 0,
         PlayReq.REQ_TARGET_WITH_RACE: Race.BEAST,
     }
-    play = SetTag(TARGET, {GameTag.POISONOUS: True})
+    play = SetTags(TARGET, {GameTag.POISONOUS: True})
 
 
 class WC_008:

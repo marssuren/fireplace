@@ -124,7 +124,7 @@ class WW_322:
     def play(self):
         # 发掘一个宝藏，并使其法力值消耗为0
         yield Excavate(CONTROLLER).then(
-            SetTag(Give.CARD, {GameTag.COST: 0})
+            SetTags(Give.CARD, {GameTag.COST: 0})
         )
 
 

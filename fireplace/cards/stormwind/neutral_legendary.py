@@ -191,14 +191,14 @@ class SW_081:
     play = (
         # 抽一张突袭随从，获得突袭
         Find(FRIENDLY_DECK + MINION + RUSH) & (
-            (Draw(CONTROLLER, TARGET), SetTag(SELF, {GameTag.RUSH: True}))
+            (Draw(CONTROLLER, TARGET), SetTags(SELF, {GameTag.RUSH: True}))
         ) &
         # 抽一张嘲讽随从，获得嘲讽
         Find(FRIENDLY_DECK + MINION + TAUNT) & (
-            (Draw(CONTROLLER, TARGET), SetTag(SELF, {GameTag.TAUNT: True}))
+            (Draw(CONTROLLER, TARGET), SetTags(SELF, {GameTag.TAUNT: True}))
         ) &
         # 抽一张圣盾随从，获得圣盾
         Find(FRIENDLY_DECK + MINION + DIVINE_SHIELD) & (
-            (Draw(CONTROLLER, TARGET), SetTag(SELF, {GameTag.DIVINE_SHIELD: True}))
+            (Draw(CONTROLLER, TARGET), SetTags(SELF, {GameTag.DIVINE_SHIELD: True}))
         )
     )

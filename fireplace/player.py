@@ -553,8 +553,12 @@ class Player(Entity, TargetableByAuras):
                 quests.append(card)
             else:
                 exclude_quests.append(card)
+        
+        # 确保不会尝试抽取超过可用卡牌数量的牌
+        non_quest_cards_needed = max(0, min(hand_size - len(quests), len(exclude_quests)))
+        
         self.starting_hand = CardList["PlayableCard"](
-            quests + self.game.random.sample(exclude_quests, hand_size - len(quests))
+            quests + self.game.random.sample(exclude_quests, non_quest_cards_needed)
         )
         # It's faster to move cards directly to the hand instead of drawing
         for card in self.starting_hand:

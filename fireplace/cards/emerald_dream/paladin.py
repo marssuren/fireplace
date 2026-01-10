@@ -317,7 +317,7 @@ def _handle_toreth_divine_shield(source, target, amount):
         from ...actions import SetTag, Predamage as PredamageAction
         return [
             # 递减计数
-            SetTag(target, {GameTag.TAG_SCRIPT_DATA_NUM_1: shield_count - 1}),
+            SetTags(target, {GameTag.TAG_SCRIPT_DATA_NUM_1: shield_count - 1}),
             # 将伤害设为0（圣盾吸收伤害）
             PredamageAction(target, 0)
         ]

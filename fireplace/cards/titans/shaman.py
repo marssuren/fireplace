@@ -243,7 +243,7 @@ class YOG_522e:
             # 如果法术有目标且目标是随从，则对相邻随从也施放
             self._cast_on_adjacent(card, target) if target and target.type == CardType.MINION else None,
             # 标记为已使用并销毁
-            SetTag(SELF, {GameTag.TAG_SCRIPT_DATA_NUM_1: 1}),
+            SetTags(SELF, {GameTag.TAG_SCRIPT_DATA_NUM_1: 1}),
             Destroy(SELF)
         ]
     )
@@ -430,9 +430,9 @@ class TTN_800e:
 
     # 每回合开始时重置标记
     events = [
-        OWN_TURN_BEGIN.on(SetTag(SELF, {GameTag.TAG_SCRIPT_DATA_NUM_1: 0})),
+        OWN_TURN_BEGIN.on(SetTags(SELF, {GameTag.TAG_SCRIPT_DATA_NUM_1: 0})),
         # 监听法术施放，设置标记
-        Play(CONTROLLER, SPELL).on(SetTag(SELF, {GameTag.TAG_SCRIPT_DATA_NUM_1: 1}))
+        Play(CONTROLLER, SPELL).on(SetTags(SELF, {GameTag.TAG_SCRIPT_DATA_NUM_1: 1}))
     ]
 
     # 第一张法术减3费

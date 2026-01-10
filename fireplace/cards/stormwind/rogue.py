@@ -453,7 +453,7 @@ class SW_413:
     
     # 攻击随从后获得潜行
     events = Attack(SELF, MINION).after(
-        SetTag(SELF, {GameTag.STEALTH: True})
+        SetTags(SELF, {GameTag.STEALTH: True})
     )
 
 

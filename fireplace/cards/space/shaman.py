@@ -86,7 +86,7 @@ class SC_407:
 
     def play(self):
         # 将目标生命值设为1
-        yield SetTag(TARGET, {GameTag.HEALTH: SET(1)})
+        yield SetTags(TARGET, {GameTag.HEALTH: SET(1)})
 
         # 下一次星舰发射减费2点
         yield Buff(CONTROLLER, "SC_407e")
@@ -247,7 +247,7 @@ class GDB_434:
     # 法术迸发：将3张小行星洗入牌库
     events = OWN_SPELL_PLAY.on(
         lambda self, source: [Shuffle(CONTROLLER, "GDB_901t") for _ in range(3)],
-        SetTag(SELF, {GameTag.SPELLBURST: False})
+        SetTags(SELF, {GameTag.SPELLBURST: False})
     )
 
 

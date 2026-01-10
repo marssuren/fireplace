@@ -244,7 +244,7 @@ class SW_034:
         for _ in range(4):
             minion = yield Summon(CONTROLLER, RandomMinion(cost=5))
             if minion:
-                yield SetTag(minion, {GameTag.ATK: 2, GameTag.HEALTH: 2})
+                yield SetTags(minion, {GameTag.ATK: 2, GameTag.HEALTH: 2})
 
 
 class SW_035:

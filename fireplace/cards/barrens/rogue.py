@@ -114,8 +114,8 @@ class BAR_321e:
         GameTag.ATK: 1,
     }
     events = (
-        Attack(FRIENDLY_HERO).on(SetTag(FRIENDLY_HERO, {GameTag.CANT_BE_DAMAGED: True})),
-        Attack(FRIENDLY_HERO).after(SetTag(FRIENDLY_HERO, {GameTag.CANT_BE_DAMAGED: False})),
+        Attack(FRIENDLY_HERO).on(SetTags(FRIENDLY_HERO, {GameTag.CANT_BE_DAMAGED: True})),
+        Attack(FRIENDLY_HERO).after(SetTags(FRIENDLY_HERO, {GameTag.CANT_BE_DAMAGED: False})),
     )
 
 
@@ -184,7 +184,7 @@ class WC_015:
     Stealth. Has Poisonous while you have no other minions.
     潜行。当你没有其他随从时，具有剧毒。
     """
-    update = -Find(FRIENDLY_MINIONS - SELF) & SetTag(SELF, {GameTag.POISONOUS: True})
+    update = -Find(FRIENDLY_MINIONS - SELF) & SetTags(SELF, {GameTag.POISONOUS: True})
 
 
 class WC_016:

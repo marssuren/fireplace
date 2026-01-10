@@ -103,8 +103,8 @@ class BAR_045:
     """
     def play(self):
         if getattr(self.controller, 'elemental_played_last_turn', 0) > 0:
-            yield SetTag(SELF, {GameTag.RUSH: True})
-            yield SetTag(SELF, {GameTag.WINDFURY: True})
+            yield SetTags(SELF, {GameTag.RUSH: True})
+            yield SetTags(SELF, {GameTag.WINDFURY: True})
 
 
 class BAR_048:

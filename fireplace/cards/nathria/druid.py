@@ -54,7 +54,7 @@ class MAW_026:
     """
     # 使目标随从休眠3回合
     requirements = {PlayReq.REQ_TARGET_TO_PLAY: 0, PlayReq.REQ_MINION_TARGET: 0}
-    play = SetTag(TARGET, {GameTag.DORMANT: 3})
+    play = SetTags(TARGET, {GameTag.DORMANT: 3})
 
 
 class REV_307:

@@ -29,7 +29,7 @@ class AV_121e:
 class AV_122:
     """下士 / Corporal
     荣誉击杀：使你的其他随从获得圣盾。"""
-    honorable_kill = SetTag(FRIENDLY_MINIONS - SELF, {GameTag.DIVINE_SHIELD: True})
+    honorable_kill = SetTags(FRIENDLY_MINIONS - SELF, {GameTag.DIVINE_SHIELD: True})
 
 
 class AV_123:
@@ -152,7 +152,7 @@ class AV_133:
 class AV_215:
     """狂乱角鹰兽 / Frantic Hippogryph
     突袭 荣誉击杀：获得风怒。"""
-    honorable_kill = SetTag(SELF, {GameTag.WINDFURY: True})
+    honorable_kill = SetTags(SELF, {GameTag.WINDFURY: True})
 
 
 class AV_219:

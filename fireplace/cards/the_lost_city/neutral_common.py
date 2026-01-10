@@ -253,7 +253,7 @@ class TLC_253:
                 # 50%几率唤醒，50%几率+2/+2
                 Random(
                     # 唤醒
-                    SetTag(SELF, {GameTag.DORMANT: False}),
+                    SetTags(SELF, {GameTag.DORMANT: False}),
                     # +2/+2
                     Buff(SELF, "TLC_253e")
                 )
@@ -280,7 +280,7 @@ class TLC_256:
     After you cast a spell, gain Divine Shield.
     """
     events = Play(CONTROLLER, SPELL).after(
-        lambda self, source, card: SetTag(SELF, {GameTag.DIVINE_SHIELD: True})
+        lambda self, source, card: SetTags(SELF, {GameTag.DIVINE_SHIELD: True})
     )
 
 

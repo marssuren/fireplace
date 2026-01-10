@@ -74,7 +74,7 @@ class ETC_543:
         GameTag.COST: 4,
         GameTag.DIVINE_SHIELD: True,
     }
-    finale = SetTag(SELF_ADJACENT, {GameTag.DIVINE_SHIELD: True})
+    finale = SetTags(SELF_ADJACENT, {GameTag.DIVINE_SHIELD: True})
 
 
 class ETC_099:

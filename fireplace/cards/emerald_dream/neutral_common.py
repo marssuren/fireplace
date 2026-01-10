@@ -289,7 +289,7 @@ class EDR_942:
     # 回合结束时给英雄圣盾
     events = OWN_TURN_END.on(
         lambda self: [
-            SetTag(FRIENDLY_HERO, {GameTag.DIVINE_SHIELD: True})
+            SetTags(FRIENDLY_HERO, {GameTag.DIVINE_SHIELD: True})
         ]
     )
 

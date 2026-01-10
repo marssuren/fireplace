@@ -70,12 +70,12 @@ class DEEP_022:
         # 获取一张其他职业的金色海盗牌
         pirate = RandomCollectible(card_class=ANOTHER_CLASS, race=Race.PIRATE).evaluate(self)
         if pirate:
-            yield Give(CONTROLLER, pirate).then(SetTag(Give.CARD, {GameTag.PREMIUM: True}))
+            yield Give(CONTROLLER, pirate).then(SetTags(Give.CARD, {GameTag.PREMIUM: True}))
 
         # 获取一张其他职业的金色元素牌
         elemental = RandomCollectible(card_class=ANOTHER_CLASS, race=Race.ELEMENTAL).evaluate(self)
         if elemental:
-            yield Give(CONTROLLER, elemental).then(SetTag(Give.CARD, {GameTag.PREMIUM: True}))
+            yield Give(CONTROLLER, elemental).then(SetTags(Give.CARD, {GameTag.PREMIUM: True}))
 
 
 class WW_363:

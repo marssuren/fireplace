@@ -145,7 +145,7 @@ class TIME_063e:
                 if current_dormant > 0:
                     # 减少1回合休眠时间
                     new_dormant = current_dormant - 1
-                    actions.append(SetTag(minion, {GameTag.DORMANT: new_dormant}))
+                    actions.append(SetTags(minion, {GameTag.DORMANT: new_dormant}))
                     
                     # 如果休眠时间降到0，唤醒（SetTag会自动处理）
                     # 不需要额外的SetTag(0)调用

@@ -244,7 +244,7 @@ class GDB_843:
     # 使用buff机制,在回合结束时自动移除免疫效果
     events = OWN_SPELL_PLAY.on(
         Buff(FRIENDLY_HERO, "GDB_843e"),
-        SetTag(SELF, {GameTag.SPELLBURST: False})
+        SetTags(SELF, {GameTag.SPELLBURST: False})
     )
 
 
@@ -272,7 +272,7 @@ class GDB_842:
     # 进场时休眠5回合
     def play(self):
         # 设置休眠5回合
-        yield SetTag(SELF, {GameTag.DORMANT: 5})
+        yield SetTags(SELF, {GameTag.DORMANT: 5})
     
     # 在回合结束时，摧毁右侧随从以提前苏醒
     events = OWN_TURN_END.on(
@@ -305,7 +305,7 @@ def DestroyRightMinionToAwaken(gorm):
             # 减少休眠回合数（最少为0）
             current_dormant = gorm.tags.get(GameTag.DORMANT, 0)
             if current_dormant > 0:
-                yield SetTag(gorm, {GameTag.DORMANT: current_dormant - 1})
+                yield SetTags(gorm, {GameTag.DORMANT: current_dormant - 1})
     
     return action
 

@@ -150,17 +150,17 @@ class SW_433e:
     
     # 监听打出2/3/4费牌
     events = Play(CONTROLLER).after(
-        lambda self: [
+        lambda self, source, player, card, target: [
             # 记录打出的费用
-            self.controller.sw_433_costs_played.add(Play.CARD.cost)
-            if Play.CARD.cost in [2, 3, 4] else None,
-            # 检查是否完成（2费、3费、4费各一张）
+            self.controller.sw_433_costs_played.add(card.cost)
+            if card.cost in [2, 3, 4] else None,
+            # 检查是否完成(2费、3费、4费各一张)
             (
                 Find(FRIENDLY_SECRETS + ID("SW_433")) &
                 QuestlineProgress(FRIENDLY_SECRETS + ID("SW_433"), 3) &
                 # 重置计数
                 setattr(self.controller, 'sw_433_costs_played', set())
-            ) if len(self.controller.sw_433_costs_played) >= 3 else None
+            ) if len(getattr(self.controller, 'sw_433_costs_played', set())) >= 3 else None
         ]
     )
 
