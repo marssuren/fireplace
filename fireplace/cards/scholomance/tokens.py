@@ -5,7 +5,7 @@ from ..utils import *
 # Demon Hunter & Warlock Tokens
 
 
-class BT_496t:
+class SCH_307t:
     """Soul Fragment (灵魂碎片)
     Casts When Drawn: Restore 2 Health to your hero.
     抽到时施放：为你的英雄恢复2点生命值。

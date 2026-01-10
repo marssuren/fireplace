@@ -35,7 +35,7 @@ class YOP_003:
     """Luckysoul Hoarder (幸运之魂囤积者)
     Battlecry: Shuffle 2 Soul Fragments into your deck. Corrupt: Draw a card."""
     # 3费 3/3 - 战吼：将2个灵魂碎片洗入你的牌库。腐蚀：抽一张牌
-    play = Shuffle(CONTROLLER, "BT_496t") * 2
+    play = Shuffle(CONTROLLER, "SCH_307t") * 2
     corrupt = Draw(CONTROLLER)
 
 
