@@ -120,7 +120,7 @@ class SW_433:
     
     def play(self):
         """打出任务线"""
-        from ..enums import QUESTLINE_STAGE, QUESTLINE_PROGRESS
+        from ...enums import QUESTLINE_STAGE, QUESTLINE_PROGRESS
         
         self.tags[QUESTLINE_STAGE] = 1
         self.tags[QUESTLINE_PROGRESS] = 0

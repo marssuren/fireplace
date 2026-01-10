@@ -114,7 +114,7 @@ class SW_039:
         """
         打出任务线，初始化阶段和进度
         """
-        from ..enums import QUESTLINE_STAGE, QUESTLINE_PROGRESS
+        from ...enums import QUESTLINE_STAGE, QUESTLINE_PROGRESS
         
         # 初始化任务线
         self.tags[QUESTLINE_STAGE] = 1
@@ -164,7 +164,7 @@ class SW_039_turn_tracker:
         # 找到任务线
         questlines = [q for q in target.controller.secrets if q.id == "SW_039"]
         if questlines:
-            from ..enums import QUESTLINE_PROGRESS
+            from ...enums import QUESTLINE_PROGRESS
             questlines[0].tags[QUESTLINE_PROGRESS] = 0
     
     events = OWN_TURN_END.on(Destroy(SELF))

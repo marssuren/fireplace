@@ -97,7 +97,7 @@ class DMF_109:
     # 使用核心机制提供的 NUM_SECRETS_REVEALED 计数器
     # 该计数器从游戏开始就自动追踪，每次友方奥秘触发时自动累加
     def play(self):
-        from ..enums import NUM_SECRETS_REVEALED
+        from ...enums import NUM_SECRETS_REVEALED
         # 获取本局对战中触发的友方奥秘次数（默认为0）
         secret_count = self.controller.tags.get(NUM_SECRETS_REVEALED, 0)
         # 抽牌数量 = 1 + 触发次数
