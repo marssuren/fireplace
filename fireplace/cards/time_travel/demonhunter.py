@@ -353,10 +353,20 @@ class TIME_446e:
     使用 Aura 的 Hand.cost_mod 方法来正确修改手牌费用
     参考 badlands/neutral_legendary.py - WW_819e 的实现
     """
+    # 辅助函数：检查是否是手牌中的第一张恶魔
+    @staticmethod
+    def _is_first_demon(card):
+        if card.type != CardType.MINION or not hasattr(card, 'race') or card.race != Race.DEMON:
+            return False
+        # 找到手牌中第一张恶魔
+        first_demon = next((c for c in card.controller.hand 
+                           if c.type == CardType.MINION and hasattr(c, 'race') and c.race == Race.DEMON), None)
+        return card == first_demon
+    
     # 使用 Aura 给手牌中的恶魔减费
     class Hand:
         """手牌光环：给第一张恶魔减费到0"""
-        cost_mod = lambda self, i: -self.cost if (self.type == CardType.MINION and hasattr(self, 'race') and self.race == Race.DEMON and any(c.type == CardType.MINION and hasattr(c, 'race') and c.race == Race.DEMON for c in self.controller.hand) and self == next((c for c in self.controller.hand if c.type == CardType.MINION and hasattr(c, 'race') and c.race == Race.DEMON), None)) else 0
+        cost_mod = lambda self, i: -self.cost if TIME_446e._is_first_demon(self) else 0
     
     # 监听打出恶魔事件，移除buff
     events = Play(CONTROLLER, MINION).after(
