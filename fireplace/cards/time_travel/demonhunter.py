@@ -356,24 +356,7 @@ class TIME_446e:
     # 使用 Aura 给手牌中的恶魔减费
     class Hand:
         """手牌光环：给第一张恶魔减费到0"""
-        def cost_mod(self, card, game):
-            """费用修正：给第一张恶魔减费到0"""
-            # 只对恶魔生效
-            if card.type != CardType.MINION:
-                return 0
-            if not hasattr(card, 'race') or card.race != Race.DEMON:
-                return 0
-            
-            # 找到手牌中的第一张恶魔
-            for c in self.controller.hand:
-                if c.type == CardType.MINION and hasattr(c, 'race') and c.race == Race.DEMON:
-                    if c == card:
-                        # 这是第一张恶魔，减费到0
-                        return -card.cost
-                    else:
-                        # 不是第一张恶魔，不减费
-                        return 0
-            return 0
+        cost_mod = lambda self, i: -self.cost if (self.type == CardType.MINION and hasattr(self, 'race') and self.race == Race.DEMON and any(c.type == CardType.MINION and hasattr(c, 'race') and c.race == Race.DEMON for c in self.controller.hand) and self == next((c for c in self.controller.hand if c.type == CardType.MINION and hasattr(c, 'race') and c.race == Race.DEMON), None)) else 0
     
     # 监听打出恶魔事件，移除buff
     events = Play(CONTROLLER, MINION).after(
