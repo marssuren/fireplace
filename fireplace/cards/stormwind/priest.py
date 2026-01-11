@@ -149,10 +149,11 @@ class SW_433e:
             target.sw_433_costs_played = set()
     
     # 监听打出2/3/4费牌
+    # Play().after() 传递参数: player, played_card, target
     events = Play(CONTROLLER).after(
-        lambda self, source, player, card, target: (
+        lambda self, player, played_card, target: (
             # 记录打出的费用(如果是2/3/4费)
-            self.controller.sw_433_costs_played.add(card.cost) if card.cost in [2, 3, 4] else None,
+            self.controller.sw_433_costs_played.add(played_card.cost) if played_card.cost in [2, 3, 4] else None,
             # 检查是否完成(2费、3费、4费各一张)
             (
                 Find(FRIENDLY_SECRETS + ID("SW_433")) &

@@ -68,8 +68,16 @@ class SCH_140:
     # 完整实现：使用追踪buff记录英雄生命值变化次数
     # 首先确保追踪buff存在
     play = Buff(CONTROLLER, "SCH_140_tracker")
-    # 费用减少 = 英雄生命值变化次数
-    cost_mod = -Attr(CONTROLLER, "hero_health_change_count")
+    
+    # 费用减少 = 英雄生命值变化次数(使用 lambda 安全访问)
+    @property
+    def cost(self):
+        """动态费用计算"""
+        base_cost = 8
+        if hasattr(self, 'controller'):
+            change_count = getattr(self.controller, 'hero_health_change_count', 0)
+            return max(0, base_cost - change_count)
+        return base_cost
 
 
 

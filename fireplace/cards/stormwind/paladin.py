@@ -260,10 +260,11 @@ class SW_313e:
             target.sw_313_one_cost_cards_played = set()
     
     # 监听打出1费牌
+    # Play().after() 传递参数: player, played_card, target
     events = Play(CONTROLLER).after(
-        lambda self, source, player, card, target: (
+        lambda self, player, played_card, target: (
             # 记录打出的1费牌(如果是1费)
-            self.controller.sw_313_one_cost_cards_played.add(card.id) if card.cost == 1 else None,
+            self.controller.sw_313_one_cost_cards_played.add(played_card.id) if played_card.cost == 1 else None,
             # 检查是否达到3张不同的1费牌
             (
                 Find(FRIENDLY_SECRETS + ID("SW_313")) &
