@@ -37,7 +37,7 @@ class AV_142t:
             return
         
         # 消耗所有法力
-        self.controller.mana = 0
+        yield SpendMana(CONTROLLER, mana_to_spend)
         
         # 每点法力随机获得一个增益
         for _ in range(mana_to_spend):
