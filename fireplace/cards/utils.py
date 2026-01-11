@@ -76,7 +76,8 @@ def TIMES_CARD_TYPE_PLAYED(card_type):
 FRENZY = GameTag.FRENZY
 
 # FRIENDLY_HERO_HEALED_THIS_TURN - 友方英雄本回合是否被治疗过
-FRIENDLY_HERO_HEALED_THIS_TURN = Attr(FRIENDLY_HERO, "healed_this_turn") > 0
+# 使用lambda确保访问的是Hero对象而不是Player对象
+FRIENDLY_HERO_HEALED_THIS_TURN = lambda source: source.controller.hero.healed_this_turn > 0
 
 # SPELL_SCHOOL - 法术学派选择器函数
 def SPELL_SCHOOL(school):
