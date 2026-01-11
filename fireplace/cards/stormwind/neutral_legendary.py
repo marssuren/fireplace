@@ -36,12 +36,49 @@ class SW_045:
 class SW_078:
     """普瑞斯托女士 / Lady Prestor
     战吼：将你牌库中的随从变形为随机龙。（它们保持原始属性和法力值消耗。）"""
-    # 将牌库中的所有随从变形为随机龙，保持原始属性和费用
-    play = lambda self: [
-        Transform(minion, RandomMinion(race=Race.DRAGON, cost=minion.cost, atk=minion.atk, health=minion.health))
-        for minion in self.controller.deck
-        if minion.type == CardType.MINION
-    ]
+    
+    def play(self):
+        """将牌库中的所有随从变形为随机龙，保持原始属性和费用"""
+        for minion in list(self.controller.deck):
+            if minion.type == CardType.MINION:
+                # 保存原始属性
+                original_cost = minion.cost
+                original_atk = minion.atk
+                original_health = minion.max_health
+                
+                # 变形为随机龙
+                morphed = yield Morph(minion, RandomDragon())
+                
+                # 如果变形成功，添加buff来恢复原始属性
+                if morphed:
+                    yield Buff(morphed, "SW_078e", 
+                              original_cost=original_cost,
+                              original_atk=original_atk, 
+                              original_health=original_health)
+
+
+class SW_078e:
+    """普瑞斯托女士的属性保持buff"""
+    def apply(self, target):
+        """应用原始属性"""
+        # 设置原始费用
+        if hasattr(self, 'original_cost'):
+            target._sw_078_cost = self.original_cost
+        
+        # 设置原始攻击力和生命值
+        if hasattr(self, 'original_atk'):
+            target._sw_078_atk = self.original_atk
+        if hasattr(self, 'original_health'):
+            target._sw_078_health = self.original_health
+    
+    # 费用修改器
+    cost = lambda self, i: getattr(self.owner, '_sw_078_cost', i) if hasattr(self, 'original_cost') else i
+    
+    # 攻击力修改器
+    atk = lambda self, i: getattr(self.owner, '_sw_078_atk', i) if hasattr(self, 'original_atk') else i
+    
+    # 生命值修改器  
+    max_health = lambda self, i: getattr(self.owner, '_sw_078_health', i) if hasattr(self, 'original_health') else i
 
 
 class SW_079:
