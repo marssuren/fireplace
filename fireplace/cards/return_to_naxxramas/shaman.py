@@ -34,7 +34,7 @@ class NX2_008:
     
     def play(self):
         # 获取目标随从的费用
-        target_cost = TARGET.cost + 1
+        target_cost = self.target.cost + 1
         # 发现一个相同费用的随从
         discovered = yield GenericChoice(CONTROLLER, RandomMinion(cost=target_cost) * 3)
         if discovered:
