@@ -94,7 +94,8 @@ class ETC_363:
         GameTag.COST: 1,
     }
     def play(self):
-        yield GainAttack(FRIENDLY_HERO, 2)
+        # 本回合英雄+2攻击力（使用临时buff）
+        yield Buff(FRIENDLY_HERO, "ETC_363e")
         yield GainArmor(FRIENDLY_HERO, 2)
         
         # 压轴效果：如果当前剩余法力值为0
@@ -103,6 +104,15 @@ class ETC_363:
         
         # 更新最后打出的乐句（在效果结算后）
         yield UpdateLastRiff(SELF)
+
+class ETC_363e:
+    """主歌乐句攻击力增益（本回合）"""
+    tags = {
+        GameTag.ATK: 2,
+    }
+    # 回合结束时移除
+    events = OWN_TURN_END.on(Destroy(SELF))
+
 
 class JAM_014:
     """Backstage Bouncer - 后台保镖
