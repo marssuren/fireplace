@@ -19,6 +19,8 @@ class Copy(LazyValue):
         """
         Return a copy of \a entity
         """
+        if entity is None:
+            return None
         log.info("Creating a copy of %r", entity)
         new_entity = source.controller.card(entity.id, source)
         if entity.custom_card:
@@ -52,7 +54,8 @@ class Copy(LazyValue):
         else:
             entities = self.selector.eval(source.game, source)
 
-        return [self.copy(source, e) for e in entities]
+        # 过滤掉 None 值
+        return [c for c in [self.copy(source, e) for e in entities] if c is not None]
 
 
 class ExactCopy(Copy):

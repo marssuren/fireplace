@@ -365,6 +365,9 @@ class BaseGame(Entity):
         # Since we copied the entities, their .game attribute points to the 'snapshot' object
         # We need to redirect them to 'self' (the current running game instance)
         for entity in self.entities:
+            # Skip the game object itself (its game property returns self)
+            if entity is self:
+                continue
             entity.game = self
             
             # Additional safety for controllers (though logical they should be correct if point to P1/P2)

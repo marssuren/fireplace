@@ -2966,6 +2966,8 @@ class Silence(TargetedAction):
 
     def do(self, source, target):
         log_info("silencing", target=self)
+        if target is None:
+            return
         if target.type != CardType.MINION:
             return
         self.broadcast(source, EventListener.ON, target)
