@@ -55,7 +55,7 @@ class TSC_829:
     在本局对战中，你每消耗1点法力值用于法术牌上，本牌的法力值消耗便减少（1）点"""
     # 使用 cost_mod 根据玩家在本局对战中施放法术消耗的总法力值来减费
     # Player 类中的 spent_mana_on_spells_this_game 属性会在每次施放法术时自动更新
-    cost_mod = -AttrValue("spent_mana_on_spells_this_game")(CONTROLLER)
+    cost_mod = lambda self, i: -getattr(self.controller, 'spent_mana_on_spells_this_game', 0)
 
 
 class TSC_926:
