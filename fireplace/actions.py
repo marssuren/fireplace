@@ -171,6 +171,9 @@ class Action(metaclass=ActionMeta):
 
     def _broadcast(self, entity, source, at, *args):
         for event in entity.events:
+            # 跳过非EventListener对象（例如函数）
+            if not hasattr(event, 'at'):
+                continue
             if event.at != at:
                 continue
             if isinstance(event.trigger, self.__class__) and event.trigger.matches(

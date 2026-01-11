@@ -150,7 +150,7 @@ class WORK_042:
     
     # 回合结束时召唤复制
     events = OWN_TURN_END.on(
-        lambda self: Summon(CONTROLLER, self.buffs[0].stored_minion_id) if self.buffs and hasattr(self.buffs[0], 'stored_minion_id') else []
+        lambda self, player: Summon(CONTROLLER, self.buffs[0].stored_minion_id) if self.buffs and hasattr(self.buffs[0], 'stored_minion_id') else []
     )
 
 

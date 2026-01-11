@@ -272,14 +272,14 @@ class CardDB(dict[str, cardxml.CardXML]):
                         ]
                     else:
                         cards = [card for card in cards if value in card.classes]
-                if attr == "races":
+                elif attr == "races":
                     cards = [card for card in cards if value in card.races]
                 else:
                     cards = [
                         card
                         for card in cards
-                        if (hasattr(value, "__iter__") and getattr(card, attr) in value)
-                        or getattr(card, attr) == value
+                        if (hasattr(value, "__iter__") and getattr(card, attr, None) in value)
+                        or getattr(card, attr, None) == value
                     ]
 
         return [card.id for card in cards]
