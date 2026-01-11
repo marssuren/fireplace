@@ -207,16 +207,17 @@ class YOG_510:
                 yield Buff(card, "YOG_510e")
 
 class YOG_510e:
-    """安保增强"""
+    """安保增强 - 将攻击力、生命值和费用设置为5"""
     tags = {
         GameTag.CARDTYPE: CardType.ENCHANTMENT,
         GameTag.ATK: 5,
-        GameTag.ATK: SetTag.SET,
-        GameTag.HEALTH: SetTag.SET,
-        GameTag.COST: SetTag.SET,
+        GameTag.HEALTH: 5,
+        GameTag.COST: 5,
     }
-    health = 5
-    cost = 5
+    # 使用 SET 函数来设置固定值
+    atk = SET(5)
+    max_health = SET(5)
+    cost = SET(5)
 
 
 # EPIC
@@ -321,22 +322,24 @@ class TTN_858t1e:
     tags = {
         GameTag.CARDTYPE: CardType.ENCHANTMENT,
         GameTag.ATK: 2,
-        GameTag.ATK: SetTag.SET,
-        GameTag.HEALTH: SetTag.SET,
+        GameTag.HEALTH: 2,
     }
-    health = 2
+    # 使用 SET 函数来设置固定值
+    atk = SET(2)
+    max_health = SET(2)
 
 class TTN_858t2e:
     """强化附魔 - 攻击力、生命值和法力值变为2"""
     tags = {
         GameTag.CARDTYPE: CardType.ENCHANTMENT,
         GameTag.ATK: 2,
-        GameTag.ATK: SetTag.SET,
-        GameTag.HEALTH: SetTag.SET,
-        GameTag.COST: SetTag.SET,
+        GameTag.HEALTH: 2,
+        GameTag.COST: 2,
     }
-    health = 2
-    tags = {GameTag.COST: 2}
+    # 使用 SET 函数来设置固定值
+    atk = SET(2)
+    max_health = SET(2)
+    cost = SET(2)
 
 class TTN_858t3e:
     """增益附魔 - +2/+2"""
