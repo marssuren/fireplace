@@ -67,11 +67,12 @@ class WW_816:
         # 抽两张龙牌
         cards = yield ForceDraw(CONTROLLER, FRIENDLY_DECK + DRAGON) * 2
         # 给抽到的龙牌+1/+1
-        for card_list in cards:
-            if card_list:
-                for card in card_list:
-                    if card:
-                        yield Buff(card, "WW_816e")
+        if cards:
+            for card_list in cards:
+                if card_list:
+                    for card in card_list:
+                        if card:
+                            yield Buff(card, "WW_816e")
 
 
 class WW_816e:

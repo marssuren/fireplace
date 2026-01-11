@@ -271,10 +271,10 @@ class SW_052e:
     """探查内鬼追踪器"""
     # 监听打出SI:7牌（卡牌名称包含"SI:7"）
     events = Play(CONTROLLER).after(
-        lambda self: [
+        lambda self, source, player, card, target: (
             Find(FRIENDLY_SECRETS + ID("SW_052")) &
             QuestlineProgress(FRIENDLY_SECRETS + ID("SW_052"), 2)
-        ] if "SI:7" in Play.CARD.name or "军情七处" in Play.CARD.name else None
+        ) if ("SI:7" in card.name or "军情七处" in card.name) else []
     )
 
 
