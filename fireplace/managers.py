@@ -232,6 +232,7 @@ CARD_ATTRIBUTE_MAP = {
     GameTag.TAG_ONE_TURN_EFFECT: "one_turn_effect",
     GameTag.TAG_SCRIPT_DATA_ENT_1: "entity_1",
     GameTag.TAG_SCRIPT_DATA_ENT_2: "entity_2",
+    GameTag.TAG_SCRIPT_DATA_NUM_1: "script_data_num_1",
     GameTag.TWINSPELL: "twinspell",
     GameTag.TWINSPELL_COPY: "twinspell_copy",
     GameTag.OVERLOAD: "overload",
