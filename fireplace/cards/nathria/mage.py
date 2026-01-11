@@ -129,7 +129,7 @@ deal 2 damage to
 all enemies.
     在你的回合结束时，如果你控制一个<b>奥秘</b>，对所有敌人造成2点伤害。
     """
-    def _trigger_if_has_secret(self):
+    def _trigger_if_has_secret(self, source):
         # 检查是否控制奥秘
         if len(self.controller.secrets) > 0:
             yield Hit(ENEMY_CHARACTERS, 2)

@@ -12,7 +12,7 @@ another class.
     """
     secret = True
     
-    def _trigger(self):
+    def _trigger(self, source):
         # 从其他职业的奥秘中发现一张并施放
         # 使用 RandomCollectible 配合 secret=True 和 exclude_class
         card = yield Discover(CONTROLLER, RandomCollectible(secret=True, exclude_class=CardClass.ROGUE))
