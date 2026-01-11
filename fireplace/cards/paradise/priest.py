@@ -40,8 +40,8 @@ class VAC_414:
     """
     def play(self):
         # 检查英雄本回合是否受到过伤害
-        # 使用核心引擎的 DAMAGED_THIS_TURN 选择器
-        hero_damaged = DAMAGED_THIS_TURN(FRIENDLY_HERO).eval(self.game, self) > 0
+        # 直接访问 hero 的 damaged_this_turn 属性
+        hero_damaged = self.controller.hero.damaged_this_turn > 0
         
         # 基础伤害2点
         base_damage = 2
@@ -61,8 +61,8 @@ class WORK_032:
     
     def play(self):
         # 检查英雄本回合是否受到过伤害
-        # 使用核心引擎的 DAMAGED_THIS_TURN 选择器
-        hero_damaged = DAMAGED_THIS_TURN(FRIENDLY_HERO).eval(self.game, self) > 0
+        # 直接访问 hero 的 damaged_this_turn 属性
+        hero_damaged = self.controller.hero.damaged_this_turn > 0
         
         if hero_damaged:
             # 召唤一个本随从的复制
