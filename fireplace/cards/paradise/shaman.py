@@ -167,7 +167,7 @@ class VAC_954:
 class VAC_954e:
     """顶流主唱减费效果"""
     tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
-    cost = -2
+    tags = {GameTag.COST: -2}
 
 
 class WORK_030:
@@ -237,7 +237,7 @@ class VAC_329:
 class VAC_329e:
     """自然天性减费效果"""
     tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
-    cost = -2
+    tags = {GameTag.COST: -2}
 
 
 # ========== LEGENDARY ==========

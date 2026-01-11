@@ -73,7 +73,7 @@ class VAC_332e:
 class VAC_332e2:
     """海滩导购减费效果"""
     tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
-    cost = -2
+    tags = {GameTag.COST: -2}
 
 
 class WORK_005:

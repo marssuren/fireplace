@@ -50,7 +50,7 @@ class DINO_427:
 
 class DINO_427e:
     """减少2费"""
-    cost = -2
+    tags = {GameTag.COST: -2}
 
 
 class TLC_514:

@@ -264,7 +264,7 @@ class VAC_920:
 class VAC_920e:
     """王牌发球手减费效果"""
     tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
-    cost = -1
+    tags = {GameTag.COST: -1}
 
 
 class VAC_558:

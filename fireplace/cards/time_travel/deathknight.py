@@ -26,7 +26,7 @@ class TIME_613:
 
 class TIME_613e:
     """时空冰封勇士减费 - Cryofrozen Champion Cost Reduction"""
-    cost = -1
+    tags = {GameTag.COST: -1}
 
 
 class TIME_611:

@@ -54,7 +54,7 @@ class EDR_890:
 
 class EDR_890e:
     """梦魇龙裔减费 - Nightmare Dragonkin Cost Reduction"""
-    cost = -2
+    tags = {GameTag.COST: -2}
 
 
 class FIR_952:
@@ -81,7 +81,7 @@ class FIR_952:
 
 class FIR_952e:
     """灼热掠夺者减费 - Scorchreaver Cost Reduction"""
-    cost = -1
+    tags = {GameTag.COST: -1}
 
 
 # RARE

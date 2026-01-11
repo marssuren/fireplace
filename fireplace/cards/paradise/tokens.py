@@ -1082,7 +1082,7 @@ class VAC_959t9:
 class VAC_959t9e:
     """步伐护符减费效果"""
     tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
-    cost = -1
+    tags = {GameTag.COST: -1}
 
 
 class VAC_959t10:
@@ -1179,7 +1179,7 @@ class VAC_702t2:
 class VAC_702t2e:
     """奇妙法杖减费效果"""
     tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
-    cost = -3
+    tags = {GameTag.COST: -3}
 
 
 class VAC_702t3:
@@ -1207,7 +1207,7 @@ class VAC_702t3:
 class VAC_702t3e:
     """黄金狗头人减费效果"""
     tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
-    cost = -1
+    tags = {GameTag.COST: -1}
 
 
 class VAC_702t4:

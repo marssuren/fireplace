@@ -141,7 +141,7 @@ class SW_001:
 
 class SW_001e:
     """星空墨水套装减费"""
-    cost = -5
+    tags = {GameTag.COST: -5}
 
 
 class SW_107:
@@ -443,5 +443,5 @@ class SW_462e:
 
 class SW_462_cost:
     """炽热连击减费"""
-    cost = -2
+    tags = {GameTag.COST: -2}
 

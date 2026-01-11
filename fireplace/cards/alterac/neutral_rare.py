@@ -60,4 +60,4 @@ class ONY_002:
 
 class ONY_002e:
     """全需勇士减费"""
-    cost = -1
+    tags = {GameTag.COST: -1}

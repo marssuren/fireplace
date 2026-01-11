@@ -137,7 +137,7 @@ class SW_003e:
 
 class SW_003_cost:
     """符文秘银杖减费"""
-    cost = -1
+    tags = {GameTag.COST: -1}
 
 
 class SW_084:

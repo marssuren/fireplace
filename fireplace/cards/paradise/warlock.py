@@ -258,7 +258,7 @@ class VAC_941:
 class VAC_941e:
     """弃明投暗减费效果"""
     tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
-    cost = -1
+    tags = {GameTag.COST: -1}
 
 
 class VAC_944:

@@ -81,7 +81,7 @@ class TLC_483:
 
 class TLC_483e:
     """宝库闯入者减费 - Vault Raider Cost Reduction"""
-    cost = -1
+    tags = {GameTag.COST: -1}
 
 
 # RARE
@@ -177,7 +177,7 @@ class TLC_364:
 
 class TLC_364e:
     """时空之门的故事减费 - Tale of the Timeways Cost Reduction"""
-    cost = -1
+    tags = {GameTag.COST: -1}
 
 
 class TLC_365:

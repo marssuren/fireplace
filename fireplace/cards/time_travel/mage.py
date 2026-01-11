@@ -86,7 +86,7 @@ class TIME_000:
 
 class TIME_000e:
     """半稳定的传送门 - 减少3费"""
-    cost = -3
+    tags = {GameTag.COST: -3}
 
 
 class TIME_857:
@@ -111,7 +111,7 @@ class TIME_857:
 
 class TIME_857e:
     """操控时间 - 减少2费"""
-    cost = -2
+    tags = {GameTag.COST: -2}
 
 
 class TIME_858:

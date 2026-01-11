@@ -418,7 +418,7 @@ class EDR_494e:
 
 class EDR_654e:
     """疯长的恐魔减费 - Overgrown Horror Cost Reduction"""
-    cost = -2
+    tags = {GameTag.COST: -2}
 
 
 class EDR_483e:

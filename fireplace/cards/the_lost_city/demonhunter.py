@@ -78,7 +78,7 @@ class DINO_137:
 
 class DINO_137e:
     """灵敏的厨师减费 - Nimble Chef Cost Reduction"""
-    cost = -1
+    tags = {GameTag.COST: -1}
 
 
 class TLC_840:

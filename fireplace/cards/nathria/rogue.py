@@ -258,7 +258,7 @@ class REV_939e:
     """Serrated Bone Spike Buff - 下一张卡减费2点"""
     class Hand:
         """手牌减费效果"""
-        cost = -2
+        tags = {GameTag.COST: -2}
     
     # 打出卡牌后移除此效果
     events = Play(CONTROLLER).after(Destroy(SELF))

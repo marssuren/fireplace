@@ -81,7 +81,7 @@ class TLC_822:
 
 class TLC_822e:
     """恐龙保育师减费 - Dino Caretaker Cost Reduction"""
-    cost = -1
+    tags = {GameTag.COST: -1}
 
 
 class TLC_823:

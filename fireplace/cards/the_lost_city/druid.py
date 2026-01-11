@@ -263,7 +263,7 @@ class TLC_236e:
     
     法力值消耗减少（1）点
     """
-    cost = -1
+    tags = {GameTag.COST: -1}
 
 
 # EPIC

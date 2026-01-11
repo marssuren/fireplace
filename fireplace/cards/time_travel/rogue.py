@@ -85,7 +85,7 @@ class TIME_770:
 
 class TIME_770e:
     """快进 - 减少2费"""
-    cost = -2
+    tags = {GameTag.COST: -2}
 
 
 # RARE
@@ -129,7 +129,7 @@ class TIME_039:
 
 class TIME_039e:
     """似曾相识 - 减少1费"""
-    cost = -1
+    tags = {GameTag.COST: -1}
 
 
 class TIME_711:
@@ -196,7 +196,7 @@ class TIME_036:
 
 class TIME_036e:
     """王室线人 - 增加2费"""
-    cost = 2
+    tags = {GameTag.COST: 2}
 
 
 class TIME_876:

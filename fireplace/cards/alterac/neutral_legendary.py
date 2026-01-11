@@ -97,7 +97,7 @@ class AV_223:
 
 class AV_223e:
     """范达尔减费"""
-    cost = -3
+    tags = {GameTag.COST: -3}
 
 
 class ONY_004:

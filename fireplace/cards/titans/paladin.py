@@ -336,7 +336,7 @@ class TTN_858t2e:
         GameTag.COST: SetTag.SET,
     }
     health = 2
-    cost = 2
+    tags = {GameTag.COST: 2}
 
 class TTN_858t3e:
     """增益附魔 - +2/+2"""

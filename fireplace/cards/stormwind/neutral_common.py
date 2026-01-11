@@ -73,7 +73,7 @@ class SW_059:
 
 class SW_059e:
     """矿道工程师减费"""
-    cost = -1
+    tags = {GameTag.COST: -1}
 
 
 class SW_060:
@@ -86,7 +86,7 @@ class SW_060:
 
 class SW_060e:
     """卖花女郎减费"""
-    cost = -1
+    tags = {GameTag.COST: -1}
 
 
 class SW_061:

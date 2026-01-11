@@ -69,7 +69,7 @@ class TIME_448:
 
 class TIME_448e:
     """命源减费 - Solitude Cost Reduction"""
-    cost = -2
+    tags = {GameTag.COST: -2}
 
 
 # RARE

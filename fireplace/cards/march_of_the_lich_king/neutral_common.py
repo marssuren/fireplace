@@ -165,7 +165,7 @@ class RLK_834:
 
 class RLK_834e:
     """蛛魔元老增益 (Nerubian Vizier Buff)"""
-    cost = -2
+    tags = {GameTag.COST: -2}
 
 
 class RLK_867:

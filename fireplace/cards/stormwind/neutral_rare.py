@@ -37,12 +37,12 @@ class SW_036:
 
 class SW_036e_reduce:
     """双面投资者减费"""
-    cost = -1
+    tags = {GameTag.COST: -1}
 
 
 class SW_036e_increase:
     """双面投资者增费"""
-    cost = 1
+    tags = {GameTag.COST: 1}
 
 
 class SW_062:

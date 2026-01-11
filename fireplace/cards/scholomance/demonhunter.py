@@ -211,7 +211,7 @@ class SCH_357:
 
 class SCH_357e:
     """Fel Guardians Cost Reduction"""
-    cost = -1
+    tags = {GameTag.COST: -1}
 
 
 class SCH_357t:

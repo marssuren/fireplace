@@ -160,6 +160,6 @@ class TIME_102e:
 
 class TIME_102e2:
     """昼夜节律术师 - 减少1费"""
-    cost = -1
+    tags = {GameTag.COST: -1}
 
 

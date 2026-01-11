@@ -101,7 +101,7 @@ class FIR_900:
 
 class FIR_900e:
     """火化减费 - Cremate Cost Reduction"""
-    cost = -2
+    tags = {GameTag.COST: -2}
 
 
 # RARE
@@ -467,7 +467,7 @@ class EDR_060e:
 
 class EDR_270e:
     """丰裕之角减费 - Horn of Plenty Cost Reduction"""
-    cost = -2
+    tags = {GameTag.COST: -2}
 
 
 class FIR_908e:

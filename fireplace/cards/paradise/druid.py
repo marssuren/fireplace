@@ -45,7 +45,7 @@ class VAC_518:
 class VAC_518e:
     """始祖龟旅行者减费效果"""
     tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
-    cost = -2
+    tags = {GameTag.COST: -2}
 
 
 class VAC_950:

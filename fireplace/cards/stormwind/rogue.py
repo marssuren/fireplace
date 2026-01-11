@@ -21,7 +21,7 @@ class DED_004:
 
 class DED_004e:
     """黑水弯刀减费"""
-    cost = -1
+    tags = {GameTag.COST: -1}
 
 
 class DED_005:
@@ -308,7 +308,7 @@ class SW_052t2:
 
 class SW_052t2e:
     """间谍装置减费"""
-    cost = -1
+    tags = {GameTag.COST: -1}
 
 
 class SW_052t3:
@@ -328,7 +328,7 @@ class SW_052t3:
 
 class SW_052t3e:
     """间谍装置减费（强化）"""
-    cost = -2
+    tags = {GameTag.COST: -2}
 
 
 class SW_310:

@@ -25,7 +25,7 @@ class ONY_013:
 
 class ONY_013e:
     """凛冽寒冷增益"""
-    cost = -2
+    tags = {GameTag.COST: -2}
 
 
 class AV_259:
@@ -45,7 +45,7 @@ class AV_259e:
 
 class AV_259e2:
     """冰霜刺咬 - 法术增加费用"""
-    cost = 2
+    tags = {GameTag.COST: 2}
 
 
 class ONY_012:

@@ -290,7 +290,7 @@ class TIME_707:
 
 class TIME_707e:
     """平行现实 - 减少1费"""
-    cost = -1
+    tags = {GameTag.COST: -1}
 
 
 # LEGENDARY

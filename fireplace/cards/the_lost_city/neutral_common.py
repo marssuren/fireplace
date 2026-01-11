@@ -157,7 +157,7 @@ class TLC_244:
 
 class TLC_244e:
     """好奇的探险者减费 - Curious Explorer Cost Reduction"""
-    cost = -2
+    tags = {GameTag.COST: -2}
 
 
 # TLC_247 - 原始剑齿豹

@@ -215,7 +215,7 @@ class SW_032:
 
 class SW_032e:
     """花岗岩熔铸体减费"""
-    cost = -1
+    tags = {GameTag.COST: -1}
 
 
 class SW_033:

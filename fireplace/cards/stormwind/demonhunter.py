@@ -169,7 +169,7 @@ class SW_039_reward:
 
 class SW_039_cost_reduction:
     """抽到的牌减费"""
-    cost = -1
+    tags = {GameTag.COST: -1}
 
 
 class SW_040:
@@ -212,7 +212,7 @@ class SW_041e:
 
 class SW_041e2:
     """敏捷咒符减费"""
-    cost = -1
+    tags = {GameTag.COST: -1}
 
 
 class SW_042:
@@ -247,7 +247,7 @@ class SW_043:
 
 class SW_043e:
     """邪能吞食者减费"""
-    cost = -2
+    tags = {GameTag.COST: -2}
 
 
 class SW_044:

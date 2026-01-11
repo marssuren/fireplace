@@ -130,7 +130,7 @@ class TIME_211t2:
 
 class TIME_211t2e:
     """永恒之井 - 减少2费"""
-    cost = -2
+    tags = {GameTag.COST: -2}
 
 
 class TIME_025t:

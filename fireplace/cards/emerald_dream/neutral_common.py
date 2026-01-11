@@ -389,7 +389,7 @@ class EDR_495e:
 
 class EDR_572e:
     """法力值消耗减少1点"""
-    cost = -1
+    tags = {GameTag.COST: -1}
 
 
 class EDR_849e1:
