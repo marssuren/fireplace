@@ -191,8 +191,19 @@ class ETC_420:
 
 class ETC_420e:
     """获得攻击力和生命值"""
-    atk = lambda self, i: ATK(OWNER(SELF))
-    max_health = lambda self, i: CURRENT_HEALTH(OWNER(SELF))
+    def apply(self, target):
+        # 获取施放者(OWNER)的攻击力和生命值
+        if self.owner:
+            self._buff_atk = self.owner.atk
+            self._buff_health = self.owner.health
+        else:
+            self._buff_atk = 0
+            self._buff_health = 0
+    
+    tags = {
+        GameTag.ATK: lambda self, i: getattr(self, '_buff_atk', 0),
+        GameTag.HEALTH: lambda self, i: getattr(self, '_buff_health', 0),
+    }
 class ETC_326:
     """狗仔队 / Paparazzi
     <b>战吼：</b><b>发现</b>一张<b>传说</b>随从牌。"""

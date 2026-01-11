@@ -15,8 +15,15 @@ class DEEP_036:
 
 class DEEP_036e:
     """塞拉赞恩增益 - 属性值翻倍"""
-    atk = lambda self, i: ATK(OWNER) * 2
-    max_health = lambda self, i: HEALTH(OWNER) * 2
+    def apply(self, target):
+        # 保存目标当前的攻击力和生命值,然后翻倍
+        self._doubled_atk = target.atk * 2
+        self._doubled_health = target.health * 2
+    
+    tags = {
+        GameTag.ATK: lambda self, i: getattr(self, '_doubled_atk', i * 2),
+        GameTag.HEALTH: lambda self, i: getattr(self, '_doubled_health', i * 2),
+    }
 
 
 class DEEP_037:
