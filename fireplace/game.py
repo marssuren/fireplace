@@ -295,8 +295,12 @@ class BaseGame(Entity):
                 else:
                     listener = source
                 listener._events.append(action)
-            else:
+            elif hasattr(action, 'trigger'):
+                # 只有具有 trigger 方法的对象才能触发
                 ret.append(action.trigger(source))
+            else:
+                # 跳过非 Action 对象（例如 tuple、list 等）
+                self.log("Warning: Skipping non-action object %r (type: %s)", action, type(action))
         return ret
 
     def pick_first_player(self):
