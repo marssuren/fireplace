@@ -1638,7 +1638,8 @@ class GenericChoice(Choice):
         super().choose(card)
         for _card in self.cards:
             if _card is card:
-                if card.type == CardType.HERO_POWER:
+                # 检查是否是真正的卡牌对象（而不是动作对象）
+                if hasattr(card, 'type') and card.type == CardType.HERO_POWER:
                     _card.zone = Zone.PLAY
                 elif len(self.player.hand) < self.player.max_hand_size:
                     _card.zone = Zone.HAND

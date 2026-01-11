@@ -25,7 +25,7 @@ class TSC_064:
                                                getattr(self, 'spells_cast_while_holding', 0) + 1)
         )
     
-    powered_up = lambda self: self.spells_cast_while_holding >= 3
+    powered_up = lambda self: getattr(self, 'spells_cast_while_holding', 0) >= 3
     
     play = lambda self: (
         Hit(ALL_ENEMIES, 3) if self.powered_up else []
