@@ -73,12 +73,13 @@ class HysteriaAttack(TargetedAction):
     TARGET = ActionArg()
     
     def do(self, source, target):
-        # 当目标还活着时，持续攻击
+        # 当目标还活着时,持续攻击
         while not target.dead and target.zone == Zone.PLAY:
-            # 获取所有可攻击的随从（除了自己）
-            valid_targets = target.controller.game.board.filter(
-                lambda x: x != target and x.type == CardType.MINION and not x.dead
-            )
+            # 获取所有可攻击的随从(除了自己)
+            valid_targets = [
+                x for x in target.controller.game.board 
+                if x != target and x.type == CardType.MINION and not x.dead
+            ]
             
             if not valid_targets:
                 break
