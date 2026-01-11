@@ -85,7 +85,7 @@ class WW_441:
         Discard(CONTROLLER, SELF).after(Draw(CONTROLLER) * 2),
         # 监听这张牌被摧毁，如果在手牌中则抽牌
         lambda self: Destroy(SELF).on(
-            lambda: Draw(CONTROLLER) * 2 if self.zone == Zone.HAND else None
+            lambda *args: Draw(CONTROLLER) * 2 if self.zone == Zone.HAND else None
         )
     ]
 
