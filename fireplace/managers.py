@@ -159,6 +159,7 @@ class PlayerManager(Manager):
         GameTag.TURN_START: "turn_start",
         enums.CANT_OVERLOAD: "cant_overload",
         enums.ELEMENTAL_PLAYED_LAST_TURN: "elemental_played_last_turn",
+        enums.NUM_SECRETS_REVEALED: "num_secrets_revealed",
     }
 
 
