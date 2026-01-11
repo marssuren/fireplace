@@ -14,8 +14,8 @@ class ETC_087:
         GameTag.COST: 2,
     }
     play = (
-        SetTags(FRIENDLY_HERO, {GameTag.RESOURCES: 11}),
-        SetTags(FRIENDLY_HERO, {GameTag.MAXHANDSIZE: 11})
+        SetTags(CONTROLLER, {GameTag.RESOURCES: 11}),
+        SetTags(CONTROLLER, {GameTag.MAXHANDSIZE: 11})
     )
 class ETC_110:
     """封面艺人 / Cover Artist
