@@ -46,16 +46,17 @@ class WW_333:
     [x]Whenever your hand has less than 3 cards in it, get a random Murloc.
     每当你的手牌少于三张，随机获取一张鱼人牌。
     """
-    events = [
-        Play(CONTROLLER).after(lambda self, source, *args: self._check_hand()),
-        Draw(CONTROLLER).after(lambda self, source, *args: self._check_hand()),
-        Discard(CONTROLLER).after(lambda self, source, *args: self._check_hand()),
-    ]
-
-    def _check_hand(self):
-        # 检查手牌数量是否少于3张
+    def _check_hand_trigger(self, source, *args):
+        """检查手牌并触发效果"""
         if len(self.controller.hand) < 3:
-            yield Give(CONTROLLER, RandomCollectible(race=Race.MURLOC))
+            return Give(CONTROLLER, RandomCollectible(race=Race.MURLOC))
+        return []
+    
+    events = [
+        Play(CONTROLLER).after(lambda self, source, *args: self.owner._check_hand_trigger(source, *args)),
+        Draw(CONTROLLER).after(lambda self, source, *args: self.owner._check_hand_trigger(source, *args)),
+        Discard(CONTROLLER).after(lambda self, source, *args: self.owner._check_hand_trigger(source, *args)),
+    ]
 
 
 class WW_351:
