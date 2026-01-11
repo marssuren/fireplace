@@ -123,7 +123,7 @@ class TIME_063e:
     """
     # 监听打出卡牌事件
     events = Play(CONTROLLER).after(
-        lambda self, source, card: (
+        lambda self, source, card, target: (
             self._reduce_dormant() 
             if hasattr(card, 'card_set') and card.card_set == CardSet.TIME_TRAVEL 
             else []
