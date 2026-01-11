@@ -116,7 +116,7 @@ class SW_025:
 
 class SW_025e:
     """拍卖行木槌减费"""
-    cost = -1
+    tags = {GameTag.COST: -1}
 
 
 class SW_026:
