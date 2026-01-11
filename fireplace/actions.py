@@ -2274,11 +2274,16 @@ class Discover(TargetedAction):
             picker = picker.copy_with_weighting(1, card_class=CardClass.NEUTRAL)
             picker = picker.copy_with_weighting(1, card_class=discover_class)
         
-        # RandomCardPicker使用evaluate方法，RandomSelector使用eval方法
-        if isinstance(picker, RandomCardPicker):
+        # RandomCardPicker使用evaluate方法，RandomSelector使用eval方法，list直接返回
+        if isinstance(picker, list):
+            return picker
+        elif isinstance(picker, RandomCardPicker):
             return [picker.evaluate(source)]
-        else:
+        elif hasattr(picker, 'eval'):
             return [picker.eval([], source)]
+        else:
+            # 未知类型，尝试直接返回
+            return [picker]
 
     def do(self, source, target, cards):
         log_info("discovers", source=source, cards=cards, target=target)
