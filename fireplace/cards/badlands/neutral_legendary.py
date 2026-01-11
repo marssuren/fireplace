@@ -91,23 +91,53 @@ class WW_379:
     战吼：随机获取一张快枪牌。如果你在本回合使用获取的牌，重复此效果。
     """
     def play(self):
-        # 随机获取一张快枪牌
-        # Give 动作会返回给予的卡牌列表
-        cards = yield Give(CONTROLLER, RandomCollectible(referencedTags=[GameTag.QUICKDRAW]))
+        # 从卡牌数据库中获取所有快枪牌
+        from ..cards import db
+        quickdraw_cards = [
+            card_id for card_id in db.keys()
+            if db[card_id].tags.get(GameTag.QUICKDRAW, False) and db[card_id].collectible
+        ]
         
-        # 给获取的牌添加追踪 Buff，实现连锁效果
-        if cards:
-            for card in cards:
-                yield Buff(card, "WW_379e")
+        if quickdraw_cards:
+            # 随机选择一张快枪牌
+            import random
+            card_id = random.choice(quickdraw_cards)
+            
+            # 给予玩家这张牌
+            cards = yield Give(CONTROLLER, card_id)
+            
+            # 给获取的牌添加追踪 Buff，实现连锁效果
+            if cards:
+                for card in cards:
+                    yield Buff(card, "WW_379e")
 
 
 class WW_379e:
     """弗林特·枪臂追踪增益 - 标记这张牌是弗林特给的"""
     # 当这张特定的牌被使用时，重复弗林特的效果
-    events = Play(CONTROLLER, SELF).after(
-        (Give(CONTROLLER, RandomCollectible(referencedTags=[GameTag.QUICKDRAW])),
-         Buff(Give.CARD, "WW_379e"))  # 给新获取的牌也施加追踪增益，实现连锁效果
-    )
+    def handle_play(self, source, player, card, *args):
+        """处理卡牌使用事件"""
+        # 获取所有快枪牌
+        from ..cards import db
+        quickdraw_cards = [
+            card_id for card_id in db.keys()
+            if db[card_id].tags.get(GameTag.QUICKDRAW, False) and db[card_id].collectible
+        ]
+        
+        if quickdraw_cards:
+            # 随机选择一张快枪牌
+            import random
+            card_id = random.choice(quickdraw_cards)
+            
+            # 给予玩家这张牌
+            new_cards = yield Give(CONTROLLER, card_id)
+            
+            # 给新获取的牌也施加追踪增益，实现连锁效果
+            if new_cards:
+                for new_card in new_cards:
+                    yield Buff(new_card, "WW_379e")
+    
+    events = Play(CONTROLLER, SELF).after(handle_play)
 
 
 class WW_421:
