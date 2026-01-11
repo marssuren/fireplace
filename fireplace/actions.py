@@ -1622,6 +1622,20 @@ class Choice(TargetedAction):
 
     def get_target_args(self, source, target):
         if len(self._args) < 2:
+            # 参数不足,打印详细信息
+            import traceback
+            import sys
+            print(f"\n{'='*80}", file=sys.stderr)
+            print(f"ERROR: Choice called with insufficient arguments!", file=sys.stderr)
+            print(f"{'='*80}", file=sys.stderr)
+            print(f"Source: {source}", file=sys.stderr)
+            print(f"Source card ID: {source.id if hasattr(source, 'id') else 'N/A'}", file=sys.stderr)
+            print(f"Target: {target}", file=sys.stderr)
+            print(f"self._args: {self._args}", file=sys.stderr)
+            print(f"len(self._args): {len(self._args)}", file=sys.stderr)
+            print(f"\nStack trace:", file=sys.stderr)
+            traceback.print_stack(file=sys.stderr)
+            print(f"{'='*80}\n", file=sys.stderr)
             return ()
         cards = self._args[1]
         if isinstance(cards, Selector):

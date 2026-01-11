@@ -53,9 +53,9 @@ class WW_333:
         return []
     
     events = [
-        Play(CONTROLLER).after(lambda self, source, *args: self.owner._check_hand_trigger(source, *args)),
-        Draw(CONTROLLER).after(lambda self, source, *args: self.owner._check_hand_trigger(source, *args)),
-        Discard(CONTROLLER).after(lambda self, source, *args: self.owner._check_hand_trigger(source, *args)),
+        Play(CONTROLLER).after(lambda self, source, *args: self._check_hand_trigger(source, *args) if hasattr(self, '_check_hand_trigger') else []),
+        Draw(CONTROLLER).after(lambda self, source, *args: self._check_hand_trigger(source, *args) if hasattr(self, '_check_hand_trigger') else []),
+        Discard(CONTROLLER).after(lambda self, source, *args: self._check_hand_trigger(source, *args) if hasattr(self, '_check_hand_trigger') else []),
     ]
 
 
