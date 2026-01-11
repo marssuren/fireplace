@@ -1,5 +1,6 @@
 from .i18n import _ as translate
 import uuid
+import inspect
 
 from hearthstone.enums import CardType
 
@@ -63,6 +64,42 @@ class BaseEntity(object):
             actions = actions(self)
         return actions
 
+    def _call_with_adaptive_args(self, action, args):
+        """智能调用事件处理函数，自动适配参数数量
+        
+        Args:
+            action: 事件处理函数
+            args: 事件参数列表
+            
+        Returns:
+            函数调用结果
+        """
+        try:
+            # 获取函数签名
+            sig = inspect.signature(action)
+            params = list(sig.parameters.values())
+            
+            # 移除 'self' 参数（第一个参数）
+            if params and params[0].name == 'self':
+                params = params[1:]
+            
+            # 计算需要的参数数量
+            needed = len(params)
+            
+            # 只传递函数需要的参数数量
+            return action(self, *args[:needed])
+        except (ValueError, TypeError) as e:
+            # 如果签名检查失败，尝试传递所有参数
+            try:
+                return action(self, *args)
+            except TypeError:
+                # 如果还是失败，尝试不传参数
+                try:
+                    return action(self)
+                except TypeError:
+                    # 最后尝试：传递原始错误
+                    raise e
+
     def trigger_event(self, source, event, args):
         """
         Trigger an event on the Entity
@@ -73,14 +110,16 @@ class BaseEntity(object):
         actions = []
         for action in event.actions:
             if callable(action):
-                ac = action(self, *args)
+                # 使用智能参数适配
+                ac = self._call_with_adaptive_args(action, args)
                 if not ac:
                     # Handle falsy returns
                     continue
                 if not hasattr(ac, "__iter__"):
                     actions.append(ac)
                 else:
-                    actions += action(self, *args)
+                    # 再次调用以获取完整结果
+                    actions += self._call_with_adaptive_args(action, args)
             else:
                 actions.append(action)
         ret = source.game.trigger(self, actions, args)
