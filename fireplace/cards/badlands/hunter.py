@@ -95,24 +95,22 @@ class DEEP_001:
     """
     def play(self):
         # 发现一张野兽牌
-        beast_card = yield GenericChoice(
-            CONTROLLER,
-            Discover(CONTROLLER, MINION + BEAST)
-        )
+        beast_cards = yield Discover(CONTROLLER, MINION + BEAST)
 
-        if not beast_card:
+        if not beast_cards:
             return
+        
+        beast_card = beast_cards[0] if isinstance(beast_cards, list) else beast_cards
 
         # 发现一张亡灵牌
-        undead_card = yield GenericChoice(
-            CONTROLLER,
-            Discover(CONTROLLER, MINION + UNDEAD)
-        )
+        undead_cards = yield Discover(CONTROLLER, MINION + UNDEAD)
 
-        if not undead_card:
+        if not undead_cards:
             # 如果没有选择亡灵牌，只给野兽牌
             yield Give(CONTROLLER, beast_card)
             return
+        
+        undead_card = undead_cards[0] if isinstance(undead_cards, list) else undead_cards
 
         # 交换属性值
         beast_atk = beast_card.atk
