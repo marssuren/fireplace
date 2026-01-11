@@ -119,7 +119,12 @@ class BuffableEntity(BaseEntity):
             i = slot._getattr(attr, i)
         if self.ignore_scripts:
             return i
-        return getattr(self.data.scripts, attr, lambda s, x: x)(self, i)
+        script_attr = getattr(self.data.scripts, attr, lambda s, x: x)
+        # 如果是可调用的，调用它；否则直接返回i
+        if callable(script_attr):
+            return script_attr(self, i)
+        else:
+            return i
 
     def clear_buffs(self):
         if self.buffs:
