@@ -124,10 +124,10 @@ class TIME_063e:
     # 监听打出卡牌事件
     events = Play(CONTROLLER).after(
         lambda self, source, card: (
-            # 检查是否是最新扩展包的牌（TIME_TRAVEL）
-            hasattr(card, 'card_set') and card.card_set == CardSet.TIME_TRAVEL
-        ),
-        lambda self, source, card: self._reduce_dormant()
+            self._reduce_dormant() 
+            if hasattr(card, 'card_set') and card.card_set == CardSet.TIME_TRAVEL 
+            else []
+        )
     )
     
     def _reduce_dormant(self):
