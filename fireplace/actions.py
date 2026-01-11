@@ -1505,7 +1505,15 @@ class Buff(TargetedAction):
         )
         attack_gained = buff.tags.get(GameTag.ATK, 0) if is_hero_attack_buff else 0
         
-        buff.apply(target)
+        # 检查 buff 是否有 apply 方法
+        if hasattr(buff, 'apply'):
+            buff.apply(target)
+        else:
+            # 如果 buff 不是 Enchantment,可能是错误的卡牌类型
+            # 记录警告但继续执行
+            import logging
+            logging.warning(f"Buff {buff} does not have apply method, type: {type(buff)}")
+        
         source.game.manager.targeted_action(self, source, target, buff)
         
         # 触发"英雄获得攻击力"事件
