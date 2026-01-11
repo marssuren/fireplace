@@ -15,20 +15,17 @@ class VAC_304:
     # 在手牌中追踪施放的法术
     class Hand:
         """在手牌中监听法术施放"""
-        # 监听玩家施放法术
-        def on_spell_played(self, source, card):
-            """当玩家施放法术时记录"""
-            # 使用 getattr 安全地获取列表
-            spells = getattr(self, 'spells_cast_while_holding', None)
-            if spells is None:
-                spells = []
-                setattr(self, 'spells_cast_while_holding', spells)
-            
-            if len(spells) < 3:
-                spells.append(card.id)
-        
+        # 监听玩家施放法术,直接在lambda中更新属性
         events = Play(CONTROLLER, SPELL).after(
-            lambda self, source, card, target: self.on_spell_played(source, card)
+            lambda self, source, card, target: (
+                # 获取或初始化列表
+                current_spells := getattr(self, 'spells_cast_while_holding', []),
+                # 如果少于3个,添加新法术
+                setattr(self, 'spells_cast_while_holding', 
+                       current_spells + [card.id] if len(current_spells) < 3 else current_spells),
+                # 返回空列表(不执行游戏动作,只记录状态)
+                []
+            )[-1]
         )
     
     def play(self):
