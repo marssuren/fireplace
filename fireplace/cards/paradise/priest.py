@@ -261,7 +261,7 @@ class VAC_957:
     
     def play(self):
         # 选择第一个随从
-        first_target = yield GenericChoice(CONTROLLER, MINIONS)
+        first_target = yield GenericChoice(CONTROLLER, ALL_MINIONS)
         
         if first_target:
             first_minion = first_target[0]
@@ -269,7 +269,7 @@ class VAC_957:
             first_health = first_minion.health
             
             # 选择第二个随从
-            second_target = yield GenericChoice(CONTROLLER, MINIONS)
+            second_target = yield GenericChoice(CONTROLLER, ALL_MINIONS)
             
             if second_target:
                 second_minion = second_target[0]
