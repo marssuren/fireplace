@@ -364,22 +364,23 @@ class BaseGame(Entity):
         # Re-link internal references to 'self' instead of 'snapshot'
         # Since we copied the entities, their .game attribute points to the 'snapshot' object
         # We need to redirect them to 'self' (the current running game instance)
+        
+        # Fix Player references first (since entity.game depends on entity.controller.game)
+        self.player1.game = self
+        self.player2.game = self
+        
+        # Now fix entity controllers - this will automatically fix entity.game
         for entity in self.entities:
             # Skip the game object itself (its game property returns self)
             if entity is self:
                 continue
-            entity.game = self
             
-            # Additional safety for controllers (though logical they should be correct if point to P1/P2)
+            # Fix controller references
             if hasattr(entity, "controller") and entity.controller:
                  if entity.controller == snapshot.player1:
                      entity.controller = self.player1
                  elif entity.controller == snapshot.player2:
                      entity.controller = self.player2
-        
-        # Fix Player references
-        self.player1.game = self
-        self.player2.game = self
         
         # Fix GameManager reference
         # The manager was also deepcopied, so it points to 'snapshot'

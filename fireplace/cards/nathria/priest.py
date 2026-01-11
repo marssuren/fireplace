@@ -83,6 +83,45 @@ class MAW_023e:
     """Theft Accusation Mark - 盗窃指控标记"""
     # 监听玩家打出从对手复制的卡牌
     def _check_and_destroy(self, source, player, card):
+        # 详细日志：追踪 card 为 None 的情况
+        if card is None:
+            import sys
+            import traceback
+            error_msg = (
+                f"\n{'='*80}\n"
+                f"WARNING: MAW_023e._check_and_destroy received None card\n"
+                f"{'='*80}\n"
+                f"Source: {source}\n"
+                f"  Type: {type(source)}\n"
+                f"  ID: {getattr(source, 'id', 'N/A')}\n"
+                f"Player: {player}\n"
+                f"  Type: {type(player)}\n"
+                f"Self: {self}\n"
+                f"  Owner: {getattr(self, 'owner', 'N/A')}\n"
+                f"Stacktrace:\n"
+            )
+            print(error_msg, file=sys.stderr)
+            traceback.print_stack(file=sys.stderr)
+            print(f"{'='*80}\n", file=sys.stderr)
+            return
+        
+        if not hasattr(card, 'tags'):
+            import sys
+            import traceback
+            error_msg = (
+                f"\n{'='*80}\n"
+                f"WARNING: MAW_023e._check_and_destroy card has no 'tags' attribute\n"
+                f"{'='*80}\n"
+                f"Card: {card}\n"
+                f"  Type: {type(card)}\n"
+                f"  Dir: {dir(card)[:20]}\n"
+                f"Stacktrace:\n"
+            )
+            print(error_msg, file=sys.stderr)
+            traceback.print_stack(file=sys.stderr)
+            print(f"{'='*80}\n", file=sys.stderr)
+            return
+        
         # 检查卡牌是否是从对手复制的
         # 使用新的 COPIED_FROM_OPPONENT 标签
         from fireplace import enums
@@ -117,8 +156,40 @@ class REV_011:
     在你打出一张从对手处复制的卡牌后，偷取原版卡牌。
     """
     def _steal_original(self, source, player, card):
-        # 检查打出的卡牌是否是从对手复制的
+        # 详细日志：追踪 card 为 None 的情况
         if card is None:
+            import sys
+            import traceback
+            error_msg = (
+                f"\n{'='*80}\n"
+                f"WARNING: REV_011._steal_original received None card\n"
+                f"{'='*80}\n"
+                f"Source: {source}\n"
+                f"  Type: {type(source)}\n"
+                f"  ID: {getattr(source, 'id', 'N/A')}\n"
+                f"Player: {player}\n"
+                f"  Type: {type(player)}\n"
+                f"Stacktrace:\n"
+            )
+            print(error_msg, file=sys.stderr)
+            traceback.print_stack(file=sys.stderr)
+            print(f"{'='*80}\n", file=sys.stderr)
+            return
+        
+        if not hasattr(card, 'tags'):
+            import sys
+            import traceback
+            error_msg = (
+                f"\n{'='*80}\n"
+                f"WARNING: REV_011._steal_original card has no 'tags' attribute\n"
+                f"{'='*80}\n"
+                f"Card: {card}\n"
+                f"  Type: {type(card)}\n"
+                f"Stacktrace:\n"
+            )
+            print(error_msg, file=sys.stderr)
+            traceback.print_stack(file=sys.stderr)
+            print(f"{'='*80}\n", file=sys.stderr)
             return
         
         from fireplace import enums
@@ -258,8 +329,45 @@ the higher of the two.
     # 使用自定义函数处理，因为需要检查目标并计算值
     def _equalize_stats(self, source, player, card):
         # Play 事件的 after 会传入 Play.CARD
+        # 详细日志：追踪 card 为 None 的情况
+        if card is None:
+            import sys
+            import traceback
+            error_msg = (
+                f"\n{'='*80}\n"
+                f"WARNING: REV_250._equalize_stats received None card\n"
+                f"{'='*80}\n"
+                f"Source: {source}\n"
+                f"  Type: {type(source)}\n"
+                f"  ID: {getattr(source, 'id', 'N/A')}\n"
+                f"Player: {player}\n"
+                f"  Type: {type(player)}\n"
+                f"Stacktrace:\n"
+            )
+            print(error_msg, file=sys.stderr)
+            traceback.print_stack(file=sys.stderr)
+            print(f"{'='*80}\n", file=sys.stderr)
+            return
+        
+        if not hasattr(card, 'target'):
+            import sys
+            import traceback
+            error_msg = (
+                f"\n{'='*80}\n"
+                f"WARNING: REV_250._equalize_stats card has no 'target' attribute\n"
+                f"{'='*80}\n"
+                f"Card: {card}\n"
+                f"  Type: {type(card)}\n"
+                f"  ID: {getattr(card, 'id', 'N/A')}\n"
+                f"Stacktrace:\n"
+            )
+            print(error_msg, file=sys.stderr)
+            traceback.print_stack(file=sys.stderr)
+            print(f"{'='*80}\n", file=sys.stderr)
+            return
+        
         # 需要检查该卡牌是否有目标，以及目标是否是友方随从
-        if hasattr(card, 'target') and card.target:
+        if card.target and hasattr(card.target, 'type'):
             target = card.target
             if target.type == CardType.MINION and target.controller == player:
                 # 获取较高的属性值

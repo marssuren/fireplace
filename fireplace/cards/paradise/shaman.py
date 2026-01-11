@@ -70,9 +70,9 @@ class WORK_011:
     """
     # 回合结束时触发
     events = OWN_TURN_END.on(
-        lambda self, source: [
+        lambda self: [
             Buff(adj, "WORK_011e") 
-            for adj in source.adjacent_minions
+            for adj in self.adjacent_minions
         ]
     )
 
