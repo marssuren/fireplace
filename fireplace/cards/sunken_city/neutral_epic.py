@@ -21,7 +21,7 @@ class TSC_064:
     
     class Hand:
         events = Play(CONTROLLER, SPELL).after(
-            lambda self, source, card: setattr(self, 'spells_cast_while_holding', 
+            lambda self, source, card, target: setattr(self, 'spells_cast_while_holding', 
                                                getattr(self, 'spells_cast_while_holding', 0) + 1)
         )
     

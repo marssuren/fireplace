@@ -189,7 +189,8 @@ class AV_256e:
     def apply(self, target):
         self._xatk = target.health
         self._xhealth = target.atk
-        super().apply(target)
+        # 不需要调用 super().apply(),因为这个类没有父类的 apply 方法
+        # 属性交换已经通过 tags 中的 lambda 函数实现
 
 
 class AV_309:
