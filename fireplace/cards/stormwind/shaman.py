@@ -43,7 +43,7 @@ class DED_511:
     
     # 回合结束时变形武器
     events = OWN_TURN_END.on(
-        lambda self, source: self._transform_weapon()
+        lambda self, source: list(self._transform_weapon())
     )
     
     def _transform_weapon(self):
