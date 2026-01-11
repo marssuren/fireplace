@@ -303,13 +303,13 @@ class VAC_336:
     def play(self):
         # 发现一张另一职业的英雄牌
         # 使用 CardType.HERO 过滤器获取英雄牌
-        yield GenericChoice(CONTROLLER, Discover(
+        yield Discover(
             CONTROLLER,
             RandomCollectible(
                 card_class=~CardClass.ROGUE,  # 排除潜行者
                 type=CardType.HERO  # 英雄牌类型
             )
-        ))
+        )
 
 
 class VAC_464:

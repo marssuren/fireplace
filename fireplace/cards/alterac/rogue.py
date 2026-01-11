@@ -43,11 +43,11 @@ class AV_601:
 class AV_710:
     """侦察 / Reconnaissance
     发现一张其他职业的亡语随从牌。其法力值消耗减少（2）点。"""
-    play = GenericChoice(CONTROLLER, Discover(
+    play = Discover(
         CONTROLLER,
         # 从非潜行者职业的亡语随从中发现（包括中立）
         RandomCollectible(card_class=~CardClass.ROGUE, type=CardType.MINION, mechanics=[GameTag.DEATHRATTLE])
-    )).then(lambda card: Buff(card, "AV_710e"))
+    ).then(lambda card: Buff(card, "AV_710e"))
 
 
 class AV_710e:
@@ -59,10 +59,10 @@ class ONY_032:
     """奈法利安之牙 / Tooth of Nefarian
     造成$3点伤害。荣誉消灭：发现一张其他职业的法术牌。"""
     play = Hit(TARGET, 3)
-    honorable_kill = GenericChoice(CONTROLLER, Discover(
+    honorable_kill = Discover(
         CONTROLLER,
         RandomCollectible(card_class=~CardClass.ROGUE, type=CardType.SPELL)
-    ))
+    )
 
 
 class AV_711:

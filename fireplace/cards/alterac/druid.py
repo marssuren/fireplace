@@ -183,10 +183,10 @@ class ONY_018b:
 class ONY_019:
     """奥妮克希亚协调员 / Onyxian Warder
     战吼：发现一张抉择牌，使其同时拥有两个效果。"""
-    play = GenericChoice(CONTROLLER, Discover(
+    play = Discover(
         CONTROLLER,
         lambda card: card.has_choose_one
-    )).then(
+    ).then(
         lambda card: Buff(card, "ONY_019e")
     )
 
