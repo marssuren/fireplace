@@ -21,7 +21,7 @@ class AV_134:
 class AV_135:
     """雷矛元帅 / Stormpike Marshal
     嘲讽 如果你在对手的回合受到5点或更多伤害，本牌的法力值消耗为（1）点。"""
-    cost_mod = lambda self, i: -(self.cost - 1) if (not self.controller.opponent.current_player and self.controller.damage_taken_on_opponents_turn >= 5) else 0
+    cost_mod = lambda self, i: -(self.cost - 1) if (not self.controller.opponent.current_player and getattr(self.controller, 'damage_taken_on_opponents_turn', 0) >= 5) else 0
 
 
 class AV_136:
