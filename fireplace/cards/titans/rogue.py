@@ -18,10 +18,9 @@ class TTN_719:
 
     def play(self):
         # 随机选择火花机器人版本（TTN_719e, TTN_719e1-e7）
-        spark_bots = ["TTN_719e", "TTN_719e1", "TTN_719e2", "TTN_719e3",
-                      "TTN_719e4", "TTN_719e5", "TTN_719e6", "TTN_719e7"]
         for _ in range(3):
-            yield Give(CONTROLLER, RANDOM(spark_bots))
+            yield Give(CONTROLLER, RandomID("TTN_719e", "TTN_719e1", "TTN_719e2", "TTN_719e3",
+                                           "TTN_719e4", "TTN_719e5", "TTN_719e6", "TTN_719e7"))
 
 
 class TTN_921:
@@ -321,7 +320,7 @@ class TTN_920:
         GameTag.CARDRACE: Race.MECHANICAL,
     }
     events = Play(CONTROLLER, MECHANICAL).on(
-        Give(CONTROLLER, RANDOM(["TTN_920t5", "TTN_920t6", "TTN_920t7",
-                                  "TTN_920t8", "TTN_920t9", "TTN_920t10"]))
+        Give(CONTROLLER, RandomID("TTN_920t5", "TTN_920t6", "TTN_920t7",
+                                  "TTN_920t8", "TTN_920t9", "TTN_920t10"))
     )
 

@@ -73,6 +73,9 @@ class ExactCopy(Copy):
 
     def copy(self, source, entity):
         ret = super().copy(source, entity)
+        if ret is None or entity is None:
+            return ret
+            
         if self.id:
             ret = source.controller.card(self.id, source)
             # 如果使用了不同的 ID，仍然需要设置复制追踪
@@ -81,6 +84,11 @@ class ExactCopy(Copy):
             else:
                 ret.copy_group_id = entity.entity_id
             ret.original_entity_id = entity.entity_id
+        
+        # 检查 entity 是否有 buffs 属性
+        if not hasattr(entity, 'buffs'):
+            return ret
+            
         for buff in entity.buffs:
             # Recreate the buff stack
             new_buff = source.controller.card(buff.id)

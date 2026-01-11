@@ -451,7 +451,17 @@ class RandomSelector(Selector):
         self.times = times
 
     def eval(self, entities, source):
-        child_entities = self.child.eval(entities, source)
+        # 检查 self.child 是否是列表（错误使用）
+        if isinstance(self.child, list):
+            # 如果是列表，直接使用列表作为候选
+            child_entities = self.child
+        elif hasattr(self.child, 'eval'):
+            # 正常情况：self.child 是一个选择器
+            child_entities = self.child.eval(entities, source)
+        else:
+            # 其他情况：尝试将其作为单个实体
+            child_entities = [self.child] if self.child else []
+        
         return source.game.random.sample(
             child_entities, min(len(child_entities), self.times)
         )

@@ -59,7 +59,7 @@ class REV_364:
     def play(self):
         yield Hit(TARGET, 3)
         # 随机召唤一个野种（Fox/Bear/Stag）
-        yield Summon(CONTROLLER, RANDOM(["REV_360t", "REV_360t2", "REV_360t3"]))
+        yield Summon(CONTROLLER, RandomID("REV_360t", "REV_360t2", "REV_360t3"))
 
 
 class REV_362:
@@ -98,7 +98,7 @@ class REV_360:
     <b>战吼：</b>召唤一个随机的<b>休眠</b>野种。
     """
     requirements = {PlayReq.REQ_NUM_MINION_SLOTS: 1}
-    play = Summon(CONTROLLER, RANDOM(["REV_360t", "REV_360t2", "REV_360t3"]))
+    play = Summon(CONTROLLER, RandomID("REV_360t", "REV_360t2", "REV_360t3"))
 
 
 class REV_363:
@@ -127,7 +127,7 @@ awaken 1 turn sooner.
 
     def play(self):
         # 召唤第一个随机野种
-        first = yield Summon(CONTROLLER, RANDOM(["REV_360t", "REV_360t2", "REV_360t3"]))
+        first = yield Summon(CONTROLLER, RandomID("REV_360t", "REV_360t2", "REV_360t3"))
         if first:
             yield Buff(first, "REV_361e")
 
@@ -141,7 +141,8 @@ awaken 1 turn sooner.
             remaining = ["REV_360t", "REV_360t2", "REV_360t3"]
 
         if remaining:
-            second = yield Summon(CONTROLLER, RANDOM(remaining))
+            # 使用 RandomID 而不是 RANDOM
+            second = yield Summon(CONTROLLER, RandomID(*remaining))
             if second:
                 yield Buff(second, "REV_361e")
 
