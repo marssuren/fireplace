@@ -27,7 +27,7 @@ class TIME_006:
             # 检查手牌中是否有龙
             has_dragon = False
             for card in self.controller.hand:
-                if card.race == Race.DRAGON:
+                if hasattr(card, 'race') and card.race == Race.DRAGON:
                     has_dragon = True
                     break
 
@@ -79,15 +79,10 @@ class TIME_000:
     requirements = {}
     
     def play(self):
-        
         # 随机获取一张随从牌并减少3费
         card = yield Give(self.controller, RandomMinion())
         if card:
             yield Buff(card, "TIME_000e")
-
-
-        # 使用 Rewind 包装器执行效果
-        yield from execute_with_rewind(self, effect)
 
 class TIME_000e:
     """半稳定的传送门 - 减少3费"""
@@ -190,8 +185,7 @@ class TIME_860:
     
     def play(self):
         # 生成两个随机奥秘供选择
-        # 参考 titans/hunter.py 的 RandomSecret 实现
-        # 使用 GenericChoice 让玩家选择
+        # 使用 RandomSecret 获取奥秘牌
         
         # 生成两个随机奥秘ID
         secret_1 = RandomSecret()

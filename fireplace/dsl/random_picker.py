@@ -117,6 +117,7 @@ RandomSpell = lambda **kw: RandomCollectible(type=CardType.SPELL, **kw)
 RandomTotem = lambda **kw: RandomCardPicker(race=Race.TOTEM, **kw)
 RandomElemental = lambda **kw: RandomMinion(race=Race.ELEMENTAL, **kw)
 RandomWeapon = lambda **kw: RandomCollectible(type=CardType.WEAPON, **kw)
+RandomSecret = lambda **kw: RandomCollectible(type=CardType.SECRET, **kw)
 RandomLegendaryMinion = lambda **kw: RandomMinion(rarity=Rarity.LEGENDARY, **kw)
 RandomSparePart = lambda: RandomCardPicker(spare_part=True)
 
