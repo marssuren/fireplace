@@ -15,7 +15,7 @@ class DMF_125:
     """Safety Inspector (安全检查员)
     Battlecry: Shuffle the lowest-Cost card from your hand into your deck. Draw a card."""
     # 1费 1/3 - 战吼：将你手牌中法力值消耗最低的卡牌洗入你的牌库。抽一张牌
-    play = (Shuffle(LOWEST_COST(FRIENDLY_HAND)), Draw(CONTROLLER))
+    play = (Shuffle(CONTROLLER, LOWEST_COST(FRIENDLY_HAND)), Draw(CONTROLLER))
 
 
 class DMF_202:
