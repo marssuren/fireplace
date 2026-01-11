@@ -164,21 +164,20 @@ class TIME_859:
         # 召唤一个1费随从
         minion_1 = yield Summon(self.controller, RandomMinion(cost=1))
         
-        # 打乱属性值：根据炉石的"Scramble"机制，交换两个随从的攻击力和生命值
-        # 参考 the_lost_city/mage.py 的 SetAtk/SetHealth 实现
+        # 打乱属性值:根据炉石的"Scramble"机制,交换两个随从的攻击力和生命值
         if minion_10 and minion_1:
             # 获取原始属性
-            atk_10 = minion_10.atk
-            health_10 = minion_10.health
-            atk_1 = minion_1.atk
-            health_1 = minion_1.health
+            atk_10 = minion_10[0].atk if isinstance(minion_10, list) else minion_10.atk
+            health_10 = minion_10[0].health if isinstance(minion_10, list) else minion_10.health
+            atk_1 = minion_1[0].atk if isinstance(minion_1, list) else minion_1.atk
+            health_1 = minion_1[0].health if isinstance(minion_1, list) else minion_1.health
             
-            # 交换属性：将10费随从设置为1费随从的属性，反之亦然
-            # 使用 SetAtk 和 SetHealth action
-            yield SetAtk(minion_10, atk_1)
-            yield SetHealth(minion_10, health_1)
-            yield SetAtk(minion_1, atk_10)
-            yield SetHealth(minion_1, health_10)
+            m10 = minion_10[0] if isinstance(minion_10, list) else minion_10
+            m1 = minion_1[0] if isinstance(minion_1, list) else minion_1
+            
+            # 交换属性:将10费随从设置为1费随从的属性,反之亦然
+            yield SetTag(m10, {GameTag.ATK: atk_1, GameTag.HEALTH: health_1})
+            yield SetTag(m1, {GameTag.ATK: atk_10, GameTag.HEALTH: health_10})
 
 
 class TIME_860:

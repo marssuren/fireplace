@@ -115,8 +115,7 @@ class DINO_429:
     
     def play(self):
         # 将目标随从变为1/1
-        yield SetAtk(TARGET, 1)
-        yield SetHealth(TARGET, 1)
+        yield SetTag(TARGET, {GameTag.ATK: 1, GameTag.HEALTH: 1})
         
         # 添加亡语：对所有随从造成2点伤害
         yield Buff(TARGET, "DINO_429e")
@@ -420,7 +419,7 @@ class TLC_460e:
     events = GenericChoice(CONTROLLER).after(
         lambda self, source: [
             # 更新任务进度
-            SetTags(CONTROLLER, {GameTag.QUEST_PROGRESS: min(self.controller.quest_progress + 1, self.controller.quest_target})),
+            SetTags(CONTROLLER, {GameTag.QUEST_PROGRESS: min(self.controller.quest_progress + 1, self.controller.quest_target)}),
             
             # 检查是否完成任务
             Find(self.controller.quest_progress >= self.controller.quest_target) & [
