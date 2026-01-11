@@ -34,13 +34,16 @@ hero, draw a card.
     # 追踪本回合对敌方英雄造成的伤害
     # 使用 Predamage 事件监听伤害
     
-    def _track_hero_damage(self, source, target, amount):
+    def _track_hero_damage(self, *args):
         # 累加对敌方英雄的伤害
         if not hasattr(self.controller, 'hero_damage_this_turn'):
             self.controller.hero_damage_this_turn = 0
-        self.controller.hero_damage_this_turn += amount
+        # 从args中提取amount（第3个参数）
+        if len(args) >= 3:
+            amount = args[2]
+            self.controller.hero_damage_this_turn += amount
     
-    def _check_and_draw(self, source, player):
+    def _check_and_draw(self, *args):
         # 检查本回合对敌方英雄造成的伤害
         damage_dealt = getattr(self.controller, 'hero_damage_this_turn', 0)
         
@@ -48,10 +51,9 @@ hero, draw a card.
             return [Draw(CONTROLLER)]
         return []
     
-    def _reset_damage_counter(self, source, player):
+    def _reset_damage_counter(self, *args):
         # 回合开始时重置计数器
-        if player == self.controller:
-            self.controller.hero_damage_this_turn = 0
+        self.controller.hero_damage_this_turn = 0
         return []
     
     events = [

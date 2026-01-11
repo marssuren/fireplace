@@ -292,6 +292,10 @@ class SetOpSelector(Selector):
             infix = "UNKNOWN_OP"
 
         return "<%r %s %r>" % (self.left, infix, self.right)
+    
+    def __mul__(self, other):
+        """支持 (SELECTOR1 + SELECTOR2) * N 的语法，返回 RANDOM(self) * N"""
+        return RandomSelector(self, other)
 
 
 class DeDuplicate(Selector):

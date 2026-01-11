@@ -108,6 +108,7 @@ class ETC_363:
 class ETC_363e:
     """主歌乐句攻击力增益（本回合）"""
     tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
         GameTag.ATK: 2,
     }
     # 回合结束时移除

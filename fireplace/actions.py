@@ -3209,11 +3209,26 @@ class Shuffle(TargetedAction):
         
         # 如果 args 完全为空，说明 Shuffle 调用缺少 cards 参数，这是错误的
         if not args or len(args) == 0:
-            raise ValueError(
-                f"Shuffle action missing 'cards' argument. "
-                f"Source: {source}, Target: {target}, "
-                f"Args: {self._args}"
+            import sys
+            import traceback
+            error_msg = (
+                f"\n{'='*80}\n"
+                f"SHUFFLE ERROR: Missing 'cards' argument\n"
+                f"{'='*80}\n"
+                f"Source: {source}\n"
+                f"  Type: {type(source)}\n"
+                f"  ID: {getattr(source, 'id', 'N/A')}\n"
+                f"Target: {target}\n"
+                f"  Type: {type(target)}\n"
+                f"Self._args: {self._args}\n"
+                f"  Length: {len(self._args) if self._args else 0}\n"
+                f"Self.ARGS: {self.ARGS}\n"
+                f"Stacktrace:\n"
             )
+            print(error_msg, file=sys.stderr)
+            traceback.print_stack(file=sys.stderr)
+            print(f"{'='*80}\n", file=sys.stderr)
+            raise ValueError(error_msg)
         
         # 如枟第一个参数是空列表（选择器没找到卡牌），这是正常的
         if len(args) > 0:

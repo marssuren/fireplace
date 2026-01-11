@@ -378,6 +378,8 @@ class PlayableCard(BaseCard, Entity, TargetableByAuras):
         self.play_left_most = False
         self.play_right_most = False
         self.custom_card = False
+        # 注能机制（纳斯利亚堡扩展包）
+        self.infuse_counter = 0
         super().__init__(data)
 
     def dump(self):

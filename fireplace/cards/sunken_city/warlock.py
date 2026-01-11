@@ -3,6 +3,19 @@ from ..utils import *
 
 # Helper Action to Give Abyssal Curse
 class GiveAbyssalCurse(Action):
+    def __init__(self, source_selector, target_selector):
+        self.source_selector = source_selector
+        self.target_selector = target_selector
+    
+    def trigger(self, source):
+        # 评估目标玩家
+        if hasattr(self.target_selector, 'evaluate'):
+            target_player = self.target_selector.evaluate(source)
+        else:
+            target_player = self.target_selector
+        
+        return [self.do(source, target_player)]
+    
     def do(self, source, target_player):
         controller = source.controller
         current_level = controller.tags.get(GameTag.TAG_SCRIPT_DATA_NUM_1, 0) + 1
