@@ -106,7 +106,8 @@ class TIME_048:
     
     def play(self):
         # 获取玩家已经进行的回合数
-        turns_taken = self.controller.num_turns_played
+        # 游戏回合数除以2（因为每个玩家轮流）
+        turns_taken = (self.game.turn + 1) // 2
         
         # 每回合+1生命值
         if turns_taken > 0:

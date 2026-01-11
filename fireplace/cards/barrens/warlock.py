@@ -203,7 +203,10 @@ class WC_022:
         PlayReq.REQ_MINION_TARGET: 0,
     }
     play = Hit(TARGET, 1).then(
-        Dead(Hit.TARGET) & Summon(CONTROLLER, RandomID("WC_022t", "WC_022t2", "WC_022t3", "WC_022t4"))
+        Dead(Hit.TARGET) & Summon(CONTROLLER, RandomID(
+            "WC_034t", "WC_034t2", "WC_034t3", "WC_034t4",
+            "WC_034t5", "WC_034t6", "WC_034t7", "WC_034t8"
+        ))
     )
 
 

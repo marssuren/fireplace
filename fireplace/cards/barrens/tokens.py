@@ -84,3 +84,12 @@ class BAR_060t:
     由 BAR_060 (Hog Rancher) 召唤
     """
     pass
+
+
+class BAR_801t:
+    """Hyena - 鬣狗
+    1/1 with Rush
+    1/1 突袭
+    由 BAR_801 (Wound Prey) 召唤
+    """
+    pass

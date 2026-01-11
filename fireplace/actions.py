@@ -2227,8 +2227,14 @@ class Discover(TargetedAction):
             picker = self._args[1] * 3
             return [picker.evaluate(source)]
         picker = self._args[1] * 3
-        picker = picker.copy_with_weighting(1, card_class=CardClass.NEUTRAL)
-        picker = picker.copy_with_weighting(1, card_class=discover_class)
+        
+        # 只对 RandomCardPicker 类型调用 copy_with_weighting
+        # RandomSelector 等其他类型不支持此方法
+        from fireplace.dsl.random_picker import RandomCardPicker
+        if isinstance(picker, RandomCardPicker):
+            picker = picker.copy_with_weighting(1, card_class=CardClass.NEUTRAL)
+            picker = picker.copy_with_weighting(1, card_class=discover_class)
+        
         return [picker.evaluate(source)]
 
     def do(self, source, target, cards):
@@ -2280,7 +2286,13 @@ class Draw(TargetedAction):
         if args:
             card = args[0]
             if hasattr(card, "__iter__"):
-                card = card[0]
+                # 处理选择器返回的列表
+                # 空列表表示选择器没有找到匹配的卡牌（例如：牌库中没有随从）
+                # 这种情况下返回 None，但在 do() 中会区分是"牌库空"还是"选择器无匹配"
+                if len(card) == 0:
+                    card = None
+                else:
+                    card = card[0]
             return [card]
 
         # 检查"机会敲门"畸变效果（YOG_530 古加尔的畸变）
@@ -2305,7 +2317,13 @@ class Draw(TargetedAction):
 
     def do(self, source, target, card):
         if card is None:
-            target.fatigue()
+            # 区分两种情况：
+            # 1. 牌库空了 -> 触发疲劳
+            # 2. 选择器没找到匹配的牌（例如牌库中没有随从） -> 什么都不做
+            if not target.deck:
+                # 牌库空了，触发疲劳
+                target.fatigue()
+            # 否则什么都不做（选择器没找到匹配的牌）
             return []
         if len(target.hand) >= target.max_hand_size:
             log_info("overdraws", target=target, card=card)
@@ -3184,8 +3202,22 @@ class Shuffle(TargetedAction):
 
     TARGET = ActionArg()
     CARD = CardArg()
+    
+    def get_target_args(self, source, target):
+        """处理空列表情况"""
+        args = super().get_target_args(source, target)
+        if args and len(args) > 0:
+            cards = args[0]
+            # 如果是空列表，返回空列表（而不是包含空列表的列表）
+            if isinstance(cards, list) and len(cards) == 0:
+                return [[]]  # 返回包含空列表的列表，这样 *args 展开后 cards=[]
+        return args
 
     def do(self, source, target, cards):
+        # 处理空列表的情况（选择器没有找到匹配的卡牌）
+        if not cards:
+            return []
+        
         log_info("shuffles_into_deck", cards=cards, target=target)
         if not isinstance(cards, list):
             cards = [cards]
@@ -4278,7 +4310,7 @@ class Excavate(GameAction):
         from fireplace.cards.badlands.excavate import TIER_1_IDS, TIER_2_IDS, TIER_3_IDS, TIER_4_IDS
         
         # 评估选择器获取实际的玩家对象
-        from ..dsl.selector import Selector
+        from fireplace.dsl.selector import Selector
         if isinstance(controller, Selector):
             players = controller.eval(source.game, source)
             if not players:

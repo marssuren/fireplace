@@ -37,33 +37,36 @@ THE_COIN = "GAME_005"
 def Card(id):
     # 尝试从数据库获取卡牌数据
     if id not in cards.db:
-        # 如果卡牌不在数据库中，检查是否是 enchantment
-        # Enchantment 通常以 'e', 'e2', 'e3' 等结尾
-        if id.endswith('e') or id.endswith('e2') or id.endswith('e3') or 'e' in id[-3:]:
-            # 直接从模块中查找 enchantment 定义，而不通过 get_script_definition
-            # 因为 get_script_definition 会尝试访问 db[id]
-            script_def = None
-            for cardset in cards.CARD_SETS:
-                module = import_module("fireplace.cards.%s" % (cardset))
-                if hasattr(module, id):
-                    script_def = getattr(module, id)
-                    break
+        # 如果卡牌不在数据库中，尝试从脚本中动态创建
+        # 这包括 enchantment 和各种 Token
+        script_def = None
+        for cardset in cards.CARD_SETS:
+            module = import_module("fireplace.cards.%s" % (cardset))
+            if hasattr(module, id):
+                script_def = getattr(module, id)
+                break
+        
+        if script_def:
+            # 动态创建卡牌数据
+            from hearthstone import cardxml
+            data = cardxml.CardXML(id)
             
-            if script_def:
-                # 动态创建 enchantment 数据
-                from hearthstone import cardxml
-                data = cardxml.CardXML(id)
-                # 设置 CARDTYPE 标签而不是直接设置 type 属性
+            # 从脚本定义中获取 CARDTYPE
+            if hasattr(script_def, 'tags') and GameTag.CARDTYPE in script_def.tags:
+                data.tags[GameTag.CARDTYPE] = script_def.tags[GameTag.CARDTYPE]
+            elif id.endswith('e') or id.endswith('e2') or id.endswith('e3') or 'e' in id[-3:]:
+                # 如果没有明确定义，且ID像enchantment，默认为ENCHANTMENT
                 data.tags[GameTag.CARDTYPE] = CardType.ENCHANTMENT
-                # 合并脚本定义
-                data = cards.db.merge(id, data, script_def)
-                cards.db[id] = data
             else:
-                # 如果找不到脚本定义，抛出错误
-                raise KeyError(f"Enchantment {id} not found in database or scripts")
+                # 否则默认为MINION（大多数Token是随从）
+                data.tags[GameTag.CARDTYPE] = CardType.MINION
+            
+            # 合并脚本定义
+            data = cards.db.merge(id, data, script_def)
+            cards.db[id] = data
         else:
-            # 不是 enchantment，正常抛出错误
-            raise KeyError(f"Card {id} not found in database")
+            # 如果找不到脚本定义，抛出错误
+            raise KeyError(f"Card {id} not found in database or scripts")
     
     data = cards.db[id]
     subclass = {

@@ -45,12 +45,14 @@ hero, draw a card.
         damage_dealt = getattr(self.controller, 'hero_damage_this_turn', 0)
         
         if damage_dealt >= 3:
-            yield Draw(CONTROLLER)
+            return [Draw(CONTROLLER)]
+        return []
     
     def _reset_damage_counter(self, source, player):
         # 回合开始时重置计数器
         if player == self.controller:
             self.controller.hero_damage_this_turn = 0
+        return []
     
     events = [
         # 监听对敌方英雄的伤害

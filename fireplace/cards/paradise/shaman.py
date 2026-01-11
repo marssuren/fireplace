@@ -271,41 +271,74 @@ class VAC_449:
     
     class Hand:
         """手牌中的变形机制"""
-        def on_spell_played(self, source, player, card, *args):
-            """监听施放法术，追踪派系"""
-            # 如果已经变形，不再处理
+        def handle_spell_played(self, source, player, card, *args):
+            """处理法术施放事件"""
+            # 检查是否已经变形
             if getattr(self, 'has_transformed', False):
-                return
+                return []
             
-            if card.type == CardType.SPELL and hasattr(card, 'spell_school'):
-                school = card.spell_school
+            # 检查是否是法术且有派系
+            if card.type != CardType.SPELL or not hasattr(card, 'spell_school'):
+                return []
+            
+            school = card.spell_school
+            if school == SpellSchool.NONE:
+                return []
+            
+            # 初始化追踪集合（如果需要）
+            if not hasattr(self, 'schools_played_while_in_hand'):
+                self.schools_played_while_in_hand = set()
+            
+            # 添加派系到追踪集合
+            self.schools_played_while_in_hand.add(school)
+            
+            # 检查是否达到2种不同派系
+            if len(self.schools_played_while_in_hand) >= 2:
+                # 标记已变形
+                self.has_transformed = True
                 
-                # 添加到追踪集合
-                if not hasattr(self, 'schools_played_while_in_hand'):
-                    self.schools_played_while_in_hand = set()
+                # 获取前两个派系
+                schools_list = list(self.schools_played_while_in_hand)[:2]
+                school1, school2 = schools_list[0], schools_list[1]
                 
-                self.schools_played_while_in_hand.add(school)
+                # 根据派系组合确定变形目标Token ID
+                token_id = self._get_carress_token_id(school1, school2)
                 
-                # 检查是否达到2种不同派系
-                if len(self.schools_played_while_in_hand) >= 2:
-                    # 标记已变形
-                    self.has_transformed = True
-                    
-                    # 获取前两个派系（按添加顺序）
-                    schools_list = list(self.schools_played_while_in_hand)[:2]
-                    school1, school2 = schools_list[0], schools_list[1]
-                    
-                    # 根据派系组合确定变形目标
-                    # 使用映射表确定Token ID
-                    from .carress_mapping import get_carress_token_id
-                    token_id = get_carress_token_id(school1, school2)
-                    
-                    # 变形为对应形态
-                    yield Morph(SELF, token_id)
+                # 变形为对应形态
+                return [Morph(SELF, token_id)]
+            
+            return []
         
-        events = Play(CONTROLLER, SPELL).after(
-            lambda self, source, player, card, *args: self.on_spell_played(source, player, card, *args)
-        )
+        events = Play(CONTROLLER, SPELL).after(handle_spell_played)
+    
+    def _get_carress_token_id(self, school1, school2):
+        """根据派系组合获取Token ID
+        
+        21种组合映射（7选2）：
+        - Arcane + Fel, Arcane + Fire, Arcane + Frost, Arcane + Holy, Arcane + Nature, Arcane + Shadow
+        - Fel + Fire, Fel + Frost, Fel + Holy, Fel + Nature, Fel + Shadow
+        - Fire + Frost, Fire + Holy, Fire + Nature, Fire + Shadow
+        - Frost + Holy, Frost + Nature, Frost + Shadow
+        - Holy + Nature, Holy + Shadow
+        - Nature + Shadow
+        """
+        # 确保顺序一致（按枚举值排序）
+        schools = tuple(sorted([school1, school2], key=lambda x: x.value))
+        
+        # 派系组合到Token ID的映射
+        # 简化实现：使用第一个派系的Token（完整实现需要21个Token定义）
+        school_to_token = {
+            SpellSchool.ARCANE: "VAC_449t1",
+            SpellSchool.FEL: "VAC_449t2",
+            SpellSchool.FIRE: "VAC_449t3",
+            SpellSchool.FROST: "VAC_449t4",
+            SpellSchool.HOLY: "VAC_449t5",
+            SpellSchool.NATURE: "VAC_449t6",
+            SpellSchool.SHADOW: "VAC_449t7",
+        }
+        
+        # 返回第一个派系对应的Token（简化实现）
+        return school_to_token.get(schools[0], "VAC_449t1")
 
 
 class VAC_450:
