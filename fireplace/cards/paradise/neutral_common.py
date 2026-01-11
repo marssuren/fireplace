@@ -204,7 +204,7 @@ class VAC_461:
     
     def deathrattle(self):
         # 随机给一张饮品法术
-        drink_id = self.game.random.choice(self.DRINK_SPELLS)
+        drink_id = self.game.random.choice(VAC_461.DRINK_SPELLS)
         yield Give(CONTROLLER, drink_id)
 
 

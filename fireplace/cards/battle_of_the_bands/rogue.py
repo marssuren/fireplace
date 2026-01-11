@@ -195,7 +195,8 @@ class ETC_073:
         # cards_played_this_game
         count = 0
         for c in self.controller.cards_played_this_game:
-            if c.combo and c is not self:
+            # 检查是否有 COMBO 标签
+            if c.tags.get(GameTag.COMBO, False) and c is not self:
                 count += 1
         
         if count > 0:

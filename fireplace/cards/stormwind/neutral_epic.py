@@ -117,7 +117,7 @@ class SW_077_counter:
         if count >= 3:
             if target.dormant:
                 # 使用 Awaken action 唤醒
-                from ..actions import Awaken
+                from ...actions import Awaken
                 Awaken(target).trigger(target)
                 
                 # 清除所有计数标记
