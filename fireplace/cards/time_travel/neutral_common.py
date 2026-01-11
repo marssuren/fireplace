@@ -253,17 +253,14 @@ class TIME_060:
     
     This minion takes double damage from all sources.
     
-    实现说明：
-    - 使用 Predamage 事件拦截对自己的伤害
-    - 将伤害值翻倍
-    - 参考 space/rogue.py 的 Predamage 用法
+    实现说明:
+    - 重写 get_damage 方法来翻倍伤害
     """
-    # 监听对自己的伤害，将伤害翻倍
-    events = Predamage(SELF).on(
-        lambda self, source, target, amount: (
-            Predamage(target, amount * 2)
-        )
-    )
+    def get_damage(self, amount: int, target) -> int:
+        """重写伤害计算,如果目标是自己则翻倍"""
+        if target == self:
+            return amount * 2
+        return amount
 
 
 class TIME_062:
