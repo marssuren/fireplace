@@ -86,7 +86,7 @@ class CardList(list[T], Entity):
         )
 
 
-def random_draft(card_class: CardClass, exclude=[], include=[], game=None, max_cards=None):
+def random_draft(card_class: CardClass, exclude=[], include=[], game=None, max_cards=None, expansions=None):
     """
     Return a deck of random cards for the \a card_class
     
@@ -96,6 +96,7 @@ def random_draft(card_class: CardClass, exclude=[], include=[], game=None, max_c
         include: 必须包含的卡牌ID列表
         game: 游戏对象(用于随机数生成)
         max_cards: 套牌上限,None表示包含所有可收集卡牌(测试模式)
+        expansions: 扩展包列表,None表示所有扩展包,[]表示仅基本卡
     """
     import random
     from . import cards
@@ -115,6 +116,18 @@ def random_draft(card_class: CardClass, exclude=[], include=[], game=None, max_c
             continue
         if cls.card_class and cls.card_class not in [card_class, CardClass.NEUTRAL]:
             continue
+        
+        # 扩展包过滤
+        if expansions is not None:
+            # 获取卡牌的扩展包信息
+            card_set = getattr(cls, 'card_set', None)
+            if card_set is None:
+                # 没有扩展包信息,跳过
+                continue
+            if expansions and card_set not in expansions:
+                # 不在指定的扩展包列表中
+                continue
+        
         collection.append(cls)
 
     # 测试模式:添加所有可收集卡牌
@@ -210,28 +223,87 @@ def weighted_card_choice(source, weights: List[int], card_sets: List[str], count
     return [source.controller.card(card, source=source) for card in chosen_cards]
 
 
-def setup_game(test_mode=False):
+def setup_game(test_mode=False, expansions='random'):
     """
     创建游戏
     
     Args:
         test_mode: 测试模式,True时套牌包含所有可收集卡牌(用于测试fireplace引擎)
+        expansions: 扩展包设置
+            - None: 所有扩展包
+            - 'random': 随机选择一个扩展包(每个玩家独立随机)
+            - 'random_same': 随机选择一个扩展包(两个玩家使用相同扩展包)
+            - [CardSet.XXX, ...]: 指定扩展包列表
     """
     from .game import Game
     from .player import Player
+    import random as py_random
 
     card_class1 = random_class()
     card_class2 = random_class()
     
+    # 处理扩展包参数
+    expansion_list1 = None
+    expansion_list2 = None
+    
+    if expansions == 'random':
+        # 每个玩家随机选择一个扩展包
+        from hearthstone.enums import CardSet
+        available_sets = [
+            CardSet.CORE, CardSet.EXPERT1,  # 基本+经典
+            CardSet.NAXX, CardSet.GVG,  # 2014
+            CardSet.BRM, CardSet.TGT, CardSet.LOE,  # 2015
+            CardSet.OG, CardSet.KARA, CardSet.GANGS,  # 2016
+            CardSet.UNGORO, CardSet.ICECROWN, CardSet.LOOTAPALOOZA,  # 2017
+            CardSet.GILNEAS, CardSet.BOOMSDAY, CardSet.TROLL,  # 2018
+            CardSet.DALARAN, CardSet.ULDUM, CardSet.DRAGONS,  # 2019
+            CardSet.BLACK_TEMPLE, CardSet.SCHOLOMANCE, CardSet.DARKMOON_FAIRE,  # 2020
+            CardSet.THE_BARRENS, CardSet.STORMWIND, CardSet.ALTERAC_VALLEY,  # 2021
+            CardSet.THE_SUNKEN_CITY, CardSet.REVENDRETH, CardSet.RETURN_OF_THE_LICH_KING,  # 2022
+            CardSet.BATTLE_OF_THE_BANDS, CardSet.TITANS, CardSet.WILD_WEST,  # 2023
+            CardSet.WHIZBANGS_WORKSHOP, CardSet.ISLAND_VACATION, CardSet.SPACE,  # 2024
+            CardSet.EMERALD_DREAM, CardSet.THE_LOST_CITY, CardSet.TIME_TRAVEL,  # 2025
+        ]
+        expansion_list1 = [py_random.choice(available_sets)]
+        expansion_list2 = [py_random.choice(available_sets)]
+    elif expansions == 'random_same':
+        # 两个玩家使用相同的随机扩展包
+        from hearthstone.enums import CardSet
+        available_sets = [
+            CardSet.CORE, CardSet.EXPERT1,
+            CardSet.NAXX, CardSet.GVG,
+            CardSet.BRM, CardSet.TGT, CardSet.LOE,
+            CardSet.OG, CardSet.KARA, CardSet.GANGS,
+            CardSet.UNGORO, CardSet.ICECROWN, CardSet.LOOTAPALOOZA,
+            CardSet.GILNEAS, CardSet.BOOMSDAY, CardSet.TROLL,
+            CardSet.DALARAN, CardSet.ULDUM, CardSet.DRAGONS,
+            CardSet.BLACK_TEMPLE, CardSet.SCHOLOMANCE, CardSet.DARKMOON_FAIRE,
+            CardSet.THE_BARRENS, CardSet.STORMWIND, CardSet.ALTERAC_VALLEY,
+            CardSet.THE_SUNKEN_CITY, CardSet.REVENDRETH, CardSet.RETURN_OF_THE_LICH_KING,
+            CardSet.BATTLE_OF_THE_BANDS, CardSet.TITANS, CardSet.WILD_WEST,
+            CardSet.WHIZBANGS_WORKSHOP, CardSet.ISLAND_VACATION, CardSet.SPACE,
+            CardSet.EMERALD_DREAM, CardSet.THE_LOST_CITY, CardSet.TIME_TRAVEL,
+        ]
+        chosen_set = py_random.choice(available_sets)
+        expansion_list1 = [chosen_set]
+        expansion_list2 = [chosen_set]
+    elif isinstance(expansions, list):
+        # 使用指定的扩展包列表
+        expansion_list1 = expansions
+        expansion_list2 = expansions
+    # else: expansions is None, use all expansions
+    
     # 测试模式:无限制套牌
     max_cards = None if test_mode else 30
-    deck1 = random_draft(card_class1, max_cards=max_cards)
-    deck2 = random_draft(card_class2, max_cards=max_cards)
+    deck1 = random_draft(card_class1, max_cards=max_cards, expansions=expansion_list1)
+    deck2 = random_draft(card_class2, max_cards=max_cards, expansions=expansion_list2)
     
     if test_mode:
+        exp_info1 = f"扩展包:{expansion_list1[0].name}" if expansion_list1 else "全部扩展包"
+        exp_info2 = f"扩展包:{expansion_list2[0].name}" if expansion_list2 else "全部扩展包"
         print(f"[测试模式] {card_class1.name} vs {card_class2.name}")
-        print(f"  P1套牌: {len(deck1)} 张卡")
-        print(f"  P2套牌: {len(deck2)} 张卡")
+        print(f"  P1套牌: {len(deck1)} 张卡 ({exp_info1})")
+        print(f"  P2套牌: {len(deck2)} 张卡 ({exp_info2})")
     
     player1 = Player("Player1", deck1, card_class1.default_hero)
     player2 = Player("Player2", deck2, card_class2.default_hero)
