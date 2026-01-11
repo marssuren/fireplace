@@ -2254,7 +2254,7 @@ class Discover(TargetedAction):
         # 检查选择器是否有 filters 属性（SetOpSelector 等复合选择器可能没有）
         if hasattr(self._args[1], 'filters') and "card_class" in self._args[1].filters:
             picker = self._args[1] * 3
-            return [picker.pick(source)]
+            return [picker.evaluate(source)]
         picker = self._args[1] * 3
         
         # 只对 RandomCardPicker 类型调用 copy_with_weighting
@@ -2264,9 +2264,9 @@ class Discover(TargetedAction):
             picker = picker.copy_with_weighting(1, card_class=CardClass.NEUTRAL)
             picker = picker.copy_with_weighting(1, card_class=discover_class)
         
-        # RandomCardPicker使用pick方法，RandomSelector使用eval方法
+        # RandomCardPicker使用evaluate方法，RandomSelector使用eval方法
         if isinstance(picker, RandomCardPicker):
-            return [picker.pick(source)]
+            return [picker.evaluate(source)]
         else:
             return [picker.eval([], source)]
 

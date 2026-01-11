@@ -28,7 +28,7 @@ class VAC_304:
                 spells.append(card.id)
         
         events = Play(CONTROLLER, SPELL).after(
-            lambda self, source, player, card, target: self.on_spell_played(source, card)
+            lambda self, source, card, target: self.on_spell_played(source, card)
         )
     
     def play(self):
