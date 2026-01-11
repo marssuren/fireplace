@@ -1498,6 +1498,7 @@ class Buff(TargetedAction):
         
         # 检查是否给英雄增加了攻击力（用于德鲁伊任务线等卡牌）
         is_hero_attack_buff = (
+            target is not None and
             target.type == CardType.HERO and 
             hasattr(buff, 'tags') and 
             buff.tags.get(GameTag.ATK, 0) > 0
@@ -2650,6 +2651,31 @@ class Hit(TargetedAction):
                 source.controller.hero_power_damage_bonus = 0
         
         amount = source.get_damage(amount, target)
+        
+        # 验证 amount 是整数类型
+        if not isinstance(amount, int):
+            import sys
+            import traceback
+            error_msg = (
+                f"\n{'='*80}\n"
+                f"TYPE ERROR in Hit.do() - amount is not int\n"
+                f"{'='*80}\n"
+                f"amount: {amount}\n"
+                f"amount type: {type(amount)}\n"
+                f"source: {source}\n"
+                f"source type: {type(source)}\n"
+                f"source ID: {getattr(source, 'id', 'N/A')}\n"
+                f"target: {target}\n"
+                f"target type: {type(target)}\n"
+                f"target ID: {getattr(target, 'id', 'N/A')}\n"
+                f"Stacktrace:\n"
+            )
+            print(error_msg, file=sys.stderr)
+            traceback.print_stack(file=sys.stderr)
+            print(f"{'='*80}\n", file=sys.stderr)
+            # 使用默认值 0
+            amount = 0
+        
         if amount:
             source.game.manager.targeted_action(self, source, target, amount)
             

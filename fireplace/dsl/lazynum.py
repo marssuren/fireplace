@@ -170,7 +170,33 @@ class OpAttr(LazyNum):
         entities = list(e for e in self.get_entities(source) if e)
         if entities:
             if isinstance(self.tag, str):
-                ret = self.op(getattr(e, self.tag) for e in entities)
+                try:
+                    ret = self.op(getattr(e, self.tag) for e in entities)
+                except AttributeError as ex:
+                    import sys
+                    import traceback
+                    error_msg = (
+                        f"\n{'='*80}\n"
+                        f"ATTRIBUTEERROR in OpAttr.evaluate (string tag)\n"
+                        f"{'='*80}\n"
+                        f"Tag: {self.tag}\n"
+                        f"Tag type: {type(self.tag)}\n"
+                        f"Entities: {entities}\n"
+                        f"Entity types: {[type(e).__name__ for e in entities]}\n"
+                        f"Entity IDs: {[getattr(e, 'id', 'N/A') for e in entities]}\n"
+                        f"Source: {source}\n"
+                        f"Source type: {type(source).__name__}\n"
+                        f"Source ID: {getattr(source, 'id', 'N/A')}\n"
+                        f"Selector: {self.selector}\n"
+                        f"Op: {self.op}\n"
+                        f"Exception: {ex}\n"
+                        f"Stacktrace:\n"
+                    )
+                    print(error_msg, file=sys.stderr)
+                    traceback.print_stack(file=sys.stderr)
+                    print(f"{'='*80}\n", file=sys.stderr)
+                    # 返回默认值而不是崩溃
+                    return 0
             elif isinstance(self.tag, LazyNum):
                 tag_value = self.tag.evaluate(source)
                 # 使用.get()避免KeyError

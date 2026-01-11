@@ -137,8 +137,26 @@ class AttrValue(SelectorEntityValue):
             return getattr(entity, self.tag, 0)
         return entity.tags.get(self.tag, 0)
 
-    def __call__(self, selector):
+    def __call__(self, selector, *args, **kwargs):
         """Convenience function to support uses like ARMOR(SELF)"""
+        if args or kwargs:
+            import sys
+            import traceback
+            error_msg = (
+                f"\n{'='*80}\n"
+                f"UNEXPECTED ARGUMENTS in AttrValue.__call__()\n"
+                f"{'='*80}\n"
+                f"AttrValue tag: {self.tag}\n"
+                f"Expected 1 argument (selector), got {1 + len(args)}\n"
+                f"selector: {selector}\n"
+                f"selector type: {type(selector)}\n"
+                f"Extra args: {args}\n"
+                f"Extra kwargs: {kwargs}\n"
+                f"Stacktrace:\n"
+            )
+            print(error_msg, file=sys.stderr)
+            traceback.print_stack(file=sys.stderr)
+            print(f"{'='*80}\n", file=sys.stderr)
         return Attr(selector, self.tag)
 
     def __repr__(self):

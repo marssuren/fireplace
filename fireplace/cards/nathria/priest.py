@@ -118,6 +118,9 @@ class REV_011:
     """
     def _steal_original(self, source, player, card):
         # 检查打出的卡牌是否是从对手复制的
+        if card is None:
+            return
+        
         from fireplace import enums
         if card.tags.get(enums.COPIED_FROM_OPPONENT, False):
             # 尝试从对手手牌/牌库中偷取同名卡
@@ -171,8 +174,8 @@ class REV_247e:
     """Partner in Crime Effect - 共犯效果"""
     # 回合结束时召唤拥有者的完整复制（包含所有buff）
     # 但需要移除复制身上的 REV_247e buff 以避免无限循环
-    def _summon_copy_and_cleanup(self, source, player):
-        if player == self.controller:
+    def _summon_copy_and_cleanup(self, source):
+        if source.controller.game.current_player == self.controller:
             # 召唤拥有者的完整复制（包含所有buff）
             copy_minion = yield Summon(CONTROLLER, ExactCopy(OWNER))
             

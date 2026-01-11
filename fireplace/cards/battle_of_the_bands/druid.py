@@ -179,9 +179,9 @@ class ETC_373:
     choose = ("ETC_373a", "ETC_373b")
     
     def play(self):
-        if self.choice == "ETC_373a":
+        if self.played_as == "ETC_373a":
             yield Summon(CONTROLLER, "ETC_373t") * 5
-        elif self.choice == "ETC_373b":
+        elif self.played_as == "ETC_373b":
             yield Buff(FRIENDLY_MINIONS, "ETC_373e")
 
 class ETC_373a:
@@ -320,9 +320,9 @@ class ETC_387:
     choose = ("ETC_387a", "ETC_387b")
     
     def play(self):
-        if self.choice == "ETC_387a":
+        if self.played_as == "ETC_387a":
             yield Buff(CONTROLLER, "ETC_387e_a")
-        elif self.choice == "ETC_387b":
+        elif self.played_as == "ETC_387b":
             yield Buff(CONTROLLER, "ETC_387e_b")
 
 class ETC_387a:

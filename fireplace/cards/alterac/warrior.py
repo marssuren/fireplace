@@ -10,7 +10,7 @@ class AV_108:
     """裂盾一击 / Shield Shatter
     对所有随从造成$5点伤害。你每有1点护甲值，本牌的法力值消耗便减少（1）点。"""
     play = Hit(ALL_MINIONS, 5)
-    cost_mod = lambda self, i: -min(self.controller.hero.armor, self.cost - 1)
+    cost_mod = lambda self, i: -min(self.controller.hero.armor, i - 1)
 
 
 class AV_109:
