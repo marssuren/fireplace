@@ -186,7 +186,7 @@ class DMF_107:
     play = Buff(CONTROLLER, "DMF_107e")
     
     # 在对手回合结束时检查是否受到伤害
-    def secret_trigger(self):
+    def secret_trigger(self, *args):
         # 检查是否受到伤害
         if not getattr(self.controller, "dmf_107_damaged", False):
             # 没有受到伤害,抽3张牌并揭示奥秘
@@ -205,10 +205,10 @@ class DMF_107e:
         target.dmf_107_damaged = False
     
     # 监听友方英雄受到伤害的事件
-    def _reset_damage_flag(self):
+    def _reset_damage_flag(self, *args):
         self.owner.dmf_107_damaged = False
     
-    def _set_damage_flag(self):
+    def _set_damage_flag(self, *args):
         self.owner.dmf_107_damaged = True
     
     events = [
