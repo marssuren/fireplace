@@ -249,10 +249,8 @@ class SW_110:
         # 给牌库中最后一张点燃添加伤害buff
         for card in reversed(self.controller.deck):
             if card.id == "SW_110":
-                # 创建并应用伤害buff
-                buff = self.controller.card("SW_110e", source=self)
-                buff.ignite_damage = new_damage
-                buff.apply(card)
+                # 使用Buff动作添加伤害buff
+                yield Buff(card, "SW_110e", ignite_damage=new_damage)
                 break
 
 
