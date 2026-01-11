@@ -226,7 +226,7 @@ class TIME_876:
     class Hand:
         """在手牌时的事件监听"""
         events = OWN_TURN_BEGIN.on(
-            lambda self, player: self._transform_to_opponent_minion()
+            lambda self, player: self.owner._transform_to_opponent_minion()
         )
 
 

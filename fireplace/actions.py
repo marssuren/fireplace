@@ -1375,6 +1375,8 @@ class TargetedAction(Action):
         return ret
 
     def get_targets(self, source, t):
+        if t is None:
+            return []
         if isinstance(t, Entity):
             ret = t
         elif isinstance(t, LazyValue):
