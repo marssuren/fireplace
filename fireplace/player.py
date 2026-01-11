@@ -30,7 +30,7 @@ if TYPE_CHECKING:
 class Player(Entity, TargetableByAuras):
     Manager = PlayerManager
     all_targets_random = slot_property("all_targets_random")
-    excavate_tier = slot_property("excavate_tier")
+    # excavate_tier 改为普通属性，在 __init__ 中初始化
     # times_excavated 改为普通属性，在 __init__ 中初始化
     cant_overload = slot_property("cant_overload")
     choose_both = slot_property("choose_both")
@@ -117,6 +117,7 @@ class Player(Entity, TargetableByAuras):
         self.invoke_counter = 0
         
         # 挖掘机制 - 决战荒芜之地（2023年11月）
+        self.excavate_tier = 0  # 当前挖掘层级（0-4）
         self.times_excavated = 0  # 本局对战中挖掘的次数
         
         # 追踪最后一个战吼效果（用于"重复战吼"类卡牌）
