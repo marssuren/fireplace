@@ -2181,6 +2181,8 @@ class Destroy(TargetedAction):
     """
 
     def do(self, source, target):
+        if target is None:
+            return
         if getattr(target, "dormant", False) and target.zone == Zone.PLAY:
             log_info("dormant_cannot_destroy", target=target)
             return

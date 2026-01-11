@@ -283,6 +283,23 @@ class SetOpSelector(Selector):
 
     @staticmethod
     def _entity_id_set(entities: Iterable[BaseEntity]) -> Set[BaseEntity]:
+        # 检查 entities 是否可迭代
+        if not hasattr(entities, '__iter__'):
+            import sys
+            import traceback
+            error_msg = (
+                f"\n{'='*80}\n"
+                f"TYPE ERROR in SetOpSelector._entity_id_set()\n"
+                f"{'='*80}\n"
+                f"entities is not iterable\n"
+                f"entities: {entities}\n"
+                f"entities type: {type(entities)}\n"
+                f"Stacktrace:\n"
+            )
+            print(error_msg, file=sys.stderr)
+            traceback.print_stack(file=sys.stderr)
+            print(f"{'='*80}\n", file=sys.stderr)
+            return set()
         return set(e.entity_id for e in entities if hasattr(e, "entity_id"))
 
     def eval(self, entities, source):

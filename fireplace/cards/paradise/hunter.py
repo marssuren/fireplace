@@ -83,7 +83,7 @@ class VAC_408:
     """
     def play(self):
         # 从牌库中发现一张随从牌
-        cards = yield Discover(CONTROLLER, RANDOM(FRIENDLY_DECK + MINION, count=3))
+        cards = yield Discover(CONTROLLER, cards=FRIENDLY_DECK + MINION)
         
         if cards:
             discovered_card = cards[0]

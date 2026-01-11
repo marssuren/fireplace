@@ -189,7 +189,7 @@ class VAC_428:
     requirements = {PlayReq.REQ_TARGET_TO_PLAY: 0, PlayReq.REQ_MINION_TARGET: 0}
     
     def play(self):
-        if TARGET.controller == self.controller.opponent:
+        if self.target.controller == self.controller.opponent:
             # 敌方随从：冻结
             yield Freeze(TARGET)
         else:
