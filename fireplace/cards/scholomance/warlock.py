@@ -122,8 +122,9 @@ class SCH_702:
             # 复制该恶魔
             yield Give(CONTROLLER, lowest_cost_demon.id)
 
-            # 流放：使这两张恶魔牌获得+1/+1
-            if self.outcast:
+            # 流放：检查这张牌是否在手牌的最左或最右位置
+            # Outcast 效果在打出时已经被标记在 tags 中
+            if self.tags.get(GameTag.OUTCAST, False):
                 # 给原始恶魔和复制的恶魔都加buff
                 yield Buff(lowest_cost_demon, "SCH_702e")
                 # 复制的卡牌是手牌中最后一张

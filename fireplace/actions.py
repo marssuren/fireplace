@@ -2562,6 +2562,8 @@ class Give(TargetedAction):
             # Support Give on multiple cards at once (eg. Echo of Medivh)
             cards = [cards]
         for card in cards:
+            if card is None:
+                continue
             if len(target.hand) >= target.max_hand_size:
                 log_info("give_fails_hand_full", card=card, target=target)
                 continue

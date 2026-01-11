@@ -159,9 +159,10 @@ class VAC_410:
         birds = yield Summon(CONTROLLER, "VAC_410t", 2)
         
         # 让每只小鸟攻击目标
-        for bird in birds:
-            if bird.zone == Zone.PLAY:  # 确保召唤成功
-                yield Attack(bird, TARGET)
+        if birds:
+            for bird in birds:
+                if bird.zone == Zone.PLAY:  # 确保召唤成功
+                    yield Attack(bird, TARGET)
 
 
 class WORK_020:
