@@ -43,7 +43,7 @@ class DED_511:
     
     # 回合结束时变形武器
     events = OWN_TURN_END.on(
-        lambda self: self._transform_weapon()
+        lambda self, source: self._transform_weapon()
     )
     
     def _transform_weapon(self):
@@ -184,7 +184,7 @@ class SW_031e:
     """号令元素追踪器"""
     # 监听打出过载牌
     events = Play(CONTROLLER).after(
-        lambda self: [
+        lambda self, source, event_args, event_kwargs: [
             Find(FRIENDLY_SECRETS + ID("SW_031")) &
             QuestlineProgress(FRIENDLY_SECRETS + ID("SW_031"), 3)
         ] if hasattr(Play.CARD, 'overload') and Play.CARD.overload > 0 else None
