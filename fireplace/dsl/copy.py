@@ -51,8 +51,11 @@ class Copy(LazyValue):
         if isinstance(self.selector, LazyValue):
             entity = self.selector.evaluate(source)
             entities = [entity] if entity else []
-        else:
+        elif hasattr(self.selector, 'eval'):
             entities = self.selector.eval(source.game, source)
+        else:
+            # 如果 selector 是一个实体对象，直接使用它
+            entities = [self.selector] if self.selector else []
 
         # 过滤掉 None 值
         return [c for c in [self.copy(source, e) for e in entities] if c is not None]

@@ -1612,6 +1612,8 @@ class Choice(TargetedAction):
     CARD = ActionArg()
 
     def get_target_args(self, source, target):
+        if len(self._args) < 2:
+            return ()
         cards = self._args[1]
         if isinstance(cards, Selector):
             cards = cards.eval(source.game, source)
@@ -3628,7 +3630,7 @@ class CastSpell(TargetedAction):
             player.spell_schools_played_this_game.add(spell_school)
 
             # 追踪冰霜法术数量（用于"熊人格拉希尔"等卡牌）
-            if spell_school == enums.SpellSchool.FROST:
+            if spell_school == SpellSchool.FROST:
                 player.frost_spells_cast += 1
         
         # 追踪每回合施放的法术（用于"首席法师安东尼达斯"等卡牌）
@@ -4647,7 +4649,7 @@ class SwapCost(TargetedAction):
             
         return (card1, card2)
     
-    def do(self, source, card1, card2):
+    def do(self, source, target, card1, card2):
         """交换两张卡牌的费用"""
         if card1 is None or card2 is None:
             log_info("swap_cost_failed_missing_cards", source=source)
@@ -4658,11 +4660,13 @@ class SwapCost(TargetedAction):
         cost2 = card2.cost
         
         # 交换费用 - 通过临时修改 cost 属性
-        # 注意: 这是一个简化实现,理想情况下应该通过 buff 系统
-        if cost2 != cost1:
-            # 临时交换费用
-            card1._temp_cost_swap = cost2
-            card2._temp_cost_swap = cost1
+        # 注意：这是一个临时效果，不是永久的
+        # 使用 Buff 来实现费用交换
+        from ..cards.utils import Buff
+        
+        # 给 card1 设置为 cost2 的费用
+        card1._temp_cost_swap = cost2
+        card2._temp_cost_swap = cost1
         
         log_info("swap_cost", source=source, card1=card1, card2=card2, cost1=cost1, cost2=cost2)
         source.game.manager.targeted_action(self, source, card1, card2)

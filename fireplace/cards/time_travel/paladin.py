@@ -151,26 +151,26 @@ class TIME_018:
     requirements = {}
     
     def play(self):
-        
-        # 随机获取2张神圣法术牌并累计法力值消耗
-        total_cost = 0
-        for _ in range(2):
-            # Give action 返回的是一个列表
-            cards = yield Give(
-                self.controller,
-                RandomSpell(spell_school=SpellSchool.HOLY)
-            )
+        # 定义卡牌效果
+        def effect():
+            # 随机获取2张神圣法术牌并累计法力值消耗
+            total_cost = 0
+            for _ in range(2):
+                # Give action 返回的是一个列表
+                cards = yield Give(
+                    self.controller,
+                    RandomSpell(spell_school=SpellSchool.HOLY)
+                )
+                
+                # 累计法力值消耗
+                if cards:
+                    # cards 是一个列表，取第一个元素
+                    card = cards[0] if isinstance(cards, list) else cards
+                    total_cost += card.cost
             
-            # 累计法力值消耗
-            if cards:
-                # cards 是一个列表，取第一个元素
-                card = cards[0] if isinstance(cards, list) else cards
-                total_cost += card.cost
-        
-        # 为英雄恢复等同于法力值消耗的生命值
-        if total_cost > 0:
-            yield Heal(FRIENDLY_HERO, total_cost)
-
+            # 为英雄恢复等同于法力值消耗的生命值
+            if total_cost > 0:
+                yield Heal(FRIENDLY_HERO, total_cost)
 
         # 使用 Rewind 包装器执行效果
         yield from execute_with_rewind(self, effect)
