@@ -148,11 +148,18 @@ def slot_property(attr, f=any):
 def boolean_property(attr):
     @property
     def func(self):
+        script_attr = getattr(self.data.scripts, attr, None)
+        # 检查是否可调用,如果是 property 对象则不能调用
+        if script_attr is not None and callable(script_attr) and not isinstance(script_attr, property):
+            script_value = script_attr(self, False)
+        else:
+            script_value = False
+        
         return (
             getattr(self, "_" + attr, False)
             or (any(getattr(buff, attr, False) for buff in self.buffs))
             or (any(getattr(slot, attr, False) for slot in self.slots))
-            or (getattr(self.data.scripts, attr, lambda s, x: x)(self, False))
+            or script_value
         )
 
     @func.setter

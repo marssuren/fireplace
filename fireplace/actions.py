@@ -2252,6 +2252,11 @@ class Discover(TargetedAction):
     CARD = CardArg()
 
     def get_target_args(self, source, target):
+        # 如果使用 cards= 关键字参数,_args 可能为空
+        if not self._args or len(self._args) < 2:
+            # 没有选择器参数,可能是直接传入的 cards 列表
+            return []
+        
         if target.hero.data.card_class != CardClass.NEUTRAL:
             # use hero class for Discover if not neutral (eg. Ragnaros)
             discover_class = target.hero.data.card_class
