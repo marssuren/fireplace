@@ -14,15 +14,11 @@ class DEEP_003:
     requirements = {PlayReq.REQ_TARGET_TO_PLAY: 0}
 
     def play(self):
-        # 计算实际伤害量（基础1点 + 法术伤害加成）
-        spell_damage = self.controller.spell_damage
-        actual_damage = 1 + spell_damage
-
-        # 造成伤害
-        yield Hit(TARGET, actual_damage)
-
-        # 召唤一个法力值消耗等于伤害量的随机随从
-        yield Summon(CONTROLLER, RandomMinion(cost=actual_damage))
+        # Hit 动作会返回实际造成的伤害值(包含法术伤害加成)
+        damage = yield Hit(TARGET, 1)
+        
+        # 召唤一个法力值消耗等于实际伤害量的随机随从
+        yield Summon(CONTROLLER, RandomMinion(cost=damage))
 
 
 class DEEP_005:
