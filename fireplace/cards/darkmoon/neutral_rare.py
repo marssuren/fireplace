@@ -153,10 +153,9 @@ class YOP_024a:
     def play(self):
         # 从父卡牌获取存储的法术
         parent = self.creator
-        if hasattr(parent, 'stored_spells'):
-            spells = parent.stored_spells
-            # 让玩家选择一张
-            yield GenericChoice(CONTROLLER, spells)
+        if hasattr(parent, 'stored_spells') and parent.stored_spells:
+            # 让玩家选择一张法术
+            choice = yield GenericChoice(self.controller, cards=parent.stored_spells)
 
 
 class YOP_024b:
