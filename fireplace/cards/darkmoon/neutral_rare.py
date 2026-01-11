@@ -100,12 +100,30 @@ class YOP_009:
     Resurrect a friendly 1-Cost, 2-Cost, and 3-Cost minion."""
     # 4费法术 - 复活一个友方的1费、2费和3费随从
     def play(self):
+        # 复活机制：从墓地召唤符合条件的随从
+        actions = []
+        
         # 复活1费随从
-        actions = [Resurrect(CONTROLLER, FRIENDLY + KILLED + MINION + (COST == 1))]
+        dead_1_cost = [m for m in self.controller.graveyard 
+                      if m.type == CardType.MINION and m.cost == 1]
+        if dead_1_cost:
+            minion = self.game.random.choice(dead_1_cost)
+            actions.append(Summon(CONTROLLER, minion.id))
+        
         # 复活2费随从
-        actions.append(Resurrect(CONTROLLER, FRIENDLY + KILLED + MINION + (COST == 2)))
+        dead_2_cost = [m for m in self.controller.graveyard 
+                      if m.type == CardType.MINION and m.cost == 2]
+        if dead_2_cost:
+            minion = self.game.random.choice(dead_2_cost)
+            actions.append(Summon(CONTROLLER, minion.id))
+        
         # 复活3费随从
-        actions.append(Resurrect(CONTROLLER, FRIENDLY + KILLED + MINION + (COST == 3)))
+        dead_3_cost = [m for m in self.controller.graveyard 
+                      if m.type == CardType.MINION and m.cost == 3]
+        if dead_3_cost:
+            minion = self.game.random.choice(dead_3_cost)
+            actions.append(Summon(CONTROLLER, minion.id))
+        
         return actions
 
 
