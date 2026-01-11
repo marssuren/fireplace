@@ -65,7 +65,7 @@ class YOP_006:
     def play(self):
         # 使目标随从持续攻击随机随从直到它死亡
         # 这需要一个循环逻辑，在fireplace中通过自定义Action实现
-        return HysteriaAttack(TARGET)
+        yield HysteriaAttack(TARGET)
 
 
 class HysteriaAttack(TargetedAction):
