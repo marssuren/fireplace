@@ -3204,13 +3204,23 @@ class Shuffle(TargetedAction):
     CARD = CardArg()
     
     def get_target_args(self, source, target):
-        """处理空列表情况"""
+        """处理空列表情况，但对异常情况抛出错误"""
         args = super().get_target_args(source, target)
-        if args and len(args) > 0:
+        
+        # 如果 args 完全为空，说明 Shuffle 调用缺少 cards 参数，这是错误的
+        if not args or len(args) == 0:
+            raise ValueError(
+                f"Shuffle action missing 'cards' argument. "
+                f"Source: {source}, Target: {target}, "
+                f"Args: {self._args}"
+            )
+        
+        # 如枟第一个参数是空列表（选择器没找到卡牌），这是正常的
+        if len(args) > 0:
             cards = args[0]
-            # 如果是空列表，返回空列表（而不是包含空列表的列表）
             if isinstance(cards, list) and len(cards) == 0:
                 return [[]]  # 返回包含空列表的列表，这样 *args 展开后 cards=[]
+        
         return args
 
     def do(self, source, target, cards):
