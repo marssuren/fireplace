@@ -27,7 +27,7 @@ class VAC_321:
                 card.eruption_damage += 1
     
     events = OWN_TURN_END.on(
-        lambda self: self.on_turn_end()
+        lambda self, source: self.on_turn_end()
     )
 
 
@@ -49,7 +49,7 @@ class VAC_446:
                     yield Buff(minion, "VAC_446e")
     
     events = OWN_TURN_END.on(
-        lambda self: self.on_turn_end()
+        lambda self, source: self.on_turn_end()
     )
 
 

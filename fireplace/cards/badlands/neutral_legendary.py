@@ -92,7 +92,7 @@ class WW_379:
     """
     def play(self):
         # 从卡牌数据库中获取所有快枪牌
-        from ..cards import db
+        from fireplace.cards import db
         quickdraw_cards = [
             card_id for card_id in db.keys()
             if db[card_id].tags.get(GameTag.QUICKDRAW, False) and db[card_id].collectible
