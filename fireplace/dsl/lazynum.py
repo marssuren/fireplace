@@ -172,10 +172,33 @@ class OpAttr(LazyNum):
             if isinstance(self.tag, str):
                 ret = self.op(getattr(e, self.tag) for e in entities)
             elif isinstance(self.tag, LazyNum):
-                ret = self.op(int(e.tags[self.tag.evaluate(source)]) for e in entities)
+                tag_value = self.tag.evaluate(source)
+                # 使用.get()避免KeyError
+                ret = self.op(int(e.tags.get(tag_value, 0)) for e in entities)
             else:
-                # XXX: int() because of CardList counter tags
-                ret = self.op(int(e.tags[self.tag]) for e in entities)
+                # 使用.get()避免KeyError，并添加详细的错误日志
+                try:
+                    ret = self.op(int(e.tags.get(self.tag, 0)) for e in entities)
+                except KeyError as ex:
+                    import sys
+                    import traceback
+                    error_msg = (
+                        f"\n{'='*80}\n"
+                        f"KEYERROR in OpAttr.evaluate\n"
+                        f"{'='*80}\n"
+                        f"Tag: {self.tag}\n"
+                        f"Tag type: {type(self.tag)}\n"
+                        f"Entities: {entities}\n"
+                        f"Source: {source}\n"
+                        f"Selector: {self.selector}\n"
+                        f"Op: {self.op}\n"
+                        f"Exception: {ex}\n"
+                        f"Stacktrace:\n"
+                    )
+                    print(error_msg, file=sys.stderr)
+                    traceback.print_stack(file=sys.stderr)
+                    print(f"{'='*80}\n", file=sys.stderr)
+                    raise
             return self.num(ret)
         else:
             return None

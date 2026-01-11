@@ -822,7 +822,7 @@ class Play(GameAction):
         # We need to fake a Summon broadcast.
         summon_action = Summon(player, card)
 
-        if card.type == CardType.SPELL and card.twinspell:
+        if card.type == CardType.SPELL and hasattr(card, 'twinspell') and card.twinspell:
             source.game.queue_actions(card, [Give(player, card.twinspell_copy)])
 
         # LOCATION 机制：销毁旧地标
@@ -2636,7 +2636,7 @@ class HitExcessDamage(TargetedAction):
     AMOUNT = IntArg()
     TRIGGER_LIFESTEAL = BoolArg(default=True)
 
-    def do(self, source, target, amount, trigger_lifesteal):
+    def do(self, source, target, amount, trigger_lifesteal=True):
         amount = source.get_damage(amount, target)
         if amount:
             source.game.manager.targeted_action(self, source, target, amount)
@@ -3545,7 +3545,7 @@ class CastSpell(TargetedAction):
         old_choice = player.choice
         player.choice = None
 
-        if card.twinspell:
+        if hasattr(card, 'twinspell') and card.twinspell:
             source.game.queue_actions(card, [Give(player, card.twinspell_copy)])
         if card.must_choose_one:
             card = source.game.random.choice(card.choose_cards)
@@ -4387,7 +4387,7 @@ class Excavate(GameAction):
             card_id = TIER_4_IDS.get(controller.hero.card_class)
             
         if card_id:
-             source.game.add_card(controller, card_id, source=source)
+            source.game.queue_actions(source, [Give(controller, card_id)])
         
         # Broadcast AFTER event (after excavate)
         self.broadcast(source, EventListener.AFTER, controller)
