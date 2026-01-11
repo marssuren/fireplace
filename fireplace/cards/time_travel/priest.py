@@ -167,16 +167,19 @@ class TIME_429:
                 higher_value = max(atk, health)
                 
                 # 使用 Buff 设置攻击力和生命值为高值
-                yield Buff(minion, "TIME_429e", atk=higher_value, health=higher_value)
+                yield Buff(minion, "TIME_429e", atk_value=higher_value, health_value=higher_value)
 
 
 class TIME_429e:
     """神圣预言师 - 设置攻击力和生命值"""
     tags = {
         GameTag.CARDTYPE: CardType.ENCHANTMENT,
-        GameTag.ATK: SetTag.SET,
-        GameTag.HEALTH: SetTag.SET,
     }
+    
+    # 使用方法来设置攻击力和生命值（而不是增加）
+    # Buff 的 kwargs 会被设置为属性，例如 self.atk_value 和 self.health_value
+    atk = lambda self, i: self.atk_value if hasattr(self, 'atk_value') else i
+    max_health = lambda self, i: self.health_value if hasattr(self, 'health_value') else i
 
 
 class TIME_436:
