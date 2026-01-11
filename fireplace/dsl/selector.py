@@ -269,7 +269,26 @@ class SetOpSelector(Selector):
 
     def eval(self, entities, source):
         left_children = self.left.eval(entities, source)
-        right_children = self.right.eval(entities, source)
+        try:
+            right_children = self.right.eval(entities, source)
+        except AttributeError as e:
+            if "'bool' object has no attribute 'eval'" in str(e):
+                import sys
+                error_msg = (
+                    f"\n{'='*80}\n"
+                    f"SELECTOR ERROR: bool object used as selector\n"
+                    f"{'='*80}\n"
+                    f"SetOpSelector: {self}\n"
+                    f"Left: {self.left} (type: {type(self.left)})\n"
+                    f"Right: {self.right} (type: {type(self.right)})\n"
+                    f"Op: {self.op}\n"
+                    f"Source: {source}\n"
+                    f"Source type: {type(source)}\n"
+                    f"Source ID: {getattr(source, 'id', 'N/A')}\n"
+                    f"{'='*80}\n"
+                )
+                print(error_msg, file=sys.stderr)
+            raise
         result_entity_ids = self.op(
             self._entity_id_set(left_children), self._entity_id_set(right_children)
         )

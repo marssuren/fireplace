@@ -1430,7 +1430,35 @@ class TargetedAction(Action):
         log_info("triggering_targeting", source=source, trigger=self, targets=targets)
         for target in targets:
             target_args = self.get_target_args(source, target)
-            ret.append(self.do(source, target, *target_args))
+            try:
+                ret.append(self.do(source, target, *target_args))
+            except TypeError as e:
+                if "missing" in str(e) and "required positional argument" in str(e):
+                    import sys
+                    import traceback
+                    error_msg = (
+                        f"\n{'='*80}\n"
+                        f"ARGUMENT ERROR in {self.__class__.__name__}.do()\n"
+                        f"{'='*80}\n"
+                        f"Action: {self}\n"
+                        f"Action class: {self.__class__.__name__}\n"
+                        f"Source: {source}\n"
+                        f"Source type: {type(source)}\n"
+                        f"Source ID: {getattr(source, 'id', 'N/A')}\n"
+                        f"Target: {target}\n"
+                        f"Target type: {type(target)}\n"
+                        f"Target args: {target_args}\n"
+                        f"Target args length: {len(target_args)}\n"
+                        f"Target args types: {[type(a) for a in target_args]}\n"
+                        f"Self._args: {self._args}\n"
+                        f"Self.ARGS: {self.ARGS}\n"
+                        f"Exception: {e}\n"
+                        f"Stacktrace:\n"
+                    )
+                    print(error_msg, file=sys.stderr)
+                    traceback.print_stack(file=sys.stderr)
+                    print(f"{'='*80}\n", file=sys.stderr)
+                raise
 
             for action in self.callback:
                 log_info("queues_callback", action=self, callback=action)
@@ -2236,7 +2264,7 @@ class Discover(TargetedAction):
             picker = picker.copy_with_weighting(1, card_class=CardClass.NEUTRAL)
             picker = picker.copy_with_weighting(1, card_class=discover_class)
         
-        return [picker.evaluate(source)]
+        return [picker.eval([], source)]
 
     def do(self, source, target, cards):
         log_info("discovers", source=source, cards=cards, target=target)

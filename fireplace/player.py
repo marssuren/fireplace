@@ -609,6 +609,27 @@ class Player(Entity, TargetableByAuras):
         """
         Returns whether the player can pay the resource cost of a card.
         """
+        # 添加详细的类型检查和错误日志
+        if not hasattr(card, 'type'):
+            import sys
+            import traceback
+            error_msg = (
+                f"\n{'='*80}\n"
+                f"TYPE ACCESS ERROR in can_pay_cost\n"
+                f"{'='*80}\n"
+                f"Card object: {card}\n"
+                f"  Type: {type(card)}\n"
+                f"  Class: {card.__class__.__name__}\n"
+                f"  Has 'type' attr: {hasattr(card, 'type')}\n"
+                f"  Dir: {[a for a in dir(card) if not a.startswith('_')]}\n"
+                f"Player: {self}\n"
+                f"Stacktrace:\n"
+            )
+            print(error_msg, file=sys.stderr)
+            traceback.print_stack(file=sys.stderr)
+            print(f"{'='*80}\n", file=sys.stderr)
+            raise AttributeError(f"Object {card} (type: {type(card)}) has no attribute 'type'")
+        
         if self.spells_cost_health and card.type == CardType.SPELL:
             return self.hero.health > card.cost
         if self.murlocs_cost_health:
