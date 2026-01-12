@@ -253,7 +253,7 @@ class VAC_501:
 
     # 使用 Predamage 事件拦截伤害
     events = Predamage(FRIENDLY_HERO).on(
-        lambda self, source, target, amount: (
+        lambda self, source, target, amount, *args: (
             # 检查是否是己方回合
             self.controller.current_player and [
                 # 取消对英雄的伤害

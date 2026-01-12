@@ -16,9 +16,7 @@ class VAC_323:
     """
     def play(self):
         # 对所有敌方角色造成1点伤害（包括英雄和随从）
-        enemy_characters = self.game.board.get_enemies(self.controller)
-        for character in enemy_characters:
-            yield Hit(character, 1)
+        yield Hit(ENEMY_CHARACTERS, 1)
         
         # 返回2杯版本到手牌
         yield Give(CONTROLLER, "VAC_323t")

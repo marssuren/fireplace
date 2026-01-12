@@ -264,7 +264,7 @@ class SW_044:
         # 找到本局游戏中施放过的所有邪能法术
         fel_spells = [
             card for card in self.controller.cards_played_this_game
-            if card.type == CardType.SPELL and card.spell_school == SpellSchool.FEL
+            if card.type == CardType.SPELL and getattr(card, 'spell_school', None) == SpellSchool.FEL
         ]
         
         # 重新施放它们

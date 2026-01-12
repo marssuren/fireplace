@@ -300,7 +300,7 @@ class EDR_258:
     
     # 使用 Predamage 事件拦截伤害，实现圣盾3次伤害机制
     events = Predamage(FRIENDLY_CHARACTERS + DIVINE_SHIELD).on(
-        lambda self, source, target, amount: [
+        lambda self, source, target, amount, *args: [
             # 检查目标是否有托雷斯的计数标记
             _handle_toreth_divine_shield(self, target, amount)
         ]

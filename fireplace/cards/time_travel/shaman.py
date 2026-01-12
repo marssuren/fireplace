@@ -129,7 +129,7 @@ class TIME_214:
     
     # 监听即将受到伤害的事件（PREDAMAGE）
     events = Predamage(SELF).on(
-        lambda self, source, target, amount: (
+        lambda self, source, target, amount, *args: (
             # 检查伤害来源是否为友方自然法术
             hasattr(source, 'spell_school') and
             source.spell_school == SpellSchool.NATURE and
@@ -273,7 +273,7 @@ class TIME_217:
     
     # 监听即将受到伤害的事件（PREDAMAGE）
     events = Predamage(SELF).on(
-        lambda self, source, target, amount: (
+        lambda self, source, target, amount, *args: (
             # 检查伤害来源是否为友方自然法术
             hasattr(source, 'spell_school') and
             source.spell_school == SpellSchool.NATURE and

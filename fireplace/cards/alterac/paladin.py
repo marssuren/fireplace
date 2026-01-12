@@ -32,7 +32,7 @@ class AV_206t:
 
     # 英雄受到的伤害减半
     events = Predamage(FRIENDLY_HERO).on(
-        lambda self, source, target, amount: [amount // 2 + (amount % 2)]
+        lambda self, source, target, amount, *args: [amount // 2 + (amount % 2)]
     )
 
 

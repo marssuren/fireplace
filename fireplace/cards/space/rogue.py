@@ -378,7 +378,7 @@ class GDB_472:
     # 使用 Predamage 事件，当目标是未受伤的敌方随从时，将伤害翻倍
     # 参考 titans/paladin.py 的 Predamage 用法
     events = Predamage(ENEMY_MINIONS).on(
-        lambda self, source, target, amount: 
+        lambda self, source, target, amount, *args: 
             # 如果目标未受伤，将伤害设置为原伤害的2倍
             Predamage(target, amount * 2) if target.damage == 0 else None
     )

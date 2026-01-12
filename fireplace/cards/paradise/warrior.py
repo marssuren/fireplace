@@ -201,7 +201,7 @@ class VAC_527:
 
     # 监听本随从即将受到伤害的事件，将伤害限制为1
     events = Predamage(SELF).on(
-        lambda self, source, target, amount: [
+        lambda self, source, target, amount, *args: [
             SetTags(target, {GameTag.PREDAMAGE: min(amount, 1)})
         ]
     )

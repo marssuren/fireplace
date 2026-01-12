@@ -371,7 +371,7 @@ class ETC_078e:
     # OWNER 是装备此 buff 的武器的拥有者（对手英雄）
     # 当对手英雄即将受到伤害时，增加1点伤害
     events = Predamage(OWNER).on(
-        lambda self, source, target, amount: [
+        lambda self, source, target, amount, *args: [
             Predamage(target, 0),           # 取消原始伤害
             Hit(target, amount + 1)         # 施加增加后的伤害（原始+1）
         ]
