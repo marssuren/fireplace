@@ -83,11 +83,6 @@ class TIME_038:
         yield Summon(CONTROLLER, RandomMinion(rarity=Rarity.LEGENDARY))
         yield Summon(CONTROLLER, RandomMinion(rarity=Rarity.LEGENDARY))
 
-
-
-        # 使用 Rewind 包装器执行效果
-        yield from execute_with_rewind(self, effect)
-
 # ========================================
 # TIME_063 - 时光之主诺兹多姆
 # ========================================

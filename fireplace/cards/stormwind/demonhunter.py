@@ -59,9 +59,9 @@ class DED_508:
         
         if len(deck_minions) >= 2:
             # 随机选择两个
-            minion1 = self.game.random_choice(deck_minions)
+            minion1 = self.game.random.choice(deck_minions)
             deck_minions.remove(minion1)
-            minion2 = self.game.random_choice(deck_minions)
+            minion2 = self.game.random.choice(deck_minions)
             
             # 召唤它们
             yield Summon(CONTROLLER, minion1)
