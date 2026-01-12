@@ -219,8 +219,7 @@ class TIME_876:
         
         if opponent_minions:
             # 随机选择一个随从并变形
-            import random
-            target = random.choice(opponent_minions)
+            target = self.game.random.choice(opponent_minions)
             yield Morph(SELF, target.id)
     
     class Hand:

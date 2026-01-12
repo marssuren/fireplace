@@ -130,8 +130,7 @@ class DINO_131:
         deck_beasts = [c for c in self.controller.deck if c.type == CardType.MINION and Race.BEAST in getattr(c, 'races', [c.race] if hasattr(c, 'race') else [])]
 
         if deck_beasts:
-            import random
-            beast = random.choice(deck_beasts)
+            beast = self.game.random.choice(deck_beasts)
             # 召唤野兽并给予吸血
             return [
                 Summon(CONTROLLER, beast.id),
@@ -223,10 +222,9 @@ class TLC_479:
     @property
     def deathrattle(self):
         """动态亡语：随机召唤一只邪能野兽"""
-        import random
         # 邪能野兽池：邪能啸天者、邪能迅猛龙、邪能恐角龙
         fel_beasts = ["TLC_446t2", "TLC_446t3", "TLC_446t4"]
-        chosen_beast = random.choice(fel_beasts)
+        chosen_beast = self.game.random.choice(fel_beasts)
         return [Summon(CONTROLLER, chosen_beast)]
 
 

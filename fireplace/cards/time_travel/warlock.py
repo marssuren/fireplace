@@ -196,7 +196,6 @@ class TIME_031:
             cards_by_cost[cost].append(card)
         
         # 随机选择3个不同费用的组
-        import random
         available_costs = list(cards_by_cost.keys())
         
         if len(available_costs) == 0:
@@ -204,12 +203,12 @@ class TIME_031:
         
         # 最多抽3张
         num_to_draw = min(3, len(available_costs))
-        selected_costs = random.sample(available_costs, num_to_draw)
+        selected_costs = self.game.random.sample(available_costs, num_to_draw)
         
         # 从每个费用组中随机选择一张牌抽取
         for cost in selected_costs:
             cards_in_cost = cards_by_cost[cost]
-            card_to_draw = random.choice(cards_in_cost)
+            card_to_draw = self.game.random.choice(cards_in_cost)
             # 使用标准的 Draw action，直接传入卡牌实例
             yield Draw(self.controller, card_to_draw)
 
@@ -273,8 +272,7 @@ class TIME_030:
             return
         
         # 随机选择一张随从
-        import random
-        target_minion = random.choice(minions_in_hand)
+        target_minion = self.game.random.choice(minions_in_hand)
         
         # 获取原始属性
         original_atk = target_minion.atk
