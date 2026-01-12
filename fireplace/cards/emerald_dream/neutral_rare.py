@@ -2,7 +2,6 @@
 漫游翡翠梦境 - 中立 - RARE
 """
 from ..utils import *
-import random
 
 
 class EDR_001:
@@ -22,7 +21,7 @@ class EDR_001:
             "DREAM_04",  # 笑声 Laughing Sister
             "DREAM_05",  # 醒梦 Ysera Awakens
         ]
-        yield Give(CONTROLLER, random.choice(dream_cards))
+        yield Give(CONTROLLER, self.game.random.choice(dream_cards))
 
 
 class EDR_110:
@@ -40,7 +39,7 @@ class EDR_110:
         # 随机对一个敌方随从造成1点伤害
         enemy_minions = list(self.controller.opponent.field)
         if enemy_minions:
-            yield Hit(random.choice(enemy_minions), 1)
+            yield Hit(self.game.random.choice(enemy_minions), 1)
 
 
 class EDR_260:
