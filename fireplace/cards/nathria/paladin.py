@@ -11,7 +11,7 @@ Recruits +1/+1.
     召唤两个白银之手新兵。使你的白银之手新兵获得+1/+1。
     """
     requirements = {PlayReq.REQ_NUM_MINION_SLOTS: 1}
-    
+
     def play(self):
         # 召唤两个白银之手新兵
         yield Summon(CONTROLLER, "CS2_101t") * 2
@@ -40,7 +40,7 @@ Cost. Draw a card.
         if self.controller.deck:
             # 使用 Python 的 sort，按费用降序
             self.controller.deck.sort(key=lambda card: card.cost, reverse=True)
-        
+
         # 抽一张牌
         yield Draw(CONTROLLER)
 
@@ -56,12 +56,12 @@ has no Neutral cards, set
         PlayReq.REQ_TARGET_IF_AVAILABLE: 0,
         PlayReq.REQ_MINION_TARGET: 0,
     }
-    
+
     def play(self):
         # 检查牌库中是否有中立卡
         from hearthstone.enums import CardClass
         has_neutral = any(card.card_class == CardClass.NEUTRAL for card in self.controller.deck)
-        
+
         # 如果没有中立卡且有目标
         if not has_neutral and TARGET:
             # 将目标的属性设为1/1
@@ -86,7 +86,7 @@ and <b>Taunt</b>.
         PlayReq.REQ_TARGET_TO_PLAY: 0,
         PlayReq.REQ_MINION_TARGET: 0,
     }
-    
+
     # 原版只能对白银之手新兵使用，但fireplace没有内置的卡牌ID限制
     # 这里检查目标是否是白银之手新兵
     def play(self):
@@ -113,7 +113,7 @@ class REV_947:
     <b>嘲讽，战吼：</b>从圣骑士卡牌中<b>发现</b>一张。
     """
     tags = {GameTag.TAUNT: True}
-    
+
     def play(self):
         # 从圣骑士卡牌中发现一张
         from hearthstone.enums import CardClass
@@ -127,16 +127,15 @@ class REV_948:
     """
     def play(self):
         # 从牌库中发现一张职业卡（非中立）
-        from hearthstone.enums import CardClass
-        
+
         # 使用标准的 Discover 从牌库中发现
         # Discover 会自动处理选项生成和选择
         card = yield Discover(CONTROLLER, FRIENDLY_DECK - NEUTRAL)
-        
+
         if card:
             # 找出牌库中所有同名卡牌（包括刚发现的这张）
             cards_to_draw = [c for c in list(self.controller.deck) if c.id == card.id]
-            
+
             # 使用 Draw action 抽出所有同名卡牌
             # 这会触发所有抽牌相关的逻辑和事件
             for deck_card in cards_to_draw:
@@ -158,12 +157,12 @@ damage to enemy minions.
             # 每次重新评估存活的随从
             all_minions = [m for m in FRIENDLY_MINIONS.eval(self.game, self) if not m.dead]
             all_minions.extend([m for m in ENEMY_MINIONS.eval(self.game, self) if not m.dead])
-            
+
             if not all_minions:
                 break
-            
+
             target = self.game.random.choice(all_minions)
-            
+
             # 如果是友方随从，+2/+2
             if target.controller == self.controller:
                 yield Buff(target, "REV_950e")
@@ -183,9 +182,9 @@ class REV_950e:
 
 class REV_951:
     """The Countess - 女伯爵
-    [x]<b>Battlecry:</b> If your deck 
-has no Neutral cards, add 
-3 <b>Legendary </b>Invitations 
+    [x]<b>Battlecry:</b> If your deck
+has no Neutral cards, add
+3 <b>Legendary </b>Invitations
 to your hand.
     <b>战吼：</b>如果你的牌库中没有中立卡牌，将3张<b>传说</b>邀请函置入你的手牌。
     """
@@ -193,7 +192,7 @@ to your hand.
         # 检查牌库中是否有中立卡
         from hearthstone.enums import CardClass
         has_neutral = any(card.card_class == CardClass.NEUTRAL for card in self.controller.deck)
-        
+
         # 如果没有中立卡
         if not has_neutral:
             # 添加3张传说邀请函
@@ -256,19 +255,19 @@ class REV_955e2:
 
 class REV_958:
     """Buffet Biggun - 餐会巨仆
-    [x]<b>Battlecry:</b> Summon two Silver 
-Hand Recruits. <b>Infuse (3):</b> 
-Give them +2 Attack 
+    [x]<b>Battlecry:</b> Summon two Silver
+Hand Recruits. <b>Infuse (3):</b>
+Give them +2 Attack
 and <b>Divine Shield</b>.
     <b>战吼：</b>召唤两个白银之手新兵。<b>注能(3)：</b>使它们获得+2攻击力和<b>圣盾</b>。
     """
     infuse = 3
     requirements = {PlayReq.REQ_NUM_MINION_SLOTS: 1}
-    
+
     def play(self):
         # 召唤两个白银之手新兵
         recruits = yield Summon(CONTROLLER, "CS2_101t") * 2
-        
+
         # 如果已注能，给它们+2攻击和圣盾
         if self.infused and recruits:
             for recruit in recruits:
@@ -288,22 +287,22 @@ class REV_958e:
 class REV_961:
     """Elitist Snob - 势利精英
     [x]<b>Battlecry:</b> For each Paladin
-card in your hand, randomly 
-gain <b>Divine Shield</b>, <b>Lifesteal</b>, 
+card in your hand, randomly
+gain <b>Divine Shield</b>, <b>Lifesteal</b>,
 <b>Rush</b>, or <b>Taunt</b>.
     <b>战吼：</b>你的手牌中每有一张圣骑士卡牌，随机获得<b>圣盾</b>、<b>吸血</b>、<b>突袭</b>或<b>嘲讽</b>。
     """
     def play(self):
         # 计算手牌中圣骑士卡牌的数量
         from hearthstone.enums import CardClass
-        paladin_cards = [c for c in self.controller.hand 
+        paladin_cards = [c for c in self.controller.hand
                         if c != self and c.card_class == CardClass.PALADIN]
-        
+
         count = len(paladin_cards)
-        
+
         # 随机获得能力
         buffs = ["REV_961e1", "REV_961e2", "REV_961e3", "REV_961e4"]
-        
+
         for i in range(count):
             # 随机选择一个buff
             buff_id = self.game.random.choice(buffs)
@@ -340,7 +339,7 @@ class REV_983:
         PlayReq.REQ_TARGET_TO_PLAY: 0,
         PlayReq.REQ_MINION_TARGET: 0,
     }
-    
+
     activate = Buff(TARGET, "REV_983e")
 
 

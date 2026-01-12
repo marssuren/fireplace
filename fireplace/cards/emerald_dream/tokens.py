@@ -1004,7 +1004,7 @@ class EDR_895e:
     
     def _advance_lunar_cycle(self):
         """推进月相"""
-        from ...actions import SetTag
+        # SetTag 已经通过 from ..utils import * 导入
         
         # 获取当前月相
         current_phase = self.tags.get(GameTag.PROGRESS, 0)
@@ -1336,6 +1336,5 @@ class EDR_490t:
         GameTag.CANT_ATTACK: True,
         GameTag.CARDRACE: Race.DEMON,
     }
-
  
  

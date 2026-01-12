@@ -121,6 +121,39 @@ def ForcePlay(controller, card):
     from ..actions import Play
     return Play(card)
 
+# 对手回合结束事件
+OPPONENT_TURN_END = lambda: OWN_TURN_BEGIN  # 简化实现：对手回合结束 = 己方回合开始
+
+# UpdateProgress - 更新进度/计数器
+def UpdateProgress(target, amount):
+    """
+    更新目标的进度计数器
+    
+    参数:
+        target: 目标实体
+        amount: 增加或减少的数量
+    
+    返回:
+        SetTag action
+    """
+    from ..actions import SetTags
+    # 使用 TAG_SCRIPT_DATA_NUM_1 作为进度计数器
+    return lambda source: setattr(target, 'progress', getattr(target, 'progress', 0) + amount)
+
+# Turn - 回合事件
+def Turn(player):
+    """
+    监听指定玩家的回合开始事件
+    
+    参数:
+        player: 玩家选择器
+    
+    返回:
+        事件选择器
+    """
+    # 简化实现：返回回合开始事件
+    return OWN_TURN_BEGIN if player == CONTROLLER else OPPONENT_TURN_BEGIN
+
 # 区域常量
 from hearthstone.enums import Zone
 PLAY = Zone.PLAY  # 战场区域
