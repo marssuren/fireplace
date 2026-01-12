@@ -248,16 +248,14 @@ class VAC_531:
     在你的回合中，在你的对手召唤随从后，将其沉默并消灭。
     After a minion is summoned for your opponent during your turn, Silence and destroy it.
     """
-    def on_opponent_summon(self, source, minion):
-        """当对手在我方回合召唤随从时触发"""
-        if self.controller.current_player:
-            yield Silence(minion)
-            yield Destroy(minion)
-    
-    # 监听对手召唤随从
+    # 监听对手在我方回合召唤随从
     events = Summon(OPPONENT, MINION).on(
-        lambda self, source, minion: self.on_opponent_summon(source, minion)
+        Find(CURRENT_PLAYER + CONTROLLER) & (
+            Silence(Summon.CARD),
+            Destroy(Summon.CARD)
+        )
     )
+
 
 
 # ========== VAC_532 - 椰子火炮手 ==========
