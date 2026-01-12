@@ -181,6 +181,11 @@ class AV_256:
 
 class AV_256e:
     """反射工程师增益"""
+    def __init__(self):
+        super().__init__()
+        self._xatk = 0
+        self._xhealth = 0
+    
     tags = {
         GameTag.ATK: lambda self, i: self._xatk,
         GameTag.HEALTH: lambda self, i: self._xhealth,
