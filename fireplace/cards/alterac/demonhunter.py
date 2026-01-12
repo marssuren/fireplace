@@ -165,7 +165,6 @@ class ONY_014e:
 class ONY_016:
     """憎恨之翼（等级1） / Wings of Hate (Rank 1)
     召唤两只1/1的邪翼蝠。（当你有5点法力值时升级。）"""
-    play = Summon(CONTROLLER, "AV_118t") * 2
     
     # 升级机制
     powered_up = lambda self: self.controller.max_mana >= 5
