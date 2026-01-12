@@ -246,11 +246,11 @@ class VAC_519e:
 
     # 记录施放的法术
     events = [
-        Play(CONTROLLER, SPELL).after(lambda self, source, card: self.spells_cast.append(card.id)),
+        Play(CONTROLLER, SPELL).after(lambda self, source, card: getattr(self, 'spells_cast', []).append(card.id) if hasattr(self, 'spells_cast') else None),
         OWN_TURN_END.on(
-            lambda self, source: setattr(self, 'turns_remaining', self.turns_remaining - 1) or (
-                [Play(CONTROLLER, source.controller.card(spell_id)) for spell_id in self.spells_cast] if self.turns_remaining == 0 else []
+            lambda self, source: setattr(self, 'turns_remaining', getattr(self, 'turns_remaining', 3) - 1) or (
+                [Play(CONTROLLER, source.controller.card(spell_id)) for spell_id in getattr(self, 'spells_cast', [])] if getattr(self, 'turns_remaining', 3) == 0 else []
             ),
-            Find(lambda self: self.turns_remaining == 0) & Destroy(SELF)
+            Find(lambda self: getattr(self, 'turns_remaining', 3) == 0) & Destroy(SELF)
         )
     ]

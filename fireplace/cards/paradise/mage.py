@@ -266,11 +266,11 @@ class VAC_524e:
         Buff(FRIENDLY_HAND + SPELL, "VAC_524e2")
     ]
     
-    # 监听回合结束，倒计时
+    # 监听回合结束,倒计时
     events = OWN_TURN_END.on(
         lambda self, source: (
-            setattr(self, 'turns_remaining', self.turns_remaining - 1),
-            Destroy(SELF) if self.turns_remaining <= 0 else None
+            setattr(self, 'turns_remaining', getattr(self, 'turns_remaining', 2) - 1),
+            Destroy(SELF) if getattr(self, 'turns_remaining', 2) <= 0 else None
         )
     )
 

@@ -117,7 +117,7 @@ class ETC_082:
     def play(self):
         target = self.target
         yield Hit(target, 3)
-        if target.to_be_destroyed or (target.type == CardType.MINION and target.health <= 0) or (target.type == CardType.HERO and target.health <= 0):
+        if target and (target.to_be_destroyed or (target.type == CardType.MINION and target.health <= 0) or (target.type == CardType.HERO and target.health <= 0)):
              yield Summon(CONTROLLER, RandomMinion(race=Race.DEMON, from_deck=True))
 
 class JAM_031:

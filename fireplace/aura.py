@@ -43,7 +43,7 @@ class Refresh:
         for entity in entities:
             if self.buff:
                 entity.refresh_buff(source, self.buff)
-            else:
+            elif self.tags:  # 添加None检查
                 tags = {}
                 for tag, value in self.tags.items():
                     if not isinstance(value, int) and not callable(value):

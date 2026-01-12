@@ -970,7 +970,7 @@ class VAC_955t:
                 self.summon_cost = current_cost + 1
         
         events = OWN_TURN_BEGIN.on(
-            lambda self, player: self.on_turn_begin()
+            lambda self, player: setattr(self, 'summon_cost', min(10, getattr(self, 'summon_cost', 1) + 1))
         )
     
     def play(self):
