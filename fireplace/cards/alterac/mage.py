@@ -198,8 +198,11 @@ class ONY_007:
     战吼：施放一个法术伤害等于你的法术伤害的奥术飞弹。"""
     def play(self):
         """施放法术伤害次数的奥术飞弹"""
-        # 计算法术伤害
-        spell_damage = self.controller.spell_damage
+        # 计算法术伤害 - 统计场上所有友方随从的法术伤害
+        spell_damage = sum(
+            getattr(minion, 'spell_damage', 0) 
+            for minion in self.controller.field
+        )
 
         # 施放奥术飞弹（每点法术伤害施放一次）
         for _ in range(spell_damage + 1):  # +1 因为基础伤害是1

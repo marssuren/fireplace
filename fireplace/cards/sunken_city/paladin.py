@@ -239,7 +239,7 @@ class TSC_079:
         bottom_cards = deck[-num_cards:]
         
         # 找出所有机械牌
-        mech_cards = [card for card in bottom_cards if Race.MECH in card.races]
+        mech_cards = [card for card in bottom_cards if Race.MECHANICAL in card.races]
         
         # 抽出机械牌
         for card in mech_cards:

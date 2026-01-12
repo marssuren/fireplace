@@ -37,7 +37,7 @@ class DEEP_037:
     def play(self):
         if self.powered_up:
             # 从卡牌数据库中获取所有可收集的元素随从
-            from ..cards import db
+            from fireplace.cards import db
             elemental_cards = db.filter(
                 type=CardType.MINION,
                 race=Race.ELEMENTAL,
@@ -125,7 +125,7 @@ class WW_379e:
     def handle_play(self, source, player, card, *args):
         """处理卡牌使用事件"""
         # 获取所有快枪牌
-        from ..cards import db
+        from fireplace.cards import db
         quickdraw_cards = [
             card_id for card_id in db.keys()
             if db[card_id].tags.get(GameTag.QUICKDRAW, False) and db[card_id].collectible

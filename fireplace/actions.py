@@ -287,6 +287,12 @@ class Attack(GameAction):
             return
 
         assert attacker is not defender, "Why are you hitting yourself %r?" % (attacker)
+        
+        # 检查defender是否有效
+        if not defender:
+            log_info("attack_no_defender", attacker=attacker)
+            attacker.attack_target = None
+            return
 
         # Save the attacker/defender atk values in case they change during the attack
         # (eg. in case of Enrage)

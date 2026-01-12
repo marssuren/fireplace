@@ -93,7 +93,7 @@ class SC_764:
         GameTag.LIFESTEAL: True,
         GameTag.DEATHRATTLE: True,
     }
-    race = Race.MECH
+    race = Race.MECHANICAL
     
     def deathrattle(self):
         # 在本局对战中，星灵随从减费（1）点
@@ -319,7 +319,7 @@ class SC_762:
         GameTag.BATTLECRY: True,
         GameTag.DEATHRATTLE: True,
     }
-    race = Race.MECH
+    race = Race.MECHANICAL
     
     def play(self):
         # 定义获取星灵随从的辅助函数
