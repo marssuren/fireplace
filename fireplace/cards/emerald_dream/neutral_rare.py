@@ -2,6 +2,7 @@
 漫游翡翠梦境 - 中立 - RARE
 """
 from ..utils import *
+import random
 
 
 class EDR_001:
