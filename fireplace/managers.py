@@ -14,6 +14,22 @@ class Manager(object):
         raise KeyError
 
     def __setitem__(self, tag, value):
+        # 检查tag是否在map中
+        if tag not in self.map:
+            # 记录未知tag的详细信息以便调试
+            import traceback
+            import sys
+            print(f"WARNING: Attempting to set unknown tag: {tag} (type: {type(tag)}) = {value}", file=sys.stderr)
+            print(f"  Object: {self.obj.__class__.__name__} (id: {getattr(self.obj, 'id', 'N/A')})", file=sys.stderr)
+            print("  Stack trace:", file=sys.stderr)
+            traceback.print_stack(limit=10, file=sys.stderr)
+            # 不抛出异常,继续执行,但已记录问题
+            return
+        
+        # 检查map[tag]是否为None(表示这个tag被忽略)
+        if self.map[tag] is None:
+            return
+        
         setattr(self.obj, self.map[tag], value)
 
     def __iter__(self):
