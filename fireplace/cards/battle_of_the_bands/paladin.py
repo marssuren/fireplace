@@ -231,7 +231,7 @@ class ETC_320:
     
     def play(self):
         # Transform into 5/5 Elemental
-        yield Transform(TARGET, "ETC_320t")
+        yield Morph(TARGET, "ETC_320t")
 
 class ETC_320t:
     """Spotlight Elemental - 光芒元素"""

@@ -35,7 +35,7 @@ class TTN_950t:
         Buff(SELF, "TTN_950tick"),
         Condition(
             Equal(Tag(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1), 0),
-            (Transform(SELF, "TTN_950t2"), )
+            (Morph(SELF, "TTN_950t2"), )
         )
     )
 
@@ -164,7 +164,7 @@ class TTN_927:
         GameTag.COST: 4,
     }
     
-    play = Transform(TARGET, "TTN_927t")
+    play = Morph(TARGET, "TTN_927t")
     powered_up = Find(FRIENDLY_MINIONS + TREANT)
 
 
@@ -376,7 +376,7 @@ class TTN_926:
             yield Summon(CONTROLLER, "TTN_926t") * 3
         elif self.choice == "TTN_926b":
             # 将所有树人变形为古树
-            yield Transform(FRIENDLY_MINIONS + TREANT, "TTN_927t")
+            yield Morph(FRIENDLY_MINIONS + TREANT, "TTN_927t")
 
 
 class TTN_926a:

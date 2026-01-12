@@ -46,10 +46,10 @@ class TSC_032a:
     tags = {GameTag.CARDTYPE: CardType.SPELL, GameTag.COST: 0}
     
     def play(self):
-        # 将反制随从的buff附加到奥卡尼身上
-        # 通过 source 参数获取奥卡尼的引用
-        okani = self.source
-        if okani and okani.zone == Zone.PLAY:
+        # 从场上找到奥卡尼(TSC_032)
+        okani_list = [m for m in self.controller.field if m.id == "TSC_032"]
+        if okani_list:
+            okani = okani_list[0]
             yield Buff(okani, "TSC_032e_minion")
 
 
@@ -58,10 +58,10 @@ class TSC_032b:
     tags = {GameTag.CARDTYPE: CardType.SPELL, GameTag.COST: 0}
     
     def play(self):
-        # 将反制法术的buff附加到奥卡尼身上
-        # 通过 source 参数获取奥卡尼的引用
-        okani = self.source
-        if okani and okani.zone == Zone.PLAY:
+        # 从场上找到奥卡尼(TSC_032)
+        okani_list = [m for m in self.controller.field if m.id == "TSC_032"]
+        if okani_list:
+            okani = okani_list[0]
             yield Buff(okani, "TSC_032e_spell")
 
 
