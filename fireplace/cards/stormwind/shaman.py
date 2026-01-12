@@ -337,30 +337,20 @@ class SW_115e:
             target.bolner_first_battlecry_this_turn = None
     
     # 监听打出战吼随从
-    events = Play(CONTROLLER, MINION).after(
-        lambda self: self._on_battlecry_played()
-    )
-    
-    def _on_battlecry_played(self):
-        """当打出战吼随从时"""
-        played_card = Play.CARD
-        
-        # 检查是否有战吼
-        if hasattr(played_card, 'play') and callable(played_card.play):
-            # 如果是本回合第一个战吼，记录它
-            if self.controller.bolner_first_battlecry_this_turn is None:
-                self.controller.bolner_first_battlecry_this_turn = played_card
-            else:
-                # 不是第一个，重复第一个战吼
-                first_battlecry = self.controller.bolner_first_battlecry_this_turn
-                if first_battlecry and hasattr(first_battlecry, 'play'):
-                    try:
-                        yield from first_battlecry.play()
-                    except:
-                        pass
-    
-    # 回合结束时重置
-    events_turn_end = OWN_TURN_END.on(
-        lambda self: setattr(self.controller, 'bolner_first_battlecry_this_turn', None)
-    )
-
+    events = [
+        Play(CONTROLLER, MINION + BATTLECRY).after(
+            lambda self, source, player, card, target: (
+                setattr(self.controller, 'bolner_first_battlecry_this_turn', card)
+                if getattr(self.controller, 'bolner_first_battlecry_this_turn', None) is None
+                else (
+                    list(self.controller.bolner_first_battlecry_this_turn.play())
+                    if hasattr(self.controller.bolner_first_battlecry_this_turn, 'play')
+                    else None
+                )
+            )
+        ),
+        # 回合结束时重置
+        OWN_TURN_END.on(
+            lambda self, source, player: setattr(self.controller, 'bolner_first_battlecry_this_turn', None)
+        )
+    ]
