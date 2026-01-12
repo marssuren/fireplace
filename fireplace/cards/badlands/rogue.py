@@ -187,10 +187,14 @@ class WW_364:
     class Hand:
         # 监听使用卡牌事件，检查是否为其他职业的卡牌
         # 使用自定义函数来检查卡牌职业
-        def _check_and_morph(self, source):
+        def _check_and_morph(self, source, *args):
             """检查使用的卡牌是否来自其他职业，如果是则变形"""
-            # Play.CARD 在事件触发时会被设置为使用的卡牌
-            played_card = Play.CARD.eval(source.game, source)[0] if Play.CARD.eval(source.game, source) else None
+            # 从事件参数中获取打出的卡牌
+            # Play 事件的参数: (player, played_card, target)
+            if len(args) < 2:
+                return
+            
+            played_card = args[1]  # 第二个参数是打出的卡牌
             if played_card:
                 # 检查卡牌职业是否与英雄职业不同
                 # 中立卡牌 (NEUTRAL) 不算其他职业

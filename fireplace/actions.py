@@ -2867,7 +2867,12 @@ class Morph(TargetedAction):
         card.controller = target.controller
         return [card]
 
-    def do(self, source, target, card):
+    def do(self, source, target, card=None):
+        # 如果没有可用的卡牌（get_target_args 返回空列表），直接返回 None
+        if card is None:
+            log_info("morph_failed_no_card", source=source, target=target)
+            return None
+        
         log_info("morphing", target=target, card=card)
         
         # 检查目标是否免疫变形（用于 REV_925 瓦丝琪女男爵）
@@ -3673,7 +3678,7 @@ class CastSpell(TargetedAction):
 
         if hasattr(card, 'twinspell') and card.twinspell:
             source.game.queue_actions(card, [Give(player, card.twinspell_copy)])
-        if card.must_choose_one:
+        if hasattr(card, 'must_choose_one') and card.must_choose_one:
             card = source.game.random.choice(card.choose_cards)
         for target in targets:
             if card.requires_target() and not target:

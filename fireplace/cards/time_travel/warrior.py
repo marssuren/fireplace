@@ -62,7 +62,7 @@ class TIME_750:
         
         # 如果有，抽一张随从牌
         if has_big_minion:
-            yield Draw(self.controller, RandomMinion(FRIENDLY_DECK))
+            yield ForceDraw(RANDOM(FRIENDLY_DECK + MINION))
 
 
 class TIME_873:
@@ -186,7 +186,8 @@ class TIME_870:
     """
     def play(self):
         # 从牌库中随机召唤一个随从
-        yield Summon(self.controller, RandomMinion(FRIENDLY_DECK))
+        # 使用 RANDOM 选择器从牌库中选择一个随从
+        yield Summon(self.controller, RANDOM(FRIENDLY_DECK + MINION))
         
         # 为对手召唤一只5/5潜行老虎（Token: TIME_870t）
         yield Summon(self.controller.opponent, "TIME_870t")

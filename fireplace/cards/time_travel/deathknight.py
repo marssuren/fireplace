@@ -45,8 +45,8 @@ class TIME_611:
         yield Hit(TARGET, 3)
         
         # 冻结两个随机敌方随从
-        yield Freeze(RandomMinion(ENEMY_MINIONS))
-        yield Freeze(RandomMinion(ENEMY_MINIONS))
+        yield Freeze(RANDOM(ENEMY_MINIONS))
+        yield Freeze(RANDOM(ENEMY_MINIONS))
 
 
 class TIME_612:
