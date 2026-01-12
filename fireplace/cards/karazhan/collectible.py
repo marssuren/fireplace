@@ -186,7 +186,7 @@ class KAR_089:
     """Malchezaar's Imp / 玛克扎尔的小鬼
     每当你弃掉一张牌时，抽一张牌。"""
 
-    events = Discard(FRIENDLY_HAND).on(Draw(CONTROLLER))
+    events = Discard(CONTROLLER).on(Draw(CONTROLLER))
 
 
 class KAR_092:
@@ -395,7 +395,12 @@ class KAR_076:
     造成$6点伤害。随机召唤一个法力值消耗为（6）的随从。"""
 
     requirements = {PlayReq.REQ_TARGET_TO_PLAY: 0}
-    play = Hit(TARGET, 6), Summon(CONTROLLER, RandomMinion(cost=6))
+    
+    def play(self):
+        yield Hit(TARGET, 6)
+        # 检查游戏是否已结束（目标可能是英雄并被击杀）
+        if not self.game.ended:
+            yield Summon(CONTROLLER, RandomMinion(cost=6))
 
 
 class KAR_077:

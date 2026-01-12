@@ -133,7 +133,10 @@ class SCH_302:
 
     def play(self):
         yield SetAttr(TARGET, GameTag.DIVINE_SHIELD, True)
-        yield Summon(CONTROLLER, ExactCopy(TARGET, atk=1, health=1))
+        # 召唤1/1复制：先召唤，然后设置属性为1/1
+        yield Summon(CONTROLLER, ExactCopy(TARGET)).then(
+            SetTags(Summon.CARD, {GameTag.ATK: 1, GameTag.HEALTH: 1})
+        )
 
 
 class SCH_138:
