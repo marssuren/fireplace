@@ -165,7 +165,6 @@ class DMF_058:
 
 class DMF_058e:
     """日蚀 - 下一个法术施放两次"""
-    from fireplace.enums import SPELL_DOUBLE_CAST
     
     def apply(self, target):
         # 设置SPELL_DOUBLE_CAST标签，表示下一个法术施放两次

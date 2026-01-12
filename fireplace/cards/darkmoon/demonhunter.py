@@ -1,5 +1,5 @@
 from ..utils import *
-from fireplace.enums import LIFESTEAL_DAMAGES_ENEMY
+from ...enums import LIFESTEAL_DAMAGES_ENEMY
 
 
 ##

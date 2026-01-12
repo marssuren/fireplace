@@ -240,31 +240,12 @@ class DMF_108:
             # 目标费用 = 原费用 + 3
             target_cost = original_cost + 3
             
-            # 查找费用为 target_cost 的随机法术
-            from ..dsl.random_picker import RandomSpell
-            new_spell_picker = RandomSpell(cost=target_cost)
-            new_spell_cards = new_spell_picker.find_cards(self.controller)
+            # 变形为随机的目标费用法术
+            yield Morph(spell, RandomSpell(cost=target_cost))
             
-            if not new_spell_cards:
-                # 如果没有找到对应费用的法术，跳过
-                continue
-            
-            # 随机选择一张
-            import random
-            new_spell_id = random.choice(new_spell_cards)
-            
-            # 变形
-            yield Morph(spell, new_spell_id)
-            
-            # 获取变形后的卡牌（Morph 返回新卡牌）
-            # 注意：Morph 会返回新卡牌，我们需要给它添加减费buff
-            # 由于 Morph 的返回值，我们需要在变形后立即添加buff
-            # 使用一个特殊的buff来永久减少费用
-            morphed_card = spell.morphed  # 获取变形后的卡牌
-            if morphed_card:
-                # 添加永久减费buff，使费用恢复到原值
-                # 减费量 = 目标费用 - 原费用 = 3
-                yield Buff(morphed_card, "DMF_108e", cost=-3)
+            # 变形后给新卡牌添加减费buff
+            # 使费用恢复到原值（减少3点）
+            yield Buff(spell, "DMF_108e")
 
 
 class DMF_108e:
