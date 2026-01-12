@@ -2821,7 +2821,7 @@ class Mill(TargetedAction):
     CARD = CardArg()
 
     def get_target_args(self, source, target):
-        if target.deck:
+        if hasattr(target, 'deck') and target.deck:
             card = target.deck[-1]
         else:
             card = None
@@ -2855,9 +2855,9 @@ class Morph(TargetedAction):
         elif len(card) == 1:
             card = card[0]
         else:
-            # 空列表 - 没有可用的卡牌,返回None
+            # 空列表 - 没有可用的卡牌,返回空列表
             log_info("morph_no_card_available", source=source, target=target, picker=self._args[1])
-            return None
+            return []
         
         card.controller = target.controller
         return [card]

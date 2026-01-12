@@ -241,13 +241,14 @@ class VAC_417:
     requirements = {PlayReq.REQ_TARGET_TO_PLAY: 0, PlayReq.REQ_ENEMY_TARGET: 0, PlayReq.REQ_MINION_TARGET: 0}
     
     def play(self):
-        if TARGET:
+        target = self.target
+        if target:
             # 召唤目标随从的复制
-            yield Summon(CONTROLLER, TARGET.id)
+            yield Summon(CONTROLLER, target.id)
             
-            # 如果生命值<=20，消灭本体
+            # 如果生命值<=20,消灭本体
             if self.controller.hero.health <= 20:
-                yield Destroy(TARGET)
+                yield Destroy(target)
 
 
 # ========== LEGENDARY ==========

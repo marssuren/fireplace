@@ -242,10 +242,11 @@ class TSC_962:
     
     def play(self):
         buff = yield Buff(SELF, "TSC_962e")
-        targets = list(self.controller.opponent.field)
-        for minion in targets:
-             yield Setaside(minion)
-             buff.devoured.append(minion)
+        if buff:
+            targets = list(self.controller.opponent.field)
+            for minion in targets:
+                 yield Setaside(minion)
+                 buff.devoured.append(minion)
 
 
 class TSC_962e:

@@ -86,9 +86,10 @@ class SCH_181:
 
     def play(self):
         # 从手牌和牌库中随机召唤一个恶魔
-        demons = (self.controller.hand + self.controller.deck).filter(race=Race.DEMON)
+        all_cards = list(self.controller.hand) + list(self.controller.deck)
+        demons = [c for c in all_cards if getattr(c, 'race', None) == Race.DEMON]
         if demons:
-            demon = random.choice(demons)
+            demon = self.game.random.choice(demons)
             yield Summon(CONTROLLER, demon)
 
 
