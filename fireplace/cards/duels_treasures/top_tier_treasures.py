@@ -58,13 +58,13 @@ class PVPDR_EmbersOfRagnaros:
         """对两个随机敌方随从造成8点伤害"""
         targets = self.controller.opponent.field
         if targets:
-            target1 = random.choice(targets)
+            target1 = self.game.random.choice(targets)
             yield Hit(target1, 8)
 
         # 第二次选择（可能是同一个目标）
         targets = self.controller.opponent.field
         if targets:
-            target2 = random.choice(targets)
+            target2 = self.game.random.choice(targets)
             yield Hit(target2, 8)
 
 

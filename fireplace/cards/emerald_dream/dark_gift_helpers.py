@@ -14,7 +14,7 @@ Dark Gift 机制说明：
 """
 
 import random
-from hearthstone.enums import GameTag
+from ....enums import GameTag
 from ...enums import DARK_GIFT, DARK_GIFT_BONUS
 
 

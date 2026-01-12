@@ -7,7 +7,7 @@ Imbue 机制说明：
 - 适用职业：Druid, Hunter, Mage, Paladin, Priest, Shaman
 """
 
-from hearthstone.enums import Zone
+from ....enums import Zone
 from ...enums import IMBUE, IMBUE_LEVEL, IMBUED_HERO_POWER
 
 

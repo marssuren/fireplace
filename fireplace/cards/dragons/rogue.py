@@ -108,7 +108,7 @@ class DRG_247:
     对一个未受伤的角色造成$3点伤害。祈求迦拉克隆。"""
 
     # Deal $3 damage to an undamaged character. <b>Invoke</b> Galakrond.
-    requirements = requirements = {
+    requirements = {
         PlayReq.REQ_TARGET_TO_PLAY: 0,
         PlayReq.REQ_UNDAMAGED_TARGET: 0,
     }

@@ -116,7 +116,7 @@ class EDR_882:
 
     def play(self):
         # 生成3个5费以上的恶魔并应用黑暗之赐
-        from hearthstone.enums import Race
+        from ....enums import Race
         
         # 创建3个带Dark Gift的恶魔选项
         demon_filter = lambda c: (
@@ -349,7 +349,7 @@ class EDR_493:
             original_max_health = minion.max_health
             
             # 随机选择一个恶魔ID
-            from hearthstone.enums import Race
+            from ....enums import Race
             demon_filter = lambda c: (
                 c.type == CardType.MINION and 
                 Race.DEMON in getattr(c, 'races', [c.race]) if hasattr(c, 'race') else False

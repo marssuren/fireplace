@@ -85,7 +85,7 @@ class PVPDR_Bubba:
         """消灭一个随机敌方随从"""
         targets = self.controller.opponent.field
         if targets:
-            target = random.choice(targets)
+            target = self.game.random.choice(targets)
             yield Destroy(target)
 
 
