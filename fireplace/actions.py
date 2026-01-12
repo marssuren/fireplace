@@ -2313,6 +2313,13 @@ class Discover(TargetedAction):
             return [picker]
 
     def do(self, source, target, cards):
+        # 如果没有可选卡牌,直接返回空列表
+        # 这种情况可能发生在选择器没有匹配到任何卡牌时
+        # 例如: Discover(FRIENDLY + KILLED + MINION + DEATHRATTLE) 但没有友方亡语随从死亡过
+        if not cards:
+            log_info("discover_no_cards", source=source, target=target)
+            return []
+        
         log_info("discovers", source=source, cards=cards, target=target)
         self.cards = cards
         player = source.controller
