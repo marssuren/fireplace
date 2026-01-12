@@ -148,7 +148,7 @@ class GDB_143:
         GameTag.SPELLBURST: True,
     }
     
-    events = SpellBurst(CONTROLLER).on(
+    events = Spellburst(
         lambda self, source, spell: self.spellburst_effect()
     )
     
@@ -188,7 +188,7 @@ class GDB_143e:
     }
     
     # 法术迸发效果: 继续传递给另一个随从
-    events = SpellBurst(CONTROLLER).on(
+    events = Spellburst(
         lambda self, source, spell: self.spellburst_effect()
     )
     

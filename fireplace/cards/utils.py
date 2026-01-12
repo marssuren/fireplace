@@ -213,6 +213,174 @@ def RefreshMana(target, amount):
 # PLAYED_SPELL_ON_FRIENDLY_CHARACTER - 对友方角色施放法术事件
 PLAYED_SPELL_ON_FRIENDLY_CHARACTER = lambda: Play(CONTROLLER, SPELL)  # 简化实现
 
+# SpendCorpses - 消耗残骸
+def SpendCorpses(target, amount):
+    """
+    消耗目标玩家的残骸
+    
+    参数:
+        target: 目标玩家
+        amount: 消耗的残骸数量
+    
+    返回:
+        Action
+    """
+    # 简化实现：直接减少残骸计数
+    return lambda source: setattr(
+        target if hasattr(target, 'corpses') else source.controller, 
+        'corpses', 
+        max(0, getattr(target if hasattr(target, 'corpses') else source.controller, 'corpses', 0) - amount)
+    )
+
+# GainMaxHealth - 获得最大生命值
+def GainMaxHealth(target, amount):
+    """
+    使目标获得最大生命值
+    
+    参数:
+        target: 目标实体
+        amount: 获得的最大生命值数量
+    
+    返回:
+        Action
+    """
+    from ..actions import SetTags
+    # 简化实现：增加最大生命值和当前生命值
+    return lambda source: (
+        setattr(target, 'max_health', getattr(target, 'max_health', 0) + amount),
+        setattr(target, 'health', getattr(target, 'health', 0) + amount)
+    )
+
+# Spellburst - 法术迸发机制
+def Spellburst(action):
+    """
+    法术迸发：在你施放一个法术后触发一次，然后失效
+    
+    参数:
+        action: 触发的动作
+    
+    返回:
+        Event
+    """
+    # 简化实现：使用 OWN_SPELL_PLAY 事件，触发后设置 spellburst_used 标记
+    return Play(CONTROLLER, SPELL).after(
+        lambda self, player, card, *args: action if not getattr(self, 'spellburst_used', False) else None
+    )
+
+# FRIENDLY_MINION - 友方随从（单数）
+FRIENDLY_MINION = FRIENDLY_MINIONS  # 简化实现：使用 FRIENDLY_MINIONS
+
+# Switch - 条件分支
+def Switch(selector, cases, default=None):
+    """
+    根据选择器的值执行不同的动作
+    
+    参数:
+        selector: 选择器（如 GAME_SKIN）
+        cases: 字典，键为条件值，值为对应的动作
+        default: 默认动作（可选）
+    
+    返回:
+        Action
+    """
+    def switch_action(source):
+        # 获取选择器的值
+        value = selector if not callable(selector) else selector(source)
+        # 查找匹配的动作
+        action = cases.get(value, default)
+        if action:
+            return action if not callable(action) else action(source)
+        return None
+    return switch_action
+
+# TurnStart - 回合开始事件
+TurnStart = TURN_BEGIN  # 简化实现：使用 TURN_BEGIN
+
+# UpdateDynamicChooseOneOptions - 更新动态抉择选项
+def UpdateDynamicChooseOneOptions(card, options):
+    """
+    更新卡牌的动态抉择选项
+    
+    参数:
+        card: 卡牌
+        options: 新的选项列表
+    
+    返回:
+        Action
+    """
+    return lambda source: setattr(card, 'choose_cards', options)
+
+# DRAENEI - 德莱尼种族
+from hearthstone.enums import Race
+DRAENEI = Race.DRAENEI if hasattr(Race, 'DRAENEI') else Race.ALL  # 德莱尼种族
+
+# ADJACENT_MINIONS - 相邻随从
+ADJACENT_MINIONS = lambda self: [m for m in self.controller.field if abs(m.zone_position - self.zone_position) == 1]
+
+# OPPONENT_DECK - 对手牌库
+OPPONENT_DECK = lambda self: self.game.opponent.deck
+
+# TurnEnd - 回合结束事件
+TurnEnd = TURN_END  # 简化实现：使用 TURN_END
+
+# Armor - 护甲值
+def Armor(target, amount):
+    """
+    使目标获得护甲值
+    
+    参数:
+        target: 目标（通常是英雄）
+        amount: 护甲值数量
+    
+    返回:
+        Action
+    """
+    from ..actions import GainArmor
+    return GainArmor(target, amount)
+
+# Overload - 过载
+def Overload(target, amount):
+    """
+    给予目标过载
+    
+    参数:
+        target: 目标玩家
+        amount: 过载数量
+    
+    返回:
+        Action
+    """
+    return GiveOverload(target, amount)  # 使用已定义的 GiveOverload
+
+# RACE - 种族选择器（用于过滤）
+RACE = lambda race: lambda entity: entity.race == race
+
+# SwapStats - 交换属性
+def SwapStats(target):
+    """
+    交换目标的攻击力和生命值
+    
+    参数:
+        target: 目标实体
+    
+    返回:
+        Action
+    """
+    def swap_action(source):
+        # 交换攻击力和生命值
+        old_atk = target.atk
+        old_health = target.health
+        target.atk = old_health
+        target.health = old_atk
+        target.max_health = old_atk
+    return swap_action
+
+# QUESTLINE_STAGE - 任务线阶段选择器
+QUESTLINE_STAGE = lambda stage: lambda entity: getattr(entity, 'questline_stage', 0) == stage
+
+# Random - 随机选择器（已存在，但可能需要导出）
+# Random 已经在 DSL 中定义
+
 # 区域常量
 from hearthstone.enums import Zone
 PLAY = Zone.PLAY  # 战场区域

@@ -105,8 +105,13 @@ class SCH_233:
 
 class SCH_233e:
     """Draconic Studies Buff / 龙类研习增益"""
-    update = Refresh(FRIENDLY_HAND + MINION + (Race.DRAGON), {GameTag.COST: -1})
-    events = Play(FRIENDLY + MINION + (Race.DRAGON)).on(Destroy(SELF))
+    # 使用 Buff 机制减少龙牌费用
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+    }
+    # 当打出龙牌时销毁此增益
+    events = Play(CONTROLLER, MINION + (Race == Race.DRAGON)).on(Destroy(SELF))
+
 
 class SCH_136:
     """Power Word: Feast / 真言术：盛

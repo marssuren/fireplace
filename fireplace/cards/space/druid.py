@@ -313,7 +313,8 @@ def UpdateDynamicChooseOneOptions(card_selector):
     """
     def action(source):
         # 获取所有可收集的Choose One卡牌
-        from ..cards import db
+        from ... import cards
+        db = cards.db
         
         # 收集所有Choose One选项
         all_choose_options = []
