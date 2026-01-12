@@ -243,7 +243,8 @@ class DEEP_020:
     # Type: MINION | Cost: 6 | Attack: 2 | Health: 4 | Rarity: LEGENDARY
     def play(self):
         # 检查起始套牌是否无重复
-        if Evaluator(FindDuplicates, FRIENDLY_DECK) == 0:
+        # -FindDuplicates返回True表示无重复
+        if -FindDuplicates(FRIENDLY_DECK):
             yield Buff(FRIENDLY_HERO, "DEEP_020e")
 
 
