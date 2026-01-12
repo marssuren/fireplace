@@ -11,28 +11,26 @@ class GIL_142:
 
     # Each turn this is in your hand, transform it into a card your opponent is holding.
     class Hand:
-        events = OWN_TURN_BEGIN.on(
-            Find(ENEMY_HAND)
-            & (
-                lambda self: [
-                    Morph(SELF, ExactCopy(RANDOM(ENEMY_HAND))),
-                    Buff(SELF, "GIL_142e")
-                ]
-            )
-        )
+        def _morph_and_buff(self):
+            if not ENEMY_HAND.eval(self.game, self):
+                return
+            morphed = yield Morph(SELF, ExactCopy(RANDOM(ENEMY_HAND)))
+            if morphed:
+                yield Buff(morphed, "GIL_142e")
+        
+        events = OWN_TURN_BEGIN.on(_morph_and_buff)
 
 
 class GIL_142e:
     class Hand:
-        events = OWN_TURN_BEGIN.on(
-            Find(ENEMY_HAND)
-            & (
-                lambda self: [
-                    Morph(OWNER, ExactCopy(RANDOM(ENEMY_HAND))),
-                    Buff(OWNER, "GIL_142e")
-                ]
-            )
-        )
+        def _morph_and_buff(self):
+            if not ENEMY_HAND.eval(self.game, self):
+                return
+            morphed = yield Morph(OWNER, ExactCopy(RANDOM(ENEMY_HAND)))
+            if morphed:
+                yield Buff(morphed, "GIL_142e")
+        
+        events = OWN_TURN_BEGIN.on(_morph_and_buff)
 
     events = REMOVED_IN_PLAY
 

@@ -129,13 +129,13 @@ class ICC_827t:
     }
 
     class Hand:
+        def _morph_and_buff(self, player, card, *args):
+            morphed = yield Morph(SELF, ExactCopy(card))
+            if morphed:
+                yield Buff(morphed, "ICC_827e")
+        
         events = (
-            Play(CONTROLLER).on(
-                lambda self, player, card, *args: [
-                    Morph(SELF, ExactCopy(card)),
-                    Buff(SELF, "ICC_827e")
-                ]
-            ),
+            Play(CONTROLLER).on(_morph_and_buff),
             OWN_TURN_END.on(Destroy(SELF)),
         )
         update = Find(FRIENDLY_HERO_POWER - EXHAUSTED + ID("ICC_827p")) | Destroy(SELF)
@@ -143,13 +143,13 @@ class ICC_827t:
 
 class ICC_827e:
     class Hand:
+        def _morph_and_buff(self, player, card, *args):
+            morphed = yield Morph(OWNER, ExactCopy(card))
+            if morphed:
+                yield Buff(morphed, "ICC_827e")
+        
         events = (
-            Play(CONTROLLER).on(
-                lambda self, player, card, *args: [
-                    Morph(OWNER, ExactCopy(card)),
-                    Buff(OWNER, "ICC_827e")
-                ]
-            ),
+            Play(CONTROLLER).on(_morph_and_buff),
             OWN_TURN_END.on(Destroy(SELF)),
         )
         update = Find(FRIENDLY_HERO_POWER - EXHAUSTED + ID("ICC_827p")) | Destroy(SELF)

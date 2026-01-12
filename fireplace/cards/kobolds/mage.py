@@ -108,22 +108,22 @@ class LOOT_104:
     }
 
     class Hand:
-        events = OWN_TURN_BEGIN.on(
-            lambda self: [
-                Morph(SELF, RandomSpell(card_class=CardClass.MAGE)),
-                Buff(SELF, "LOOT_104e")
-            ]
-        )
+        def _morph_and_buff(self):
+            morphed = yield Morph(SELF, RandomSpell(card_class=CardClass.MAGE))
+            if morphed:
+                yield Buff(morphed, "LOOT_104e")
+        
+        events = OWN_TURN_BEGIN.on(_morph_and_buff)
 
 
 class LOOT_104e:
     class Hand:
-        events = OWN_TURN_BEGIN.on(
-            lambda self: [
-                Morph(OWNER, RandomSpell(card_class=CardClass.MAGE)),
-                Buff(OWNER, "LOOT_104e")
-            ]
-        )
+        def _morph_and_buff(self):
+            morphed = yield Morph(OWNER, RandomSpell(card_class=CardClass.MAGE))
+            if morphed:
+                yield Buff(morphed, "LOOT_104e")
+        
+        events = OWN_TURN_BEGIN.on(_morph_and_buff)
 
     events = REMOVED_IN_PLAY
 

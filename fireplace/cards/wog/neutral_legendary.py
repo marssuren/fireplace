@@ -45,22 +45,22 @@ class OG_123:
     如果这张牌在你的手牌中，每个回合都会随机变成一张随从牌。"""
 
     class Hand:
-        events = OWN_TURN_BEGIN.on(
-            lambda self: [
-                Morph(SELF, RandomMinion()),
-                Buff(SELF, "OG_123e")
-            ]
-        )
+        def _morph_and_buff(self):
+            morphed = yield Morph(SELF, RandomMinion())
+            if morphed:
+                yield Buff(morphed, "OG_123e")
+        
+        events = OWN_TURN_BEGIN.on(_morph_and_buff)
 
 
 class OG_123e:
     class Hand:
-        events = OWN_TURN_BEGIN.on(
-            lambda self: [
-                Morph(OWNER, RandomMinion()),
-                Buff(OWNER, "OG_123e")
-            ]
-        )
+        def _morph_and_buff(self):
+            morphed = yield Morph(OWNER, RandomMinion())
+            if morphed:
+                yield Buff(morphed, "OG_123e")
+        
+        events = OWN_TURN_BEGIN.on(_morph_and_buff)
 
     events = REMOVED_IN_PLAY
 

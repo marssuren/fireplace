@@ -95,21 +95,21 @@ class UNG_929:
     如果这张牌在你的手牌中，每个回合都会变成一张新的武器牌。"""
 
     class Hand:
-        events = OWN_TURN_BEGIN.on(
-            lambda self: [
-                Morph(SELF, RandomWeapon()),
-                Buff(SELF, "UNG_929e")
-            ]
-        )
+        def _morph_and_buff(self):
+            morphed = yield Morph(SELF, RandomWeapon())
+            if morphed:
+                yield Buff(morphed, "UNG_929e")
+        
+        events = OWN_TURN_BEGIN.on(_morph_and_buff)
 
 
 class UNG_929e:
     class Hand:
-        events = OWN_TURN_BEGIN.on(
-            lambda self: [
-                Morph(OWNER, RandomWeapon()),
-                Buff(OWNER, "UNG_929e")
-            ]
-        )
+        def _morph_and_buff(self):
+            morphed = yield Morph(OWNER, RandomWeapon())
+            if morphed:
+                yield Buff(morphed, "UNG_929e")
+        
+        events = OWN_TURN_BEGIN.on(_morph_and_buff)
 
     events = REMOVED_IN_PLAY
