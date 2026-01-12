@@ -295,4 +295,4 @@ class ETC_362:
         GameTag.OVERLOAD: 2,
     }
     def play(self):
-        yield Transform(TARGET, "EX1_298")
+        yield Morph(TARGET, "EX1_298")
