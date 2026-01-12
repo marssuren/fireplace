@@ -173,12 +173,9 @@ class BAR_919t:
     tags = {
         GameTag.DORMANT: True,
     }
-    def events(self):
-        def summon_imps(self):
-            count = 7 - len(self.controller.field)
-            for _ in range(count):
-                yield Summon(CONTROLLER, "BAR_919t2")
-        return OWN_TURN_BEGIN.on(summon_imps)
+    events = OWN_TURN_BEGIN.on(
+        lambda self, source: [Summon(CONTROLLER, "BAR_919t2") for _ in range(7 - len(self.controller.field))]
+    )
 
 
 class WC_021:
