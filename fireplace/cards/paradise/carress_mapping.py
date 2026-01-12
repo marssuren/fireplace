@@ -37,6 +37,8 @@ VAC_449t20 - Holy + Fel
 VAC_449t21 - Nature + Fel
 """
 
+from hearthstone.enums import SpellSchool
+
 # 派系到Token ID的映射
 SCHOOL_TO_TOKEN_MAP = {
     # Arcane组合

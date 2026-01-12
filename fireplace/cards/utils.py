@@ -171,6 +171,48 @@ def GiveOverload(target, amount):
     return lambda source: setattr(target if hasattr(target, 'overload') else source.controller, 'overload', 
                                    getattr(target if hasattr(target, 'overload') else source.controller, 'overload', 0) + amount)
 
+# SetDormant - 设置休眠状态
+def SetDormant(target, turns=1):
+    """
+    设置目标进入休眠状态
+    
+    参数:
+        target: 目标实体
+        turns: 休眠回合数
+    
+    返回:
+        Action
+    """
+    from ..actions import SetTags
+    # 设置休眠标签和回合数
+    return lambda source: (
+        setattr(target, 'dormant', True),
+        setattr(target, 'dormant_turns', turns)
+    )
+
+# RefreshMana - 刷新法力水晶
+def RefreshMana(target, amount):
+    """
+    刷新目标玩家的法力水晶
+    
+    参数:
+        target: 目标玩家
+        amount: 刷新的法力水晶数量
+    
+    返回:
+        Action
+    """
+    from ..actions import GainMana
+    # 简化实现：给予临时法力水晶
+    return lambda source: setattr(
+        target if hasattr(target, 'temp_mana') else source.controller, 
+        'temp_mana', 
+        getattr(target if hasattr(target, 'temp_mana') else source.controller, 'temp_mana', 0) + amount
+    )
+
+# PLAYED_SPELL_ON_FRIENDLY_CHARACTER - 对友方角色施放法术事件
+PLAYED_SPELL_ON_FRIENDLY_CHARACTER = lambda: Play(CONTROLLER, SPELL)  # 简化实现
+
 # 区域常量
 from hearthstone.enums import Zone
 PLAY = Zone.PLAY  # 战场区域
