@@ -136,7 +136,7 @@ class ETC_506t:
     }
     
     def play(self):
-        yield Discover(RandomMinion(cost=1)).then(Summon(CONTROLLER, Discover.CARD), Buff(Summon.CARD, "ETC_506te"))
+        yield Discover(CONTROLLER, RandomMinion(cost=1)).then(Summon(CONTROLLER, Discover.CARD), Buff(Summon.CARD, "ETC_506te"))
 
     class Hand:
         events = OWN_TURN_BEGIN.on(Morph(SELF, "ETC_506"))

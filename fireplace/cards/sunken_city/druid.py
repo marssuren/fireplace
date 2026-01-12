@@ -374,4 +374,4 @@ class TSC_652:
         spells = [c for c in self.controller.hand if c.type == CardType.SPELL]
         count = len(spells)
         if count > 0:
-            yield GainMana(CONTROLLER, count)
+            yield ManaThisTurn(CONTROLLER, count)
