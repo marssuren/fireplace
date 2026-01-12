@@ -22,7 +22,7 @@ class Manager(object):
             print(f"WARNING: Attempting to set unknown tag: {tag} (type: {type(tag)}) = {value}", file=sys.stderr)
             print(f"  Object: {self.obj.__class__.__name__} (id: {getattr(self.obj, 'id', 'N/A')})", file=sys.stderr)
             print("  Stack trace:", file=sys.stderr)
-            traceback.print_stack(limit=10, file=sys.stderr)
+            traceback.print_stack(limit=20, file=sys.stderr)  # 增加到20层
             # 不抛出异常,继续执行,但已记录问题
             return
         

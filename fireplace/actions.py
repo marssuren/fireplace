@@ -1515,8 +1515,30 @@ class Buff(TargetedAction):
             buff.apply(target)
         else:
             # 如果 buff 不是 Enchantment,可能是错误的卡牌类型
-            # 记录警告但继续执行
+            # 记录详细警告信息以便追踪问题
             import logging
+            import traceback
+            import sys
+            warning_msg = (
+                f"\n{'='*80}\n"
+                f"WARNING: Buff does not have apply method\n"
+                f"{'='*80}\n"
+                f"Buff: {buff}\n"
+                f"Buff type: {type(buff)}\n"
+                f"Buff repr: {repr(buff)}\n"
+                f"Source: {source}\n"
+                f"Source type: {type(source).__name__}\n"
+                f"Source ID: {getattr(source, 'id', 'N/A')}\n"
+                f"Target: {target}\n"
+                f"Target type: {type(target).__name__}\n"
+                f"Target ID: {getattr(target, 'id', 'N/A')}\n"
+                f"self._args: {self._args}\n"
+                f"self._kwargs: {self._kwargs}\n"
+                f"Stacktrace:\n"
+            )
+            print(warning_msg, file=sys.stderr)
+            traceback.print_stack(file=sys.stderr)
+            print(f"{'='*80}\n", file=sys.stderr)
             logging.warning(f"Buff {buff} does not have apply method, type: {type(buff)}")
         
         source.game.manager.targeted_action(self, source, target, buff)

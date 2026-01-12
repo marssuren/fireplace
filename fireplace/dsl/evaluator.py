@@ -178,7 +178,29 @@ class Find(Evaluator):
         if isinstance(self.selector, Evaluator):
             return self.selector.check(source)
         # 否则假设它是Selector,调用eval方法
-        return bool(len(self.selector.eval(source.game, source)))
+        try:
+            return bool(len(self.selector.eval(source.game, source)))
+        except AttributeError as e:
+            # selector 不是 Selector 对象，可能是 function 或其他类型
+            import sys
+            import traceback
+            error_msg = (
+                f"\n{'='*80}\n"
+                f"ATTRIBUTEERROR in Find.check (selector type error)\n"
+                f"{'='*80}\n"
+                f"Selector: {self.selector}\n"
+                f"Selector type: {type(self.selector)}\n"
+                f"Selector repr: {repr(self.selector)}\n"
+                f"Source: {source}\n"
+                f"Source type: {type(source).__name__}\n"
+                f"Source ID: {getattr(source, 'id', 'N/A')}\n"
+                f"Exception: {e}\n"
+                f"Stacktrace:\n"
+            )
+            print(error_msg, file=sys.stderr)
+            traceback.print_stack(file=sys.stderr)
+            print(f"{'='*80}\n", file=sys.stderr)
+            raise
 
 
 class FindAll(Evaluator):
