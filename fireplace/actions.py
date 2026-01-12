@@ -4649,10 +4649,9 @@ class RotateMinions(GameAction):
             if friendly_minions:
                 # 发动者的随从向左移动（最左边的移到对手场上最右边）
                 leftmost = friendly_minions[0]
-                # 将最左边的随从移到对手场上
-                leftmost.controller = source.controller.opponent
-                # 移除并重新添加以调整位置
+                # 先移除,再改变controller,最后重新添加
                 leftmost.zone = Zone.SETASIDE
+                leftmost.controller = source.controller.opponent
                 leftmost.zone = Zone.PLAY
                 # 将其他随从向左移动
                 for i in range(1, len(friendly_minions)):
@@ -4663,10 +4662,9 @@ class RotateMinions(GameAction):
             if enemy_minions:
                 # 对手的随从向右移动（最右边的移到发动者场上最左边）
                 rightmost = enemy_minions[-1]
-                # 将最右边的随从移到发动者场上
-                rightmost.controller = source.controller
-                # 移除并重新添加以调整位置
+                # 先移除,再改变controller,最后重新添加
                 rightmost.zone = Zone.SETASIDE
+                rightmost.controller = source.controller
                 rightmost.zone = Zone.PLAY
                 # 将其他随从向右移动
                 for i in range(len(enemy_minions) - 1):
@@ -4678,10 +4676,9 @@ class RotateMinions(GameAction):
             if friendly_minions:
                 # 发动者的随从向右移动（最右边的移到对手场上最左边）
                 rightmost = friendly_minions[-1]
-                # 将最右边的随从移到对手场上
-                rightmost.controller = source.controller.opponent
-                # 移除并重新添加以调整位置
+                # 先移除,再改变controller,最后重新添加
                 rightmost.zone = Zone.SETASIDE
+                rightmost.controller = source.controller.opponent
                 rightmost.zone = Zone.PLAY
                 # 将其他随从向右移动
                 for i in range(len(friendly_minions) - 1):
@@ -4692,10 +4689,9 @@ class RotateMinions(GameAction):
             if enemy_minions:
                 # 对手的随从向左移动（最左边的移到发动者场上最右边）
                 leftmost = enemy_minions[0]
-                # 将最左边的随从移到发动者场上
-                leftmost.controller = source.controller
-                # 移除并重新添加以调整位置
+                # 先移除,再改变controller,最后重新添加
                 leftmost.zone = Zone.SETASIDE
+                leftmost.controller = source.controller
                 leftmost.zone = Zone.PLAY
                 # 将其他随从向左移动
                 for i in range(1, len(enemy_minions)):
