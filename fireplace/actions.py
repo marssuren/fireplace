@@ -1333,7 +1333,6 @@ class GainCorpses(GameAction):
 
     def do(self, source, player, amount):
         # 评估选择器获取实际的玩家对象
-        from ..dsl.selector import Selector
         if isinstance(player, Selector):
             players = player.eval(source.game, source)
             if not players:
