@@ -181,9 +181,9 @@ class WORK_030:
             yield Hit(TARGET, 3)
             
             # 冻结相邻随从
-            if TARGET.zone == Zone.PLAY:
-                for adj in TARGET.adjacent_minions:
-                    yield Freeze(adj)
+            # TARGET 在 play() 中已经是实际对象，可以直接访问 adjacent_minions
+            for adj in TARGET.adjacent_minions:
+                yield Freeze(adj)
     
     # 翻面机制：在手牌中每回合翻转为另一张宣传单
     class Hand:

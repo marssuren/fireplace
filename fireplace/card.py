@@ -164,7 +164,15 @@ class BaseCard(BaseEntity):
 
     @property
     def name_enUS(self):
-        return self.data.strings[GameTag.CARDNAME]["enUS"]
+        # 某些动态创建的卡牌可能没有完整的 strings 数据
+        if GameTag.CARDNAME not in self.data.strings:
+            return self.id  # 返回卡牌ID作为备用
+        
+        cardname_dict = self.data.strings[GameTag.CARDNAME]
+        if isinstance(cardname_dict, dict):
+            return cardname_dict.get("enUS", self.id)
+        # 如果 cardname_dict 不是字典（某些特殊情况），直接返回它
+        return str(cardname_dict) if cardname_dict else self.id
 
     @property
     def description(self):

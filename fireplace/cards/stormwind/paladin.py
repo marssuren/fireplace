@@ -82,17 +82,20 @@ class DED_502:
         PlayReq.REQ_MINION_TARGET: 0,
     }
     
-    def play(self, target):
+    def play(self):
         """
         将目标随从设为1/1
         将损失的属性给予手牌中的随从
         """
+        if not TARGET:
+            return
+            
         # 计算损失的属性
-        atk_lost = max(0, target.atk - 1)
-        health_lost = max(0, target.health - 1)
+        atk_lost = max(0, TARGET.atk - 1)
+        health_lost = max(0, TARGET.health - 1)
         
         # 将目标设为1/1
-        yield Buff(target, "DED_502e_debuff")
+        yield Buff(TARGET, "DED_502e_debuff")
         
         # 如果有损失的属性,给予手牌中的随从
         if atk_lost > 0 or health_lost > 0:

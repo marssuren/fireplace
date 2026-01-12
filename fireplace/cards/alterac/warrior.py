@@ -35,7 +35,7 @@ class AV_119:
 class AV_119e:
     """奔赴前线效果"""
     update = Refresh(FRIENDLY_HAND + MINION, {
-        GameTag.COST: lambda self, i: max(1, self.cost - 2)
+        GameTag.COST: lambda self, i: max(1, i - 2)
     })
     events = OWN_TURN_END.on(Destroy(SELF))
 
