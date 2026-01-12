@@ -25,7 +25,7 @@ class WW_359te:
         AddProgress(OWNER, OWNER, 1),
         (Count(OWNER) >= 3) & (
             SetTags(OWNER, {GameTag.DORMANT: False}),
-            Destroy(SELF)
+            Destroy(SELF),
         )
     )
 
@@ -168,7 +168,7 @@ class WW_001t8:
     
     def play(self):
         # 给目标及其相邻随从+1/+2
-        yield Buff(TARGET + ADJACENT_TO(TARGET), "WW_001t8e")
+        yield Buff(TARGET + TARGET_ADJACENT, "WW_001t8e")
 
 
 class WW_001t8e:

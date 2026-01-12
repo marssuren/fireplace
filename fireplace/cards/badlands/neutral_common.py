@@ -167,7 +167,7 @@ class WW_428:
     def play(self):
         if self.controller.elemental_played_last_turn > 0:
             # 发现一张元素牌（从过去的卡池中）
-            yield GenericChoice(CONTROLLER, RandomCollectible(race=Race.ELEMENTAL, card_set=CardSet.WILD))
+            yield GenericChoice(CONTROLLER, RandomCollectible(race=Race.ELEMENTAL))
 
 
 class WW_433:
