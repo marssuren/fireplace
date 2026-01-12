@@ -378,6 +378,257 @@ def SwapStats(target):
 # QUESTLINE_STAGE - 任务线阶段选择器
 QUESTLINE_STAGE = lambda stage: lambda entity: getattr(entity, 'questline_stage', 0) == stage
 
+# OPPONENT_HAND - 对手手牌
+OPPONENT_HAND = lambda self: self.game.opponent.hand
+
+# DrawCard - 抽牌（别名）
+DrawCard = Draw  # 简化实现：使用 Draw
+
+# AFTER_PLAY - 打出卡牌后事件
+AFTER_PLAY = lambda player, card_type=None: Play(player, card_type).after if card_type else Play(player).after
+
+# RandomPick - 随机选择
+def RandomPick(*choices):
+    """
+    从多个选项中随机选择一个
+    
+    参数:
+        *choices: 选项列表
+    
+    返回:
+        随机选择的选项
+    """
+    def pick_action(source):
+        return source.game.random.choice(choices) if choices else None
+    return pick_action
+
+# ActivateDeathrattle - 激活亡语
+def ActivateDeathrattle(target):
+    """
+    激活目标的亡语效果
+    
+    参数:
+        target: 目标实体
+    
+    返回:
+        Action
+    """
+    from ..actions import Deathrattle
+    return Deathrattle(target)
+
+# _has_multiple_races - 检查是否有多个种族
+def _has_multiple_races(entity):
+    """
+    检查实体是否有多个种族
+    
+    参数:
+        entity: 实体
+    
+    返回:
+        bool
+    """
+    if hasattr(entity, 'races'):
+        return len(entity.races) > 1
+    return False
+
+# TEMPORARY - 临时标记（自定义 GameTag）
+# 用于标记临时卡牌（如回合结束时销毁的卡牌）
+TEMPORARY = 99999  # 使用一个不冲突的数字
+
+# CAST_WHEN_DRAWN - 抽到时施放（自定义 GameTag）
+# 用于标记抽到时自动施放的卡牌
+CAST_WHEN_DRAWN = 99998  # 使用一个不冲突的数字
+
+# EXTRA_BATTLECRIES - 额外战吼次数（自定义 GameTag）
+# 用于标记额外的战吼触发次数
+EXTRA_BATTLECRIES = 99997  # 使用一个不冲突的数字
+
+# DSL 条件判断和逻辑操作符
+
+# If - 条件判断
+def If(condition):
+    """
+    条件判断
+    
+    参数:
+        condition: 条件表达式
+    
+    返回:
+        条件判断结果
+    """
+    return condition
+
+# Condition - 条件（别名）
+Condition = If
+
+# Equal - 相等判断
+def Equal(a, b):
+    """
+    相等判断
+    
+    参数:
+        a: 第一个值
+        b: 第二个值
+    
+    返回:
+        bool
+    """
+    return lambda: a == b
+
+# Tag - 获取标签值
+def Tag(entity, tag):
+    """
+    获取实体的标签值
+    
+    参数:
+        entity: 实体
+        tag: GameTag
+    
+    返回:
+        标签值
+    """
+    return lambda: getattr(entity, tag.name.lower(), 0) if hasattr(tag, 'name') else entity.tags.get(tag, 0)
+
+# And - 逻辑与
+def And(*conditions):
+    """
+    逻辑与
+    
+    参数:
+        *conditions: 条件列表
+    
+    返回:
+        bool
+    """
+    return lambda: all(c() if callable(c) else c for c in conditions)
+
+# Not - 逻辑非
+def Not(condition):
+    """
+    逻辑非
+    
+    参数:
+        condition: 条件
+    
+    返回:
+        bool
+    """
+    return lambda: not (condition() if callable(condition) else condition)
+
+# Is - 判断是否相等（别名）
+Is = Equal
+
+# Foreach - 遍历
+def Foreach(selector, action):
+    """
+    遍历选择器中的所有实体并执行动作
+    
+    参数:
+        selector: 选择器
+        action: 动作
+    
+    返回:
+        Action list
+    """
+    def foreach_action(source):
+        entities = selector if isinstance(selector, list) else [selector]
+        return [action(entity) for entity in entities]
+    return foreach_action
+
+# CopyOf - 复制
+def CopyOf(entity):
+    """
+    创建实体的副本
+    
+    参数:
+        entity: 实体
+    
+    返回:
+        副本
+    """
+    from ..actions import Copy
+    return Copy(entity)
+
+# CastWhenDrawn - 抽到时施放
+def CastWhenDrawn(card):
+    """
+    标记卡牌为抽到时施放
+    
+    参数:
+        card: 卡牌
+    
+    返回:
+        Action
+    """
+    card.tags[CAST_WHEN_DRAWN] = True
+    return card
+
+# TITAN_ABILITY - 泰坦能力（自定义 GameTag）
+TITAN_ABILITY = 99996  # 使用一个不冲突的数字
+
+# MECHANICAL - 机械种族
+from hearthstone.enums import Race
+MECHANICAL = Race.MECHANICAL
+
+# ALL_HAND - 所有手牌
+ALL_HAND = lambda self: self.controller.hand + self.opponent.hand
+
+# Forge - 锻造
+def Forge(action):
+    """
+    锻造机制
+    
+    参数:
+        action: 锻造时执行的动作
+    
+    返回:
+        Action
+    """
+    def forge_action(source):
+        # 标记为已锻造
+        source.forged = True
+        return action(source) if callable(action) else action
+    return forge_action
+
+# GreaterEqual - 大于等于判断
+def GreaterEqual(a, b):
+    """
+    大于等于判断
+    
+    参数:
+        a: 第一个值
+        b: 第二个值
+    
+    返回:
+        bool
+    """
+    return lambda: a >= b
+
+# MagneticSummon - 磁力召唤
+def MagneticSummon(target, card_id):
+    """
+    磁力召唤（合并到目标机械随从）
+    
+    参数:
+        target: 目标机械随从
+        card_id: 卡牌ID
+    
+    返回:
+        Action
+    """
+    from ..actions import Summon, Buff
+    # 简化实现：召唤并合并
+    def magnetic_action(source):
+        # 如果目标是机械，则合并；否则召唤
+        if hasattr(target, 'race') and target.race == Race.MECHANICAL:
+            return Buff(target, card_id)
+        else:
+            return Summon(source.controller, card_id)
+    return magnetic_action
+
+# PROGRESS - 进度（自定义 GameTag）
+PROGRESS = 99995  # 使用一个不冲突的数字
+
 # Random - 随机选择器（已存在，但可能需要导出）
 # Random 已经在 DSL 中定义
 
