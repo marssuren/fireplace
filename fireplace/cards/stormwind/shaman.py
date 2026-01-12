@@ -351,6 +351,6 @@ class SW_115e:
         ),
         # 回合结束时重置
         OWN_TURN_END.on(
-            lambda self, source, player: setattr(self.controller, 'bolner_first_battlecry_this_turn', None)
+            lambda self, source, player, *args: setattr(self.controller, 'bolner_first_battlecry_this_turn', None)
         )
     ]
