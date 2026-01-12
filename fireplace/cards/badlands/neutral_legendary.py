@@ -107,8 +107,7 @@ class WW_379:
         
         if quickdraw_cards:
             # 随机选择一张快枪牌
-            import random
-            card_id = random.choice(quickdraw_cards)
+            card_id = self.game.random.choice(quickdraw_cards)
             
             # 给予玩家这张牌
             cards = yield Give(CONTROLLER, card_id)
@@ -133,8 +132,7 @@ class WW_379e:
         
         if quickdraw_cards:
             # 随机选择一张快枪牌
-            import random
-            card_id = random.choice(quickdraw_cards)
+            card_id = self.game.random.choice(quickdraw_cards)
             
             # 给予玩家这张牌
             new_cards = yield Give(CONTROLLER, card_id)

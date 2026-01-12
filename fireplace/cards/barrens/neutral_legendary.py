@@ -54,8 +54,7 @@ class BAR_080:
             owner = self.target.controller
             hand_minions = [c for c in owner.hand if c.type == CardType.MINION]
             if hand_minions:
-                import random
-                minion = random.choice(hand_minions)
+                minion = self.game.random.choice(hand_minions)
                 yield Summon(owner, minion)
 
 

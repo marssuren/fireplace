@@ -337,8 +337,7 @@ class WW_600:
         # 从对手手牌中随机选择一个随从
         minions_in_hand = [card for card in self.controller.opponent.hand if card.type == CardType.MINION]
         if minions_in_hand:
-            import random
-            target_minion = random.choice(minions_in_hand)
+            target_minion = self.game.random.choice(minions_in_hand)
             # 召唤一个4/4的复制
             copy = self.controller.card(target_minion.id, self.controller)
             copy.tags[GameTag.ATK] = 4

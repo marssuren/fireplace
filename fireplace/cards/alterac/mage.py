@@ -55,7 +55,7 @@ class AV_116:
             spells = [c for c in self.controller.deck
                      if c.type == CardType.SPELL and c.cost == cost]
             if spells:
-                spell = random.choice(spells)
+                spell = self.game.random.choice(spells)
                 yield Give(CONTROLLER, Copy(spell))
 
 
@@ -77,7 +77,7 @@ class AV_200:
                      if c.type == CardType.SPELL and
                      hasattr(c, 'spell_school') and c.spell_school == school]
             if spells:
-                spell = random.choice(spells)
+                spell = self.game.random.choice(spells)
                 yield CastSpell(Copy(spell))
 
 

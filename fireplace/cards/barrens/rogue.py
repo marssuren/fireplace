@@ -231,9 +231,7 @@ class WC_017:
         PlayReq.REQ_MINION_TARGET: 0,
     }
     def play(self):
-        import random
-        # 随机选择海盗或潜行随从
-        choice = random.choice([
+        choice = self.game.random.choice([
             RandomMinion(race=Race.PIRATE),
             RandomMinion(stealth=True)
         ])
