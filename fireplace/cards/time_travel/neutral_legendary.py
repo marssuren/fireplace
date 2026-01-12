@@ -42,7 +42,7 @@ class TIME_024e:
     events = OWN_TURN_BEGIN.on(
         lambda self, source: [
             # 将攻击力设置为999(游戏中的"无穷大")
-            SetTag(OWNER, {GameTag.ATK: 999}),
+            SetTags(OWNER, {GameTag.ATK: 999}),
             # 移除这个buff(只触发一次)
             Destroy(SELF)
         ]

@@ -115,7 +115,7 @@ class DINO_429:
     
     def play(self):
         # 将目标随从变为1/1
-        yield SetTag(TARGET, {GameTag.ATK: 1, GameTag.HEALTH: 1})
+        yield SetTags(TARGET, {GameTag.ATK: 1, GameTag.HEALTH: 1})
         
         # 添加亡语：对所有随从造成2点伤害
         yield Buff(TARGET, "DINO_429e")

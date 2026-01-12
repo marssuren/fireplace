@@ -46,7 +46,12 @@ class BT_028t:
 
     # <b>Spell Damage +1</b> <b>Battlecry:</b> Cast 5 random Mage spells
     # <i>(targets enemies if possible)</i>.
-    play = CastSpellTargetsEnemiesIfPossible(RandomSpell(card_class=CardClass.MAGE) * 5)
+    def play(self):
+        # 施放5个随机法师法术
+        for _ in range(5):
+            spell = self.controller.card(RandomSpell(card_class=CardClass.MAGE))
+            if spell:
+                yield CastSpellTargetsEnemiesIfPossible(CONTROLLER, spell)
 
 
 ##

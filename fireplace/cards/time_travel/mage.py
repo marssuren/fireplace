@@ -171,8 +171,8 @@ class TIME_859:
             m1 = minion_1[0] if isinstance(minion_1, list) else minion_1
             
             # 交换属性:将10费随从设置为1费随从的属性,反之亦然
-            yield SetTag(m10, {GameTag.ATK: atk_1, GameTag.HEALTH: health_1})
-            yield SetTag(m1, {GameTag.ATK: atk_10, GameTag.HEALTH: health_10})
+            yield SetTags(m10, {GameTag.ATK: atk_1, GameTag.HEALTH: health_1})
+            yield SetTags(m1, {GameTag.ATK: atk_10, GameTag.HEALTH: health_10})
 
 
 class TIME_860:

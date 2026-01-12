@@ -124,7 +124,7 @@ class TIME_043:
     def play(self):
         if self.target:
             # 将攻击力和生命值设置为8
-            yield SetTag(self.target, {GameTag.ATK: 8, GameTag.HEALTH: 8})
+            yield SetTags(self.target, {GameTag.ATK: 8, GameTag.HEALTH: 8})
             
             # 本回合无法攻击英雄
             yield Buff(self.target, "TIME_043e")
