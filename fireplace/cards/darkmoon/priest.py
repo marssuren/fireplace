@@ -195,7 +195,7 @@ class DMF_186:
         GameTag.SPELL_SCHOOL: SpellSchool.SHADOW,
     }
     play = (
-        Discover(CONTROLLER, cards=RandomCollectible(card_class=CardClass.PRIEST, card_type=CardType.SPELL)),
+        Discover(CONTROLLER, RandomCollectible(card_class=CardClass.PRIEST, card_type=CardType.SPELL)),
         Buff(CONTROLLER, "DMF_186e"),
     )
 

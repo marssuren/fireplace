@@ -82,7 +82,7 @@ class UNG_916:
 
 
 class UNG_916e:
-    events = Play(CONTROLLER, BEAST).after(Give(CONTROLLER, RandomBeast()))
+    events = Play(CONTROLLER, BEAST).after(lambda self, source, *args: Give(CONTROLLER, RandomBeast()))
 
 
 class UNG_917:

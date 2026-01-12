@@ -92,30 +92,26 @@ class SW_024:
     }
     
     # 回合结束时自动攻击
-    events = OWN_TURN_END.on(
-        lambda self: self._auto_attack()
-    )
-    
-    def _auto_attack(self):
-        """自动攻击随机敌方随从"""
+    def _auto_attack_action(self):
+        """生成自动攻击动作"""
         # 获取所有敌方随从
-        enemy_minions = [m for m in self.controller.opponent.field]
+        enemy_minions = list(self.controller.opponent.field)
         
         if enemy_minions and self.zone == Zone.PLAY:
             # 随机选择一个目标
-            import random
-            target = random.choice(enemy_minions)
-            
-            # 记录目标的生命值
-            target_health_before = target.health
+            target = self.game.random.choice(enemy_minions)
             
             # 执行攻击
-            yield Attack(self, target)
+            yield Attack(SELF, target)
             
             # 检查目标是否死亡
             if target.zone == Zone.GRAVEYARD or target.health <= 0:
                 # 获得+3/+3
                 yield Buff(SELF, "SW_024e")
+    
+    events = OWN_TURN_END.on(
+        lambda self, source, *args: list(source._auto_attack_action()) if hasattr(source, '_auto_attack_action') else None
+    )
 
 
 class SW_024e:

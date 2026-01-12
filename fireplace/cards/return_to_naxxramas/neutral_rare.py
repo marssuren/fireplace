@@ -6,7 +6,7 @@ class NX2_032:
     机制: DEATHRATTLE
     [迷你扩展包]
     """
-    def deathrattle(self, card):
+    def deathrattle(self):
         # 获取当前法力值
         mana = self.controller.mana
         # 消耗所有法力值
