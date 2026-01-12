@@ -230,7 +230,7 @@ class WW_349:
 
 class WW_349e:
     """总是赢得绝命乱斗"""
-    tags = {GameTag.ALWAYS_WINS_BRAWLS: True}
+    tags = {ALWAYS_WINS_BRAWLS: True}
 
 
 # LEGENDARY
@@ -250,7 +250,7 @@ class DEEP_020:
 
 class DEEP_020e:
     """战吼触发两次"""
-    tags = {GameTag.EXTRA_BATTLECRIES: 1}
+    tags = {EXTRA_BATTLECRIES: 1}
 
 
 class WW_372:

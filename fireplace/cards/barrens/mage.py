@@ -90,7 +90,7 @@ class BAR_545:
     不是以你牌库起始卡牌的牌的法力值消耗减少（2）点（但不会少于1点）。
     """
     update = Refresh(
-        FRIENDLY_HAND + (CREATOR != None),
+        FRIENDLY_HAND + (CREATOR is not None),
         {GameTag.COST: -2}
     )
 
