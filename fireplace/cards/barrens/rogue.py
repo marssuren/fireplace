@@ -169,9 +169,10 @@ class BAR_552e:
     tags = {
         enums.ACTIVATIONS_THIS_TURN: 0,
     }
-    update = (
-        Find(SELF + Attr(enums.ACTIVATIONS_THIS_TURN, max=1))  # activations_this_turn < 2
-        & Refresh(FRIENDLY_HAND, {GameTag.COST: -2})
+    # 只有当activations_this_turn < 2时才减费
+    update = lambda self: (
+        Refresh(FRIENDLY_HAND, {GameTag.COST: -2})
+        if getattr(self, 'activations_this_turn', 0) < 2 else []
     )
     events = (
         Play(CONTROLLER).after(AddProgress(SELF, SELF, 1, "activations_this_turn")),
