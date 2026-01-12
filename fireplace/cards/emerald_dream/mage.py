@@ -285,7 +285,7 @@ class EDR_517:
     
     def play(self):
         # 第一步: 发现一张法术牌
-        discovered = yield GenericChoice(CONTROLLER, cards=RandomCardGenerator(
+        discovered = yield GenericChoice(CONTROLLER, RandomCardGenerator(
             CONTROLLER,
             card_filter=lambda c: c.type == CardType.SPELL,
             count=3
@@ -295,7 +295,7 @@ class EDR_517:
         if discovered:
             # 第二步: 让玩家/AI选择保留或放到对手牌库顶
             # 创建两个选项
-            choice = yield GenericChoice(CONTROLLER, cards=["EDR_517_keep", "EDR_517_topdeck"])
+            choice = yield GenericChoice(CONTROLLER, ["EDR_517_keep", "EDR_517_topdeck"])
             
             if choice and choice.id == "EDR_517_topdeck":
                 # 选择放到对手牌库顶

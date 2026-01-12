@@ -152,8 +152,7 @@ class RLK_066:
                 return False
             
             yield GenericChoice(
-                CONTROLLER,
-                cards=RandomCardGenerator(
+                CONTROLLER, RandomCardGenerator(
                     CONTROLLER,
                     card_filter=is_blood_rune_card,
                     count=3

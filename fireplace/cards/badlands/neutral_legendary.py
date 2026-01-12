@@ -50,7 +50,7 @@ class DEEP_037:
                 selected_ids = random.sample(elemental_cards, 3)
                 
                 # 让玩家从3张中选择1张
-                discovered = yield GenericChoice(CONTROLLER, cards=selected_ids)
+                discovered = yield GenericChoice(CONTROLLER, selected_ids)
                 
                 if discovered:
                     chosen_id = discovered[0]

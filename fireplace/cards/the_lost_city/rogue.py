@@ -81,7 +81,7 @@ class TLC_514:
         choice_ids = [c.id for c in choices]
         
         # 发现效果
-        discovered = yield GenericChoice(CONTROLLER, cards=choice_ids)
+        discovered = yield GenericChoice(CONTROLLER, choice_ids)
         
         # 将未选择的牌洗入牌库
         if discovered:
@@ -197,7 +197,7 @@ class TLC_515:
             choice_ids = [c.id for c in choices]
             
             # 发现效果
-            discovered = yield GenericChoice(CONTROLLER, cards=choice_ids)
+            discovered = yield GenericChoice(CONTROLLER, choice_ids)
             
             # 标记该牌为地图发现的牌并存储剩余选项
             if discovered and self.controller.hand:
@@ -268,7 +268,7 @@ class TLC_521:
             card_ids = [c.id for c in cards_to_view]
             
             # 让玩家选择一张
-            chosen = yield GenericChoice(CONTROLLER, cards=card_ids)
+            chosen = yield GenericChoice(CONTROLLER, card_ids)
             
             # 将选中的牌置于牌库顶
             if chosen:
@@ -517,8 +517,7 @@ class TLC_515e:
         lambda self, source, target: (
             # 检查是否有剩余选项
             GenericChoice(
-                CONTROLLER,
-                cards=self.controller.map_remaining_choices.get(source.id, [])
+                CONTROLLER, self.controller.map_remaining_choices.get(source.id, [])
             ) if (
                 hasattr(self.controller, 'map_remaining_choices') and
                 source.id in self.controller.map_remaining_choices and

@@ -66,8 +66,7 @@ class TIME_041:
         
         # 让玩家选择
         choice = yield GenericChoice(
-            self.controller,
-            cards=cards
+            self.controller, cards
         )
         
         # 检查是否猜中（选中的是对手手牌中的那张）

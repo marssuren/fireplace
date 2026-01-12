@@ -144,7 +144,7 @@ class TLC_824:
                     card.atk % 2 == 1)
         
         # 使用 GenericChoice 进行发现
-        cards = yield GenericChoice(CONTROLLER, cards=RandomCardGenerator(
+        cards = yield GenericChoice(CONTROLLER, RandomCardGenerator(
             CONTROLLER,
             card_filter=is_odd_attack_beast,
             count=3
@@ -177,7 +177,7 @@ class TLC_824e:
             check_is_map_discovered_card(self.controller, card.id)
             and [
                 # 再次发现一张攻击力为奇数的野兽牌（从剩余选项中）
-                GenericChoice(CONTROLLER, cards=RandomCardGenerator(
+                GenericChoice(CONTROLLER, RandomCardGenerator(
                     CONTROLLER,
                     card_filter=lambda c: (c.type == CardType.MINION and 
                                           c.race == Race.BEAST and 

@@ -1029,7 +1029,7 @@ class TLC_100t:
     
     def activate(self):
         # 发现一张牌（任意可收集卡牌）
-        yield GenericChoice(CONTROLLER, cards=RandomCardGenerator(
+        yield GenericChoice(CONTROLLER, RandomCardGenerator(
             CONTROLLER,
             card_filter=lambda c: c.collectible,
             count=3

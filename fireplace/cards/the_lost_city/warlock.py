@@ -176,7 +176,7 @@ class TLC_449:
 
     def activate(self):
         # 发现1费随从（临时）
-        yield GenericChoice(CONTROLLER, cards=RandomCardGenerator(
+        yield GenericChoice(CONTROLLER, RandomCardGenerator(
             CONTROLLER,
             card_filter=lambda c: c.type == CardType.MINION and c.cost == 1,
             count=3
@@ -248,7 +248,7 @@ class TLC_451:
     def play(self):
         # 从牌库中随机选择3张牌进行发现
         if len(self.controller.deck) > 0:
-            yield GenericChoice(CONTROLLER, cards=RandomCardGenerator(
+            yield GenericChoice(CONTROLLER, RandomCardGenerator(
                 CONTROLLER,
                 card_filter=lambda c: c in self.controller.deck,
                 count=min(3, len(self.controller.deck))

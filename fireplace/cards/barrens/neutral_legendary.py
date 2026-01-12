@@ -26,12 +26,10 @@ class BAR_079:
     powered_up = -Find(FRIENDLY_DECK + (COST == 4))
     play = powered_up & (
         GenericChoice(
-            CONTROLLER,
-            cards=["BAR_079t", "BAR_079t2", "BAR_079t3", "BAR_079t4"]
+            CONTROLLER, ["BAR_079t", "BAR_079t2", "BAR_079t3", "BAR_079t4"]
         ).then(
             GenericChoice(
-                CONTROLLER,
-                cards=["BAR_079t5", "BAR_079t6", "BAR_079t7", "BAR_079t8"]
+                CONTROLLER, ["BAR_079t5", "BAR_079t6", "BAR_079t7", "BAR_079t8"]
             ).then(
                 Give(CONTROLLER, "BAR_079t9")  # 合成的魔像
             )

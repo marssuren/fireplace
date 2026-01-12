@@ -110,7 +110,7 @@ class TLC_900:
     
     def play(self):
         # 发现一张邪能法术牌
-        cards = yield GenericChoice(CONTROLLER, cards=RandomCardGenerator(
+        cards = yield GenericChoice(CONTROLLER, RandomCardGenerator(
             CONTROLLER,
             card_filter=lambda c: c.type == CardType.SPELL and c.spell_school == SpellSchool.FEL,
             count=3
@@ -140,7 +140,7 @@ class TLC_900e:
             check_is_map_discovered_card(self.controller, card.id)
             and [
                 # 再次发现一张邪能法术牌
-                GenericChoice(CONTROLLER, cards=RandomCardGenerator(
+                GenericChoice(CONTROLLER, RandomCardGenerator(
                     CONTROLLER,
                     card_filter=lambda c: c.type == CardType.SPELL and c.spell_school == SpellSchool.FEL,
                     count=3

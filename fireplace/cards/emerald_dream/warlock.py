@@ -42,7 +42,7 @@ class EDR_488:
     
     def play(self):
         # 发现一张亡语随从
-        yield GenericChoice(CONTROLLER, cards=RandomCardGenerator(
+        yield GenericChoice(CONTROLLER, RandomCardGenerator(
             CONTROLLER,
             card_filter=lambda c: c.type == CardType.MINION and GameTag.DEATHRATTLE in c.tags,
             count=3
@@ -121,7 +121,7 @@ class FIR_924:
         from hearthstone.enums import Race
         
         # 发现一张恶魔牌
-        yield GenericChoice(CONTROLLER, cards=RandomCardGenerator(
+        yield GenericChoice(CONTROLLER, RandomCardGenerator(
             CONTROLLER,
             card_filter=lambda c: c.type == CardType.MINION and Race.DEMON in getattr(c, 'races', [c.race]) if hasattr(c, 'race') else False,
             count=3

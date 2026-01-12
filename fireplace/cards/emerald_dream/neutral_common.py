@@ -35,7 +35,7 @@ class EDR_105:
         yield apply_dark_gift(option3)
         
         # 发现机制
-        yield GenericChoice(CONTROLLER, cards=[option1, option2, option3])
+        yield GenericChoice(CONTROLLER, [option1, option2, option3])
 
 
 class EDR_254:

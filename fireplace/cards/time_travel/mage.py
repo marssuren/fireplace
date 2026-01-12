@@ -193,8 +193,7 @@ class TIME_860:
         
         # 让玩家选择一个
         choice = yield GenericChoice(
-            self.controller,
-            cards=[secret_1, secret_2]
+            self.controller, [secret_1, secret_2]
         )
         
         if choice:

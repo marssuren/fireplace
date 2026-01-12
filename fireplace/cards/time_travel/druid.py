@@ -114,7 +114,7 @@ class TIME_701:
         selected_cards = random.sample(available_cards, num_cards)
         
         # 使用 GenericChoice 让玩家选择
-        choice = yield GenericChoice(self.controller, cards=selected_cards)
+        choice = yield GenericChoice(self.controller, selected_cards)
         
         if choice and len(choice) > 0:
             chosen_card = choice[0]
@@ -178,8 +178,7 @@ class TIME_730:
         for _ in range(2):
             # 发现一张野兽牌
             choice = yield GenericChoice(
-                self.controller,
-                cards=RandomCollectible(race=Race.BEAST)
+                self.controller, RandomCollectible(race=Race.BEAST)
             )
             
             if choice and len(choice) > 0:
@@ -227,8 +226,7 @@ class TIME_704:
         
         # 2. 发现一个7费或以上的法术
         choice = yield GenericChoice(
-            self.controller,
-            cards=RandomCollectible(card_type=CardType.SPELL, min_cost=7)
+            self.controller, RandomCollectible(card_type=CardType.SPELL, min_cost=7)
         )
         
         # 3. 将发现的法术"教会"小学生（存储到小学生的buff中）

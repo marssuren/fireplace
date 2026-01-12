@@ -99,7 +99,7 @@ class FIR_939:
         yield Hit(TARGET, 2)
 
         # 发现一张战士随从牌
-        yield GenericChoice(CONTROLLER, cards=RandomCardGenerator(
+        yield GenericChoice(CONTROLLER, RandomCardGenerator(
             CONTROLLER,
             card_filter=lambda c: (
                 c.type == CardType.MINION and
@@ -137,7 +137,7 @@ class EDR_455:
             # 发现一条龙
             import random
             choices = random.sample(dead_dragons, min(3, len(dead_dragons)))
-            yield GenericChoice(CONTROLLER, cards=[c.id for c in choices])
+            yield GenericChoice(CONTROLLER, [c.id for c in choices])
 
             # 重新召唤它
             if self.controller.hand:
@@ -163,7 +163,7 @@ class EDR_456:
 
         if has_dragon:
             # 发现一张龙牌
-            yield GenericChoice(CONTROLLER, cards=RandomCardGenerator(
+            yield GenericChoice(CONTROLLER, RandomCardGenerator(
                 CONTROLLER,
                 card_filter=lambda c: (
                     c.type == CardType.MINION and

@@ -56,8 +56,7 @@ class SCH_351:
             # 使用 GenericChoice 让玩家从刚召唤的两个随从中选择
             summoned_minions = minions[-2:]
             choice = yield GenericChoice(
-                self.controller,
-                cards=summoned_minions
+                self.controller, summoned_minions
             )
             
             if choice:
@@ -103,8 +102,7 @@ class SCH_162:
                 # 让玩家选择一个死亡随从的亡语复制给幼龙
                 # 使用 GenericChoice 让玩家从死亡的有亡语的随从中选择
                 choice = yield GenericChoice(
-                    self.controller,
-                    cards=dead_minions_with_deathrattle
+                    self.controller, dead_minions_with_deathrattle
                 )
                 
                 if choice:
@@ -184,7 +182,7 @@ class SCH_259:
         
         # 让玩家选择：保留或置底
         # 使用 GenericChoice 提供两个选项
-        choice = yield GenericChoice(controller, cards=[
+        choice = yield GenericChoice(controller, [
             "SCH_259t1",  # 保留在牌库顶
             "SCH_259t2",  # 置底并消耗耐久度
         ])

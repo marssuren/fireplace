@@ -76,7 +76,7 @@ class TIME_770:
             if cards_in_hand:
                 # 让玩家选择一张卡牌
                 # 使用 GenericChoice 让玩家选择
-                choice = yield GenericChoice(self.controller, cards=cards_in_hand)
+                choice = yield GenericChoice(self.controller, cards_in_hand)
                 
                 if choice:
                     # 给选中的卡牌减少2费
@@ -180,7 +180,7 @@ class TIME_036:
             
             # 让玩家选择：获取复制 或 增加费用
             # 使用 GenericChoice 让玩家选择
-            choice = yield GenericChoice(self.controller, cards=[
+            choice = yield GenericChoice(self.controller, [
                 "TIME_036t1",  # 获取复制
                 "TIME_036t2",  # 增加费用
             ])

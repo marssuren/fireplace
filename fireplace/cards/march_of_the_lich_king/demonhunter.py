@@ -143,8 +143,7 @@ class RLK_214e:
     # 攻击后发现被吞食的随从
     events = Attack(OWNER).after(
         lambda self, source: GenericChoice(
-            source.controller,
-            cards=[Copy(card) for card in getattr(source, 'devoured_minions', [])]
+            source.controller, [Copy(card) for card in getattr(source, 'devoured_minions', [])]
         ) if hasattr(source, 'devoured_minions') and source.devoured_minions else None
     )
 

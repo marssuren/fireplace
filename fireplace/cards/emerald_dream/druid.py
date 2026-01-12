@@ -37,7 +37,7 @@ class EDR_270:
         # 发现一张自然法术牌
         # 使用 GenericChoice 来实现发现效果，过滤自然法术
         from ...dsl.selector import SPELL, NATURE
-        yield GenericChoice(CONTROLLER, cards=RandomCardGenerator(
+        yield GenericChoice(CONTROLLER, RandomCardGenerator(
             CONTROLLER,
             card_filter=lambda c: c.type == CardType.SPELL and c.spell_school == SpellSchool.NATURE,
             count=3
@@ -94,7 +94,7 @@ class EDR_273:
     def play(self):
         # 发现一张另一职业的抉择牌
         # 过滤条件：非德鲁伊职业 + 具有 CHOOSE_ONE 标签
-        yield GenericChoice(CONTROLLER, cards=RandomCardGenerator(
+        yield GenericChoice(CONTROLLER, RandomCardGenerator(
             CONTROLLER,
             card_filter=lambda c: (
                 c.card_class != CardClass.DRUID and

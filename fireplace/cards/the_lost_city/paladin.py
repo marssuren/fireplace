@@ -191,8 +191,7 @@ class TLC_442:
     def play(self):
         # 发现一张鱼人牌
         cards = yield GenericChoice(
-            CONTROLLER,
-            cards=RandomCardGenerator(
+            CONTROLLER, RandomCardGenerator(
                 CONTROLLER,
                 card_filter=lambda c: c.type == CardType.MINION and Race.MURLOC in getattr(c, 'races', [getattr(c, 'race', None)]),
                 count=3
@@ -225,7 +224,7 @@ class TLC_442e:
         if check_is_map_discovered_card(self.controller, played_card.id):
             # 从剩余选项中再次选择
             if self.remaining_options:
-                yield GenericChoice(CONTROLLER, cards=self.remaining_options)
+                yield GenericChoice(CONTROLLER, self.remaining_options)
             # 移除此buff
             yield Destroy(SELF)
     
@@ -254,8 +253,7 @@ class DINO_424:
     def play(self):
         # 发现一个传说随从
         cards = yield GenericChoice(
-            CONTROLLER,
-            cards=RandomCardGenerator(
+            CONTROLLER, RandomCardGenerator(
                 CONTROLLER,
                 card_filter=lambda c: c.type == CardType.MINION and c.rarity == Rarity.LEGENDARY,
                 count=3

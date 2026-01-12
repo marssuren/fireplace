@@ -68,7 +68,7 @@ class FIR_952:
 
     def play(self):
         # 发现一张邪能法术牌
-        yield GenericChoice(CONTROLLER, cards=RandomCardGenerator(
+        yield GenericChoice(CONTROLLER, RandomCardGenerator(
             CONTROLLER,
             card_filter=lambda c: c.type == CardType.SPELL and c.spell_school == SpellSchool.FEL,
             count=3
@@ -136,7 +136,7 @@ class EDR_882:
         yield apply_dark_gift(option3)
         
         # 发现机制:选择一张加入手牌,其他两张洗入牌库
-        yield GenericChoice(CONTROLLER, cards=[option1, option2, option3])
+        yield GenericChoice(CONTROLLER, [option1, option2, option3])
         
         # 将未选择的两张洗入牌库
         # 获取选中的卡牌

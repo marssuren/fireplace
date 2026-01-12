@@ -23,8 +23,7 @@ class EDR_102:
         # 发现一张传说随从
         # 使用 GenericChoice + RandomCardGenerator 实现发现机制
         yield GenericChoice(
-            CONTROLLER,
-            cards=RandomCardGenerator(
+            CONTROLLER, RandomCardGenerator(
                 CONTROLLER,
                 card_filter=lambda c: c.type == CardType.MINION and c.rarity == Rarity.LEGENDARY,
                 count=3

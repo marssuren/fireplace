@@ -205,7 +205,7 @@ class FIR_927:
     
     def play(self):
         # 发现一张5费牌
-        yield GenericChoice(CONTROLLER, cards=RandomCardGenerator(
+        yield GenericChoice(CONTROLLER, RandomCardGenerator(
             CONTROLLER,
             card_filter=lambda c: c.cost == 5,
             count=3

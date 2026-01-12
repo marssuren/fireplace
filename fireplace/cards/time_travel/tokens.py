@@ -297,7 +297,7 @@ class TIME_619t5:
 		yield Hit(ENEMY_CHARACTERS, 2)
 		
 		# 选择一个祝福给Bwonsamdi
-		choice = yield GenericChoice(CONTROLLER, cards=[
+		choice = yield GenericChoice(CONTROLLER, [
 			"TIME_619t2",  # 长寿祝福
 			"TIME_619t3",  # 力量祝福
 			"TIME_619t4",  # 速度祝福

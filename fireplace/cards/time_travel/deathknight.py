@@ -342,7 +342,7 @@ class TIME_619:
         ]
         
         # 使用 GenericChoice 让玩家选择祝福
-        choice = yield GenericChoice(CONTROLLER, cards=boon_options)
+        choice = yield GenericChoice(CONTROLLER, boon_options)
         
         # 根据选择给Bwonsamdi添加对应的buff
         # 找到Bwonsamdi（可能在手牌或场上）

@@ -71,7 +71,7 @@ class TLC_435:
             return False
         
         # 使用 GenericChoice 进行发现
-        cards = yield GenericChoice(CONTROLLER, cards=RandomCardGenerator(
+        cards = yield GenericChoice(CONTROLLER, RandomCardGenerator(
             CONTROLLER,
             card_filter=has_frost_rune,
             count=3
@@ -104,7 +104,7 @@ class TLC_435e:
             check_is_map_discovered_card(self.controller, card.id)
             and [
                 # 再次发现一张冰霜符文牌（从剩余选项中）
-                GenericChoice(CONTROLLER, cards=RandomCardGenerator(
+                GenericChoice(CONTROLLER, RandomCardGenerator(
                     CONTROLLER,
                     card_filter=lambda c: hasattr(c, 'rune_cost') and c.rune_cost.get('frost', 0) > 0,
                     count=3

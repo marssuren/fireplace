@@ -137,7 +137,7 @@ class TTN_751:
         if self.controller.forged_cards_this_game > 0:
             # 第一步：选择武器基础（费用/攻击/耐久）
             base_options = ["TTN_751t1", "TTN_751t2", "TTN_751t3"]
-            chosen_base = yield GenericChoice(self.controller, cards=base_options)
+            chosen_base = yield GenericChoice(self.controller, base_options)
 
             if not chosen_base:
                 return
@@ -149,7 +149,7 @@ class TTN_751:
             trait_pool = ["TTN_751trait1", "TTN_751trait2", "TTN_751trait3",
                          "TTN_751trait4", "TTN_751trait5"]
             trait_options = self.game.random_sample(trait_pool, 3)
-            chosen_trait = yield GenericChoice(self.controller, cards=trait_options)
+            chosen_trait = yield GenericChoice(self.controller, trait_options)
 
             if not chosen_trait:
                 return
@@ -158,7 +158,7 @@ class TTN_751:
             ability_bases = ["ability1", "ability2", "ability3", "ability4", "ability5"]
             ability_samples = self.game.random_sample(ability_bases, 3)
             ability_options = [f"TTN_751{ab}_tier{tier}" for ab in ability_samples]
-            chosen_ability = yield GenericChoice(self.controller, cards=ability_options)
+            chosen_ability = yield GenericChoice(self.controller, ability_options)
 
             if not chosen_ability:
                 return

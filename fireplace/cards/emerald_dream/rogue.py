@@ -74,7 +74,7 @@ class EDR_528:
             choices = random.sample(opponent_minions, min(3, len(opponent_minions)))
             
             # 发现效果
-            yield GenericChoice(CONTROLLER, cards=[c.id for c in choices])
+            yield GenericChoice(CONTROLLER, [c.id for c in choices])
             
             # 如果是连击,给予黑暗之赐
             if self.controller.combo:
@@ -210,7 +210,7 @@ class FIR_920:
             )
         
         # 生成3个选项
-        yield GenericChoice(CONTROLLER, cards=RandomCardGenerator(
+        yield GenericChoice(CONTROLLER, RandomCardGenerator(
             CONTROLLER,
             card_filter=card_filter,
             count=3

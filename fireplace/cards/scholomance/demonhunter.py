@@ -58,8 +58,7 @@ class SCH_603:
                 
                 # 让玩家从这3张牌中选择一张洗入对手牌库
                 choice = yield GenericChoice(
-                    self.controller,
-                    cards=cards_to_show
+                    self.controller, cards_to_show
                 )
                 
                 if choice:

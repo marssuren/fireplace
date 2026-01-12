@@ -156,7 +156,7 @@ class YOP_024a:
         parent = self.creator
         if hasattr(parent, 'stored_spells') and parent.stored_spells:
             # 让玩家选择一张法术
-            choice = yield GenericChoice(self.controller, cards=parent.stored_spells)
+            choice = yield GenericChoice(self.controller, parent.stored_spells)
 
 
 class YOP_024b:

@@ -216,7 +216,7 @@ class EDR_888:
         from .imbue_helpers import get_imbue_level
         
         # 发现一张传说野神牌（传说野兽）
-        yield GenericChoice(CONTROLLER, cards=RandomCardGenerator(
+        yield GenericChoice(CONTROLLER, RandomCardGenerator(
             CONTROLLER,
             card_filter=lambda c: (
                 c.type == CardType.MINION and
