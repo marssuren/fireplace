@@ -133,7 +133,7 @@ class EX1_557:
     """Nat Pagle / 纳特·帕格
     在你的回合开始时，你有50%的几率额外抽一张牌。"""
 
-    events = OWN_TURN_BEGIN.on((COINFLIP , Draw(CONTROLLER)))
+    events = OWN_TURN_BEGIN.on(COINFLIP & Draw(CONTROLLER))
 
 
 class EX1_558:

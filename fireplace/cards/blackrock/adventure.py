@@ -71,14 +71,14 @@ class BRMA05_2:
     """Ignite Mana / 点燃法力
     如果敌方英雄有任何未使用的法力水晶，便对其造成5点伤害。"""
 
-    activate = (MANA(OPPONENT) <= USED_MANA(OPPONENT)) & Hit(ENEMY_HERO, 5)
+    activate = (MANA(OPPONENT) > USED_MANA(OPPONENT)) & Hit(ENEMY_HERO, 5)
 
 
 class BRMA05_2H:
     """Ignite Mana / 点燃法力
     如果敌方英雄有任何未使用的法力水晶，便对其造成10点伤害。"""
 
-    activate = (MANA(OPPONENT) <= USED_MANA(OPPONENT)) & Hit(ENEMY_HERO, 10)
+    activate = (MANA(OPPONENT) > USED_MANA(OPPONENT)) & Hit(ENEMY_HERO, 10)
 
 
 class BRMA06_2:
