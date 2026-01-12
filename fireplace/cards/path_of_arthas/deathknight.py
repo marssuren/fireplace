@@ -63,8 +63,9 @@ class RLK_018:
     
     def play(self):
         yield Hit(TARGET, 3)
-        # 检查是否死亡
-        if TARGET.dead or TARGET.health <= 0:
+        # 检查目标是否死亡（需要先获取实际的目标对象）
+        target = self.target
+        if target and (target.zone == Zone.GRAVEYARD or target.dead or target.health <= 0):
             yield Summon(CONTROLLER, "RLK_018t")
 
 class RLK_018t:

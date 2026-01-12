@@ -253,13 +253,13 @@ class VAC_501:
 
     # 使用 Predamage 事件拦截伤害
     events = Predamage(FRIENDLY_HERO).on(
-        lambda self, source, target, amount, *args: (
-            # 检查是否是己方回合
-            self.controller.current_player and [
+        lambda self, source, *args: (
+            # 检查是否是己方回合，并且有伤害量参数
+            source.controller.current_player and args and [
                 # 取消对英雄的伤害
-                SetTags(Predamage.TARGET, {GameTag.PREDAMAGE: 0}),
-                # 对随机敌人造成相同伤害
-                Hit(RANDOM_ENEMY_CHARACTER, amount)
+                SetTags(FRIENDLY_HERO, {GameTag.PREDAMAGE: 0}),
+                # 对随机敌人造成相同伤害（args[0] 是 amount）
+                Hit(RANDOM_ENEMY_CHARACTER, args[0] if args else 0)
             ] or []
         )
     )

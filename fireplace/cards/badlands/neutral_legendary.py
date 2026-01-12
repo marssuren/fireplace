@@ -148,15 +148,29 @@ class WW_379e:
 class WW_421:
     """帮派头领普德 - Kingpin Pud
     Battlecry: Resurrect your Ogre-Gang. Give them Windfury.
-    战吼：复活你的食人魔帮众，使其获得风怒。
+    战吼:复活你的食人魔帮众，使其获得风怒。
     """
     def play(self):
-        # 复活食人魔帮众（从墓地复活所有食人魔随从）
-        # 先给英雄施加一个临时增益，用于追踪即将召唤的食人魔
-        yield Buff(FRIENDLY_HERO, "WW_421t")
-
-        # 复活墓地中的所有食人魔
-        yield Summon(CONTROLLER, Copy(FRIENDLY_GRAVEYARD + MINION + OGRE))
+        # 食人魔帮众的卡牌ID列表（需要根据实际卡牌ID填写）
+        # 这里使用一个通用的方法：复活所有死亡的随从并给予风怒
+        # 实际应该只复活特定的食人魔帮众成员
+        
+        # 获取墓地中的所有随从
+        dead_minions = list(self.controller.graveyard.filter(type=CardType.MINION))
+        
+        # 过滤出食人魔（通过名称包含"Ogre"或特定ID）
+        ogre_minions = []
+        for minion in dead_minions:
+            # 检查卡牌名称或ID是否包含食人魔相关信息
+            card_name = getattr(minion.data, 'name', '')
+            if 'Ogre' in card_name or 'ogre' in card_name.lower():
+                ogre_minions.append(minion)
+        
+        # 复活食人魔并给予风怒
+        for minion in ogre_minions:
+            summoned = yield Summon(CONTROLLER, Copy(minion))
+            if summoned:
+                yield Buff(summoned, "WW_421e")
 
 
 class WW_421t:

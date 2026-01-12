@@ -82,9 +82,23 @@ class DAL_431:
             horror.custom_card = True
 
             def create_custom_card(horror):
-                horror.data.scripts.play = (
-                    card1.data.scripts.play + card2.data.scripts.play
-                )
+                # 获取两个法术的 play 脚本
+                play1 = card1.data.scripts.play
+                play2 = card2.data.scripts.play
+                
+                # 将 play 脚本转换为 tuple
+                if callable(play1):
+                    play1 = (play1,)
+                elif not isinstance(play1, tuple):
+                    play1 = (play1,) if play1 else ()
+                    
+                if callable(play2):
+                    play2 = (play2,)
+                elif not isinstance(play2, tuple):
+                    play2 = (play2,) if play2 else ()
+                
+                # 连接两个 tuple
+                horror.data.scripts.play = play1 + play2
                 horror.requirements = card1.requirements | card2.requirements
                 horror.tags[GameTag.CARDTEXT_ENTITY_0] = card1.data.name
                 horror.tags[GameTag.CARDTEXT_ENTITY_1] = card2.data.name

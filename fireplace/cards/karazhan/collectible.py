@@ -83,7 +83,12 @@ class KAR_036:
     events = OWN_SPELL_PLAY.on(Buff(SELF, "KAR_036e"))
 
 
-KAR_036e = buff(health=1)
+class KAR_036e:
+    """+1生命值"""
+    tags = {
+        GameTag.HEALTH: 1,
+        GameTag.CARDTYPE: CardType.ENCHANTMENT
+    }
 
 
 class KAR_037:
@@ -94,7 +99,14 @@ class KAR_037:
     play = powered_up & Buff(SELF, "KAR_037t")
 
 
-KAR_037t = buff(+1, +1, taunt=True)
+class KAR_037t:
+    """+1/+1和嘲讽"""
+    tags = {
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1,
+        GameTag.TAUNT: True,
+        GameTag.CARDTYPE: CardType.ENCHANTMENT
+    }
 
 
 class KAR_041:
