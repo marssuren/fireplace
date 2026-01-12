@@ -106,7 +106,7 @@ class TSC_641:
                                                getattr(self, 'spells_cast_while_holding', 0) + 1)
         )
     
-    powered_up = lambda self: self.spells_cast_while_holding >= 3
+    powered_up = lambda self: getattr(self, 'spells_cast_while_holding', 0) >= 3
     
     play = lambda self: (
         Discover(CONTROLLER, ["TSC_641t1", "TSC_641t2", "TSC_641t3", "TSC_641t4"])
