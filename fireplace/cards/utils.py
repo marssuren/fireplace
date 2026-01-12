@@ -713,6 +713,39 @@ COOLDOWN = 99991
 # REQ_TARGET_WITH_DIVINE_SHIELD - 需要目标有圣盾（自定义 PlayReq）
 REQ_TARGET_WITH_DIVINE_SHIELD = 99990
 
+# Cost - 费用
+def Cost(entity):
+    """
+    获取实体的费用
+    
+    参数:
+        entity: 实体
+    
+    返回:
+        费用值
+    """
+    return lambda: entity.cost if hasattr(entity, 'cost') else 0
+
+# INF - 无限大
+INF = float('inf')
+
+# ExtraTurn - 额外回合
+def ExtraTurn(player):
+    """
+    给予玩家额外回合
+    
+    参数:
+        player: 玩家
+    
+    返回:
+        Action
+    """
+    def extra_turn_action(source):
+        # 简化实现：标记额外回合
+        player.extra_turns = getattr(player, 'extra_turns', 0) + 1
+        return []
+    return extra_turn_action
+
 # Random - 随机选择器（已存在，但可能需要导出）
 # Random 已经在 DSL 中定义
 
