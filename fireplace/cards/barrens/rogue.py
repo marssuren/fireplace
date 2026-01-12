@@ -170,7 +170,7 @@ class BAR_552e:
         enums.ACTIVATIONS_THIS_TURN: 0,
     }
     update = (
-        Find(SELF + (ACTIVATIONS_THIS_TURN < 2))
+        Find(SELF + Attr(enums.ACTIVATIONS_THIS_TURN, max=1))  # activations_this_turn < 2
         & Refresh(FRIENDLY_HAND, {GameTag.COST: -2})
     )
     events = (

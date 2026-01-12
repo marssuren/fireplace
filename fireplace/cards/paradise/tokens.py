@@ -226,7 +226,11 @@ class VAC_923t:
     Give a friendly minion +3 Attack and Rush. Turn back into a minion.
     """
     # 地标效果
-    requirements = {PlayReq.REQ_TARGET_TO_PLAY: 0, PlayReq.REQ_FRIENDLY_TARGET: 0, PlayReq.REQ_MINION_TARGET: 0}
+    requirements = {
+        PlayReq.REQ_TARGET_TO_PLAY: 0,
+        PlayReq.REQ_FRIENDLY_TARGET: 0,
+        PlayReq.REQ_MINION_TARGET: 0
+    }
     
     def activate(self):
         if TARGET:

@@ -8,7 +8,7 @@ class BAR_334:
     战吼：复活2个友方暴怒随从。对所有其他随从造成1点伤害。
     """
     play = (
-        Summon(CONTROLLER, Copy(RANDOM(FRIENDLY + DEAD + MINION + FRENZY))) * 2,
+        Summon(CONTROLLER, Copy(RANDOM(FRIENDLY + DEAD + MINION + Attr(GameTag.FRENZY, True)))) * 2,
         Hit(ALL_MINIONS - SELF, 1),
     )
 

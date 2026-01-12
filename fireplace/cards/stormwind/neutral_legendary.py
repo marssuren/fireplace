@@ -164,10 +164,10 @@ class SW_079a_tracker:
         lambda self: [
             # 减少回合计数
             setattr(self.owner, 'dungar_turns_remaining', self.owner.dungar_turns_remaining - 1),
-            # 如果到达时间，苏醒并抽牌
+            # 如果到达时间,苏醒并抽牌
             (
-                Awaken(self.owner) &
-                Draw(CONTROLLER) * self.owner.dungar_cards_to_draw &
+                Awaken(self.owner),
+                Draw(CONTROLLER) * self.owner.dungar_cards_to_draw,
                 Destroy(SELF)
             ) if self.owner.dungar_turns_remaining <= 0 else None
         ]
@@ -184,8 +184,8 @@ class SW_079b_tracker:
         lambda self: [
             setattr(self.owner, 'dungar_turns_remaining', self.owner.dungar_turns_remaining - 1),
             (
-                Awaken(self.owner) &
-                Draw(CONTROLLER) * self.owner.dungar_cards_to_draw &
+                Awaken(self.owner),
+                Draw(CONTROLLER) * self.owner.dungar_cards_to_draw,
                 Destroy(SELF)
             ) if self.owner.dungar_turns_remaining <= 0 else None
         ]
@@ -202,8 +202,8 @@ class SW_079c_tracker:
         lambda self: [
             setattr(self.owner, 'dungar_turns_remaining', self.owner.dungar_turns_remaining - 1),
             (
-                Awaken(self.owner) &
-                Draw(CONTROLLER) * self.owner.dungar_cards_to_draw &
+                Awaken(self.owner),
+                Draw(CONTROLLER) * self.owner.dungar_cards_to_draw,
                 Destroy(SELF)
             ) if self.owner.dungar_turns_remaining <= 0 else None
         ]

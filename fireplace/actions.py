@@ -2855,8 +2855,9 @@ class Morph(TargetedAction):
         elif len(card) == 1:
             card = card[0]
         else:
-            # 空列表 - 这不应该发生,保留assert以便调试
-            assert False, f"No cards returned by _eval_card for {self._args[1]}"
+            # 空列表 - 没有可用的卡牌,返回None
+            log_info("morph_no_card_available", source=source, target=target, picker=self._args[1])
+            return None
         
         card.controller = target.controller
         return [card]
