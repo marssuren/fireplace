@@ -174,6 +174,10 @@ class Find(Evaluator):
         self.selector = selector
 
     def check(self, source):
+        # 如果selector是Evaluator类型(如LazyNumEvaluator),调用其check方法
+        if isinstance(self.selector, Evaluator):
+            return self.selector.check(source)
+        # 否则假设它是Selector,调用eval方法
         return bool(len(self.selector.eval(source.game, source)))
 
 

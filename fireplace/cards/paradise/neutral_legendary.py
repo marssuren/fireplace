@@ -17,17 +17,13 @@ class VAC_321:
         for _ in range(5):
             yield Shuffle(CONTROLLER, "VAC_321t")
     
-    def on_turn_end(self):
-        """回合结束时升级牌库中的爆发"""
-        # 遍历牌库中的所有爆发卡牌并升级
-        for card in list(self.controller.deck):
-            if card.id == "VAC_321t":
-                # 升级爆发：增加伤害
-                # eruption_damage 属性已在 VAC_321t 类中正式声明
-                card.eruption_damage += 1
-    
+    # 回合结束时升级牌库中的爆发
     events = OWN_TURN_END.on(
-        lambda self, source: self.on_turn_end()
+        lambda self, source: [
+            setattr(card, 'eruption_damage', getattr(card, 'eruption_damage', 1) + 1)
+            for card in self.controller.deck
+            if card.id == "VAC_321t"
+        ]
     )
 
 
@@ -39,17 +35,10 @@ class VAC_446:
     """
     mechanics = [GameTag.TRIGGER_VISUAL]
     
-    def on_turn_end(self):
-        """回合结束时给未攻击的随从加buff"""
-        for minion in self.controller.field:
-            if minion != self:
-                # 检查随从是否在本回合攻击过
-                # 使用 num_attacks 属性判断
-                if minion.num_attacks == 0:
-                    yield Buff(minion, "VAC_446e")
-    
+    # 回合结束时给未攻击的随从加buff
+    # 选择所有友方随从,排除自己,且本回合攻击次数为0
     events = OWN_TURN_END.on(
-        lambda self, source: self.on_turn_end()
+        Buff(FRIENDLY_MINIONS - SELF + (Attr(GameTag.NUM_ATTACKS_THIS_TURN, 0)), "VAC_446e")
     )
 
 

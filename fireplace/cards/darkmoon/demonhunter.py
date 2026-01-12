@@ -95,7 +95,9 @@ class DMF_231:
         leftmost = hand[0]
         rightmost = hand[-1]
 
-        yield Give(CONTROLLER, Copy(leftmost) + Copy(rightmost))
+        # 分别给予两张复制的卡牌
+        yield Give(CONTROLLER, Copy(leftmost))
+        yield Give(CONTROLLER, Copy(rightmost))
 
 
 class DMF_247:

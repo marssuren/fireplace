@@ -97,19 +97,19 @@ class TIME_034:
     双方都装备随机武器，但你的武器会获得+1/+1加成。
     """
     def play(self):
+        # 定义战吼效果
+        def effect():
+            # 双方玩家各装备一把随机武器
+            # 为己方装备随机武器
+            yield Equip(self.controller, RandomWeapon())
+            
+            # 为对手装备随机武器
+            yield Equip(self.controller.opponent, RandomWeapon())
+            
+            # 给己方武器+1/+1
+            if self.controller.hero.weapon:
+                yield Buff(self.controller.hero.weapon, "TIME_034e")
         
-        # 双方玩家各装备一把随机武器
-        # 为己方装备随机武器
-        yield Equip(self.controller, RandomWeapon())
-        
-        # 为对手装备随机武器
-        yield Equip(self.controller.opponent, RandomWeapon())
-        
-        # 给己方武器+1/+1
-        if self.controller.hero.weapon:
-            yield Buff(self.controller.hero.weapon, "TIME_034e")
-
-
         # 使用 Rewind 包装器执行效果
         yield from execute_with_rewind(self, effect)
 

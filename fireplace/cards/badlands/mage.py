@@ -148,7 +148,7 @@ class WW_425:
 
     def play(self):
         # 抽一张不同的奥术法术牌
-        yield ForceDraw(CONTROLLER, RANDOM(FRIENDLY_DECK + SPELL + ARCANE - ID(SELF.id)))
+        yield ForceDraw(CONTROLLER, RANDOM(FRIENDLY_DECK + SPELL + ARCANE - ID(self.id)))
         # 给抽到的牌添加"本回合施放两次"的buff
         drawn_card = ForceDraw.CARD
         if drawn_card:
