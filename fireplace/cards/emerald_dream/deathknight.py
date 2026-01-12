@@ -18,7 +18,7 @@ class EDR_811:
 
     def play(self):
         # 发现一张亡灵牌
-        from ....enums import Race
+        from ...enums import Race
         yield GenericChoice(CONTROLLER, RandomCardGenerator(
             CONTROLLER,
             card_filter=lambda c: c.type == CardType.MINION and Race.UNDEAD in getattr(c, 'races', [c.race]) if hasattr(c, 'race') else False,

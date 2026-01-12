@@ -345,7 +345,7 @@ class FIR_959:
 
             try:
                 # 创建法术卡牌实例以获取费用
-                from .... import cards
+                from ... import cards
                 spell_class = cards.db.get(spell_id)
                 if not spell_class:
                     continue

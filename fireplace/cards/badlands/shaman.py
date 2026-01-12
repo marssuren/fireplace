@@ -247,7 +247,7 @@ class WW_010t:
             yield Buff(frog, "WW_010t2e", atk=self.progress, max_health=self.progress)
     
     events = Attack(FRIENDLY_HERO).after(
-        lambda self: self.trigger_after_hero_attack()
+        lambda self, source, *args: list(source.trigger_after_hero_attack()) if hasattr(source, 'trigger_after_hero_attack') else None
     )
 
 
