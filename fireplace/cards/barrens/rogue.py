@@ -169,13 +169,9 @@ class BAR_552e:
     tags = {
         enums.ACTIVATIONS_THIS_TURN: 0,
     }
-    # 使用update直接刷新手牌费用(当次数<2时)
-    # update会在每次aura刷新时检查
-    @property
-    def update(self):
-        if getattr(self, 'activations_this_turn', 0) < 2:
-            return [Refresh(FRIENDLY_HAND, {GameTag.COST: -2})]
-        return []
+    # 使用 lambda 函数动态检查激活次数并应用减费
+    # 当激活次数 < 2 时，手牌费用减少2点
+    update = lambda self: Refresh(FRIENDLY_HAND, {GameTag.COST: -2}) if getattr(self, 'activations_this_turn', 0) < 2 else None
     
     events = (
         Play(CONTROLLER).after(AddProgress(SELF, SELF, 1, "activations_this_turn")),

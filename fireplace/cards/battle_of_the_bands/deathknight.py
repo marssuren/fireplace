@@ -160,7 +160,7 @@ class ETC_428:
         PlayReq.REQ_MINIMUM_CORPSES: 5,
     }
     play = (
-        SpendCorpses(5),
+        SpendCorpses(CONTROLLER, 5),
         CopyDeathrattleBuff(SELF, RANDOM(FRIENDLY_MINIONS + KILLED)),
         Deathrattle(RANDOM(FRIENDLY_MINIONS + KILLED))
     )

@@ -479,6 +479,14 @@ class PlayableCard(BaseCard, Entity, TargetableByAuras):
         return self.play_left_most or self.play_right_most
 
     @property
+    def outcast(self):
+        """
+        流放（Outcast）机制 - 当卡牌位于手牌最左边或最右边时触发
+        Returns True if the card is in the leftmost or rightmost position in hand.
+        """
+        return self.play_outcast
+
+    @property
     def infuse_threshold(self):
         """
         获取 Infuse 阈值

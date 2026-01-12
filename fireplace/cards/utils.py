@@ -213,24 +213,8 @@ def RefreshMana(target, amount):
 # PLAYED_SPELL_ON_FRIENDLY_CHARACTER - 对友方角色施放法术事件
 PLAYED_SPELL_ON_FRIENDLY_CHARACTER = lambda: Play(CONTROLLER, SPELL)  # 简化实现
 
-# SpendCorpses - 消耗残骸
-def SpendCorpses(target, amount):
-    """
-    消耗目标玩家的残骸
-    
-    参数:
-        target: 目标玩家
-        amount: 消耗的残骸数量
-    
-    返回:
-        Action
-    """
-    # 简化实现：直接减少残骸计数
-    return lambda source: setattr(
-        target if hasattr(target, 'corpses') else source.controller, 
-        'corpses', 
-        max(0, getattr(target if hasattr(target, 'corpses') else source.controller, 'corpses', 0) - amount)
-    )
+# SpendCorpses 类已经在 actions.py 中定义，通过 `from ..actions import *` 导入
+# 不要在这里重新定义，否则会覆盖 actions.py 中的 SpendCorpses 类
 
 # GainMaxHealth - 获得最大生命值
 def GainMaxHealth(target, amount):
@@ -338,19 +322,8 @@ def Armor(target, amount):
     from ..actions import GainArmor
     return GainArmor(target, amount)
 
-# Overload - 过载
-def Overload(target, amount):
-    """
-    给予目标过载
-    
-    参数:
-        target: 目标玩家
-        amount: 过载数量
-    
-    返回:
-        Action
-    """
-    return GiveOverload(target, amount)  # 使用已定义的 GiveOverload
+# Overload 类已经在 actions.py 中定义，通过 `from ..actions import *` 导入
+# 不要在这里重新定义，否则会覆盖 actions.py 中的 Overload 类
 
 # RACE - 种族选择器（用于过滤）
 RACE = lambda race: lambda entity: entity.race == race
@@ -439,9 +412,13 @@ TEMPORARY = 99999  # 使用一个不冲突的数字
 # 用于标记抽到时自动施放的卡牌
 CAST_WHEN_DRAWN = 99998  # 使用一个不冲突的数字
 
+# SPELL_DOUBLE_CAST - 法术施放两次（自定义 GameTag）
+# 用于标记下一个法术施放两次的效果（如日蚀）
+SPELL_DOUBLE_CAST = 99997  # 使用一个不冲突的数字
+
 # EXTRA_BATTLECRIES - 额外战吼次数（自定义 GameTag）
 # 用于标记额外的战吼触发次数
-EXTRA_BATTLECRIES = 99997  # 使用一个不冲突的数字
+EXTRA_BATTLECRIES = 99996  # 使用一个不冲突的数字
 
 # DSL 条件判断和逻辑操作符
 
