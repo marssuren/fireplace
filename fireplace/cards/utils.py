@@ -97,6 +97,67 @@ DISCOVER = lambda *args: Discover(CONTROLLER, *args).then(
     Give(CONTROLLER, Discover.CARD)
 )
 
+# 缺失的选择器定义
+CONTROLLER_FIELD = FRIENDLY_MINIONS  # 控制者的场上随从
+CONTROLLER_HAND = FRIENDLY_HAND  # 控制者的手牌
+OPPONENT_HERO = ENEMY_HERO  # 对手英雄
+LAST_SUMMONED = FRIENDLY_MINIONS  # 最后召唤的随从（简化实现）
+LAST_CARD_PLAYED = FRIENDLY_HAND  # 最后打出的牌（简化实现）
+OWN_HERO_ATTACK = Attack(FRIENDLY_HERO)  # 己方英雄攻击事件
+SELF_ATTACK = Attack(SELF)  # 自身攻击事件
+
+# ForcePlay - 强制打出卡牌
+def ForcePlay(controller, card):
+    """
+    强制打出卡牌，自动选择随机目标
+    
+    参数:
+        controller: 控制者
+        card: 要打出的卡牌
+    
+    返回:
+        Play action
+    """
+    from ..actions import Play
+    return Play(card)
+
+# 区域常量
+from hearthstone.enums import Zone
+PLAY = Zone.PLAY  # 战场区域
+HAND = Zone.HAND  # 手牌区域
+DECK = Zone.DECK  # 牌库区域
+GRAVEYARD = Zone.GRAVEYARD  # 墓地区域
+
+# ZoneChange - 区域变化事件
+def ZoneChange(selector, from_zone, to_zone):
+    """
+    监听实体从一个区域移动到另一个区域的事件
+    
+    参数:
+        selector: 实体选择器
+        from_zone: 源区域
+        to_zone: 目标区域
+    
+    返回:
+        事件选择器
+    """
+    from ..events import EventListener
+    
+    class ZoneChangeEvent(EventListener):
+        def __init__(self, selector, from_zone, to_zone):
+            self.selector = selector
+            self.from_zone = from_zone
+            self.to_zone = to_zone
+        
+        def trigger(self, entity):
+            # 检查实体是否匹配选择器
+            if hasattr(entity, 'zone') and hasattr(entity, 'old_zone'):
+                if entity.old_zone == self.from_zone and entity.zone == self.to_zone:
+                    return True
+            return False
+    
+    return ZoneChangeEvent(selector, from_zone, to_zone)
+
 # RandomTarget - 从选择器中随机选择一个或多个目标
 def RandomTarget(selector, count=1):
     """
@@ -144,6 +205,166 @@ def RandomTarget(selector, count=1):
             return selected if self.count > 1 else (selected if selected else [])
     
     return RandomTargetAction(selector, count)
+
+
+# RandomCardGenerator - 生成符合条件的随机卡牌列表
+class RandomCardGenerator:
+    """
+    生成符合条件的随机卡牌列表，用于发现（Discover）机制
+    
+    参数:
+        controller: 控制者（玩家）
+        card_filter: 卡牌过滤函数，接受一个卡牌对象，返回 True/False
+        count: 要生成的卡牌数量，默认为 3（发现机制的标准数量）
+    
+    用法:
+        yield GenericChoice(CONTROLLER, RandomCardGenerator(
+            CONTROLLER,
+            card_filter=lambda c: c.type == CardType.MINION,
+            count=3
+        ))
+    """
+    def __init__(self, controller, card_filter=None, count=3):
+        self.controller = controller
+        self.card_filter = card_filter or (lambda c: True)
+        self.count = count
+    
+    def eval(self, game, source):
+        """
+        评估并返回符合条件的随机卡牌ID列表
+        
+        参数:
+            game: 游戏对象
+            source: 源对象（触发此效果的卡牌）
+        
+        返回:
+            符合条件的随机卡牌ID列表
+        """
+        # 获取所有可收集的卡牌
+        from ..cards import db
+        
+        # 过滤符合条件的卡牌
+        matching_cards = []
+        for card_id, card_class in db.items():
+            try:
+                # 检查卡牌是否可收集
+                if not hasattr(card_class, 'tags'):
+                    continue
+                
+                # 创建临时卡牌对象用于过滤
+                # 使用 card_class 的 tags 属性进行过滤
+                if self.card_filter(card_class):
+                    matching_cards.append(card_id)
+            except Exception:
+                # 忽略无法处理的卡牌
+                continue
+        
+        # 如果没有符合条件的卡牌，返回空列表
+        if not matching_cards:
+            return []
+        
+        # 随机选择指定数量的卡牌
+        selected_count = min(self.count, len(matching_cards))
+        selected_cards = game.random.sample(matching_cards, selected_count)
+        
+        return selected_cards
+
+
+# RandomCard - 生成符合条件的单张随机卡牌
+def RandomCard(controller=None, card_filter=None, **kwargs):
+    """
+    生成符合条件的单张随机卡牌
+    
+    参数:
+        controller: 控制者（可选）
+        card_filter: 卡牌过滤函数（可选）
+        **kwargs: 其他过滤条件（如 race, card_class, card_type, cost 等）
+    
+    返回:
+        一个 Action，执行时返回随机选择的卡牌ID
+    
+    用法:
+        # 作为 Action 使用
+        yield RandomCard(CONTROLLER, race=Race.ELEMENTAL)
+        
+        # 获取卡牌ID
+        card_id = RandomCard(CONTROLLER, card_filter=lambda c: c.cost >= 5).id
+    """
+    from ..dsl.evaluator import Evaluator
+    from ..cards import db
+    
+    class RandomCardAction(Evaluator):
+        def __init__(self, controller, card_filter, **filter_kwargs):
+            self.controller = controller
+            self.card_filter = card_filter
+            self.filter_kwargs = filter_kwargs
+            self._cached_id = None
+        
+        @property
+        def id(self):
+            """返回随机选择的卡牌ID（用于 .id 访问）"""
+            if self._cached_id is None:
+                # 临时生成一个卡牌ID
+                matching_cards = self._get_matching_cards()
+                if matching_cards:
+                    import random
+                    self._cached_id = random.choice(matching_cards)
+                else:
+                    self._cached_id = None
+            return self._cached_id
+        
+        def _get_matching_cards(self):
+            """获取所有符合条件的卡牌ID"""
+            matching_cards = []
+            
+            for card_id, card_class in db.items():
+                try:
+                    if not hasattr(card_class, 'tags'):
+                        continue
+                    
+                    # 应用自定义过滤器
+                    if self.card_filter and not self.card_filter(card_class):
+                        continue
+                    
+                    # 应用关键字参数过滤
+                    if 'race' in self.filter_kwargs:
+                        if not hasattr(card_class, 'race') or card_class.race != self.filter_kwargs['race']:
+                            continue
+                    
+                    if 'card_class' in self.filter_kwargs:
+                        if not hasattr(card_class, 'card_class') or card_class.card_class != self.filter_kwargs['card_class']:
+                            continue
+                    
+                    if 'card_type' in self.filter_kwargs:
+                        if not hasattr(card_class, 'type') or card_class.type != self.filter_kwargs['card_type']:
+                            continue
+                    
+                    if 'cost' in self.filter_kwargs:
+                        card_cost = card_class.tags.get(GameTag.COST, 0) if hasattr(card_class, 'tags') else 0
+                        if card_cost != self.filter_kwargs['cost']:
+                            continue
+                    
+                    matching_cards.append(card_id)
+                except Exception:
+                    continue
+            
+            return matching_cards
+        
+        def trigger(self, source):
+            """执行时返回随机选择的卡牌"""
+            matching_cards = self._get_matching_cards()
+            
+            if not matching_cards:
+                return []
+            
+            # 使用游戏的随机数生成器
+            selected_card_id = source.game.random.choice(matching_cards)
+            
+            # 返回 Give action 来将卡牌加入手牌
+            from ..actions import Give
+            return [Give(self.controller or source.controller, selected_card_id)]
+    
+    return RandomCardAction(controller, card_filter, **kwargs)
 
 
 # Excess - 计算超量伤害
