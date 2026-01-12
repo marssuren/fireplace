@@ -82,14 +82,14 @@ class DED_502:
         PlayReq.REQ_MINION_TARGET: 0,
     }
     
-    def play(self):
+    def play(self, target):
         """
         将目标随从设为1/1
         将损失的属性给予手牌中的随从
         """
         # 计算损失的属性
-        atk_lost = TARGET.atk - 1
-        health_lost = TARGET.health - 1
+        atk_lost = target.atk - 1
+        health_lost = target.health - 1
         
         # 将目标设为1/1
         yield SetTag(TARGET, {
@@ -97,7 +97,7 @@ class DED_502:
             GameTag.HEALTH: 1,
         })
         
-        # 如果有损失的属性，给予手牌中的随从
+        # 如果有损失的属性,给予手牌中的随从
         if atk_lost > 0 or health_lost > 0:
             yield Find(FRIENDLY_HAND + MINION) & Buff(RANDOM(FRIENDLY_HAND + MINION), "DED_502e", 
                                                        atk_bonus=atk_lost, health_bonus=health_lost)

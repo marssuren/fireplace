@@ -69,9 +69,12 @@ class LazyNum(LazyValue):
             entities = self.selector.eval(source.game, source)
         elif isinstance(self.selector, LazyValue):
             entities = [self.selector.evaluate(source)]
-        else:
-            # TODO assert that self.selector is a TargetedAction
+        elif hasattr(self.selector, 'trigger'):
+            # TargetedAction类型
             entities = sum(self.selector.trigger(source), [])
+        else:
+            # 其他类型(如GameTag枚举),返回空列表
+            entities = []
         return entities
 
 

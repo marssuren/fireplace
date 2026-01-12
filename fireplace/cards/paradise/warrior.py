@@ -93,9 +93,9 @@ class VAC_526:
     mechanics = [GameTag.ImmuneToSpellpower]
     requirements = {PlayReq.REQ_TARGET_TO_PLAY: 0, PlayReq.REQ_MINION_TARGET: 0}
 
-    def play(self):
+    def play(self, target):
         # 对目标造成7点伤害
-        target_health = TARGET.health
+        target_health = target.health
         yield Hit(TARGET, 7)
 
         # 计算超额伤害

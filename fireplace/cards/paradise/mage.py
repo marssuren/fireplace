@@ -322,4 +322,7 @@ class WORK_063e:
         self._cost_set = cost_set
     
     def cost(self, i):
-        return self._cost_set
+        # 如果_cost_set属性存在,返回设置的费用;否则返回原值
+        if hasattr(self, '_cost_set'):
+            return self._cost_set
+        return i

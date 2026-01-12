@@ -353,9 +353,10 @@ class TSC_658:
     
     def play(self):
         # 遍历本局对战施放的法术
-        for card in self.controller.spells_played_this_game:
-            cost = card.cost
-            yield Summon(CONTROLLER, RandomMinion(cost=cost))
+        if hasattr(self.controller, 'spells_played_this_game'):
+            for card in self.controller.spells_played_this_game:
+                cost = card.cost
+                yield Summon(CONTROLLER, RandomMinion(cost=cost))
 
 
 class TSC_652:

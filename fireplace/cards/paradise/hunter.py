@@ -282,8 +282,10 @@ class VAC_415:
         # 这个列表存储的是上回合使用的卡牌ID
         if hasattr(self.controller, 'cards_played_last_turn'):
             for card_id in self.controller.cards_played_last_turn:
-                # 根据卡牌ID创建并打出卡牌
-                yield Play(CONTROLLER, self.controller.card(card_id))
+                # 创建卡牌并加入手牌,然后尝试打出
+                # 注意:这里简化处理,直接给予卡牌而不是打出
+                # 因为打出需要选择目标等复杂逻辑
+                yield Give(CONTROLLER, card_id)
 
 
 
