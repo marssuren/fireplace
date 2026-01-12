@@ -154,6 +154,23 @@ def Turn(player):
     # 简化实现：返回回合开始事件
     return OWN_TURN_BEGIN if player == CONTROLLER else OPPONENT_TURN_BEGIN
 
+# GiveOverload - 给予过载
+def GiveOverload(target, amount):
+    """
+    给予目标玩家过载
+    
+    参数:
+        target: 目标玩家
+        amount: 过载数量
+    
+    返回:
+        Action
+    """
+    from ..actions import SetTags
+    # 简化实现：直接设置过载标签
+    return lambda source: setattr(target if hasattr(target, 'overload') else source.controller, 'overload', 
+                                   getattr(target if hasattr(target, 'overload') else source.controller, 'overload', 0) + amount)
+
 # 区域常量
 from hearthstone.enums import Zone
 PLAY = Zone.PLAY  # 战场区域

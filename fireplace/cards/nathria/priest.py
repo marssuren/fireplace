@@ -124,7 +124,7 @@ class MAW_023e:
         
         # 检查卡牌是否是从对手复制的
         # 使用新的 COPIED_FROM_OPPONENT 标签
-        from fireplace import enums
+        from ... import enums
         if card.tags.get(enums.COPIED_FROM_OPPONENT, False):
             # 消灭被标记的随从
             yield Destroy(OWNER)
@@ -192,7 +192,7 @@ class REV_011:
             print(f"{'='*80}\n", file=sys.stderr)
             return
         
-        from fireplace import enums
+        from ... import enums
         if card.tags.get(enums.COPIED_FROM_OPPONENT, False):
             # 尝试从对手手牌/牌库中偷取同名卡
             # 优先从手牌
@@ -217,7 +217,7 @@ class REV_246:
     """
     def play(self):
         # 给所有从对手复制的卡牌减费
-        from fireplace import enums
+        from ... import enums
         for card in self.controller.hand:
             # 检查是否是从对手复制的
             if card.tags.get(enums.COPIED_FROM_OPPONENT, False):

@@ -206,7 +206,7 @@ that minion instead.
     """
     # 使用新的 TRANSFORM_IMMUNE 标签
     # 核心的 Morph action 会检查这个标签
-    from fireplace import enums
+    from ... import enums
     tags = {enums.TRANSFORM_IMMUNE: True}
 
 
