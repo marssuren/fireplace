@@ -155,8 +155,7 @@ class FIR_906:
 
         if nature_spells:
             # 随机弃一张自然法术
-            import random
-            discarded = random.choice(nature_spells)
+            discarded = self.game.random.choice(nature_spells)
             yield Discard(discarded)
             # 再次使所有友方随从获得 +1/+1
             yield Buff(FRIENDLY_MINIONS, "FIR_906e")

@@ -3,7 +3,6 @@
 """
 from ..utils import *
 from .dark_gift_helpers import apply_dark_gift
-import random
 
 
 # ============================================================
@@ -68,7 +67,7 @@ class EDR_780:
     def play(self):
         # 随机决定哪一个会在受到伤害时死亡
         # 50%概率是本体,50%概率是复制
-        is_original_fragile = random.choice([True, False])
+        is_original_fragile = self.game.random.choice([True, False])
         
         # 如果本体是脆弱的,给本体添加标记
         if is_original_fragile:

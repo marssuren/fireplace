@@ -13,7 +13,7 @@ Dark Gift 机制说明：
 - 补丁 32.2.0.219846 更新说明
 """
 
-import random
+
 from ....enums import GameTag
 from ...enums import DARK_GIFT, DARK_GIFT_BONUS
 
@@ -197,7 +197,7 @@ def apply_dark_gift(minion, specific_gift=None):
     else:
         # 获取可用的Dark Gift并随机选择
         available_gifts = get_available_dark_gifts(minion)
-        bonus = random.choice(available_gifts)
+        bonus = minion.game.random.choice(available_gifts)
     
     # 返回 Buff Action
     # 这会触发 Buff 应用事件，从而被 EDR_487 等卡牌监听到

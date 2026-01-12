@@ -130,13 +130,12 @@ class EDR_455:
         dead_dragons = [
             c for c in self.controller.graveyard
             if c.type == CardType.MINION and
-            Race.DRAGON in getattr(c, 'races', [c.race]) if hasattr(c, 'race') else False
+            (Race.DRAGON in getattr(c, 'races', [c.race]) if hasattr(c, 'race') else False)
         ]
 
         if dead_dragons:
             # 发现一条龙
-            import random
-            choices = random.sample(dead_dragons, min(3, len(dead_dragons)))
+            choices = self.game.random.sample(dead_dragons, min(3, len(dead_dragons)))
             yield GenericChoice(CONTROLLER, [c.id for c in choices])
 
             # 重新召唤它

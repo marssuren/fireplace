@@ -4,7 +4,6 @@
 from ..utils import *
 from .dark_gift_helpers import apply_dark_gift
 from .imbue_helpers import trigger_imbue
-import random
 
 
 # COMMON 卡牌
@@ -125,7 +124,7 @@ class EDR_495:
         for player in [self.controller, self.controller.opponent]:
             minions_in_hand = [c for c in player.hand if c.type == CardType.MINION]
             if minions_in_hand:
-                target = random.choice(minions_in_hand)
+                target = self.game.random.choice(minions_in_hand)
                 yield Buff(target, "EDR_495e")
 
 
@@ -158,7 +157,7 @@ class EDR_571:
         # 抽取一张5费以上的法术牌
         spells_5_plus = [c for c in self.controller.deck if c.type == CardType.SPELL and c.cost >= 5]
         if spells_5_plus:
-            yield ForceDraw(CONTROLLER, random.choice(spells_5_plus))
+            yield ForceDraw(CONTROLLER, self.game.random.choice(spells_5_plus))
 
 
 class EDR_572:
@@ -175,7 +174,7 @@ class EDR_572:
         for _ in range(2):
             if dragons_in_deck:
                 # 随机选择一张龙牌
-                dragon = random.choice(dragons_in_deck)
+                dragon = self.game.random.choice(dragons_in_deck)
                 dragons_in_deck.remove(dragon)  # 避免重复抽取同一张
                 
                 # 抽取龙牌
@@ -224,7 +223,7 @@ class EDR_849:
     events = Play(CONTROLLER, MINION - SELF).after(
         lambda self, source, card: [
             # 随机选择一个奖励效果
-            Buff(card, random.choice([
+            Buff(card, self.game.random.choice([
                 "EDR_849e1",  # +1/+1
                 "EDR_849e2",  # 突袭
                 "EDR_849e3",  # 圣盾
@@ -354,7 +353,7 @@ class FIR_929:
         # 抽取一张火焰法术牌
         fire_spells = [c for c in self.controller.deck if c.type == CardType.SPELL and c.spell_school == SpellSchool.FIRE]
         if fire_spells:
-            yield ForceDraw(CONTROLLER, random.choice(fire_spells))
+            yield ForceDraw(CONTROLLER, self.game.random.choice(fire_spells))
 
 
 # Enchantments (增益效果)

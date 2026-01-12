@@ -79,9 +79,8 @@ class EDR_494:
         deck_minions = [c for c in ancient.controller.deck if c.type == CardType.MINION]
         
         if deck_minions:
-            import random
             # 随机选择一个随从
-            eaten_minion = random.choice(deck_minions)
+            eaten_minion = ancient.game.random.choice(deck_minions)
             
             # 初始化被吞食的随从列表
             if not hasattr(ancient, '_eaten_minions'):

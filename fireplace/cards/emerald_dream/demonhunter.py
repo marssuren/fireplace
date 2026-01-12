@@ -3,7 +3,6 @@
 """
 from ..utils import *
 from .dark_gift_helpers import apply_dark_gift
-import random
 
 
 # COMMON
@@ -22,7 +21,7 @@ class EDR_840:
         yield Draw(CONTROLLER)
         # 随机召唤一个休眠的恐魇种 (3种之一)
         dreadseed_tokens = ["EDR_840t1", "EDR_840t2", "EDR_840t3"]
-        yield Summon(CONTROLLER, random.choice(dreadseed_tokens))
+        yield Summon(CONTROLLER, self.game.random.choice(dreadseed_tokens))
 
 
 class EDR_842:
@@ -96,13 +95,13 @@ class EDR_841:
     def play(self):
         # 战吼:随机召唤一个休眠的恐魇种
         dreadseed_tokens = ["EDR_840t1", "EDR_840t2", "EDR_840t3"]
-        yield Summon(CONTROLLER, random.choice(dreadseed_tokens))
+        yield Summon(CONTROLLER, self.game.random.choice(dreadseed_tokens))
     
     # 亡语:随机召唤一个休眠的恐魇种
     @property
     def deathrattle(self):
         dreadseed_tokens = ["EDR_840t1", "EDR_840t2", "EDR_840t3"]
-        return [Summon(CONTROLLER, random.choice(dreadseed_tokens))]
+        return [Summon(CONTROLLER, self.game.random.choice(dreadseed_tokens))]
 
 
 class EDR_882:
@@ -171,7 +170,7 @@ class EDR_891:
         
         if dead_deathrattle_minions:
             # 随机选择一个
-            target = random.choice(dead_deathrattle_minions)
+            target = self.game.random.choice(dead_deathrattle_minions)
             # 复活它并召唤一个复制
             return [
                 Summon(CONTROLLER, target.id),
@@ -218,8 +217,8 @@ class EDR_820a:
     def play(self):
         # 召唤两个随机休眠的恐魇种
         dreadseed_tokens = ["EDR_840t1", "EDR_840t2", "EDR_840t3"]
-        yield Summon(CONTROLLER, random.choice(dreadseed_tokens))
-        yield Summon(CONTROLLER, random.choice(dreadseed_tokens))
+        yield Summon(CONTROLLER, self.game.random.choice(dreadseed_tokens))
+        yield Summon(CONTROLLER, self.game.random.choice(dreadseed_tokens))
 
 
 class EDR_820b:
@@ -253,7 +252,7 @@ class EDR_892:
         
         if dead_deathrattle_minions:
             # 随机选择一个
-            target = random.choice(dead_deathrattle_minions)
+            target = self.game.random.choice(dead_deathrattle_minions)
             # 复活它并召唤一个复制
             return [
                 Summon(CONTROLLER, target.id),

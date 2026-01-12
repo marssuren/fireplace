@@ -172,8 +172,7 @@ class FIR_910:
         
         if fire_spells:
             # 随机弃一张火焰法术
-            import random
-            discarded = random.choice(fire_spells)
+            discarded = self.game.random.choice(fire_spells)
             yield Discard(discarded)
             # 再造成3点伤害
             yield Hit(TARGET, 3)

@@ -156,14 +156,12 @@ class EDR_251:
         # 抽取套牌中的法术牌（started_in_deck = True）
         deck_spells = [c for c in self.controller.deck if c.type == CardType.SPELL and getattr(c, 'started_in_deck', True)]
         if deck_spells:
-            import random
-            yield Draw(CONTROLLER, random.choice(deck_spells))
+            yield Draw(CONTROLLER, self.game.random.choice(deck_spells))
         
         # 抽取套牌外的法术牌（started_in_deck = False）
         non_deck_spells = [c for c in self.controller.deck if c.type == CardType.SPELL and not getattr(c, 'started_in_deck', True)]
         if non_deck_spells:
-            import random
-            yield Draw(CONTROLLER, random.choice(non_deck_spells))
+            yield Draw(CONTROLLER, self.game.random.choice(non_deck_spells))
 
 
 class EDR_253:
@@ -265,8 +263,7 @@ class EDR_256:
         
         if non_starting_cards:
             # 随机抽取一张
-            import random
-            card_to_draw = random.choice(non_starting_cards)
+            card_to_draw = self.game.random.choice(non_starting_cards)
             yield Draw(CONTROLLER, card_to_draw)
             # 获得+2/+2
             yield Buff(SELF, "EDR_256e")

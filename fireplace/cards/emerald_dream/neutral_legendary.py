@@ -342,8 +342,7 @@ class FIR_959:
             attempts += 1
             
             # 随机选择一个火焰法术
-            import random
-            spell_id = random.choice(self.FIRE_SPELLS)
+            spell_id = self.game.random.choice(self.FIRE_SPELLS)
             
             try:
                 # 创建法术卡牌实例以获取费用

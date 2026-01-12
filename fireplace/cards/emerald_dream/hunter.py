@@ -210,8 +210,7 @@ class EDR_014:
             for _ in range(2):
                 targets = self.controller.opponent.field
                 if targets:
-                    import random
-                    target = random.choice(targets)
+                    target = self.game.random.choice(targets)
                     yield Attack(SELF, target)
 
 

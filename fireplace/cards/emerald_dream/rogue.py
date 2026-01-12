@@ -70,8 +70,7 @@ class EDR_528:
         
         if opponent_minions:
             # 随机选择3张不同的随从
-            import random
-            choices = random.sample(opponent_minions, min(3, len(opponent_minions)))
+            choices = self.game.random.sample(opponent_minions, min(3, len(opponent_minions)))
             
             # 发现效果
             yield GenericChoice(CONTROLLER, [c.id for c in choices])
@@ -300,8 +299,7 @@ class EDR_526:
         # 随机选择对手手牌中的牌并困住
         opponent_hand = self.controller.opponent.hand
         if opponent_hand:
-            import random
-            cards_to_trap = random.sample(opponent_hand, min(trap_count, len(opponent_hand)))
+            cards_to_trap = self.game.random.sample(opponent_hand, min(trap_count, len(opponent_hand)))
             
             for card in cards_to_trap:
                 # 给予"困住"效果:增加费用使其无法使用,1回合后恢复
@@ -320,9 +318,8 @@ class EDR_527:
         hand_space = 10 - len(self.controller.hand)
         
         if hand_space > 0 and self.controller.opponent.deck:
-            import random
             # 从对手牌库中随机选择牌
-            cards_to_copy = random.sample(
+            cards_to_copy = self.game.random.sample(
                 self.controller.opponent.deck,
                 min(hand_space, len(self.controller.opponent.deck))
             )

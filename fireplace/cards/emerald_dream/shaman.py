@@ -108,13 +108,12 @@ class EDR_232:
     requirements = {}
     
     def play(self):
-        import random
         # 获取所有场上的随从（需要先复制列表，因为会修改）
         all_minions = list(self.controller.field) + list(self.controller.opponent.field)
         
         for minion in all_minions:
             # 随机选择一个玩家
-            target_player = random.choice([self.controller, self.controller.opponent])
+            target_player = self.game.random.choice([self.controller, self.controller.opponent])
             # 将随从洗入该玩家的牌库
             yield Shuffle(target_player, minion)
 
@@ -159,8 +158,7 @@ class EDR_518:
         # 使手牌中一张随机随从牌的费用减少1点
         minions_in_hand = [c for c in self.controller.hand if c.type == CardType.MINION]
         if minions_in_hand:
-            import random
-            target_minion = random.choice(minions_in_hand)
+            target_minion = self.game.random.choice(minions_in_hand)
             yield Buff(target_minion, "EDR_518e")
 
 
@@ -183,8 +181,7 @@ class FIR_923:
         # 随机对一个敌方随从造成伤害
         enemy_minions = list(self.controller.opponent.field)
         if enemy_minions:
-            import random
-            target = random.choice(enemy_minions)
+            target = self.game.random.choice(enemy_minions)
             yield Hit(target, damage)
 
 
