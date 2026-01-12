@@ -21,6 +21,7 @@ from ..events import *
 # 导入常用的 fireplace 内部标签
 ACTIVATIONS_THIS_TURN = enums.ACTIVATIONS_THIS_TURN
 LOCATION_COOLDOWN = enums.LOCATION_COOLDOWN
+HONORABLE_KILL = enums.HONORABLE_KILL
 
 
 # For buffs which are removed when the card is moved to play (eg. cost buffs)

@@ -164,7 +164,7 @@ class RLK_539:
     """
     tags = {GameTag.LIFESTEAL: True}
     # 回合结束触发
-    events = OwnTurnEnds().on(
+    events = OWN_TURN_END.on(
         Hit(ENEMY_HERO, 6)
     )
 

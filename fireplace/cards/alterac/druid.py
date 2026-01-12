@@ -88,7 +88,7 @@ class AV_293:
     突袭。你的随从拥有"荣誉消灭：召唤一只2/2并具有突袭的双足飞龙。"""
     # 给所有友方随从添加荣誉消灭效果
     update = Refresh(FRIENDLY_MINIONS, {
-        enums.HONORABLE_KILL: lambda self: Summon(CONTROLLER, "AV_293t")
+        HONORABLE_KILL: lambda self: Summon(CONTROLLER, "AV_293t")
     })
 
 
