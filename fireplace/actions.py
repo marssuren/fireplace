@@ -2840,8 +2840,17 @@ class Morph(TargetedAction):
 
     def get_target_args(self, source, target):
         card = _eval_card(source, self._args[1])
-        assert len(card) == 1
-        card = card[0]
+        
+        # 如果返回多个卡牌,随机选择一个
+        # 这可能发生在 RandomCollectible() * N 的情况
+        if len(card) > 1:
+            card = source.game.random.choice(card)
+        elif len(card) == 1:
+            card = card[0]
+        else:
+            # 空列表 - 这不应该发生,保留assert以便调试
+            assert False, f"No cards returned by _eval_card for {self._args[1]}"
+        
         card.controller = target.controller
         return [card]
 
