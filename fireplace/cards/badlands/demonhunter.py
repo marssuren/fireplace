@@ -56,11 +56,11 @@ class WW_404:
         # 发现纳迦牌
         if self.naga_played_while_holding:
             # 减少1费
-            yield Discover(CONTROLLER, RandomNaga()).then(
-                Buff(Give.CARD, "WW_404e")
+            yield Discover(CONTROLLER, RandomCollectible(race=Race.NAGA)).then(
+                Buff(Discover.CARD, "WW_404e")
             )
         else:
-            yield Discover(CONTROLLER, RandomNaga())
+            yield Discover(CONTROLLER, RandomCollectible(race=Race.NAGA))
 
 
 class WW_404e:
@@ -84,6 +84,10 @@ class DEEP_012:
     """
     # Type: MINION | Cost: 1 | Rarity: RARE | Stats: 1/1 | Race: ELEMENTAL | Mechanics: BATTLECRY, DEATHRATTLE, RUSH
     # 使用 Bounce 来还回武器到手牌，保留耐久度
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.stored_weapon = None
     
     def play(self):
         weapon = self.controller.weapon

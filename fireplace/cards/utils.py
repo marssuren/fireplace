@@ -410,6 +410,13 @@ def GainEmptyMana(selector, amount):
     return GainMana(selector, amount).then(SpendMana(selector, GainMana.AMOUNT))
 
 
+def DestroyMana(selector, amount):
+    """
+    Helper to destroy mana crystals (uses negative GainMana)
+    """
+    return GainMana(selector, -amount)
+
+
 def custom_card(cls):
     from . import CardDB, db
 
