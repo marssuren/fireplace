@@ -187,29 +187,31 @@ class AV_336_tracker:
     events = [
         # 监听攻击事件
         Attack(FRIENDLY + MINION + BEAST).after(
-            lambda self, source, attacker, target: (
-                # 检查目标是否是随从且已死亡
-                self._trigger_summon(attacker.controller)
-                if (target.type == CardType.MINION and
-                    target.zone == Zone.GRAVEYARD)
-                else None
+            lambda self, *args: (
+                # args[0] = source, args[1] = attacker, args[2] = defender
+                self._trigger_summon_actions(args[1].controller)
+                if (len(args) >= 3 and 
+                    args[2].type == CardType.MINION and
+                    args[2].zone == Zone.GRAVEYARD)
+                else []
             )
         ),
         # 回合结束时移除追踪器
         OWN_TURN_END.on(Destroy(SELF))
     ]
 
-    def _trigger_summon(self, controller):
-        """触发召唤新野兽"""
+    def _trigger_summon_actions(self, controller):
+        """返回召唤新野兽的actions"""
         # 从牌库中查找野兽
         beasts = [c for c in controller.deck
                  if c.type == CardType.MINION and Race.BEAST in c.races]
         if beasts:
             beast = controller.game.random.choice(beasts)
-            controller.game.queue_actions(controller, [
+            return [
                 Summon(controller, beast),
                 Buff(beast, "AV_336e")
-            ])
+            ]
+        return []
 
 
 class AV_337:

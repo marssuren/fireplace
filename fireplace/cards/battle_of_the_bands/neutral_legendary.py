@@ -82,7 +82,15 @@ class ETC_113:
     }
     # 拍摄手牌：将当前手牌的复制洗入牌库
     # 每局对战限一次需要检查是否已经使用过
-    play = Find(FRIENDLY_HERO + TIMES_PLAYED_THIS_GAME("ETC_113") == 0) & Shuffle(CONTROLLER, Copy(FRIENDLY_HAND))
+    def play(self):
+        # 检查是否是第一次使用
+        times_played = sum(1 for c in self.controller.cards_played_this_game if c.id == "ETC_113")
+        if times_played <= 1:  # 包括当前这次
+            # 复制手牌并洗入牌库
+            hand_cards = list(self.controller.hand)
+            for card in hand_cards:
+                if card != self:  # 不复制自己
+                    yield Shuffle(CONTROLLER, Copy(card))
 class ETC_425:
     """音响工程师普兹克 / Pozzik, Audio Engineer
     <b>战吼：</b>将两张3/3的机器人置入你对手的手牌。<b>亡语：</b>为你自己召唤这些机器人。"""

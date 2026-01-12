@@ -93,3 +93,16 @@ class BAR_801t:
     由 BAR_801 (Wound Prey) 召唤
     """
     pass
+
+
+# ========================================
+# Warrior Tokens - 战士衍生物
+# ========================================
+
+class WC_026t:
+    """Turtle Spike - 龟刺
+    2/5 Weapon
+    2/5 武器
+    由 WC_026 (Kresh, Lord of Turtling) 的亡语装备
+    """
+    pass

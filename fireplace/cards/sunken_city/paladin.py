@@ -139,7 +139,7 @@ class TSC_061:
     # 追踪神圣法术消耗的法力值
     # 统计本局游戏中打出的所有神圣法术实际支付的费用
     
-    cost_mod = lambda self, i: -sum(card.tags.get(GameTag.COST_PAID, card.cost) for card in self.controller.cards_played_this_game if card.type == CardType.SPELL and card.tags.get(GameTag.SPELL_SCHOOL) == SpellSchool.HOLY)
+    cost_mod = lambda self, i: -sum(card.cost for card in self.controller.cards_played_this_game if card.type == CardType.SPELL and card.tags.get(GameTag.SPELL_SCHOOL) == SpellSchool.HOLY)
 
 
 
