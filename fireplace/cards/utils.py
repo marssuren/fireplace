@@ -629,6 +629,90 @@ def MagneticSummon(target, card_id):
 # PROGRESS - 进度（自定义 GameTag）
 PROGRESS = 99995  # 使用一个不冲突的数字
 
+# LOWESTHEALTH - 生命值最低的目标
+def LOWESTHEALTH(selector):
+    """
+    从选择器中选择生命值最低的目标
+    
+    参数:
+        selector: 目标选择器
+    
+    返回:
+        生命值最低的目标
+    """
+    def lowest_health_selector(source):
+        entities = selector(source) if callable(selector) else selector
+        if not entities:
+            return None
+        return min(entities, key=lambda e: e.health if hasattr(e, 'health') else 0)
+    return lowest_health_selector
+
+# RandomChoice - 随机选择
+def RandomChoice(selector):
+    """
+    从选择器中随机选择一个目标
+    
+    参数:
+        selector: 目标选择器
+    
+    返回:
+        随机选择的目标
+    """
+    def random_choice_selector(source):
+        entities = selector(source) if callable(selector) else selector
+        if not entities:
+            return None
+        return source.game.random.choice(list(entities))
+    return random_choice_selector
+
+# COUNT - 计数
+def COUNT(selector):
+    """
+    计算选择器中的目标数量
+    
+    参数:
+        selector: 目标选择器
+    
+    返回:
+        目标数量
+    """
+    def count_selector(source):
+        entities = selector(source) if callable(selector) else selector
+        return len(list(entities)) if entities else 0
+    return count_selector
+
+# 死亡骑士符文（自定义 GameTag）
+RUNE_BLOOD = 99994   # 鲜血符文
+RUNE_FROST = 99993   # 冰霜符文
+RUNE_UNHOLY = 99992  # 邪恶符文
+
+# SummonCopy - 召唤副本
+def SummonCopy(target, count=1):
+    """
+    召唤目标的副本
+    
+    参数:
+        target: 目标实体
+        count: 副本数量
+    
+    返回:
+        Action
+    """
+    from ..actions import Summon
+    def summon_copy_action(source):
+        card_id = target.id if hasattr(target, 'id') else target
+        return [Summon(source.controller, card_id) for _ in range(count)]
+    return summon_copy_action
+
+# FRIENDLY_LOCATIONS - 友方地标
+FRIENDLY_LOCATIONS = lambda self: [e for e in self.controller.field if hasattr(e, 'location') and e.location]
+
+# COOLDOWN - 冷却时间（自定义 GameTag）
+COOLDOWN = 99991
+
+# REQ_TARGET_WITH_DIVINE_SHIELD - 需要目标有圣盾（自定义 PlayReq）
+REQ_TARGET_WITH_DIVINE_SHIELD = 99990
+
 # Random - 随机选择器（已存在，但可能需要导出）
 # Random 已经在 DSL 中定义
 
