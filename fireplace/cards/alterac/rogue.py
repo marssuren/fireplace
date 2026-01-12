@@ -125,29 +125,31 @@ class AV_403:
     战吼：将你手牌和牌库中的随从替换为其他职业的随从。这些随从的法力值消耗减少（2）点。"""
     def play(self):
         """替换手牌和牌库中的随从为其他职业的随从"""
-        # 替换手牌中的随从
-        for minion in list(self.controller.hand):
-            if minion.type == CardType.MINION:
-                # 变形为其他职业的随机随从，并获取新卡牌引用
-                new_card = yield Morph(minion, RandomCollectible(
-                    card_class=~CardClass.ROGUE,
-                    type=CardType.MINION
-                ))
-                # 给予减费buff（使用变形后的新卡牌）
-                if new_card:
-                    yield Buff(new_card, "AV_403e")
+        # 收集需要变形的手牌随从
+        hand_minions = [m for m in list(self.controller.hand) if m.type == CardType.MINION]
+        
+        # 变形手牌中的随从
+        for minion in hand_minions:
+            yield Morph(minion, RandomCollectible(
+                card_class=~CardClass.ROGUE,
+                type=CardType.MINION
+            ))
+            # 通过 morphed 属性获取变形后的新卡牌
+            if hasattr(minion, 'morphed') and minion.morphed:
+                yield Buff(minion.morphed, "AV_403e")
 
-        # 替换牌库中的随从
-        for minion in list(self.controller.deck):
-            if minion.type == CardType.MINION:
-                # 变形为其他职业的随机随从，并获取新卡牌引用
-                new_card = yield Morph(minion, RandomCollectible(
-                    card_class=~CardClass.ROGUE,
-                    type=CardType.MINION
-                ))
-                # 给予减费buff（使用变形后的新卡牌）
-                if new_card:
-                    yield Buff(new_card, "AV_403e")
+        # 收集需要变形的牌库随从
+        deck_minions = [m for m in list(self.controller.deck) if m.type == CardType.MINION]
+        
+        # 变形牌库中的随从
+        for minion in deck_minions:
+            yield Morph(minion, RandomCollectible(
+                card_class=~CardClass.ROGUE,
+                type=CardType.MINION
+            ))
+            # 通过 morphed 属性获取变形后的新卡牌
+            if hasattr(minion, 'morphed') and minion.morphed:
+                yield Buff(minion.morphed, "AV_403e")
 
 
 

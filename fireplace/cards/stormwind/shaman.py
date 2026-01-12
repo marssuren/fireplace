@@ -339,18 +339,18 @@ class SW_115e:
     # 监听打出战吼随从
     events = [
         Play(CONTROLLER, MINION + BATTLECRY).after(
-            lambda self, source, player, card, target: (
-                setattr(self.controller, 'bolner_first_battlecry_this_turn', card)
-                if getattr(self.controller, 'bolner_first_battlecry_this_turn', None) is None
+            lambda self, source, *args: (
+                setattr(source.controller, 'bolner_first_battlecry_this_turn', args[1] if len(args) > 1 else None)
+                if getattr(source.controller, 'bolner_first_battlecry_this_turn', None) is None
                 else (
-                    list(self.controller.bolner_first_battlecry_this_turn.play())
-                    if hasattr(self.controller.bolner_first_battlecry_this_turn, 'play')
+                    list(source.controller.bolner_first_battlecry_this_turn.play())
+                    if hasattr(source.controller.bolner_first_battlecry_this_turn, 'play')
                     else None
                 )
             )
         ),
         # 回合结束时重置
         OWN_TURN_END.on(
-            lambda self, source, player, *args: setattr(self.controller, 'bolner_first_battlecry_this_turn', None)
+            lambda self, source, *args: setattr(source.controller, 'bolner_first_battlecry_this_turn', None)
         )
     ]

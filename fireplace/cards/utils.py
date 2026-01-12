@@ -904,6 +904,8 @@ def RandomCard(controller=None, card_filter=None, **kwargs):
             self.card_filter = card_filter
             self.filter_kwargs = filter_kwargs
             self._cached_id = None
+            # 添加 selector 属性用于兼容性
+            self.selector = None
         
         @property
         def id(self):
