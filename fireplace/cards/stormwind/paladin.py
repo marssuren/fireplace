@@ -88,26 +88,34 @@ class DED_502:
         将损失的属性给予手牌中的随从
         """
         # 计算损失的属性
-        atk_lost = target.atk - 1
-        health_lost = target.health - 1
+        atk_lost = max(0, target.atk - 1)
+        health_lost = max(0, target.health - 1)
         
         # 将目标设为1/1
-        yield SetTag(TARGET, {
-            GameTag.ATK: 1,
-            GameTag.HEALTH: 1,
-        })
+        yield Buff(target, "DED_502e_debuff")
         
         # 如果有损失的属性,给予手牌中的随从
         if atk_lost > 0 or health_lost > 0:
             yield Find(FRIENDLY_HAND + MINION) & Buff(RANDOM(FRIENDLY_HAND + MINION), "DED_502e", 
-                                                       atk_bonus=atk_lost, health_bonus=health_lost)
+                                                       atk=atk_lost, max_health=health_lost)
+
+
+class DED_502e_debuff:
+    """正义防御减益 - 设为1/1"""
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+    }
+    
+    def apply(self, target):
+        target.atk = 1
+        target.max_health = 1
 
 
 class DED_502e:
     """正义防御增益"""
-    def __init__(self, atk_bonus, health_bonus):
-        self.atk = atk_bonus
-        self.max_health = health_bonus
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+    }
 
 
 class SW_046:

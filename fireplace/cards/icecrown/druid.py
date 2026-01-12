@@ -14,15 +14,17 @@ class ICC_047:
 
 
 class ICC_047a:
-    play = Morph(SELF, "ICC_047t").then(
-        SetTags(Morph.CARD, {GameTag.SECRET_DEATHRATTLE: 1})
-    )
+    def play(self):
+        morphed = yield Morph(SELF, "ICC_047t")
+        if morphed:
+            yield SetTags(morphed, {GameTag.SECRET_DEATHRATTLE: 1})
 
 
 class ICC_047b:
-    play = Morph(SELF, "ICC_047t").then(
-        SetTags(Morph.CARD, {GameTag.SECRET_DEATHRATTLE: 2})
-    )
+    def play(self):
+        morphed = yield Morph(SELF, "ICC_047t")
+        if morphed:
+            yield SetTags(morphed, {GameTag.SECRET_DEATHRATTLE: 2})
 
 
 class ICC_047t:

@@ -252,9 +252,6 @@ class TIME_014:
         yield Overload(self.controller, 3)
 
 
-        # 使用 Rewind 包装器执行效果
-        yield from execute_with_rewind(self, effect)
-
 class TIME_217:
     """雷鸫 - Stormrook
     [x]Whenever you would damage this with a Nature spell, summon a random 5-Cost minion instead.

@@ -96,14 +96,20 @@ class UNG_929:
 
     class Hand:
         events = OWN_TURN_BEGIN.on(
-            Morph(SELF, RandomWeapon()).then(Buff(Morph.CARD, "UNG_929e"))
+            lambda self: [
+                Morph(SELF, RandomWeapon()),
+                Buff(SELF, "UNG_929e")
+            ]
         )
 
 
 class UNG_929e:
     class Hand:
         events = OWN_TURN_BEGIN.on(
-            Morph(OWNER, RandomWeapon()).then(Buff(Morph.CARD, "UNG_929e"))
+            lambda self: [
+                Morph(OWNER, RandomWeapon()),
+                Buff(OWNER, "UNG_929e")
+            ]
         )
 
     events = REMOVED_IN_PLAY

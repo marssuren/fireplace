@@ -106,7 +106,10 @@ class ICC_852:
         PlayReq.REQ_MINION_TARGET: 0,
         PlayReq.REQ_TARGET_IF_AVAILABLE_AND_NO_3_COST_CARD_IN_DECK: 0,
     }
-    play = Morph(SELF, ExactCopy(TARGET)).then(Buff(Morph.CARD, "ICC_852e"))
+    def play(self, target):
+        morphed = yield Morph(SELF, ExactCopy(target))
+        if morphed:
+            yield Buff(morphed, "ICC_852e")
 
 
 class ICC_852e:

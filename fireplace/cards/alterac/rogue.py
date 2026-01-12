@@ -130,28 +130,28 @@ class AV_403:
         
         # 变形手牌中的随从
         for minion in hand_minions:
-            # 先获取一个随机的其他职业随从
-            random_card = RandomCollectible(
+            # 变形为随机的其他职业随从
+            morphed = yield Morph(minion, RandomCollectible(
                 card_class=~CardClass.ROGUE,
                 type=CardType.MINION
-            )
-            yield Morph(minion, random_card).then(
-                Buff(Morph.CARD, "AV_403e")
-            )
+            ))
+            # 给变形后的随从添加费用减少buff
+            if morphed:
+                yield Buff(morphed, "AV_403e")
 
         # 收集需要变形的牌库随从
         deck_minions = [m for m in list(self.controller.deck) if m.type == CardType.MINION]
         
         # 变形牌库中的随从
         for minion in deck_minions:
-            # 先获取一个随机的其他职业随从
-            random_card = RandomCollectible(
+            # 变形为随机的其他职业随从
+            morphed = yield Morph(minion, RandomCollectible(
                 card_class=~CardClass.ROGUE,
                 type=CardType.MINION
-            )
-            yield Morph(minion, random_card).then(
-                Buff(Morph.CARD, "AV_403e")
-            )
+            ))
+            # 给变形后的随从添加费用减少buff
+            if morphed:
+                yield Buff(morphed, "AV_403e")
 
 
 

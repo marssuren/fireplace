@@ -78,10 +78,13 @@ class OG_118:
         ]
         hero_class, hero_power = self.game.random.choice(classes)
         yield Summon(CONTROLLER, hero_power)
-        yield Morph(
-            FRIENDLY + WARLOCK + (IN_HAND | IN_DECK),
-            RandomCollectible(card_class=hero_class),
-        ).then(Buff(Morph.CARD, "OG_118f"))
+        
+        # 变形所有术士卡牌
+        warlock_cards = (FRIENDLY + WARLOCK + (IN_HAND | IN_DECK)).eval(self.game, self)
+        for card in warlock_cards:
+            morphed = yield Morph(card, RandomCollectible(card_class=hero_class))
+            if morphed:
+                yield Buff(morphed, "OG_118f")
 
 
 class OG_118f:

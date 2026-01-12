@@ -148,10 +148,10 @@ class WW_425:
 
     def play(self):
         # 抽一张不同的奥术法术牌
-        yield ForceDraw(CONTROLLER, RANDOM(FRIENDLY_DECK + SPELL + ARCANE - ID(self.id)))
+        drawn = yield ForceDraw(CONTROLLER, RANDOM(FRIENDLY_DECK + SPELL + ARCANE - ID(self.id)))
         # 给抽到的牌添加"本回合施放两次"的buff
-        drawn_card = ForceDraw.CARD
-        if drawn_card:
+        if drawn and len(drawn) > 0:
+            drawn_card = drawn[0]
             yield Buff(drawn_card, "WW_425e")
 
 
@@ -249,20 +249,21 @@ class WW_429:
 
     def play(self):
         # 抽一张元素牌
-        yield ForceDraw(CONTROLLER, RANDOM(FRIENDLY_DECK + ELEMENTAL))
-        drawn_card = ForceDraw.CARD
+        drawn = yield ForceDraw(CONTROLLER, RANDOM(FRIENDLY_DECK + ELEMENTAL))
+        
+        if drawn and len(drawn) > 0:
+            drawn_card = drawn[0]
+            if drawn_card.type == CardType.MINION:
+                # 移除抽到的牌
+                yield Destroy(drawn_card)
 
-        if drawn_card and drawn_card.type == CardType.MINION:
-            # 移除抽到的牌
-            yield Destroy(drawn_card)
+                # 使用核心的 SplitCard 动作拆分卡牌
+                half1, half2 = SplitCard(drawn_card).trigger(self)[0]
 
-            # 使用核心的 SplitCard 动作拆分卡牌
-            half1, half2 = SplitCard(drawn_card).trigger(self)[0]
-
-            # 将两张"一半"的牌置入手牌
-            if half1 and half2:
-                self.controller.give(half1)
-                self.controller.give(half2)
+                # 将两张"一半"的牌置入手牌
+                if half1 and half2:
+                    self.controller.give(half1)
+                    self.controller.give(half2)
 
 
 class WW_430:

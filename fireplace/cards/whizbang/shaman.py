@@ -253,9 +253,9 @@ class TOY_504:
         # 抽两张5费及以上的法术牌
         for _ in range(2):
             # 抽一张5费及以上的法术牌
-            drawn = yield ForceDraw(CONTROLLER, FRIENDLY_DECK + SPELL + (COST(ForceDraw.CARD) >= 5))
+            drawn = yield ForceDraw(CONTROLLER, FRIENDLY_DECK + SPELL + (COST >= 5))
             
-            if drawn:
+            if drawn and len(drawn) > 0:
                 spell_card = drawn[0]
                 # 记录法术ID（在变形前）
                 spell_id = spell_card.id

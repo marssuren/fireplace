@@ -131,7 +131,10 @@ class ICC_827t:
     class Hand:
         events = (
             Play(CONTROLLER).on(
-                Morph(SELF, ExactCopy(Play.CARD)).then(Buff(Morph.CARD, "ICC_827e"))
+                lambda self, player, card, *args: [
+                    Morph(SELF, ExactCopy(card)),
+                    Buff(SELF, "ICC_827e")
+                ]
             ),
             OWN_TURN_END.on(Destroy(SELF)),
         )
@@ -142,7 +145,10 @@ class ICC_827e:
     class Hand:
         events = (
             Play(CONTROLLER).on(
-                Morph(OWNER, ExactCopy(Play.CARD)).then(Buff(Morph.CARD, "ICC_827e"))
+                lambda self, player, card, *args: [
+                    Morph(OWNER, ExactCopy(card)),
+                    Buff(OWNER, "ICC_827e")
+                ]
             ),
             OWN_TURN_END.on(Destroy(SELF)),
         )

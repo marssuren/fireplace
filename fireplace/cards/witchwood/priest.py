@@ -14,9 +14,10 @@ class GIL_142:
         events = OWN_TURN_BEGIN.on(
             Find(ENEMY_HAND)
             & (
-                Morph(SELF, ExactCopy(RANDOM(ENEMY_HAND))).then(
-                    Buff(Morph.CARD, "GIL_142e")
-                )
+                lambda self: [
+                    Morph(SELF, ExactCopy(RANDOM(ENEMY_HAND))),
+                    Buff(SELF, "GIL_142e")
+                ]
             )
         )
 
@@ -26,9 +27,10 @@ class GIL_142e:
         events = OWN_TURN_BEGIN.on(
             Find(ENEMY_HAND)
             & (
-                Morph(OWNER, ExactCopy(RANDOM(ENEMY_HAND))).then(
-                    Buff(Morph.CARD, "GIL_142e")
-                )
+                lambda self: [
+                    Morph(OWNER, ExactCopy(RANDOM(ENEMY_HAND))),
+                    Buff(OWNER, "GIL_142e")
+                ]
             )
         )
 

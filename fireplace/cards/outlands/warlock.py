@@ -123,7 +123,12 @@ class BT_306:
     随机将你的手牌替换成恶魔牌，并使它们获得+2/+2。"""
 
     # Replace your hand with random Demons. Give them +2/+2.
-    play = Morph(FRIENDLY_HAND, RandomDemon()).then(Buff(Morph.CARD, "BT_306e"))
+    def play(self):
+        hand_cards = list(self.controller.hand)
+        for card in hand_cards:
+            morphed = yield Morph(card, RandomDemon())
+            if morphed:
+                yield Buff(morphed, "BT_306e")
 
 
 BT_306e = buff(+2, +2)

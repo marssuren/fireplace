@@ -109,18 +109,20 @@ class LOOT_104:
 
     class Hand:
         events = OWN_TURN_BEGIN.on(
-            Morph(SELF, RandomSpell(card_class=CardClass.MAGE)).then(
-                Buff(Morph.CARD, "LOOT_104e")
-            )
+            lambda self: [
+                Morph(SELF, RandomSpell(card_class=CardClass.MAGE)),
+                Buff(SELF, "LOOT_104e")
+            ]
         )
 
 
 class LOOT_104e:
     class Hand:
         events = OWN_TURN_BEGIN.on(
-            Morph(OWNER, RandomSpell(card_class=CardClass.MAGE)).then(
-                Buff(Morph.CARD, "LOOT_104e")
-            )
+            lambda self: [
+                Morph(OWNER, RandomSpell(card_class=CardClass.MAGE)),
+                Buff(OWNER, "LOOT_104e")
+            ]
         )
 
     events = REMOVED_IN_PLAY
