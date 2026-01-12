@@ -53,7 +53,19 @@ class BaseEntity(object):
     @property
     def update_scripts(self):
         if self.data and not self.ignore_scripts:
-            yield from self.data.scripts.update
+            update = self.data.scripts.update
+            if not update:
+                return
+            # 如果 update 是可调用的（函数），将其包装为列表
+            if callable(update):
+                yield update
+            else:
+                # 否则假设它是可迭代的
+                try:
+                    yield from update
+                except TypeError:
+                    # 如果不可迭代，尝试作为单个元素
+                    yield update
 
     def log(self, message, *args):
         self.logger.info(message, *args)

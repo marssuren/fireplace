@@ -4702,8 +4702,6 @@ class RotateMinions(GameAction):
                     minion = enemy_minions[i]
                     minion.zone = Zone.SETASIDE
                     minion.zone = Zone.PLAY
-        
-        game.manager.action(self, source)
 
 
 class SwapCost(TargetedAction):
