@@ -183,7 +183,7 @@ class ONY_033:
     每有一个敌方随从，就召唤一只3/3的恐惧小鬼使其攻击对应敌方随从。"""
     def play(self):
         """为每个敌方随从召唤小鬼并攻击"""
-        enemy_minions = list(self.game.opponent.field)
+        enemy_minions = list(self.controller.opponent.field)
 
         for enemy in enemy_minions:
             # 召唤小鬼

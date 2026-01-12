@@ -23,13 +23,8 @@ class VAC_512:
     每当本随从受到伤害，对你的英雄造成等量的伤害。
     """
     # 监听本随从受到伤害
-    def on_damage_taken(self, source, amount):
-        """当本随从受到伤害时，对友方英雄造成等量伤害"""
-        if amount > 0:
-            yield Hit(FRIENDLY_HERO, amount)
-    
     events = Damage(SELF).on(
-        lambda self, source, amount, *args: self.on_damage_taken(source, amount)
+        lambda self, source, target, amount, *args: Hit(FRIENDLY_HERO, amount) if amount > 0 else []
     )
 
 
@@ -290,20 +285,13 @@ class VAC_957e:
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # 从参数中获取新的属性值
+        # 从参数中获取新的属性值并设置为 _atk 和 _max_health
         if 'new_atk' in kwargs:
-            self._new_atk = kwargs['new_atk']
+            self._atk = kwargs['new_atk']
         if 'new_health' in kwargs:
-            self._new_health = kwargs['new_health']
+            self._max_health = kwargs['new_health']
     
-    # 使用 lambda 设置固定属性值
-    @property
-    def atk(self):
-        return lambda self_buff, i: getattr(self, '_new_atk', i)
-    
-    @property
-    def max_health(self):
-        return lambda self_buff, i: getattr(self, '_new_health', i)
+
 
 
 class VAC_420:
