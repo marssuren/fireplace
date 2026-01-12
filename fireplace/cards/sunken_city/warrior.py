@@ -30,7 +30,7 @@ class TID_715e:
 class TID_716:
     """潮汐亡魂 - 8费 5/8
     战吼：造成5点伤害。获得8点护甲值"""
-    play = (Hit(TARGET, 5), GainArmor(CONTROLLER, 8))
+    play = (Hit(TARGET, 5), GainArmor(FRIENDLY_HERO, 8))
 
 
 class TSC_659:

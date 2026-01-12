@@ -111,8 +111,6 @@ class YOP_035:
     # 5?6/6 - 每次只能受到1点伤?
     
     events = Predamage(SELF).on(
-        lambda self, source, target, amount: [
-            SetAttr(target, GameTag.PREDAMAGE, min(amount, 1))
-
-        ]
+        lambda self, source, target, amount, *args: 
+            SetAttr(Predamage.TARGET, GameTag.PREDAMAGE, min(Predamage.AMOUNT, 1))
     )
