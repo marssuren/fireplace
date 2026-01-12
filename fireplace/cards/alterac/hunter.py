@@ -162,7 +162,7 @@ class AV_336:
             return
 
         # 召唤野兽
-        beast = random.choice(beasts)
+        beast = self.game.random.choice(beasts)
         yield Summon(CONTROLLER, beast)
 
         # 给予突袭和追踪buff
@@ -205,7 +205,7 @@ class AV_336_tracker:
         beasts = [c for c in controller.deck
                  if c.type == CardType.MINION and Race.BEAST in c.races]
         if beasts:
-            beast = random.choice(beasts)
+            beast = controller.game.random.choice(beasts)
             controller.game.queue_actions(controller, [
                 Summon(controller, beast),
                 Buff(beast, "AV_336e")

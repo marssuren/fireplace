@@ -1175,9 +1175,10 @@ class VAC_702t2:
         # 抽3张牌
         drawn_cards = yield Draw(CONTROLLER) * 3
         # 给抽到的牌减3费
-        for card in drawn_cards:
-            if card:
-                yield Buff(card, "VAC_702t2e")
+        if drawn_cards:
+            for card in drawn_cards:
+                if card:
+                    yield Buff(card, "VAC_702t2e")
 
 
 class VAC_702t2e:

@@ -263,13 +263,10 @@ class TSC_213:
     
     def play(self):
         """
-        本回合每施放过一个法术，获得+1/+1
+        本回合每施放过一个法术,获得+1/+1
         """
         # 统计本回合施放的法术数量
-        spell_count = sum(
-            1 for card in self.controller.cards_played_this_turn
-            if card.type == CardType.SPELL
-        )
+        spell_count = getattr(self.controller, 'num_spells_played_this_turn', 0)
         
         if spell_count > 0:
             yield Buff(SELF, "TSC_213e", atk=spell_count, max_health=spell_count)
@@ -455,13 +452,10 @@ class TSC_828:
     
     def play(self):
         """
-        本回合每施放过一个法术，刷新一个空的法力水晶
+        本回合每施放过一个法术,刷新一个空的法力水晶
         """
         # 统计本回合施放的法术数量
-        spell_count = sum(
-            1 for card in self.controller.cards_played_this_turn
-            if card.type == CardType.SPELL
-        )
+        spell_count = getattr(self.controller, 'num_spells_played_this_turn', 0)
         
         if spell_count > 0:
             yield ManaThisTurn(CONTROLLER, spell_count)
