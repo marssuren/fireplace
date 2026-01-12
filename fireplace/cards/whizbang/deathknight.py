@@ -331,9 +331,9 @@ class TOY_830:
         card_1 = yield DISCOVER(RandomCollectible(card_type=CardType.MINION, cost=1))
         
         # 存储发现的随从ID，用于构建亡语链
-        minion_5_id = card_5[0].id if card_5 else None
-        minion_3_id = card_3[0].id if card_3 else None
-        minion_1_id = card_1[0].id if card_1 else None
+        minion_5_id = card_5[0].id if card_5 and len(card_5) > 0 else None
+        minion_3_id = card_3[0].id if card_3 and len(card_3) > 0 else None
+        minion_1_id = card_1[0].id if card_1 and len(card_1) > 0 else None
         
         # 给自己添加亡语：召唤5费随从（带有召唤3费的亡语）
         if minion_5_id:

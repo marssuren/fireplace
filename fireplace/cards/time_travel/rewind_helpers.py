@@ -145,9 +145,9 @@ def execute_with_rewind(card, effect_generator):
         accept_option = card.controller.card("REWIND_ACCEPT", source=card)
         retry_option = card.controller.card("REWIND_RETRY", source=card)
 
-        # 将必要信息存储到 retry 选项中
-        retry_option.original_card = card
-        retry_option.effect_generator = effect_generator
+        # 将必要信息存储到 retry 选项中（使用 setattr 避免属性冲突）
+        object.__setattr__(retry_option, 'original_card', card)
+        object.__setattr__(retry_option, 'effect_generator', effect_generator)
 
         # 让玩家选择：接受结果 or 重新来过
         yield RewindChoice(card.controller, [accept_option, retry_option])
