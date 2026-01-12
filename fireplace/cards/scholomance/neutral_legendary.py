@@ -130,19 +130,12 @@ class SCH_717:
     Whenever your opponent draws a card, add a copy to your hand that costs (1)."""
 
     # 每当你的对手抽一张牌，将一张复制置入你的手牌，其法力值消耗为（1）点
-    def _on_opponent_draw(self):
-        """对手抽牌时触发"""
-        # 获取对手抽的牌
-        drawn_card = Draw.CARD
-        
-        # 创建复制
-        copy = yield Give(CONTROLLER, drawn_card.id)
-        
-        if copy:
-            # 设置费用为1
-            yield Buff(copy[0], "SCH_717e")
-    
-    events = Draw(OPPONENT).on(lambda self: self._on_opponent_draw())
+    events = Draw(OPPONENT).on(
+        lambda self, source, target, card, *args: [
+            Give(CONTROLLER, card.id),
+            Buff(LAST_GIVEN, "SCH_717e")
+        ] if card else []
+    )
 
 
 class SCH_717e:

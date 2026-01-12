@@ -1833,7 +1833,7 @@ class Predamage(TargetedAction):
     AMOUNT = IntArg()
     TRIGGER_LIFESTEAL = BoolArg(default=True)
 
-    def do(self, source, target, amount, trigger_lifesteal):
+    def do(self, source, target, amount, trigger_lifesteal=True):
         amount <<= target.incoming_damage_multiplier
         target.predamage = amount
         if amount:
@@ -2862,6 +2862,11 @@ class Morph(TargetedAction):
         else:
             # 空列表 - 没有可用的卡牌,返回空列表
             log_info("morph_no_card_available", source=source, target=target, picker=self._args[1])
+            return []
+        
+        # 检查 card 是否为 None
+        if card is None:
+            log_info("morph_card_is_none", source=source, target=target)
             return []
         
         card.controller = target.controller

@@ -17,13 +17,24 @@ class NX2_033:
     )
 
     # 根据当前模式决定减费哪些卡牌
-    # 如果是奇数模式，减费奇数卡牌；否则减费偶数卡牌
-    def update(self, entity):
-        is_odd_mode = getattr(entity, "thaddius_odd_mode", True)
-        if is_odd_mode:
-            return Find(FRIENDLY_HAND + ODD_COST) | Buff("NX2_033e")
-        else:
-            return Find(FRIENDLY_HAND + EVEN_COST) | Buff("NX2_033e")
+    # 使用 Refresh 动态更新手牌费用
+    # 在 Hand 类中定义 cost 修改器
+    class Hand:
+        def cost(self, i):
+            # 获取 Thaddius 实体
+            thaddius_list = [m for m in self.controller.field if m.id == "NX2_033"]
+            if not thaddius_list:
+                return i
+            
+            thaddius = thaddius_list[0]
+            is_odd_mode = getattr(thaddius, "thaddius_odd_mode", True)
+            
+            # 检查当前卡牌费用是否符合减费条件
+            if is_odd_mode and i % 2 == 1:  # 奇数模式减费奇数卡
+                return i - 2
+            elif not is_odd_mode and i % 2 == 0:  # 偶数模式减费偶数卡
+                return i - 2
+            return i
 
 
 

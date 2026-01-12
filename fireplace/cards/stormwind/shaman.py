@@ -43,34 +43,15 @@ class DED_511:
     
     # 回合结束时变形武器
     events = OWN_TURN_END.on(
-        lambda self, source: list(self._transform_weapon())
-    )
-    
-    def _transform_weapon(self):
-        """将玩家装备的武器变形为费用+1的武器"""
-        # 检查玩家是否装备了武器
-        if not self.controller.weapon:
-            return
-        
-        # 获取当前武器的费用
-        current_cost = self.controller.weapon.cost
-        target_cost = current_cost + 1
-        
-        # 变形为费用+1的萨满或中立武器
-        # 使用 RandomCollectible 获取目标费用的武器
-        try:
-            # 变形玩家装备的武器
-            yield Morph(
-                FRIENDLY_WEAPON, 
-                RandomCollectible(
-                    type=CardType.WEAPON,
-                    cost=target_cost,
-                    card_class=CardClass.SHAMAN
-                )
+        lambda self, source: Morph(
+            FRIENDLY_WEAPON,
+            RandomCollectible(
+                type=CardType.WEAPON,
+                cost=self.cost + 1,
+                card_class=CardClass.SHAMAN
             )
-        except:
-            # 如果没有找到合适的武器，保持当前武器不变
-            pass
+        ) if self.controller.weapon else []
+    )
 
 
 
