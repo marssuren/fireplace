@@ -263,15 +263,16 @@ Gargon Companion.
     infuse = 3
 
     def play(self):
-        # 基础：召唤1个加尔贡
+        # 基础:召唤1个加尔贡
         yield Summon(CONTROLLER, "REV_353t")
 
-        # 注能3+：再召唤1个
-        if self.tags.get(GameTag.INFUSE_COUNTER, 0) >= 3:
+        # 注能3+:再召唤1个
+        infuse_count = getattr(self, 'infuse_counter', 0)
+        if infuse_count >= 3:
             yield Summon(CONTROLLER, "REV_353t")
 
-        # 注能6+：再召唤1个
-        if self.tags.get(GameTag.INFUSE_COUNTER, 0) >= 6:
+        # 注能6+:再召唤1个
+        if infuse_count >= 6:
             yield Summon(CONTROLLER, "REV_353t")
 
 

@@ -333,7 +333,7 @@ class ETC_078:
     }
     
     def play(self):
-        # 官方数据确认：只有一个通用的麦克风武器 (1/2)
+        # 官方数据确认:只有一个通用的麦克风武器 (1/2)
         mic_id = "ETC_078t"
 
         # 我方装备
@@ -345,7 +345,7 @@ class ETC_078:
         # 给敌方武器施加负面效果
         # 需要获取敌方刚装备的武器
         weapon = self.controller.opponent.weapon
-        if weapon and weapon.card_id == mic_id:
+        if weapon and weapon.id == mic_id:
             yield Buff(weapon, "ETC_078e")
 
 class ETC_078t:
