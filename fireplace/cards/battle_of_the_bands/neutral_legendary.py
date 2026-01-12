@@ -30,7 +30,6 @@ class ETC_080:
         choices = [self.controller.card(card_id) for card_id in band_cards]
         
         # 发现一张卡牌
-        from ..dsl.selector import GenericChoice
         choice = yield GenericChoice(CONTROLLER, choices)
         
         if choice:

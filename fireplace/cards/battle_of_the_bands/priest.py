@@ -1,5 +1,5 @@
 from ..utils import *
-from fireplace.dsl.lazynum import EventArgument
+from ...dsl.lazynum import EventArgument
 
 class JAM_024:
     """Ambient Lightspawn - 布景光耀之子

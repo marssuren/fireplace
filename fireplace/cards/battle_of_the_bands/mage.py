@@ -1,5 +1,5 @@
 from ..utils import *
-from fireplace.dsl.lazynum import EventArgument
+from ...dsl.lazynum import EventArgument
 
 class ETC_536:
     """Audio Splitter - 音频切分机
