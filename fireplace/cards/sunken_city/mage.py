@@ -74,7 +74,7 @@ class TSC_056e:
 
 class TSC_087:
     """指挥官西瓦拉 - 4费 3/5
-    战吼：如果你在本牌在你手中时施放过三个法术，则将那些法术置回你的手牌"""
+    战吼:如果你在本牌在你手中时施放过三个法术,则将那些法术置回你的手牌"""
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -82,16 +82,21 @@ class TSC_087:
     
     class Hand:
         events = Play(CONTROLLER, SPELL).after(
-            lambda self, source, card: self.spells_cast_while_holding.append(card.id) 
-                if len(getattr(self, 'spells_cast_while_holding', [])) < 3 else None
+            lambda self, source, card: (
+                # 初始化列表(如果不存在)
+                setattr(self, 'spells_cast_while_holding', getattr(self, 'spells_cast_while_holding', [])),
+                # 添加法术ID(如果少于3个)
+                self.spells_cast_while_holding.append(card.id) if len(self.spells_cast_while_holding) < 3 else None
+            )[1]  # 只返回第二个元素(append的结果)
         )
     
-    powered_up = lambda self: len(self.spells_cast_while_holding) >= 3
+    powered_up = lambda self: len(getattr(self, 'spells_cast_while_holding', [])) >= 3
     
     play = lambda self: (
-        [Give(CONTROLLER, spell_id) for spell_id in self.spells_cast_while_holding[:3]]
-        if self.powered_up else []
+        [Give(CONTROLLER, spell_id) for spell_id in getattr(self, 'spells_cast_while_holding', [])[:3]]
+        if len(getattr(self, 'spells_cast_while_holding', [])) >= 3 else []
     )
+
 
 
 class TSC_087e:

@@ -281,13 +281,13 @@ class WW_400:
         dice1 = self.game.random.randint(1, 6)
         dice2 = self.game.random.randint(1, 6)
         
-        # 发现对应费用的牌
-        yield Discover(CONTROLLER, RandomCard(cost=dice1))
-        yield Discover(CONTROLLER, RandomCard(cost=dice2))
+        # 发现对应费用的牌(使用cost_min和cost_max来精确匹配费用)
+        yield Discover(CONTROLLER, RandomCollectible(cost_min=dice1, cost_max=dice1))
+        yield Discover(CONTROLLER, RandomCollectible(cost_min=dice2, cost_max=dice2))
         
-        # 如果投出相同点数，额外发现一次
+        # 如果投出相同点数,额外发现一次
         if dice1 == dice2:
-            yield Discover(CONTROLLER, RandomCard(cost=dice1))
+            yield Discover(CONTROLLER, RandomCollectible(cost_min=dice1, cost_max=dice1))
 
 
 class WW_401:
