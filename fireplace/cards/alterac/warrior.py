@@ -46,7 +46,8 @@ class AV_145:
     def play(self):
         """检查护甲值获得"""
         if self.controller.armor_gained_this_game >= 15:
-            yield (Buff(SELF, "AV_145e"), SetTags(SELF, {GameTag.CHARGE: True}))
+            yield Buff(SELF, "AV_145e")
+            yield SetTags(SELF, {GameTag.CHARGE: True})
 
 
 class AV_145e:

@@ -48,20 +48,17 @@ class AV_139e:
 class AV_222:
     """话痨奥术师 / Spammy Arcanist
     战吼：对所有其他随从造成1点伤害。如果有随从死亡，重复此效果。"""
-    def play(self, source, target):
+    def play(self):
         """递归AOE伤害"""
-        from fireplace.actions import Hit, Destroy
-        from fireplace.enums import Zone
-        
         while True:
             # 对所有其他随从造成1点伤害
-            other_minions = [m for m in source.game.board if m != source and m.zone == Zone.PLAY]
+            other_minions = [m for m in self.game.board if m != self and m.zone == Zone.PLAY]
             if not other_minions:
                 break
             
             any_died = False
             for minion in other_minions:
-                source.game.queue_actions(source, [Hit(minion, 1)])
+                self.game.queue_actions(self, [Hit(minion, 1)])
                 if minion.zone == Zone.GRAVEYARD or minion.to_be_destroyed:
                     any_died = True
             
