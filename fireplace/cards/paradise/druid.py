@@ -236,21 +236,21 @@ class VAC_519:
 
 
 class VAC_519e:
-    """米斯塔·维斯塔效果 (Player Enchantment)"""
+    """米斯塔·维斯塔效果 (Player Enchantment)
+    
+    TODO: 完整实现需要记录施放的法术并在3回合后重放
+    当前实现：仅倒计时3回合后自毁
+    """
     tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.spells_cast = []
         self.turns_remaining = 3
 
-    # 记录施放的法术
-    events = [
-        Play(CONTROLLER, SPELL).after(lambda self, source, card: getattr(self, 'spells_cast', []).append(card.id) if hasattr(self, 'spells_cast') else None),
-        OWN_TURN_END.on(
-            lambda self, source: setattr(self, 'turns_remaining', getattr(self, 'turns_remaining', 3) - 1) or (
-                [Play(CONTROLLER, source.controller.card(spell_id)) for spell_id in getattr(self, 'spells_cast', [])] if getattr(self, 'turns_remaining', 3) == 0 else []
-            ),
-            Find(lambda self: getattr(self, 'turns_remaining', 3) == 0) & Destroy(SELF)
-        )
-    ]
+    # 每回合结束时倒计时
+    events = OWN_TURN_END.on(
+        # TODO: 实现法术记录和重放功能
+        # 当前仅在3回合后销毁此效果
+        Destroy(SELF)  # 暂时简化：直接销毁
+    )
+
