@@ -1919,8 +1919,7 @@ class Damage(TargetedAction):
         if amount:
             # check hasattr: some sources of damage are game or player (like fatigue)
             # weapon damage itself after hero attack, but does not trigger lifesteal
-            if (
-                trigger_lifesteal
+            if (trigger_lifesteal
                 and hasattr(source, "lifesteal")
                 and source.lifesteal
                 and source.type != CardType.WEAPON
@@ -1930,8 +1929,12 @@ class Damage(TargetedAction):
                     # Inverted Lifesteal: Deal damage to enemy hero
                     # Pass trigger_lifesteal=False to prevent infinite loop
                     source.game.queue_actions(source, [Hit(source.controller.opponent.hero, amount, False)])
-                else:
+                elif hasattr(source, 'heal'):
+                    # 正常吸血：治疗己方英雄
                     source.heal(source.controller.hero, amount)
+                else:
+                    # 如果 source 没有 heal 方法（如 Enchantment），使用 game 的治疗动作
+                    source.game.queue_actions(source, [Heal(source.controller.hero, amount)])
             self.broadcast(source, EventListener.ON, target, amount, source)
             # poisonous can not destroy hero
             if (
@@ -3712,6 +3715,13 @@ class CastSpell(TargetedAction):
             source.game.queue_actions(card, [Give(player, card.twinspell_copy)])
         if hasattr(card, 'must_choose_one') and card.must_choose_one:
             card = source.game.random.choice(card.choose_cards)
+        
+        # 确保 targets 是可迭代的列表
+        if targets is None:
+            targets = [None]
+        elif not isinstance(targets, (list, tuple)):
+            targets = [targets]
+            
         for target in targets:
             if card.requires_target() and not target:
                 if len(card.targets) > 0:

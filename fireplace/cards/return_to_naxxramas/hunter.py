@@ -6,13 +6,15 @@ class NX2_013:
     机制: SECRET
     [迷你扩展包]
     """
+    # 参考 ULD_134（蜂群来袭）的实现方式
+    # 召唤尸蜂并让它们攻击敌方打出的随从
+    # 使用 Summon().then(Dead() | Attack()) 模式：
+    # - 如果目标已死亡，跳过攻击
+    # - 否则让刚召唤的尸蜂攻击目标
     secret = Play(OPPONENT, MINION).after(
-        lambda self, player, card, *args: [
-            # 召唤4只1/1的尸蜂
-            Summon(CONTROLLER, "NX2_013t") * 4,
-            # 使它们攻击刚打出的随从
-            Attack(FRIENDLY_MINIONS, card) * 4
-        ]
+        Summon(CONTROLLER, "NX2_013t").then(
+            Dead(Play.CARD) | Attack(Summon.CARD, Play.CARD)
+        ) * 4
     )
 
 

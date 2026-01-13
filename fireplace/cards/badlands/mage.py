@@ -199,19 +199,20 @@ class WW_422:
     }
 
     # 当敌方使用卡牌时触发
-    # 检查该卡牌是否在本回合进入手牌（通过 turn_entered_hand 属性）
-    def _on_enemy_play(self, card):
-        card = target
-        # 检查卡牌是否在本回合进入手牌
-        if hasattr(card, 'turn_entered_hand') and card.turn_entered_hand == source.game.turn:
-            # 获取一张法力值消耗为(0)点的复制
-            copy = source.controller.card(card.id, source=source.controller)
-            copy.cost = 0
-            source.controller.give(copy)
-
+    # 使用 Find 检查该卡牌是否在本回合进入手牌（通过 drawn_this_turn 属性判断）
     secret = Play(OPPONENT).on(
-        lambda self, card: self._on_enemy_play(source, target)
+        Find(Play.CARD + DRAWN_THIS_TURN) & (
+            Give(CONTROLLER, Copy(Play.CARD)).then(Buff(Give.CARD, "WW_422e"))
+        )
     )
+
+
+class WW_422e:
+    """艾泽里特之力 - 法力值消耗为(0)"""
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+    }
+    cost = SET(0)
 
 
 class WW_432:
