@@ -344,6 +344,13 @@ CARD_ATTRIBUTE_MAP = {
     enums.BUFF_STAT_AMOUNT: "buff_stat_amount",  # 属性加成量
     enums.BULLET_COUNT: "bullet_count",  # 子弹计数
     enums.CARD_TRACKER_INDEX: "card_tracker_index",  # 卡牌追踪索引
+    # 语义化脚本数据标签（卡牌级别）
+    enums.ABYSSAL_CURSE_LEVEL: "abyssal_curse_level",  # 深渊诅咒等级
+    enums.GROWTH_COUNTER: "growth_counter",  # 成长计数器
+    enums.ABILITY_USED_THIS_TURN: "ability_used_this_turn",  # 本回合是否已使用
+    enums.TURNS_REMAINING: "turns_remaining",  # 剩余回合数
+    enums.POWER_MULTIPLIER: "power_multiplier",  # 翻倍次数
+    enums.TRIGGER_COUNT: "trigger_count",  # 触发计数
     GameTag.CARDTEXT_ENTITY_0: "cardtext_entity_0",
     GameTag.CARDTEXT_ENTITY_1: "cardtext_entity_1",
     GameTag.CARDTEXT_ENTITY_2: "cardtext_entity_2",
