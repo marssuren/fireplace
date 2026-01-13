@@ -140,7 +140,7 @@ class EDR_530:
         lambda self: [
             RandomCard(
                 CONTROLLER,
-                card_filter=lambda c: c.type == CardType.SPELL and c.spell_school == SpellSchool.NATURE
+                card_filter=lambda c: c.type == CardType.SPELL and getattr(c, 'spell_school', None) == SpellSchool.NATURE
             )
         ]
     )
@@ -351,7 +351,7 @@ class FIR_929:
     """
     def deathrattle(self):
         # 抽取一张火焰法术牌
-        fire_spells = [c for c in self.controller.deck if c.type == CardType.SPELL and c.spell_school == SpellSchool.FIRE]
+        fire_spells = [c for c in self.controller.deck if c.type == CardType.SPELL and getattr(c, 'spell_school', None) == SpellSchool.FIRE]
         if fire_spells:
             yield ForceDraw(CONTROLLER, self.game.random.choice(fire_spells))
 

@@ -1588,6 +1588,9 @@ class Spell(PlayableCard):
         self.immune_to_spellpower = False
         self.receives_double_spelldamage_bonus = False
         self._twinspell_copy = None
+        # 添加默认的 spell_school 属性，避免到处使用 getattr
+        # 如果卡牌数据中有 SPELL_SCHOOL 标签，会在 super().__init__ 中被覆盖
+        self.spell_school = None
         super().__init__(data)
 
     @property

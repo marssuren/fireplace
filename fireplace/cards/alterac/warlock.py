@@ -40,7 +40,7 @@ class AV_281:
             yield Hit(ALL_ENEMIES, 2)
 
             # 如果是邪能法术，额外造成1点伤害
-            if drawn_card.spell_school == SpellSchool.FEL:
+            if getattr(drawn_card, 'spell_school', None) == SpellSchool.FEL:
                 yield Hit(ALL_ENEMIES, 1)
 
 
@@ -63,7 +63,7 @@ class AV_286:
     def play(self):
         """施放手牌中费用最高的邪能法术"""
         fel_spells = [c for c in self.controller.hand
-                      if c.type == CardType.SPELL and c.spell_school == SpellSchool.FEL]
+                      if c.type == CardType.SPELL and getattr(c, 'spell_school', None) == SpellSchool.FEL]
 
         if fel_spells:
             # 找到费用最高的邪能法术
@@ -78,7 +78,7 @@ class AV_308:
     def play(self):
         """复制手牌中的邪能法术"""
         fel_spells = [c for c in self.controller.hand
-                      if c.type == CardType.SPELL and c.spell_school == SpellSchool.FEL]
+                      if c.type == CardType.SPELL and getattr(c, 'spell_school', None) == SpellSchool.FEL]
 
         if fel_spells:
             # 随机选择一张邪能法术
