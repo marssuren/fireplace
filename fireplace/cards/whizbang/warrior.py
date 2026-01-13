@@ -14,21 +14,21 @@ class MIS_902:
     # 2费法术
     # 效果：失去最多5点护甲值,下一张机械牌减少等量费用
     # 迷你包卡牌
-    
+
     def play(self):
         """
         失去护甲并减少下一张机械牌的费用
         """
         # 获取当前护甲值
         current_armor = self.controller.hero.armor
-        
+
         # 计算实际失去的护甲值（最多5点）
         armor_lost = min(current_armor, 5)
-        
+
         if armor_lost > 0:
             # 失去护甲
             yield Hit(FRIENDLY_HERO, armor_lost, source=SELF)
-            
+
             # 给控制者添加 Buff，记录减少的费用
             buff = yield Buff(CONTROLLER, "MIS_902e")
             if buff:
@@ -42,7 +42,7 @@ class TOY_605:
     """
     # 2费法术
     # 效果：抽2张嘲讽随从牌
-    
+
     def play(self):
         # 抽2张嘲讽随从牌
         yield ForceDraw(CONTROLLER, FRIENDLY_DECK + MINION + TAUNT) * 2
@@ -56,7 +56,7 @@ class TOY_606:
     # 6费 4/8 机械 嘲讽
     # 亡语：造成8点伤害,随机分配到所有敌方随从
     taunt = True
-    
+
     def deathrattle(self):
         """
         亡语：造成8点伤害,随机分配到所有敌方随从
@@ -74,9 +74,9 @@ class TOY_907:
     # 2费法术
     # 效果：获得6点护甲值
     # 费用：如果没有护甲值则为0费
-    
+
     play = GainArmor(FRIENDLY_HERO, 6)
-    
+
     # 费用调整
     class Hand:
         """动态费用调整 Aura"""
@@ -96,7 +96,7 @@ class MIS_705:
     # 1费法术
     # 效果：随机获得5张嘲讽随从,这些牌为临时牌
     # 迷你包卡牌
-    
+
     def play(self):
         """
         获得5张随机嘲讽随从,标记为临时牌
@@ -104,7 +104,7 @@ class MIS_705:
         for _ in range(5):
             # 随机获得一张嘲讽随从
             card = yield Give(CONTROLLER, RandomCollectible(type=CardType.MINION, tag=GameTag.TAUNT))
-            
+
             if card:
                 # 标记为临时卡牌（回合结束时弃掉）
                 yield Buff(card[0], "MIS_705e")
@@ -119,7 +119,7 @@ class MIS_711:
     # 亡语：将3张炸弹洗入对手牌库
     # 迷你包卡牌
     rush = True
-    
+
     def deathrattle(self):
         """
         亡语：将3张炸弹洗入对手牌库
@@ -138,7 +138,7 @@ class TOY_604:
     """
     # 3费 3/0 武器 微缩
     # 亡语：随机触发一个友方机械的亡语
-    
+
     def deathrattle(self):
         """
         亡语：随机触发一个友方机械的亡语
@@ -146,14 +146,14 @@ class TOY_604:
         # 获取所有友方机械
         mechs = FRIENDLY_MINIONS + RACE(Race.MECHANICAL)
         mechs_list = mechs.eval(self.game, self)
-        
+
         # 筛选出有亡语的机械
         mechs_with_deathrattle = [m for m in mechs_list if m.deathrattles]
-        
+
         if mechs_with_deathrattle:
             # 随机选择一个
             target = self.game.random.choice(mechs_with_deathrattle)
-            
+
             # 触发其亡语
             for deathrattle in target.deathrattles:
                 yield deathrattle
@@ -166,12 +166,12 @@ class TOY_651:
     """
     # 4费 3/3
     # 效果：每当获得护甲值,召唤另一个实验室奴隶主(每回合一次)
-    
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # 初始化每回合触发标记
         self.triggered_this_turn = False
-    
+
     # 监听事件
     def _on_gain_armor(self, source, target, amount):
         """获得护甲时触发"""
@@ -179,13 +179,13 @@ class TOY_651:
             self.triggered_this_turn = True
             return [Summon(CONTROLLER, ExactCopy(SELF))]
         return []
-    
+
     events = [
         # 每回合开始时重置触发标记
         BeginTurn(CONTROLLER).on(lambda self, player: setattr(self, 'triggered_this_turn', False) or []),
-        
+
         # 监听获得护甲事件
-        GainArmor(CONTROLLER).after(_on_gain_armor)
+        GainArmor(FRIENDLY_HERO).after(_on_gain_armor)
     ]
 
 
@@ -197,7 +197,7 @@ class TOY_908:
     """
     # 5费 5/5 机械
     # 亡语：召唤两个1/1砰砰机器人
-    
+
     def deathrattle(self):
         """
         亡语：召唤两个砰砰机器人
@@ -215,7 +215,7 @@ class TOY_602:
     """
     # 6费法术
     # 效果：召唤手牌中费用最高的随从,然后对其造成5点伤害
-    
+
     def play(self):
         """
         召唤手牌中费用最高的随从,然后造成伤害
@@ -223,14 +223,14 @@ class TOY_602:
         # 获取手牌中的所有随从
         minions_in_hand = FRIENDLY_HAND + MINION
         minions_list = minions_in_hand.eval(self.game, self)
-        
+
         if minions_list:
             # 找到费用最高的随从
             highest_cost_minion = max(minions_list, key=lambda m: m.cost)
-            
+
             # 召唤它
             summoned = yield Summon(CONTROLLER, highest_cost_minion)
-            
+
             if summoned:
                 # 对其造成5点伤害
                 yield Hit(summoned[0], 5)
@@ -244,7 +244,7 @@ class TOY_603:
     # 3费法术
     # 效果：选择友方机械,召唤复制并攻击随机敌人后死亡
     requirements = {PlayReq.REQ_TARGET_TO_PLAY: 0, PlayReq.REQ_MINION_TARGET: 0, PlayReq.REQ_FRIENDLY_TARGET: 0, PlayReq.REQ_TARGET_WITH_RACE: Race.MECHANICAL}
-    
+
     def play(self):
         """
         召唤目标机械的复制,攻击随机敌人后死亡
@@ -252,24 +252,24 @@ class TOY_603:
         if TARGET:
             # 召唤复制
             copy = yield Summon(CONTROLLER, ExactCopy(TARGET))
-            
+
             if copy:
                 summoned_minion = copy[0]
-                
+
                 # 获取所有可攻击的敌人
                 enemies = ENEMY_CHARACTERS
                 enemies_list = enemies.eval(self.game, self)
-                
+
                 # 筛选可以被攻击的敌人
                 valid_targets = [e for e in enemies_list if summoned_minion.can_attack(e)]
-                
+
                 if valid_targets:
                     # 随机选择一个敌人
                     target = self.game.random.choice(valid_targets)
-                    
+
                     # 攻击
                     yield Attack(summoned_minion, target)
-                
+
                 # 然后死亡
                 yield Destroy(summoned_minion)
 
@@ -283,55 +283,55 @@ class TOY_607:
     """
     # 8费 7/7 传说
     # 战吼：复活两个不同的5费+机械,并使其攻击随机敌人
-    
+
     def play(self):
         """
         复活两个不同的5费+机械,并使其攻击随机敌人
         """
         # 获取墓地中所有5费+的机械
         graveyard = self.controller.graveyard
-        mechs = [card for card in graveyard 
-                if card.type == CardType.MINION 
-                and Race.MECHANICAL in card.races 
+        mechs = [card for card in graveyard
+                if card.type == CardType.MINION
+                and Race.MECHANICAL in card.races
                 and card.cost >= 5]
-        
+
         if not mechs:
             return
-        
+
         # 复活两个不同的机械
         resurrected_ids = set()
         resurrected_count = 0
-        
+
         # 随机打乱顺序
         import random
         random.shuffle(mechs)
-        
+
         for mech in mechs:
             # 确保不重复
             if mech.id not in resurrected_ids and resurrected_count < 2:
                 # 复活
                 summoned = yield Summon(CONTROLLER, Copy(mech))
-                
+
                 if summoned:
                     resurrected_ids.add(mech.id)
                     resurrected_count += 1
-                    
+
                     summoned_minion = summoned[0]
-                    
+
                     # 获取所有可攻击的敌人
                     enemies = ENEMY_CHARACTERS
                     enemies_list = enemies.eval(self.game, self)
-                    
+
                     # 筛选可以被攻击的敌人
                     valid_targets = [e for e in enemies_list if summoned_minion.can_attack(e)]
-                    
+
                     if valid_targets:
                         # 随机选择一个敌人
                         target = self.game.random.choice(valid_targets)
-                        
+
                         # 攻击
                         yield Attack(summoned_minion, target)
-            
+
             if resurrected_count >= 2:
                 break
 
@@ -344,7 +344,7 @@ class TOY_906:
     # 9费 4/12 机械 传说 嘲讽
     # 效果：受到伤害后,获得2张随机微型牌
     taunt = True
-    
+
     # 监听受伤事件
     def _on_damage(self, source, target, amount):
         """受到伤害后获得2张随机微型牌"""
@@ -376,17 +376,17 @@ class TOY_906:
             # Warrior
             "TOY_604t"
         ]
-        
+
         # 随机选择2张
         import random
         token1 = random.choice(miniaturize_tokens)
         token2 = random.choice(miniaturize_tokens)
-        
+
         return [
             Give(CONTROLLER, token1),
             Give(CONTROLLER, token2)
         ]
-    
+
     events = Damage(SELF).after(_on_damage)
 
 
@@ -400,17 +400,17 @@ class MIS_902e:
     你的下一张机械牌法力值消耗减少。
     """
     tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
-    
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # 初始化费用减少量
         self.cost_reduction = 0
-    
+
     # 监听打出机械牌事件
     events = Play(CONTROLLER, MINION + RACE(Race.MECHANICAL)).after(
         lambda self, player, played_card, target=None: Destroy(SELF)
     )
-    
+
     # 费用减少 Aura（应用于手牌中的机械牌）
     class Hand:
         """在手牌时应用费用减少"""

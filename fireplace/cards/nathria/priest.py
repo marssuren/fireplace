@@ -26,13 +26,16 @@ class MAW_021e:
     
     # 在对手回合中获得 Elusive（无法被法术或英雄技能指定）
     def _update_elusive(self, player):
-        # 如果是对手回合，添加 CANT_BE_TARGETED_BY_SPELLS
-        if source.controller.game.current_player != source.controller:
-            source.tags[GameTag.CANT_BE_TARGETED_BY_SPELLS] = True
-            source.tags[GameTag.CANT_BE_TARGETED_BY_HERO_POWERS] = True
-        else:
-            source.tags[GameTag.CANT_BE_TARGETED_BY_SPELLS] = False
-            source.tags[GameTag.CANT_BE_TARGETED_BY_HERO_POWERS] = False
+        # self 是 buff，self.owner 是负面效果的随从
+        minion = self.owner
+        if minion and hasattr(minion, 'controller'):
+            # 如果是对手回合，添加 CANT_BE_TARGETED_BY_SPELLS
+            if minion.controller.game.current_player != minion.controller:
+                minion.tags[GameTag.CANT_BE_TARGETED_BY_SPELLS] = True
+                minion.tags[GameTag.CANT_BE_TARGETED_BY_HERO_POWERS] = True
+            else:
+                minion.tags[GameTag.CANT_BE_TARGETED_BY_SPELLS] = False
+                minion.tags[GameTag.CANT_BE_TARGETED_BY_HERO_POWERS] = False
     
     events = [
         TURN_BEGIN.on(_update_elusive),
@@ -185,7 +188,9 @@ class REV_247e:
     # 回合结束时召唤拥有者的完整复制（包含所有buff）
     # 但需要移除复制身上的 REV_247e buff 以避免无限循环
     def _summon_copy_and_cleanup(self, player):
-        if source.controller.game.current_player == self.controller:
+        # self 是 buff，self.owner 是随从
+        minion = self.owner
+        if minion and hasattr(minion, 'controller') and minion.controller.game.current_player == minion.controller:
             # 召唤拥有者的完整复制（包含所有buff）
             copy_minion = yield Summon(CONTROLLER, ExactCopy(OWNER))
             

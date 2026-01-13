@@ -9,7 +9,7 @@ class TID_714:
     """火成熔岩吞食者 - 4费 3/5
     嘲讽。战吼：探底。获得等同于选中的牌的法力值消耗的护甲值"""
     tags = {GameTag.TAUNT: True}
-    play = (Dredge(CONTROLLER), GainArmor(CONTROLLER, COST(DREDGED_CARD)))
+    play = (Dredge(CONTROLLER), GainArmor(FRIENDLY_HERO, COST(DREDGED_CARD)))
 
 
 class TID_715:
@@ -94,7 +94,7 @@ class TSC_940e:
 class TSC_941:
     """保卫城市 - 2费法术
     获得3点护甲值。召唤一个2/3并具有嘲讽的纳迦"""
-    play = (GainArmor(CONTROLLER, 3), Summon(CONTROLLER, "TSC_941t"))
+    play = (GainArmor(FRIENDLY_HERO, 3), Summon(CONTROLLER, "TSC_941t"))
 
 
 class TSC_942:

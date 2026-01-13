@@ -53,7 +53,7 @@ class NX2_012:
         # 使英雄获得+2攻击力（本回合）
         yield Buff(FRIENDLY_HERO, "NX2_012e")
         # 对目标造成等同于英雄攻击力的伤害
-        yield Hit(TARGET, FRIENDLY_HERO + ATK)
+        yield Hit(TARGET, ATK(FRIENDLY_HERO))
 
 
 

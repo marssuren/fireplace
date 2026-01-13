@@ -142,7 +142,7 @@ class EDR_979:
     # 在回合结束时,如果处于休眠状态,获得3点护甲值并抽一张牌
     events = OWN_TURN_END.on(
         lambda self: [
-            GainArmor(CONTROLLER, 3),
+            GainArmor(FRIENDLY_HERO, 3),
             Draw(CONTROLLER)
         ] if self.tags.get(GameTag.DORMANT, False) else []
     )

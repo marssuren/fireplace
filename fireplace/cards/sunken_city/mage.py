@@ -86,7 +86,7 @@ class TSC_087:
                 # 初始化列表(如果不存在)
                 setattr(self, 'spells_cast_while_holding', getattr(self, 'spells_cast_while_holding', [])),
                 # 添加法术ID(如果少于3个)
-                self.spells_cast_while_holding.append(card.id) if len(self.spells_cast_while_holding) < 3 else None
+                self.spells_cast_while_holding.append(played_card.id) if len(self.spells_cast_while_holding) < 3 else None
             )[1]  # 只返回第二个元素(append的结果)
         )
     

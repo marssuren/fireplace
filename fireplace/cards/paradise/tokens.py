@@ -429,7 +429,7 @@ class VAC_305t:
     
     def deathrattle(self):
         # 获得4点护甲
-        yield GainArmor(CONTROLLER, 4)
+        yield GainArmor(FRIENDLY_HERO, 4)
 
 
 class WORK_030t:
@@ -856,7 +856,7 @@ class VAC_523t:
                     yield Hit(character, 2)
         elif effect_id == "VAC_523t_effect7":
             # 获得4护甲
-            yield GainArmor(CONTROLLER, 4)
+            yield GainArmor(FRIENDLY_HERO, 4)
         elif effect_id == "VAC_523t_effect8":
             # 抽一张牌
             yield Draw(CONTROLLER)
