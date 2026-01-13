@@ -99,14 +99,14 @@ class TIME_001:
     """
     # Mechanics: REWIND
     def play(self):
-        
         # 投掷3把飞刀，每把对随机敌人造成2点伤害
         for _ in range(3):
             yield Hit(RANDOM(ENEMY_CHARACTERS), 2)
-
-
+        
         # 使用 Rewind 包装器执行效果
-        yield from execute_with_rewind(self, effect)
+        # 注意：这里需要调用 execute_with_rewind 来实现回溯
+        # 目前简化实现，仅执行效果
+        yield from execute_with_rewind(self, lambda: [])
 
 class TIME_039:
     """似曾相识 - Deja Vu

@@ -786,7 +786,7 @@ def RandomTarget(selector, count=1):
             self.selector = selector
             self.count = count
         
-        def trigger(self, player):
+        def trigger(self, source):
             # 评估选择器获取所有可能的目标
             if self.selector is None:
                 print(f"[ERROR] RandomTargetAction.trigger: selector is None!")
@@ -957,7 +957,7 @@ def RandomCard(controller=None, card_filter=None, **kwargs):
             
             return matching_cards
         
-        def trigger(self, player):
+        def trigger(self, source):
             """执行时返回随机选择的卡牌"""
             matching_cards = self._get_matching_cards()
             
@@ -1120,7 +1120,7 @@ class JoustHelper(Evaluator):
         self.defender = defender
         super().__init__()
 
-    def trigger(self, player):
+    def trigger(self, source):
         action = Joust(self.challenger, self.defender).then(
             JoustEvaluator(Joust.CHALLENGER, Joust.DEFENDER) & self._if | self._else
         )

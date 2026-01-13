@@ -11,10 +11,14 @@ class GiveAbyssalCurse(Action):
         # 评估目标玩家
         if hasattr(self.target_selector, 'evaluate'):
             target_player = self.target_selector.evaluate(source)
+        elif hasattr(self.target_selector, 'eval'):
+            results = self.target_selector.eval(source.game, source)
+            target_player = results[0] if results else source.controller.opponent
         else:
             target_player = self.target_selector
         
-        return [self.do(source, target_player)]
+        self.do(source, target_player)
+        return []
     
     def do(self, source, target_player):
         controller = source.controller

@@ -40,7 +40,7 @@ class VAC_520:
     def play(self):
         # 造成2点伤害，随机分配到所有敌方随从
         for _ in range(2):
-            targets = self.game.board.get_enemies(self.controller).filter(type=CardType.MINION)
+            targets = list(ENEMY_MINIONS.eval(self.game, self))
             if targets:
                 target = self.game.random.choice(targets)
                 yield Hit(target, 1)
@@ -214,7 +214,7 @@ class VAC_509:
         # 让每个水元素攻击随机敌人
         for elemental in elementals:
             if elemental.zone == Zone.PLAY:
-                enemies = self.game.board.get_enemies(self.controller)
+                enemies = list(ENEMY_CHARACTERS.eval(self.game, self))
                 if enemies:
                     target = self.game.random.choice(enemies)
                     yield Attack(elemental, target)

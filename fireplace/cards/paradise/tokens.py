@@ -131,7 +131,7 @@ class VAC_520t:
     def play(self):
         # 造成2点伤害，随机分配到所有敌方随从
         for _ in range(2):
-            targets = self.game.board.get_enemies(self.controller).filter(type=CardType.MINION)
+            targets = list(ENEMY_MINIONS.eval(self.game, self))
             if targets:
                 target = self.game.random.choice(targets)
                 yield Hit(target, 1)
@@ -146,7 +146,7 @@ class VAC_520t2:
     def play(self):
         # 造成2点伤害，随机分配到所有敌方随从
         for _ in range(2):
-            targets = self.game.board.get_enemies(self.controller).filter(type=CardType.MINION)
+            targets = list(ENEMY_MINIONS.eval(self.game, self))
             if targets:
                 target = self.game.random.choice(targets)
                 yield Hit(target, 1)
@@ -398,7 +398,7 @@ class VAC_323t:
     # Drink Spell 第二次使用版本
     def play(self):
         # 对所有敌方角色造成1点伤害（包括英雄）
-        enemy_characters = self.game.board.get_enemies(self.controller)
+        enemy_characters = list(ENEMY_CHARACTERS.eval(self.game, self))
         for character in enemy_characters:
             yield Hit(character, 1)
         
@@ -411,7 +411,7 @@ class VAC_323t2:
     # Drink Spell 第三次使用版本（最后一次，不再返回）
     def play(self):
         # 对所有敌方角色造成1点伤害（包括英雄）
-        enemy_characters = self.game.board.get_enemies(self.controller)
+        enemy_characters = list(ENEMY_CHARACTERS.eval(self.game, self))
         for character in enemy_characters:
             yield Hit(character, 1)
         # 最后一次使用，不再返回手牌
@@ -469,7 +469,7 @@ def execute_school_effect(card, school):
         yield Draw(CONTROLLER) * 2
     elif school == SpellSchool.FEL:
         # Fel: Deal 2 damage to all enemy minions
-        enemy_minions = card.game.board.get_enemies(card.controller).filter(type=CardType.MINION)
+        enemy_minions = list(ENEMY_MINIONS.eval(card.game, card))
         for minion in enemy_minions:
             yield Hit(minion, 2)
     elif school == SpellSchool.FIRE:
@@ -477,7 +477,7 @@ def execute_school_effect(card, school):
         yield Hit(ENEMY_HERO, 6)
     elif school == SpellSchool.FROST:
         # Frost: Freeze three random enemy minions
-        enemy_minions = list(card.game.board.get_enemies(card.controller).filter(type=CardType.MINION))
+        enemy_minions = list(ENEMY_MINIONS.eval(card.game, card))
         if enemy_minions:
             targets = card.game.random.sample(enemy_minions, min(3, len(enemy_minions)))
             for target in targets:
@@ -490,7 +490,7 @@ def execute_school_effect(card, school):
         yield Buff(card, "VAC_449_nature_buff")
     elif school == SpellSchool.SHADOW:
         # Shadow: Destroy 2 random enemy minions
-        enemy_minions = list(card.game.board.get_enemies(card.controller).filter(type=CardType.MINION))
+        enemy_minions = list(ENEMY_MINIONS.eval(card.game, card))
         if enemy_minions:
             targets = card.game.random.sample(enemy_minions, min(2, len(enemy_minions)))
             for target in targets:

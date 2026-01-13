@@ -139,7 +139,7 @@ class ETC_528:
         # - 第一次施放：count=1, 射 2 + (1-1) = 2 道
         # - 第二次施放：count=2, 射 2 + (2-1) = 3 道
         # - 第三次施放：count=3, 射 2 + (3-1) = 4 道
-        count = self.controller.times_played("ETC_528")
+        count = sum(1 for c in self.controller.cards_played_this_game if c.id == "ETC_528")
         beam_count = 2 + max(0, count - 1)
         
         for i in range(beam_count):
