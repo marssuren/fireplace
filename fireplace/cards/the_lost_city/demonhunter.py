@@ -136,7 +136,7 @@ class TLC_900e:
     # 监听玩家打出卡牌事件
     events = Play(CONTROLLER).after(
         lambda self, player, played_card, target=None: (
-            check_is_map_discovered_card(self.controller, card.id)
+            check_is_map_discovered_card(self.controller, played_card.id)
             and [
                 # 再次发现一张邪能法术牌
                 GenericChoice(CONTROLLER, RandomCardGenerator(
