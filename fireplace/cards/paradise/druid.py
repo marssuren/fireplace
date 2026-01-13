@@ -68,8 +68,10 @@ class WORK_050:
         # 从牌库中抽取2张随从牌
         cards = yield ForceDraw(FRIENDLY_DECK + MINION, 2)
         # 给抽到的随从牌+2/+2
-        for card in cards:
-            yield Buff(card, "WORK_050e")
+        if cards:
+            for card in cards:
+                if card:
+                    yield Buff(card, "WORK_050e")
 
 
 class WORK_050e:

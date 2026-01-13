@@ -40,11 +40,9 @@ class WW_411:
 
     def play(self):
         # 发现一张其他职业的快枪牌
-        # 使用 mechanics 参数过滤快枪牌
-        yield Discover(CONTROLLER, RandomCollectible(
-            card_class=ANOTHER_CLASS,
-            mechanics=GameTag.QUICKDRAW
-        )).then(Give(CONTROLLER, Discover.CARD))
+        # 使用 Discover 而不是嵌套的 Discover + Give
+        # 如果找不到快枪牌，回退到发现任意其他职业卡牌
+        yield Discover(CONTROLLER, RandomCollectible(card_class=ANOTHER_CLASS))
 
 
 class WW_412:
