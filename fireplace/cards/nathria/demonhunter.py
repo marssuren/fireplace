@@ -289,6 +289,9 @@ class REV_RELIC_COUNTER:
     """Relic Counter - 圣物计数器
     追踪圣物升级等级，每施放一个圣物增加1层
     """
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+    }
     # 圣物计数器：累积型buff，不会被移除
     # 每层代表一次圣物升级，影响后续圣物的效果强度
     # - REV_508（次元圣物）：减费量 = 层数 + 1

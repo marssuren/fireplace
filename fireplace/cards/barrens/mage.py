@@ -89,8 +89,12 @@ class BAR_545:
     Cards that didn't start in your deck cost (2) less (but not less than 1).
     不是以你牌库起始卡牌的牌的法力值消耗减少（2）点（但不会少于1点）。
     """
+    # 使用 FuncSelector 判断卡牌是否不是起始牌库中的卡牌
+    # 检查 started_in_deck 属性或 creator 是否存在
     update = Refresh(
-        FRIENDLY_HAND + (CREATOR is not None),
+        FRIENDLY_HAND + FuncSelector(lambda entities, src: [
+            e for e in entities if not getattr(e, 'started_in_deck', True)
+        ]),
         {GameTag.COST: -2}
     )
 

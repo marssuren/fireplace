@@ -2023,6 +2023,7 @@ class Location(rules.LocationRules, LiveEntity):
         self.damage = 0
         self.activations_this_turn = 0
         self.cooldown = False
+        self.location_cooldown = False  # 别名，与 CARD_ATTRIBUTE_MAP 中的映射对应
     
     def dump(self):
         data = super().dump()

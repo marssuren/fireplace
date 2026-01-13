@@ -198,22 +198,28 @@ class SW_049:
     def play(self):
         """发现一张奥秘、武器或圣盾随从"""
         # 创建选项池：奥秘、武器、圣盾随从
-        options = []
+        secrets = list(RandomCollectible(
+            type=CardType.SPELL, 
+            secret=True, 
+            card_class=CardClass.PALADIN
+        ).evaluate(self) or [])
+        weapons = list(RandomCollectible(
+            type=CardType.WEAPON, 
+            card_class=CardClass.PALADIN
+        ).evaluate(self) or [])
+        divine_shield_minions = list(RandomCollectible(
+            type=CardType.MINION, 
+            divine_shield=True, 
+            card_class=CardClass.PALADIN
+        ).evaluate(self) or [])
         
-        # 添加奥秘
-        secrets = RandomCollectible(type=CardType.SPELL, secret=True)
-        options.append(secrets)
-        
-        # 添加武器
-        weapons = RandomCollectible(type=CardType.WEAPON)
-        options.append(weapons)
-        
-        # 添加圣盾随从
-        divine_shield_minions = RandomCollectible(type=CardType.MINION, divine_shield=True)
-        options.append(divine_shield_minions)
-        
-        # 发现
-        yield Discover(CONTROLLER, options)
+        # 合并所有选项并随机选3个
+        all_options = secrets + weapons + divine_shield_minions
+        if all_options:
+            # 选择3个不同的卡牌
+            num_choices = min(3, len(all_options))
+            choices = self.game.random.sample(all_options, num_choices)
+            yield GenericChoice(CONTROLLER, choices)
 
 
 class SW_305:

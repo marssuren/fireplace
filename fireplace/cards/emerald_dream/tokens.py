@@ -2,6 +2,7 @@
 深入翡翠梦境 - TOKENS
 """
 from ..utils import *
+from ... import enums
 
 
 # Death Knight Tokens
@@ -122,7 +123,7 @@ class EDR_845e:
     追踪法术施放次数,每2个法术触发一次 Imbue
     """
     tags = {
-        GameTag.TAG_SCRIPT_DATA_NUM_1: 0,  # 法术计数器
+        enums.TRIGGER_COUNT,  # 触发计数器
         GameTag.CARDTYPE: CardType.ENCHANTMENT,
     }
     
@@ -155,7 +156,7 @@ class EDR_464e:
     """
     tags = {
         GameTag.CARDTYPE: CardType.ENCHANTMENT,
-        GameTag.TAG_SCRIPT_DATA_NUM_1: 3,  # 剩余次数
+        enums.TURNS_REMAINING: 3,  # 剩余次数
     }
     
     # 监听法术施放事件
@@ -963,7 +964,7 @@ class EDR_464e:
     """
     tags = {
         GameTag.CARDTYPE: CardType.ENCHANTMENT,
-        GameTag.TAG_SCRIPT_DATA_NUM_1: 3,  # 剩余次数
+        enums.TURNS_REMAINING: 3,  # 剩余次数
     }
     
     def _on_spell_play(self, source, card, *args):
@@ -1004,7 +1005,8 @@ class EDR_895e:
     
     def _advance_lunar_cycle(self):
         """推进月相"""
-        # SetTag 已经通过 from ..utils import * 导入
+        # SetTag 已经通过 from ..utils import *
+from ... import enums 导入
         
         # 获取当前月相
         current_phase = self.tags.get(GameTag.PROGRESS, 0)

@@ -1,4 +1,5 @@
 from ..utils import *
+from ... import enums
 
 
 # Helper Action to Give Abyssal Curse
@@ -22,11 +23,12 @@ class GiveAbyssalCurse(Action):
     
     def do(self, source, target_player):
         controller = source.controller
-        current_level = controller.tags.get(GameTag.TAG_SCRIPT_DATA_NUM_1, 0) + 1
-        controller.tags[GameTag.TAG_SCRIPT_DATA_NUM_1] = current_level
+        # 使用语义化标签 ABYSSAL_CURSE_LEVEL 替代通用 TAG_SCRIPT_DATA_NUM_1
+        current_level = getattr(controller, 'abyssal_curse_level', 0) + 1
+        controller.abyssal_curse_level = current_level
         
         curse_card = controller.card("TSC_950t")
-        curse_card.tags[GameTag.TAG_SCRIPT_DATA_NUM_1] = current_level
+        curse_card.tags[enums.ABYSSAL_CURSE_LEVEL] = current_level
         
         source.game.queue_actions(source, [Give(target_player, curse_card)])
 

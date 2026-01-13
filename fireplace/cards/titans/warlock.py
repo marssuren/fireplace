@@ -3,6 +3,7 @@
 TITANS 扩展包 - WARLOCK
 """
 from ..utils import *
+from ... import enums
 
 
 # COMMON
@@ -367,7 +368,7 @@ class TTN_960:
         GameTag.COST: 9,
         GameTag.LEGENDARY: True,
         GameTag.TITAN: True,
-        GameTag.TAG_SCRIPT_DATA_NUM_1: 3,  # 泰坦技能次数
+        enums.TITAN_ABILITY_COUNT: 3,  # 泰坦技能次数
     }
     
     play = Buff(CONTROLLER, "TTN_960e")

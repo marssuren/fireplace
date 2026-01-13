@@ -49,9 +49,14 @@ class BT_028t:
     def play(self):
         # 施放5个随机法师法术
         for _ in range(5):
-            spell = self.controller.card(RandomSpell(card_class=CardClass.MAGE))
-            if spell:
-                yield CastSpellTargetsEnemiesIfPossible(CONTROLLER, spell)
+            # 先评估 RandomSpell 获取卡牌ID列表
+            spell_picker = RandomSpell(card_class=CardClass.MAGE)
+            spell_ids = spell_picker.evaluate(self)
+            if spell_ids:
+                spell_id = spell_ids[0] if isinstance(spell_ids, list) else spell_ids
+                spell = self.controller.card(spell_id, self)
+                if spell:
+                    yield CastSpellTargetsEnemiesIfPossible(CONTROLLER, spell)
 
 
 ##

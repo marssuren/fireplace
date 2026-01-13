@@ -4,6 +4,7 @@
 """
 
 from ..utils import *
+from ... import enums
 
 class ETC_542:
     """音乐节保安 / Festival Security
@@ -45,7 +46,7 @@ class ETC_422:
 
 class ETC_422e:
     """递增计数"""
-    tags = {GameTag.TAG_SCRIPT_DATA_NUM_1: 1}
+    tags = {enums.ABILITY_USED_THIS_TURN: 1}
 class ETC_419:
     """摇滚缝合怪 / Mish-Mash Mosher
     <b>突袭</b>。在本随从攻击后，获得+1攻击力并随机攻击一个敌方随从。"""

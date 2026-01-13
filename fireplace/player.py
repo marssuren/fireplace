@@ -324,6 +324,30 @@ class Player(Entity, TargetableByAuras):
         # 用于 NX2_017 瘟疫爆发等卡牌
         self.has_discarded_this_game = False  # 本局对战中是否弃过牌
 
+        # ============================================================
+        # 语义化脚本数据（推荐使用）
+        # ============================================================
+        self.abyssal_curse_level = 0  # 深渊诅咒当前等级
+        self.growth_counter = 0  # 成长计数器
+        self.ability_used_this_turn = 0  # 本回合是否已使用某能力
+        self.turns_remaining = 0  # 剩余回合数
+        self.power_multiplier = 0  # 翻倍次数
+        self.trigger_count = 0  # 触发计数
+        self.spell_cast_this_turn = 0  # 本回合是否施放法术
+        
+        # ============================================================
+        # 通用脚本数据（兼容层 - 新代码请使用语义化属性）
+        # ============================================================
+        self.script_data_num_1 = 0  # 已弃用，请改用语义化属性
+        self.script_data_num_2 = 0  # 已弃用，请改用语义化属性
+        self.script_data_num_3 = 0  # 已弃用，请改用语义化属性
+        self.script_data_num_4 = 0  # 已弃用，请改用语义化属性
+        self.script_data_num_5 = 0  # 已弃用，请改用语义化属性
+        self.script_data_num_6 = 0  # 已弃用，请改用语义化属性
+
+        # 法术双倍施放（Solar Eclipse 等卡牌）
+        self.spell_double_cast = 0
+
 
 
 
@@ -435,6 +459,13 @@ class Player(Entity, TargetableByAuras):
             minion.spellpower for minion in self.field.filter(dormant=False)
         )
         return aura_power + minion_power
+
+    @property
+    def healed_this_turn(self):
+        """代理到 Hero 的 healed_this_turn 属性"""
+        if self.hero and hasattr(self.hero, 'healed_this_turn'):
+            return self.hero.healed_this_turn
+        return 0
 
     @property
     def start_hand_size(self):

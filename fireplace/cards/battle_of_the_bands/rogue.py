@@ -1,4 +1,5 @@
 from ..utils import *
+from ... import enums
 
 class ETC_077:
     """Disc Jockey - 八爪碟机
@@ -267,7 +268,7 @@ class ETC_518:
         GameTag.HEALTH: 2,
         GameTag.COST: 3,
         GameTag.CARDTYPE: CardType.WEAPON,
-        GameTag.TAG_SCRIPT_DATA_NUM_1: 1, # 计数器：复原的法力水晶数量
+        enums.TRIGGER_COUNT,  # 触发计数器：复原的法力水晶数量
     }
     
     # 亡语：复原 X 个水晶

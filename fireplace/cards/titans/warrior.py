@@ -3,6 +3,7 @@
 TITANS 扩展包 - WARRIOR
 """
 from ..utils import *
+from ... import enums
 
 
 # COMMON
@@ -324,7 +325,7 @@ class TTN_415:
         GameTag.COST: 6,
         GameTag.LEGENDARY: True,
         GameTag.TITAN: True,
-        GameTag.TAG_SCRIPT_DATA_NUM_1: 3,  # 泰坦技能次数
+        enums.TITAN_ABILITY_COUNT: 3,  # 泰坦技能次数
     }
     
     # 泰坦技能使用后触发：获得免疫并随机攻击敌方随从

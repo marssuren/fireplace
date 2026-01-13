@@ -217,9 +217,24 @@ class ETC_532:
     }
     
     def play(self):
-        # 本局对战施放过的法术，排除自己
-        copy = Copy(FRIENDLY_PLAYED_SPELLS_THIS_GAME - ID("ETC_532"))
-        yield Discover(copy)
+        # 本局对战施放过的法术，排除自己（ETC_532）
+        if hasattr(self.controller, 'spells_played_this_game'):
+            spells = [c for c in self.controller.spells_played_this_game if c.id != "ETC_532"]
+            if spells:
+                # 选择最多3个不同的法术进行发现
+                unique_ids = set()
+                discover_options = []
+                for card in spells:
+                    if card.id not in unique_ids:
+                        unique_ids.add(card.id)
+                        # 创建复制
+                        copy = self.controller.card(card.id, self)
+                        discover_options.append(copy)
+                    if len(discover_options) >= 3:
+                        break
+                
+                if discover_options:
+                    yield GenericChoice(CONTROLLER, discover_options)
 
 class JAM_002:
     """Star Power - 星辰能量

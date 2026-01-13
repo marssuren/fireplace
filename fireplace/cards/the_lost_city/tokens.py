@@ -5,6 +5,7 @@
 包括：随从 Token、法术 Token、Enchantment 等
 """
 from ..utils import *
+from ... import enums
 from ...enums import HEALTH_COST
 
 
@@ -610,7 +611,7 @@ class TLC_466e:
     """
     tags = {
         GameTag.CARDTYPE: CardType.ENCHANTMENT,
-        GameTag.TAG_SCRIPT_DATA_NUM_1: 3,  # 剩余回合数
+        enums.TURNS_REMAINING: 3,  # 剩余回合数
     }
 
     events = OWN_TURN_END.on(

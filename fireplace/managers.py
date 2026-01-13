@@ -173,9 +173,25 @@ class PlayerManager(Manager):
         GameTag.TEMP_RESOURCES: "temp_mana",
         GameTag.TIMEOUT: "timeout",
         GameTag.TURN_START: "turn_start",
+        # 通用脚本数据标签（保留作为兼容层，但推荐使用语义化标签）
+        GameTag.TAG_SCRIPT_DATA_NUM_1: "script_data_num_1",
+        GameTag.TAG_SCRIPT_DATA_NUM_2: "script_data_num_2",
+        GameTag.TAG_SCRIPT_DATA_NUM_3: "script_data_num_3",
+        GameTag.TAG_SCRIPT_DATA_NUM_4: "script_data_num_4",
+        GameTag.TAG_SCRIPT_DATA_NUM_5: "script_data_num_5",
+        GameTag.TAG_SCRIPT_DATA_NUM_6: "script_data_num_6",
+        # 语义化标签（推荐使用）
+        enums.ABYSSAL_CURSE_LEVEL: "abyssal_curse_level",  # 深渊诅咒等级
+        enums.GROWTH_COUNTER: "growth_counter",  # 成长计数器
+        enums.ABILITY_USED_THIS_TURN: "ability_used_this_turn",  # 本回合是否已使用
+        enums.TURNS_REMAINING: "turns_remaining",  # 剩余回合数
+        enums.POWER_MULTIPLIER: "power_multiplier",  # 翻倍次数
+        enums.TRIGGER_COUNT: "trigger_count",  # 触发计数
+        enums.SPELL_CAST_THIS_TURN: "spell_cast_this_turn",  # 本回合是否施放法术
         enums.CANT_OVERLOAD: "cant_overload",
         enums.ELEMENTAL_PLAYED_LAST_TURN: "elemental_played_last_turn",
         enums.NUM_SECRETS_REVEALED: "num_secrets_revealed",
+        enums.SPELL_DOUBLE_CAST: "spell_double_cast",  # 下一个法术施放两次
     }
 
 
@@ -288,6 +304,7 @@ CARD_ATTRIBUTE_MAP = {
     GameTag.UPGRADED_HERO_POWER: "upgraded_hero_power",
     GameTag.WINDFURY: "windfury",
     GameTag.ZONE: "zone",
+    GameTag.PREDAMAGE: "predamage",  # 预伤害标记
     GameTag.ZONE_POSITION: "zone_position",
     enums.ALWAYS_WINS_BRAWLS: "always_wins_brawls",
     enums.CAST_ON_FRIENDLY_MINIONS: "cast_on_friendly_minions",
@@ -312,6 +329,8 @@ CARD_ATTRIBUTE_MAP = {
     enums.REWIND: "rewind",  # 标记卡牌具有 Rewind 效果
     enums.REWIND_COUNT: "rewind_count",  # Rewind 剩余次数
     enums.REWIND_AVAILABLE: "rewind_available",  # Rewind 是否可用
+    enums.LOCATION_COOLDOWN: "location_cooldown",  # 地标冷却状态
+    enums.SPELL_DOUBLE_CAST: "spell_double_cast",  # 下一个法术施放两次
     GameTag.CARDTEXT_ENTITY_0: "cardtext_entity_0",
     GameTag.CARDTEXT_ENTITY_1: "cardtext_entity_1",
     GameTag.CARDTEXT_ENTITY_2: "cardtext_entity_2",
@@ -350,6 +369,7 @@ CARD_ATTRIBUTE_MAP = {
     GameTag.SHOWN_HERO_POWER: None,
     GameTag.TARGETING_ARROW_TEXT: None,
     GameTag.TOPDECK: None,
+    GameTag.PREMIUM: None,  # 金色卡牌标记（装饰性）
     GameTag.TAG_AI_MUST_PLAY: None,
     GameTag.TRIGGER_VISUAL: None,
 }

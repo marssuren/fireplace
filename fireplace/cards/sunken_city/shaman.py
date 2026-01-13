@@ -1,4 +1,5 @@
 from ..utils import *
+from ... import enums
 
 
 class TSC_631:
@@ -113,7 +114,7 @@ class TID_004:
 class TID_004e:
     """Clownfish Cost Reduction"""
     tags = {
-        GameTag.TAG_SCRIPT_DATA_NUM_1: 2, # 使用这个Tag作为计数器
+        enums.TRIGGER_COUNT,  # 触发计数器
     }
     # 光环：手牌中鱼人减2费
     update = Refresh(FRIENDLY_HAND + MURLOC, {GameTag.COST: -2})

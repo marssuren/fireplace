@@ -3,6 +3,7 @@
 TITANS 扩展包 - HUNTER
 """
 from ..utils import *
+from ... import enums
 
 
 # COMMON
@@ -327,7 +328,7 @@ class TTN_092:
         GameTag.COST: 6,
         GameTag.LEGENDARY: True,
         GameTag.TITAN: True,
-        GameTag.TAG_SCRIPT_DATA_NUM_1: 3,  # 泰坦技能次数
+        enums.TITAN_ABILITY_COUNT: 3,  # 泰坦技能次数
     }
     
     play = Summon(CONTROLLER, "TTN_092t")
@@ -416,7 +417,7 @@ class TTN_752:
 class TTN_752e:
     """巨人化效果"""
     tags = {
-        GameTag.TAG_SCRIPT_DATA_NUM_1: 3,  # 剩余次数
+        enums.TURNS_REMAINING: 3,  # 剩余次数
         GameTag.CARDTYPE: CardType.ENCHANTMENT
     }
     
@@ -424,7 +425,7 @@ class TTN_752e:
         Buff(Play.CARD, "TTN_752buff"),
         Buff(SELF, "TTN_752tick"),
         Condition(
-            Equal(Tag(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1), 0),
+            Equal(Tag(SELF, enums.GROWTH_COUNTER), 0),
             Destroy(SELF)
         )
     )
@@ -433,7 +434,7 @@ class TTN_752e:
 class TTN_752tick:
     """计数器减少"""
     tags = {
-        GameTag.TAG_SCRIPT_DATA_NUM_1: -1,
+        enums.GROWTH_COUNTER: -1,
         GameTag.CARDTYPE: CardType.ENCHANTMENT
     }
 

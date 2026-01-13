@@ -168,9 +168,11 @@ class DMF_058e:
     
     def apply(self, target):
         # 设置SPELL_DOUBLE_CAST标签，表示下一个法术施放两次
+        # 使用 enums 中定义的 SPELL_DOUBLE_CAST (-41)
+        from ... import enums
         if not hasattr(target, 'tags'):
             target.tags = {}
-        target.tags[SPELL_DOUBLE_CAST] = target.tags.get(SPELL_DOUBLE_CAST, 0) + 1
+        target.tags[enums.SPELL_DOUBLE_CAST] = target.tags.get(enums.SPELL_DOUBLE_CAST, 0) + 1
     
     # 在法术施放后销毁buff
     events = Play(CONTROLLER, SPELL).after(Destroy(SELF))

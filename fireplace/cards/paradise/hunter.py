@@ -82,28 +82,41 @@ class VAC_408:
     从你的牌库中发现一张随从牌。使其所有的复制获得+2/+1（无论它们在哪）。
     """
     def play(self):
-        # 从牌库中发现一张随从牌
-        cards = yield Discover(CONTROLLER, cards=FRIENDLY_DECK + MINION)
+        # 从牌库中获取随从牌
+        minions_in_deck = [c for c in self.controller.deck if c.type == CardType.MINION]
         
-        if cards:
-            discovered_card = cards[0]
-            card_id = discovered_card.id
+        if not minions_in_deck:
+            return
+        
+        # 选择最多3个不同的随从进行发现
+        unique_ids = set()
+        discover_options = []
+        for card in minions_in_deck:
+            if card.id not in unique_ids:
+                unique_ids.add(card.id)
+                discover_options.append(card)
+            if len(discover_options) >= 3:
+                break
+        
+        if discover_options:
+            cards = yield GenericChoice(CONTROLLER, discover_options)
             
-            # 给所有同ID的卡牌（手牌、牌库、场上）+2/+1
-            # 手牌
-            for card in self.controller.hand:
-                if card.id == card_id and card.type == CardType.MINION:
-                    yield Buff(card, "VAC_408e")
-            
-            # 牌库
-            for card in self.controller.deck:
-                if card.id == card_id and card.type == CardType.MINION:
-                    yield Buff(card, "VAC_408e")
-            
-            # 场上
-            for minion in self.controller.field:
-                if minion.id == card_id:
-                    yield Buff(minion, "VAC_408e")
+            if cards:
+                discovered_card = cards[0] if isinstance(cards, list) else cards
+                card_id = discovered_card.id
+                
+                # 给所有同ID的卡牌（手牌、牌库、场上）+2/+1
+                for card in self.controller.hand:
+                    if card.id == card_id and card.type == CardType.MINION:
+                        yield Buff(card, "VAC_408e")
+                
+                for card in self.controller.deck:
+                    if card.id == card_id and card.type == CardType.MINION:
+                        yield Buff(card, "VAC_408e")
+                
+                for minion in self.controller.field:
+                    if minion.id == card_id:
+                        yield Buff(minion, "VAC_408e")
 
 
 class VAC_408e:

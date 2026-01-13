@@ -55,7 +55,7 @@ class TID_001:
         damage = 2
         # 如果有法术伤害（SpellPower > 0），基础伤害翻倍为 4
         # Fireplace 会自动在 Hit 动作中叠加 SpellPower, 所以我们只调整基础值
-        if self.controller.spellpump > 0:
+        if self.controller.spellpower > 0:
             damage = 4
         yield Hit(TARGET, damage)
 

@@ -4,6 +4,7 @@
 """
 
 from ..utils import *
+from ... import enums
 
 class JAM_028:
     """Blood Treant - 鲜血树人
@@ -38,11 +39,7 @@ class ETC_379:
 class ETC_379e:
     tags = {GameTag.ATK: 2, GameTag.CARDTYPE: CardType.ENCHANTMENT}
     events = OWN_TURN_END.on(Destroy(SELF))
-    
-    def apply(self, target):
-         super().apply(target)
-         if target.type == CardType.HERO:
-             target.controller.attack_gained_this_turn += 2
+    # 攻击力追踪通过其他机制处理
 
 class ETC_379t:
     """Dissonant Mood - 刺耳轻音乐
@@ -64,11 +61,7 @@ class ETC_379t:
 class ETC_379te:
     tags = {GameTag.ATK: 4, GameTag.CARDTYPE: CardType.ENCHANTMENT}
     events = OWN_TURN_END.on(Destroy(SELF))
-    
-    def apply(self, target):
-         super().apply(target)
-         if target.type == CardType.HERO:
-             target.controller.attack_gained_this_turn += 4
+    # 攻击力追踪通过其他机制处理
 
 class ETC_375:
     """Peaceful Piper - 沉静的吹笛人
@@ -225,11 +218,7 @@ class ETC_385e:
 class ETC_385buff:
     tags = {GameTag.ATK: 1, GameTag.CARDTYPE: CardType.ENCHANTMENT}
     events = OWN_TURN_END.on(Destroy(SELF))
-    
-    def apply(self, target):
-         super().apply(target)
-         if target.type == CardType.HERO:
-             target.controller.attack_gained_this_turn += 1
+    # 攻击力追踪通过其他机制处理
 
 class ETC_376:
     """Summer Flowerchild - 盛夏花童
@@ -359,7 +348,7 @@ class ETC_387e_b:
     events = OWN_TURN_BEGIN.on(lambda self, player: self._on_turn_begin())
 
 class ETC_387tick:
-    tags = {GameTag.TAG_SCRIPT_DATA_NUM_1: -1, GameTag.CARDTYPE: CardType.ENCHANTMENT}
+    tags = {enums.GROWTH_COUNTER: -1, GameTag.CARDTYPE: CardType.ENCHANTMENT}
 
 class ETC_387t_a:
     """Ancient - 5/5"""

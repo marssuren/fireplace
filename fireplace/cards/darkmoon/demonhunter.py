@@ -1,4 +1,5 @@
 from ..utils import *
+from ... import enums
 from ...enums import LIFESTEAL_DAMAGES_ENEMY
 
 
@@ -193,7 +194,7 @@ class DMF_224t:
 class DMF_224e_marker:
     """Expendable Performer Marker"""
     # 标记这是演员大接力召唤的随从
-    tags = {GameTag.TAG_SCRIPT_DATA_NUM_1: 1}
+    tags = {enums.ABILITY_USED_THIS_TURN: 1}
 
 
 class DMF_224e_tracker:
@@ -257,7 +258,7 @@ class DMF_249:
 class DMF_249e_card1:
     """Acrobatics Card 1 Marker"""
     # 标记第一张抽到的牌
-    tags = {GameTag.TAG_SCRIPT_DATA_NUM_1: 1}
+    tags = {enums.ABILITY_USED_THIS_TURN: 1}
     
     # 打出时通知追踪器
     events = [
