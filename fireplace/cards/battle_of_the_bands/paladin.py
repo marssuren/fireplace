@@ -4,6 +4,7 @@
 """
 
 from ..utils import *
+from ... import enums as fireplace_enums
 
 class ETC_318:
     """Boogie Down - 布吉舞乐
@@ -58,11 +59,12 @@ class ETC_317:
     events = Play(CONTROLLER, MINION).on(Buff(SELF, "ETC_317e"))
     
     def deathrattle(self):
-        amount = 1 + self.tags.get(GameTag.TAG_SCRIPT_DATA_NUM_1, 0)
+        # 使用语义化标签 BUFF_STAT_AMOUNT
+        amount = 1 + self.tags.get(fireplace_enums.BUFF_STAT_AMOUNT, 0)
         yield Buff(RANDOM(FRIENDLY_MINIONS), "ETC_317buff", atk=amount, max_health=amount)
 
 class ETC_317e:
-    tags = {GameTag.TAG_SCRIPT_DATA_NUM_1: 1, GameTag.CARDTYPE: CardType.ENCHANTMENT}
+    tags = {fireplace_enums.BUFF_STAT_AMOUNT: 1, GameTag.CARDTYPE: CardType.ENCHANTMENT}
 
 class ETC_317buff:
     tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT} # Stats set dynamically

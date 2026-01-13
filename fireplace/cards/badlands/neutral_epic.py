@@ -2,6 +2,7 @@
 决战荒芜之地 - 中立 - EPIC
 """
 from ..utils import *
+from ... import enums as fireplace_enums
 
 
 class DEEP_035:
@@ -98,12 +99,12 @@ class WW_431:
 
     def OWN_TURN_END(self):
         # 每回合结束时装填2发子弹
-        # 使用 tags 存储子弹数量
-        current_bullets = self.tags.get(GameTag.TAG_SCRIPT_DATA_NUM_1, 0)
-        self.tags[GameTag.TAG_SCRIPT_DATA_NUM_1] = current_bullets + 2
+        # 使用语义化标签 BULLET_COUNT 存储子弹数量
+        current_bullets = self.tags.get(fireplace_enums.BULLET_COUNT, 0)
+        self.tags[fireplace_enums.BULLET_COUNT] = current_bullets + 2
 
     def deathrattle(self):
-        # 亡语：发射所有子弹
-        bullet_count = self.tags.get(GameTag.TAG_SCRIPT_DATA_NUM_1, 0)
+        # 亡语：发射所有子弹（使用语义化标签）
+        bullet_count = self.tags.get(fireplace_enums.BULLET_COUNT, 0)
         for _ in range(bullet_count):
             yield Hit(RANDOM_ENEMY_CHARACTER, 1)

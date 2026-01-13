@@ -208,7 +208,7 @@ class DMF_224e_tracker:
     
     # 监听带有标记的随从死亡
     events = [
-        Death(FRIENDLY_MINIONS + Attr(GameTag.TAG_SCRIPT_DATA_NUM_1, 1)).on(
+        Death(FRIENDLY_MINIONS + Attr(enums.ABILITY_USED_THIS_TURN, 1)).on(
             lambda self, card: setattr(self, 'died_count', getattr(self, 'died_count', 0) + 1)
         ),
         # 回合结束时检查是否全部死亡
@@ -272,7 +272,7 @@ class DMF_249e_card1:
 class DMF_249e_card2:
     """Acrobatics Card 2 Marker"""
     # 标记第二张抽到的牌
-    tags = {GameTag.TAG_SCRIPT_DATA_NUM_1: 2}
+    tags = {enums.CARD_TRACKER_INDEX: 2}
     
     # 打出时通知追踪器
     events = [

@@ -174,12 +174,12 @@ class TID_718:
 class TID_718e:
     """Immolate Effect"""
     tags = {
-        GameTag.TAG_SCRIPT_DATA_NUM_1: 3, # Counter
+        enums.TURNS_REMAINING: 3, # 剩余回合数
     }
     events = BeginTurn(OWNER).on(
         (
-            SetTags(SELF, {GameTag.TAG_SCRIPT_DATA_NUM_1: Attr(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1) - 1}),
-            (Attr(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1) <= 0) & Discard(OWNER)
+            SetTags(SELF, {enums.TURNS_REMAINING: Attr(SELF, enums.TURNS_REMAINING) - 1}),
+            (Attr(SELF, enums.TURNS_REMAINING) <= 0) & Discard(OWNER)
         )
     )
 
@@ -325,9 +325,9 @@ class TSC_950t:
     tags = {
         GameTag.CARDTYPE: CardType.SPELL,
         GameTag.COST: 2,
-        GameTag.TAG_SCRIPT_DATA_NUM_1: 0, # Damage amount set at creation
+        enums.ABYSSAL_CURSE_LEVEL: 0, # 诅咒伤害值（创建时设置）
     }
     class Hand:
         events = OWN_TURN_BEGIN.on(
-            Hit(FRIENDLY_HERO, Attr(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1))
+            Hit(FRIENDLY_HERO, Attr(SELF, enums.ABYSSAL_CURSE_LEVEL))
         )

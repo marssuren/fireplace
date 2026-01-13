@@ -301,8 +301,9 @@ class FIR_907:
     }
     
     def activate(self):
-        # 获取当前使用次数（从buff中获取）
-        use_count = self.tags.get(GameTag.TAG_SCRIPT_DATA_NUM_1, 0) + 1
+        from ... import enums as fireplace_enums
+        # 获取当前使用次数（使用语义化标签 LOCATION_USE_COUNT）
+        use_count = self.tags.get(fireplace_enums.LOCATION_USE_COUNT, 0) + 1
         
         # 召唤随从（数量递增）
         yield Summon(CONTROLLER, RandomMinion(cost=1)) * use_count
@@ -317,6 +318,7 @@ class FIR_907:
         yield FillMana(CONTROLLER, use_count)
         
         # 增加使用次数
+        self.tags[fireplace_enums.LOCATION_USE_COUNT] = use_count
         yield Buff(SELF, "FIR_907e")
 
 

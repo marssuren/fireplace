@@ -605,7 +605,7 @@ class TLC_466e:
     在你的回合结束时，弃一张牌并用3/2的小鬼填满你的面板。持续3回合。
 
     实现说明:
-    - 使用 TAG_SCRIPT_DATA_NUM_1 追踪剩余回合数
+    - 使用语义化标签 TURNS_REMAINING 追踪剩余回合数
     - 每回合结束时触发效果并减少计数
     - 计数归零时移除自身
     """
@@ -633,10 +633,10 @@ class TLC_466e:
             yield Summon(controller, "TLC_466t") * available_space
 
         # 减少剩余回合数
-        buff.tags[GameTag.TAG_SCRIPT_DATA_NUM_1] -= 1
+        buff.tags[enums.TURNS_REMAINING] -= 1
 
         # 如果回合数用完，移除buff
-        if buff.tags[GameTag.TAG_SCRIPT_DATA_NUM_1] <= 0:
+        if buff.tags[enums.TURNS_REMAINING] <= 0:
             yield Destroy(buff)
 
 

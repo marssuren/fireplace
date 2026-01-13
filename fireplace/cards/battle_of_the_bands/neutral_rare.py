@@ -23,14 +23,14 @@ class ETC_422:
         GameTag.ATK: 2,
         GameTag.HEALTH: 4,
         GameTag.COST: 3,
-        GameTag.TAG_SCRIPT_DATA_NUM_1: 0,  # 存储当前追踪的费用值（初始为0）
+        enums.TRACKED_COST_VALUE: 0,  # 存储当前追踪的费用值（初始为0）（使用语义化标签）
     }
     
     # 监听打出卡牌事件，追踪连续打出的卡牌费用
     def _on_play(self, player, played_card, target=None):
         """当打出卡牌时检查费用是否匹配"""
         if player == self.controller:
-            current_cost = self.tags.get(GameTag.TAG_SCRIPT_DATA_NUM_1, 0)
+            current_cost = self.tags.get(enums.TRACKED_COST_VALUE, 0)
             if card.cost == current_cost:
                 # 抽一张费用为 current_cost + 1 的牌
                 deck_cards = [c for c in self.controller.deck if c.cost == current_cost + 1]

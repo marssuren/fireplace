@@ -181,11 +181,11 @@ class TTN_731:
     在一回合中，在你抽第二张牌后，消灭本随从。
     """
     events = [
-        OWN_TURN_BEGIN.on(SetTags(SELF, {enums.ABILITY_USED_THIS_TURN: 0})),
+        OWN_TURN_BEGIN.on(SetTags(SELF, {enums.TRIGGER_COUNT: 0})),
         Draw(CONTROLLER).on(
-            SetTags(SELF, {GameTag.TAG_SCRIPT_DATA_NUM_1: Tag(SELF, enums.GROWTH_COUNTER) + 1}),
+            SetTags(SELF, {enums.TRIGGER_COUNT: Tag(SELF, enums.TRIGGER_COUNT) + 1}),
             If(
-                GreaterEqual(Tag(SELF, enums.GROWTH_COUNTER), 2),
+                GreaterEqual(Tag(SELF, enums.TRIGGER_COUNT), 2),
                 Destroy(SELF)
             )
         )
@@ -292,12 +292,12 @@ class YOG_514:
     """
     def play(self):
         # 获取当前玩家已经施放的混乱触须次数
-        count = self.controller.tags.get(GameTag.TAG_SCRIPT_DATA_NUM_1, 0)
+        count = getattr(self.controller, 'trigger_count', 0)
 
         # 施放对应费用的法术
         spell_cost = count + 1
         yield CastSpell(RandomSpell(cost=spell_cost))
 
         # 增加计数器
-        yield SetTags(CONTROLLER, {GameTag.TAG_SCRIPT_DATA_NUM_1: count + 1})
+        self.controller.trigger_count = count + 1
 

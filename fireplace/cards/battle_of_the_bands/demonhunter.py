@@ -4,6 +4,7 @@
 """
 
 from ..utils import *
+from ... import enums as fireplace_enums
 
 class JAM_016:
     """Abyssal Bassist - 渊狱贝斯手
@@ -102,11 +103,11 @@ class ETC_405:
     events = Play(CONTROLLER, OUTCAST).on(Buff(SELF, "ETC_405e"))
     
     def deathrattle(self):
-        amount = 1 + self.tags.get(GameTag.TAG_SCRIPT_DATA_NUM_1, 0)
+        amount = 1 + self.tags.get(fireplace_enums.DEATHRATTLE_DRAW_COUNT, 0)
         yield Draw(CONTROLLER) * amount
 
 class ETC_405e:
-    tags = {GameTag.TAG_SCRIPT_DATA_NUM_1: 1, GameTag.CARDTYPE: CardType.ENCHANTMENT}
+    tags = {fireplace_enums.DEATHRATTLE_DRAW_COUNT: 1, GameTag.CARDTYPE: CardType.ENCHANTMENT}
 
 class JAM_018:
     """Remixed Rhapsody - 混搭狂想曲

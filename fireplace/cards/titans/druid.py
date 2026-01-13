@@ -3,6 +3,7 @@
 TITANS 扩展包 - DRUID
 """
 from ..utils import *
+from ... import enums
 
 
 # COMMON
@@ -28,13 +29,13 @@ class TTN_950t:
         GameTag.ATK: 1,
         GameTag.HEALTH: 1,
         GameTag.CARDRACE: Race.TREANT,
-        GameTag.TAG_SCRIPT_DATA_NUM_1: 2,  # 成长计数器
+        enums.GROWTH_COUNTER: 2,  # 成长计数器（2回合后成长）
     }
     
     events = OWN_TURN_BEGIN.on(
         Buff(SELF, "TTN_950tick"),
         Condition(
-            Equal(Tag(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1), 0),
+            Equal(Tag(SELF, enums.GROWTH_COUNTER), 0),
             (Morph(SELF, "TTN_950t2"), )
         )
     )
@@ -43,7 +44,7 @@ class TTN_950t:
 class TTN_950tick:
     """成长计数"""
     tags = {
-        GameTag.TAG_SCRIPT_DATA_NUM_1: -1,
+        enums.GROWTH_COUNTER: -1,  # 每回合减少1
         GameTag.CARDTYPE: CardType.ENCHANTMENT
     }
 
@@ -198,14 +199,14 @@ class TTN_930:
 class TTN_930e:
     """雪莲成长效果"""
     tags = {
-        GameTag.TAG_SCRIPT_DATA_NUM_1: 3,  # 成长计数器
+        enums.GROWTH_COUNTER: 3,  # 成长计数器（3回合后成长）
         GameTag.CARDTYPE: CardType.ENCHANTMENT
     }
     
     events = OWN_TURN_BEGIN.on(
         Buff(SELF, "TTN_930tick"),
         Condition(
-            Equal(Tag(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1), 0),
+            Equal(Tag(SELF, enums.GROWTH_COUNTER), 0),
             (
                 Draw(CONTROLLER),
                 GainArmor(FRIENDLY_HERO, 5),
@@ -218,7 +219,7 @@ class TTN_930e:
 class TTN_930tick:
     """成长计数"""
     tags = {
-        GameTag.TAG_SCRIPT_DATA_NUM_1: -1,
+        enums.GROWTH_COUNTER: -1,  # 每回合减少1
         GameTag.CARDTYPE: CardType.ENCHANTMENT
     }
 
@@ -410,7 +411,7 @@ class TTN_903:
         GameTag.COST: 10,
         GameTag.LEGENDARY: True,
         GameTag.TITAN: True,
-        GameTag.TAG_SCRIPT_DATA_NUM_1: 3,  # 泰坦技能次数
+        enums.TITAN_ABILITY_COUNT: 3,  # 泰坦技能次数
     }
     
     # 泰坦技能使用后触发

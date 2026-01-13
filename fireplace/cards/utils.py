@@ -137,7 +137,7 @@ def UpdateProgress(target, amount):
         SetTag action
     """
     from ..actions import SetTags
-    # 使用 TAG_SCRIPT_DATA_NUM_1 作为进度计数器
+    # 使用 progress 属性作为进度计数器（推荐使用语义化标签如 enums.TRIGGER_COUNT）
     return lambda source: setattr(target, 'progress', getattr(target, 'progress', 0) + amount)
 
 # Turn - 回合事件

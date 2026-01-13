@@ -295,9 +295,10 @@ to the enemy hero.
 
     # 使用自定义方法追踪对手打出的牌数
     def _on_opponent_play(self, player, played_card, target=None):
-        # 在奥秘上使用TAG_SCRIPT_DATA_NUM_1追踪计数
-        count = self.tags.get(GameTag.TAG_SCRIPT_DATA_NUM_1, 0) + 1
-        self.tags[GameTag.TAG_SCRIPT_DATA_NUM_1] = count
+        # 使用语义化标签 OPPONENT_CARDS_PLAYED_COUNT 替代通用 TAG_SCRIPT_DATA_NUM_1
+        from ... import enums
+        count = self.tags.get(enums.OPPONENT_CARDS_PLAYED_COUNT, 0) + 1
+        self.tags[enums.OPPONENT_CARDS_PLAYED_COUNT] = count
 
         # 如果达到3张，触发奥秘
         if count >= 3:
@@ -306,7 +307,8 @@ to the enemy hero.
 
     def _reset_counter(self, player):
         # 回合开始时重置计数器
-        self.tags[GameTag.TAG_SCRIPT_DATA_NUM_1] = 0
+        from ... import enums
+        self.tags[enums.OPPONENT_CARDS_PLAYED_COUNT] = 0
 
     events = [
         Play(OPPONENT).after(_on_opponent_play),

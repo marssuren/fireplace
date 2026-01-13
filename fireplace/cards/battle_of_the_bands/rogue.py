@@ -1,5 +1,5 @@
 from ..utils import *
-from ... import enums
+from ... import enums as fireplace_enums
 
 class ETC_077:
     """Disc Jockey - 八爪碟机
@@ -268,12 +268,11 @@ class ETC_518:
         GameTag.HEALTH: 2,
         GameTag.COST: 3,
         GameTag.CARDTYPE: CardType.WEAPON,
-        enums.TRIGGER_COUNT,  # 触发计数器：复原的法力水晶数量
+        fireplace_enums.TRIGGER_COUNT: 0,  # 触发计数器：复原的法力水晶数量
     }
     
-    # 亡语：复原 X 个水晶
-    # 可能是 Refresh 还是 Gain? "Refresh Mana Crystals".
-    deathrattle = GainMana(CONTROLLER, Attr(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1))
+    # 亡语：复原 X 个水晶（使用语义化标签 MANA_CRYSTAL_GAIN_AMOUNT）
+    deathrattle = GainMana(CONTROLLER, Attr(SELF, fireplace_enums.MANA_CRYSTAL_GAIN_AMOUNT))
     
     # 提升逻辑：使用连击牌
     events = Play(CONTROLLER, COMBO).on(
@@ -282,7 +281,7 @@ class ETC_518:
 
 class ETC_518e:
     tags = {
-        GameTag.TAG_SCRIPT_DATA_NUM_1: 1,
+        fireplace_enums.MANA_CRYSTAL_GAIN_AMOUNT: 1,
     }
 
 class ETC_079:

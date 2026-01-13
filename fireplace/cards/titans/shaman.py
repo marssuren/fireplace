@@ -451,7 +451,7 @@ class TTN_800e2:
         # 查找 TTN_800e 附魔并检查其标记
         for ench in self.source.controller.entities:
             if hasattr(ench, 'card_id') and ench.card_id == "TTN_800e":
-                used = ench.tags.get(GameTag.TAG_SCRIPT_DATA_NUM_1, 0)
+                used = ench.tags.get(enums.ABILITY_USED_THIS_TURN, 0)
                 if used == 0:
                     return max(0, value - 3)
                 break

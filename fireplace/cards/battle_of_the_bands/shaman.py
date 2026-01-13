@@ -1,4 +1,5 @@
 from ..utils import *
+from ... import enums as fireplace_enums
 
 class ETC_369:
     """Chill Vibes - 清冷音韵
@@ -124,7 +125,7 @@ class JAM_011e:
     }
 
 class ETC_813:
-    """Jazz Bass - 爵士贝斯
+    """爵士贝斯 - Jazz Bass
     3费 3/2 武器
     亡语：你的下一张法术牌法力值消耗减少（1）点。（装备期间，过载以提升此效果！）
     """
@@ -133,7 +134,7 @@ class ETC_813:
         GameTag.COST: 3,
         GameTag.ATK: 3,
         GameTag.HEALTH: 2,
-        GameTag.TAG_SCRIPT_DATA_NUM_1: 1,  # 存储减费数量
+        fireplace_enums.SPELL_COST_REDUCTION: 1,  # 存储减费数量（使用语义化标签）
     }
     
     # 监听过载事件，增加减费数量
@@ -142,8 +143,8 @@ class ETC_813:
     )
     
     def deathrattle(self):
-        # 获取累积的减费数量
-        reduction = self.tags.get(GameTag.TAG_SCRIPT_DATA_NUM_1, 1)
+        # 获取累积的减费数量（使用语义化标签）
+        reduction = self.tags.get(fireplace_enums.SPELL_COST_REDUCTION, 1)
         
         # 给手牌中的法术施加减费
         spells = [c for c in self.controller.hand if c.type == CardType.SPELL]
@@ -158,7 +159,7 @@ class ETC_813e:
     """增加减费数量"""
     tags = {
         GameTag.CARDTYPE: CardType.ENCHANTMENT,
-        GameTag.TAG_SCRIPT_DATA_NUM_1: 1,
+        fireplace_enums.SPELL_COST_REDUCTION: 1,
     }
 
 class ETC_813_Discount:

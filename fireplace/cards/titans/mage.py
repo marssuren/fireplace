@@ -3,6 +3,7 @@
 TITANS 扩展包 - MAGE
 """
 from ..utils import *
+from ... import enums
 
 
 # COMMON
@@ -317,16 +318,16 @@ class TTN_075:
         GameTag.COST: 6,
         GameTag.LEGENDARY: True,
         GameTag.TITAN: True,
-        GameTag.TAG_SCRIPT_DATA_NUM_1: 3,  # 泰坦技能次数
+        enums.TITAN_ABILITY_COUNT: 3,  # 泰坦技能次数
     }
     
     # 泰坦技能使用后，标记效果翻倍
-    # 使用 TAG_SCRIPT_DATA_NUM_2 存储翻倍次数（指数），值为 N 代表 2^N 倍
+    # 使用 POWER_MULTIPLIER 存储翻倍次数（指数），值为 N 代表 2^N 倍
 
     def _update_multiplier(self):
         # 增加翻倍指数
         yield SetTags(self, {
-            GameTag.TAG_SCRIPT_DATA_NUM_2: Attr(self, GameTag.TAG_SCRIPT_DATA_NUM_2) + 1
+            enums.POWER_MULTIPLIER: getattr(self, 'power_multiplier', 0) + 1
         })
     
     def titan_ability_1(self):
@@ -334,7 +335,7 @@ class TTN_075:
         抽两张牌。
         """
         # 计算当前倍率
-        power = 1 << self.tags.get(GameTag.TAG_SCRIPT_DATA_NUM_2, 0)
+        power = 1 << self.tags.get(enums.POWER_MULTIPLIER, 0)
         yield Draw(CONTROLLER, 2 * power)
         yield self._update_multiplier()
     
@@ -342,7 +343,7 @@ class TTN_075:
         """奥术爆发 - Arcane Burst  
         对所有敌方随从造成2点伤害。
         """
-        power = 1 << self.tags.get(GameTag.TAG_SCRIPT_DATA_NUM_2, 0)
+        power = 1 << self.tags.get(enums.POWER_MULTIPLIER, 0)
         yield Hit(ENEMY_MINIONS, 2 * power)
         yield self._update_multiplier()
     
@@ -350,6 +351,6 @@ class TTN_075:
         """奥术护盾 - Arcane Shield
         获得8点护甲值。
         """
-        power = 1 << self.tags.get(GameTag.TAG_SCRIPT_DATA_NUM_2, 0)
+        power = 1 << self.tags.get(enums.POWER_MULTIPLIER, 0)
         yield GainArmor(FRIENDLY_HERO, 8 * power)
         yield self._update_multiplier()

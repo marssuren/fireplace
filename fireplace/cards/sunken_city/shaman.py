@@ -114,7 +114,7 @@ class TID_004:
 class TID_004e:
     """Clownfish Cost Reduction"""
     tags = {
-        enums.TRIGGER_COUNT,  # 触发计数器
+        enums.TRIGGER_COUNT: 2,  # 触发计数器（2次后销毁）
     }
     # 光环：手牌中鱼人减2费
     update = Refresh(FRIENDLY_HAND + MURLOC, {GameTag.COST: -2})
@@ -122,10 +122,10 @@ class TID_004e:
     # 监听打出事件
     events = Play(CONTROLLER, MURLOC).on(
         (
-            # 减少计数: SetTag(SELF, {TAG: Attr(SELF, TAG) - 1})
-            SetTags(SELF, {GameTag.TAG_SCRIPT_DATA_NUM_1: Attr(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1) - 1}),
+            # 减少计数
+            SetTags(SELF, {enums.TRIGGER_COUNT: Attr(SELF, enums.TRIGGER_COUNT) - 1}),
             # 如果计数归零，销毁自身
-            (Attr(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1) <= 0) & Destroy(SELF)
+            (Attr(SELF, enums.TRIGGER_COUNT) <= 0) & Destroy(SELF)
         )
     )
 

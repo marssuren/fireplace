@@ -331,6 +331,19 @@ CARD_ATTRIBUTE_MAP = {
     enums.REWIND_AVAILABLE: "rewind_available",  # Rewind 是否可用
     enums.LOCATION_COOLDOWN: "location_cooldown",  # 地标冷却状态
     enums.SPELL_DOUBLE_CAST: "spell_double_cast",  # 下一个法术施放两次
+    # 新增语义化脚本数据标签映射
+    enums.OPPONENT_CARDS_PLAYED_COUNT: "opponent_cards_played_count",  # 对手本回合打出牌数
+    enums.DIVINE_SHIELD_ABSORB_COUNT: "divine_shield_absorb_count",  # 圣盾吸收次数
+    enums.LOCATION_USE_COUNT: "location_use_count",  # 地标使用次数
+    enums.DEATHRATTLE_DRAW_COUNT: "deathrattle_draw_count",  # 亡语抽牌数
+    enums.DEATHRATTLE_SUMMON_COST: "deathrattle_summon_cost",  # 亡语召唤费用
+    enums.TRACKED_COST_VALUE: "tracked_cost_value",  # 费用追踪值
+    enums.MANA_CRYSTAL_GAIN_AMOUNT: "mana_crystal_gain_amount",  # 法力水晶获取量
+    enums.SPELL_COST_REDUCTION: "spell_cost_reduction",  # 法术减费量
+    enums.DEATHRATTLE_DAMAGE_AMOUNT: "deathrattle_damage_amount",  # 亡语伤害量
+    enums.BUFF_STAT_AMOUNT: "buff_stat_amount",  # 属性加成量
+    enums.BULLET_COUNT: "bullet_count",  # 子弹计数
+    enums.CARD_TRACKER_INDEX: "card_tracker_index",  # 卡牌追踪索引
     GameTag.CARDTEXT_ENTITY_0: "cardtext_entity_0",
     GameTag.CARDTEXT_ENTITY_1: "cardtext_entity_1",
     GameTag.CARDTEXT_ENTITY_2: "cardtext_entity_2",

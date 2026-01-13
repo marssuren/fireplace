@@ -1,4 +1,5 @@
 from ..utils import *
+from ... import enums as fireplace_enums
 
 # --- 乐句系统辅助类 ---
 
@@ -169,11 +170,11 @@ class ETC_520:
         GameTag.HEALTH: 3,
         GameTag.COST: 4,
         GameTag.CARDTYPE: CardType.WEAPON,
-        GameTag.TAG_SCRIPT_DATA_NUM_1: 1, # 基础伤害值
+        fireplace_enums.DEATHRATTLE_DAMAGE_AMOUNT: 1, # 基础伤害值
     }
     
-    # 亡语：造成等同于 TAG_SCRIPT_DATA_NUM_1 的伤害
-    deathrattle = Hit(ALL_MINIONS, Attr(SELF, GameTag.TAG_SCRIPT_DATA_NUM_1))
+    # 亡语：造成等同于 DEATHRATTLE_DAMAGE_AMOUNT 的伤害
+    deathrattle = Hit(ALL_MINIONS, Attr(SELF, fireplace_enums.DEATHRATTLE_DAMAGE_AMOUNT))
     
     # 升级逻辑：装备期间，获得护甲时增加伤害
     # 这里的"提升效果"通常指伤害+1
@@ -184,7 +185,7 @@ class ETC_520:
 
 class ETC_520e:
     tags = {
-        GameTag.TAG_SCRIPT_DATA_NUM_1: 1,
+        fireplace_enums.DEATHRATTLE_DAMAGE_AMOUNT: 1,
     }
 
 class ETC_408:

@@ -4,6 +4,7 @@
 """
 
 from ..utils import *
+from ... import enums as fireplace_enums
 
 class ETC_833:
     """Arrow Smith - 箭矢工匠
@@ -215,17 +216,16 @@ class ETC_832:
         GameTag.ATK: 4,
         GameTag.HEALTH: 2,
     }
-    # Store upgrade level in TAG_SCRIPT_DATA_NUM_1
-    # Base 1.
+    # 使用语义化标签 DEATHRATTLE_SUMMON_COST 存储升级等级
     events = Play(CONTROLLER, SPELL).on(Buff(SELF, "ETC_832e"))
     
     def deathrattle(self):
-        # Base 1 + upgrades
-        cost = 1 + self.tags.get(GameTag.TAG_SCRIPT_DATA_NUM_1, 0)
+        # Base 1 + upgrades (使用语义化标签 DEATHRATTLE_SUMMON_COST)
+        cost = 1 + self.tags.get(fireplace_enums.DEATHRATTLE_SUMMON_COST, 0)
         yield Summon(CONTROLLER, RandomMinion(race=Race.BEAST, cost=cost))
 
 class ETC_832e:
-    tags = {GameTag.TAG_SCRIPT_DATA_NUM_1: 1, GameTag.CARDTYPE: CardType.ENCHANTMENT}
+    tags = {fireplace_enums.DEATHRATTLE_SUMMON_COST: 1, GameTag.CARDTYPE: CardType.ENCHANTMENT}
 
 class ETC_836:
     """Mister Mukla - 穆克拉先生

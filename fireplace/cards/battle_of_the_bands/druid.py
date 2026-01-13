@@ -285,11 +285,11 @@ class ETC_388:
     events = Play(CONTROLLER, (COST >= 5)).on(Buff(SELF, "ETC_388e"))
     
     def deathrattle(self):
-        count = 1 + self.tags.get(GameTag.TAG_SCRIPT_DATA_NUM_1, 0)
+        count = 1 + self.tags.get(enums.TRIGGER_COUNT, 0)
         yield Summon(CONTROLLER, "ETC_388t") * count
 
 class ETC_388e:
-    tags = {GameTag.TAG_SCRIPT_DATA_NUM_1: 1, GameTag.CARDTYPE: CardType.ENCHANTMENT}
+    tags = {enums.TRIGGER_COUNT: 1, GameTag.CARDTYPE: CardType.ENCHANTMENT}
 
 class ETC_388t:
     """Ancient - 5/5 古树"""
@@ -322,33 +322,33 @@ class ETC_387b:
     tags = {GameTag.CARDTYPE: CardType.SPELL}
 
 class ETC_387e_a:
-    tags = {GameTag.TAG_SCRIPT_DATA_NUM_1: 2, GameTag.CARDTYPE: CardType.ENCHANTMENT}
+    tags = {enums.TURNS_REMAINING: 2, GameTag.CARDTYPE: CardType.ENCHANTMENT}
     
     def _on_turn_begin(self):
         # 减少计数器
         yield Buff(SELF, "ETC_387tick")
         # 检查计数器是否为0
-        if self.tags.get(GameTag.TAG_SCRIPT_DATA_NUM_1, 0) <= 0:
+        if self.tags.get(enums.TURNS_REMAINING, 0) <= 0:
             yield Summon(CONTROLLER, "ETC_387t_a") * 3
             yield Destroy(SELF)
     
     events = OWN_TURN_BEGIN.on(lambda self, player: self._on_turn_begin())
 
 class ETC_387e_b:
-    tags = {GameTag.TAG_SCRIPT_DATA_NUM_1: 4, GameTag.CARDTYPE: CardType.ENCHANTMENT}
+    tags = {enums.TURNS_REMAINING: 4, GameTag.CARDTYPE: CardType.ENCHANTMENT}
     
     def _on_turn_begin(self):
         # 减少计数器
         yield Buff(SELF, "ETC_387tick")
         # 检查计数器是否为0
-        if self.tags.get(GameTag.TAG_SCRIPT_DATA_NUM_1, 0) <= 0:
+        if self.tags.get(enums.TURNS_REMAINING, 0) <= 0:
             yield Summon(CONTROLLER, "ETC_387t_b") * 3
             yield Destroy(SELF)
     
     events = OWN_TURN_BEGIN.on(lambda self, player: self._on_turn_begin())
 
 class ETC_387tick:
-    tags = {enums.GROWTH_COUNTER: -1, GameTag.CARDTYPE: CardType.ENCHANTMENT}
+    tags = {enums.TURNS_REMAINING: -1, GameTag.CARDTYPE: CardType.ENCHANTMENT}
 
 class ETC_387t_a:
     """Ancient - 5/5"""

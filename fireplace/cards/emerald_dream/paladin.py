@@ -280,7 +280,7 @@ class EDR_258:
     
     实现说明：
     - 使用 Predamage 事件拦截对友方圣盾角色的伤害
-    - 检查目标是否有 TAG_SCRIPT_DATA_NUM_1 标记（托雷斯效果）
+    - 检查目标是否有 DIVINE_SHIELD_ABSORB_COUNT 标记（托雷斯效果）
     - 递减计数，只有当计数降到1时才移除圣盾
     - 参考：titans/paladin.py - TTN_858 (Predamage 用法)
     - 参考：paradise/warrior.py - VAC_527 (Predamage 限制伤害)
@@ -290,9 +290,11 @@ class EDR_258:
         GameTag.TAUNT: True,
     }
     
+    # 使用语义化标签 DIVINE_SHIELD_ABSORB_COUNT 替代通用 TAG_SCRIPT_DATA_NUM_1
+    from ... import enums as fireplace_enums
     # 光环效果：给所有友方圣盾角色添加3次伤害计数
     update = Refresh(FRIENDLY_CHARACTERS + DIVINE_SHIELD, {
-        GameTag.TAG_SCRIPT_DATA_NUM_1: 3,  # 圣盾需要承受3次伤害
+        fireplace_enums.DIVINE_SHIELD_ABSORB_COUNT: 3,  # 圣盾需要承受3次伤害
     })
     
     # 使用 Predamage 事件拦截伤害，实现圣盾3次伤害机制
@@ -306,15 +308,16 @@ class EDR_258:
 
 def _handle_toreth_divine_shield(source, target, amount):
     """处理托雷斯的圣盾3次伤害机制"""
-    # 获取当前圣盾计数
-    shield_count = target.tags.get(GameTag.TAG_SCRIPT_DATA_NUM_1, 0)
+    from ... import enums as fireplace_enums
+    # 获取当前圣盾计数（使用语义化标签）
+    shield_count = target.tags.get(fireplace_enums.DIVINE_SHIELD_ABSORB_COUNT, 0)
     
     if shield_count > 1:
         # 还有多次伤害机会，递减计数但不移除圣盾
         from ...actions import SetTag, Predamage as PredamageAction
         return [
             # 递减计数
-            SetTags(target, {GameTag.TAG_SCRIPT_DATA_NUM_1: shield_count - 1}),
+            SetTags(target, {fireplace_enums.DIVINE_SHIELD_ABSORB_COUNT: shield_count - 1}),
             # 将伤害设为0（圣盾吸收伤害）
             PredamageAction(target, 0)
         ]
