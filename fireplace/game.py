@@ -375,12 +375,20 @@ class BaseGame(Entity):
             if entity is self:
                 continue
             
-            # Fix controller references
+            # Skip Player objects - their controller is a read-only property returning self
+            if entity.type == CardType.PLAYER:
+                continue
+            
+            # Fix controller references - check if controller is settable
             if hasattr(entity, "controller") and entity.controller:
-                 if entity.controller == snapshot.player1:
-                     entity.controller = self.player1
-                 elif entity.controller == snapshot.player2:
-                     entity.controller = self.player2
+                try:
+                    if entity.controller == snapshot.player1:
+                        entity.controller = self.player1
+                    elif entity.controller == snapshot.player2:
+                        entity.controller = self.player2
+                except AttributeError:
+                    # controller is a read-only property, skip
+                    pass
         
         # Fix GameManager reference
         # The manager was also deepcopied, so it points to 'snapshot'

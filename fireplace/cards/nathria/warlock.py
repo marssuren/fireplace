@@ -104,13 +104,25 @@ then discard your hand.
     def play(self):
         # 复制手牌并洗入牌库
         for card in list(FRIENDLY_HAND.eval(self.game, self)):
-            # 创建1费复制
-            copy_card = yield Copy(card, cost=1)
-            if copy_card:
-                yield Shuffle(CONTROLLER, copy_card)
+            # 创建复制并洗入牌库
+            shuffled = yield Shuffle(CONTROLLER, Copy(card))
+            # 给洗入的卡牌添加减费buff使其费用为1
+            if shuffled:
+                for c in shuffled:
+                    # 设置费用为1（通过减少到1费的buff）
+                    yield Buff(c, "REV_240e")
         
         # 弃掉手牌
         yield Discard(FRIENDLY_HAND)
+
+
+class REV_240e:
+    """Tome Tampering Effect - 篡改卷宗效果
+    Set cost to 1
+    """
+    # 使用 cost 方法将费用设置为1
+    def cost(self, i):
+        return 1
 
 
 class REV_242:

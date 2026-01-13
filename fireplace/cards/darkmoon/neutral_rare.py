@@ -87,8 +87,8 @@ class HysteriaAttack(TargetedAction):
             # 随机选择一个目标攻击
             attack_target = source.game.random.choice(valid_targets)
             
-            # 执行攻击
-            source.game.queue_actions(target, [Attack(attack_target)])
+            # 执行攻击：target 是攻击者，attack_target 是被攻击的目标
+            source.game.queue_actions(target, [Attack(target, attack_target)])
             source.game.process_deaths()
             
             # 如果攻击者死了，停止循环
