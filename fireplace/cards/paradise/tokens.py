@@ -442,13 +442,14 @@ class WORK_030t:
     requirements = {PlayReq.REQ_TARGET_TO_PLAY: 0, PlayReq.REQ_MINION_TARGET: 0}
     
     def play(self):
-        if TARGET:
+        target = self.target
+        if target:
             # 对目标造成3点伤害
-            yield Hit(TARGET, 3)
+            yield Hit(target, 3)
             
             # 对相邻随从造成1点伤害
-            if TARGET.zone == Zone.PLAY:
-                for adj in TARGET.adjacent_minions:
+            if target.zone == Zone.PLAY and hasattr(target, 'adjacent_minions'):
+                for adj in target.adjacent_minions:
                     yield Hit(adj, 1)
     
     # 翻面机制：在手牌中每回合翻转回 Icecrown Brochure

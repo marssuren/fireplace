@@ -268,8 +268,8 @@ class VAC_437:
 
         for school in schools:
             # 使用 ForceDraw 从牌库中随机抽取对应派系的法术
-            # 注意：需要动态构建选择器，因为 spell_school 是运行时确定的
-            spells = [c for c in self.controller.deck if c.type == CardType.SPELL and c.spell_school == school]
+            # 注意：使用 getattr 安全访问 spell_school，因为某些卡牌可能没有这个属性
+            spells = [c for c in self.controller.deck if c.type == CardType.SPELL and getattr(c, 'spell_school', None) == school]
             if spells:
                 # 随机选择一张并使用 ForceDraw 抽取
                 card = self.game.random.choice(spells)
