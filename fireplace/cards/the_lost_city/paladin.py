@@ -375,18 +375,7 @@ class TLC_438:
             spell = self.game.random.choice(eligible_spells)
             
             # 施放法术（尽可能以本随从为目标）
-            # 如果法术需要目标且本随从是合法目标，则以本随从为目标
-            if spell.requirements.get(PlayReq.REQ_TARGET_TO_PLAY):
-                # 检查本随从是否是合法目标
-                if spell.requirements.get(PlayReq.REQ_MINION_TARGET):
-                    # 以本随从为目标施放
-                    yield Play(spell, target=SELF)
-                else:
-                    # 随机选择目标
-                    yield Play(spell)
-            else:
-                # 不需要目标，直接施放
-                yield Play(spell)
+            yield CastSpellPreferSource(spell)
 
 
 class TLC_444:
@@ -497,17 +486,7 @@ class TLC_430:
             spell = self.controller.card(spell_id, source=self)
             
             # 施放法术（尽可能以本随从为目标）
-            if spell.requirements.get(PlayReq.REQ_TARGET_TO_PLAY):
-                # 检查本随从是否是合法目标
-                if spell.requirements.get(PlayReq.REQ_MINION_TARGET):
-                    # 以本随从为目标施放
-                    yield Play(spell, target=SELF)
-                else:
-                    # 随机选择目标
-                    yield Play(spell)
-            else:
-                # 不需要目标，直接施放
-                yield Play(spell)
+            yield CastSpellPreferSource(spell)
     
     def _is_holy_spell(self, card_id):
         """检查卡牌是否是神圣法术"""
@@ -620,7 +599,7 @@ class TLC_426_tracker:
     events = Summon(CONTROLLER, MINION + MURLOC).after(
         lambda self, card: [
             # 更新任务进度
-            SetTags(CONTROLLER, {GameTag.QUEST_PROGRESS: min(self.controller.quest_progress + 1, self.controller.quest_target})),
+            SetTags(CONTROLLER, {GameTag.QUEST_PROGRESS: min(self.controller.quest_progress + 1, self.controller.quest_target)}),
             
             # 检查是否完成任务
             (self.controller.quest_progress + 1 >= self.controller.quest_target) and [

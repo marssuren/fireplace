@@ -212,12 +212,14 @@ class VAC_509:
         elementals = yield Summon(CONTROLLER, "VAC_509t") * 3
         
         # 让每个水元素攻击随机敌人
-        for elemental in elementals:
-            if elemental.zone == Zone.PLAY:
-                enemies = list(ENEMY_CHARACTERS.eval(self.game, self))
-                if enemies:
-                    target = self.game.random.choice(enemies)
-                    yield Attack(elemental, target)
+        # 检查 elementals 是否存在且可迭代
+        if elementals:
+            for elemental in elementals:
+                if elemental and elemental.zone == Zone.PLAY:
+                    enemies = list(ENEMY_CHARACTERS.eval(self.game, self))
+                    if enemies:
+                        target = self.game.random.choice(enemies)
+                        yield Attack(elemental, target)
 
 
 # LEGENDARY

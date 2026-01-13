@@ -3641,6 +3641,9 @@ class Steal(TargetedAction):
         return [controller]
 
     def do(self, source, target, controller):
+        # 如果 target 为 None，直接返回
+        if target is None:
+            return
         log_info("takes_control", controller=controller, target=target)
         zone = target.zone
         target.zone = Zone.SETASIDE

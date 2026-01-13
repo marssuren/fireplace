@@ -351,9 +351,7 @@ class EDR_259:
             highest_cost_spell = max(spells_in_hand, key=lambda c: c.cost)
             
             # 立即施放一次法术
-            yield Play(highest_cost_spell)
+            yield CastSpell(highest_cost_spell)
             
             # 创建一个持续3回合的光环，每回合重复施放法术
             yield Buff(CONTROLLER, "EDR_259e", spell_id=highest_cost_spell.id)
-
-

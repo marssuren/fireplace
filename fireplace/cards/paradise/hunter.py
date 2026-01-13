@@ -47,9 +47,9 @@ class VAC_961:
                 break
         
         if last_1_cost:
-            # 创建并打出这张牌的复制
+            # 创建并施放这张牌的复制
             copy = self.controller.card(last_1_cost.id, self.controller)
-            yield Play(CONTROLLER, copy)
+            yield CastSpell(copy)
 
 
 class WORK_018:
@@ -217,15 +217,8 @@ class VAC_407:
             # 创建法术的复制并施放
             copy = self.controller.card(last_spell.id, self.controller)
             
-            # 检查法术是否需要敌方目标
-            enemies = self.game.board.get_enemies(self.controller)
-            if enemies and hasattr(copy, 'requirements'):
-                # 随机选择一个敌人作为目标
-                target = self.game.random.choice(enemies)
-                yield Play(CONTROLLER, copy, target=target)
-            else:
-                # 不需要目标或没有敌人
-                yield Play(CONTROLLER, copy)
+            # 使用 CastSpellTargetsEnemiesIfPossible 施放法术（尽可能对敌人）
+            yield CastSpellTargetsEnemiesIfPossible(copy)
 
 
 

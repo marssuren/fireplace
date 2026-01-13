@@ -51,7 +51,7 @@ class VAC_339:
     # 在回合结束时，召唤一个属性等同于本随从的元素
     events = OWN_TURN_END.on(
         lambda self, player: [
-            Summon(CONTROLLER, ExactCopy(source))
+            Summon(CONTROLLER, ExactCopy(self))
         ]
     )
 
@@ -228,8 +228,8 @@ class VAC_533e:
     # 当这个随从死亡时，从创建者（对手）的牌库中召唤一个随从
     events = Death(OWNER).on(
         lambda self, card: [
-            Summon(source.controller.opponent, RandomMinion(source.controller.opponent.deck.filter(type=CardType.MINION)))
-        ] if source.controller.opponent.deck.filter(type=CardType.MINION) else []
+            Summon(self.controller.opponent, RandomMinion(self.controller.opponent.deck.filter(type=CardType.MINION)))
+        ] if self.controller.opponent.deck.filter(type=CardType.MINION) else []
     )
 
 

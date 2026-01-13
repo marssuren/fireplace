@@ -289,7 +289,7 @@ class VAC_924:
             if weapons:
                 weapon = self.game.random.choice(weapons)
                 # 装备武器（从牌库移到武器槽）
-                yield Play(CONTROLLER, weapon)
+                yield Equip(CONTROLLER, weapon)
 
 
 # ========== VAC_934 - 搁浅巨鲸 ==========

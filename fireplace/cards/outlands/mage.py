@@ -56,7 +56,7 @@ class BT_028t:
                 spell_id = spell_ids[0] if isinstance(spell_ids, list) else spell_ids
                 spell = self.controller.card(spell_id, self)
                 if spell:
-                    yield CastSpellTargetsEnemiesIfPossible(CONTROLLER, spell)
+                    yield CastSpellTargetsEnemiesIfPossible(spell)
 
 
 ##

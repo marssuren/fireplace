@@ -85,7 +85,7 @@ class ETC_394:
     def play(self):
         yield Hit(TARGET, 2)
         if self.controller.mana == 0:
-            yield Discover(RandomSpell(spell_school=SpellSchool.FEL))
+            yield Discover(CONTROLLER, RandomSpell(spell_school=SpellSchool.FEL))
 
 class ETC_405:
     """Glaivetar - 战刃吉他
