@@ -30,17 +30,17 @@ class VAC_324:
     requirements = {PlayReq.REQ_TARGET_TO_PLAY: 0, PlayReq.REQ_MINION_TARGET: 0}
     
     def play(self):
-        if TARGET:
+        target = self.target
+        if target:
             # 获取目标随从的费用
-            original_cost = TARGET.cost
+            original_cost = target.cost
             # 变形为费用+1的随从
             new_minion_id = RandomCollectible(type=CardType.MINION, cost=original_cost + 1)
-            yield Morph(TARGET, new_minion_id)
+            morphed = yield Morph(target, new_minion_id)
             
             # 召唤变形后随从的复制
-            # 注意：Morph后TARGET已经是新随从了
-            if TARGET.zone == Zone.PLAY:
-                yield Summon(CONTROLLER, Copy(TARGET))
+            if morphed and morphed[0] and morphed[0].zone == Zone.PLAY:
+                yield Summon(CONTROLLER, Copy(morphed[0]))
 
 
 class VAC_328:
@@ -176,14 +176,15 @@ class WORK_030:
     requirements = {PlayReq.REQ_TARGET_TO_PLAY: 0, PlayReq.REQ_MINION_TARGET: 0}
     
     def play(self):
-        if TARGET:
+        target = self.target
+        if target:
             # 对目标造成3点伤害
-            yield Hit(TARGET, 3)
+            yield Hit(target, 3)
             
             # 冻结相邻随从
-            # TARGET 在 play() 中已经是实际对象，可以直接访问 adjacent_minions
-            for adj in TARGET.adjacent_minions:
-                yield Freeze(adj)
+            if hasattr(target, 'adjacent_minions'):
+                for adj in target.adjacent_minions:
+                    yield Freeze(adj)
     
     # 翻面机制：在手牌中每回合翻转为另一张宣传单
     class Hand:

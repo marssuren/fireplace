@@ -62,7 +62,7 @@ class DED_513:
         """如果手牌中有暗影法术，造成2点伤害"""
         # 检查手牌中是否有暗影法术
         has_shadow_spell = any(
-            card.type == CardType.SPELL and card.spell_school == SpellSchool.SHADOW
+            card.type == CardType.SPELL and getattr(card, 'spell_school', None) == SpellSchool.SHADOW
             for card in self.controller.hand
         )
         

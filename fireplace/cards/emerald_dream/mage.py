@@ -168,7 +168,7 @@ class FIR_910:
         yield Hit(TARGET, 3)
         
         # 检查手牌中是否有火焰法术
-        fire_spells = [c for c in self.controller.hand if c.type == CardType.SPELL and c.spell_school == SpellSchool.FIRE]
+        fire_spells = [c for c in self.controller.hand if c.type == CardType.SPELL and getattr(c, 'spell_school', None) == SpellSchool.FIRE]
         
         if fire_spells:
             # 随机弃一张火焰法术

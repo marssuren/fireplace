@@ -137,15 +137,16 @@ class VAC_952:
     requirements = {PlayReq.REQ_TARGET_TO_PLAY: 0, PlayReq.REQ_MINION_TARGET: 0}
 
     def play(self):
-        if TARGET:
+        target = self.target
+        if target:
             # 记录目标是否存活
-            target_alive = TARGET.zone == Zone.PLAY
+            target_alive = target.zone == Zone.PLAY
 
             # 造成4点伤害
-            yield Hit(TARGET, 4)
+            yield Hit(target, 4)
 
             # 检查目标是否死亡
-            if target_alive and TARGET.zone != Zone.PLAY:
+            if target_alive and target.zone != Zone.PLAY:
                 # 目标死亡，给玩家添加buff
                 yield Buff(CONTROLLER, "VAC_952e")
 

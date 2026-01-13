@@ -39,7 +39,7 @@ class EDR_270:
         from ...dsl.selector import SPELL, NATURE
         yield GenericChoice(CONTROLLER, RandomCardGenerator(
             CONTROLLER,
-            card_filter=lambda c: c.type == CardType.SPELL and c.spell_school == SpellSchool.NATURE,
+            card_filter=lambda c: c.type == CardType.SPELL and getattr(c, 'spell_school', None) == SpellSchool.NATURE,
             count=3
         ))
         # 减少2费
@@ -151,7 +151,7 @@ class FIR_906:
         yield Buff(FRIENDLY_MINIONS, "FIR_906e")
 
         # 检查手牌中是否有自然法术
-        nature_spells = [c for c in self.controller.hand if c.type == CardType.SPELL and c.spell_school == SpellSchool.NATURE]
+        nature_spells = [c for c in self.controller.hand if c.type == CardType.SPELL and getattr(c, 'spell_school', None) == SpellSchool.NATURE]
 
         if nature_spells:
             # 随机弃一张自然法术

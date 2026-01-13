@@ -40,7 +40,7 @@ class TTN_468:
         # 使手牌中一张火焰法术减费
         fire_spells = [
             c for c in self.controller.hand 
-            if c.type == CardType.SPELL and c.spell_school == SpellSchool.FIRE
+            if c.type == CardType.SPELL and getattr(c, 'spell_school', None) == SpellSchool.FIRE
         ]
         
         if fire_spells:
