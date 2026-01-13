@@ -22,7 +22,7 @@ from .card import THE_COIN
 from .cards import standard_board_skins
 from .enums import BoardEnum
 from .entity import Entity
-from .exceptions import GameOver
+from .exceptions import GameOver, InfiniteLoopDetected
 from .managers import GameManager
 from .utils import CardList
 
@@ -64,6 +64,16 @@ class BaseGame(Entity):
 
         # Rewind Mechanism Snapshot Storage
         self.rewind_snapshot = None
+        
+        # 游戏历史记录系统（用于调试）
+        # 记录卡牌使用和效果触发，类似炉石官方左侧的历史记录
+        self.action_history = []  # [(turn, action_type, source_id, source_name, target_id, target_name, extra_info)]
+        self.action_history_enabled = True  # 可以关闭以提升性能
+        self.action_history_max_size = 200  # 最大记录数，防止内存溢出
+        
+        # 无限循环检测机制
+        self._action_counter = 0  # 当前回合的操作计数
+        self._max_actions_per_turn = 1000  # 单回合最大操作数，超过则认为是无限循环
 
     def __repr__(self):
         return "%s(players=%r)" % (self.__class__.__name__, self.players)
@@ -131,11 +141,72 @@ class BaseGame(Entity):
     @property
     def ended(self):
         return self.state == State.COMPLETE
+    
+    def log_action(self, action_type: str, source=None, target=None, extra_info: str = ""):
+        """
+        记录游戏操作到历史记录中
+        用于调试无限循环和追踪卡牌效果触发
+        """
+        if not self.action_history_enabled:
+            return
+        
+        # 获取源和目标的信息
+        source_id = getattr(source, 'id', None) if source else None
+        source_name = str(source) if source else None
+        target_id = getattr(target, 'id', None) if target else None
+        target_name = str(target) if target else None
+        
+        # 记录到历史
+        entry = (
+            self.turn,
+            action_type,
+            source_id,
+            source_name,
+            target_id,
+            target_name,
+            extra_info
+        )
+        self.action_history.append(entry)
+        
+        # 限制历史大小
+        if len(self.action_history) > self.action_history_max_size:
+            self.action_history = self.action_history[-self.action_history_max_size:]
+    
+    def get_recent_history(self, count: int = 30) -> list:
+        """获取最近的操作历史记录"""
+        return self.action_history[-count:]
+    
+    def print_recent_history(self, count: int = 30):
+        """打印最近的操作历史记录（用于调试）"""
+        print(f"\n{'='*60}")
+        print(f"最近 {count} 条游戏操作历史:")
+        print(f"{'='*60}")
+        for entry in self.get_recent_history(count):
+            turn, action_type, source_id, source_name, target_id, target_name, extra = entry
+            target_str = f" -> {target_name}({target_id})" if target_id else ""
+            extra_str = f" [{extra}]" if extra else ""
+            print(f"[回合{turn}] {action_type}: {source_name}({source_id}){target_str}{extra_str}")
+        print(f"{'='*60}\n")
 
     def action_start(self, type, source, index, target):
         self.manager.action_start(type, source, index, target)
         if type != BlockType.PLAY:
             self._action_stack += 1
+        
+        # 无限循环检测
+        self._action_counter += 1
+        if self._action_counter > self._max_actions_per_turn:
+            # 打印历史记录以便调试
+            print(f"\n{'!'*60}")
+            print(f"⚠️ 检测到可能的无限循环！")
+            print(f"当前回合: {self.turn}, 操作数: {self._action_counter}")
+            print(f"最后触发源: {source} (ID: {getattr(source, 'id', 'N/A')})")
+            print(f"{'!'*60}")
+            self.print_recent_history(50)
+            raise InfiniteLoopDetected(
+                f"回合 {self.turn} 中操作数超过 {self._max_actions_per_turn}，可能是无限循环。"
+                f"最后操作源: {source}"
+            )
 
     def action_end(self, type, source):
         self.manager.action_end(type, source)
@@ -168,6 +239,7 @@ class BaseGame(Entity):
     def attack(self, source, target):
         type = BlockType.ATTACK
         actions = [Attack(source, target)]
+        self.log_action("ATTACK", source, target)
         result = self.action_block(source, actions, type, target=target)
         if self.state != State.COMPLETE:
             self.manager.step(Step.MAIN_ACTION, Step.MAIN_END)
@@ -192,6 +264,7 @@ class BaseGame(Entity):
     ):
         type = BlockType.PLAY
         player = card.controller
+        self.log_action("PLAY_CARD", card, target, f"cost={getattr(card, 'cost', '?')}")
         actions = [Play(card, target, index, choose)]
         return self.action_block(player, actions, type, index, target)
 
@@ -207,8 +280,14 @@ class BaseGame(Entity):
         """
         Perform actions as a result of an event listener (TRIGGER)
         """
-        type = BlockType.TRIGGER
-        return self.action_block(source, actions, type, event_args=event_args)
+        block_type = BlockType.TRIGGER
+        # 记录触发的事件
+        if actions and self.action_history_enabled:
+            action_names = ", ".join(a.__class__.__name__ for a in actions[:3])
+            if len(actions) > 3:
+                action_names += f"... (+{len(actions)-3} more)"
+            self.log_action("TRIGGER", source, extra_info=action_names)
+        return self.action_block(source, actions, block_type, event_args=event_args)
 
     def cheat_action(self, source, actions):
         """
@@ -482,6 +561,8 @@ class BaseGame(Entity):
         return self
 
     def begin_turn(self, player):
+        # 重置无限循环检测计数器
+        self._action_counter = 0
         ret = self.queue_actions(self, [BeginTurn(player)])
         self.manager.turn(player)
         return ret

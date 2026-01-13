@@ -32,35 +32,15 @@ hero, draw a card.
     在你的回合结束时，如果你对敌方英雄造成了3点或更多伤害，抽一张牌。
     """
     # 追踪本回合对敌方英雄造成的伤害
-    # 使用 Predamage 事件监听伤害
+    # Predamage 事件的参数格式是 (target, amount)
     
-    def _track_hero_damage(self, *args):
+    def _track_hero_damage(self, target, amount, *args):
         # 累加对敌方英雄的伤害
         if not hasattr(self.controller, 'hero_damage_this_turn'):
             self.controller.hero_damage_this_turn = 0
-        # 从args中提取amount（第3个参数）
-        if len(args) >= 3:
-            amount = args[2]
+        # amount 是伤害值
+        if isinstance(amount, int) and amount > 0:
             self.controller.hero_damage_this_turn += amount
-        else:
-            # 添加详细的错误日志
-            import sys
-            import traceback
-            error_msg = (
-                f"\n{'='*80}\n"
-                f"INDEX ERROR in REV_016._track_hero_damage\n"
-                f"{'='*80}\n"
-                f"Args length: {len(args)}\n"
-                f"Args: {args}\n"
-                f"Args types: {[type(a) for a in args]}\n"
-                f"Expected at least 3 args (self, source, target, amount)\n"
-                f"Card: {self}\n"
-                f"Controller: {self.controller}\n"
-                f"Stacktrace:\n"
-            )
-            print(error_msg, file=sys.stderr)
-            traceback.print_stack(file=sys.stderr)
-            print(f"{'='*80}\n", file=sys.stderr)
     
     def _check_and_draw(self, *args):
         # 检查本回合对敌方英雄造成的伤害
