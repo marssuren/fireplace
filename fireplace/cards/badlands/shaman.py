@@ -178,10 +178,26 @@ class WW_027:
         
         # 检查目标是否有种族
         target = self.target
-        if target and hasattr(target, 'race') and target.race:
-            # 抽一张相同种族的牌
-            race = target.race
-            yield ForceDraw(RANDOM(FRIENDLY_DECK + MINION + Race(race)))
+        if target and hasattr(target, 'races') and target.races:
+            # 获取目标的种族
+            target_races = target.races
+            
+            # 从牌库中找一张相同种族的随从牌
+            deck_minions = [
+                card for card in self.controller.deck 
+                if card.type == CardType.MINION and hasattr(card, 'races') and card.races
+            ]
+            
+            # 筛选同种族的随从
+            matching_minions = [
+                card for card in deck_minions 
+                if any(r in target_races for r in card.races)
+            ]
+            
+            if matching_minions:
+                # 随机抽一张
+                card_to_draw = self.game.random.choice(matching_minions)
+                yield Draw(self.controller, card_to_draw)
 
 
 class WW_027e:
