@@ -151,7 +151,7 @@ class REV_509:
     """
     # 英雄攻击后，抽牌直到拥有3张手牌
     events = Attack(FRIENDLY_HERO).after(
-        lambda self, card: [Draw(CONTROLLER) for _ in range(max(0, 3 - len(self.controller.hand)))]
+        lambda self, attacker, defender=None: [Draw(CONTROLLER) for _ in range(max(0, 3 - len(self.controller.hand)))]
     )
 
 

@@ -131,7 +131,7 @@ class SCH_717:
 
     # 每当你的对手抽一张牌，将一张复制置入你的手牌，其法力值消耗为（1）点
     events = Draw(OPPONENT).on(
-        lambda self, source, target, card, *args: [
+        lambda self, target, card, source=None: [
             Give(CONTROLLER, card.id),
             Buff(LAST_GIVEN, "SCH_717e")
         ] if card and hasattr(card, 'id') and card.type in [CardType.MINION, CardType.SPELL, CardType.WEAPON] else []

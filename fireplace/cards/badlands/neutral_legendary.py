@@ -121,7 +121,7 @@ class WW_379:
 class WW_379e:
     """弗林特·枪臂追踪增益 - 标记这张牌是弗林特给的"""
     # 当这张特定的牌被使用时，重复弗林特的效果
-    def handle_play(self, source, player, card, *args):
+    def handle_play(self, player, played_card, target=None):
         """处理卡牌使用事件"""
         # 获取所有快枪牌
         from fireplace.cards import db

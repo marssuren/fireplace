@@ -308,7 +308,7 @@ class VAC_503:
 
     # 监听打出亡语随从
     events = Play(CONTROLLER, MINION + DEATHRATTLE).after(
-        lambda self, source, card, *args: card.deathrattles and Destroy(card)
+        lambda self, player, played_card, target=None: played_card.deathrattles and Destroy(played_card)
     )
 
 

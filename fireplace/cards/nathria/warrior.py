@@ -88,8 +88,8 @@ After this attacks, equip it.
     tags = {GameTag.RUSH: True}
 
     # 攻击后装备武器
-    def _equip_weapon(self, card):
-        if source == OWNER:
+    def _equip_weapon(self, attacker, defender=None):
+        if attacker == self:
             # 记录当前生命值
             current_health = self.health
 
@@ -122,8 +122,8 @@ class REV_316t:
     转换不触发亡语
     """
     # 英雄攻击后召唤随从
-    def _summon_minion(self, card):
-        if source == FRIENDLY_HERO:
+    def _summon_minion(self, attacker, defender=None):
+        if attacker == self.controller.hero:
             # 记录当前耐久度
             current_durability = self.durability
 
@@ -151,7 +151,7 @@ your hand +1/+1.
     每当一个友方随从受到伤害时，随机使你手牌中的一个随从获得+1/+1。
     """
     # 监听友方随从受伤
-    def _buff_hand_minion(self, source, target, amount, source_entity=None):
+    def _buff_hand_minion(self, target, amount, source=None):
         # 随机选择手牌中的一个随从
         hand_minions = [card for card in self.controller.hand if card.type == CardType.MINION]
         if hand_minions:
@@ -285,8 +285,8 @@ give your damaged minions
     infuse = 2
 
     # 英雄攻击后触发
-    def _buff_damaged_minions(self, card):
-        if source == FRIENDLY_HERO:
+    def _buff_damaged_minions(self, attacker, defender=None):
+        if attacker == self.controller.hero:
             # 根据是否注能，给予不同的buff
             # 直接检查 infused 属性（无需 __init__）
             buff_id = "REV_933e2" if getattr(self, 'infused', False) else "REV_933e"

@@ -108,9 +108,9 @@ class YOP_018:
 class YOP_035:
     """Moonfang (月牙)
     Can only take 1 damage at a time."""
-    # 5?6/6 - 每次只能受到1点伤?
+    # 5/6/6 - 每次只能受到1点伤害
     
     events = Predamage(SELF).on(
-        lambda self, source, *args: 
-            SetTags(SELF, {GameTag.PREDAMAGE: min(args[0] if args else 1, 1)})
+        lambda self, target, amount: 
+            SetTags(SELF, {GameTag.PREDAMAGE: min(amount, 1)})
     )

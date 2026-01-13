@@ -110,7 +110,7 @@ class SW_024:
                 yield Buff(SELF, "SW_024e")
     
     events = OWN_TURN_END.on(
-        lambda self, source, *args: list(source._auto_attack_action()) if hasattr(source, '_auto_attack_action') else None
+        lambda self, player: list(self._auto_attack_action()) if hasattr(self, '_auto_attack_action') else None
     )
 
 

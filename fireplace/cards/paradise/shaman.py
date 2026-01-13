@@ -270,17 +270,17 @@ class VAC_449:
     
     class Hand:
         """手牌中的变形机制"""
-        def handle_spell_played(self, source, player, card, *args):
+        def handle_spell_played(self, player, played_card, target=None):
             """处理法术施放事件"""
             # 检查是否已经变形
             if getattr(self, 'has_transformed', False):
                 return []
             
             # 检查是否是法术且有派系
-            if card.type != CardType.SPELL or not hasattr(card, 'spell_school'):
+            if played_card.type != CardType.SPELL or not hasattr(played_card, 'spell_school'):
                 return []
             
-            school = card.spell_school
+            school = played_card.spell_school
             if school == SpellSchool.NONE:
                 return []
             

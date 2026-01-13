@@ -113,7 +113,7 @@ class VAC_443e:
     
     # 监听抽牌事件
     events = Draw(CONTROLLER).after(
-        lambda self, player, played_card, target=None: [
+        lambda self, target, card: [
             Buff(card, "VAC_443e2") if card.type == CardType.SPELL else None,
             Destroy(SELF)  # 移除此效果（无论抽到的是否是法术）
         ]

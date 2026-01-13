@@ -66,7 +66,7 @@ class VAC_332e:
                 yield Destroy(SELF)
     
     events = Play(CONTROLLER).on(
-        lambda self, source, player, card, *args: [
+        lambda self, player, card, target=None: [
             Buff(card, "VAC_332e2") if (hasattr(card, 'card_class') and card.card_class != CardClass.NEUTRAL and 
                                         player.hero and card.card_class != player.hero.card_class) else None,
             Destroy(SELF) if (hasattr(card, 'card_class') and card.card_class != CardClass.NEUTRAL and 

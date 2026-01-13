@@ -138,7 +138,7 @@ class VAC_436:
     """
     # 监听打出亡语随从
     events = Play(CONTROLLER, MINION + DEATHRATTLE).after(
-        lambda self, source, card, *args: card.deathrattles and Buff(card, "VAC_436e")
+        lambda self, player, played_card, target=None: played_card.deathrattles and Buff(played_card, "VAC_436e")
     )
 
 class VAC_436e:

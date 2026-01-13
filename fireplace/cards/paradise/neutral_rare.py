@@ -42,7 +42,7 @@ class VAC_441:
     """
     # 6费 6/7
     
-    def on_draw(self, player, played_card, target=None):
+    def on_draw(self, target, card):
         """当玩家抽牌后触发"""
         # 50%几率再抽一张
         if self.game.random.random() < 0.5:
@@ -50,7 +50,7 @@ class VAC_441:
     
     # 监听玩家抽牌
     events = Draw(CONTROLLER).after(
-        lambda self, player, played_card, target=None: self.on_draw(player, played_card)
+        lambda self, target, card: self.on_draw(target, card)
     )
 
 
@@ -104,7 +104,7 @@ class WORK_040:
     """
     # 3费 2/4
     
-    def on_draw(self, player, played_card, target=None):
+    def on_draw(self, target, card):
         """当任意玩家抽牌后触发"""
         # 将抽到的牌变为临时卡牌
         # 临时卡牌：在回合结束时消失
@@ -113,7 +113,7 @@ class WORK_040:
     
     # 监听任意玩家抽牌
     events = Draw(ALL_PLAYERS).after(
-        lambda self, player, played_card, target=None: self.on_draw(player, played_card)
+        lambda self, target, card: self.on_draw(target, card)
     )
 
 

@@ -236,7 +236,7 @@ class DMF_088:
     }
     
     # 在你的英雄攻击后,发现一张猎人奥秘并施放
-    def _discover_and_cast_secret(self, card):
+    def _discover_and_cast_secret(self, attacker, defender=None):
         """发现一张奥秘并自动施放"""
         # 发现一张猎人奥秘
         cards = yield DISCOVER(RandomCollectible(card_class=CardClass.HUNTER, secret=True))

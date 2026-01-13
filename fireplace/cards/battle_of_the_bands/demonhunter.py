@@ -57,7 +57,7 @@ class ETC_411:
     
     def play(self):
         yield Summon(CONTROLLER, "ETC_411t") * 2
-        if self.is_outcast:
+        if self.outcast:
              yield Summon(CONTROLLER, "ETC_411t")
 
 class ETC_411t:

@@ -38,8 +38,8 @@ class MAW_001:
 class MAW_001e:
     """Arson Accusation Mark - 纵火指控标记"""
     # 监听己方英雄受到伤害
-    # Damage 事件的 on 参数: (source, target, amount, source_entity)
-    def _check_and_destroy(self, source, target, amount, source_entity=None):
+    # Damage 事件的 on 参数: (target, amount, source)
+    def _check_and_destroy(self, target, amount, source=None):
         # 如果受伤的是己方英雄
         if target.controller == self.controller:
             # 消灭被标记的随从

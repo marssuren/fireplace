@@ -93,9 +93,8 @@ class TLC_840:
     }
     
     # 攻击后对敌方英雄造成2点伤害
-    events = Attack.after(
-        lambda self, card: source == self,
-        lambda self, card: Hit(ENEMY_HERO, 2)
+    events = Attack(SELF).after(
+        lambda self, attacker, defender=None: Hit(ENEMY_HERO, 2)
     )
 
 
@@ -234,9 +233,8 @@ class TLC_833:
     After your hero attacks, summon a 2/1 Silithid Hatchling with Rush.
     """
     # 监听英雄攻击事件
-    events = Attack.after(
-        lambda self, card: source == self.controller.hero,
-        lambda self, card: Summon(CONTROLLER, "TLC_833t")
+    events = Attack(FRIENDLY_HERO).after(
+        lambda self, attacker, defender=None: Summon(CONTROLLER, "TLC_833t")
     )
 
 

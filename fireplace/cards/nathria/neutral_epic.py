@@ -158,7 +158,7 @@ class REV_960e:
     """Ashen Elemental Effect - 灰烬元素效果"""
     # 对手抽牌时受到伤害，对手回合结束时移除
     events = [
-        Draw(OPPONENT).after(lambda self, player, played_card, target=None: Hit(ENEMY_HERO, 2)),
+        Draw(OPPONENT).after(lambda self, target, card: Hit(ENEMY_HERO, 2)),
         EndTurn(OPPONENT).on(Destroy(SELF))
     ]
 

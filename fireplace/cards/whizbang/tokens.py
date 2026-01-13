@@ -207,14 +207,14 @@ class TOY_312t:
     # 实现方式：在攻击前记录目标生命值，攻击后检查是否恰好致命
     rush = True
     
-    def OWN_ATTACK_TRIGGER(self, card):
+    def OWN_ATTACK_TRIGGER(self, attacker, defender=None):
         """攻击前：记录目标生命值"""
-        if target and hasattr(target, 'health'):
-            self._last_target_health = target.health
-            self._last_target = target
+        if defender and hasattr(defender, 'health'):
+            self._last_target_health = defender.health
+            self._last_target = defender
         return []
     
-    def OWN_ATTACK_AFTER_TRIGGER(self, card):
+    def OWN_ATTACK_AFTER_TRIGGER(self, attacker, defender=None):
         """攻击后：检查是否造成恰好致命伤害"""
         if not self.controller.current_player:
             return []
@@ -222,8 +222,8 @@ class TOY_312t:
         if not hasattr(self, '_last_target') or not hasattr(self, '_last_target_health'):
             return []
         
-        if target and target.zone == Zone.GRAVEYARD:
-            if source.atk == self._last_target_health:
+        if defender and defender.zone == Zone.GRAVEYARD:
+            if attacker.atk == self._last_target_health:
                 return [Draw(CONTROLLER)]
         
         return []
