@@ -318,7 +318,7 @@ class SW_448:
         
         if deck_spells:
             all_shadow = all(
-                card.spell_school == SpellSchool.SHADOW
+                getattr(card, 'spell_school', None) == SpellSchool.SHADOW
                 for card in deck_spells
             )
             

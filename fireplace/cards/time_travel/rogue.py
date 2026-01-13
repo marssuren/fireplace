@@ -117,14 +117,27 @@ class TIME_039:
     """
     # Mechanics: DISCOVER
     def play(self):
-        # 发现对手手牌中的一张牌
+        # 发现对手手牌中的一张牌的复制
         if self.controller.opponent.hand:
-            # 从对手手牌中发现
-            discovered = yield Discover(self.controller, RandomCard(ENEMY_HAND))
+            # 获取对手手牌中的卡牌列表，创建复制用于发现
+            opponent_hand_cards = list(self.controller.opponent.hand)
             
-            # 给发现的牌减少1费
-            if discovered:
-                yield Buff(discovered, "TIME_039e")
+            # 从对手手牌中发现（随机选择3张展示给玩家）
+            if len(opponent_hand_cards) >= 3:
+                choices = self.game.random.sample(opponent_hand_cards, 3)
+            else:
+                choices = opponent_hand_cards
+            
+            if choices:
+                # 让玩家从选项中选择一张
+                chosen = yield GenericChoice(self.controller, choices)
+                
+                # 给玩家一张选中卡牌的复制，并减少1费
+                if chosen:
+                    card = chosen[0] if isinstance(chosen, list) else chosen
+                    given = yield Give(self.controller, Copy(card))
+                    if given:
+                        yield Buff(given[0], "TIME_039e")
 
 
 class TIME_039e:
