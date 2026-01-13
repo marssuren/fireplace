@@ -273,13 +273,14 @@ class REV_248:
     }
     
     def play(self):
-        if TARGET:
+        target = self.target
+        if target:
             # 先记录目标的原始属性（在buff之前）
-            original_atk = TARGET.atk
-            original_health = TARGET.health
+            original_atk = target.atk
+            original_health = target.health
             
             # 给目标+2生命值
-            yield Buff(TARGET, "REV_248e")
+            yield Buff(target, "REV_248e")
             
             # 召唤一个凯瑞安，具有目标的原始属性和嘲讽
             kyrian = yield Summon(CONTROLLER, "REV_248t")

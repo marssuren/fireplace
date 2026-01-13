@@ -114,7 +114,11 @@ class ActionArg(LazyValue):
         # Action has arguments of the type Action.FOO
         # XXX we rely on source.event_args to be set, but it's very racey.
         # If multiple events happen on an entity at once, stuff will go wrong.
-        assert source.event_args
+        if not source.event_args:
+            return None
+        if self.index >= len(source.event_args):
+            # 索引越界，返回 None 而不是抛出异常
+            return None
         return source.event_args[self.index]
 
 
@@ -2513,7 +2517,8 @@ class FullHeal(TargetedAction):
     """
 
     def do(self, source, target):
-        source.heal(target, target.max_health)
+        # 使用 Heal action 而不是 source.heal()，因为 source 可能是 Enchantment
+        return source.game.queue_actions(source, [Heal(target, target.max_health)])
 
 
 class GainArmor(TargetedAction):

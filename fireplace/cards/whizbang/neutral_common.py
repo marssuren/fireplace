@@ -302,12 +302,13 @@ class TOY_894:
     requirements = {PlayReq.REQ_TARGET_IF_AVAILABLE: 0, PlayReq.REQ_MINION_TARGET: 0}
 
     def play(self):
-        if TARGET:
+        target = self.target
+        if target:
             # 交换攻击力
             self_atk = self.atk
-            target_atk = TARGET.atk
+            target_atk = target.atk
             yield Buff(SELF, "TOY_894e", atk=target_atk - self_atk)
-            yield Buff(TARGET, "TOY_894e", atk=self_atk - target_atk)
+            yield Buff(target, "TOY_894e", atk=self_atk - target_atk)
 
 
 class TOY_894e:

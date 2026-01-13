@@ -1887,7 +1887,18 @@ class Enchantment(BaseCard):
         return ret
 
     def _getattr(self, attr, i):
-        i += getattr(self, "_" + attr, 0)
+        attr_value = getattr(self, "_" + attr, 0)
+        # 如果属性是函数（可能是 lambda），调用它
+        if callable(attr_value):
+            try:
+                attr_value = attr_value(self, i)
+            except TypeError:
+                try:
+                    attr_value = attr_value(self)
+                except TypeError:
+                    attr_value = 0  # 无法调用，默认为0
+        if isinstance(attr_value, (int, float)):
+            i += attr_value
         script_attr = getattr(self.data.scripts, attr, lambda s, x: x)
         if not callable(script_attr):
             raise TypeError(

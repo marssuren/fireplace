@@ -180,11 +180,13 @@ class YOG_509:
     使一个友方随从获得+2/+2。对所有其他随从造成等同于其攻击力的伤害。
     """
     def play(self):
-        # 使目标随从获得+2/+2
-        yield Buff(TARGET, "YOG_509e")
-        # 对所有其他随从造成等同于目标攻击力的伤害
-        target_atk = TARGET.atk
-        yield Hit(ALL_MINIONS - TARGET, target_atk)
+        target = self.target
+        if target:
+            # 使目标随从获得+2/+2
+            yield Buff(target, "YOG_509e")
+            # 对所有其他随从造成等同于目标攻击力的伤害
+            target_atk = target.atk
+            yield Hit(ALL_MINIONS - target, target_atk)
 
     requirements = {PlayReq.REQ_TARGET_TO_PLAY: 0, PlayReq.REQ_FRIENDLY_TARGET: 0, PlayReq.REQ_MINION_TARGET: 0}
 

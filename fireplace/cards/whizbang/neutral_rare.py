@@ -172,13 +172,14 @@ class TOY_895:
     requirements = {PlayReq.REQ_TARGET_IF_AVAILABLE: 0, PlayReq.REQ_MINION_TARGET: 0}
     
     def play(self):
-        if TARGET:
+        target = self.target
+        if target:
             # 交换生命值
             self_health = self.health
-            target_health = TARGET.health
+            target_health = target.health
             # 使用 Buff 设置生命值
             yield Buff(SELF, "TOY_895e", health=target_health - self_health)
-            yield Buff(TARGET, "TOY_895e", health=self_health - target_health)
+            yield Buff(target, "TOY_895e", health=self_health - target_health)
 
 
 class TOY_895e:

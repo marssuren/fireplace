@@ -327,12 +327,13 @@ class TOY_375t:
     requirements = {PlayReq.REQ_TARGET_IF_AVAILABLE: 0, PlayReq.REQ_ENEMY_TARGET: 0, PlayReq.REQ_MINION_TARGET: 0}
     
     def play(self):
-        if TARGET:
+        target = self.target
+        if target:
             # 冻结目标敌方随从
-            yield Freeze(TARGET)
+            yield Freeze(target)
             
             # 获得等同于目标攻击力的护甲值
-            armor_gain = TARGET.atk
+            armor_gain = target.atk
             if armor_gain > 0:
                 yield GainArmor(FRIENDLY_HERO, armor_gain)
 

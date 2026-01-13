@@ -168,16 +168,17 @@ class TOY_896:
 
     def play(self):
         # 与目标随从交换属性值
-        if TARGET:
+        target = self.target
+        if target:
             # 保存当前属性
             my_atk = self.atk
             my_health = self.health
-            target_atk = TARGET.atk
-            target_health = TARGET.health
+            target_atk = target.atk
+            target_health = target.health
 
             # 交换属性 - 使用 Buff 设置新的属性值
             yield Buff(self, "TOY_896e", atk_value=target_atk, health_value=target_health)
-            yield Buff(TARGET, "TOY_896e", atk_value=my_atk, health_value=my_health)
+            yield Buff(target, "TOY_896e", atk_value=my_atk, health_value=my_health)
 
 
 class TOY_896e:
