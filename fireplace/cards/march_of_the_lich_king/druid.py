@@ -154,11 +154,12 @@ class RLK_658:
     }
 
     def play(self):
-        if TARGET:
+        target = self.target
+        if target:
             # 获取目标的攻击力
-            atk = TARGET.atk
+            atk = target.atk
             # 消灭目标
-            yield Destroy(TARGET)
+            yield Destroy(target)
             # 所有友方随从获得攻击力
             if atk > 0:
                 yield Buff(FRIENDLY_MINIONS, "RLK_658e", atk=atk)

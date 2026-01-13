@@ -120,12 +120,15 @@ class RLK_537:
     }
     
     def play(self):
+        target = self.target
+        if target is None:
+            return
         # 获取目标属性
-        atk = TARGET.atk
-        health = TARGET.health
+        atk = target.atk
+        health = target.health
         
         # 消灭目标
-        yield Destroy(TARGET)
+        yield Destroy(target)
         
         # 随机使手牌中一张亡灵获得属性
         undead_in_hand = self.controller.hand.filter(race=Race.UNDEAD)

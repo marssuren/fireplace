@@ -147,10 +147,13 @@ class EDR_262:
     }
     
     def play(self):
+        target = self.target
+        if target is None:
+            return
         # 造成3点伤害
-        yield Hit(TARGET, 3)
+        yield Hit(target, 3)
         # 检查目标是否死亡
-        if TARGET.dead or TARGET.to_be_destroyed:
+        if target.dead or target.to_be_destroyed:
             # 召唤一个狼
             yield Summon(CONTROLLER, "EDR_263t")
 

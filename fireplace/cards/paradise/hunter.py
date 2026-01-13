@@ -225,18 +225,21 @@ class VAC_416:
     requirements = {PlayReq.REQ_TARGET_TO_PLAY: 0, PlayReq.REQ_MINION_TARGET: 0, PlayReq.REQ_ENEMY_TARGET: 0}
     
     def play(self):
+        target = self.target
+        if target is None:
+            return
         # 记录目标的攻击力
-        attack = TARGET.atk
+        attack = target.atk
         
         # 消灭目标
-        yield Destroy(TARGET)
+        yield Destroy(target)
         
         # 造成等同于攻击力的伤害，随机分配
         for _ in range(attack):
             enemies = self.game.board.get_enemies(self.controller)
             if enemies:
-                target = self.game.random.choice(enemies)
-                yield Hit(target, 1)
+                random_target = self.game.random.choice(enemies)
+                yield Hit(random_target, 1)
 
 
 # LEGENDARY

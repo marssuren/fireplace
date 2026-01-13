@@ -100,6 +100,9 @@ your hand at it.
     }
     
     def play(self):
+        target = self.target
+        if target is None:
+            return
         # 从手牌中随机选择一个随从
         hand_minions = [card for card in self.controller.hand 
                        if card.type == CardType.MINION and card != self]
@@ -108,9 +111,9 @@ your hand at it.
             thrown_minion = self.game.random.choice(hand_minions)
             # "扔"随从 = 召唤它并让它攻击目标
             summoned = yield Summon(CONTROLLER, thrown_minion)
-            if summoned and TARGET and not TARGET.dead:
+            if summoned and target and not target.dead:
                 # 让召唤的随从攻击目标
-                yield Attack(summoned, TARGET)
+                yield Attack(summoned, target)
 
 
 class REV_843:
