@@ -206,7 +206,7 @@ class WC_014:
     requirements = {
         PlayReq.REQ_MINION_TARGET: 0,
     }
-    play = Destroy(FuncSelector(lambda entities, src: [e for e in entities if e.atk % 2 == 1]) + ALL_MINIONS)
+    play = Destroy(FuncSelector(lambda entities, src: [e for e in entities if hasattr(e, 'atk') and e.atk % 2 == 1]) + ALL_MINIONS)
 
 
 class WC_803:

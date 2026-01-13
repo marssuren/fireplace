@@ -24,8 +24,7 @@ class LocationRules:
     base_events = [
         # 回合开始时重置激活次数和冷却状态
         OWN_TURN_BEGIN.on(
-            SetTag(SELF, (ACTIVATIONS_THIS_TURN, 0)),
-            SetTag(SELF, (LOCATION_COOLDOWN, False))
+            SetTags(SELF, {ACTIVATIONS_THIS_TURN: 0, LOCATION_COOLDOWN: False})
         )
     ]
 
