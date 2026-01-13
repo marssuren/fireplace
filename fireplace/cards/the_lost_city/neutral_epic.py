@@ -192,23 +192,24 @@ class TLC_829:
     }
     
     def play(self):
-        if TARGET:
+        target = self.target
+        if target:
             # 检查延系是否激活（上回合打出过野兽）
             kindred_active = check_kindred_active(self.controller, card_type=CardType.MINION, race=Race.BEAST)
             
             if kindred_active:
                 # 记录目标的属性值
-                target_atk = TARGET.atk
-                target_health = TARGET.max_health
+                target_atk = target.atk
+                target_health = target.max_health
                 
                 # 消灭目标
-                yield Destroy(TARGET)
+                yield Destroy(target)
                 
                 # 获得属性值
                 yield Buff(SELF, "TLC_829e", atk=target_atk, max_health=target_health)
             else:
                 # 仅消灭目标
-                yield Destroy(TARGET)
+                yield Destroy(target)
 
 
 class TLC_829e:

@@ -83,7 +83,8 @@ class DED_517:
         excess_damage = yield HitExcessDamage(TARGET, 8)
         
         # 如果有超量伤害，召唤残影
-        if excess_damage > 0:
+        # 注意：excess_damage 可能为 None（当目标无效时）
+        if excess_damage is not None and excess_damage > 0:
             # 召唤残影
             yield Summon(CONTROLLER, "DED_517t")
             # 给残影设置属性

@@ -45,13 +45,15 @@ class TIME_033:
     requirements = {}
     
     def play(self):
+        # 标记卡牌具有回溯能力
+        mark_card_rewind(self, rewind_count=1)
         
-        # 随机施放2个自然法术
-        # 参考 whizbang/mage.py 的 CastSpell(RandomSpell()) 实现
-        for _ in range(2):
-            yield CastSpell(RandomSpell(spell_school=SpellSchool.NATURE))
-
-
+        # 定义卡牌效果
+        def effect():
+            # 随机施放2个自然法术
+            for _ in range(2):
+                yield CastSpell(RandomSpell(spell_school=SpellSchool.NATURE))
+        
         # 使用 Rewind 包装器执行效果
         yield from execute_with_rewind(self, effect)
 

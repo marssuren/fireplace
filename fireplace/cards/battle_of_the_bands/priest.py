@@ -316,11 +316,12 @@ class ETC_316:
         if not others:
             return # 只有一个敌人，无法互殴
             
-        # 选择第二个
-        target2 = yield Choose(others, count=1)
+        # 选择第二个（使用 GenericChoice）
+        target2 = yield GenericChoice(CONTROLLER, others)
         if not target2:
             return
-        target2 = target2[0]
+        if isinstance(target2, list):
+            target2 = target2[0]
         
         # 互相攻击
         yield Attack(target1, target2)

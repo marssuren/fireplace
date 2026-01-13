@@ -30,10 +30,15 @@ class NX2_019:
     }
     
     def play(self):
+        target = self.target
+        if target is None:
+            return
+        # 记录目标的当前状态
+        target_health_before = target.health
         # 对目标造成2点伤害
-        yield Hit(TARGET, 2)
-        # 如果目标死亡，对敌方英雄造成3点伤害
-        if TARGET.dead:
+        yield Hit(target, 2)
+        # 如果目标死亡（生命值 <= 2），对敌方英雄造成3点伤害
+        if target.dead:
             yield Hit(ENEMY_HERO, 3)
 
 
@@ -49,10 +54,13 @@ class NX2_020:
     }
     
     def play(self):
+        target = self.target
+        if target is None:
+            return
         # 获取目标的生命值
-        heal_amount = TARGET.health
+        heal_amount = target.health
         # 消灭目标
-        yield Destroy(TARGET)
+        yield Destroy(target)
         # 为所有友方角色恢复生命值
         yield Heal(FRIENDLY_CHARACTERS, heal_amount)
 

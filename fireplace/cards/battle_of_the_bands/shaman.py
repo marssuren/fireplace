@@ -10,6 +10,9 @@ class ETC_369:
         GameTag.COST: 3,
         GameTag.SPELL_SCHOOL: SpellSchool.FROST,
     }
+    requirements = {
+        PlayReq.REQ_TARGET_TO_PLAY: 0,
+    }
 
     def play(self):
         yield Heal(TARGET, 8)

@@ -196,15 +196,11 @@ class WORK_006:
     
     # 在手牌中每回合随机更新拨号数字
     class Hand:
-        def on_turn_begin(self):
-            """每回合开始时随机更新拨号数字"""
-            import random
-            # 随机生成3个不同的费用（0-9）
-            self.dialed_costs = random.sample(range(10), 3)
-            self.dialed_costs.sort()
-        
+        # 使用 lambda 直接更新拨号数字
         events = OWN_TURN_BEGIN.on(
-            lambda self: self.on_turn_begin()
+            lambda self, player: [
+                setattr(self, 'dialed_costs', sorted(__import__('random').sample(range(10), 3)))
+            ]
         )
 
 

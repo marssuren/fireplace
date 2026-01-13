@@ -167,31 +167,19 @@ class VAC_418:
     """
     mechanics = [GameTag.TAUNT]
     
-    # 监听英雄受到伤害（仅在己方回合）
-    def on_hero_damaged(self, target, amount, source=None):
-        """当友方英雄受到伤害时，如果是己方回合，增加计数器"""
-        # 检查是否是己方回合
-        if self.controller.current_player:
-            # 初始化计数器（如果不存在）
-            if not hasattr(self.controller, 'hero_damage_count_on_own_turn'):
-                self.controller.hero_damage_count_on_own_turn = 0
-            # 增加计数
-            self.controller.hero_damage_count_on_own_turn += 1
-    
-    def on_turn_begin(self, player):
-        """回合开始时重置计数器"""
-        if player == self.controller:
-            self.controller.hero_damage_count_on_own_turn = 0
-    
     # 事件监听
     events = [
-        # 监听友方英雄受到伤害
+        # 监听友方英雄受到伤害（仅在己方回合）
         Damage(FRIENDLY_HERO).on(
-            lambda self, target, amount, source=None: self.on_hero_damaged(target, amount, source)
+            lambda self, target, amount, source=None: (
+                setattr(self.controller, 'hero_damage_count_on_own_turn',
+                       getattr(self.controller, 'hero_damage_count_on_own_turn', 0) + 1)
+                if self.controller.current_player else None
+            )
         ),
         # 回合开始时重置计数器
         OWN_TURN_BEGIN.on(
-            lambda self, player: self.on_turn_begin(player)
+            lambda self, player: setattr(self.controller, 'hero_damage_count_on_own_turn', 0)
         ),
     ]
     

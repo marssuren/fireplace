@@ -1541,7 +1541,9 @@ class Minion(Character):
 
         if self.zone == Zone.PLAY:
             self.log("%r is removed from the field", self)
-            self.controller.field.remove(self)
+            # 检查随从是否确实在 field 中，避免 ValueError
+            if self in self.controller.field:
+                self.controller.field.remove(self)
             if self.damage:
                 self.damage = 0
 

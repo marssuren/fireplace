@@ -103,15 +103,11 @@ class SC_011:
             return tags
     
     # 回合开始时倒计时
-    def on_turn_begin(self):
-        """每回合开始时递减计数器"""
-        self.turns_remaining -= 1
-        if self.turns_remaining <= 0:
-            # 3回合结束，移除地标
-            yield Destroy(SELF)
-    
     events = OWN_TURN_BEGIN.on(
-        lambda self, player: self.on_turn_begin()
+        lambda self, player: [
+            setattr(self, 'turns_remaining', getattr(self, 'turns_remaining', 3) - 1),
+            Destroy(self) if getattr(self, 'turns_remaining', 0) <= 0 else None
+        ][-1]
     )
 
 

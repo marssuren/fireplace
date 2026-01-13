@@ -122,11 +122,12 @@ class GDB_122:
     }
 
     def play(self):
+        target = self.target
         # 给予目标+3/+3
-        yield Buff(TARGET, "GDB_122e")
+        yield Buff(target, "GDB_122e")
 
         # 如果目标是恶魔，下一张恶魔牌减费
-        if TARGET and TARGET.race == Race.DEMON:
+        if target and target.race == Race.DEMON:
             yield Buff(CONTROLLER, "GDB_122e2")
 
 
@@ -164,9 +165,10 @@ class SC_020:
     }
 
     def play(self):
+        target = self.target
         # 移除目标地标的1点耐久度
-        if TARGET:
-            TARGET.damage += 1
+        if target:
+            target.damage += 1
             # 为英雄恢复8点生命值
             yield Heal(FRIENDLY_HERO, 8)
 

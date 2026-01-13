@@ -198,14 +198,14 @@ class BaseGame(Entity):
         if self._action_counter > self._max_actions_per_turn:
             # 打印历史记录以便调试
             print(f"\n{'!'*60}")
-            print(f"⚠️ 检测到可能的无限循环！")
-            print(f"当前回合: {self.turn}, 操作数: {self._action_counter}")
-            print(f"最后触发源: {source} (ID: {getattr(source, 'id', 'N/A')})")
+            print(f"[WARNING] Detected possible infinite loop!")
+            print(f"Current turn: {self.turn}, action count: {self._action_counter}")
+            print(f"Last trigger source: {source} (ID: {getattr(source, 'id', 'N/A')})")
             print(f"{'!'*60}")
             self.print_recent_history(50)
             raise InfiniteLoopDetected(
-                f"回合 {self.turn} 中操作数超过 {self._max_actions_per_turn}，可能是无限循环。"
-                f"最后操作源: {source}"
+                f"Turn {self.turn} exceeded {self._max_actions_per_turn} actions, possible infinite loop. "
+                f"Last action source: {source}"
             )
 
     def action_end(self, type, source):

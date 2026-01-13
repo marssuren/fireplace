@@ -103,13 +103,14 @@ class TLC_252:
     }
     
     def play(self):
-        if TARGET:
+        target = self.target
+        if target:
             # 记录目标的属性值
-            target_atk = TARGET.atk
-            target_health = TARGET.max_health
+            target_atk = target.atk
+            target_health = target.max_health
             
             # 消灭目标
-            yield Destroy(TARGET)
+            yield Destroy(target)
             
             # 创建一张骸骨法术牌，并记录属性值
             bone_card = yield Give(CONTROLLER, "TLC_252t")
