@@ -203,7 +203,7 @@ class ETC_028:
     def play(self):
         if len(self.controller.field.exclude(self)) == 0:
              # Discover and Play
-             yield Discover(RandomSecret()).then(Play(CONTROLLER, Discover.CARD))
+             yield Discover(CONTROLLER, RandomSecret()).then(Play(CONTROLLER, Discover.CARD))
 
 class ETC_832:
     """Jungle Jammer - 丛林弹唱琴

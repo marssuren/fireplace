@@ -48,7 +48,7 @@ class ETC_359:
 
     def play(self):
         if self.controller.overloaded > 0 or self.controller.locked_mana > 0:
-            yield Discover(RandomSpell(FRIENDLY_DECK))
+            yield Discover(CONTROLLER, RandomSpell(FRIENDLY_DECK))
 
 class ETC_370:
     """Pack the House - 聚集观众

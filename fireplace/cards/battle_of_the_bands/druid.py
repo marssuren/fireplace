@@ -82,7 +82,7 @@ class ETC_375:
         if self.choice == "ETC_375a":
             yield Draw(CONTROLLER, RandomMinion(race=Race.BEAST))
         elif self.choice == "ETC_375b":
-            yield Discover(RandomMinion(race=Race.BEAST))
+            yield Discover(CONTROLLER, RandomMinion(race=Race.BEAST))
 
 class ETC_375a:
     """Piper's Song - 悠扬笛声 (Draw)"""

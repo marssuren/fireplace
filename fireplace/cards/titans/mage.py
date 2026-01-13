@@ -167,7 +167,7 @@ class TTN_476:
     def play(self):
         # 使用自定义挑选器发现未使用过派系的法术
         picker = UnusedSchoolSpellPicker(type=CardType.SPELL, collectible=True)
-        yield Discover(picker).then(Give(CONTROLLER, Discover.CARD))
+        yield Discover(CONTROLLER, picker).then(Give(CONTROLLER, Discover.CARD))
 
 
 class TTN_478:
@@ -200,7 +200,7 @@ class YOG_507:
     
     def play(self):
         # 发现一张法术
-        cards = yield Discover(RandomSpell()).then(Give(CONTROLLER, Discover.CARD))
+        cards = yield Discover(CONTROLLER, RandomSpell()).then(Give(CONTROLLER, Discover.CARD))
         
         if cards and cards[0]:
             discovered_spell = cards[0]

@@ -54,10 +54,15 @@ class ETC_074:
         opponent_cards = [c.id for c in self.controller.opponent.cards_played_this_game]
         
         if opponent_cards:
-            # 发现逻辑：从列表中选择3个（如果足够），让玩家选一个，获得其复制
-            # Fireplace 的 DiscoverAction 通常针对 RandomCard selector
-            # 这里我们需要自定义发现池
-            yield Discover(CONTROLLER, RandomCard(card_list=opponent_cards))
+            # 从列表中选择最多3个不同的卡牌ID
+            unique_ids = list(set(opponent_cards))
+            if len(unique_ids) > 3:
+                discover_ids = self.game.random.sample(unique_ids, 3)
+            else:
+                discover_ids = unique_ids
+            # 创建选择卡牌并让玩家选择
+            cards = [self.controller.card(card_id, source=self) for card_id in discover_ids]
+            yield GenericChoice(CONTROLLER, cards)
         else:
             # 如果没打出过牌，无效果
             pass

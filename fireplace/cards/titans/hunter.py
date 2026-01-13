@@ -183,7 +183,7 @@ class TTN_302:
     
     def play(self):
         # 发现并施放一个奥秘
-        yield Discover(RandomSecret()).then(Play(CONTROLLER, Discover.CARD))
+        yield Discover(CONTROLLER, RandomSecret()).then(Play(CONTROLLER, Discover.CARD))
 
 
 class TTN_302t:
@@ -196,8 +196,8 @@ class TTN_302t:
     
     def play(self):
         # 发现并施放两次
-        yield Discover(RandomSecret()).then(Play(CONTROLLER, Discover.CARD))
-        yield Discover(RandomSecret()).then(Play(CONTROLLER, Discover.CARD))
+        yield Discover(CONTROLLER, RandomSecret()).then(Play(CONTROLLER, Discover.CARD))
+        yield Discover(CONTROLLER, RandomSecret()).then(Play(CONTROLLER, Discover.CARD))
 
 
 class YOG_505:

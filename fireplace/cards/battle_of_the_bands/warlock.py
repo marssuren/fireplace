@@ -90,7 +90,7 @@ class ETC_083:
     
     def play(self):
         def _discover_with_finite():
-            action = Discover(RandomMinion(race=Race.DEMON))
+            action = Discover(CONTROLLER, RandomMinion(race=Race.DEMON))
             if self.controller.mana == 0:
                 action = action.then(Give(CONTROLLER, Discover.CARD), Buff(Discover.CARD, "ETC_083e"))
             else:
@@ -238,7 +238,7 @@ class ETC_085:
             "ETC_085t5", "ETC_085t6", "ETC_085t7"
         ]
         cards = [self.controller.card(id, zone=Zone.SETASIDE) for id in movements]
-        yield Discover(GenericChoice(cards))
+        yield GenericChoice(CONTROLLER, cards)
         
         chosen_cards = []
         for c in cards:

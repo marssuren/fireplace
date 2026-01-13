@@ -288,8 +288,10 @@ class ETC_205:
             # 从抽到的牌中发现一张复制
             # drawn_cards 是 Card 对象列表
             # Discover 需要 Selector 或 List
-            # 使用 GenericChoice 包装列表
-            yield Discover(Copy(GenericChoice(drawn_cards)))
+            # 创建抽到卡牌的复制供选择
+            copies = [self.controller.card(c.id, source=self) for c in drawn_cards if c]
+            if copies:
+                yield GenericChoice(CONTROLLER, copies)
 
 class ETC_395:
     """DJ Manastorm - DJ法力风暴
