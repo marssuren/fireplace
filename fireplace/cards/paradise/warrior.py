@@ -81,8 +81,10 @@ class VAC_341:
 
     def play(self):
         # 消灭攻击力小于或等于本随从攻击力的敌方随从
-        if TARGET and TARGET.atk <= self.atk:
-            yield Destroy(TARGET)
+        # TARGET 需要先评估才能访问属性
+        target = TARGET.eval(self.game, self)[0] if TARGET else None
+        if target and target.atk <= self.atk:
+            yield Destroy(target)
 
 
 class VAC_526:

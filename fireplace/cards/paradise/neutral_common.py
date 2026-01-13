@@ -101,7 +101,7 @@ class VAC_421:
         if beasts:
             beast = beasts[0]
             # 获取对手的所有随从（排除刚召唤的野兽）
-            enemy_minions = [m for m in self.game.opponent.field if m != beast]
+            enemy_minions = [m for m in self.controller.opponent.field if m != beast]
             
             for target in enemy_minions:
                 if beast.zone == Zone.PLAY and target.zone == Zone.PLAY:
@@ -249,7 +249,8 @@ class VAC_531:
     After a minion is summoned for your opponent during your turn, Silence and destroy it.
     """
     # 监听对手在我方回合召唤随从
-    events = Summon(OPPONENT, MINION).on(
+    # 使用 after 而不是 on，避免无限循环（销毁触发亡语召唤时不会再次触发）
+    events = Summon(OPPONENT, MINION).after(
         Find(CURRENT_PLAYER + CONTROLLER) & (
             Silence(Summon.CARD),
             Destroy(Summon.CARD)

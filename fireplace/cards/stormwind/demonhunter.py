@@ -32,7 +32,7 @@ class DED_507:
     
     def play(self):
         """对最左边和最右边的敌方随从造成2点伤害"""
-        enemy_minions = self.game.opponent.field
+        enemy_minions = self.controller.opponent.field
         if enemy_minions:
             # 最左边的随从
             leftmost = enemy_minions[0]
@@ -184,7 +184,7 @@ class SW_040:
     def play(self):
         """对生命值最低的敌人造成2点伤害两次"""
         for _ in range(2):
-            enemies = self.game.opponent.characters
+            enemies = self.controller.opponent.characters
             if enemies:
                 # 找到生命值最低的敌人
                 lowest_health_enemy = min(enemies, key=lambda x: x.health)

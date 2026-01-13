@@ -13,9 +13,11 @@ class NX2_004:
     def play(self):
         # 检查本回合是否使用过其他职业的卡牌
         used_other_class = False
-        for card in self.controller.cards_played_this_turn:
+        # cards_played_this_turn 是整数，应该使用 cards_played_this_turn_with_position
+        for card_info in self.controller.cards_played_this_turn_with_position:
+            card = card_info[0] if isinstance(card_info, tuple) else card_info
             # 检查卡牌是否为其他职业（非中立且非本职业）
-            if card.card_class != CardClass.NEUTRAL and card.card_class != self.controller.hero.card_class:
+            if hasattr(card, 'card_class') and card.card_class != CardClass.NEUTRAL and card.card_class != self.controller.hero.card_class:
                 used_other_class = True
                 break
         

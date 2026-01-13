@@ -168,7 +168,7 @@ class TLC_255:
     
     def play(self):
         # 计算需要获得的法力水晶数量
-        mana_diff = self.game.opponent.max_mana - self.controller.max_mana
+        mana_diff = self.controller.opponent.max_mana - self.controller.max_mana
         if mana_diff > 0:
             # 获得空的法力水晶
             yield GainEmptyMana(CONTROLLER, mana_diff)

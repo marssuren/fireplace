@@ -302,7 +302,7 @@ DRAENEI = Race.DRAENEI if hasattr(Race, 'DRAENEI') else Race.ALL  # 德莱尼种
 ADJACENT_MINIONS = lambda self: [m for m in self.controller.field if abs(m.zone_position - self.zone_position) == 1]
 
 # OPPONENT_DECK - 对手牌库
-OPPONENT_DECK = lambda self: self.game.opponent.deck
+OPPONENT_DECK = lambda self: self.controller.opponent.deck
 
 # TurnEnd - 回合结束事件
 TurnEnd = TURN_END  # 简化实现：使用 TURN_END
@@ -352,7 +352,7 @@ def SwapStats(target):
 QUESTLINE_STAGE = lambda stage: lambda entity: getattr(entity, 'questline_stage', 0) == stage
 
 # OPPONENT_HAND - 对手手牌
-OPPONENT_HAND = lambda self: self.game.opponent.hand
+OPPONENT_HAND = lambda self: self.controller.opponent.hand
 
 # DrawCard - 抽牌（别名）
 DrawCard = Draw  # 简化实现：使用 Draw

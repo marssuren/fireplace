@@ -68,12 +68,13 @@ class TSC_917:
 class TSC_939:
     """火焰熔铸 - 2费法术
     摧毁你的武器，然后抽数量等同于其攻击力的牌"""
-    play = (
-        lambda self, target: [
-            Draw(self.controller) * self.controller.weapon.atk,
-            Destroy(self.controller.weapon)
-        ] if self.controller.weapon else []
-    )
+    def play(self):
+        # 摧毁武器，抽等同于其攻击力的牌
+        if self.controller.weapon:
+            atk = self.controller.weapon.atk
+            yield Destroy(self.controller.weapon)
+            for _ in range(atk):
+                yield Draw(CONTROLLER)
 
 
 class TSC_940:
@@ -124,15 +125,17 @@ class TSC_943e:
 class TSC_944:
     """辛艾萨莉之火 - 2费法术
     将你牌库里的所有卡牌替换成法力值消耗大于或等于（5）点的随从牌。替换后的牌法力值消耗为（5）点"""
-    play = (
-        lambda self, target: [
-            Destroy(card) for card in list(self.controller.deck)
-        ] + [
-            Shuffle(self.controller, RandomMinion(cost_min=5)) for _ in range(30)
-        ] + [
-            Buff(FRIENDLY_DECK, "TSC_944e")
-        ]
-    )
+    def play(self):
+        # 将牌库所有牌替换成5费以上随从
+        deck_size = len(self.controller.deck)
+        # 清空牌库
+        for card in list(self.controller.deck):
+            yield Destroy(card)
+        # 加入随机高费随从
+        for _ in range(deck_size):
+            yield Shuffle(CONTROLLER, RandomMinion(cost_min=5))
+        # 设置费用为5
+        yield Buff(FRIENDLY_DECK, "TSC_944e")
 
 
 class TSC_944e:

@@ -24,7 +24,7 @@ class DED_007:
         
         # 重复 (1 + 野兽数量) 次
         for _ in range(1 + beast_count):
-            enemies = self.game.opponent.characters
+            enemies = self.controller.opponent.characters
             if enemies:
                 target = self.game.random.choice(enemies)
                 yield Hit(target, 2)

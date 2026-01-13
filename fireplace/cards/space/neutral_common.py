@@ -651,7 +651,7 @@ class SC_408:
         # 检查是否正在构筑星舰
         if self.controller.starship_in_progress:
             # 找到对手手牌中费用最低的牌
-            enemy_hand = list(self.game.opponent.hand)
+            enemy_hand = list(self.controller.opponent.hand)
             if enemy_hand:
                 lowest_cost_card = min(enemy_hand, key=lambda c: c.cost)
                 yield Destroy(lowest_cost_card)

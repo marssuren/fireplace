@@ -350,7 +350,7 @@ class SW_113:
         # 如果过去三个回合都有火焰法术，施放3个火球术
         if all_turns_have_fire_spell:
             for _ in range(3):
-                enemies = self.game.opponent.characters
+                enemies = self.controller.opponent.characters
                 if enemies:
                     target = self.game.random.choice(enemies)
                     yield Hit(target, 6)  # 火球术造成6点伤害

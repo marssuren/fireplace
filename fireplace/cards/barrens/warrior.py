@@ -220,6 +220,6 @@ class WC_026:
     暴怒：获得8点护甲值。亡语：装备一把2/5的龟刺。
     """
     frenzy = GainArmor(FRIENDLY_HERO, 8)
-    deathrattle = Equip("WC_026t")
+    deathrattle = Summon(CONTROLLER, "WC_026t")
 
 

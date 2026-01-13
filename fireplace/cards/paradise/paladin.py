@@ -146,18 +146,12 @@ class VAC_922e:
         self.turns_remaining = 3
     
     # 回合结束时给予防晒霜并倒计时
-    def on_turn_end(self):
-        """回合结束时触发"""
-        # 先给予防晒霜
-        yield Give(CONTROLLER, "VAC_921t")
-        # 然后倒计时
-        self.turns_remaining -= 1
-        # 如果倒计时结束，移除此效果
-        if self.turns_remaining <= 0:
-            yield Destroy(SELF)
-    
     events = OWN_TURN_END.on(
-        lambda self, source: self.on_turn_end()
+        lambda self, source: [
+            Give(CONTROLLER, "VAC_921t"),
+            setattr(self, 'turns_remaining', getattr(self, 'turns_remaining', 3) - 1),
+            Destroy(SELF) if getattr(self, 'turns_remaining', 3) <= 0 else None
+        ]
     )
 
 

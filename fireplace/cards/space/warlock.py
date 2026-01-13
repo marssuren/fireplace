@@ -226,7 +226,7 @@ class GDB_127:
     def _trigger_spellburst(self, spell):
         """触发法术迸发效果"""
         # 随机选择一个敌人
-        target = self.game.random.choice(self.game.opponent.characters)
+        target = self.game.random.choice(self.controller.opponent.characters)
         if target:
             # 偷取2点生命值（造成伤害并治疗自己）
             yield Hit(target, 2)

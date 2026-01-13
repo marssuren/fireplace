@@ -177,7 +177,7 @@ class DMF_224:
         # 召唤7个伊利达雷，并给每个添加追踪标记
         for _ in range(7):
             yield Summon(CONTROLLER, "DMF_224t").then(
-                Buff(Summon.MINION, "DMF_224e_marker")
+                Buff(Summon.CARD, "DMF_224e_marker")
             )
         
         # 给控制器添加追踪buff，监听这批随从的死亡

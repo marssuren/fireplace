@@ -134,7 +134,7 @@ class SCH_717:
         lambda self, source, target, card, *args: [
             Give(CONTROLLER, card.id),
             Buff(LAST_GIVEN, "SCH_717e")
-        ] if card else []
+        ] if card and hasattr(card, 'id') and card.type in [CardType.MINION, CardType.SPELL, CardType.WEAPON] else []
     )
 
 

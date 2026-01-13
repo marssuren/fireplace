@@ -167,14 +167,26 @@ class BAR_552:
 class BAR_552e:
     """Scabbs buff"""
     tags = {
-        enums.ACTIVATIONS_THIS_TURN: 0,
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
     }
-    # 使用 lambda 函数动态检查激活次数并应用减费
-    # 当激活次数 < 2 时，手牌费用减少2点
-    update = lambda self: Refresh(FRIENDLY_HAND, {GameTag.COST: -2}) if getattr(self, 'activations_this_turn', 0) < 2 else None
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.activations_this_turn = 0
+    
+    # 手牌减费效果（当激活次数 < 2 时生效）
+    class Hand:
+        def cost(self, i):
+            # 检查 buff 的激活次数
+            enchantment = self.buffs[0] if self.buffs else None
+            if enchantment and getattr(enchantment, 'activations_this_turn', 0) < 2:
+                return max(0, i - 2)
+            return None
     
     events = (
-        Play(CONTROLLER).after(AddProgress(SELF, SELF, 1, "activations_this_turn")),
+        Play(CONTROLLER).after(
+            lambda self, source, card: setattr(self, 'activations_this_turn', getattr(self, 'activations_this_turn', 0) + 1)
+        ),
         OWN_TURN_END.on(Destroy(SELF)),
     )
 
