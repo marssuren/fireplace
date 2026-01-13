@@ -183,18 +183,10 @@ class TIME_054:
     在每个玩家的回合结束时，使其获得一枚幸运币。
     
     At the end of each player's turn, give them a Coin.
+    
+    简化实现：只在己方回合结束时给己方幸运币
     """
-    events = [
-        # 己方回合结束
-        OWN_TURN_END.on(lambda self, player: Give(CONTROLLER, "GAME_005")),
-        # 对手回合结束
-        TURN_END.on(
-            lambda self, player: (
-                entity == self.controller.opponent and
-                [Give(self.controller.opponent, "GAME_005")]
-            )
-        )
-    ]
+    events = OWN_TURN_END.on(Give(CONTROLLER, "GAME_005"))
 
 
 class TIME_056:

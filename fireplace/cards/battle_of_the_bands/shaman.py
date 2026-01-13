@@ -47,7 +47,7 @@ class ETC_359:
     }
 
     def play(self):
-        if self.controller.overloaded > 0 or self.controller.locked_mana > 0:
+        if self.controller.overloaded > 0 or self.controller.overload_locked > 0:
             yield Discover(CONTROLLER, RandomSpell(FRIENDLY_DECK))
 
 class ETC_370:
@@ -81,7 +81,7 @@ class ETC_356:
         yield Hit(TARGET, 6)
 
 
-    cost_mod = lambda self, i: -3 if (self.controller.overloaded > 0 or self.controller.locked_mana > 0) else 0
+    cost_mod = lambda self, i: -3 if (self.controller.overloaded > 0 or self.controller.overload_locked > 0) else 0
 
 class ETC_357:
     """Brass Elemental - 铜管元素

@@ -282,7 +282,7 @@ class VAC_700:
     """
     def play(self):
         # 随机消灭2个敌方随从
-        enemy_minions = list(self.game.board.get_enemies(self.controller).filter(type=CardType.MINION))
+        enemy_minions = list(self.controller.opponent.field)
         
         if enemy_minions:
             # 随机选择最多2个敌方随从

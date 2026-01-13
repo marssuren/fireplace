@@ -183,13 +183,29 @@ class TIME_860:
     """
     requirements = {}
     
+    # 常见奥秘卡牌ID列表（简化实现）
+    SECRET_CARDS = [
+        "EX1_130",  # 复制（法师）
+        "EX1_136",  # 冰箱（法师）
+        "EX1_289",  # 寒冰屏障（法师）
+        "EX1_611",  # 冰冻陷阱（猎人）
+        "EX1_554",  # 蛇陷阱（猎人）
+        "EX1_610",  # 爆炸陷阱（猎人）
+        "EX1_379",  # 救赎（圣骑士）
+        "EX1_132",  # 以眼还眼（圣骑士）
+        "EX1_365",  # 崇高牺牲（圣骑士）
+    ]
+    
     def play(self):
-        # 生成两个随机奥秘供选择
-        # 使用 RandomSecret 获取奥秘牌
+        # 随机选择两个不同的奥秘
+        import random
+        secrets = random.sample(self.SECRET_CARDS, min(2, len(self.SECRET_CARDS)))
         
-        # 生成两个随机奥秘ID
-        secret_1 = RandomSecret()
-        secret_2 = RandomSecret()
+        if len(secrets) < 2:
+            return
+        
+        secret_1 = secrets[0]
+        secret_2 = secrets[1]
         
         # 让玩家选择一个
         choice = yield GenericChoice(
@@ -198,17 +214,16 @@ class TIME_860:
         
         if choice:
             # 获取选择的奥秘ID
-            chosen_secret_id = choice[0]
+            chosen_secret_id = choice[0] if isinstance(choice, list) else choice
             
             # 确定另一个奥秘ID
             other_secret_id = secret_2 if chosen_secret_id == secret_1 else secret_1
             
-            # 为自己施放选择的奥秘
-            # 参考 nathria/mage.py 的 CastSpell 实现
-            yield Play(self.controller, chosen_secret_id)
+            # 为自己施放选择的奥秘 - 召唤到奥秘区
+            yield Summon(self.controller, chosen_secret_id)
             
             # 为对手施放另一个奥秘
-            yield Play(self.controller.opponent, other_secret_id)
+            yield Summon(self.controller.opponent, other_secret_id)
 
 
 # LEGENDARY

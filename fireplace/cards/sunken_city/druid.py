@@ -222,7 +222,8 @@ class TSC_651:
         
         # 检查本回合是否打出过娜迦
         naga_played_this_turn = any(
-            card.type == CardType.MINION and Race.NAGA in card.races
+            card.type == CardType.MINION and 
+            hasattr(card, 'races') and Race.NAGA in getattr(card, 'races', [])
             for card in self.controller.cards_played_this_turn
         )
         

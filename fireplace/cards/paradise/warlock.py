@@ -190,7 +190,7 @@ class WORK_008:
 
     def play(self):
         # 对所有随从造成4点伤害，超出部分伤害英雄
-        all_minions = list(self.game.board.filter(ALL_MINIONS))
+        all_minions = list(self.game.board)
 
         for minion in all_minions:
             # 计算实际伤害和溢出伤害

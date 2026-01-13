@@ -22,19 +22,63 @@ class BAR_079:
     """Kazakus, Golem Shaper - 魔像师卡扎库斯
     Battlecry: If your deck has no 4-Cost cards, build a custom Golem.
     战吼：如果你的牌库中没有法力值消耗为4点的牌，创造一个自定义魔像。
+    
+    简化实现：给予玩家一个随机 Golem 而不是复杂的选择过程
     """
     powered_up = -Find(FRIENDLY_DECK + (COST == 4))
-    play = powered_up & (
-        GenericChoice(
-            CONTROLLER, ["BAR_079t", "BAR_079t2", "BAR_079t3", "BAR_079t4"]
-        ).then(
-            GenericChoice(
-                CONTROLLER, ["BAR_079t5", "BAR_079t6", "BAR_079t7", "BAR_079t8"]
-            ).then(
-                Give(CONTROLLER, "BAR_079t9")  # 合成的魔像
-            )
-        )
-    )
+    
+    def play(self):
+        # 检查是否符合条件
+        has_4_cost = any(card.cost == 4 for card in self.controller.deck)
+        if not has_4_cost:
+            # 简化实现：随机召唤一个1/1, 5/5 或 10/10 的魔像
+            golem_sizes = [
+                ("BAR_079_Golem_1", 1, 1),  # 1费魔像
+                ("BAR_079_Golem_5", 5, 5),  # 5费魔像
+                ("BAR_079_Golem_10", 10, 10), # 10费魔像
+            ]
+            size = self.game.random.choice(golem_sizes)
+            yield Summon(CONTROLLER, size[0])
+
+
+# 魔像 Token 卡牌（简化版本）
+@custom_card
+class BAR_079_Golem_1:
+    """1费魔像"""
+    tags = {
+        GameTag.CARDNAME: "Golem (1/1)",
+        GameTag.CARDTYPE: CardType.MINION,
+        GameTag.COST: 1,
+        GameTag.ATK: 1,
+        GameTag.HEALTH: 1,
+    }
+
+
+@custom_card
+class BAR_079_Golem_5:
+    """5费魔像"""
+    tags = {
+        GameTag.CARDNAME: "Golem (5/5)",
+        GameTag.CARDTYPE: CardType.MINION,
+        GameTag.COST: 5,
+        GameTag.ATK: 5,
+        GameTag.HEALTH: 5,
+        GameTag.TAUNT: True,
+    }
+
+
+@custom_card
+class BAR_079_Golem_10:
+    """10费魔像"""
+    tags = {
+        GameTag.CARDNAME: "Golem (10/10)",
+        GameTag.CARDTYPE: CardType.MINION,
+        GameTag.COST: 10,
+        GameTag.ATK: 10,
+        GameTag.HEALTH: 10,
+        GameTag.TAUNT: True,
+        GameTag.RUSH: True,
+    }
 
 
 class BAR_080:
