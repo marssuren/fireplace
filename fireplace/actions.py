@@ -290,7 +290,13 @@ class Attack(GameAction):
             defender.defending = False
             return
 
-        assert attacker is not defender, "Why are you hitting yourself %r?" % (attacker)
+        # 检查自己攻击自己的情况（可能由于 Retarget 导致）
+        if attacker is defender:
+            log_info("attack_self_interrupted", attacker=attacker)
+            attacker.attack_target = None
+            if defender:
+                defender.defending = False
+            return
         
         # 检查defender是否有效
         if not defender:
