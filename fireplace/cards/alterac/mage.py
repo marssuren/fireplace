@@ -147,10 +147,15 @@ class AV_284:
 class AV_284e:
     """巴琳达·石炉效果"""
     # 动态增加攻击力和生命值
-    # 使用 tags 字典来处理动态数值
+    # 使用初始化时传入的 atk 和 health 参数
+    def __init__(self, atk=0, health=0, **kwargs):
+        super().__init__(**kwargs)
+        self._buff_atk = atk
+        self._buff_health = health
+    
     tags = {
-        GameTag.ATK: lambda self, i: self.atk,
-        GameTag.HEALTH: lambda self, i: self.max_health
+        GameTag.ATK: lambda self, i: i + getattr(self, '_buff_atk', 0),
+        GameTag.HEALTH: lambda self, i: i + getattr(self, '_buff_health', 0)
     }
 
 

@@ -120,7 +120,7 @@ class AV_269e:
     """侧翼合击追踪器"""
     events = Death(FRIENDLY + MINION + ID("AV_269t")).on(
         lambda self: (
-            self.owner.turn_played == self.game.turn and
+            getattr(self.controller, 'turn_played', -1) == self.game.turn and
             (Summon(CONTROLLER, "AV_269t"), Destroy(SELF))
         ) or None
     )
