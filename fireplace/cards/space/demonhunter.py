@@ -30,7 +30,7 @@ class GDB_471:
     race = Race.DRAENEI
     
     # 回合结束时获取一个随机乘务员
-    events = OWN_TURN_END.on(lambda self, source: Give(CONTROLLER, RandomCrewmate()))
+    events = OWN_TURN_END.on(lambda self, player: Give(CONTROLLER, RandomCrewmate()))
 
 
 class GDB_902:
@@ -111,7 +111,7 @@ class SC_011:
             yield Destroy(SELF)
     
     events = OWN_TURN_BEGIN.on(
-        lambda self, source: self.on_turn_begin()
+        lambda self, player: self.on_turn_begin()
     )
 
 
@@ -184,7 +184,7 @@ class SC_009:
     
     # 友方随从攻击后触发
     events = Attack(FRIENDLY_MINION).after(
-        lambda self, source, attacker, defender: (
+        lambda self, attacker, defender: (
             # 判断攻击者是否是异虫
             Hit(RANDOM_ENEMY_CHARACTER, 2 if attacker.race == Race.ZERG else 1)
         )
@@ -249,7 +249,7 @@ class GDB_116:
     
     # 法术迸发：仅当有流放标记时才洗混手牌
     events = Spellburst(CONTROLLER, 
-        lambda self, source, card: (
+        lambda self, player, played_card, target=None: (
             ShuffleHandAction() if any(buff.id == "GDB_116_outcast_marker" for buff in self.buffs) else None
         )
     )

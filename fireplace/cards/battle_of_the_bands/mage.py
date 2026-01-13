@@ -99,7 +99,7 @@ class ETC_521:
     # 监听施法
     # 需要获取施放法术的 Cost
     # EventArgument[1] 通常是 Card 对象
-    def _summon_elemental(self, source, card):
+    def _summon_elemental(self, player, played_card, target=None):
         minion = yield Summon(CONTROLLER, "ETC_521t")
         if minion:
             stats = card.cost

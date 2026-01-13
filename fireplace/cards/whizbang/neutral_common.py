@@ -84,7 +84,7 @@ class TOY_340:
     triggered = boolean_property("TOY_340_triggered")
 
     events = Play(CONTROLLER, SPELL).after(
-        lambda self, source: (
+        lambda self, player: (
             Buff(SELF, "TOY_340t"),
             SetAttr(SELF, "triggered", True)
         ) if not getattr(self, "triggered", False) else []

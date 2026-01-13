@@ -151,7 +151,7 @@ class REV_509:
     """
     # 英雄攻击后，抽牌直到拥有3张手牌
     events = Attack(FRIENDLY_HERO).after(
-        lambda self, source, target: [Draw(CONTROLLER) for _ in range(max(0, 3 - len(self.controller.hand)))]
+        lambda self, card: [Draw(CONTROLLER) for _ in range(max(0, 3 - len(self.controller.hand)))]
     )
 
 
@@ -244,7 +244,7 @@ class REV_942e:
     # 当施放圣物时，再次施放一次
     # 使用 enums.RELIC 标签来判断是否为圣物
     events = Play(CONTROLLER, SPELL).after(
-        lambda self, source, card: (
+        lambda self, player, played_card, target=None: (
             CastSpell(card.id) if card.tags.get(enums.RELIC, False) else None,
             Destroy(SELF) if card.tags.get(enums.RELIC, False) else None
         )

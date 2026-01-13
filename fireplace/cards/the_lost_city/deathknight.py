@@ -100,7 +100,7 @@ class TLC_435e:
     
     # 监听玩家打出卡牌事件
     events = Play(CONTROLLER).after(
-        lambda self, source, card: (
+        lambda self, player, played_card, target=None: (
             check_is_map_discovered_card(self.controller, card.id)
             and [
                 # 再次发现一张冰霜符文牌（从剩余选项中）
@@ -170,7 +170,7 @@ class DINO_416:
     
     # 监听友方随从死亡事件
     events = Death(FRIENDLY + MINION).on(
-        lambda self, source, target: (
+        lambda self, card: (
             target != self  # 不是自己死亡
             and self.controller.corpses >= 3  # 有足够的残骸
             and not self.reborn  # 还没有复生

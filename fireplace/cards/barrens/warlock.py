@@ -174,7 +174,7 @@ class BAR_919t:
         GameTag.DORMANT: True,
     }
     events = OWN_TURN_BEGIN.on(
-        lambda self, source: [Summon(CONTROLLER, "BAR_919t2") for _ in range(7 - len(self.controller.field))]
+        lambda self, player: [Summon(CONTROLLER, "BAR_919t2") for _ in range(7 - len(self.controller.field))]
     )
 
 

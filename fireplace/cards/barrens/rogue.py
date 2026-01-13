@@ -185,7 +185,7 @@ class BAR_552e:
     
     events = (
         Play(CONTROLLER).after(
-            lambda self, source, card: setattr(self, 'activations_this_turn', getattr(self, 'activations_this_turn', 0) + 1)
+            lambda self, player, played_card, target=None: setattr(self, 'activations_this_turn', getattr(self, 'activations_this_turn', 0) + 1)
         ),
         OWN_TURN_END.on(Destroy(SELF)),
     )

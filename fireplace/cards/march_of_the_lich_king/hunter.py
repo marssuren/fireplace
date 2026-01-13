@@ -158,7 +158,7 @@ class RLK_827:
     机制: TRIGGER_VISUAL
     """
     events = Attack(FRIENDLY_HERO, MINION).on(
-        lambda self, source, target: target.set_current_health(1) if target.health > 1 else None
+        lambda self, card: target.set_current_health(1) if target.health > 1 else None
     )
 
 
@@ -168,7 +168,7 @@ class RLK_828:
     机制: TRIGGER_VISUAL
     """
     events = Attack(FRIENDLY_HERO).after(
-        lambda self, source, target: [
+        lambda self, card: [
             # 给场上的随从+1/+1
             Buff(FRIENDLY_MINIONS, "RLK_828e"),
             # 给手牌中的随从+1/+1

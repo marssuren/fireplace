@@ -46,7 +46,7 @@ class EDR_254:
     """
     # 监听法术施放事件
     events = OWN_SPELL_PLAY.after(
-        lambda self, source, card: [
+        lambda self, player, played_card, target=None: [
             Buff(SELF, "EDR_254e", atk_bonus=card.cost)
         ]
     )
@@ -221,7 +221,7 @@ class EDR_849:
     """
     # 监听随从打出事件
     events = Play(CONTROLLER, MINION - SELF).after(
-        lambda self, source, card: [
+        lambda self, player, played_card, target=None: [
             # 随机选择一个奖励效果
             Buff(card, self.game.random.choice([
                 "EDR_849e1",  # +1/+1

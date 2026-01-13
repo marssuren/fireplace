@@ -33,8 +33,8 @@ class EDR_842:
     """
     # 监听英雄攻击事件
     events = Attack.on(
-        lambda self, source, target: source == self.controller.hero and target.controller == self.controller.opponent,
-        lambda self, source, target: [
+        lambda self, card: source == self.controller.hero and target.controller == self.controller.opponent,
+        lambda self, card: [
             # 对另一个随机敌人造成等同于英雄攻击力的伤害
             Hit(RandomTarget(ENEMY_CHARACTERS - target), source.atk)
         ]
@@ -188,8 +188,8 @@ class FIR_904:
     """
     # 监听邪能法术施放事件
     events = OWN_SPELL_PLAY.after(
-        lambda self, source, target: source.spell_school == SpellSchool.FEL,
-        lambda self, source, target: [
+        lambda self, card: source.spell_school == SpellSchool.FEL,
+        lambda self, card: [
             # 消灭自己
             Destroy(SELF),
             # 对所有敌人造成2点伤害
@@ -304,8 +304,8 @@ class EDR_421:
     
     # 攻击后改进亡语效果
     events = Attack.after(
-        lambda self, source, target: source == self,
-        lambda self, source, target: [
+        lambda self, card: source == self,
+        lambda self, card: [
             # 增加亡语伤害计数
             Buff(SELF, "EDR_421e")
         ]

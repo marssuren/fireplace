@@ -246,7 +246,7 @@ class GDB_232e:
     tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
 
     events = Play(CONTROLLER, DRAENEI).on(
-        lambda self, source, card: self._give_hero_attack(card)
+        lambda self, player, played_card, target=None: self._give_hero_attack(played_card)
     )
 
     def _give_hero_attack(self, card):
@@ -275,7 +275,7 @@ class GDB_229e:
     tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
 
     events = Play(CONTROLLER, DRAENEI).after(
-        lambda self, source, card: self._make_draenei_attack(card)
+        lambda self, player, played_card, target=None: self._make_draenei_attack(played_card)
     )
 
     def _make_draenei_attack(self, card):

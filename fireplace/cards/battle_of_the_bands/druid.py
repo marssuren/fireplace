@@ -343,7 +343,7 @@ class ETC_387e_a:
             yield Summon(CONTROLLER, "ETC_387t_a") * 3
             yield Destroy(SELF)
     
-    events = OWN_TURN_BEGIN.on(lambda self, source: self._on_turn_begin())
+    events = OWN_TURN_BEGIN.on(lambda self, player: self._on_turn_begin())
 
 class ETC_387e_b:
     tags = {GameTag.TAG_SCRIPT_DATA_NUM_1: 4, GameTag.CARDTYPE: CardType.ENCHANTMENT}
@@ -356,7 +356,7 @@ class ETC_387e_b:
             yield Summon(CONTROLLER, "ETC_387t_b") * 3
             yield Destroy(SELF)
     
-    events = OWN_TURN_BEGIN.on(lambda self, source: self._on_turn_begin())
+    events = OWN_TURN_BEGIN.on(lambda self, player: self._on_turn_begin())
 
 class ETC_387tick:
     tags = {GameTag.TAG_SCRIPT_DATA_NUM_1: -1, GameTag.CARDTYPE: CardType.ENCHANTMENT}

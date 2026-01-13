@@ -69,7 +69,7 @@ class RLK_591e2:
 
     # 每回合开始时减少倒计时
     events = OWN_TURN_BEGIN.on(
-        lambda self, entity: (
+        lambda self, player: (
             setattr(entity, "frostwhisper_turns_remaining",
                    getattr(entity, "frostwhisper_turns_remaining", 3) - 1),
             Destroy(entity) if getattr(entity, "frostwhisper_turns_remaining", 0) <= 0 else None
@@ -127,8 +127,8 @@ class RLK_593e:
     """洛瑟玛·塞隆增益 (Lor'themar's Blessing)"""
     # 使用lambda函数动态计算翻倍后的属性值
     tags = {
-        GameTag.ATK: lambda self, entity: entity.atk,  # 额外增加当前攻击力（相当于翻倍）
-        GameTag.HEALTH: lambda self, entity: entity.health  # 额外增加当前生命值（相当于翻倍）
+        GameTag.ATK: lambda self, player: entity.atk,  # 额外增加当前攻击力（相当于翻倍）
+        GameTag.HEALTH: lambda self, player: entity.health  # 额外增加当前生命值（相当于翻倍）
     }
 
 

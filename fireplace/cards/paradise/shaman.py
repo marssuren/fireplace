@@ -349,7 +349,7 @@ class VAC_450:
     
     # 监听友方随从死亡
     events = Death(FRIENDLY_MINIONS).after(
-        lambda self, source, target: [
+        lambda self, card: [
             Summon(CONTROLLER, RandomCollectible(
                 type=CardType.MINION,
                 cost=target.cost + 1

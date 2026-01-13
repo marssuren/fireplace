@@ -29,7 +29,7 @@ class GVG_077:
     """Anima Golem / 心能魔像
     在每个回合结束时，如果本随从是你唯一的随从，则消灭 本随从。"""
 
-    def _check_and_destroy(self, source):
+    def _check_and_destroy(self, player):
         # 检查是否是唯一的随从
         other_minions = [m for m in self.controller.field if m != self]
         if len(other_minions) == 0:

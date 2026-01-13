@@ -43,7 +43,7 @@ class DED_511:
     
     # 回合结束时变形武器
     events = OWN_TURN_END.on(
-        lambda self, source: Morph(
+        lambda self, player: Morph(
             FRIENDLY_WEAPON,
             RandomCollectible(
                 type=CardType.WEAPON,

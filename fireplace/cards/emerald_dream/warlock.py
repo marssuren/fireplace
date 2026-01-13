@@ -148,8 +148,8 @@ class FIR_955:
     """
     # 监听友方英雄受到伤害事件
     events = Damage(FRIENDLY_HERO).on(
-        lambda self, source, target, amount: self.game.current_player == self.owner.controller,
-        lambda self, source, target, amount: [
+        lambda self, target, amount: self.game.current_player == self.owner.controller,
+        lambda self, target, amount: [
             Hit(RandomTarget(ENEMY_MINIONS), 3)
         ] if self.controller.opponent.field else []
     )
@@ -469,7 +469,7 @@ class EDR_489e:
     """
     # 监听打出卡牌事件
     events = Play(CONTROLLER).after(
-        lambda self, source, target: [
+        lambda self, card: [
             # 计算卡牌费用（最多10点）
             Hit(OPPONENT_HERO, min(source.cost, 10)),
             # 返还法力值（因为已经在 Play action 中消耗了）

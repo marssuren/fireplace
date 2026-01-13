@@ -408,7 +408,7 @@ class MIS_902e:
     
     # 监听打出机械牌事件
     events = Play(CONTROLLER, MINION + RACE(Race.MECHANICAL)).after(
-        lambda self, source, card: Destroy(SELF)
+        lambda self, player, played_card, target=None: Destroy(SELF)
     )
     
     # 费用减少 Aura（应用于手牌中的机械牌）

@@ -162,7 +162,7 @@ class GDB_341:
     
     # 监听己方打出牌的事件
     events = Play(CONTROLLER).on(
-        lambda self, source, card: self._check_adjacent_played(card)
+        lambda self, player, played_card, target=None: self._check_adjacent_played(played_card)
     )
     
     def _check_adjacent_played(self, played_card):
@@ -275,7 +275,7 @@ class GDB_450e:
         self.effect2_id = effect2_id
     
     events = Play(CONTROLLER, MINION + DRAENEI).on(
-        lambda self, source, card: self._apply_effects(card),
+        lambda self, player, played_card, target=None: self._apply_effects(played_card),
         Destroy(SELF)
     )
     

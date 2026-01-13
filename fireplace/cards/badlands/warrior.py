@@ -295,7 +295,7 @@ class WW_375:
     # 监听发掘事件，每次发掘减少2回合休眠时间
     # 核心的 dormant_turns property 会在计数清零时自动唤醒（card.py 第1325-1334行）
     events = Excavate(CONTROLLER).after(
-        lambda self, source: setattr(source.owner, 'dormant_turns', source.owner.dormant_turns - 2)
+        lambda self, player: setattr(self.owner, 'dormant_turns', self.owner.dormant_turns - 2)
     )
 
 

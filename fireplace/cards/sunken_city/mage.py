@@ -82,7 +82,7 @@ class TSC_087:
     
     class Hand:
         events = Play(CONTROLLER, SPELL).after(
-            lambda self, source, card: (
+            lambda self, player, played_card, target=None: (
                 # 初始化列表(如果不存在)
                 setattr(self, 'spells_cast_while_holding', getattr(self, 'spells_cast_while_holding', [])),
                 # 添加法术ID(如果少于3个)

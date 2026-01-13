@@ -165,7 +165,7 @@ class GDB_444e:
 
     # 监听打出德莱尼牌：添加过载并移除buff
     events = Play(CONTROLLER, DRAENEI).on(
-        lambda self, source, card: Overload(CONTROLLER, 2),
+        lambda self, player, played_card, target=None: Overload(CONTROLLER, 2),
         Destroy(SELF)
     )
 
@@ -246,7 +246,7 @@ class GDB_434:
 
     # 法术迸发：将3张小行星洗入牌库
     events = OWN_SPELL_PLAY.on(
-        lambda self, source: [Shuffle(CONTROLLER, "GDB_901t") for _ in range(3)],
+        lambda self, player: [Shuffle(CONTROLLER, "GDB_901t") for _ in range(3)],
         SetTags(SELF, {GameTag.SPELLBURST: False})
     )
 
@@ -336,7 +336,7 @@ class GDB_448:
         ),
         # 离开场地时，移除追踪buff
         Death(SELF).after(
-            lambda self, source: [
+            lambda self, player: [
                 Destroy(buff) for buff in self.controller.buffs
                 if buff.id == "GDB_448e"
             ]
@@ -375,14 +375,14 @@ class GDB_448e:
     events = [
         # 打出战吼随从时，如果本回合未使用，则摧毁该随从并标记已使用
         Play(CONTROLLER, MINION + BATTLECRY).after(
-            lambda self, source, card: [
+            lambda self, player, played_card, target=None: [
                 Destroy(card),
                 setattr(self, 'used_this_turn', True)
             ] if not self.used_this_turn else None
         ),
         # 回合开始时重置标记
         OWN_TURN_BEGIN.on(
-            lambda self, source: setattr(self, 'used_this_turn', False)
+            lambda self, player: setattr(self, 'used_this_turn', False)
         )
     ]
 

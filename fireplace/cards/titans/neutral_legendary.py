@@ -40,7 +40,7 @@ class TTN_330:
 
     # 攻击随从时，将其放入手牌并标记
     events = Attack(SELF, MINION).on(
-        lambda self, source: [
+        lambda self, player: [
             Bounce(Attack.DEFENDER).then(
                 # 给被抓取的随从添加标记附魔
                 Buff(Bounce.TARGET, "TTN_330e")
@@ -623,7 +623,7 @@ class YOG_530e_army_discount:
         REMOVED_IN_PLAY,
         # 当任意随从被打出时，移除所有手牌中的此标记
         Play(CONTROLLER, MINION).after(
-            lambda self, source: [
+            lambda self, player: [
                 buff.destroy() for card in source.controller.hand
                 for buff in card.buffs if buff.id == "YOG_530e_army_discount"
             ]
@@ -656,7 +656,7 @@ class YOG_530e_spread_discount:
         REMOVED_IN_PLAY,
         # 当任意法术被打出时，移除所有手牌中的此标记
         Play(CONTROLLER, SPELL).after(
-            lambda self, source: [
+            lambda self, player: [
                 buff.destroy() for card in source.controller.hand
                 for buff in card.buffs if buff.id == "YOG_530e_spread_discount"
             ]
@@ -673,7 +673,7 @@ class YOG_530e_greed:
 
     # 回合结束时，根据剩余法力给予硬币
     events = OWN_TURN_END.on(
-        lambda self, source: [
+        lambda self, player: [
             Give(CONTROLLER, "GAME_005") * source.controller.mana
         ] if source.controller.mana > 0 else []
     )
@@ -687,7 +687,7 @@ class YOG_530e_excess:
 
     # 回合结束时，根据剩余法力抽牌
     events = OWN_TURN_END.on(
-        lambda self, source: [
+        lambda self, player: [
             Draw(CONTROLLER) * source.controller.mana
         ] if source.controller.mana > 0 else []
     )

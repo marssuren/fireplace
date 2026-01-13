@@ -113,7 +113,7 @@ class VAC_443e:
     
     # 监听抽牌事件
     events = Draw(CONTROLLER).after(
-        lambda self, source, card: [
+        lambda self, player, played_card, target=None: [
             Buff(card, "VAC_443e2") if card.type == CardType.SPELL else None,
             Destroy(SELF)  # 移除此效果（无论抽到的是否是法术）
         ]
@@ -172,7 +172,7 @@ class WORK_026e:
     
     # 监听回合开始，倒计时
     events = OWN_TURN_BEGIN.on(
-        lambda self, source: (
+        lambda self, player: (
             setattr(self, 'turns_remaining', self.turns_remaining - 1),
             Destroy(OWNER) if self.turns_remaining <= 0 and OWNER.zone == Zone.HAND else None
         )
@@ -228,7 +228,7 @@ class VAC_424:
     圣骑士游客。在你施放一个法术后，随机召唤一个法力值消耗为（2）的随从并使其获得圣盾。
     """
     # 施放法术后触发
-    def _after_spell_cast(self, source, card):
+    def _after_spell_cast(self, player, played_card, target=None):
         """施放法术后的触发效果"""
         # 召唤一个2费随从
         minion = yield Summon(CONTROLLER, RandomMinion(cost=2))
@@ -268,7 +268,7 @@ class VAC_524e:
     
     # 监听回合结束,倒计时
     events = OWN_TURN_END.on(
-        lambda self, source: (
+        lambda self, player: (
             setattr(self, 'turns_remaining', getattr(self, 'turns_remaining', 2) - 1),
             Destroy(SELF) if getattr(self, 'turns_remaining', 2) <= 0 else None
         )

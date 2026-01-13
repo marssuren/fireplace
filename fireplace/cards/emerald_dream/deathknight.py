@@ -151,8 +151,8 @@ class EDR_815:
     """
     # 监听对手召唤随从事件
     events = Summon.on(
-        lambda self, source, target: target.controller == self.controller.opponent and self.controller.corpses >= 2,
-        lambda self, source, target: [
+        lambda self, card: target.controller == self.controller.opponent and self.controller.corpses >= 2,
+        lambda self, card: [
             # 消耗2残骸
             SetTags(CONTROLLER, {GameTag.CORPSES: self.controller.corpses - 2}),
             # 造成3点伤害
@@ -232,8 +232,8 @@ class EDR_810e:
     
     # 监听拥有此buff的随从攻击时，额外治疗1点生命值
     events = Attack.on(
-        lambda self, source, target: source == self.owner,
-        lambda self, source, target: [
+        lambda self, card: source == self.owner,
+        lambda self, card: [
             Heal(FRIENDLY_HERO, 1)  # 额外治疗1点生命值
         ]
     )

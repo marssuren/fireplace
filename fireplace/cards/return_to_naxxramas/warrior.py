@@ -31,7 +31,7 @@ class NX2_028:
 
 
 class CastTrainingSession(TargetedAction):
-    def do(self, source, target):
+    def do(self, card):
         # 创建并施放"训练课程"的复制
         # 需使用 SETASIDE 区域创建，避免进入手牌
         card = source.controller.card("NX2_029", zone=Zone.SETASIDE)

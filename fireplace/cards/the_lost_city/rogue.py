@@ -514,7 +514,7 @@ class TLC_515e:
     # 监听该卡牌被打出 (从手牌到打出区域)
     # 当卡牌被打出时,从剩余选项中再次发现
     events = Play(CONTROLLER, SELF).on(
-        lambda self, source, target: (
+        lambda self, card: (
             # 检查是否有剩余选项
             GenericChoice(
                 CONTROLLER, self.controller.map_remaining_choices.get(source.id, [])

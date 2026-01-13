@@ -147,7 +147,7 @@ class VAC_922e:
     
     # 回合结束时给予防晒霜并倒计时
     events = OWN_TURN_END.on(
-        lambda self, source: [
+        lambda self, player: [
             Give(CONTROLLER, "VAC_921t"),
             setattr(self, 'turns_remaining', getattr(self, 'turns_remaining', 3) - 1),
             Destroy(SELF) if getattr(self, 'turns_remaining', 3) <= 0 else None
@@ -173,7 +173,7 @@ class VAC_919e:
     
     # 监听施放法术，给予吸血效果
     events = Play(CONTROLLER, SPELL).on(
-        lambda self, source, card: [
+        lambda self, player, played_card, target=None: [
             Buff(card, "VAC_919e2"),
             Destroy(SELF)  # 施放法术后移除此效果
         ]

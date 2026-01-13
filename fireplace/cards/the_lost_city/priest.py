@@ -246,7 +246,7 @@ class TLC_821:
 	
 	# 监听治疗事件
 	events = Heal.on(
-		lambda self, source, target, amount: (
+		lambda self, target, amount: (
 			# 检查是否是己方治疗敌方
 			Attack(SELF, target)
 			if source.controller == self.controller and target.controller != self.controller
@@ -368,7 +368,7 @@ class TLC_811:
 	"""
 	# 监听友方随从攻击事件
 	events = Attack.on(
-		lambda self, source, target: (
+		lambda self, card: (
 			# 检查是否是其他友方随从攻击
 			SetCurrentHealth(source, SELF.health)
 			if source != SELF and source.controller == self.controller and source.type == CardType.MINION

@@ -255,7 +255,7 @@ class REV_841:
 class REV_841e:
     """Anonymous Informant Effect - 匿名线人效果"""
     # 下一个奥秘0费
-    events = Play(CONTROLLER, SECRET).after(lambda self, source, card: Destroy(SELF))
+    events = Play(CONTROLLER, SECRET).after(lambda self, player, played_card, target=None: Destroy(SELF))
     
     class Hand:
         # 在手牌中时，给奥秘减费

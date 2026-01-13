@@ -86,7 +86,7 @@ class TIME_055:
     """
     events = [
         Damage(SELF).after(
-            lambda self, source, target, amount: (
+            lambda self, target, amount: (
                 self.zone == Zone.PLAY and
                 self.health > 0 and
                 [Morph(self, RandomMinion(cost=7))]

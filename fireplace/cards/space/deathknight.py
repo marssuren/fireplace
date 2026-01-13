@@ -304,7 +304,7 @@ class GDB_469:
     # 监听友方随从召唤事件
     # 核心引擎会为复生召唤的随从设置 is_reborn_summon 标记
     events = Summon(CONTROLLER, MINION).after(
-        lambda self, source, card: (
+        lambda self, player, played_card, target=None: (
             # 检查是否是复生召唤：
             # 1. 不是自己
             # 2. 有 is_reborn_summon 标记（由核心引擎设置）

@@ -194,7 +194,7 @@ class RLK_659e:
     events = [
         # 随从打出后：消耗护甲值（等于随从费用）
         Play(CONTROLLER, MINION).after(
-            lambda self, source, card: [
+            lambda self, player, played_card, target=None: [
                 SpendArmor(FRIENDLY_HERO, card.cost),  # 使用核心扩展的 SpendArmor
                 setattr(self, 'minions_played', getattr(self, 'minions_played', 0) + 1),
                 Destroy(SELF) if getattr(self, 'minions_played', 0) >= 3 else None

@@ -173,7 +173,7 @@ class TLC_247:
     }
     
     events = Attack(SELF, MINION).after(
-        lambda self, source, target: (
+        lambda self, card: (
             target.dead and [
                 Give(CONTROLLER, Copy(target))
             ]
@@ -280,7 +280,7 @@ class TLC_256:
     After you cast a spell, gain Divine Shield.
     """
     events = Play(CONTROLLER, SPELL).after(
-        lambda self, source, card: SetTags(SELF, {GameTag.DIVINE_SHIELD: True})
+        lambda self, player, played_card, target=None: SetTags(SELF, {GameTag.DIVINE_SHIELD: True})
     )
 
 

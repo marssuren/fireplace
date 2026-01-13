@@ -200,7 +200,7 @@ class WW_422:
 
     # 当敌方使用卡牌时触发
     # 检查该卡牌是否在本回合进入手牌（通过 turn_entered_hand 属性）
-    def _on_enemy_play(self, source, target):
+    def _on_enemy_play(self, card):
         card = target
         # 检查卡牌是否在本回合进入手牌
         if hasattr(card, 'turn_entered_hand') and card.turn_entered_hand == source.game.turn:
@@ -210,7 +210,7 @@ class WW_422:
             source.controller.give(copy)
 
     secret = Play(OPPONENT).on(
-        lambda self, source, target: self._on_enemy_play(source, target)
+        lambda self, card: self._on_enemy_play(source, target)
     )
 
 

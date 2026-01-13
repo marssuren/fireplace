@@ -207,14 +207,14 @@ class TOY_312t:
     # 实现方式：在攻击前记录目标生命值，攻击后检查是否恰好致命
     rush = True
     
-    def OWN_ATTACK_TRIGGER(self, source, target):
+    def OWN_ATTACK_TRIGGER(self, card):
         """攻击前：记录目标生命值"""
         if target and hasattr(target, 'health'):
             self._last_target_health = target.health
             self._last_target = target
         return []
     
-    def OWN_ATTACK_AFTER_TRIGGER(self, source, target):
+    def OWN_ATTACK_AFTER_TRIGGER(self, card):
         """攻击后：检查是否造成恰好致命伤害"""
         if not self.controller.current_player:
             return []
@@ -418,7 +418,7 @@ class TOY_340t1:
     triggered = boolean_property("TOY_340_triggered")
 
     events = Play(CONTROLLER, SPELL).after(
-        lambda self, source: (
+        lambda self, player: (
             Buff(SELF, "TOY_340t"),
             SetAttr(SELF, "triggered", True)
         ) if not getattr(self, "triggered", False) else []
@@ -454,7 +454,7 @@ class TOY_341t:
             if not hasattr(self, 'higher_cost_played'):
                 self.higher_cost_played = False
 
-        events = Play(CONTROLLER).after(lambda self, source: self._check_higher_cost(source))
+        events = Play(CONTROLLER).after(lambda self, player, played_card, target=None: self._check_higher_cost(played_card))
 
         def _check_higher_cost(self, played_card):
             """检查打出的牌是否费用更高"""

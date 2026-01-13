@@ -25,7 +25,7 @@ class MAW_021e:
     }
     
     # 在对手回合中获得 Elusive（无法被法术或英雄技能指定）
-    def _update_elusive(self, source):
+    def _update_elusive(self, player):
         # 如果是对手回合，添加 CANT_BE_TARGETED_BY_SPELLS
         if source.controller.game.current_player != source.controller:
             source.tags[GameTag.CANT_BE_TARGETED_BY_SPELLS] = True
@@ -82,50 +82,17 @@ the opponent.
 class MAW_023e:
     """Theft Accusation Mark - 盗窃指控标记"""
     # 监听玩家打出从对手复制的卡牌
-    def _check_and_destroy(self, source, player, card):
-        # 详细日志：追踪 card 为 None 的情况
-        if card is None:
-            import sys
-            import traceback
-            error_msg = (
-                f"\n{'='*80}\n"
-                f"WARNING: MAW_023e._check_and_destroy received None card\n"
-                f"{'='*80}\n"
-                f"Source: {source}\n"
-                f"  Type: {type(source)}\n"
-                f"  ID: {getattr(source, 'id', 'N/A')}\n"
-                f"Player: {player}\n"
-                f"  Type: {type(player)}\n"
-                f"Self: {self}\n"
-                f"  Owner: {getattr(self, 'owner', 'N/A')}\n"
-                f"Stacktrace:\n"
-            )
-            print(error_msg, file=sys.stderr)
-            traceback.print_stack(file=sys.stderr)
-            print(f"{'='*80}\n", file=sys.stderr)
+    def _check_and_destroy(self, player, played_card, target=None):
+        # Play.after 事件参数：(player, played_card, target)
+        if played_card is None:
             return
         
-        if not hasattr(card, 'tags'):
-            import sys
-            import traceback
-            error_msg = (
-                f"\n{'='*80}\n"
-                f"WARNING: MAW_023e._check_and_destroy card has no 'tags' attribute\n"
-                f"{'='*80}\n"
-                f"Card: {card}\n"
-                f"  Type: {type(card)}\n"
-                f"  Dir: {dir(card)[:20]}\n"
-                f"Stacktrace:\n"
-            )
-            print(error_msg, file=sys.stderr)
-            traceback.print_stack(file=sys.stderr)
-            print(f"{'='*80}\n", file=sys.stderr)
+        if not hasattr(played_card, 'tags'):
             return
         
         # 检查卡牌是否是从对手复制的
-        # 使用新的 COPIED_FROM_OPPONENT 标签
         from ... import enums
-        if card.tags.get(enums.COPIED_FROM_OPPONENT, False):
+        if played_card.tags.get(enums.COPIED_FROM_OPPONENT, False):
             # 消灭被标记的随从
             yield Destroy(OWNER)
     
@@ -155,55 +122,27 @@ class REV_011:
     After you play a card copied from the opponent, steal the original.
     在你打出一张从对手处复制的卡牌后，偷取原版卡牌。
     """
-    def _steal_original(self, source, player, card):
-        # 详细日志：追踪 card 为 None 的情况
-        if card is None:
-            import sys
-            import traceback
-            error_msg = (
-                f"\n{'='*80}\n"
-                f"WARNING: REV_011._steal_original received None card\n"
-                f"{'='*80}\n"
-                f"Source: {source}\n"
-                f"  Type: {type(source)}\n"
-                f"  ID: {getattr(source, 'id', 'N/A')}\n"
-                f"Player: {player}\n"
-                f"  Type: {type(player)}\n"
-                f"Stacktrace:\n"
-            )
-            print(error_msg, file=sys.stderr)
-            traceback.print_stack(file=sys.stderr)
-            print(f"{'='*80}\n", file=sys.stderr)
+    def _steal_original(self, player, played_card, target=None):
+        # Play.after 事件参数：(player, played_card, target)
+        # self 是触发事件的实体（REV_011 随从）
+        if played_card is None:
             return
         
-        if not hasattr(card, 'tags'):
-            import sys
-            import traceback
-            error_msg = (
-                f"\n{'='*80}\n"
-                f"WARNING: REV_011._steal_original card has no 'tags' attribute\n"
-                f"{'='*80}\n"
-                f"Card: {card}\n"
-                f"  Type: {type(card)}\n"
-                f"Stacktrace:\n"
-            )
-            print(error_msg, file=sys.stderr)
-            traceback.print_stack(file=sys.stderr)
-            print(f"{'='*80}\n", file=sys.stderr)
+        if not hasattr(played_card, 'tags'):
             return
         
         from ... import enums
-        if card.tags.get(enums.COPIED_FROM_OPPONENT, False):
+        if played_card.tags.get(enums.COPIED_FROM_OPPONENT, False):
             # 尝试从对手手牌/牌库中偷取同名卡
             # 优先从手牌
             for opponent_card in player.opponent.hand:
-                if opponent_card.card_id == card.card_id:
+                if opponent_card.card_id == played_card.card_id:
                     yield Steal(opponent_card, CONTROLLER)
                     return
             
             # 如果手牌没有，从牌库偷取
             for opponent_card in player.opponent.deck:
-                if opponent_card.card_id == card.card_id:
+                if opponent_card.card_id == played_card.card_id:
                     yield Steal(opponent_card, CONTROLLER)
                     return
     
@@ -245,7 +184,7 @@ class REV_247e:
     """Partner in Crime Effect - 共犯效果"""
     # 回合结束时召唤拥有者的完整复制（包含所有buff）
     # 但需要移除复制身上的 REV_247e buff 以避免无限循环
-    def _summon_copy_and_cleanup(self, source):
+    def _summon_copy_and_cleanup(self, player):
         if source.controller.game.current_player == self.controller:
             # 召唤拥有者的完整复制（包含所有buff）
             copy_minion = yield Summon(CONTROLLER, ExactCopy(OWNER))
@@ -328,48 +267,17 @@ the higher of the two.
     在你对一个友方随从施放法术后，将其攻击力和生命值设为两者中较高的那个。
     """
     # 使用自定义函数处理，因为需要检查目标并计算值
-    def _equalize_stats(self, source, player, card):
-        # Play 事件的 after 会传入 Play.CARD
-        # 详细日志：追踪 card 为 None 的情况
-        if card is None:
-            import sys
-            import traceback
-            error_msg = (
-                f"\n{'='*80}\n"
-                f"WARNING: REV_250._equalize_stats received None card\n"
-                f"{'='*80}\n"
-                f"Source: {source}\n"
-                f"  Type: {type(source)}\n"
-                f"  ID: {getattr(source, 'id', 'N/A')}\n"
-                f"Player: {player}\n"
-                f"  Type: {type(player)}\n"
-                f"Stacktrace:\n"
-            )
-            print(error_msg, file=sys.stderr)
-            traceback.print_stack(file=sys.stderr)
-            print(f"{'='*80}\n", file=sys.stderr)
+    def _equalize_stats(self, player, played_card, spell_target=None):
+        # Play.after 事件参数：(player, played_card, target)
+        if played_card is None:
             return
         
-        if not hasattr(card, 'target'):
-            import sys
-            import traceback
-            error_msg = (
-                f"\n{'='*80}\n"
-                f"WARNING: REV_250._equalize_stats card has no 'target' attribute\n"
-                f"{'='*80}\n"
-                f"Card: {card}\n"
-                f"  Type: {type(card)}\n"
-                f"  ID: {getattr(card, 'id', 'N/A')}\n"
-                f"Stacktrace:\n"
-            )
-            print(error_msg, file=sys.stderr)
-            traceback.print_stack(file=sys.stderr)
-            print(f"{'='*80}\n", file=sys.stderr)
+        if not hasattr(played_card, 'target'):
             return
         
         # 需要检查该卡牌是否有目标，以及目标是否是友方随从
-        if card.target and hasattr(card.target, 'type'):
-            target = card.target
+        if played_card.target and hasattr(played_card.target, 'type'):
+            target = played_card.target
             if target.type == CardType.MINION and target.controller == player:
                 # 获取较高的属性值
                 higher_value = max(target.atk, target.health)

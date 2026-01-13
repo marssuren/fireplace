@@ -72,7 +72,7 @@ class EDR_844:
     events = (
         # 龙牌打出时标记
         Play(CONTROLLER, DRAGON + MINION).on(
-            lambda self, source, card: setattr(
+            lambda self, player, played_card, target=None: setattr(
                 self.controller,
                 'dragon_played_this_turn',
                 True
@@ -118,7 +118,7 @@ class EDR_846:
     class Hand:
         # 监听卡牌打出事件
         events = OWN_CARD_PLAY.on(
-            lambda self, source, card: (
+            lambda self, player, played_card, target=None: (
                 # 如果打出的牌费用 > 8，标记为已腐化
                 setattr(self.owner, 'shaladrassil_corrupted', True)
                 if card.cost > 8 else None

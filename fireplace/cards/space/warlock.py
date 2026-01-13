@@ -220,7 +220,7 @@ class GDB_127:
     # 特殊的法术迸发：暗影法术不会移除
     # 需要自定义事件监听
     events = [
-        OWN_SPELL_PLAY.on(lambda self, source, target: self._trigger_spellburst(source))
+        OWN_SPELL_PLAY.on(lambda self, card: self._trigger_spellburst(source))
     ]
 
     def _trigger_spellburst(self, spell):

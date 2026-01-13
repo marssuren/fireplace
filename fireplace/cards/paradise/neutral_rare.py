@@ -42,7 +42,7 @@ class VAC_441:
     """
     # 6费 6/7
     
-    def on_draw(self, source, card):
+    def on_draw(self, player, played_card, target=None):
         """当玩家抽牌后触发"""
         # 50%几率再抽一张
         if self.game.random.random() < 0.5:
@@ -50,7 +50,7 @@ class VAC_441:
     
     # 监听玩家抽牌
     events = Draw(CONTROLLER).after(
-        lambda self, source, card: self.on_draw(source, card)
+        lambda self, player, played_card, target=None: self.on_draw(player, played_card)
     )
 
 
@@ -92,7 +92,7 @@ class VAC_936:
     # 监听自己攻击随从的事件
     # 在攻击后额外造成7倍攻击力的伤害
     events = Attack(SELF, MINION).after(
-        lambda self, source, attacker, defender: Hit(defender, attacker.atk * 7)
+        lambda self, attacker, defender: Hit(defender, attacker.atk * 7)
     )
 
 
@@ -104,7 +104,7 @@ class WORK_040:
     """
     # 3费 2/4
     
-    def on_draw(self, source, card):
+    def on_draw(self, player, played_card, target=None):
         """当任意玩家抽牌后触发"""
         # 将抽到的牌变为临时卡牌
         # 临时卡牌：在回合结束时消失
@@ -113,7 +113,7 @@ class WORK_040:
     
     # 监听任意玩家抽牌
     events = Draw(ALL_PLAYERS).after(
-        lambda self, source, card: self.on_draw(source, card)
+        lambda self, player, played_card, target=None: self.on_draw(player, played_card)
     )
 
 

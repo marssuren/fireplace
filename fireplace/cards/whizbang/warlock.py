@@ -386,7 +386,7 @@ class TOY_529e:
     
     # 每回合开始时检查
     events = BeginTurn(CONTROLLER).on(
-        lambda self, source: [
+        lambda self, player: [
             # 减少剩余回合数并检查是否触发
             self._decrease_turns(),
         ]

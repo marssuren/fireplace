@@ -164,7 +164,7 @@ class EDR_416:
     """
     # 监听英雄攻击事件
     events = OWN_HERO_ATTACK.after(
-        lambda self, source, target: [
+        lambda self, card: [
             Summon(CONTROLLER, "EDR_416t")
         ]
     )
@@ -184,8 +184,8 @@ class FIR_953:
     # 监听攻击事件
     events = SELF_ATTACK.after(
         # 条件：攻击的是随从 且 自己存活
-        lambda self, source, target: target.type == CardType.MINION and not self.dead,
-        lambda self, source, target: [
+        lambda self, card: target.type == CardType.MINION and not self.dead,
+        lambda self, card: [
             # 造成等同于攻击力的伤害，随机分配到所有敌人
             Hit(ENEMY_CHARACTERS, self.atk, distribute=True)
         ]
@@ -259,7 +259,7 @@ class EDR_853:
     """
     # 监听法术施放事件
     events = OWN_SPELL_PLAY.after(
-        lambda self, source, target: [
+        lambda self, card: [
             # 随机召唤一个动物伙伴
             # Animal Companions: NEW1_032 (Misha), NEW1_033 (Leokk), NEW1_034 (Huffer)
             Summon(CONTROLLER, RandomID("NEW1_032", "NEW1_033", "NEW1_034"))

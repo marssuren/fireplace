@@ -94,8 +94,8 @@ class TLC_840:
     
     # 攻击后对敌方英雄造成2点伤害
     events = Attack.after(
-        lambda self, source, target: source == self,
-        lambda self, source, target: Hit(ENEMY_HERO, 2)
+        lambda self, card: source == self,
+        lambda self, card: Hit(ENEMY_HERO, 2)
     )
 
 
@@ -136,7 +136,7 @@ class TLC_900e:
     
     # 监听玩家打出卡牌事件
     events = Play(CONTROLLER).after(
-        lambda self, source, card: (
+        lambda self, player, played_card, target=None: (
             check_is_map_discovered_card(self.controller, card.id)
             and [
                 # 再次发现一张邪能法术牌
@@ -235,8 +235,8 @@ class TLC_833:
     """
     # 监听英雄攻击事件
     events = Attack.after(
-        lambda self, source, target: source == self.controller.hero,
-        lambda self, source, target: Summon(CONTROLLER, "TLC_833t")
+        lambda self, card: source == self.controller.hero,
+        lambda self, card: Summon(CONTROLLER, "TLC_833t")
     )
 
 
@@ -270,8 +270,8 @@ class TLC_630:
     
     # 监听受到伤害事件
     events = Damage.on(
-        lambda self, source, target, amount: target == self,
-        lambda self, source, target, amount: Give(CONTROLLER, "TLC_902t")
+        lambda self, target, amount: target == self,
+        lambda self, target, amount: Give(CONTROLLER, "TLC_902t")
     )
 
 
@@ -343,7 +343,7 @@ class TLC_631e:
     
     # 监听伤害事件
     events = Damage.after(
-        lambda self, source, target, amount: (
+        lambda self, target, amount: (
             # 必须是在自己的回合
             self.game.current_player == self.controller and
             # 目标必须是敌方角色
@@ -351,7 +351,7 @@ class TLC_631e:
             # 伤害必须刚好是2点
             amount == 2
         ),
-        lambda self, source, target, amount: self._on_damage_dealt()
+        lambda self, target, amount: self._on_damage_dealt()
     )
     
     def _on_damage_dealt(self):

@@ -13,7 +13,7 @@ class NX2_033:
 
     # 回合开始时切换极性
     events = OWN_TURN_BEGIN.on(
-        SetAttr(SELF, "thaddius_odd_mode", lambda self, entity: not getattr(entity, "thaddius_odd_mode", True))
+        SetAttr(SELF, "thaddius_odd_mode", lambda self, player: not getattr(entity, "thaddius_odd_mode", True))
     )
 
     # 根据当前模式决定减费哪些卡牌

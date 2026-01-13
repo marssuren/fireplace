@@ -223,7 +223,7 @@ class ONY_029e:
 
     # 使用英雄技能后递减计数器
     events = Inspire(CONTROLLER).after(
-        lambda self, source: (
+        lambda self, player: (
             setattr(source.controller, 'ony_029_uses_remaining',
                    source.controller.ony_029_uses_remaining - 1)
             if hasattr(source.controller, 'ony_029_uses_remaining') and

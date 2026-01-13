@@ -68,7 +68,7 @@ class EDR_484:
     """
     # 监听随从死亡事件
     events = Death(ALL_MINIONS).on(
-        lambda self, source, target: [
+        lambda self, card: [
             Buff(SELF, "EDR_484e", atk_bonus=target.atk)
         ] if target.type == CardType.MINION else []
     )

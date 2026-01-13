@@ -299,11 +299,11 @@ class TIME_020e:
     
     # 监听敌方随从死亡事件
     events = Death(ENEMY_MINIONS).on(
-        lambda self, entity: (
+        lambda self, player: (
             # 检查是否是阿古斯恶魔
             entity.id in ["TIME_020t1", "TIME_020t2", "TIME_020t3", "TIME_020t4"]
         ),
-        lambda self, entity: self._on_argus_demon_killed()
+        lambda self, player: self._on_argus_demon_killed()
     )
     
     def _on_argus_demon_killed(self):
@@ -370,9 +370,9 @@ class TIME_446e:
     
     # 监听打出恶魔事件，移除buff
     events = Play(CONTROLLER, MINION).after(
-        lambda self, source, card: (
+        lambda self, player, played_card, target=None: (
             # 检查是否是恶魔
             hasattr(card, 'race') and card.race == Race.DEMON
         ),
-        lambda self, source, card: Destroy(SELF)  # 移除buff
+        lambda self, player, played_card, target=None: Destroy(SELF)  # 移除buff
     )

@@ -172,7 +172,7 @@ class ETC_200:
     def play(self):
          # Draw Rush minion x 2
          for _ in range(2):
-            yield Draw(CONTROLLER, RandomMinion(mechanics="RUSH")).then(
+            yield Draw(CONTROLLER, RandomMinion(rush=True)).then(
                 Buff(Draw.CARD, "ETC_200e")
             )
 

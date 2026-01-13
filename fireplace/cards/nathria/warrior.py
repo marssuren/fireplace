@@ -88,7 +88,7 @@ After this attacks, equip it.
     tags = {GameTag.RUSH: True}
 
     # 攻击后装备武器
-    def _equip_weapon(self, source, target):
+    def _equip_weapon(self, card):
         if source == OWNER:
             # 记录当前生命值
             current_health = self.health
@@ -122,7 +122,7 @@ class REV_316t:
     转换不触发亡语
     """
     # 英雄攻击后召唤随从
-    def _summon_minion(self, source, target):
+    def _summon_minion(self, card):
         if source == FRIENDLY_HERO:
             # 记录当前耐久度
             current_durability = self.durability
@@ -285,7 +285,7 @@ give your damaged minions
     infuse = 2
 
     # 英雄攻击后触发
-    def _buff_damaged_minions(self, source, target):
+    def _buff_damaged_minions(self, card):
         if source == FRIENDLY_HERO:
             # 根据是否注能，给予不同的buff
             # 直接检查 infused 属性（无需 __init__）

@@ -15,7 +15,7 @@ class ULD_209:
         CARDS = CardArg()
         CARD = CardArg()
 
-        def get_target_args(self, source, target):
+        def get_target_args(self, card):
             cards = super().get_target_args(source, target)
             cards[0].append(source.controller.card("ULD_209t"))
             return cards

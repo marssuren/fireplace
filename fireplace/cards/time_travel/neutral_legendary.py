@@ -40,7 +40,7 @@ class TIME_024e:
     """
     # 监听己方回合开始事件
     events = OWN_TURN_BEGIN.on(
-        lambda self, source: [
+        lambda self, player: [
             # 将攻击力设置为999(游戏中的"无穷大")
             SetTags(OWNER, {GameTag.ATK: 999}),
             # 移除这个buff(只触发一次)
@@ -118,9 +118,9 @@ class TIME_063e:
     """
     # 监听打出卡牌事件
     events = Play(CONTROLLER).after(
-        lambda self, source, card, target: (
+        lambda self, player, played_card, target: (
             self._reduce_dormant() 
-            if hasattr(card, 'card_set') and card.card_set == CardSet.TIME_TRAVEL 
+            if hasattr(played_card, 'card_set') and played_card.card_set == CardSet.TIME_TRAVEL 
             else []
         )
     )

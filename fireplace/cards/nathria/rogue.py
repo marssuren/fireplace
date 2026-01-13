@@ -12,7 +12,7 @@ another class.
     """
     secret = True
     
-    def _trigger(self, source):
+    def _trigger(self, player):
         # 从其他职业的奥秘中发现一张并施放
         # 使用 RandomCollectible 配合 secret=True 和 exclude_class
         card = yield Discover(CONTROLLER, RandomCollectible(secret=True, exclude_class=CardClass.ROGUE))
@@ -41,7 +41,7 @@ class MAW_019:
 class MAW_019e:
     """Murder Accusation Mark - 谋杀指控标记"""
     # 监听敌方随从死亡
-    def _check_and_destroy(self, source, entity):
+    def _check_and_destroy(self, card):
         # 如果死亡的是敌方随从（不是被标记的自己）
         if entity != OWNER:
             # 消灭被标记的随从

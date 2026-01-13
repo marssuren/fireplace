@@ -92,7 +92,7 @@ class REV_377:
     # 1. 卡牌是否来自其他职业
     # 2. 如果是，复制它
     
-    def _copy_other_class_card(self, source, player, card):
+    def _copy_other_class_card(self, player, played_card, target=None):
         # 检查卡牌是否来自其他职业
         my_class = self.controller.hero.card_class
         card_class = card.card_class

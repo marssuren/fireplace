@@ -273,7 +273,7 @@ class TIME_861e:
     # 监听法术打出事件
     # 当这张法术被打出时，减少计数器
     events = Play(OWNER).on(
-        lambda self, source: self._on_spell_played()
+        lambda self, player: self._on_spell_played()
     )
     
     def _on_spell_played(self):

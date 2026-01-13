@@ -131,7 +131,7 @@ class SC_759e:
     
     # 使用一张星灵法术后移除此效果
     events = Play(CONTROLLER, SPELL).after(
-        lambda self, source, card: Destroy(SELF) if card.id in PROTOSS_SPELL_IDS else None
+        lambda self, player, played_card, target=None: Destroy(SELF) if played_card.id in PROTOSS_SPELL_IDS else None
     )
 
 
@@ -214,7 +214,7 @@ class GDB_135e:
     
     # 监听德莱尼被打出
     events = Play(CONTROLLER, MINION).after(
-        lambda self, source, card: [
+        lambda self, player, played_card, target=None: [
             FillMana(CONTROLLER, card.atk) if card.race == Race.DRAENEI else None,
             Destroy(SELF) if card.race == Race.DRAENEI else None
         ]
@@ -394,7 +394,7 @@ class GDB_136e:
     # 监听法术被打出
     events = [
         Play(CONTROLLER, SPELL).after(
-            lambda self, source, card: [
+            lambda self, player, played_card, target=None: [
                 # 如果是发现的那张牌且本回合使用且未触发过
                 DiscoverAndRepeat(source.controller) if (
                     card.id == self.discovered_card_id and 

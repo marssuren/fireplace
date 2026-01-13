@@ -191,7 +191,7 @@ class VAC_418:
         ),
         # 回合开始时重置计数器
         OWN_TURN_BEGIN.on(
-            lambda self, source, player: self.on_turn_begin(source, player)
+            lambda self, player: self.on_turn_begin(player)
         ),
     ]
     

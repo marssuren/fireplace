@@ -77,7 +77,7 @@ class TOY_341:
                 self.higher_cost_played = False
 
         # 监听控制者打出卡牌
-        events = Play(CONTROLLER).after(lambda self, source: self._check_higher_cost(source))
+        events = Play(CONTROLLER).after(lambda self, player, played_card, target=None: self._check_higher_cost(played_card))
 
         def _check_higher_cost(self, played_card):
             """检查打出的牌是否费用更高"""

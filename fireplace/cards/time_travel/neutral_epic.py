@@ -152,7 +152,7 @@ class TIME_102e:
     # 在己方回合开始时，减少1费
     events = [
         OWN_TURN_BEGIN.on(
-            lambda self, entity: Buff(OWNER, "TIME_102e2")
+            lambda self, player: Buff(OWNER, "TIME_102e2")
         )
     ]
 

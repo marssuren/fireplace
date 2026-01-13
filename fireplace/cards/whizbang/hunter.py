@@ -296,7 +296,7 @@ class TOY_355:
     # "来自过去"指的是所有可收集的传说野兽牌
     
     events = Death(FRIENDLY + BEAST).after(
-        lambda self, entity: [
+        lambda self, player: [
             # 获取随机传说野兽
             RandomCollectible(card_type=CardType.MINION, race=Race.BEAST, rarity=Rarity.LEGENDARY).then(
                 lambda cards: (

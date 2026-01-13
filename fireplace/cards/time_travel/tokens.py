@@ -604,7 +604,7 @@ class TIME_875t2:
 	"""
 	# 监听英雄攻击事件
 	events = Attack(FRIENDLY_HERO).after(
-		lambda self, source, target: [
+		lambda self, card: [
 			# 双方各抽一张传说卡牌
 			ForceDraw(RANDOM(FRIENDLY_DECK + LEGENDARY)),
 			ForceDraw(RANDOM(ENEMY_DECK + LEGENDARY)),

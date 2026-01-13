@@ -614,7 +614,7 @@ class TLC_466e:
     }
 
     events = OWN_TURN_END.on(
-        lambda self, entity: TLC_466e._trigger_effect(entity.owner)
+        lambda self, player: TLC_466e._trigger_effect(entity.owner)
     )
 
     @staticmethod

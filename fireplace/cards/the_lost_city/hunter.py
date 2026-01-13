@@ -122,7 +122,7 @@ class TLC_823e:
     
     # 监听打出野兽牌后移除buff
     events = Play(CONTROLLER, MINION + BEAST).after(
-        lambda self, source, card: Destroy(SELF)
+        lambda self, player, played_card, target=None: Destroy(SELF)
     )
 
 
@@ -173,7 +173,7 @@ class TLC_824e:
     
     # 监听玩家打出卡牌事件
     events = Play(CONTROLLER).after(
-        lambda self, source, card: (
+        lambda self, player, played_card, target=None: (
             check_is_map_discovered_card(self.controller, card.id)
             and [
                 # 再次发现一张攻击力为奇数的野兽牌（从剩余选项中）
@@ -349,7 +349,7 @@ class TLC_830e:
     """
     # 监听打出野兽牌事件
     events = Play(CONTROLLER, MINION + BEAST).after(
-        lambda self, source, card: (
+        lambda self, player, played_card, target=None: (
             # 记录打出的野兽攻击力
             self.controller.quest_beasts_played.add(card.atk),
             
@@ -376,13 +376,13 @@ class TLC_836:
     # 监听打出1费随从，使其属性值翻倍
     events = [
         Play(CONTROLLER, MINION + (COST == 1)).after(
-            lambda self, source, card: Buff(card, "TLC_836e")
+            lambda self, player, played_card, target=None: Buff(played_card, "TLC_836e")
         ),
         # 监听施放1费法术，再次施放
         # CastSpell 会自动处理目标选择（随机目标）
         # 参考 titans/neutral_legendary.py 的 TTN_092 实现
         Play(CONTROLLER, SPELL + (COST == 1)).after(
-            lambda self, source, card: [
+            lambda self, player, played_card, target=None: [
                 CastSpell(card)
             ]
         )

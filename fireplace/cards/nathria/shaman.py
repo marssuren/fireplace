@@ -223,7 +223,7 @@ Summon two instead.
     # 基础图腾列表
     BASIC_TOTEMS = ["CS2_050", "CS2_051", "CS2_052", "NEW1_009"]
     
-    def _summon_totems(self, source):
+    def _summon_totems(self, player):
         """在回合结束时召唤图腾"""
         # 根据是否注能，召唤不同数量的图腾
         count = 2 if self.infused else 1

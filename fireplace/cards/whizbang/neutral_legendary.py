@@ -85,7 +85,7 @@ class TOY_531:
     # 官方数据：6费 3/3
     # 效果：施放法术时，召唤随机随从直到战场满（最多7个随从）
 
-    def _on_spell_played(self, source, player, card):
+    def _on_spell_played(self, player, played_card, target=None):
         # 计算需要召唤的随从数量（填满战场）
         spaces_left = 7 - len(player.field)
         for _ in range(spaces_left):

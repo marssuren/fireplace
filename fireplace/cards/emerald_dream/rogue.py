@@ -140,7 +140,7 @@ class EDR_540:
     """
     # 监听随从打出事件 - 使用 before 检查是否已打过
     events = Play(CONTROLLER, MINION).before(
-        lambda self, source, target: (
+        lambda self, card: (
             source != self.owner and  # 不是自己
             source.id in self.owner.controller.minions_played_this_game  # 之前已经打过
         ),

@@ -229,7 +229,7 @@ class SCH_279:
 
     # 在你的英雄攻击一个随从后，你的所有随从也会攻击该随从
     events = Attack(FRIENDLY_HERO, MINION).after(
-        lambda self, source, target: [Attack(minion, target) for minion in source.controller.field]
+        lambda self, card: [Attack(minion, target) for minion in source.controller.field]
     )
 
 

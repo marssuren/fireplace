@@ -251,7 +251,7 @@ class TSC_630:
 
 
 class GluggAbsorb(Action):
-    def do(self, source, target):
+    def do(self, card):
         atk = target.original_atk
         health = target.original_health
         source.buff(atk=atk, max_health=health)

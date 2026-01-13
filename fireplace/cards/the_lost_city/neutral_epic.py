@@ -47,7 +47,7 @@ class TLC_107:
     
     # 攻击前造成3点伤害
     events = Attack(SELF).on(
-        lambda self, source, target: Hit(target, 3)
+        lambda self, card: Hit(target, 3)
     )
 
 

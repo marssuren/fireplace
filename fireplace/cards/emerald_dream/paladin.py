@@ -173,7 +173,7 @@ class EDR_253:
     """
     # 监听英雄攻击事件
     events = OWN_HERO_ATTACK.after(
-        lambda self, source, target: [
+        lambda self, card: [
             # 找到牌库中法力值消耗最高的牌
             Draw(CONTROLLER, Find(
                 FRIENDLY_DECK,

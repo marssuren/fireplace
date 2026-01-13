@@ -87,7 +87,7 @@ class SCH_238e:
     """Reaper's Scythe Cleave Buff"""
     # 在英雄攻击随从后，对相邻的随从造成伤害
     events = Attack(FRIENDLY_HERO, MINION).after(
-        lambda self, source, target: [
+        lambda self, card: [
             Hit(adj, source.atk) for adj in target.adjacent_minions
         ]
     )

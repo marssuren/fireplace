@@ -174,8 +174,8 @@ class EDR_271:
     """
     # 监听自然法术施放事件
     events = OWN_SPELL_PLAY.after(
-        lambda self, source, target: source.spell_school == SpellSchool.NATURE,
-        lambda self, source, target: [
+        lambda self, card: source.spell_school == SpellSchool.NATURE,
+        lambda self, card: [
             Summon(CONTROLLER, "EDR_271t"),
             # 将法术ID存储到树人的buff中，用于亡语效果
             Buff(Find(CONTROLLER_FIELD + FRIENDLY + LAST_SUMMONED), "EDR_271e", spell_id=source.id)

@@ -39,7 +39,7 @@ class TLC_220:
     """
     # 监听召唤元素事件
     events = Summon(CONTROLLER, ELEMENTAL).after(
-        lambda self, source, target: (
+        lambda self, card: (
             target != self  # 不是自己被召唤
             and Hit(RANDOM_ENEMY_CHARACTER, 3)
         )
@@ -71,7 +71,7 @@ class TLC_483:
     # 监听发现事件
     # 注意：这需要监听 GenericChoice 事件，当选择完成后触发
     events = GenericChoice(CONTROLLER).after(
-        lambda self, source: (
+        lambda self, player: (
             # 检查手牌中最后一张卡牌（刚发现的）
             self.controller.hand
             and Buff(self.controller.hand[-1], "TLC_483e")
@@ -257,7 +257,7 @@ class TLC_452:
         events = OWN_TURN_BEGIN.on(
             # 随机选择一个泰坦技能版本
             # 使用 Morph 变形为 TLC_452a/b/c/d 之一
-            lambda self, source: (
+            lambda self, player: (
                 # 随机选择一个版本（4个泰坦技能）
                 Morph(SELF, self.game.random.choice([
                     "TLC_452a",  # 版本A：造成伤害
@@ -286,7 +286,7 @@ class TLC_452a:
     class Hand:
         """手牌触发器：回合开始时随机变形为其他版本"""
         events = OWN_TURN_BEGIN.on(
-            lambda self, source: (
+            lambda self, player: (
                 Morph(SELF, self.game.random.choice([
                     "TLC_452",   # 基础版本
                     "TLC_452b",  # 版本B
@@ -314,7 +314,7 @@ class TLC_452b:
     class Hand:
         """手牌触发器：回合开始时随机变形为其他版本"""
         events = OWN_TURN_BEGIN.on(
-            lambda self, source: (
+            lambda self, player: (
                 Morph(SELF, self.game.random.choice([
                     "TLC_452",   # 基础版本
                     "TLC_452a",  # 版本A
@@ -342,7 +342,7 @@ class TLC_452c:
     class Hand:
         """手牌触发器：回合开始时随机变形为其他版本"""
         events = OWN_TURN_BEGIN.on(
-            lambda self, source: (
+            lambda self, player: (
                 Morph(SELF, self.game.random.choice([
                     "TLC_452",   # 基础版本
                     "TLC_452a",  # 版本A
@@ -370,7 +370,7 @@ class TLC_452d:
     class Hand:
         """手牌触发器：回合开始时随机变形为其他版本"""
         events = OWN_TURN_BEGIN.on(
-            lambda self, source: (
+            lambda self, player: (
                 Morph(SELF, self.game.random.choice([
                     "TLC_452",   # 基础版本
                     "TLC_452a",  # 版本A
@@ -417,7 +417,7 @@ class TLC_460e:
     """
     # 监听发现事件
     events = GenericChoice(CONTROLLER).after(
-        lambda self, source: [
+        lambda self, player: [
             # 更新任务进度
             SetTags(CONTROLLER, {GameTag.QUEST_PROGRESS: min(self.controller.quest_progress + 1, self.controller.quest_target)}),
             

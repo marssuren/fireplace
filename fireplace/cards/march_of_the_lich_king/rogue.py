@@ -153,7 +153,7 @@ class RandomPotion:
         "CFM_611",  # Bloodfury Potion
     ]
     
-    def evaluate(self, source):
+    def evaluate(self, player):
         import random
         return random.choice(self.POTIONS)
 

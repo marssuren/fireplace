@@ -127,7 +127,7 @@ class TIME_049:
     At the start of your turn, transform into a random 5-Cost minion.
     """
     events = [
-        OWN_TURN_BEGIN.on(lambda self, entity: Morph(self, RandomMinion(cost=5)))
+        OWN_TURN_BEGIN.on(lambda self, player: Morph(self, RandomMinion(cost=5)))
     ]
 
 
@@ -144,7 +144,7 @@ class TIME_050:
     """
     events = [
         Damage(SELF).after(
-            lambda self, source, target, amount: (
+            lambda self, target, amount: (
                 self.zone == Zone.PLAY and
                 self.health > 0 and
                 self._swap_stats()
@@ -186,10 +186,10 @@ class TIME_054:
     """
     events = [
         # 己方回合结束
-        OWN_TURN_END.on(lambda self, entity: Give(CONTROLLER, "GAME_005")),
+        OWN_TURN_END.on(lambda self, player: Give(CONTROLLER, "GAME_005")),
         # 对手回合结束
         TURN_END.on(
-            lambda self, entity: (
+            lambda self, player: (
                 entity == self.controller.opponent and
                 [Give(self.controller.opponent, "GAME_005")]
             )
@@ -300,7 +300,7 @@ class TIME_100:
     """
     events = [
         OWN_TURN_END.on(
-            lambda self, entity: [
+            lambda self, player: [
                 Buff(card, "TIME_100e")
                 for card in self.controller.hand
                 if card.type == CardType.MINION
@@ -345,7 +345,7 @@ class TIME_428:
     """
     events = [
         OWN_TURN_END.on(
-            lambda self, entity: [
+            lambda self, player: [
                 Buff(minion, "TIME_428e")
                 for minion in self.controller.field
                 if minion != self

@@ -311,7 +311,7 @@ class GDB_138e2:
     
     # 回合结束时，返回神性圣契到手牌
     events = OWN_TURN_END.on(
-        lambda self, source: Give(CONTROLLER, self.spell_id) if hasattr(self, 'spell_id') else None,
+        lambda self, player: Give(CONTROLLER, self.spell_id) if hasattr(self, 'spell_id') else None,
         Destroy(SELF)
     )
 
@@ -348,7 +348,7 @@ class GDB_140e:
     
     # 每个回合结束时减少计数
     events = OWN_TURN_END.on(
-        lambda self, source: [
+        lambda self, player: [
             setattr(self, 'turns_remaining', self.turns_remaining - 1),
             Destroy(SELF) if self.turns_remaining <= 0 else None
         ]
@@ -409,7 +409,7 @@ class GDB_144:
     """
     # 监听英雄受到伤害
     events = Damage(HERO).after(
-        lambda self, source, target, amount: Buff(target, "GDB_144e")
+        lambda self, target, amount: Buff(target, "GDB_144e")
     )
 
 

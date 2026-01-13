@@ -194,7 +194,7 @@ class TTN_727:
     # 使用自定义事件处理器
     class Hand:
         events = Attack(OWNER).on(
-            lambda self, source, target: self.owner._handle_attack(target)
+            lambda self, card: self.owner._handle_attack(target)
         )
 
     def _handle_attack(self, attack_target):
@@ -239,7 +239,7 @@ class YOG_522e:
     # 监听法术施放事件，对相邻随从也施放
     # 参考 TRL_319e 的实现方式
     events = Play(CONTROLLER, SPELL).on(
-        lambda self, source, card, target: [
+        lambda self, player, played_card, target: [
             # 如果法术有目标且目标是随从，则对相邻随从也施放
             self._cast_on_adjacent(card, target) if target and target.type == CardType.MINION else None,
             # 标记为已使用并销毁

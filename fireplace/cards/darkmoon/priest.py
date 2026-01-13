@@ -86,7 +86,7 @@ class DMF_120e:
     
     # 监听抽牌事件，召唤存储的随从的复制
     events = Draw(CONTROLLER).after(
-        lambda self, source: (
+        lambda self, player: (
             Summon(CONTROLLER, self.stored_minion_id) 
             if hasattr(self, 'stored_minion_id') and self.stored_minion_id 
             else None

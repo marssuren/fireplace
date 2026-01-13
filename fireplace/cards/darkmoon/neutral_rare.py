@@ -72,7 +72,7 @@ class HysteriaAttack(TargetedAction):
     """Hysteria attack loop - 狂乱攻击循环"""
     TARGET = ActionArg()
     
-    def do(self, source, target):
+    def do(self, card):
         # 当目标还活着时,持续攻击
         while not target.dead and target.zone == Zone.PLAY:
             # 获取所有可攻击的随从(除了自己)

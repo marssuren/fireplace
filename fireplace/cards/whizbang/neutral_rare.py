@@ -36,7 +36,7 @@ class TOY_312:
     
     # 使用 Attack 事件的 on 触发器（攻击前）记录目标生命值
     # 然后在 after 触发器（攻击后）检查是否恰好致命
-    def OWN_ATTACK_TRIGGER(self, source, target):
+    def OWN_ATTACK_TRIGGER(self, card):
         """攻击前：记录目标生命值"""
         if target and hasattr(target, 'health'):
             # 记录目标当前生命值
@@ -44,7 +44,7 @@ class TOY_312:
             self._last_target = target
         return []
     
-    def OWN_ATTACK_AFTER_TRIGGER(self, source, target):
+    def OWN_ATTACK_AFTER_TRIGGER(self, card):
         """攻击后：检查是否造成恰好致命伤害"""
         # 检查是否在自己的回合
         if not self.controller.current_player:

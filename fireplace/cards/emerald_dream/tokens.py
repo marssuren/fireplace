@@ -127,7 +127,7 @@ class EDR_845e:
     }
     
     # 监听法术施放事件
-    def _trigger_imbue_on_count(self, source, card):
+    def _trigger_imbue_on_count(self, player, played_card, target=None):
         """法术施放后的处理逻辑"""
         from .imbue_helpers import trigger_imbue
         
@@ -160,7 +160,7 @@ class EDR_464e:
     
     # 监听法术施放事件
     events = OWN_SPELL_PLAY.after(
-        lambda self, source, card, target: [
+        lambda self, player, played_card, target: [
             # 再次触发法术效果
             # 使用 Battlecry action 来模拟 play 效果
             Battlecry(card, target),

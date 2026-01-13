@@ -50,7 +50,7 @@ class VAC_339:
 
     # 在回合结束时，召唤一个属性等同于本随从的元素
     events = OWN_TURN_END.on(
-        lambda self, source: [
+        lambda self, player: [
             Summon(CONTROLLER, ExactCopy(source))
         ]
     )
@@ -203,7 +203,7 @@ class VAC_527:
 
     # 监听本随从即将受到伤害的事件，将伤害限制为1
     events = Predamage(SELF).on(
-        lambda self, source, target, amount: min(amount, 1)
+        lambda self, target, amount: min(amount, 1)
     )
 
 
@@ -227,7 +227,7 @@ class VAC_533e:
 
     # 当这个随从死亡时，从创建者（对手）的牌库中召唤一个随从
     events = Death(OWNER).on(
-        lambda self, source, target: [
+        lambda self, card: [
             Summon(source.controller.opponent, RandomMinion(source.controller.opponent.deck.filter(type=CardType.MINION)))
         ] if source.controller.opponent.deck.filter(type=CardType.MINION) else []
     )

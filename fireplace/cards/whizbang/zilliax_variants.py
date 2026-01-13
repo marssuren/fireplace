@@ -123,7 +123,7 @@ class TOY_330_PowerPylon:
     # 效果1：回合开始时使本随从的攻击力翻倍
     # 效果2：你的其他随从获得+1攻击力
 
-    events = OWN_TURN_BEGIN.on(lambda self, source: [Buff(SELF, "TOY_330_PowerBuff")])
+    events = OWN_TURN_BEGIN.on(lambda self, player: [Buff(SELF, "TOY_330_PowerBuff")])
     update = Refresh(FRIENDLY_MINIONS - SELF, {GameTag.ATK: +1})
 
 
@@ -135,7 +135,7 @@ class TOY_330_PowerRecursive:
     # 效果1：回合开始时使本随从的攻击力翻倍
     # 效果2：亡语：将本随从洗入你的牌库
 
-    events = OWN_TURN_BEGIN.on(lambda self, source: [Buff(SELF, "TOY_330_PowerBuff")])
+    events = OWN_TURN_BEGIN.on(lambda self, player: [Buff(SELF, "TOY_330_PowerBuff")])
     deathrattle = Shuffle(CONTROLLER, SELF)
 
 
@@ -147,7 +147,7 @@ class TOY_330_PowerTicking:
     # 效果1：回合开始时使本随从的攻击力翻倍
     # 效果2：你每有一个友方随从，本牌的法力值消耗减少（1）点
 
-    events = OWN_TURN_BEGIN.on(lambda self, source: [Buff(SELF, "TOY_330_PowerBuff")])
+    events = OWN_TURN_BEGIN.on(lambda self, player: [Buff(SELF, "TOY_330_PowerBuff")])
     cost_mod = lambda self, i: -Count(FRIENDLY_MINIONS)
 
 
@@ -159,7 +159,7 @@ class TOY_330_PowerTwin:
     # 效果1：回合开始时使本随从的攻击力翻倍
     # 效果2：战吼：召唤一个本随从的复制
 
-    events = OWN_TURN_BEGIN.on(lambda self, source: [Buff(SELF, "TOY_330_PowerBuff")])
+    events = OWN_TURN_BEGIN.on(lambda self, player: [Buff(SELF, "TOY_330_PowerBuff")])
 
     def play(self):
         yield Summon(CONTROLLER, ExactCopy(SELF))
@@ -177,7 +177,7 @@ class TOY_330_PowerPerfect:
     taunt = True
     lifesteal = True
     rush = True
-    events = OWN_TURN_BEGIN.on(lambda self, source: [Buff(SELF, "TOY_330_PowerBuff")])
+    events = OWN_TURN_BEGIN.on(lambda self, player: [Buff(SELF, "TOY_330_PowerBuff")])
 
 
 class TOY_330_PowerVirus:
@@ -190,7 +190,7 @@ class TOY_330_PowerVirus:
 
     elusive = True
     poisonous = True
-    events = OWN_TURN_BEGIN.on(lambda self, source: [Buff(SELF, "TOY_330_PowerBuff")])
+    events = OWN_TURN_BEGIN.on(lambda self, player: [Buff(SELF, "TOY_330_PowerBuff")])
 
 
 # ========================================

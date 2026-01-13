@@ -294,7 +294,7 @@ to the enemy hero.
     secret = True
 
     # 使用自定义方法追踪对手打出的牌数
-    def _on_opponent_play(self, source, player, card):
+    def _on_opponent_play(self, player, played_card, target=None):
         # 在奥秘上使用TAG_SCRIPT_DATA_NUM_1追踪计数
         count = self.tags.get(GameTag.TAG_SCRIPT_DATA_NUM_1, 0) + 1
         self.tags[GameTag.TAG_SCRIPT_DATA_NUM_1] = count
@@ -304,7 +304,7 @@ to the enemy hero.
             yield Hit(ENEMY_HERO, 6)
             yield Reveal(SELF)
 
-    def _reset_counter(self, source):
+    def _reset_counter(self, player):
         # 回合开始时重置计数器
         self.tags[GameTag.TAG_SCRIPT_DATA_NUM_1] = 0
 

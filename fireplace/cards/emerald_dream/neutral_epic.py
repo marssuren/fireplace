@@ -89,7 +89,7 @@ class EDR_780e:
     """血蓟幻术师增益 - 受到伤害时死亡"""
     # 受到伤害时死亡
     events = Damage(OWNER).on(
-        lambda self, source, target, amount: [
+        lambda self, target, amount: [
             Destroy(OWNER)
         ]
     )

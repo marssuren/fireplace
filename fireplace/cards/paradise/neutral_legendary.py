@@ -19,7 +19,7 @@ class VAC_321:
     
     # 回合结束时升级牌库中的爆发
     events = OWN_TURN_END.on(
-        lambda self, source: [
+        lambda self, player: [
             setattr(card, 'eruption_damage', getattr(card, 'eruption_damage', 1) + 1)
             for card in self.controller.deck
             if card.id == "VAC_321t"

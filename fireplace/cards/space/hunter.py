@@ -276,7 +276,7 @@ class GDB_842:
     
     # 在回合结束时，摧毁右侧随从以提前苏醒
     events = OWN_TURN_END.on(
-        lambda self, source: DestroyRightMinionToAwaken(self)
+        lambda self, player: DestroyRightMinionToAwaken(self)
     )
 
 

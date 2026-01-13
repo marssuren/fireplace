@@ -17,7 +17,7 @@ class VAC_304:
         """在手牌中监听法术施放"""
         # 监听玩家施放法术,直接在lambda中更新属性
         events = Play(CONTROLLER, SPELL).after(
-            lambda self, source, card, target: (
+            lambda self, player, played_card, target: (
                 # 获取或初始化列表
                 current_spells := getattr(self, 'spells_cast_while_holding', []),
                 # 如果少于3个,添加新法术
@@ -336,7 +336,7 @@ class VAC_938:
     """
     # 监听其他友方海盗攻击
     events = Attack(FRIENDLY + PIRATE - SELF).after(
-        lambda self, source, attacker, defender: Buff(attacker, "VAC_938e")
+        lambda self, attacker, defender: Buff(attacker, "VAC_938e")
     )
 
 

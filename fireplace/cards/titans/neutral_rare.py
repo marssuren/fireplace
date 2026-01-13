@@ -75,7 +75,7 @@ class TTN_741:
     class Hand:
         # 每回合开始时，变形为对手牌库中的随机卡牌
         events = OWN_TURN_BEGIN.on(
-            lambda self, source: [
+            lambda self, player: [
                 Morph(SELF, self.game.random.choice(source.controller.opponent.deck))
             ] if source.controller.opponent.deck else []
         )

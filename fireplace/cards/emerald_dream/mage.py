@@ -84,8 +84,8 @@ class FIR_913:
     """
     # 监听火焰法术施放事件
     events = OWN_SPELL_PLAY.after(
-        lambda self, source, target: source.spell_school == SpellSchool.FIRE,
-        lambda self, source, target: [
+        lambda self, card: source.spell_school == SpellSchool.FIRE,
+        lambda self, card: [
             # 随机获取一张元素牌
             RandomCard(CONTROLLER, race=Race.ELEMENTAL),
             # 减少3费

@@ -181,7 +181,7 @@ class GDB_441:
     # 监听过量治疗事件
     events = [
         Overheal(FRIENDLY_MINIONS - SELF).on(
-            lambda self, source, target, amount: target.buff(target.controller, "GDB_441e", atk=0, health=amount)
+            lambda self, target, amount: target.buff(target.controller, "GDB_441e", atk=0, health=amount)
         )
     ]
 
@@ -212,7 +212,7 @@ class GDB_454:
     
     # 法术迸发：沉默本随从
     events = OWN_SPELL_PLAY.on(
-        lambda self, source: Silence(self).run(),
+        lambda self, player: Silence(self).run(),
         SetTags(SELF, {GameTag.SPELLBURST: False})
     )
     
@@ -378,7 +378,7 @@ class GDB_442:
         GameTag.ELITE: True,
     }
     
-    def _trigger_spellburst(self, source):
+    def _trigger_spellburst(self, player):
         """法术迸发触发逻辑"""
         # 召唤一个随机的3费随从
         Summon(self.controller, RandomCollectible(
@@ -393,7 +393,7 @@ class GDB_442:
     # 法术迸发：召唤一个随机的3费随从
     # 神圣法术不会移除此法术迸发
     events = OWN_SPELL_PLAY.on(
-        lambda self, source: self._trigger_spellburst(source)
+        lambda self, player, played_card, target=None: self._trigger_spellburst(played_card)
     )
 
 
@@ -426,7 +426,7 @@ class GDB_455e:
     # 监听德莱尼打出事件
     # 使用MINION选择器并在lambda中过滤德莱尼种族
     events = Play(CONTROLLER, MINION).after(
-        lambda self, source, card: [
+        lambda self, player, played_card, target=None: [
             # 检查是否是德莱尼
             Summon(self.owner.controller, card.copy()).run() if card.race == Race.DRAENEI else None,
             # 移除此buff（无论是否是德莱尼都移除）

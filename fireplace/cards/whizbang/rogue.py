@@ -189,7 +189,7 @@ class TOY_522:
     # 效果：英雄攻击后召唤1/1海盗并攻击随机敌人
     
     events = Attack(FRIENDLY_HERO).after(
-        lambda self, source, target: self._summon_and_attack()
+        lambda self, card: self._summon_and_attack()
     )
     
     def _summon_and_attack(self):
@@ -238,7 +238,7 @@ class TOY_515:
     # 效果：打出1费随从后，获取0费复制
     
     events = Play(CONTROLLER, MINION + (COST(Play.CARD) == 1)).after(
-        lambda self, source: self._give_copy(source)
+        lambda self, player, played_card, target=None: self._give_copy(played_card)
     )
     
     def _give_copy(self, minion):
@@ -260,7 +260,7 @@ class TOY_511:
     # 效果：召唤海盗后，召唤复制并攻击随机敌人然后死亡
     
     events = Summon(CONTROLLER, PIRATE).after(
-        lambda self, source: self._summon_and_attack(source)
+        lambda self, player, played_card, target=None: self._summon_and_attack(played_card)
     )
     
     def _summon_and_attack(self, pirate):
@@ -309,7 +309,7 @@ class TOY_512e:
     }
     
     events = Summon(CONTROLLER, MINION).after(
-        lambda self, source: self._set_stats(source)
+        lambda self, player, played_card, target=None: self._set_stats(played_card)
     )
     
     def _set_stats(self, minion):

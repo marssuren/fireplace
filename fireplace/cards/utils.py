@@ -786,7 +786,7 @@ def RandomTarget(selector, count=1):
             self.selector = selector
             self.count = count
         
-        def trigger(self, source):
+        def trigger(self, player):
             # 评估选择器获取所有可能的目标
             if self.selector is None:
                 print(f"[ERROR] RandomTargetAction.trigger: selector is None!")
@@ -957,7 +957,7 @@ def RandomCard(controller=None, card_filter=None, **kwargs):
             
             return matching_cards
         
-        def trigger(self, source):
+        def trigger(self, player):
             """执行时返回随机选择的卡牌"""
             matching_cards = self._get_matching_cards()
             
@@ -981,7 +981,7 @@ def Excess(target, damage):
     from ..dsl.lazynum import LazyNum
     
     class ExcessDamage(LazyNum):
-        def evaluate(self, source):
+        def evaluate(self, player):
             if hasattr(target, 'health'):
                 return max(0, damage - target.health)
             return 0
@@ -994,7 +994,7 @@ def HeroPower(player):
     from ..dsl.lazynum import LazyNum
     
     class HeroPowerDamage(LazyNum):
-        def evaluate(self, source):
+        def evaluate(self, player):
             # 基础英雄技能伤害通常是1（法师火球术）
             # 加上任何额外的英雄技能伤害加成
             base_damage = 1
@@ -1009,7 +1009,7 @@ def EventValue():
     from ..dsl.lazynum import LazyNum
     
     class EventValueNum(LazyNum):
-        def evaluate(self, source):
+        def evaluate(self, player):
             # 对于暴怒（Frenzy）事件，返回受到的伤害值
             # 这个值通常存储在事件上下文中
             if hasattr(source, 'event_value'):
@@ -1120,7 +1120,7 @@ class JoustHelper(Evaluator):
         self.defender = defender
         super().__init__()
 
-    def trigger(self, source):
+    def trigger(self, player):
         action = Joust(self.challenger, self.defender).then(
             JoustEvaluator(Joust.CHALLENGER, Joust.DEFENDER) & self._if | self._else
         )

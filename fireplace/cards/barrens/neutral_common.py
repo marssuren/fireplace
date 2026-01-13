@@ -159,7 +159,7 @@ class BAR_074:
     Can't attack. After your opponent draws a card, it costs (1) more (up to 10).
     无法攻击。在你的对手抽一张牌后，使其法力值消耗增加（1）点（最多为10点）。
     """
-    def _on_opponent_draw(self, source, cards):
+    def _on_opponent_draw(self, target, card):
         """对手抽牌后，增加费用"""
         if cards:
             for card in cards:

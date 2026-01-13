@@ -115,7 +115,7 @@ class TLC_428e_kindred:
     
     # 当打出鱼人后给予圣盾并移除此buff
     events = Play(CONTROLLER, MINION + MURLOC).after(
-        lambda self, source, card: [
+        lambda self, player, played_card, target=None: [
             Buff(card, "TLC_428e_divine_shield"),
             Destroy(SELF)
         ]
@@ -231,7 +231,7 @@ class TLC_442e:
     # 合并事件：监听打出卡牌和回合结束
     events = (
         Play(CONTROLLER).on(
-            lambda self, source, card: self._check_and_discover_again(card)
+            lambda self, player, played_card, target=None: self._check_and_discover_again(played_card)
         ),
         OWN_TURN_END.on(Destroy(SELF))
     )
@@ -618,7 +618,7 @@ class TLC_426_tracker:
     """
     # 监听召唤鱼人事件
     events = Summon(CONTROLLER, MINION + MURLOC).after(
-        lambda self, source, target: [
+        lambda self, card: [
             # 更新任务进度
             SetTags(CONTROLLER, {GameTag.QUEST_PROGRESS: min(self.controller.quest_progress + 1, self.controller.quest_target})),
             

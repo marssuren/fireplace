@@ -54,7 +54,7 @@ class ONY_002:
     """全需勇士 / Gear Grubber
     嘲讽 如果你在回合结束时有未使用的法力水晶，本牌的法力值消耗减少（1）点。"""
     events = OWN_TURN_END.on(
-        lambda self, source: Buff(self, "ONY_002e") if source.mana - source.used_mana > 0 else None
+        lambda self, player: Buff(self, "ONY_002e") if player.mana - player.used_mana > 0 else None
     )
 
 

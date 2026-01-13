@@ -93,7 +93,7 @@ attack the enemy hero.
     """
     secret = True
 
-    def _trigger(self, attacker):
+    def _trigger(self, attacker, defender=None):
         # 召唤攻击者的复制
         copy = yield Summon(CONTROLLER, ExactCopy(attacker))
         if copy:
@@ -129,7 +129,7 @@ deal 2 damage to
 all enemies.
     在你的回合结束时，如果你控制一个<b>奥秘</b>，对所有敌人造成2点伤害。
     """
-    def _trigger_if_has_secret(self, source):
+    def _trigger_if_has_secret(self, player):
         # 检查是否控制奥秘
         if len(self.controller.secrets) > 0:
             yield Hit(ENEMY_CHARACTERS, 2)

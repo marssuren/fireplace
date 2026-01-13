@@ -26,7 +26,7 @@ class ETC_422:
     }
     
     # 监听打出卡牌事件，追踪连续打出的卡牌费用
-    def _on_play(self, source, player, card):
+    def _on_play(self, player, played_card, target=None):
         """当打出卡牌时检查费用是否匹配"""
         if player == self.controller:
             current_cost = self.tags.get(GameTag.TAG_SCRIPT_DATA_NUM_1, 0)
@@ -40,7 +40,7 @@ class ETC_422:
                 # 递增费用值
                 self.game.queue_actions(self, [Buff(SELF, "ETC_422e")])
     
-    events = Play(ALL_PLAYERS).after(lambda self, source, player, card: self._on_play(source, player, card))
+    events = Play(ALL_PLAYERS).after(lambda self, player, played_card, target=None: self._on_play(player, played_card, target))
 
 
 class ETC_422e:
