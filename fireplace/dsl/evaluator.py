@@ -134,9 +134,20 @@ class Dead(Evaluator):
             entities = self.selector.eval(source.game, source)
         else:
             entity = self.selector.evaluate(source)
-            entities = [entity] if entity else []
+            # entity 可能是 None、单个实体、或者实体列表
+            if entity is None:
+                entities = []
+            elif isinstance(entity, list):
+                entities = entity
+            else:
+                entities = [entity]
         for target in entities:
-            if target.dead:
+            # 处理 target 也可能是列表的情况
+            if isinstance(target, list):
+                for t in target:
+                    if hasattr(t, 'dead') and t.dead:
+                        return True
+            elif hasattr(target, 'dead') and target.dead:
                 return True
         return False
 
@@ -157,9 +168,20 @@ class Alive(Evaluator):
             entities = self.selector.eval(source.game, source)
         else:
             entity = self.selector.evaluate(source)
-            entities = [entity] if entity else []
+            # entity 可能是 None、单个实体、或者实体列表
+            if entity is None:
+                entities = []
+            elif isinstance(entity, list):
+                entities = entity
+            else:
+                entities = [entity]
         for target in entities:
-            if target.dead:
+            # 处理 target 也可能是列表的情况
+            if isinstance(target, list):
+                for t in target:
+                    if hasattr(t, 'dead') and t.dead:
+                        return False
+            elif hasattr(target, 'dead') and target.dead:
                 return False
         return True
 

@@ -221,11 +221,16 @@ class TSC_651:
         yield Hit(TARGET, 4)
         
         # 检查本回合是否打出过娜迦
-        naga_played_this_turn = any(
-            card.type == CardType.MINION and 
-            hasattr(card, 'races') and Race.NAGA in getattr(card, 'races', [])
-            for card in self.controller.cards_played_this_turn
-        )
+        naga_played_this_turn = False
+        for card in self.controller.cards_played_this_turn:
+            try:
+                if card.type == CardType.MINION:
+                    races = getattr(card, 'races', None)
+                    if races and hasattr(races, '__iter__') and Race.NAGA in races:
+                        naga_played_this_turn = True
+                        break
+            except Exception:
+                continue
         
         if naga_played_this_turn:
             yield Buff(CONTROLLER, "TSC_651e")

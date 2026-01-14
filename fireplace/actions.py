@@ -2214,11 +2214,15 @@ class ExtraBattlecry(Battlecry):
 
     def do(self, source, card, target=None):
         if target is None:
-            old_requirements = source.requirements
-            source.requirements = card.requirements
-            if source.requires_target():
-                target = source.game.random.choice(source.play_targets)
-            source.requirements = old_requirements
+            old_requirements = source.requirements if hasattr(source, 'requirements') else {}
+            if hasattr(source, 'requirements'):
+                source.requirements = card.requirements
+            if hasattr(source, 'requires_target') and source.requires_target():
+                play_targets = getattr(source, 'play_targets', None)
+                if play_targets:
+                    target = source.game.random.choice(play_targets)
+            if hasattr(source, 'requirements'):
+                source.requirements = old_requirements
 
         return super().do(source, card, target)
 

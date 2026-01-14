@@ -64,6 +64,53 @@ class BT_136tb:
     play = Summon(CONTROLLER, "BT_136tt2")
 
 
+# Token 卡牌: 真菌巨人
+@custom_card
+class BT_136tt1:
+    """Fungal Giant (Taunt) - 真菌巨人（嘲讽）
+    9/9 嘲讽
+    """
+    tags = {
+        GameTag.CARDNAME: "Fungal Giant",
+        GameTag.CARDTYPE: CardType.MINION,
+        GameTag.COST: 10,
+        GameTag.ATK: 9,
+        GameTag.HEALTH: 9,
+        GameTag.TAUNT: True,
+    }
+
+
+@custom_card
+class BT_136tt2:
+    """Fungal Giant (Rush) - 真菌巨人（突袭）
+    9/9 突袭
+    """
+    tags = {
+        GameTag.CARDNAME: "Fungal Giant",
+        GameTag.CARDTYPE: CardType.MINION,
+        GameTag.COST: 10,
+        GameTag.ATK: 9,
+        GameTag.HEALTH: 9,
+        GameTag.RUSH: True,
+    }
+
+
+@custom_card
+class BT_136tt3:
+    """Fungal Giant (Taunt + Rush) - 真菌巨人（嘲讽 + 突袭）
+    9/9 嘲讽 突袭
+    """
+    tags = {
+        GameTag.CARDNAME: "Fungal Giant",
+        GameTag.CARDTYPE: CardType.MINION,
+        GameTag.COST: 10,
+        GameTag.ATK: 9,
+        GameTag.HEALTH: 9,
+        GameTag.TAUNT: True,
+        GameTag.RUSH: True,
+    }
+
+
 ##
 # Spells
 

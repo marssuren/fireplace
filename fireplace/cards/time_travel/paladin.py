@@ -26,8 +26,8 @@ class TIME_015:
             # 为英雄恢复3点生命值
             yield Heal(FRIENDLY_HERO, 3)
             
-            # 给英雄圣盾
-            yield Buff(FRIENDLY_HERO, "divine_shield")
+            # 给英雄圣盾 - 使用 SetTag 设置圣盾标签
+            yield SetTags(FRIENDLY_HERO, {GameTag.DIVINE_SHIELD: True})
 
 
 class TIME_017:

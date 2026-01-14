@@ -130,8 +130,8 @@ class TIME_447:
     }
     
     def play(self):
-        # 给目标角色圣盾
-        yield Buff(TARGET, "divine_shield")
+        # 给目标角色圣盾 - 使用 SetTag 设置圣盾标签
+        yield SetTags(TARGET, {GameTag.DIVINE_SHIELD: True})
         
         # 给手牌中的所有随从+2生命值
         yield Buff(FRIENDLY_HAND + MINION, "TIME_447e")
