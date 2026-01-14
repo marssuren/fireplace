@@ -220,25 +220,11 @@ class TIME_876:
     Each turn this is in your hand, transform into a random minion in your opponent's hand.
     """
     # 在回合开始时触发变形
-    # 需要在手牌中才会触发
-    
-    def _transform_to_opponent_minion(self):
-        """变形成对手手牌中的随机随从"""
-        # 获取对手手牌中的随从
-        opponent_minions = [
-            card for card in self.controller.opponent.hand
-            if card.type == CardType.MINION
-        ]
-        
-        if opponent_minions:
-            # 随机选择一个随从并变形
-            target = self.game.random.choice(opponent_minions)
-            yield Morph(SELF, target.id)
-    
+    # 使用 Morph action 变形成对手手牌中的随机随从
     class Hand:
         """在手牌时的事件监听"""
         events = OWN_TURN_BEGIN.on(
-            lambda self, player: self.owner._transform_to_opponent_minion()
+            Morph(SELF, RANDOM(ENEMY_HAND + MINION))
         )
 
 

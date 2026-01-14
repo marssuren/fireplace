@@ -276,8 +276,13 @@ class TSC_083:
 
 class TSC_083e:
     """Seafloor Savior Buff"""
-    atk = lambda self, i: self.atk
-    max_health = lambda self, i: self.max_health
+    # 注意：不能用 self.atk 或 self.max_health，会导致无限递归
+    # 使用 getattr(self, '_atk', 0) 读取 Buff action 设置的属性
+    def atk(self, i):
+        return i + getattr(self, '_atk', 0)
+    
+    def max_health(self, i):
+        return i + getattr(self, '_max_health', 0)
 
 
 class TSC_644:

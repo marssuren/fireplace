@@ -1506,10 +1506,15 @@ class Buff(TargetedAction):
 
     def do(self, source, target, buff):
         kwargs = self._kwargs.copy()
+        # 这些属性需要设置为带下划线的版本，以便动态属性方法读取
+        # 例如 atk -> _atk，这样 buff 类可以用 getattr(self, '_atk', 0) 读取
+        private_attrs = {'atk', 'max_health', 'health'}
         for k, v in kwargs.items():
             if isinstance(v, LazyValue):
                 v = v.evaluate(source)
-            setattr(buff, k, v)
+            # 对于 atk/max_health/health，设置带下划线的属性
+            attr_name = f"_{k}" if k in private_attrs else k
+            setattr(buff, attr_name, v)
         
         # 检查是否给英雄增加了攻击力（用于德鲁伊任务线等卡牌）
         is_hero_attack_buff = (

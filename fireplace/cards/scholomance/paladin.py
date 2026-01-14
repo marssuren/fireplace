@@ -20,8 +20,12 @@ class SCH_149:
 
 class SCH_149e:
     """Argent Braggart Buff"""
-    atk = lambda self, i: self.atk
-    max_health = lambda self, i: self.max_health
+    # 注意：不能用 self.atk 或 self.max_health，会导致无限递归
+    def atk(self, i):
+        return i + getattr(self, '_atk', 0)
+    
+    def max_health(self, i):
+        return i + getattr(self, '_max_health', 0)
 
 
 class SCH_532:

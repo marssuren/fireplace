@@ -124,10 +124,25 @@ class VAC_948:
     """
     def play(self):
         # 从已死亡的嘲讽随从中，选择法力值消耗最高的3个不同随从
-        # 使用 DeDuplicate 去重，然后按费用排序，选择前3个
-        targets = DeDuplicate(FRIENDLY + KILLED + MINION + TAUNT)
-        # 复活3个不同的最高费用嘲讽随从
-        yield Summon(CONTROLLER, Copy(RANDOM(targets, card_class=CardClass.INVALID, cost=Count(targets)) * 3))
+        from hearthstone.enums import CardType
+        
+        # 获取已死亡的友方嘲讽随从
+        dead_taunt_minions = [
+            card for card in self.controller.graveyard
+            if card.type == CardType.MINION and getattr(card, 'taunt', False)
+        ]
+        
+        # 按费用排序（从高到低），并去重（按卡牌ID）
+        seen_ids = set()
+        unique_minions = []
+        for minion in sorted(dead_taunt_minions, key=lambda x: x.cost, reverse=True):
+            if minion.id not in seen_ids:
+                seen_ids.add(minion.id)
+                unique_minions.append(minion)
+        
+        # 取最高费用的3个不同随从复活
+        for minion in unique_minions[:3]:
+            yield Summon(CONTROLLER, minion.id)
 
 
 class WORK_024:

@@ -173,7 +173,7 @@ class DMF_119:
         GameTag.SPELL_SCHOOL: SpellSchool.SHADOW,
     }
     play = (
-        Discard(FRIENDLY_HAND + LOWEST_COST),
+        Discard(LOWEST_COST(FRIENDLY_HAND)),
         Buff(FRIENDLY_MINIONS, "DMF_119e"),
     )
 

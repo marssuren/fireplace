@@ -128,8 +128,13 @@ class SCH_354:
 
 class SCH_354e:
     """Ancient Void Hound Buff (Gain)"""
-    atk = lambda self, i: self.atk
-    max_health = lambda self, i: self.max_health
+    # 注意：这里不能用 self.atk 或 self.max_health，会导致无限递归
+    # 应该使用传入的属性值和 buff 的 atk/health 属性
+    def atk(self, i):
+        return i + getattr(self, '_atk', 0)
+    
+    def max_health(self, i):
+        return i + getattr(self, '_max_health', 0)
 
 
 SCH_354e2 = buff(atk=-1, health=-1)

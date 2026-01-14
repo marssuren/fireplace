@@ -433,6 +433,9 @@ class PlayableCard(BaseCard, Entity, TargetableByAuras):
                     r = mod.evaluate(self)
                 else:
                     r = None
+                # 如果 r 是 LazyNum/LazyValue（如 Count），需要调用 evaluate 获取实际值
+                if r is not None and hasattr(r, 'evaluate'):
+                    r = r.evaluate(self)
                 # evaluate() can return None if it's an Evaluator (Crush)
                 if r:
                     ret += r

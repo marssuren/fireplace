@@ -106,10 +106,12 @@ class ICC_852:
         PlayReq.REQ_MINION_TARGET: 0,
         PlayReq.REQ_TARGET_IF_AVAILABLE_AND_NO_3_COST_CARD_IN_DECK: 0,
     }
-    def play(self, target):
-        morphed = yield Morph(SELF, ExactCopy(target))
-        if morphed:
-            yield Buff(morphed, "ICC_852e")
+    def play(self, target=None):
+        # 只有当牌库没有3费牌且有目标时才触发效果
+        if target is not None:
+            morphed = yield Morph(SELF, ExactCopy(target))
+            if morphed:
+                yield Buff(morphed, "ICC_852e")
 
 
 class ICC_852e:

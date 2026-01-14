@@ -227,7 +227,6 @@ class TIME_008:
     requirements = {}
     
     def play(self):
-        
         # 双方各随机弃一张牌
         # 己方弃牌
         if self.controller.hand:
@@ -237,9 +236,6 @@ class TIME_008:
         if self.controller.opponent.hand:
             yield Discard(RANDOM(ENEMY_HAND))
 
-
-        # 使用 Rewind 包装器执行效果
-        yield from execute_with_rewind(self, effect)
 
 class TIME_030:
     """裂解术 - Divergence
