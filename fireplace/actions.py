@@ -201,8 +201,10 @@ class Action(metaclass=ActionMeta):
             for entity in hand.entities:
                 self._broadcast(entity, source, at, *args)
         for deck in source.game.decks:
-            for entity in deck.entities:
-                self._broadcast(entity, source, at, *args)
+            # 检查deck是否有entities属性（可能是Enchantment对象）
+            if hasattr(deck, 'entities'):
+                for entity in deck.entities:
+                    self._broadcast(entity, source, at, *args)
 
         source.game.action_end(BlockType.TRIGGER, source)
 

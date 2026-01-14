@@ -222,7 +222,11 @@ class VAC_941:
         # 1. 替换英雄技能为术士的基础英雄技能 "生命分流" (Life Tap)
         # 使用正确的英雄技能 ID: HERO_07bp
         new_power = self.controller.card("HERO_07bp", source=self.controller.hero)
-        self.controller.hero.power = new_power
+        
+        # 正确设置英雄技能：使用 controller.hero_power 而不是 hero.power
+        # 因为 hero.power 是只读属性
+        if self.controller.hero_power:
+            self.controller.hero_power.zone = Zone.GRAVEYARD
         new_power.controller = self.controller
         new_power.zone = Zone.PLAY
 
