@@ -294,13 +294,17 @@ class SW_090:
     
     def play(self):
         """造成伤害，如果目标死亡则恢复生命"""
-        target = TARGET
+        # 注意：TARGET 是 selector，应使用 self.target 获取实际目标
+        target = self.target
+        if not target:
+            return
+        
         target_health_before = target.health
         
         yield Hit(TARGET, 2)
         
         # 检查目标是否死亡
-        if target.zone == Zone.GRAVEYARD or target.health <= 0:
+        if getattr(target, 'zone', None) == Zone.GRAVEYARD or getattr(target, 'health', 0) <= 0:
             yield Heal(FRIENDLY_HERO, 3)
 
 

@@ -165,11 +165,15 @@ class DMF_054:
     }
     
     # 抽一张牌，如果费用≤3则再抽一张
-    # 使用 Draw.CARD 引用抽到的卡牌（即使被烧毁也能检查）
-    # 如果抽到疲劳（Draw.CARD 为 None），则不会触发第二次抽牌
-    play = Draw(CONTROLLER).then(
-        Find(Draw.CARD) & Find(COST(Draw.CARD) <= 3) & Draw(CONTROLLER)
-    )
+    def play(self):
+        # 抽第一张牌
+        drawn = yield Draw(self.controller)
+        
+        # 检查抽到的牌费用是否 ≤ 3
+        if drawn:
+            card = drawn[0] if isinstance(drawn, list) else drawn
+            if card and getattr(card, 'cost', 10) <= 3:
+                yield Draw(self.controller)
 
 
 class DMF_055:

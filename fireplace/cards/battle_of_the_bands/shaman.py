@@ -298,5 +298,10 @@ class ETC_362:
         GameTag.SPELL_SCHOOL: SpellSchool.FIRE,
         GameTag.OVERLOAD: 2,
     }
+    requirements = {
+        PlayReq.REQ_TARGET_TO_PLAY: 0,
+        PlayReq.REQ_MINION_TARGET: 0,
+    }
     def play(self):
-        yield Morph(TARGET, "EX1_298")
+        if self.target:
+            yield Morph(self.target, "EX1_298")

@@ -115,9 +115,26 @@ class BAR_037:
     Battlecry: Discover a Beast from your deck. Give all copies of it +2/+1 (wherever they are).
     战吼：从你的牌库中发现一张野兽牌。使它的所有复制获得+2/+1（无论它们在哪里）。
     """
-    play = DISCOVER(FRIENDLY_DECK + BEAST).then(
-        Buff(IN_DECK + IN_HAND + (ID == Discover.CARD), "BAR_037e")
-    )
+    def play(self):
+        # 从牌库中发现野兽
+        beasts = [c for c in self.controller.deck if Race.BEAST in getattr(c, 'races', [])]
+        if not beasts:
+            return
+        
+        # 随机选择3张（或更少）进行发现
+        choices = self.game.random.sample(beasts, min(3, len(beasts)))
+        
+        # 使用 GenericChoice 让玩家选择
+        chosen = yield GenericChoice(self.controller, choices)
+        
+        # 给所有同ID的卡牌添加buff
+        if chosen:
+            chosen_id = chosen.id if hasattr(chosen, 'id') else None
+            if chosen_id:
+                # 给牌库和手牌中同ID的牌添加buff
+                for card in list(self.controller.deck) + list(self.controller.hand):
+                    if card.id == chosen_id:
+                        yield Buff(card, "BAR_037e")
 
 
 class BAR_037e:

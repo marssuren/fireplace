@@ -99,13 +99,15 @@ class TIME_857:
     
     def play(self):
         # 发现第一张奥术法术
-        card1 = yield Discover(self.controller, RandomSpell(spell_school=SpellSchool.ARCANE))
-        if card1:
+        cards1 = yield Discover(self.controller, RandomSpell(spell_school=SpellSchool.ARCANE))
+        if cards1:
+            card1 = cards1[0] if isinstance(cards1, list) else cards1
             yield Buff(card1, "TIME_857e")
         
         # 发现第二张奥术法术
-        card2 = yield Discover(self.controller, RandomSpell(spell_school=SpellSchool.ARCANE))
-        if card2:
+        cards2 = yield Discover(self.controller, RandomSpell(spell_school=SpellSchool.ARCANE))
+        if cards2:
+            card2 = cards2[0] if isinstance(cards2, list) else cards2
             yield Buff(card2, "TIME_857e")
 
 

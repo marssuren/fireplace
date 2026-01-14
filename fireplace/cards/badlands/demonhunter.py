@@ -42,19 +42,16 @@ class WW_404:
     # Type: SPELL | Cost: 1 | Rarity: COMMON | Mechanics: DISCOVER
     # 需要追踪在手牌时是否使用过纳迦
     
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.naga_played_while_holding = False
-    
     class Hand:
         # 在手牌时监听纳迦使用
         events = Play(CONTROLLER, NAGA).on(
-            lambda self: setattr(self.owner, 'naga_played_while_holding', True)
+            lambda self: setattr(self, 'naga_played_while_holding', True)
         )
     
     def play(self):
         # 发现纳迦牌
-        if self.naga_played_while_holding:
+        # 使用 getattr 安全访问属性，因为法术牌没有自定义 __init__
+        if getattr(self, 'naga_played_while_holding', False):
             # 减少1费
             yield Discover(CONTROLLER, RandomCollectible(race=Race.NAGA)).then(
                 Buff(Discover.CARD, "WW_404e")

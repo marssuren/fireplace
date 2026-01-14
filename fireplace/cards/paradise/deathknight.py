@@ -46,12 +46,16 @@ class VAC_445:
         ghouls = yield Summon(CONTROLLER, "VAC_445t", 5)
         
         # 让每个召唤出来的食尸鬼攻击随机敌人
-        for ghoul in ghouls:
-            targets = self.game.board.get_enemies(self.controller)
-            if targets:
-                target = self.game.random.choice(targets)
-                # 强制攻击
-                yield Attack(ghoul, target)
+        # 注意：ghouls 可能是 None
+        if ghouls:
+            for ghoul in ghouls:
+                # 正确获取敌方角色（随从+英雄）
+                targets = list(self.controller.opponent.field) + [self.controller.opponent.hero]
+                targets = [t for t in targets if t and not getattr(t, 'dead', False)]
+                if targets:
+                    target = self.game.random.choice(targets)
+                    # 强制攻击
+                    yield Attack(ghoul, target)
 
 
 class VAC_514:
@@ -203,13 +207,18 @@ class VAC_513:
         yield Freeze(TARGET)
         
         # 统计冻结角色
-        # 注意：TARGET 刚刚被冻结，应该算进去
-        frozen_chars = self.game.board.filter(ALL_CHARACTERS + FROZEN)
-        count = len(frozen_chars)
+        # 注意：board 是 CardList，不能使用 filter(selector)
+        frozen_count = 0
+        for player in self.game.players:
+            if player.hero and getattr(player.hero, 'frozen', False):
+                frozen_count += 1
+            for minion in player.field:
+                if getattr(minion, 'frozen', False):
+                    frozen_count += 1
         
         # 抽牌
-        if count > 0:
-            yield Draw(CONTROLLER) * count
+        if frozen_count > 0:
+            yield Draw(CONTROLLER) * frozen_count
 
 
 # LEGENDARY

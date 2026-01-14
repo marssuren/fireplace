@@ -190,8 +190,9 @@ class TIME_216:
         yield Hit(TARGET, 5)
         
         # 检查目标是否存活
-        # 需要在伤害结算后检查，所以使用 to_be_destroyed 和 zone
-        if TARGET.to_be_destroyed == False and TARGET.zone == Zone.PLAY:
+        # 注意：TARGET 是 selector，应使用 self.target 获取实际目标
+        target = self.target
+        if target and not getattr(target, 'to_be_destroyed', True) and getattr(target, 'zone', None) == Zone.PLAY:
             # 抽两张牌
             yield Draw(self.controller)
             yield Draw(self.controller)
