@@ -334,7 +334,7 @@ class ETC_395_Manager:
 
 class ETC_395_Debuff:
     """Cost Increase - 费用增加"""
-    tags = {GameTag.COST: 1} # 叠加+1
+    tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT, GameTag.COST: 1} # 叠加+1
 
 class ETC_206:
     """Infinitize the Maxitude - 巅峰无限

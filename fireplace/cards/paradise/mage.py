@@ -72,7 +72,7 @@ class WORK_012:
     """
     def play(self):
         # 填满场面（最多7个随从）
-        space = self.controller.max_minions - len(self.controller.field)
+        space = 7 - len(self.controller.field)
         for _ in range(space):
             # 召唤随机纳迦
             yield Summon(CONTROLLER, RandomMinion(race=Race.NAGA))

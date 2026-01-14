@@ -108,38 +108,23 @@ class TIME_600:
         PlayReq.REQ_TARGET_TO_PLAY: 0,
     }
     
-    powered_up = lambda self: self._check_center_position()
-    
-    def _check_center_position(self):
-        """检查卡牌是否在手牌正中间"""
+    def play(self):
+        # 检查是否在手牌正中间
         hand = self.controller.hand
         hand_size = len(hand)
+        is_center = False
         
-        # 如果手牌为空或只有一张，返回False
-        if hand_size <= 1:
-            return False
+        # 如果手牌为奇数张，检查是否在正中间
+        if hand_size % 2 == 1 and hand_size > 0:
+            try:
+                card_index = hand.index(self)
+                center_index = hand_size // 2
+                is_center = (card_index == center_index)
+            except ValueError:
+                is_center = False
         
-        # 找到本卡在手牌中的位置
-        try:
-            card_index = hand.index(self)
-        except ValueError:
-            # 如果卡牌不在手牌中，返回False
-            return False
-        
-        # 判断是否在正中间
-        # "EXACTLY in the center" 意味着只有奇数张手牌时才有正中间
-        if hand_size % 2 == 1:
-            # 奇数张手牌，有唯一中间位置
-            center_index = hand_size // 2
-            return card_index == center_index
-        else:
-            # 偶数张手牌，没有"正中间"
-            return False
-    
-    def play(self):
         # 根据位置造成不同伤害
-        # 使用 powered_up 属性检测（在打出前评估）
-        damage = 5 if self.powered_up else 3
+        damage = 5 if is_center else 3
         yield Hit(TARGET, damage)
 
 
