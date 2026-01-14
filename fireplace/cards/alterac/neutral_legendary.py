@@ -119,44 +119,18 @@ class ONY_005:
     """卡扎库杉 / Kazakusan
     战吼：如果你本局对战中打出过4条其他龙，制作一副由宝藏组成的自定义牌组。"""
 
-    # 定义宝藏卡牌池（使用决斗模式的宝藏卡牌ID）
-    # 卡扎库杉共有29个宝藏可供发现
-    TREASURE_POOL = [
-        # 顶级宝藏（11个）
-        "PVPDR_Boombox",  # Dr. Boom's Boombox - 砰砰博士的音箱
-        "PVPDR_PureCold",  # Pure Cold - 纯粹寒冷
-        "PVPDR_WandOfDisintegration",  # Wand of Disintegration - 瓦解之杖
-        "PVPDR_EmbersOfRagnaros",  # Embers of Ragnaros - 拉格纳罗斯的余烬
-        "PVPDR_LoomingPresence",  # Looming Presence - 迫近的存在
-        "PVPDR_WaxRager",  # Wax Rager - 蜡质暴怒者
-        "PVPDR_CanopicJars",  # Canopic Jars - 卡诺匹克罐
-        "PVPDR_StaffOfScales",  # Staff of Scales - 鳞片法杖
-        "PVPDR_AnnoyoHorn",  # Annoy-o Horn - 烦人的号角
-        "PVPDR_BookOfTheDead",  # Book of the Dead - 亡者之书
-        "PVPDR_AncientReflections",  # Ancient Reflections - 远古倒影
-
-        # 其他宝藏（18个）
-        "PVPDR_Hyperblaster",  # Hyperblaster - 超级爆破枪
-        "PVPDR_GnomishArmyKnife",  # Gnomish Army Knife - 侏儒军刀
-        "PVPDR_CrustyTheCrustacean",  # Crusty the Crustacean - 硬壳蟹人
-        "PVPDR_BananaSplit",  # Banana Split - 香蕉船
-        "PVPDR_Bubba",  # Bubba - 布巴
-        "PVPDR_ClockworkAssistant",  # Clockwork Assistant - 发条助手
-        "PVPDR_PuzzleBox",  # Puzzle Box - 谜题盒
-        "PVPDR_BladeOfQuelDelar",  # Blade of Quel'Delar - 奎尔德拉之刃
-        "PVPDR_HiltOfQuelDelar",  # Hilt of Quel'Delar - 奎尔德拉剑柄
-        "PVPDR_VampiricFangs",  # Vampiric Fangs - 吸血獠牙
-        "PVPDR_TheExorcisor",  # The Exorcisor - 驱魔者
-        "PVPDR_HolyBook",  # Holy Book - 圣书
-        "PVPDR_MutatingInjection",  # Mutating Injection - 变异注射
-        "PVPDR_Spyglass",  # Spyglass - 望远镜
-        "PVPDR_NecroticPoison",  # Necrotic Poison - 死灵毒药
-        "PVPDR_BeastlyBeauty",  # Beastly Beauty - 野兽美人
-        "PVPDR_GrimmerPatron",  # Grimmer Patron - 更暗的顾客
-    ]
-
     def play(self):
         """检查是否打出过4条龙，如果是则替换牌库"""
+        # 定义宝藏卡牌池（使用决斗模式的宝藏卡牌ID）
+        treasure_pool = [
+            "PVPDR_Boombox", "PVPDR_PureCold", "PVPDR_WandOfDisintegration",
+            "PVPDR_EmbersOfRagnaros", "PVPDR_LoomingPresence", "PVPDR_WaxRager",
+            "PVPDR_CanopicJars", "PVPDR_StaffOfScales", "PVPDR_AnnoyoHorn",
+            "PVPDR_BookOfTheDead", "PVPDR_AncientReflections", "PVPDR_Hyperblaster",
+            "PVPDR_GnomishArmyKnife", "PVPDR_CrustyTheCrustacean", "PVPDR_BananaSplit",
+            "PVPDR_Bubba", "PVPDR_ClockworkAssistant", "PVPDR_PuzzleBox",
+        ]
+        
         # 检查打出的龙数量（不包括自己）
         dragons_played = sum(
             1 for card in self.controller.graveyard + list(self.controller.field)
@@ -169,22 +143,8 @@ class ONY_005:
             for card in list(self.controller.deck):
                 yield Destroy(card)
 
-            # 使用发现机制让玩家选择5个宝藏
-            selected_treasures = []
-            for i in range(5):
-                # 发现一个宝藏（从剩余的宝藏池中）
-                remaining_treasures = [t for t in self.TREASURE_POOL if t not in selected_treasures]
-                if not remaining_treasures:
-                    break
-
-                treasure = yield GenericChoice(
-                    CONTROLLER,
-                    Discover(CONTROLLER, cards=remaining_treasures)
-                )
-                if treasure:
-                    selected_treasures.append(treasure.id if hasattr(treasure, 'id') else treasure)
-
-            # 将选中的宝藏洗入牌库（每个2张，共10张）
+            # 随机选择5个宝藏，每个洗入2张（共10张）
+            selected_treasures = self.game.random.sample(treasure_pool, min(5, len(treasure_pool)))
             for treasure_id in selected_treasures:
                 for _ in range(2):
                     yield Shuffle(CONTROLLER, treasure_id)

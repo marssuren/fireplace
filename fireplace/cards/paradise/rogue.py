@@ -391,8 +391,8 @@ class VAC_464e:
         if cards_played >= self.cards_needed:
             # 任务完成！发现2张神奇的战利品（从28种Duels宝藏中选择）
             for _ in range(2):
-                # 从宝藏池中随机选择一张
-                treasure_id = self.game.random.choice(self.TREASURE_POOL)
+                # 从宝藏池中随机选择一张（使用类名访问类属性）
+                treasure_id = self.game.random.choice(VAC_464e.TREASURE_POOL)
                 yield Give(CONTROLLER, treasure_id)
             
             # 移除此效果

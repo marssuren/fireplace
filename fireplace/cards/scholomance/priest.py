@@ -38,9 +38,11 @@ class SCH_513:
     }
 
     # 6费 6/8 战吼：如果你的英雄在本回合生命值发生过变化，消灭一个随从
-    # 完整实现：使用事件系统追踪英雄生命值变化
-    # 首先给玩家添加一个追踪buff
-    play = Buff(CONTROLLER, "SCH_513_tracker"), Find(Attr(CONTROLLER, "hero_health_changed")) & Destroy(TARGET)
+    def play(self, target=None):
+        # 检查英雄本回合生命值是否改变过
+        hero_health_changed = getattr(self.controller, 'hero_health_changed', 0) > 0
+        if hero_health_changed and target is not None:
+            yield Destroy(target)
 
 class SCH_120:
     """Cabal Acolyte / 秘教侍僧
@@ -109,8 +111,9 @@ class SCH_233e:
     tags = {
         GameTag.CARDTYPE: CardType.ENCHANTMENT,
     }
-    # 当打出龙牌时销毁此增益
-    events = Play(CONTROLLER, MINION + (Race == Race.DRAGON)).on(Destroy(SELF))
+    # 当打出龙牌时销毁此增益（使用 DRAGON 选择器）
+    events = Play(CONTROLLER, MINION + DRAGON).on(Destroy(SELF))
+
 
 
 class SCH_136:

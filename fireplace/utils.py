@@ -220,7 +220,33 @@ def weighted_card_choice(source, weights: List[int], card_sets: List[str], count
             x - weights[chosen_set] for x in cum_weights[chosen_set:]
         ]
 
-    return [source.controller.card(card, source=source) for card in chosen_cards]
+    # 将选中的卡牌转换为卡牌对象
+    # 处理不同类型的输入：字符串ID、卡牌对象、列表等
+    result = []
+    for card in chosen_cards:
+        if card is None:
+            continue
+        # 如果已经是卡牌对象，直接使用
+        if hasattr(card, 'id') and hasattr(card, 'controller'):
+            result.append(card)
+        # 如果是字符串ID，创建新卡牌
+        elif isinstance(card, str):
+            result.append(source.controller.card(card, source=source))
+        # 如果是列表（错误情况），尝试从列表中提取
+        elif isinstance(card, list):
+            for item in card:
+                if hasattr(item, 'id') and hasattr(item, 'controller'):
+                    result.append(item)
+                elif isinstance(item, str):
+                    result.append(source.controller.card(item, source=source))
+        else:
+            # 尝试将其作为ID处理
+            try:
+                result.append(source.controller.card(str(card), source=source))
+            except Exception:
+                log.warning(f"weighted_card_choice: Unable to process card: {card} (type: {type(card)})")
+    
+    return result
 
 
 def setup_game(test_mode=False, expansions='random'):

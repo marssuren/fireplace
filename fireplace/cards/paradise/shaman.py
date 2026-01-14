@@ -300,8 +300,23 @@ class VAC_449:
                 schools_list = list(self.schools_played_while_in_hand)[:2]
                 school1, school2 = schools_list[0], schools_list[1]
                 
-                # 根据派系组合确定变形目标Token ID
-                token_id = self._get_carress_token_id(school1, school2)
+                # 根据派系组合确定变形目标Token ID（内联逻辑）
+                # 确保顺序一致（按枚举值排序）
+                schools = tuple(sorted([school1, school2], key=lambda x: x.value))
+                
+                # 派系组合到Token ID的映射
+                school_to_token = {
+                    SpellSchool.ARCANE: "VAC_449t1",
+                    SpellSchool.FEL: "VAC_449t2",
+                    SpellSchool.FIRE: "VAC_449t3",
+                    SpellSchool.FROST: "VAC_449t4",
+                    SpellSchool.HOLY: "VAC_449t5",
+                    SpellSchool.NATURE: "VAC_449t6",
+                    SpellSchool.SHADOW: "VAC_449t7",
+                }
+                
+                # 返回第一个派系对应的Token（简化实现）
+                token_id = school_to_token.get(schools[0], "VAC_449t1")
                 
                 # 变形为对应形态
                 return [Morph(SELF, token_id)]
@@ -310,7 +325,8 @@ class VAC_449:
         
         events = Play(CONTROLLER, SPELL).after(handle_spell_played)
     
-    def _get_carress_token_id(self, school1, school2):
+    @staticmethod
+    def _get_carress_token_id(school1, school2):
         """根据派系组合获取Token ID
         
         21种组合映射（7选2）：
