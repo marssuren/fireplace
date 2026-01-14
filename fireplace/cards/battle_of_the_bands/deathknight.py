@@ -114,7 +114,7 @@ class JAM_008:
     )
 class ETC_424:
     """死亡嘶吼 / Death Growl
-    选择一个随从。将其<b>亡语</b>传播到相邻随从上。"""
+    选择一个随从。将其亡语传播到相邻随从上。"""
     tags = {
         GameTag.COST: 1,
     }
@@ -122,7 +122,29 @@ class ETC_424:
         PlayReq.REQ_TARGET_TO_PLAY: 0,
         PlayReq.REQ_MINION_TARGET: 0,
     }
-    play = CopyDeathrattleBuff(TARGET, TARGET_ADJACENT)
+    
+    def play(self):
+        target = self.target
+        if not target or not target.has_deathrattle:
+            return
+        
+        # 获取目标的相邻随从
+        adjacent_minions = target.adjacent_minions
+        
+        # 将目标的亡语复制到每个相邻随从
+        for minion in adjacent_minions:
+            # 复制亡语
+            if hasattr(target, 'additional_deathrattles'):
+                for dr in target.additional_deathrattles:
+                    if not hasattr(minion, 'additional_deathrattles'):
+                        minion.additional_deathrattles = []
+                    minion.additional_deathrattles.append(dr)
+            
+            # 复制基础亡语
+            if hasattr(target, 'deathrattle') and target.deathrattle:
+                if not hasattr(minion, 'additional_deathrattles'):
+                    minion.additional_deathrattles = []
+                minion.additional_deathrattles.append(target.deathrattle)
 class ETC_523:
     """死亡金属骑士 / Death Metal Knight
     <b>嘲讽</b>。在本回合中，如果你的英雄受到治疗，本牌改为消耗生命值而非法力值。"""

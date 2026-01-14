@@ -268,8 +268,8 @@ class VAC_701:
         # 将武器的攻击力和耐久度设置为3
         if self.controller.weapon:
             weapon = self.controller.weapon
-            # 使用 SetTag 设置属性
-            yield SetTag(weapon, {
+            # 使用 SetTags 设置多个属性
+            yield SetTags(weapon, {
                 GameTag.ATK: 3,
                 GameTag.DURABILITY: 3
             })

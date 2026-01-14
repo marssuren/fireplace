@@ -80,7 +80,7 @@ class TIME_702:
     class Hand:
         # 监听随从打出事件
         events = OWN_MINION_PLAY.on(
-            lambda self, player, played_card, target: setattr(self.owner, '_played_minion_while_holding', True)
+            lambda self, player, played_card, target: setattr(self, '_played_minion_while_holding', True)
         )
 
 

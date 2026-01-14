@@ -3720,6 +3720,11 @@ class CastSpell(TargetedAction):
         ):
             return
 
+        # 检查 card 是否是有效的卡牌对象
+        if not hasattr(card, 'requires_target') or not hasattr(card, 'zone'):
+            log_info("cast_spell_invalid_card", source=source, card=card, card_type=type(card).__name__)
+            return
+
         player = source.controller
         old_choice = player.choice
         player.choice = None

@@ -195,6 +195,12 @@ class BaseGame(Entity):
         
         # 无限循环检测
         self._action_counter += 1
+        
+        # 周期性日志，每 200 次操作输出一次
+        if self._action_counter % 200 == 0:
+            import sys
+            print(f"[DEBUG action_start] Turn {self.turn}, actions: {self._action_counter}, source: {getattr(source, 'id', source)}, type: {type}", file=sys.stderr, flush=True)
+        
         if self._action_counter > self._max_actions_per_turn:
             # 生成详细的调试报告
             import sys
@@ -335,6 +341,11 @@ class BaseGame(Entity):
         # 只处理在 PLAY 区域且标记为 dead 的卡牌
         # 过滤掉已经在墓地或其他区域的卡牌，防止无限循环
         dead_cards = [card for card in self.live_entities if card.dead and card.zone == Zone.PLAY]
+        
+        # 调试日志
+        if dead_cards:
+            import sys
+            print(f"[DEBUG process_deaths] Turn {self.turn}: Processing {len(dead_cards)} dead cards: {[f'{c.id}({c.zone})' for c in dead_cards]}", file=sys.stderr, flush=True)
         
         if dead_cards:
             self.action_start(type, self, 0, None)

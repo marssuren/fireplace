@@ -15,9 +15,10 @@ class DEEP_011:
     requirements = {PlayReq.REQ_TARGET_TO_PLAY: True, PlayReq.REQ_MINION_TARGET: True}
     
     def play(self):
-        yield Hit(TARGET, 2)
-        # 检查目标是否依然存活
-        if TARGET.zone == Zone.PLAY:
+        target = self.target
+        yield Hit(target, 2)
+        # 检查目标是否依然存活（在场上且未死亡）
+        if target and target.zone == Zone.PLAY and not target.dead:
             yield Buff(FRIENDLY_HERO, "DEEP_011e")
 
 
