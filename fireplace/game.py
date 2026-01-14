@@ -332,9 +332,13 @@ class BaseGame(Entity):
     def process_deaths(self):
         type = BlockType.DEATHS
 
-        if any(card.dead for card in self.live_entities):
+        # 只处理在 PLAY 区域且标记为 dead 的卡牌
+        # 过滤掉已经在墓地或其他区域的卡牌，防止无限循环
+        dead_cards = [card for card in self.live_entities if card.dead and card.zone == Zone.PLAY]
+        
+        if dead_cards:
             self.action_start(type, self, 0, None)
-            self.trigger(self, [Death(self.live_entities)], event_args=None)
+            self.trigger(self, [Death(dead_cards)], event_args=None)
             self.action_end(type, self)
 
     def trigger(self, source, actions, event_args):
