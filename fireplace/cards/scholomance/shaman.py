@@ -58,10 +58,15 @@ class SCH_271:
     # 完整实现：根据实际造成的伤害召唤元素
     def play(self):
         target = self.target
-        # Hit Action 返回实际造成的伤害值
-        damage = yield Hit(target, 2)
+        # 计算实际伤害（包括法术伤害加成）
+        base_damage = 2
+        actual_damage = self.controller.get_spell_damage(base_damage)
+        
+        # 造成伤害
+        yield Hit(target, base_damage)
+        
         # 根据实际伤害召唤元素
-        for _ in range(damage):
+        for _ in range(actual_damage):
             yield Summon(self.controller, "SCH_271t")
 
 

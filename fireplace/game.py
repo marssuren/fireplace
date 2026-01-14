@@ -196,16 +196,77 @@ class BaseGame(Entity):
         # 无限循环检测
         self._action_counter += 1
         if self._action_counter > self._max_actions_per_turn:
-            # 打印历史记录以便调试
-            print(f"\n{'!'*60}")
-            print(f"[WARNING] Detected possible infinite loop!")
-            print(f"Current turn: {self.turn}, action count: {self._action_counter}")
-            print(f"Last trigger source: {source} (ID: {getattr(source, 'id', 'N/A')})")
-            print(f"{'!'*60}")
-            self.print_recent_history(50)
+            # 生成详细的调试报告
+            import sys
+            import os
+            from datetime import datetime
+            
+            # 创建日志目录
+            log_dir = "test_logs/infinite_loop_debug"
+            os.makedirs(log_dir, exist_ok=True)
+            
+            # 生成日志文件名
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            log_file = os.path.join(log_dir, f"infinite_loop_turn{self.turn}_{timestamp}.txt")
+            
+            # 收集详细信息
+            debug_info = []
+            debug_info.append("="*80)
+            debug_info.append("INFINITE LOOP DETECTED")
+            debug_info.append("="*80)
+            debug_info.append(f"Turn: {self.turn}")
+            debug_info.append(f"Action count: {self._action_counter}")
+            debug_info.append(f"Last trigger source: {source} (ID: {getattr(source, 'id', 'N/A')})")
+            debug_info.append(f"Current player: {self.current_player}")
+            debug_info.append("")
+            
+            # 记录场上所有卡牌
+            debug_info.append("="*80)
+            debug_info.append("BOARD STATE")
+            debug_info.append("="*80)
+            for player in self.players:
+                debug_info.append(f"\n{player.name}'s field:")
+                for minion in player.field:
+                    debug_info.append(f"  - {minion} (ID: {minion.id}, HP: {minion.health}/{minion.max_health}, dead: {minion.dead})")
+                    # 检查是否有亡语
+                    if hasattr(minion, 'deathrattle') and minion.deathrattle:
+                        debug_info.append(f"    [DEATHRATTLE: {minion.deathrattle}]")
+                    # 检查是否有触发器
+                    if hasattr(minion, '_events') and minion._events:
+                        debug_info.append(f"    [EVENTS: {len(minion._events)} registered]")
+            
+            # 记录最近的操作历史
+            debug_info.append("\n" + "="*80)
+            debug_info.append("RECENT ACTION HISTORY (last 100)")
+            debug_info.append("="*80)
+            for entry in self.get_recent_history(100):
+                turn, action_type, source_id, source_name, target_id, target_name, extra = entry
+                target_str = f" -> {target_name}({target_id})" if target_id else ""
+                extra_str = f" [{extra}]" if extra else ""
+                debug_info.append(f"[Turn{turn}] {action_type}: {source_name}({source_id}){target_str}{extra_str}")
+            
+            debug_info.append("\n" + "="*80)
+            
+            # 写入文件
+            report = "\n".join(debug_info)
+            try:
+                with open(log_file, 'w', encoding='utf-8') as f:
+                    f.write(report)
+                print(f"\n[!] Infinite loop debug report saved to: {log_file}", file=sys.stderr)
+            except Exception as e:
+                print(f"\n[!] Failed to save debug report: {e}", file=sys.stderr)
+            
+            # 也打印到 stderr（简短版本）
+            print(f"\n{'!'*60}", file=sys.stderr)
+            print(f"[WARNING] Detected possible infinite loop!", file=sys.stderr)
+            print(f"Turn: {self.turn}, Actions: {self._action_counter}", file=sys.stderr)
+            print(f"Source: {source} (ID: {getattr(source, 'id', 'N/A')})", file=sys.stderr)
+            print(f"Debug report: {log_file}", file=sys.stderr)
+            print(f"{'!'*60}\n", file=sys.stderr)
+            
             raise InfiniteLoopDetected(
                 f"Turn {self.turn} exceeded {self._max_actions_per_turn} actions, possible infinite loop. "
-                f"Last action source: {source}"
+                f"Last action source: {source}. Debug report: {log_file}"
             )
 
     def action_end(self, type, source):
@@ -283,10 +344,14 @@ class BaseGame(Entity):
         block_type = BlockType.TRIGGER
         # 记录触发的事件
         if actions and self.action_history_enabled:
-            action_names = ", ".join(a.__class__.__name__ for a in actions[:3])
-            if len(actions) > 3:
-                action_names += f"... (+{len(actions)-3} more)"
+            # 确保 actions 是 list 以支持切片操作
+            actions_list = list(actions) if not isinstance(actions, list) else actions
+            action_names = ", ".join(a.__class__.__name__ for a in actions_list[:3])
+            if len(actions_list) > 3:
+                action_names += f"... (+{len(actions_list)-3} more)"
             self.log_action("TRIGGER", source, extra_info=action_names)
+            # 使用转换后的 list
+            actions = actions_list
         return self.action_block(source, actions, block_type, event_args=event_args)
 
     def cheat_action(self, source, actions):
