@@ -865,14 +865,16 @@ LAST_DRAWN = FuncSelector(
 
 # 最后打出的法术选择器
 # 用于选择最近打出的法术牌
-LAST_PLAYED_SPELL = FuncSelector(
-    lambda entities, source: (
-        [source.controller.cards_played_this_turn[-1]] 
-        if source.controller.cards_played_this_turn 
-        and source.controller.cards_played_this_turn[-1].type == CardType.SPELL
-        else []
-    )
-)
+# 注意：cards_played_this_turn 是整数，应使用 cards_played_this_turn_with_position
+def _get_last_played_spell(entities, source):
+    cards_this_turn = getattr(source.controller, 'cards_played_this_turn_with_position', [])
+    if cards_this_turn:
+        last_card, _ = cards_this_turn[-1]
+        if last_card.type == CardType.SPELL:
+            return [last_card]
+    return []
+
+LAST_PLAYED_SPELL = FuncSelector(_get_last_played_spell)
 
 
 

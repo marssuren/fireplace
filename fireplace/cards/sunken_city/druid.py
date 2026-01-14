@@ -187,9 +187,11 @@ class TID_002:
     def play(self):
         """如果本回合施放过自然法术，使其他随从获得+1/+2"""
         # 检查本回合是否施放过自然法术
+        # 注意：cards_played_this_turn 是整数，应使用 cards_played_this_turn_with_position
+        cards_this_turn = getattr(self.controller, 'cards_played_this_turn_with_position', [])
         nature_cast_this_turn = any(
-            card.type == CardType.SPELL and card.spell_school == SpellSchool.NATURE
-            for card in self.controller.cards_played_this_turn
+            card.type == CardType.SPELL and getattr(card, 'spell_school', None) == SpellSchool.NATURE
+            for card, _ in cards_this_turn
         )
         
         if nature_cast_this_turn:
@@ -221,8 +223,10 @@ class TSC_651:
         yield Hit(TARGET, 4)
         
         # 检查本回合是否打出过娜迦
+        # 注意：cards_played_this_turn 是整数，应使用 cards_played_this_turn_with_position
         naga_played_this_turn = False
-        for card in self.controller.cards_played_this_turn:
+        cards_this_turn = getattr(self.controller, 'cards_played_this_turn_with_position', [])
+        for card, _ in cards_this_turn:
             try:
                 if card.type == CardType.MINION:
                     races = getattr(card, 'races', None)

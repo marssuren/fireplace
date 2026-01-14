@@ -286,9 +286,12 @@ class SW_451:
     def play(self):
         """如果本回合施放过邪能法术，获得+2/+2"""
         # 检查本回合是否施放过邪能法术
+        # 注意：cards_played_this_turn 是整数，应使用 cards_played_this_turn_with_position
+        cards_this_turn = getattr(self.controller, 'cards_played_this_turn_with_position', [])
+        
         fel_cast_this_turn = any(
-            card.type == CardType.SPELL and card.spell_school == SpellSchool.FEL
-            for card in self.controller.cards_played_this_turn
+            card.type == CardType.SPELL and getattr(card, 'spell_school', None) == SpellSchool.FEL
+            for card, _ in cards_this_turn
         )
         
         if fel_cast_this_turn:
