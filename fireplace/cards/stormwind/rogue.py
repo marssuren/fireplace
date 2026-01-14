@@ -36,7 +36,7 @@ class DED_005:
         """与对手牌库中的一张牌交换"""
         # 从对手牌库中随机抽一张牌给自己
         if self.controller.opponent.deck:
-            yield Give(CONTROLLER, Random(OPPONENT_DECK))
+            yield Give(CONTROLLER, Copy(RANDOM(OPPONENT_DECK)))
             # 将此牌洗入对手牌库
             yield Shuffle(OPPONENT, Copy(SELF))
 

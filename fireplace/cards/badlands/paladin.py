@@ -110,32 +110,32 @@ class DEEP_033:
 # 额外效果Buff定义
 class DEEP_033e_divine_shield:
     """圣盾"""
-    tags = {GameTag.DIVINE_SHIELD: True}
+    tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT, GameTag.DIVINE_SHIELD: True}
 
 
 class DEEP_033e_taunt:
     """嘲讽"""
-    tags = {GameTag.TAUNT: True}
+    tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT, GameTag.TAUNT: True}
 
 
 class DEEP_033e_rush:
     """突袭"""
-    tags = {GameTag.RUSH: True}
+    tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT, GameTag.RUSH: True}
 
 
 class DEEP_033e_lifesteal:
     """吸血"""
-    tags = {GameTag.LIFESTEAL: True}
+    tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT, GameTag.LIFESTEAL: True}
 
 
 class DEEP_033e_poisonous:
     """剧毒"""
-    tags = {GameTag.POISONOUS: True}
+    tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT, GameTag.POISONOUS: True}
 
 
 class DEEP_033e_windfury:
     """风怒"""
-    tags = {GameTag.WINDFURY: True}
+    tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT, GameTag.WINDFURY: True}
 
 
 class WW_341:

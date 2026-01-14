@@ -99,7 +99,7 @@ class SW_320:
         """
         for _ in range(7):
             # 检查场上是否还有空位
-            if len(self.controller.field) < self.controller.max_minions:
+            if len(self.controller.field) < self.game.MAX_MINIONS_ON_FIELD:
                 # 有空位，直接召唤
                 yield Summon(CONTROLLER, "SW_320t")
             else:
@@ -108,6 +108,7 @@ class SW_320:
                 # 给刚加入手牌的老鼠+4/+4
                 if rat:
                     yield Buff(rat[0], "SW_320e")
+
 
 
 class SW_320t:

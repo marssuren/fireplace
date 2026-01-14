@@ -2896,6 +2896,11 @@ class Morph(TargetedAction):
     CARD = CardArg()
 
     def get_target_args(self, source, target):
+        # 检查 target 是否为 None
+        if target is None:
+            log_info("morph_target_is_none", source=source)
+            return []
+        
         card = _eval_card(source, self._args[1])
         
         # 如果返回多个卡牌,随机选择一个

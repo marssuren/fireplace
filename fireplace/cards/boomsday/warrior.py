@@ -137,25 +137,28 @@ class BOT_238p:
     entourage = BOT_238.entourage
     
     # 回合结束时随机切换英雄技能
-    events = OWN_TURN_END.on(lambda self: self._switch_hero_power())
+    # 使用自定义事件处理器
+    class OwnTurnEnd:
+        def trigger(self, target):
+            """随机切换到一个新的英雄技能"""
+            import random
+            controller = target.controller
+            
+            # 随机选择一个新的英雄技能（从5个中选择）
+            new_power_id = random.choice(BOT_238.entourage)
+            
+            # 创建新的英雄技能
+            new_power = controller.card(new_power_id, source=controller.hero)
+            
+            # 替换英雄技能
+            if controller.hero.power:
+                controller.hero.power.zone = Zone.GRAVEYARD
+            controller.hero.power = new_power
+            new_power.controller = controller
+            new_power.zone = Zone.PLAY
+            return []
     
-    def _switch_hero_power(self):
-        """随机切换到一个新的英雄技能"""
-        import random
-        controller = self.controller
-        
-        # 随机选择一个新的英雄技能（从5个中选择）
-        new_power_id = random.choice(self.entourage)
-        
-        # 创建新的英雄技能
-        new_power = controller.card(new_power_id, source=controller.hero)
-        
-        # 替换英雄技能
-        if controller.hero.power:
-            controller.hero.power.zone = Zone.GRAVEYARD
-        controller.hero.power = new_power
-        new_power.controller = controller
-        new_power.zone = Zone.PLAY
+    events = OWN_TURN_END.on(OwnTurnEnd())
 
 
 class BOT_238p1:
@@ -168,24 +171,21 @@ class BOT_238p1:
     activate = Hit(TARGET, 3)
     
     # 回合结束时切换英雄技能
-    events = OWN_TURN_END.on(lambda self: self._switch_hero_power())
+    class OwnTurnEnd:
+        def trigger(self, target):
+            import random
+            controller = target.controller
+            available_powers = [p for p in BOT_238.entourage if p != target.id]
+            new_power_id = random.choice(available_powers)
+            new_power = controller.card(new_power_id, source=controller.hero)
+            if controller.hero.power:
+                controller.hero.power.zone = Zone.GRAVEYARD
+            controller.hero.power = new_power
+            new_power.controller = controller
+            new_power.zone = Zone.PLAY
+            return []
     
-    def _switch_hero_power(self):
-        """切换到另一个随机英雄技能（排除当前技能）"""
-        import random
-        controller = self.controller
-        
-        # 排除当前技能
-        available_powers = [p for p in self.entourage if p != self.id]
-        new_power_id = random.choice(available_powers)
-        
-        # 创建并替换英雄技能
-        new_power = controller.card(new_power_id, source=controller.hero)
-        if controller.hero.power:
-            controller.hero.power.zone = Zone.GRAVEYARD
-        controller.hero.power = new_power
-        new_power.controller = controller
-        new_power.zone = Zone.PLAY
+    events = OWN_TURN_END.on(OwnTurnEnd())
 
 
 class BOT_238p2:
@@ -194,19 +194,21 @@ class BOT_238p2:
     entourage = BOT_238.entourage
     activate = GainArmor(FRIENDLY_HERO, 7)
     
-    events = OWN_TURN_END.on(lambda self: self._switch_hero_power())
+    class OwnTurnEnd:
+        def trigger(self, target):
+            import random
+            controller = target.controller
+            available_powers = [p for p in BOT_238.entourage if p != target.id]
+            new_power_id = random.choice(available_powers)
+            new_power = controller.card(new_power_id, source=controller.hero)
+            if controller.hero.power:
+                controller.hero.power.zone = Zone.GRAVEYARD
+            controller.hero.power = new_power
+            new_power.controller = controller
+            new_power.zone = Zone.PLAY
+            return []
     
-    def _switch_hero_power(self):
-        import random
-        controller = self.controller
-        available_powers = [p for p in self.entourage if p != self.id]
-        new_power_id = random.choice(available_powers)
-        new_power = controller.card(new_power_id, source=controller.hero)
-        if controller.hero.power:
-            controller.hero.power.zone = Zone.GRAVEYARD
-        controller.hero.power = new_power
-        new_power.controller = controller
-        new_power.zone = Zone.PLAY
+    events = OWN_TURN_END.on(OwnTurnEnd())
 
 
 class BOT_238p3:
@@ -215,19 +217,21 @@ class BOT_238p3:
     entourage = BOT_238.entourage
     activate = Hit(ENEMY_CHARACTERS, 1)
     
-    events = OWN_TURN_END.on(lambda self: self._switch_hero_power())
+    class OwnTurnEnd:
+        def trigger(self, target):
+            import random
+            controller = target.controller
+            available_powers = [p for p in BOT_238.entourage if p != target.id]
+            new_power_id = random.choice(available_powers)
+            new_power = controller.card(new_power_id, source=controller.hero)
+            if controller.hero.power:
+                controller.hero.power.zone = Zone.GRAVEYARD
+            controller.hero.power = new_power
+            new_power.controller = controller
+            new_power.zone = Zone.PLAY
+            return []
     
-    def _switch_hero_power(self):
-        import random
-        controller = self.controller
-        available_powers = [p for p in self.entourage if p != self.id]
-        new_power_id = random.choice(available_powers)
-        new_power = controller.card(new_power_id, source=controller.hero)
-        if controller.hero.power:
-            controller.hero.power.zone = Zone.GRAVEYARD
-        controller.hero.power = new_power
-        new_power.controller = controller
-        new_power.zone = Zone.PLAY
+    events = OWN_TURN_END.on(OwnTurnEnd())
 
 
 class BOT_238p4:
@@ -239,19 +243,21 @@ class BOT_238p4:
     entourage = BOT_238.entourage
     activate = DISCOVER(RandomMech())
     
-    events = OWN_TURN_END.on(lambda self: self._switch_hero_power())
+    class OwnTurnEnd:
+        def trigger(self, target):
+            import random
+            controller = target.controller
+            available_powers = [p for p in BOT_238.entourage if p != target.id]
+            new_power_id = random.choice(available_powers)
+            new_power = controller.card(new_power_id, source=controller.hero)
+            if controller.hero.power:
+                controller.hero.power.zone = Zone.GRAVEYARD
+            controller.hero.power = new_power
+            new_power.controller = controller
+            new_power.zone = Zone.PLAY
+            return []
     
-    def _switch_hero_power(self):
-        import random
-        controller = self.controller
-        available_powers = [p for p in self.entourage if p != self.id]
-        new_power_id = random.choice(available_powers)
-        new_power = controller.card(new_power_id, source=controller.hero)
-        if controller.hero.power:
-            controller.hero.power.zone = Zone.GRAVEYARD
-        controller.hero.power = new_power
-        new_power.controller = controller
-        new_power.zone = Zone.PLAY
+    events = OWN_TURN_END.on(OwnTurnEnd())
 
 
 class BOT_238p6:
@@ -263,17 +269,19 @@ class BOT_238p6:
     entourage = BOT_238.entourage
     activate = Summon(CONTROLLER, "BOT_312t") * 3
     
-    events = OWN_TURN_END.on(lambda self: self._switch_hero_power())
+    class OwnTurnEnd:
+        def trigger(self, target):
+            import random
+            controller = target.controller
+            available_powers = [p for p in BOT_238.entourage if p != target.id]
+            new_power_id = random.choice(available_powers)
+            new_power = controller.card(new_power_id, source=controller.hero)
+            if controller.hero.power:
+                controller.hero.power.zone = Zone.GRAVEYARD
+            controller.hero.power = new_power
+            new_power.controller = controller
+            new_power.zone = Zone.PLAY
+            return []
     
-    def _switch_hero_power(self):
-        import random
-        controller = self.controller
-        available_powers = [p for p in self.entourage if p != self.id]
-        new_power_id = random.choice(available_powers)
-        new_power = controller.card(new_power_id, source=controller.hero)
-        if controller.hero.power:
-            controller.hero.power.zone = Zone.GRAVEYARD
-        controller.hero.power = new_power
-        new_power.controller = controller
-        new_power.zone = Zone.PLAY
+    events = OWN_TURN_END.on(OwnTurnEnd())
 

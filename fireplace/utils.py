@@ -208,6 +208,14 @@ def weighted_card_choice(source, weights: List[int], card_sets: List[str], count
     for i in range(count):
         # choose a set according to weighting
         chosen_set = bisect(cum_weights, source.game.random.random() * totalweight)
+        
+        # bisect可能返回len(cum_weights)，需要限制在有效范围内
+        chosen_set = min(chosen_set, len(card_sets) - 1)
+        
+        # 检查选中的集合是否为空
+        if not card_sets[chosen_set]:
+            # 如果选中的集合为空，跳过这次选择
+            continue
 
         # choose a random card from that set
         chosen_card_index = source.game.random.randint(

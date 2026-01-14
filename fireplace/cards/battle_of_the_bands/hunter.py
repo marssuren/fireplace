@@ -31,22 +31,22 @@ class ETC_201:
         GameTag.COST: 1,
         GameTag.SPELL_SCHOOL: SpellSchool.NATURE,
     }
-    play = Buff(TARGET, "EX1_014t"), Give(CONTROLLER, "ETC_201t")
+    play = Buff(TARGET, "EX1_014te"), Give(CONTROLLER, "ETC_201t")
 
 class ETC_201t:
     """Bunch of Bananas - 一串香蕉 (2 left)"""
     tags = {GameTag.CARDTYPE: CardType.SPELL, GameTag.COST: 1, GameTag.SPELL_SCHOOL: SpellSchool.NATURE}
-    play = Buff(TARGET, "EX1_014t"), Give(CONTROLLER, "ETC_201t2")
+    play = Buff(TARGET, "EX1_014te"), Give(CONTROLLER, "ETC_201t2")
 
 class ETC_201t2:
     """Bunch of Bananas - 一串香蕉 (1 left)"""
     tags = {GameTag.CARDTYPE: CardType.SPELL, GameTag.COST: 1, GameTag.SPELL_SCHOOL: SpellSchool.NATURE}
-    play = Buff(TARGET, "EX1_014t"), Give(CONTROLLER, "ETC_201t3")
+    play = Buff(TARGET, "EX1_014te"), Give(CONTROLLER, "ETC_201t3")
 
 class ETC_201t3:
     """Bunch of Bananas - 一串香蕉 (Last)"""
     tags = {GameTag.CARDTYPE: CardType.SPELL, GameTag.COST: 1, GameTag.SPELL_SCHOOL: SpellSchool.NATURE}
-    play = Buff(TARGET, "EX1_014t")
+    play = Buff(TARGET, "EX1_014te")
 
 class JAM_004:
     """Hollow Hound - 镂骨恶犬

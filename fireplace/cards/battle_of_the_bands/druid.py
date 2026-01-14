@@ -232,18 +232,18 @@ class ETC_376:
     }
     
     def play(self):
-        # Draw 2 cards with cost >= 6
-        cards = yield Draw(CONTROLLER, RandomCard(FRIENDLY_DECK + (COST >= 6))) * 2
+        # Draw 2 cards with cost >= 6 using ForceDraw
+        drawn_cards = []
+        for _ in range(2):
+            card = yield ForceDraw(RANDOM(FRIENDLY_DECK + (COST >= 6)))
+            if card and card[0]:
+                drawn_cards.append(card[0])
         
-        # Finale check
-        if self.controller.mana == 0 and cards:
-            # Cards might be nested lists if multiple draws
-            # Draw returns list of lists if multiple
-            # [[Card1], [Card2]]
-             for batch in cards:
-                  if batch:
-                      for c in batch:
-                          yield Buff(c, "ETC_376e")
+        # Finale check: if mana is now 0 after playing this card
+        if self.controller.mana == 0:
+            for c in drawn_cards:
+                if c and hasattr(c, 'zone'):
+                    yield Buff(c, "ETC_376e")
 
 class ETC_376e:
     tags = {GameTag.COST: -1, GameTag.CARDTYPE: CardType.ENCHANTMENT}

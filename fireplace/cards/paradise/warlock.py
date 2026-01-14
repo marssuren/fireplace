@@ -220,8 +220,8 @@ class VAC_941:
     """
     def play(self):
         # 1. 替换英雄技能为术士的基础英雄技能 "生命分流" (Life Tap)
-        # 参考 stormwind/warlock.py 的实现方式
-        new_power = self.controller.card("CS2_056", source=self.controller.hero)
+        # 使用正确的英雄技能 ID: HERO_07bp
+        new_power = self.controller.card("HERO_07bp", source=self.controller.hero)
         self.controller.hero.power = new_power
         new_power.controller = self.controller
         new_power.zone = Zone.PLAY

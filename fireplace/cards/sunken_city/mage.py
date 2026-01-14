@@ -22,7 +22,9 @@ class TID_707e:
 class TID_708:
     """变形术：水母 - 3费法术
     将一个随从变形成为一只4/1并具有法术伤害+2的水母"""
+    requirements = {PlayReq.REQ_TARGET_TO_PLAY: 0, PlayReq.REQ_MINION_TARGET: 0}
     play = Morph(TARGET, "TID_708t")
+
 
 
 class TID_709:

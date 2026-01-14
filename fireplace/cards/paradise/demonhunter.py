@@ -198,13 +198,13 @@ class VAC_926:
     """
     # 6费法术
     def play(self):
-        # 从牌库中召唤2个随从
-        minions = yield Summon(CONTROLLER, RANDOM(FRIENDLY_DECK + MINION) * 2)
-
-        # 给召唤的随从添加突袭和回合结束时返回牌库的效果
-        for minion in minions:
-            # 给予突袭
-            yield Buff(minion, "VAC_926e")
+        # 从牌库中召唤2个随从（分两次召唤）
+        for _ in range(2):
+            minion = yield Summon(CONTROLLER, RANDOM(FRIENDLY_DECK + MINION))
+            # 给召唤的随从添加突袭和回合结束时返回牌库的效果
+            if minion and minion[0]:
+                # 给予突袭
+                yield Buff(minion[0], "VAC_926e")
 
 
 class VAC_926e:

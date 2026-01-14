@@ -56,10 +56,10 @@ It dies at the end of turn.
     """
     def play(self):
         # 从死亡的友方随从中发现一个
-        dead_minions = list(FRIENDLY + KILLED + MINION).eval(self.game, self)
+        dead_minions = list((FRIENDLY + KILLED + MINION).eval(self.game, self))
         if dead_minions:
-            # 发现
-            choice = yield Discover(CONTROLLER, dead_minions)
+            # 使用GenericChoice而不是Discover，因为dead_minions已经是评估后的列表
+            choice = yield GenericChoice(CONTROLLER, dead_minions)
             if choice:
                 # 复活
                 minion = yield Summon(CONTROLLER, Copy(choice[0]))
