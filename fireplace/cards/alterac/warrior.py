@@ -127,7 +127,8 @@ class ONY_023e:
 class ONY_024:
     """奥妮克希亚幼龙 / Onyxian Drake
     嘲讽 战吼：对一个敌方随从造成等同于你护甲值的伤害。"""
-    play = Hit(TARGET, Count(FRIENDLY_HERO + ARMOR))
+    requirements = {PlayReq.REQ_TARGET_IF_AVAILABLE: 0, PlayReq.REQ_ENEMY_TARGET: 0, PlayReq.REQ_MINION_TARGET: 0}
+    play = Hit(TARGET, ARMOR(FRIENDLY_HERO))
 
 
 class ONY_025:

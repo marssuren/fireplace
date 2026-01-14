@@ -35,7 +35,7 @@ class AV_204t:
 class AV_209:
     """恐惧牢笼战刃 / Felscale Armor
     荣誉消灭：对敌方英雄造成等同于你英雄的攻击力的伤害。"""
-    honorable_kill = Hit(ENEMY_HERO, Count(FRIENDLY_HERO + ATK))
+    honorable_kill = Hit(ENEMY_HERO, ATK(FRIENDLY_HERO))
 
 
 class AV_261:
