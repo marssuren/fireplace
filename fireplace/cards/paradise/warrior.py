@@ -95,17 +95,22 @@ class VAC_526:
     mechanics = [GameTag.ImmuneToSpellpower]
     requirements = {PlayReq.REQ_TARGET_TO_PLAY: 0, PlayReq.REQ_MINION_TARGET: 0}
 
-    def play(self, target):
+    def play(self):
+        # 获取目标
+        target = self.target
+        if not target:
+            return
+        
         # 对目标造成7点伤害
         target_health = target.health
-        yield Hit(TARGET, 7)
+        yield Hit(target, 7)
 
         # 计算超额伤害
         excess_damage = max(0, 7 - target_health)
 
         if excess_damage > 0:
             # 给手牌中的一个随机随从 +X/+X (X = 超额伤害)
-            minions_in_hand = self.controller.hand.filter(type=CardType.MINION)
+            minions_in_hand = [c for c in self.controller.hand if c.type == CardType.MINION]
             if minions_in_hand:
                 target_minion = self.game.random.choice(minions_in_hand)
                 yield Buff(target_minion, "VAC_526e", atk=excess_damage, health=excess_damage)

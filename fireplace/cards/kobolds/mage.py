@@ -55,15 +55,28 @@ class LOOT_537e:
 # Spells
 
 
+def _loot_101_effect(self):
+    """爆炸符文效果：造成6点伤害，超量伤害由英雄承受"""
+    minion = self.game.get_args(Play)[1]
+    if minion and hasattr(minion, 'health'):
+        damage = self.controller.get_spell_damage(6)
+        if minion.health >= damage:
+            yield Hit(minion, damage)
+        else:
+            excess = damage - minion.health
+            yield Hit(minion, damage)
+            if excess > 0:
+                yield Hit(ENEMY_HERO, excess)
+
+
 class LOOT_101:
     """Explosive Runes / 爆炸符文
     奥秘：在你的对手使用一张随从牌后，对该随从造成$6点伤害，超过其生命值的伤害将由对方英雄 承受。"""
 
     # <b>Secret:</b> After your opponent plays a minion, deal $6 damage to it and any
     # excess to their hero.
-    secret = Play(OPPONENT, MINION).on(
-        Reveal(SELF), Hit(ENEMY_HERO, HitExcessDamage(Play.CARD, SPELL_DAMAGE(6)))
-    )
+    class Secret:
+        events = Play(OPPONENT, MINION).on(Reveal(OWNER), _loot_101_effect)
 
 
 class LOOT_103:

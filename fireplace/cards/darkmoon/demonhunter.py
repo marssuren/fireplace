@@ -60,6 +60,7 @@ class DMF_229:
 class DMF_229e_tracker:
     """Stiltstepper Tracker"""
     # 附在抽到的卡牌上的buff，当打出时触发效果
+    tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
     events = [
         Play(OWNER).on(
             Buff(FRIENDLY_HERO, "DMF_229e_hero"),
@@ -71,7 +72,7 @@ class DMF_229e_tracker:
 
 class DMF_229e_hero:
     """High Steps (高超舞步)"""
-    tags = {GameTag.ATK: 4}
+    tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT, GameTag.ATK: 4}
     events = REMOVED_IN_PLAY
 
 
@@ -194,12 +195,13 @@ class DMF_224t:
 class DMF_224e_marker:
     """Expendable Performer Marker"""
     # 标记这是演员大接力召唤的随从
-    tags = {enums.ABILITY_USED_THIS_TURN: 1}
+    tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT, enums.ABILITY_USED_THIS_TURN: 1}
 
 
 class DMF_224e_tracker:
     """Expendable Performers Tracker"""
     # 追踪本批次召唤的7个伊利达雷的死亡情况
+    tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -238,6 +240,7 @@ class DMF_225:
 class DMF_225e_temporary:
     """Temporary Copy Marker"""
     # 临时复制标记，回合结束时移除
+    tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
     events = OWN_TURN_END.on(Discard(OWNER))
 
 
@@ -258,7 +261,7 @@ class DMF_249:
 class DMF_249e_card1:
     """Acrobatics Card 1 Marker"""
     # 标记第一张抽到的牌
-    tags = {enums.ABILITY_USED_THIS_TURN: 1}
+    tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT, enums.ABILITY_USED_THIS_TURN: 1}
     
     # 打出时通知追踪器
     events = [
@@ -272,7 +275,7 @@ class DMF_249e_card1:
 class DMF_249e_card2:
     """Acrobatics Card 2 Marker"""
     # 标记第二张抽到的牌
-    tags = {enums.CARD_TRACKER_INDEX: 2}
+    tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT, enums.CARD_TRACKER_INDEX: 2}
     
     # 打出时通知追踪器
     events = [
@@ -286,6 +289,7 @@ class DMF_249e_card2:
 class DMF_249e_tracker:
     """Acrobatics Tracker"""
     # 追踪两张牌是否都打出
+    tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
     
     # 回合结束时检查
     events = OWN_TURN_END.on(

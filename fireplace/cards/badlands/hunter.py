@@ -180,26 +180,27 @@ class WW_810e:
 
 class WW_810e_taunt:
     """嘲讽"""
-    tags = {GameTag.TAUNT: True}
+    tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT, GameTag.TAUNT: True}
 
 
 class WW_810e_divine_shield:
     """圣盾"""
-    tags = {GameTag.DIVINE_SHIELD: True}
+    tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT, GameTag.DIVINE_SHIELD: True}
 
 
 class WW_810e_rush:
     """突袭"""
-    tags = {GameTag.RUSH: True}
+    tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT, GameTag.RUSH: True}
 
 
 class WW_810e_windfury:
     """风怒"""
-    tags = {GameTag.WINDFURY: True}
+    tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT, GameTag.WINDFURY: True}
 
 
 class WW_810e_deathrattle:
     """亡语：召唤变色龙"""
+    tags = {GameTag.CARDTYPE: CardType.ENCHANTMENT}
     deathrattle = Summon(CONTROLLER, "WW_810t")
 
 
