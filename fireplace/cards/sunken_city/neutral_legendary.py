@@ -108,10 +108,10 @@ class TSC_641:
     
     powered_up = lambda self: getattr(self, 'spells_cast_while_holding', 0) >= 3
     
-    play = lambda self: (
-        Discover(CONTROLLER, ["TSC_641t1", "TSC_641t2", "TSC_641t3", "TSC_641t4"])
-        if self.powered_up else []
-    )
+    def play(self):
+        """如果施放过3个法术,选择一项远古圣物"""
+        if self.powered_up:
+            yield Discover(CONTROLLER, ["TSC_641t1", "TSC_641t2", "TSC_641t3", "TSC_641t4"])
 
 
 class TSC_641e:

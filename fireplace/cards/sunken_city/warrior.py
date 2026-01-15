@@ -47,9 +47,11 @@ class TSC_660:
     """奈利，超巨蛇颈龙 - 7费 5/5
     巨型+1。战吼：发现三个海盗来构成奈利的船员团队"""
     colossal_appendages = ["TSC_660t"]
-    play = (
-        Discover(CONTROLLER, RandomMinion(race=Race.PIRATE)) * 3
-    )
+    
+    def play(self):
+        """发现三个海盗"""
+        for _ in range(3):
+            yield Discover(CONTROLLER, RandomMinion(race=Race.PIRATE))
 
 
 class TSC_913:
