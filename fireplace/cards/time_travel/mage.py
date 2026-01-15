@@ -201,7 +201,7 @@ class TIME_860:
     def play(self):
         # 随机选择两个不同的奥秘
         import random
-        secrets = random.sample(self.SECRET_CARDS, min(2, len(self.SECRET_CARDS)))
+        secrets = random.sample(TIME_860.SECRET_CARDS, min(2, len(TIME_860.SECRET_CARDS)))
         
         if len(secrets) < 2:
             return

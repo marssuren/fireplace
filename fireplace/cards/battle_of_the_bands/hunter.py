@@ -160,7 +160,7 @@ class ETC_838:
     }
     
     def play(self):
-        beasts = [c for c in self.controller.hand if c.race == Race.BEAST]
+        beasts = [c for c in self.controller.hand if getattr(c, 'race', None) == Race.BEAST]
         if beasts:
             max_cost = max(c.cost for c in beasts)
             targets = [c for c in beasts if c.cost == max_cost]

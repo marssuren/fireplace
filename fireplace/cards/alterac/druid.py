@@ -138,9 +138,9 @@ class AV_296:
 
 class AV_296e:
     """傲狮猎手效果"""
-    # 下一张抉择牌减费
+    # 下一张抉择牌减费，使用参数 i 代表当前的 cost 值，避免无限递归
     update = Refresh(FRIENDLY_HAND + CHOOSE_ONE, {
-        GameTag.COST: lambda self, i: max(0, self.cost - 2)
+        GameTag.COST: lambda self, i: max(0, i - 2)
     })
     events = Play(CONTROLLER, CHOOSE_ONE).after(Destroy(SELF))
 
@@ -185,7 +185,7 @@ class ONY_019:
     战吼：发现一张抉择牌，使其同时拥有两个效果。"""
     play = Discover(
         CONTROLLER,
-        lambda card: card.has_choose_one
+        RandomCollectible(card_filter=lambda c: GameTag.CHOOSE_ONE in c.tags)
     ).then(
         lambda card: Buff(card, "ONY_019e")
     )

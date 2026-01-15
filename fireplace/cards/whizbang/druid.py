@@ -253,10 +253,10 @@ class TOY_803:
         """根据全局计数器增加生命值"""
         return getattr(self.controller, "jade_display_buff", 0)
     
-    # 使用 Aura 动态更新属性
+    # 使用 Aura 动态更新属性，使用参数 i 代表当前值，避免无限递归
     update = Refresh(SELF, {
-        GameTag.ATK: lambda self, i: self.atk + getattr(self.controller, "jade_display_buff", 0),
-        GameTag.HEALTH: lambda self, i: self.max_health + getattr(self.controller, "jade_display_buff", 0)
+        GameTag.ATK: lambda self, i: i + getattr(self.controller, "jade_display_buff", 0),
+        GameTag.HEALTH: lambda self, i: i + getattr(self.controller, "jade_display_buff", 0)
     })
 
 

@@ -141,10 +141,71 @@ class BAR_323:
     Discover a Hero Power and set its Cost to (0). Swap back after 2 uses.
     发现一个英雄技能，并将其法力值消耗设置为（0）点。使用2次后换回。
     """
-    play = DISCOVER(RandomHeroPower()).then(
-        # 保存原英雄技能并替换
-        Give(CONTROLLER, "BAR_323t")  # 临时英雄技能
+    def play(self):
+        # 保存原英雄技能ID
+        original_power_id = self.controller.hero_power.id if self.controller.hero_power else None
+        
+        # 发现一个英雄技能
+        discovered = yield Discover(CONTROLLER, RandomHeroPower())
+        
+        if discovered and discovered[0]:
+            new_power_id = discovered[0].id if hasattr(discovered[0], 'id') else discovered[0]
+            
+            # 创建新英雄技能
+            new_power = self.controller.card(new_power_id, source=self)
+            
+            # 移除旧英雄技能
+            if self.controller.hero_power:
+                self.controller.hero_power.zone = Zone.GRAVEYARD
+            
+            # 设置新英雄技能
+            new_power.controller = self.controller
+            new_power.zone = Zone.PLAY
+            
+            # 设置费用为0并添加使用次数追踪
+            yield Buff(new_power, "BAR_323e")
+            
+            # 存储原英雄技能ID用于恢复
+            new_power.original_power_id = original_power_id
+            new_power.yoink_uses_remaining = 2
+
+
+class BAR_323e:
+    """偷师学艺效果 - 费用为0，使用2次后换回"""
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+    }
+    
+    # 费用设置为0
+    def cost(self, i):
+        return 0
+    
+    # 监听英雄技能使用
+    events = Activate(CONTROLLER, FRIENDLY_HERO_POWER).after(
+        lambda self, *args: self._on_hero_power_used()
     )
+    
+    def _on_hero_power_used(self):
+        """英雄技能使用后检查是否需要换回"""
+        owner = self.owner
+        if hasattr(owner, 'yoink_uses_remaining'):
+            owner.yoink_uses_remaining -= 1
+            
+            if owner.yoink_uses_remaining <= 0:
+                # 换回原英雄技能
+                original_power_id = getattr(owner, 'original_power_id', None)
+                if original_power_id:
+                    controller = owner.controller
+                    
+                    # 移除当前英雄技能
+                    owner.zone = Zone.GRAVEYARD
+                    
+                    # 恢复原英雄技能
+                    original_power = controller.card(original_power_id, source=controller.hero)
+                    original_power.controller = controller
+                    original_power.zone = Zone.PLAY
+        
+        return []
 
 
 class BAR_324:

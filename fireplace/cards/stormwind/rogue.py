@@ -34,9 +34,11 @@ class DED_005:
     
     def play(self):
         """与对手牌库中的一张牌交换"""
-        # 从对手牌库中随机抽一张牌给自己
+        # 从对手牌库中随机选择一张牌
         if self.controller.opponent.deck:
-            yield Give(CONTROLLER, Copy(RANDOM(OPPONENT_DECK)))
+            target = self.game.random.choice(list(self.controller.opponent.deck))
+            # 复制一张给自己
+            yield Give(CONTROLLER, Copy(target))
             # 将此牌洗入对手牌库
             yield Shuffle(OPPONENT, Copy(SELF))
 

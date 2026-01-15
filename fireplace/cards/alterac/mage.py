@@ -20,8 +20,9 @@ class AV_114:
 
 class AV_114e:
     """颤抖的女术士效果 - 减1费"""
+    # 使用参数 i 代表当前的 cost 值，避免无限递归
     tags = {
-        GameTag.COST: lambda self, i: max(0, self.cost - 1)
+        GameTag.COST: lambda self, i: max(0, i - 1)
     }
 
 
@@ -89,8 +90,9 @@ class AV_212:
 
 class AV_212e:
     """虹吸法力效果 - 增加2费"""
+    # 使用参数 i 代表当前的 cost 值，避免无限递归
     tags = {
-        GameTag.COST: lambda self, i: self.cost + 2
+        GameTag.COST: lambda self, i: i + 2
     }
 
 

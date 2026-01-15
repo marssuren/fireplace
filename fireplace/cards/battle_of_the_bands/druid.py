@@ -172,9 +172,15 @@ class ETC_373:
     choose = ("ETC_373a", "ETC_373b")
     
     def play(self):
-        if self.played_as == "ETC_373a":
+        # 安全获取 played_as，如果没有则随机选择一个抉择
+        played_as = getattr(self, 'played_as', None)
+        if played_as is None:
+            import random
+            played_as = random.choice(["ETC_373a", "ETC_373b"])
+        
+        if played_as == "ETC_373a":
             yield Summon(CONTROLLER, "ETC_373t") * 5
-        elif self.played_as == "ETC_373b":
+        elif played_as == "ETC_373b":
             yield Buff(FRIENDLY_MINIONS, "ETC_373e")
 
 class ETC_373a:
@@ -309,9 +315,15 @@ class ETC_387:
     choose = ("ETC_387a", "ETC_387b")
     
     def play(self):
-        if self.played_as == "ETC_387a":
+        # 安全获取 played_as，如果没有则随机选择一个抉择
+        played_as = getattr(self, 'played_as', None)
+        if played_as is None:
+            import random
+            played_as = random.choice(["ETC_387a", "ETC_387b"])
+        
+        if played_as == "ETC_387a":
             yield Buff(CONTROLLER, "ETC_387e_a")
-        elif self.played_as == "ETC_387b":
+        elif played_as == "ETC_387b":
             yield Buff(CONTROLLER, "ETC_387e_b")
 
 class ETC_387a:

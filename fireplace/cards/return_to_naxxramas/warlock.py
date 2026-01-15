@@ -7,9 +7,9 @@ class NX2_016:
     """
     def play(self):
         # 为所有友方恶魔和鱼人添加亡语
-        targets = FRIENDLY_MINIONS.filter(lambda m: Race.DEMON in m.races or Race.MURLOC in m.races)
-        for target in targets:
-            yield Buff(target, "NX2_016e")
+        for target in self.controller.field:
+            if Race.DEMON in target.races or Race.MURLOC in target.races:
+                yield Buff(target, "NX2_016e")
 
 
 

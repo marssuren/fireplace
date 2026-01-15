@@ -88,8 +88,9 @@ class AV_226:
 
 class AV_226e:
     """冰霜陷阱效果 - 增加1费"""
+    # 使用参数 i 代表当前的 cost 值，避免无限递归
     tags = {
-        GameTag.COST: lambda self, i: self.cost + 1
+        GameTag.COST: lambda self, i: i + 1
     }
 
 
@@ -127,8 +128,9 @@ class AV_334:
 
 class AV_334e:
     """暴风城战羊效果 - 下一只野兽减2费"""
+    # 使用参数 i 代表当前的 cost 值，避免无限递归
     update = Refresh(FRIENDLY_HAND + BEAST, {
-        GameTag.COST: lambda self, i: max(0, self.cost - 2)
+        GameTag.COST: lambda self, i: max(0, i - 2)
     })
     events = Play(CONTROLLER, BEAST).after(Destroy(SELF))
 

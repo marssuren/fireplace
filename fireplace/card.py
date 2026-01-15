@@ -437,8 +437,15 @@ class PlayableCard(BaseCard, Entity, TargetableByAuras):
                 if r is not None and hasattr(r, 'evaluate'):
                     r = r.evaluate(self)
                 # evaluate() can return None if it's an Evaluator (Crush)
-                if r:
+                # 确保 r 是数值类型，而不是函数或其他对象
+                if r is not None and not callable(r):
                     ret += r
+                elif callable(r):
+                    # 如果 r 是函数，说明有问题，记录错误
+                    import sys
+                    print(f"[ERROR] cost_mod returned a callable: {r} for card {self.id}", file=sys.stderr)
+                    print(f"  mod: {mod}", file=sys.stderr)
+                    print(f"  card: {self}", file=sys.stderr)
         ret = self._getattr("cost", ret)
         return max(0, ret)
 

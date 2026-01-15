@@ -110,8 +110,9 @@ class AV_313:
 
 class AV_313e:
     """空洞的憎恶增益"""
-    # 动态攻击力增益
-    tags = {GameTag.ATK: lambda self, i: self.atk}
+    # 动态攻击力增益，使用参数 i 代表当前的 atk 值，避免无限递归
+    # 这里需要使用存储的atk值，因为这是荣誉消灭时记录的敌方随从攻击力
+    tags = {GameTag.ATK: lambda self, i: i + getattr(self, '_bonus_atk', 0)}
 
 
 class AV_316:

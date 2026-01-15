@@ -168,9 +168,9 @@ class DMF_105:
     }
     # 使用核心的 DiscoverAndCastSecret 动作
     # 自动处理：重复检测、数量限制、发现、施放
-    play = DiscoverAndCastSecret(CONTROLLER, cards=RandomCollectible(card_class=CardClass.MAGE, card_type=CardType.SPELL, secret=True))
+    play = DiscoverAndCastSecret(CONTROLLER, RandomCollectible(card_class=CardClass.MAGE, card_type=CardType.SPELL, secret=True))
     # 腐蚀版本:发现并施放2张奥秘
-    corrupt = DiscoverAndCastSecret(CONTROLLER, cards=RandomCollectible(card_class=CardClass.MAGE, card_type=CardType.SPELL, secret=True)) * 2
+    corrupt = DiscoverAndCastSecret(CONTROLLER, RandomCollectible(card_class=CardClass.MAGE, card_type=CardType.SPELL, secret=True)) * 2
 
 
 class DMF_107:
