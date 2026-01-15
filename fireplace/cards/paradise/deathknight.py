@@ -130,7 +130,8 @@ class VAC_429:
         # 当场上有冻结角色时，费用变为 1
         def cost_func(self, i):
             # 检查场上是否有冻结的角色
-            if self.owner.game.board.filter(ALL_CHARACTERS + FROZEN):
+            frozen_chars = (ALL_CHARACTERS + FROZEN).eval(self.owner.game, self.owner)
+            if frozen_chars:
                 return 1
             return None  # 返回 None 表示不修改费用
 
@@ -160,7 +161,9 @@ class WORK_028:
     """
     def play(self):
         # 给所有随从复生
-        for minion in self.game.board.filter(ALL_MINIONS):
+        # 使用选择器获取所有随从
+        all_minions = ALL_MINIONS.eval(self.game, self)
+        for minion in all_minions:
             yield Buff(minion, "WORK_028e")
         # 消灭所有随从
         yield Destroy(ALL_MINIONS)
@@ -184,7 +187,7 @@ class VAC_402:
 
     def deathrattle(self):
         # 选择3个随机敌方角色（包括英雄和随从）
-        enemies = self.game.board.filter(ENEMY_CHARACTERS)
+        enemies = ENEMY_CHARACTERS.eval(self.game, self)
         count = min(3, len(enemies))
         if count > 0:
             targets = self.game.random.sample(enemies, count)

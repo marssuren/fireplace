@@ -154,7 +154,7 @@ class GDB_143:
     
     def spellburst_effect(self):
         # 获取手牌中的所有随从
-        minions_in_hand = list(self.game.board.filter(FRIENDLY_HAND + MINION))
+        minions_in_hand = (FRIENDLY_HAND + MINION).eval(self.game, self)
         
         if minions_in_hand:
             # 随机选择一个随从
@@ -194,7 +194,8 @@ class GDB_143e:
     
     def spellburst_effect(self):
         # 获取手牌中的所有随从(不包括自己)
-        minions_in_hand = [m for m in self.game.board.filter(FRIENDLY_HAND + MINION) if m != self.owner]
+        all_minions = (FRIENDLY_HAND + MINION).eval(self.game, self.owner)
+        minions_in_hand = [m for m in all_minions if m != self.owner]
         
         if minions_in_hand:
             # 随机选择一个随从
@@ -313,7 +314,7 @@ class SC_013:
         for murloc in summoned_murlocs:
             if murloc and murloc.zone == Zone.PLAY:
                 # 获取当前可攻击的敌方随从
-                enemy_minions = list(self.game.board.filter(ENEMY_MINIONS))
+                enemy_minions = ENEMY_MINIONS.eval(self.game, self)
                 if enemy_minions:
                     # 让玩家选择一个敌方随从作为目标
                     # 使用GenericChoice让玩家从敌方随从中选择一个
