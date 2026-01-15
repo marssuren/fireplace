@@ -7,7 +7,7 @@ from ..utils import *
 
 class DED_500:
     """分赃专员 / Wealth Redistributor
-    嘲讽 战吼：交换攻击力最高和最低的随从的攻击力。"""
+    嘲讽 战吼:交换攻击力最高和最低的随从的攻击力。"""
     tags = {
         GameTag.ATK: 4,
         GameTag.HEALTH: 4,
@@ -30,21 +30,16 @@ class DED_500:
                 high_atk = highest_atk_minion.atk
                 low_atk = lowest_atk_minion.atk
                 
-                # 设置新的攻击力
-                yield Buff(highest_atk_minion, "DED_500e_low", atk_value=low_atk - high_atk)
-                yield Buff(lowest_atk_minion, "DED_500e_high", atk_value=high_atk - low_atk)
+                # 设置新的攻击力 - 使用 atk 参数而不是 atk_value
+                yield Buff(highest_atk_minion, "DED_500e", atk=low_atk - high_atk)
+                yield Buff(lowest_atk_minion, "DED_500e", atk=high_atk - low_atk)
 
 
-class DED_500e_low:
-    """分赃专员攻击力调整（降低）"""
-    def __init__(self, atk_value):
-        self.atk = atk_value
-
-
-class DED_500e_high:
-    """分赃专员攻击力调整（提高）"""
-    def __init__(self, atk_value):
-        self.atk = atk_value
+class DED_500e:
+    """分赃专员攻击力调整"""
+    tags = {
+        GameTag.CARDTYPE: CardType.ENCHANTMENT,
+    }
 
 
 class DED_501:
