@@ -3592,8 +3592,8 @@ class Dredge(TargetedAction):
 
         # 在AI训练中，随机选择一张（或使用策略）
         # 实际游戏中应该让玩家选择
-        import random
-        chosen = random.choice(bottom_cards)
+        # 使用 game 的随机源以确保可重现性
+        chosen = source.game.random.choice(bottom_cards)
 
         # 将选中的牌移到顶部
         deck.remove(chosen)
