@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 
 # 加载完整的卡牌数据
-full_data_path = r"D:\Projects\Yolo\hearthstone_zero\fireplace\fireplace\cards\233025\zhCN\cards.game_playable.json"
+full_data_path = r"G:\Projects\Yolo\hearthstone_zero\fireplace\fireplace\cards\233275\zhCN\cards.game_playable.json"
 with open(full_data_path, "r", encoding="utf-8") as f:
     all_cards = json.load(f)
 
