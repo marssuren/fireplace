@@ -2,6 +2,7 @@
 胜地历险记 - 中立 - COMMON
 """
 from ..utils import *
+from ...card_set_extensions import newest_expansion_set_id
 
 
 # ========== VAC_304 - 潮池学徒 ==========
@@ -130,9 +131,11 @@ class VAC_432:
     mechanics = [GameTag.BATTLECRY, GameTag.DISCOVER]
     
     def play(self):
-        # 发现一张最新扩展包的牌
-        # Paradise (ISLAND_VACATION) 是当前扩展包
-        yield Discover(CONTROLLER, RandomCollectible(card_set=CardSet.ISLAND_VACATION))
+        # 发现一张最新扩展包的牌（按 Set ID，与 fireplace_cs 一致）
+        yield Discover(
+            CONTROLLER,
+            RandomCollectible(card_set=newest_expansion_set_id()),
+        )
 
 
 # ========== VAC_442 - 燃灯元素 ==========

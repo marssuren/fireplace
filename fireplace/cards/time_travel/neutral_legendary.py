@@ -2,6 +2,7 @@
 穿越时间流 - 中立 - LEGENDARY
 """
 from ..utils import *
+from ...card_set_extensions import is_newest_expansion
 from .rewind_helpers import execute_with_rewind, mark_card_rewind
 
 
@@ -120,7 +121,7 @@ class TIME_063e:
     events = Play(CONTROLLER).after(
         lambda self, player, played_card, target: (
             self._reduce_dormant() 
-            if hasattr(played_card, 'card_set') and played_card.card_set == CardSet.TIME_TRAVEL 
+            if hasattr(played_card, 'card_set') and is_newest_expansion(played_card.card_set)
             else []
         )
     )
