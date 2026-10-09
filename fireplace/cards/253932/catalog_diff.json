@@ -1,0 +1,915 @@
+{
+  "source": {
+    "client": "Mac /Applications/Hearthstone 36.6.3.253932.253216",
+    "dbf": "Data/OSX/dbf.unity3d CARD+CARD_TAG",
+    "build": 253932
+  },
+  "counts": {
+    "old_242566": 34954,
+    "new_253932": 36022,
+    "added": 1096,
+    "removed": 28,
+    "int_field_changed": 200,
+    "collectible_added": 235
+  },
+  "new_set_ids_from_1980": [
+    {
+      "id": 1980,
+      "collectible": 1,
+      "core": 0,
+      "expansion": 1,
+      "releaseOrder": 1424,
+      "standardEvent": 10000191
+    },
+    {
+      "id": 1988,
+      "collectible": 1,
+      "core": 0,
+      "expansion": 1,
+      "releaseOrder": 1425,
+      "standardEvent": 10000191
+    },
+    {
+      "id": 1994,
+      "collectible": 1,
+      "core": 0,
+      "expansion": 1,
+      "releaseOrder": 1426,
+      "standardEvent": 10000191
+    }
+  ],
+  "added_prefix_top": [
+    [
+      "BG36",
+      494
+    ],
+    [
+      "JAIL",
+      263
+    ],
+    [
+      "HERO",
+      114
+    ],
+    [
+      "CAP",
+      70
+    ],
+    [
+      "BG35",
+      40
+    ],
+    [
+      "TB",
+      33
+    ],
+    [
+      "BE",
+      16
+    ],
+    [
+      "PET",
+      12
+    ],
+    [
+      "BGFYM",
+      10
+    ],
+    [
+      "BGDUO",
+      8
+    ],
+    [
+      "BG31",
+      5
+    ],
+    [
+      "BG30",
+      4
+    ],
+    [
+      "CATA",
+      4
+    ],
+    [
+      "BG21",
+      4
+    ],
+    [
+      "BG34",
+      3
+    ],
+    [
+      "BG27",
+      2
+    ],
+    [
+      "BGMini",
+      2
+    ],
+    [
+      "BG",
+      2
+    ],
+    [
+      "BG20",
+      2
+    ],
+    [
+      "EX1",
+      1
+    ],
+    [
+      "MON",
+      1
+    ],
+    [
+      "BG23",
+      1
+    ],
+    [
+      "BGS",
+      1
+    ],
+    [
+      "BG26",
+      1
+    ],
+    [
+      "SW",
+      1
+    ],
+    [
+      "MONK",
+      1
+    ],
+    [
+      "BG33",
+      1
+    ]
+  ],
+  "added_by_card_set": [
+    [
+      "1453",
+      598
+    ],
+    [
+      "1988",
+      331
+    ],
+    [
+      "17",
+      113
+    ],
+    [
+      "18",
+      15
+    ],
+    [
+      "1994",
+      13
+    ],
+    [
+      "1961",
+      12
+    ],
+    [
+      "1941",
+      11
+    ],
+    [
+      "1980",
+      1
+    ],
+    [
+      "2",
+      1
+    ],
+    [
+      "1578",
+      1
+    ]
+  ],
+  "collectible_added_by_set": [
+    [
+      "1988",
+      164
+    ],
+    [
+      "17",
+      58
+    ],
+    [
+      "1941",
+      9
+    ],
+    [
+      "1994",
+      4
+    ]
+  ],
+  "collectible_added_sample": [
+    {
+      "card": "BE_013",
+      "set": "1994",
+      "enUS": "C'Thun, Eye of the Empire",
+      "zhCN": "克苏恩，帝国之眼"
+    },
+    {
+      "card": "BE_036",
+      "set": "1994",
+      "enUS": "M.O.T.H.E.R.",
+      "zhCN": "纯净圣母"
+    },
+    {
+      "card": "BE_259",
+      "set": "1994",
+      "enUS": "Isiset",
+      "zhCN": "伊希斯特"
+    },
+    {
+      "card": "BE_703",
+      "set": "1994",
+      "enUS": "Drest’agath",
+      "zhCN": "德雷阿佳丝"
+    },
+    {
+      "card": "BE_EVENT_100",
+      "set": "1941",
+      "enUS": "Arrival of the Old Gods",
+      "zhCN": "古神降临"
+    },
+    {
+      "card": "BE_EVENT_101",
+      "set": "1941",
+      "enUS": "Arrival of the Titans",
+      "zhCN": "泰坦降临"
+    },
+    {
+      "card": "BE_EVENT_102",
+      "set": "1941",
+      "enUS": "Dark Terraforming",
+      "zhCN": "裂地黑暗"
+    },
+    {
+      "card": "CAP_000",
+      "set": "1988",
+      "enUS": "SI:7 Slayer",
+      "zhCN": "军情七处杀手"
+    },
+    {
+      "card": "CAP_001",
+      "set": "1988",
+      "enUS": "Silent Strike",
+      "zhCN": "静默打击"
+    },
+    {
+      "card": "CAP_002",
+      "set": "1988",
+      "enUS": "Follow the Footsteps",
+      "zhCN": "跟随足迹"
+    },
+    {
+      "card": "CAP_003",
+      "set": "1988",
+      "enUS": "SI:7 Supplier",
+      "zhCN": "军情七处补给官"
+    },
+    {
+      "card": "CAP_004",
+      "set": "1988",
+      "enUS": "Disguised Operator",
+      "zhCN": "伪装的特工"
+    },
+    {
+      "card": "CAP_005",
+      "set": "1988",
+      "enUS": "Mathias Shaw",
+      "zhCN": "马迪亚斯·肖尔"
+    },
+    {
+      "card": "CAP_006",
+      "set": "1988",
+      "enUS": "Tricks of the Trade",
+      "zhCN": "嫁祸诀窍"
+    },
+    {
+      "card": "CAP_101",
+      "set": "1988",
+      "enUS": "Follow the Fuse",
+      "zhCN": "跟随引线"
+    },
+    {
+      "card": "CAP_102",
+      "set": "1988",
+      "enUS": "Land Ho!",
+      "zhCN": "眺望陆地"
+    },
+    {
+      "card": "CAP_103",
+      "set": "1988",
+      "enUS": "Hand Cannon",
+      "zhCN": "手持火炮"
+    },
+    {
+      "card": "CAP_104",
+      "set": "1988",
+      "enUS": "Blastpowder Engineer",
+      "zhCN": "炸药工程师"
+    },
+    {
+      "card": "CAP_105",
+      "set": "1988",
+      "enUS": "Hook n' Heave",
+      "zhCN": "钩手拖曳"
+    },
+    {
+      "card": "CAP_106",
+      "set": "1988",
+      "enUS": "Captain Crowley",
+      "zhCN": "克罗雷船长"
+    },
+    {
+      "card": "CAP_107",
+      "set": "1988",
+      "enUS": "Cannonmaster",
+      "zhCN": "火炮长"
+    },
+    {
+      "card": "CAP_400",
+      "set": "1988",
+      "enUS": "Kabal Conspirator",
+      "zhCN": "暗金教密谋者"
+    },
+    {
+      "card": "CAP_401",
+      "set": "1988",
+      "enUS": "Corrupt Constable",
+      "zhCN": "腐败警员"
+    },
+    {
+      "card": "CAP_402",
+      "set": "1988",
+      "enUS": "Follow the Evidence",
+      "zhCN": "跟随证据"
+    },
+    {
+      "card": "CAP_403",
+      "set": "1988",
+      "enUS": "Frame Job",
+      "zhCN": "陷害"
+    },
+    {
+      "card": "CAP_404",
+      "set": "1988",
+      "enUS": "Harsh Sentence",
+      "zhCN": "强力裁决"
+    },
+    {
+      "card": "CAP_405",
+      "set": "1988",
+      "enUS": "Godfather Kazakus",
+      "zhCN": "教父卡扎库斯"
+    },
+    {
+      "card": "CAP_406",
+      "set": "1988",
+      "enUS": "Kabal Mastermind",
+      "zhCN": "暗金教主谋"
+    },
+    {
+      "card": "CAP_407",
+      "set": "1988",
+      "enUS": "Wanted Poster",
+      "zhCN": "通缉海报"
+    },
+    {
+      "card": "CAP_800",
+      "set": "1988",
+      "enUS": "Sinful Steed",
+      "zhCN": "罪孽战马"
+    },
+    {
+      "card": "CAP_801",
+      "set": "1988",
+      "enUS": "Haunt",
+      "zhCN": "幽魂不散"
+    },
+    {
+      "card": "CAP_802",
+      "set": "1988",
+      "enUS": "Follow the Ghosts",
+      "zhCN": "跟随幽灵"
+    },
+    {
+      "card": "CAP_803",
+      "set": "1988",
+      "enUS": "Lingering Spirit",
+      "zhCN": "游荡之魂"
+    },
+    {
+      "card": "CAP_804",
+      "set": "1988",
+      "enUS": "Specter Specialist",
+      "zhCN": "捉鬼专家"
+    },
+    {
+      "card": "CAP_805",
+      "set": "1988",
+      "enUS": "Slime 'em!",
+      "zhCN": "灵质处决"
+    },
+    {
+      "card": "CAP_806",
+      "set": "1988",
+      "enUS": "Raith Van Geist",
+      "zhCN": "雷斯·范盖斯特"
+    },
+    {
+      "card": "CATA_EVENT_400",
+      "set": "1941",
+      "enUS": "Commissary Crook",
+      "zhCN": "店铺奸商"
+    },
+    {
+      "card": "CATA_EVENT_401",
+      "set": "1941",
+      "enUS": "Tunneling Geomancer",
+      "zhCN": "坑道地卜师"
+    },
+    {
+      "card": "CATA_EVENT_402",
+      "set": "1941",
+      "enUS": "Deadly Bribe",
+      "zhCN": "致命贿赂"
+    },
+    {
+      "card": "HERO_01bw",
+      "set": "17",
+      "enUS": "Dr. Boom",
+      "zhCN": "砰砰博士"
+    },
+    {
+      "card": "HERO_01bx",
+      "set": "17",
+      "enUS": "Henchman Boulderfist",
+      "zhCN": "匪帮恶党石拳"
+    },
+    {
+      "card": "HERO_01cg",
+      "set": "17",
+      "enUS": "Sire Denathrius Bat",
+      "zhCN": "蝙蝠德纳修斯大帝"
+    },
+    {
+      "card": "HERO_02bv",
+      "set": "17",
+      "enUS": "Vashj Fatale",
+      "zhCN": "蛇蝎美人瓦丝琪"
+    },
+    {
+      "card": "HERO_02bz",
+      "set": "17",
+      "enUS": "Wuxia Fireheart",
+      "zhCN": "武术教头火心"
+    },
+    {
+      "card": "HERO_02ca",
+      "set": "17",
+      "enUS": "Jailbird Inzah",
+      "zhCN": "囚徒因扎"
+    },
+    {
+      "card": "HERO_02ck",
+      "set": "17",
+      "enUS": "Bulletstorm Al'Akir",
+      "zhCN": "子弹风暴奥拉基尔"
+    },
+    {
+      "card": "HERO_03bi",
+      "set": "17",
+      "enUS": "Mob Boss Valeera",
+      "zhCN": "黑帮老大瓦莉拉"
+    },
+    {
+      "card": "HERO_03bn",
+      "set": "17",
+      "enUS": "Dalaran Warden Maiev",
+      "zhCN": "达拉然典狱官玛维"
+    },
+    {
+      "card": "HERO_03bs",
+      "set": "17",
+      "enUS": "Maiev, Hand of Vengeance",
+      "zhCN": "复仇之手玛维"
+    },
+    {
+      "card": "HERO_03bt",
+      "set": "17",
+      "enUS": "Mastermind Vanessa",
+      "zhCN": "主谋梵妮莎"
+    }
+  ],
+  "removed_sample": [
+    "BG24_005e",
+    "CATA_206t",
+    "CFM_712_t02",
+    "CFM_712_t03",
+    "CFM_712_t05",
+    "CFM_712_t06",
+    "CFM_712_t08",
+    "CFM_712_t09",
+    "CFM_712_t10",
+    "CFM_712_t11",
+    "CFM_712_t12",
+    "CFM_712_t13",
+    "CFM_712_t14",
+    "CFM_712_t15",
+    "CFM_712_t16",
+    "CFM_712_t17",
+    "CFM_712_t18",
+    "CFM_712_t19",
+    "CFM_712_t21",
+    "CFM_712_t22",
+    "CFM_712_t23",
+    "CFM_712_t24",
+    "CFM_712_t25",
+    "CFM_712_t26",
+    "CFM_712_t27",
+    "CFM_712_t28",
+    "CFM_712_t29",
+    "CFM_712_t30"
+  ],
+  "changed_sample": [
+    {
+      "card": "BOT_568",
+      "COST": {
+        "old": "1",
+        "new": "2"
+      }
+    },
+    {
+      "card": "BGS_004",
+      "HEALTH": {
+        "old": "4",
+        "new": "3"
+      }
+    },
+    {
+      "card": "TB_BaconUps_079",
+      "HEALTH": {
+        "old": "8",
+        "new": "6"
+      }
+    },
+    {
+      "card": "BGS_018",
+      "HEALTH": {
+        "old": "8",
+        "new": "7"
+      },
+      "ATK": {
+        "old": "8",
+        "new": "7"
+      }
+    },
+    {
+      "card": "TB_BaconUps_085",
+      "HEALTH": {
+        "old": "16",
+        "new": "14"
+      },
+      "ATK": {
+        "old": "16",
+        "new": "14"
+      }
+    },
+    {
+      "card": "BGS_121",
+      "HEALTH": {
+        "old": "5",
+        "new": "6"
+      },
+      "ATK": {
+        "old": "4",
+        "new": "5"
+      }
+    },
+    {
+      "card": "TB_BaconUps_165",
+      "HEALTH": {
+        "old": "10",
+        "new": "12"
+      },
+      "ATK": {
+        "old": "8",
+        "new": "10"
+      }
+    },
+    {
+      "card": "BG20_203",
+      "HEALTH": {
+        "old": "3",
+        "new": "4"
+      },
+      "ATK": {
+        "old": "2",
+        "new": "3"
+      }
+    },
+    {
+      "card": "BG20_203_G",
+      "HEALTH": {
+        "old": "6",
+        "new": "8"
+      },
+      "ATK": {
+        "old": "4",
+        "new": "6"
+      }
+    },
+    {
+      "card": "BG20_101",
+      "ATK": {
+        "old": "3",
+        "new": "2"
+      }
+    },
+    {
+      "card": "BG20_101_G",
+      "ATK": {
+        "old": "6",
+        "new": "4"
+      }
+    },
+    {
+      "card": "TSC_936",
+      "HEALTH": {
+        "old": "2",
+        "new": "4"
+      },
+      "ATK": {
+        "old": "2",
+        "new": "4"
+      },
+      "COST": {
+        "old": "4",
+        "new": "6"
+      }
+    },
+    {
+      "card": "BG23_000",
+      "HEALTH": {
+        "old": "3",
+        "new": "4"
+      }
+    },
+    {
+      "card": "BG23_007",
+      "HEALTH": {
+        "old": "8",
+        "new": "6"
+      }
+    },
+    {
+      "card": "BG23_017",
+      "HEALTH": {
+        "old": "3",
+        "new": "4"
+      },
+      "ATK": {
+        "old": "18",
+        "new": "9"
+      }
+    },
+    {
+      "card": "BG23_000_G",
+      "HEALTH": {
+        "old": "6",
+        "new": "8"
+      }
+    },
+    {
+      "card": "BG23_007_G",
+      "HEALTH": {
+        "old": "16",
+        "new": "12"
+      }
+    },
+    {
+      "card": "BG23_017_G",
+      "HEALTH": {
+        "old": "6",
+        "new": "8"
+      },
+      "ATK": {
+        "old": "36",
+        "new": "18"
+      }
+    },
+    {
+      "card": "BG22_403",
+      "HEALTH": {
+        "old": "6",
+        "new": "5"
+      },
+      "ATK": {
+        "old": "9",
+        "new": "8"
+      }
+    },
+    {
+      "card": "BG22_403_G",
+      "HEALTH": {
+        "old": "12",
+        "new": "10"
+      },
+      "ATK": {
+        "old": "18",
+        "new": "16"
+      }
+    },
+    {
+      "card": "BG26_137",
+      "HEALTH": {
+        "old": "5",
+        "new": "6"
+      },
+      "ATK": {
+        "old": "5",
+        "new": "6"
+      }
+    },
+    {
+      "card": "BG26_137_G",
+      "HEALTH": {
+        "old": "10",
+        "new": "12"
+      },
+      "ATK": {
+        "old": "10",
+        "new": "12"
+      }
+    },
+    {
+      "card": "BG26_152",
+      "HEALTH": {
+        "old": "6",
+        "new": "5"
+      }
+    },
+    {
+      "card": "BG26_152_G",
+      "HEALTH": {
+        "old": "12",
+        "new": "10"
+      }
+    },
+    {
+      "card": "BG26_810",
+      "HEALTH": {
+        "old": "6",
+        "new": "5"
+      },
+      "ATK": {
+        "old": "3",
+        "new": "2"
+      }
+    },
+    {
+      "card": "BG26_810_G",
+      "HEALTH": {
+        "old": "12",
+        "new": "10"
+      },
+      "ATK": {
+        "old": "6",
+        "new": "4"
+      }
+    },
+    {
+      "card": "BG26_159",
+      "HEALTH": {
+        "old": "5",
+        "new": "3"
+      }
+    },
+    {
+      "card": "BG26_159_G",
+      "HEALTH": {
+        "old": "10",
+        "new": "6"
+      }
+    },
+    {
+      "card": "BG26_814",
+      "HEALTH": {
+        "old": "2",
+        "new": "4"
+      }
+    },
+    {
+      "card": "BG26_814_G",
+      "HEALTH": {
+        "old": "4",
+        "new": "8"
+      }
+    },
+    {
+      "card": "BG26_524",
+      "HEALTH": {
+        "old": "4",
+        "new": "3"
+      },
+      "ATK": {
+        "old": "5",
+        "new": "4"
+      }
+    },
+    {
+      "card": "BG26_524_G",
+      "HEALTH": {
+        "old": "8",
+        "new": "6"
+      },
+      "ATK": {
+        "old": "10",
+        "new": "8"
+      }
+    },
+    {
+      "card": "BG26_523",
+      "HEALTH": {
+        "old": "6",
+        "new": "4"
+      },
+      "ATK": {
+        "old": "3",
+        "new": "4"
+      }
+    },
+    {
+      "card": "BG26_523_G",
+      "HEALTH": {
+        "old": "12",
+        "new": "8"
+      },
+      "ATK": {
+        "old": "6",
+        "new": "8"
+      }
+    },
+    {
+      "card": "BG26_162",
+      "ATK": {
+        "old": "5",
+        "new": "4"
+      }
+    },
+    {
+      "card": "BG26_162_G",
+      "ATK": {
+        "old": "10",
+        "new": "8"
+      }
+    },
+    {
+      "card": "BG26_174",
+      "HEALTH": {
+        "old": "1",
+        "new": "2"
+      }
+    },
+    {
+      "card": "BG26_174_G",
+      "HEALTH": {
+        "old": "2",
+        "new": "4"
+      }
+    },
+    {
+      "card": "BG27_016",
+      "HEALTH": {
+        "old": "10",
+        "new": "8"
+      },
+      "ATK": {
+        "old": "10",
+        "new": "8"
+      }
+    },
+    {
+      "card": "BG27_016_G",
+      "HEALTH": {
+        "old": "20",
+        "new": "16"
+      },
+      "ATK": {
+        "old": "20",
+        "new": "16"
+      }
+    }
+  ],
+  "xml": "g:\\Projects\\Yolo\\hearthstone_zero\\pkgs\\Hearthstone\\GamePlay\\fireplace\\fireplace\\cards\\253932\\CardDefs.xml",
+  "xml_bytes": 103838525
+}
